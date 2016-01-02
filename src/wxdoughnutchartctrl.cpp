@@ -21,9 +21,17 @@
 */
 
 #include "wxdoughnutchartctrl.h"
+#include <wx/dcclient.h>
+#include <wx/graphics.h>
+
+wxDoughnutChartCtrl::Segment::Segment(double value,
+									  const wxColor &color)
+	: value(value), color(color)
+{
+}
 
 wxDoughnutChartCtrl::SegmentArc::SegmentArc(const Segment &segment)
-	: value(segment.value)
+	: wxChartArc(segment.color), value(segment.value)
 {
 }
 
@@ -32,8 +40,9 @@ wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
 										 const wxPoint &pos,
 										 const wxSize &size, 
 										 long style)
-	: wxControl(parent, id, pos, size, style)
+	: wxControl(parent, id, pos, size, style), m_total(0)
 {
+	SetBackgroundColour(*wxWHITE);
 }
 
 void wxDoughnutChartCtrl::AddData(const Segment &segment)
@@ -48,6 +57,7 @@ void wxDoughnutChartCtrl::AddData(const Segment &segment, size_t index)
 
 void wxDoughnutChartCtrl::AddData(const Segment &segment, size_t index, bool silent)
 {
+	m_total += segment.value;
 	m_segments.insert(
 		m_segments.begin() + index,
 		std::make_shared<SegmentArc>(segment)
@@ -57,22 +67,46 @@ void wxDoughnutChartCtrl::AddData(const Segment &segment, size_t index, bool sil
 	}
 }
 
-void wxDoughnutChartCtrl::CalculateCircumference()
+double wxDoughnutChartCtrl::CalculateCircumference(double value)
 {
-}
-
-void wxDoughnutChartCtrl::CalculateTotal()
-{
-	m_total = 0;
+	if (m_total > 0) 
+	{
+		return (value * 2 * M_PI / m_total);
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 void wxDoughnutChartCtrl::OnAddOrRemoveData()
 {
-	CalculateTotal();
 }
 
 void wxDoughnutChartCtrl::OnPaint(wxPaintEvent &evt)
 {
+	wxPaintDC dc(this);
+	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+	if (gc)
+	{
+		for (size_t i = 0; i < m_segments.size(); ++i)
+		{
+			SegmentArc& currentSegment = *m_segments[i];
+			if (i == 0)
+			{
+				currentSegment.startAngle = 0;
+			}
+			currentSegment.endAngle = currentSegment.startAngle + CalculateCircumference(currentSegment.value);
+			currentSegment.draw(*gc);
+			// Check to see if it's the last segment, if not get the next and update the start angle
+			if (i < (m_segments.size() - 1))
+			{
+				m_segments[i + 1]->startAngle = currentSegment.endAngle;
+			}
+		}
+
+		delete gc;
+	}
 }
 
 BEGIN_EVENT_TABLE(wxDoughnutChartCtrl, wxControl)
