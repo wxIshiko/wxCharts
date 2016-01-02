@@ -24,17 +24,46 @@
 #define _WX_CHARTS_WXDOUGHNUTCHARTCTRL_H_
 
 #include <wx/control.h>
+#include <vector>
+#include <memory>
 
 class wxDoughnutChartCtrl : public wxControl
 {
 public:
+	struct Segment
+	{
+		unsigned int value;
+	};
+
+public:
 	wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,
-		const wxSize &size = wxDefaultSize);
+		const wxSize &size = wxDefaultSize, long style = 0);
+
+	void AddData(const Segment &segment);
+	void AddData(const Segment &segment, size_t index);
+	void AddData(const Segment &segment, size_t index, bool silent);
 
 private:
+	void CalculateCircumference();
+	void CalculateTotal();
+	void OnAddOrRemoveData();
+
 	void OnPaint(wxPaintEvent &evt);
 
 private:
+	struct SegmentArc
+	{
+		typedef std::shared_ptr<SegmentArc> ptr;
+
+		SegmentArc(const Segment &segment);
+
+		unsigned int value;
+	};
+
+private:
+	std::vector<SegmentArc::ptr> m_segments;
+	unsigned int m_total;
+
 	DECLARE_EVENT_TABLE();
 };
 

@@ -22,12 +22,53 @@
 
 #include "wxdoughnutchartctrl.h"
 
+wxDoughnutChartCtrl::SegmentArc::SegmentArc(const Segment &segment)
+	: value(segment.value)
+{
+}
+
 wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
 										 wxWindowID id,
 										 const wxPoint &pos,
-										 const wxSize &size)
-	: wxControl(parent, id, pos, size)
+										 const wxSize &size, 
+										 long style)
+	: wxControl(parent, id, pos, size, style)
 {
+}
+
+void wxDoughnutChartCtrl::AddData(const Segment &segment)
+{
+	AddData(segment, m_segments.size());
+}
+
+void wxDoughnutChartCtrl::AddData(const Segment &segment, size_t index)
+{
+	AddData(segment, index, false);
+}
+
+void wxDoughnutChartCtrl::AddData(const Segment &segment, size_t index, bool silent)
+{
+	m_segments.insert(
+		m_segments.begin() + index,
+		std::make_shared<SegmentArc>(segment)
+		);
+	if (!silent){
+		OnAddOrRemoveData();
+	}
+}
+
+void wxDoughnutChartCtrl::CalculateCircumference()
+{
+}
+
+void wxDoughnutChartCtrl::CalculateTotal()
+{
+	m_total = 0;
+}
+
+void wxDoughnutChartCtrl::OnAddOrRemoveData()
+{
+	CalculateTotal();
 }
 
 void wxDoughnutChartCtrl::OnPaint(wxPaintEvent &evt)
