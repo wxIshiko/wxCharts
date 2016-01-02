@@ -79,11 +79,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\wxdoughnutchart.cpp" />
+    <ClCompile Include="..\..\src\wxdoughnutchartctrl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxdoughnutchart.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxdoughnutchartctrl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

@@ -20,12 +20,12 @@
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxdoughnutchart.h">
+    <ClInclude Include="..\..\include\wx\charts\wxdoughnutchartctrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\wxdoughnutchart.cpp">
+    <ClCompile Include="..\..\src\wxdoughnutchartctrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
