@@ -84,13 +84,19 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\wxchartscore.cpp" />
     <ClCompile Include="..\..\src\wxbarchartctrl.cpp" />
+    <ClCompile Include="..\..\src\wxlinechartctrl.cpp" />
     <ClCompile Include="..\..\src\wxdoughnutchartctrl.cpp" />
+    <ClCompile Include="..\..\src\wxpolarareachartctrl.cpp" />
+    <ClCompile Include="..\..\src\wxradarchartctrl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartscore.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartctrl.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxlinechartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxdoughnutchartctrl.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxpolarareachartctrl.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxradarchartctrl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

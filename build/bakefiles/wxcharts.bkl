@@ -30,13 +30,19 @@ library wxcharts
         ../../include/wx/charts/wxcharts.h
         ../../include/wx/charts/wxchartscore.h
         ../../include/wx/charts/wxbarchartctrl.h
+        ../../include/wx/charts/wxlinechartctrl.h
         ../../include/wx/charts/wxdoughnutchartctrl.h
+        ../../include/wx/charts/wxpolarareachartctrl.h
+        ../../include/wx/charts/wxradarchartctrl.h
     }
 
     sources
     {
         ../../src/wxchartscore.cpp
         ../../src/wxbarchartctrl.cpp
+        ../../src/wxlinechartctrl.cpp
         ../../src/wxdoughnutchartctrl.cpp
+        ../../src/wxpolarareachartctrl.cpp
+        ../../src/wxradarchartctrl.cpp
     }
 }
