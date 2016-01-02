@@ -1,0 +1,41 @@
+toolsets = vs2013;
+
+vs2013.solutionfile = ../msw/WxBar_vc12.sln;
+
+setting WXWIDGETS_ROOT
+{
+    help = "Path to the wxWidgets installation";
+    default = '$(WXWIN)';
+}
+
+setting WXCHARTS_ROOT
+{
+    help = "Path to the wxCharts installation";
+    default = '$(WXCHARTS)';
+}
+
+program WxBar
+{
+    vs2013.projectfile = ../msw/WxBar_vc12.vcxproj;
+
+    win32-subsystem = windows;
+
+    includedirs += $(WXCHARTS_ROOT)/include;
+    libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
+
+    includedirs += $(WXWIDGETS_ROOT)/include;
+    includedirs += $(WXWIDGETS_ROOT)/include/msvc;
+    libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+
+    headers
+    {
+        ../../src/WxBarApp.h
+        ../../src/WxBarFrame.h
+    }
+
+    sources
+    {
+        ../../src/WxBarApp.cpp
+        ../../src/WxBarFrame.cpp
+    }
+}

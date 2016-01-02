@@ -29,12 +29,14 @@ library wxcharts
     {
         ../../include/wx/charts/wxcharts.h
         ../../include/wx/charts/wxchartscore.h
+        ../../include/wx/charts/wxbarchartctrl.h
         ../../include/wx/charts/wxdoughnutchartctrl.h
     }
 
     sources
     {
         ../../src/wxchartscore.cpp
+        ../../src/wxbarchartctrl.cpp
         ../../src/wxdoughnutchartctrl.cpp
     }
 }

@@ -20,54 +20,7 @@
 	IN THE SOFTWARE.
 */
 
-#ifndef _WX_CHARTS_WXDOUGHNUTCHARTCTRL_H_
-#define _WX_CHARTS_WXDOUGHNUTCHARTCTRL_H_
-
-#include "wxchartscore.h"
-#include <wx/control.h>
-#include <vector>
-#include <memory>
-
-class wxDoughnutChartCtrl : public wxControl
-{
-public:
-	struct Segment
-	{
-		Segment(double value, const wxColor &color);
-
-		double value;
-		wxColor color;
-	};
-
-public:
-	wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,
-		const wxSize &size = wxDefaultSize, long style = 0);
-
-	void AddData(const Segment &segment);
-	void AddData(const Segment &segment, size_t index);
-	void AddData(const Segment &segment, size_t index, bool silent);
-
-private:
-	double CalculateCircumference(double value);
-	void OnAddOrRemoveData();
-
-	void OnPaint(wxPaintEvent &evt);
-
-private:
-	struct SegmentArc : public wxChartArc
-	{
-		typedef std::shared_ptr<SegmentArc> ptr;
-
-		SegmentArc(const Segment &segment);
-
-		double value;
-	};
-
-private:
-	std::vector<SegmentArc::ptr> m_segments;
-	double m_total;
-
-	DECLARE_EVENT_TABLE();
-};
+#ifndef _WX_CHARTS_WXBARCHARTCTRL_H_
+#define _WX_CHARTS_WXBARCHARTCTRL_H_
 
 #endif
