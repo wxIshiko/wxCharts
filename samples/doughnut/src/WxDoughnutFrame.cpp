@@ -21,8 +21,26 @@
 */
 
 #include "WxDoughnutFrame.h"
+#include <wx/panel.h>
+#include <wx/sizer.h>
+#include <wx/charts/wxcharts.h>
 
 WxDoughnutFrame::WxDoughnutFrame(const wxString& title)
 	: wxFrame(NULL, wxID_ANY, title)
 {
+	// Create a top-level panel to hold all the contents of the frame
+	wxPanel* panel = new wxPanel(this, wxID_ANY);
+
+	// Create the doughnut chart widget
+	wxDoughnutChartCtrl* doughnutChartCtrl = new wxDoughnutChartCtrl(panel, wxID_ANY);
+
+	// Set up the sizer for the panel
+	wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
+	panelSizer->Add(doughnutChartCtrl, 1, wxEXPAND);
+	panel->SetSizer(panelSizer);
+
+	// Set up the sizer for the frame
+	wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
+	topSizer->Add(panel, 1, wxEXPAND);
+	SetSizer(topSizer);
 }

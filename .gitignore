@@ -4,3 +4,4 @@
 *.suo
 Debug/
 Release/
+/lib/

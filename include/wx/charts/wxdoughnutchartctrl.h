@@ -20,7 +20,22 @@
 	IN THE SOFTWARE.
 */
 
-#ifndef _WX_CHARTS_WXDOUGHNUTCHART_H_
-#define _WX_CHARTS_WXDOUGHNUTCHART_H_
+#ifndef _WX_CHARTS_WXDOUGHNUTCHARTCTRL_H_
+#define _WX_CHARTS_WXDOUGHNUTCHARTCTRL_H_
+
+#include <wx/control.h>
+
+class wxDoughnutChartCtrl : public wxControl
+{
+public:
+	wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,
+		const wxSize &size = wxDefaultSize);
+
+private:
+	void OnPaint(wxPaintEvent &evt);
+
+private:
+	DECLARE_EVENT_TABLE();
+};
 
 #endif

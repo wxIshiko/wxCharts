@@ -20,4 +20,20 @@
 	IN THE SOFTWARE.
 */
 
-#include "wxdoughnutchart.h"
+#include "wxdoughnutchartctrl.h"
+
+wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
+										 wxWindowID id,
+										 const wxPoint &pos,
+										 const wxSize &size)
+	: wxControl(parent, id, pos, size)
+{
+}
+
+void wxDoughnutChartCtrl::OnPaint(wxPaintEvent &evt)
+{
+}
+
+BEGIN_EVENT_TABLE(wxDoughnutChartCtrl, wxControl)
+	EVT_PAINT(wxDoughnutChartCtrl::OnPaint)
+END_EVENT_TABLE()

@@ -18,6 +18,7 @@ library wxcharts
     includedirs += $(WXWIDGETS_ROOT)/include/msvc;
     libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
 
+    outputdir = ../../lib/vc_lib;
 
     if ($(config) == Debug)
     {

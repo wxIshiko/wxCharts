@@ -23,6 +23,8 @@
 #ifndef _WX_CHARTS_WXCHARTS_H_
 #define _WX_CHARTS_WXCHARTS_H_
 
+#include "wxdoughnutchartctrl.h"
+
 #ifdef _MSC_VER
 
 #ifdef _DEBUG
