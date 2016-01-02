@@ -23,4 +23,31 @@
 #ifndef _WX_CHARTS_WXBARCHARTCTRL_H_
 #define _WX_CHARTS_WXBARCHARTCTRL_H_
 
+#include <wx/control.h>
+#include <vector>
+#include <memory>
+
+class wxBarChartCtrl : public wxControl
+{
+public:
+	wxBarChartCtrl(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,
+		const wxSize &size = wxDefaultSize, long style = 0);
+
+	void AddData();
+
+private:
+	void OnPaint(wxPaintEvent &evt);
+
+private:
+	struct Dataset
+	{
+		typedef std::shared_ptr<Dataset> ptr;
+	};
+
+private:
+	std::vector<Dataset::ptr> m_datasets;
+
+	DECLARE_EVENT_TABLE();
+};
+
 #endif

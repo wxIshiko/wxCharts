@@ -39,4 +39,10 @@ public:
 	double endAngle;
 };
 
+class wxChartRectangle
+{
+public:
+	void draw(wxGraphicsContext &gc);
+};
+
 #endif

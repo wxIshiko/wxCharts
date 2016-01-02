@@ -21,3 +21,29 @@
 */
 
 #include "wxbarchartctrl.h"
+
+wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
+							   wxWindowID id,
+							   const wxPoint &pos,
+							   const wxSize &size,
+							   long style)
+	: wxControl(parent, id, pos, size, style)
+{
+	SetBackgroundColour(*wxWHITE);
+}
+
+void wxBarChartCtrl::AddData()
+{
+	m_datasets.insert(m_datasets.end(), std::make_shared<Dataset>());
+}
+
+void wxBarChartCtrl::OnPaint(wxPaintEvent &evt)
+{
+	for (size_t i = 0; i < m_datasets.size(); ++i)
+	{
+	}
+}
+
+BEGIN_EVENT_TABLE(wxBarChartCtrl, wxControl)
+	EVT_PAINT(wxBarChartCtrl::OnPaint)
+END_EVENT_TABLE()

@@ -42,3 +42,7 @@ void wxChartArc::draw(wxGraphicsContext &gc)
 	gc.SetPen(pen);
 	gc.StrokePath(path);
 }
+
+void wxChartRectangle::draw(wxGraphicsContext &gc)
+{
+}
