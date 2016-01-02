@@ -82,10 +82,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\wxchartscore.cpp" />
     <ClCompile Include="..\..\src\wxdoughnutchartctrl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartscore.h" />
     <ClInclude Include="..\..\include\wx\charts\wxdoughnutchartctrl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

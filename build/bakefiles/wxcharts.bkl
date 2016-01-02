@@ -28,11 +28,13 @@ library wxcharts
     headers
     {
         ../../include/wx/charts/wxcharts.h
+        ../../include/wx/charts/wxchartscore.h
         ../../include/wx/charts/wxdoughnutchartctrl.h
     }
 
     sources
     {
+        ../../src/wxchartscore.cpp
         ../../src/wxdoughnutchartctrl.cpp
     }
 }
