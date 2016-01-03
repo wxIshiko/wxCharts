@@ -1,0 +1,42 @@
+/*
+	Copyright (c) 2016 Xavier Leclercq
+
+	Permission is hereby granted, free of charge, to any person obtaining a
+	copy of this software and associated documentation files (the "Software"),
+	to deal in the Software without restriction, including without limitation
+	the rights to use, copy, modify, merge, publish, distribute, sublicense,
+	and/or sell copies of the Software, and to permit persons to whom the
+	Software is furnished to do so, subject to the following conditions:
+
+	The above copyright notice and this permission notice shall be included in
+	all copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+	THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+	FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+	IN THE SOFTWARE.
+*/
+
+#ifndef _WX_CHARTS_WXCHARTARC_H_
+#define _WX_CHARTS_WXCHARTARC_H_
+
+#include <wx/graphics.h>
+
+// This class is used to draw one of the segments of a circular chart
+// e.g. a pie chart or a doughnut chart.
+class wxChartArc
+{
+public:
+	wxChartArc(const wxColor &fillColor);
+
+	void draw(wxGraphicsContext &gc);
+
+	wxColor fillColor;
+	double startAngle;
+	double endAngle;
+};
+
+#endif

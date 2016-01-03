@@ -83,6 +83,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\wxchartscore.cpp" />
+    <ClCompile Include="..\..\src\wxchartgrid.cpp" />
+    <ClCompile Include="..\..\src\wxchartradialgrid.cpp" />
+    <ClCompile Include="..\..\src\wxchartarc.cpp" />
     <ClCompile Include="..\..\src\wxbarchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxlinechartctrl.cpp" />
     <ClCompile Include="..\..\src\wxdoughnutchartctrl.cpp" />
@@ -92,6 +95,9 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartscore.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartgrid.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartradialgrid.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartarc.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxlinechartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxdoughnutchartctrl.h" />
