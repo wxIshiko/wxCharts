@@ -22,23 +22,57 @@
 
 #include "wxchartarc.h"
 
-wxChartArc::wxChartArc(const wxColor &fillColor)
-	: fillColor(fillColor)
+wxChartArc::wxChartArc(double x,
+					   double y, 
+					   double startAngle,
+					   double endAngle, 
+					   double outerRadius,
+					   double innerRadius,
+					   unsigned int strokeWidth,
+					   const wxColor &fillColor)
+	: m_x(x), m_y(y), m_startAngle(startAngle), 
+	m_endAngle(endAngle), m_outerRadius(outerRadius),
+	m_innerRadius(innerRadius), m_strokeWidth(strokeWidth),
+	m_fillColor(fillColor)
 {
 }
 
 void wxChartArc::draw(wxGraphicsContext &gc)
 {
 	wxGraphicsPath path = gc.CreatePath();
-	path.AddArc(75, 75, 30, startAngle, endAngle, true);
-	path.AddArc(75, 75, 75, endAngle, startAngle, false);
+
+	path.AddArc(m_x, m_y, m_innerRadius, m_startAngle, m_endAngle, true);
+	path.AddArc(m_x, m_y, m_outerRadius, m_endAngle, m_startAngle, false);
 	path.CloseSubpath();
 
-	wxBrush brush(fillColor);
+	wxBrush brush(m_fillColor);
 	gc.SetBrush(brush);
 	gc.FillPath(path);
 
-	wxPen pen(*wxWHITE, 2);
+	wxPen pen(*wxWHITE, m_strokeWidth);
 	gc.SetPen(pen);
 	gc.StrokePath(path);
+}
+
+void wxChartArc::setCenter(double x, double y)
+{
+	m_x = x;
+	m_y = y;
+}
+
+void wxChartArc::setAngles(double startAngle, double endAngle)
+{
+	m_startAngle = startAngle;
+	m_endAngle = endAngle;
+}
+
+void wxChartArc::setRadiuses(double outerRadius, double innerRadius)
+{
+	m_outerRadius = outerRadius;
+	m_innerRadius = innerRadius;
+}
+
+unsigned int wxChartArc::StrokeWidth() const
+{
+	return m_strokeWidth;
 }

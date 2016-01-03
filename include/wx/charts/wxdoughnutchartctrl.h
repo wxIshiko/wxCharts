@@ -23,10 +23,26 @@
 #ifndef _WX_CHARTS_WXDOUGHNUTCHARTCTRL_H_
 #define _WX_CHARTS_WXDOUGHNUTCHARTCTRL_H_
 
-#include "wxchartscore.h"
+#include "wxchartarc.h"
 #include <wx/control.h>
 #include <vector>
 #include <memory>
+
+class wxDougnutChartOptions
+{
+public:
+	wxDougnutChartOptions();
+
+	unsigned int SegmentStrokeWidth() const;
+	unsigned int PercentageInnerCutout() const;
+
+private:
+	// The width of each segment stroke, this will increase the 
+	// space between the segments themselves.
+	unsigned int m_segmentStrokeWidth;
+	// The percentage of the chart that we cut out of the middle.
+	unsigned int m_percentageInnerCutout;
+};
 
 class wxDoughnutChartCtrl : public wxControl
 {
@@ -52,18 +68,24 @@ private:
 	void OnAddOrRemoveData();
 
 	void OnPaint(wxPaintEvent &evt);
+	void OnSize(wxSizeEvent& evt);
 
 private:
 	struct SegmentArc : public wxChartArc
 	{
 		typedef std::shared_ptr<SegmentArc> ptr;
 
-		SegmentArc(const Segment &segment);
+		SegmentArc(const Segment &segment, double x, double y, 
+			double startAngle, double endAngle, double outerRadius, 
+			double innerRadius, unsigned int strokeWidth);
+
+		void Resize(const wxSize &size, const wxDougnutChartOptions& options);
 
 		double value;
 	};
 
 private:
+	wxDougnutChartOptions m_options;
 	std::vector<SegmentArc::ptr> m_segments;
 	double m_total;
 

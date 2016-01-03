@@ -30,13 +30,27 @@
 class wxChartArc
 {
 public:
-	wxChartArc(const wxColor &fillColor);
+	wxChartArc(double x, double y, double startAngle,
+		double endAngle, double outerRadius, double innerRadius,
+		unsigned int strokeWidth, const wxColor &fillColor);
 
 	void draw(wxGraphicsContext &gc);
 
-	wxColor fillColor;
-	double startAngle;
-	double endAngle;
+	void setCenter(double x, double y);
+	void setAngles(double startAngle, double endAngle);
+	void setRadiuses(double outerRadius, double innerRadius);
+
+	unsigned int StrokeWidth() const;
+
+private:
+	double m_x;
+	double m_y;
+	double m_startAngle;
+	double m_endAngle;
+	double m_outerRadius;
+	double m_innerRadius;
+	unsigned int m_strokeWidth;
+	wxColor m_fillColor;
 };
 
 #endif
