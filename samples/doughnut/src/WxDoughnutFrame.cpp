@@ -48,5 +48,5 @@ WxDoughnutFrame::WxDoughnutFrame(const wxString& title)
 	// Set up the sizer for the frame
 	wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
 	topSizer->Add(panel, 1, wxEXPAND);
-	SetSizer(topSizer);
+	SetSizerAndFit(topSizer);
 }
