@@ -32,9 +32,11 @@ library wxcharts
         ../../include/wx/charts/wxchartgrid.h
         ../../include/wx/charts/wxchartradialgrid.h
         ../../include/wx/charts/wxchartarc.h
+        ../../include/wx/charts/wxcharttooltip.h
         ../../include/wx/charts/wxbarchartctrl.h
         ../../include/wx/charts/wxlinechartctrl.h
         ../../include/wx/charts/wxdoughnutchartctrl.h
+        ../../include/wx/charts/wxpiechartctrl.h
         ../../include/wx/charts/wxpolarareachartctrl.h
         ../../include/wx/charts/wxradarchartctrl.h
     }
@@ -45,9 +47,11 @@ library wxcharts
         ../../src/wxchartgrid.cpp
         ../../src/wxchartradialgrid.cpp
         ../../src/wxchartarc.cpp
+        ../../src/wxcharttooltip.cpp
         ../../src/wxbarchartctrl.cpp
         ../../src/wxlinechartctrl.cpp
         ../../src/wxdoughnutchartctrl.cpp
+        ../../src/wxpiechartctrl.cpp
         ../../src/wxpolarareachartctrl.cpp
         ../../src/wxradarchartctrl.cpp
     }
