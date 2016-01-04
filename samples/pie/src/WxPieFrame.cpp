@@ -21,8 +21,32 @@
 */
 
 #include "WxPieFrame.h"
+#include <wx/panel.h>
+#include <wx/sizer.h>
+#include <wx/charts/wxcharts.h>
 
 WxPieFrame::WxPieFrame(const wxString& title)
 	: wxFrame(NULL, wxID_ANY, title)
 {
+	// Create a top-level panel to hold all the contents of the frame
+	wxPanel* panel = new wxPanel(this, wxID_ANY);
+
+	// Create the doughnut chart widget
+	wxPieChartCtrl* pieChartCtrl = new wxPieChartCtrl(panel, wxID_ANY);
+	pieChartCtrl->AddData(wxPieChartCtrl::Segment(300, wxColor(0x4A46F7)));
+	pieChartCtrl->AddData(wxPieChartCtrl::Segment(50, wxColor(0xBDBF46)));
+	pieChartCtrl->AddData(wxPieChartCtrl::Segment(100, wxColor(0x5CB4FD)));
+	pieChartCtrl->AddData(wxPieChartCtrl::Segment(40, wxColor(0xB19F94)));
+	pieChartCtrl->AddData(wxPieChartCtrl::Segment(120, wxColor(0x60534D)));
+
+
+	// Set up the sizer for the panel
+	wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
+	panelSizer->Add(pieChartCtrl, 1, wxEXPAND);
+	panel->SetSizer(panelSizer);
+
+	// Set up the sizer for the frame
+	wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
+	topSizer->Add(panel, 1, wxEXPAND);
+	SetSizerAndFit(topSizer);
 }
