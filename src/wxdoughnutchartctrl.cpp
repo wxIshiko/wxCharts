@@ -21,7 +21,6 @@
 */
 
 #include "wxdoughnutchartctrl.h"
-#include <wx/dcclient.h>
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
