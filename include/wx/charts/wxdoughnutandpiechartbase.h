@@ -28,6 +28,19 @@
 #include <vector>
 #include <memory>
 
+class ChartSlice
+{
+public:
+	ChartSlice(double value, const wxColor &color);
+
+	double GetValue() const;
+	const wxColor& GetColor() const;
+
+private:
+	double m_value;
+	wxColor m_color;
+};
+
 class wxDoughnutAndPieChartOptionsBase
 {
 public:
@@ -46,14 +59,6 @@ private:
 	bool m_showTooltips;
 };
 
-struct Segment
-{
-	Segment(double value, const wxColor &color);
-
-	double value;
-	wxColor color;
-};
-
 // The doughnut and pie chart are very similar so we use
 // a common base class. It would actually be possible to
 // only have the doughnut classes but I usually favor
@@ -64,9 +69,9 @@ public:
 	wxDoughnutAndPieChartBase(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,
 		const wxSize &size = wxDefaultSize, long style = 0);
 
-	void AddData(const Segment &segment);
-	void AddData(const Segment &segment, size_t index);
-	void AddData(const Segment &segment, size_t index, bool silent);
+	void Add(const ChartSlice &slice);
+	void Add(const ChartSlice &slice, size_t index);
+	void Add(const ChartSlice &slice, size_t index, bool silent);
 
 private:
 	double CalculateCircumference(double value);
@@ -82,11 +87,11 @@ private:
 	virtual const wxDoughnutAndPieChartOptionsBase& GetOptions() const = 0;
 
 private:
-	struct SegmentArc : public wxChartArc
+	struct SliceArc : public wxChartArc
 	{
-		typedef std::shared_ptr<SegmentArc> ptr;
+		typedef std::shared_ptr<SliceArc> ptr;
 
-		SegmentArc(const Segment &segment, double x, double y,
+		SliceArc(const ChartSlice &slice, double x, double y,
 			double startAngle, double endAngle, double outerRadius,
 			double innerRadius, unsigned int strokeWidth);
 
@@ -96,10 +101,10 @@ private:
 	};
 
 private:
-	std::vector<SegmentArc::ptr> m_segments;
+	std::vector<SliceArc::ptr> m_slices;
 	double m_total;
 	bool m_mouseInWindow;
-	std::vector<SegmentArc::ptr> m_activeSegments;
+	std::vector<SliceArc::ptr> m_activeSlices;
 
 	DECLARE_EVENT_TABLE();
 };
