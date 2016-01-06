@@ -33,12 +33,11 @@ WxPieFrame::WxPieFrame(const wxString& title)
 
 	// Create the doughnut chart widget
 	wxPieChartCtrl* pieChartCtrl = new wxPieChartCtrl(panel, wxID_ANY);
-	pieChartCtrl->AddData(wxPieChartCtrl::Segment(300, wxColor(0x4A46F7)));
-	pieChartCtrl->AddData(wxPieChartCtrl::Segment(50, wxColor(0xBDBF46)));
-	pieChartCtrl->AddData(wxPieChartCtrl::Segment(100, wxColor(0x5CB4FD)));
-	pieChartCtrl->AddData(wxPieChartCtrl::Segment(40, wxColor(0xB19F94)));
-	pieChartCtrl->AddData(wxPieChartCtrl::Segment(120, wxColor(0x60534D)));
-
+	pieChartCtrl->AddData(Segment(300, wxColor(0x4A46F7)));
+	pieChartCtrl->AddData(Segment(50, wxColor(0xBDBF46)));
+	pieChartCtrl->AddData(Segment(100, wxColor(0x5CB4FD)));
+	pieChartCtrl->AddData(Segment(40, wxColor(0xB19F94)));
+	pieChartCtrl->AddData(Segment(120, wxColor(0x60534D)));
 
 	// Set up the sizer for the panel
 	wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
