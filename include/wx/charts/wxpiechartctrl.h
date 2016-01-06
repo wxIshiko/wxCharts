@@ -24,71 +24,24 @@
 #define _WX_CHARTS_WXPIECHARTCTRL_H_
 
 #include "wxdoughnutandpiechartbase.h"
-#include "wxchartarc.h"
-#include <vector>
-#include <memory>
 
-class wxPieChartOptions
+class wxPieChartOptions : public wxDoughnutAndPieChartOptionsBase
 {
 public:
 	wxPieChartOptions();
-
-	unsigned int GetSegmentStrokeWidth() const;
-	bool ShowTooltips() const;
-
-private:
-	// The width of each segment stroke, this will increase the 
-	// space between the segments themselves.
-	unsigned int m_segmentStrokeWidth;
-	bool m_showTooltips;
 };
 
 class wxPieChartCtrl : public wxDoughnutAndPieChartBase
 {
 public:
-	struct Segment
-	{
-		Segment(double value, const wxColor &color);
-
-		double value;
-		wxColor color;
-	};
-
-public:
 	wxPieChartCtrl(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,
 		const wxSize &size = wxDefaultSize, long style = 0);
 
-	void AddData(const Segment &segment);
-	void AddData(const Segment &segment, size_t index);
-	void AddData(const Segment &segment, size_t index, bool silent);
-
 private:
-	double CalculateCircumference(double value);
-	void OnAddOrRemoveData();
-
-	void OnPaint(wxPaintEvent &evt);
-	void OnSize(wxSizeEvent& evt);
-
-private:
-	struct SegmentArc : public wxChartArc
-	{
-		typedef std::shared_ptr<SegmentArc> ptr;
-
-		SegmentArc(const Segment &segment, double x, double y, 
-			double startAngle, double endAngle, double outerRadius, 
-			unsigned int strokeWidth);
-
-		void Resize(const wxSize &size, const wxPieChartOptions& options);
-
-		double value;
-	};
+	virtual const wxDoughnutAndPieChartOptionsBase& GetOptions() const;
 
 private:
 	wxPieChartOptions m_options;
-	std::vector<SegmentArc::ptr> m_segments;
-	double m_total;
-
-	DECLARE_EVENT_TABLE();
 };
 
 #endif
