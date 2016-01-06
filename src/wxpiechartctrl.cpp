@@ -25,13 +25,18 @@
 #include <wx/graphics.h>
 
 wxPieChartOptions::wxPieChartOptions()
-	: m_segmentStrokeWidth(2)
+	: m_segmentStrokeWidth(2), m_showTooltips(true)
 {
 }
 
-unsigned int wxPieChartOptions::SegmentStrokeWidth() const
+unsigned int wxPieChartOptions::GetSegmentStrokeWidth() const
 {
 	return m_segmentStrokeWidth;
+}
+
+bool wxPieChartOptions::ShowTooltips() const
+{
+	return m_showTooltips;
 }
 
 wxPieChartCtrl::Segment::Segment(double value,
@@ -57,10 +62,10 @@ void wxPieChartCtrl::SegmentArc::Resize(const wxSize &size,
 {
 	double x = (size.GetX() / 2) - 2;
 	double y = (size.GetY() / 2) - 2;
-	double outerRadius = ((x < y) ? x : y) - (StrokeWidth() / 2);
+	double outerRadius = ((x < y) ? x : y) - (GetStrokeWidth() / 2);
 	
-	setCenter(x, y);
-	setRadiuses(outerRadius, 0);
+	SetCenter(x, y);
+	SetRadiuses(outerRadius, 0);
 }
 
 wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
@@ -68,7 +73,7 @@ wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
 							   const wxPoint &pos,
 							   const wxSize &size, 
 							   long style)
-	: wxControl(parent, id, pos, size, style), m_total(0)
+	: wxDoughnutAndPieChartBase(parent, id, pos, size, style), m_total(0)
 {
 	SetBackgroundStyle(wxBG_STYLE_PAINT);
 	SetBackgroundColour(*wxWHITE);
@@ -90,10 +95,10 @@ void wxPieChartCtrl::AddData(const Segment &segment, size_t index, bool silent)
 
 	double x = (GetSize().GetX() / 2) - 2;
 	double y = (GetSize().GetY() / 2) - 2;
-	double outerRadius = ((x < y) ? x : y) - (m_options.SegmentStrokeWidth() / 2);
+	double outerRadius = ((x < y) ? x : y) - (m_options.GetSegmentStrokeWidth() / 2);
 	
 	SegmentArc::ptr newSegment = std::make_shared<SegmentArc>(segment,
-		x, y, 0, 0, outerRadius, m_options.SegmentStrokeWidth());
+		x, y, 0, 0, outerRadius, m_options.GetSegmentStrokeWidth());
 	m_segments.insert(m_segments.begin() + index, newSegment);
 	if (!silent){
 		OnAddOrRemoveData();
@@ -131,10 +136,10 @@ void wxPieChartCtrl::OnPaint(wxPaintEvent &evt)
 			SegmentArc& currentSegment = *m_segments[i];
 			
 			double endAngle = startAngle + CalculateCircumference(currentSegment.value);
-			currentSegment.setAngles(startAngle, endAngle);
+			currentSegment.SetAngles(startAngle, endAngle);
 			startAngle = endAngle;
 
-			currentSegment.draw(*gc);
+			currentSegment.Draw(*gc);
 		}
 
 		delete gc;

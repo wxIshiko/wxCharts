@@ -35,6 +35,7 @@ library wxcharts
         ../../include/wx/charts/wxcharttooltip.h
         ../../include/wx/charts/wxbarchartctrl.h
         ../../include/wx/charts/wxlinechartctrl.h
+        ../../include/wx/charts/wxdoughnutandpiechartbase.h
         ../../include/wx/charts/wxdoughnutchartctrl.h
         ../../include/wx/charts/wxpiechartctrl.h
         ../../include/wx/charts/wxpolarareachartctrl.h
@@ -50,6 +51,7 @@ library wxcharts
         ../../src/wxcharttooltip.cpp
         ../../src/wxbarchartctrl.cpp
         ../../src/wxlinechartctrl.cpp
+        ../../src/wxdoughnutandpiechartbase.cpp
         ../../src/wxdoughnutchartctrl.cpp
         ../../src/wxpiechartctrl.cpp
         ../../src/wxpolarareachartctrl.cpp

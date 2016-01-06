@@ -23,8 +23,8 @@
 #ifndef _WX_CHARTS_WXPIECHARTCTRL_H_
 #define _WX_CHARTS_WXPIECHARTCTRL_H_
 
+#include "wxdoughnutandpiechartbase.h"
 #include "wxchartarc.h"
-#include <wx/control.h>
 #include <vector>
 #include <memory>
 
@@ -33,15 +33,17 @@ class wxPieChartOptions
 public:
 	wxPieChartOptions();
 
-	unsigned int SegmentStrokeWidth() const;
+	unsigned int GetSegmentStrokeWidth() const;
+	bool ShowTooltips() const;
 
 private:
 	// The width of each segment stroke, this will increase the 
 	// space between the segments themselves.
 	unsigned int m_segmentStrokeWidth;
+	bool m_showTooltips;
 };
 
-class wxPieChartCtrl : public wxControl
+class wxPieChartCtrl : public wxDoughnutAndPieChartBase
 {
 public:
 	struct Segment
