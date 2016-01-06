@@ -23,7 +23,36 @@
 #ifndef _WX_CHARTS_WXDOUGHNUTANDPIECHARTBASE_H_
 #define _WX_CHARTS_WXDOUGHNUTANDPIECHARTBASE_H_
 
+#include "wxchartarc.h"
 #include <wx/control.h>
+#include <vector>
+#include <memory>
+
+class wxDoughnutAndPieChartOptionsBase
+{
+public:
+	wxDoughnutAndPieChartOptionsBase(unsigned int percentageInnerCutout);
+
+	unsigned int GetSegmentStrokeWidth() const;
+	unsigned int GetPercentageInnerCutout() const;
+	bool ShowTooltips() const;
+
+private:
+	// The width of each segment stroke, this will increase the 
+	// space between the segments themselves.
+	unsigned int m_segmentStrokeWidth;
+	// The percentage of the chart that we cut out of the middle.
+	unsigned int m_percentageInnerCutout;
+	bool m_showTooltips;
+};
+
+struct Segment
+{
+	Segment(double value, const wxColor &color);
+
+	double value;
+	wxColor color;
+};
 
 // The doughnut and pie chart are very similar so we use
 // a common base class. It would actually be possible to
@@ -34,6 +63,45 @@ class wxDoughnutAndPieChartBase : public wxControl
 public:
 	wxDoughnutAndPieChartBase(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,
 		const wxSize &size = wxDefaultSize, long style = 0);
+
+	void AddData(const Segment &segment);
+	void AddData(const Segment &segment, size_t index);
+	void AddData(const Segment &segment, size_t index, bool silent);
+
+private:
+	double CalculateCircumference(double value);
+	void GetSegmentsAtEvent(const wxPoint &point);
+
+	void OnPaint(wxPaintEvent &evt);
+	void OnSize(wxSizeEvent& evt);
+	void OnMouseEnter(wxMouseEvent& evt);
+	void OnMouseOver(wxMouseEvent& evt);
+	void OnMouseExit(wxMouseEvent& evt);
+
+private:
+	virtual const wxDoughnutAndPieChartOptionsBase& GetOptions() const = 0;
+
+private:
+	struct SegmentArc : public wxChartArc
+	{
+		typedef std::shared_ptr<SegmentArc> ptr;
+
+		SegmentArc(const Segment &segment, double x, double y,
+			double startAngle, double endAngle, double outerRadius,
+			double innerRadius, unsigned int strokeWidth);
+
+		void Resize(const wxSize &size, const wxDoughnutAndPieChartOptionsBase& options);
+
+		double value;
+	};
+
+private:
+	std::vector<SegmentArc::ptr> m_segments;
+	double m_total;
+	bool m_mouseInWindow;
+	std::vector<SegmentArc::ptr> m_activeSegments;
+
+	DECLARE_EVENT_TABLE();
 };
 
 #endif
