@@ -21,3 +21,58 @@
 */
 
 #include "wxlinechartctrl.h"
+#include <wx/dcclient.h>
+#include <wx/graphics.h>
+
+wxLineChartOptions::wxLineChartOptions()
+	: m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x20)
+{
+}
+
+unsigned int wxLineChartOptions::GetGridLineWidth() const
+{
+	return m_gridLineWidth;
+}
+
+const wxColor& wxLineChartOptions::GetGridLineColor() const
+{
+	return m_gridLineColor;
+}
+
+wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
+								 wxWindowID id,
+								 const std::vector<std::string> &labels,
+								 const wxPoint &pos,
+								 const wxSize &size,
+								 long style)
+	: wxControl(parent, id, pos, size, style), 
+	m_grid(labels, m_options.GetGridLineWidth(),m_options.GetGridLineColor())
+{
+	SetBackgroundColour(*wxWHITE);
+}
+
+void wxLineChartCtrl::AddData()
+{
+}
+
+void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
+{
+	wxPaintDC dc(this);
+	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+	if (gc)
+	{
+		m_grid.Draw(*gc);
+
+		delete gc;
+	}
+}
+
+void wxLineChartCtrl::OnSize(wxSizeEvent& evt)
+{
+	Refresh();
+}
+
+BEGIN_EVENT_TABLE(wxLineChartCtrl, wxControl)
+	EVT_PAINT(wxLineChartCtrl::OnPaint)
+	EVT_SIZE(wxLineChartCtrl::OnSize)
+END_EVENT_TABLE()

@@ -23,4 +23,40 @@
 #ifndef _WX_CHARTS_WXLINECHARTCTRL_H_
 #define _WX_CHARTS_WXLINECHARTCTRL_H_
 
+#include "wxchartgrid.h"
+#include <wx/control.h>
+
+class wxLineChartOptions
+{
+public:
+	wxLineChartOptions();
+
+	unsigned int GetGridLineWidth() const;
+	const wxColor& GetGridLineColor() const;
+
+private:
+	unsigned int m_gridLineWidth;
+	wxColor m_gridLineColor;
+};
+
+class wxLineChartCtrl : public wxControl
+{
+public:
+	wxLineChartCtrl(wxWindow *parent, wxWindowID id, const std::vector<std::string> &labels,
+		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize, 
+		long style = 0);
+
+	void AddData();
+
+private:
+	void OnPaint(wxPaintEvent &evt);
+	void OnSize(wxSizeEvent& evt);
+
+private:
+	wxLineChartOptions m_options;
+	wxChartGrid m_grid;
+
+	DECLARE_EVENT_TABLE();
+};
+
 #endif
