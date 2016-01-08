@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2015-2016 Xavier Leclercq
+	Copyright (c) 2016 Xavier Leclercq
 
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
@@ -20,30 +20,37 @@
 	IN THE SOFTWARE.
 */
 
-#include "WxLineFrame.h"
-#include <wx/panel.h>
-#include <wx/sizer.h>
-#include <wx/charts/wxcharts.h>
+#ifndef _WX_CHARTS_WXCHARTGRID_H_
+#define _WX_CHARTS_WXCHARTGRID_H_
 
-WxLineFrame::WxLineFrame(const wxString& title)
-	: wxFrame(NULL, wxID_ANY, title)
+#include <wx/graphics.h>
+#include <vector>
+
+// Class holding the options for the wxChartGrid
+// element
+class wxChartGridOptions
 {
-	// Create a top-level panel to hold all the contents of the frame
-	wxPanel* panel = new wxPanel(this, wxID_ANY);
+};
 
-	// Create the bar chart widget
-	std::vector<std::string> labels{ "January", "February", "March", "April", "May", "June", "July" };
-	wxLineChartCtrl* lineChartCtrl = new wxLineChartCtrl(panel, wxID_ANY, labels);
-	
-	lineChartCtrl->AddData();
+// This class represents the grid displayed in the background
+// of some of the chart controls like for instance line and 
+// bar charts.
+class wxChartGrid
+{
+public:
+	wxChartGrid(const std::vector<std::string> &labels, 
+		unsigned int gridLineWidth, const wxColor &gridLineColor);
 
-	// Set up the sizer for the panel
-	wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
-	panelSizer->Add(lineChartCtrl, 1, wxEXPAND);
-	panel->SetSizer(panelSizer);
+	void Draw(wxGraphicsContext &gc);
 
-	// Set up the sizer for the frame
-	wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
-	topSizer->Add(panel, 1, wxEXPAND);
-	SetSizer(topSizer);
-}
+private:
+	double CalculateX(size_t index);
+
+private:
+	std::vector<std::string> m_xLabels;
+	std::vector<std::string> m_yLabels;
+	unsigned int m_gridLineWidth;
+	wxColor m_gridLineColor;
+};
+
+#endif
