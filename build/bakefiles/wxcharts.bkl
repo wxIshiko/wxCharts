@@ -28,14 +28,15 @@ library wxcharts
     headers
     {
         ../../include/wx/charts/wxcharts.h
-        ../../include/wx/charts/wxchartscore.h
         ../../include/wx/charts/wxchartutilities.h
+        ../../include/wx/charts/wxchartgridoptions.h
         ../../include/wx/charts/wxchartgrid.h
         ../../include/wx/charts/wxchartradialgrid.h
         ../../include/wx/charts/wxchartpoint.h
         ../../include/wx/charts/wxchartrectangle.h
         ../../include/wx/charts/wxchartarc.h
         ../../include/wx/charts/wxcharttooltip.h
+        ../../include/wx/charts/wxchart.h
         ../../include/wx/charts/wxbarchartoptions.h
         ../../include/wx/charts/wxbarchartctrl.h
         ../../include/wx/charts/wxlinechartoptions.h
@@ -52,14 +53,15 @@ library wxcharts
 
     sources
     {
-        ../../src/wxchartscore.cpp
         ../../src/wxchartutilities.cpp
+        ../../src/wxchartgridoptions.cpp
         ../../src/wxchartgrid.cpp
         ../../src/wxchartradialgrid.cpp
         ../../src/wxchartpoint.cpp
         ../../src/wxchartrectangle.cpp
         ../../src/wxchartarc.cpp
         ../../src/wxcharttooltip.cpp
+        ../../src/wxchart.cpp
         ../../src/wxbarchartoptions.cpp
         ../../src/wxbarchartctrl.cpp
         ../../src/wxlinechartoptions.cpp

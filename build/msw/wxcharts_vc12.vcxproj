@@ -82,14 +82,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\wxchartscore.cpp" />
     <ClCompile Include="..\..\src\wxchartutilities.cpp" />
+    <ClCompile Include="..\..\src\wxchartgridoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartgrid.cpp" />
     <ClCompile Include="..\..\src\wxchartradialgrid.cpp" />
     <ClCompile Include="..\..\src\wxchartpoint.cpp" />
     <ClCompile Include="..\..\src\wxchartrectangle.cpp" />
     <ClCompile Include="..\..\src\wxchartarc.cpp" />
     <ClCompile Include="..\..\src\wxcharttooltip.cpp" />
+    <ClCompile Include="..\..\src\wxchart.cpp" />
     <ClCompile Include="..\..\src\wxbarchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxbarchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxlinechartoptions.cpp" />
@@ -105,14 +106,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartscore.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartutilities.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartgridoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartgrid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartradialgrid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartpoint.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartrectangle.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartarc.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltip.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxlinechartoptions.h" />
