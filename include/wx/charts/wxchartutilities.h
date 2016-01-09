@@ -23,4 +23,14 @@
 #ifndef _WX_CHARTS_WXCHARTUTILITIES_H_
 #define _WX_CHARTS_WXCHARTUTILITIES_H_
 
+#include <wx/graphics.h>
+
+class wxChartUtilities
+{
+public:
+	static size_t GetDecimalPlaces();
+	static double GetLongestText(wxGraphicsContext &gc, 
+		const wxFont &font, const wxVector<wxString> &strings);
+};
+
 #endif

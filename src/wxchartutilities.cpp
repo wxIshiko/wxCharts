@@ -21,3 +21,31 @@
 */
 
 #include "wxchartutilities.h"
+
+size_t wxChartUtilities::GetDecimalPlaces()
+{
+	return 1;
+}
+
+wxDouble wxChartUtilities::GetLongestText(wxGraphicsContext &gc,
+										  const wxFont &font,
+										  const wxVector<wxString> &strings)
+{
+	wxDouble result = 0;
+
+	for (size_t i = 0; i < strings.size(); ++i)
+	{
+		wxDouble width;
+		wxDouble height;
+		wxDouble descent;
+		wxDouble externalLeading;
+		gc.SetFont(font, *wxBLACK);
+		gc.GetTextExtent(strings[i], &width, &height, &descent, &externalLeading);
+		if (width > result)
+		{
+			result = width;
+		}
+	}
+
+	return result;
+}
