@@ -27,9 +27,22 @@ size_t wxChartUtilities::GetDecimalPlaces()
 	return 1;
 }
 
-wxDouble wxChartUtilities::GetLongestText(wxGraphicsContext &gc,
-										  const wxFont &font,
-										  const wxVector<wxString> &strings)
+wxDouble wxChartUtilities::GetTextWidth(wxGraphicsContext &gc,
+										const wxFont &font, 
+										const wxString &string)
+{
+	wxDouble width;
+	wxDouble height;
+	wxDouble descent;
+	wxDouble externalLeading;
+	gc.SetFont(font, *wxBLACK);
+	gc.GetTextExtent(string, &width, &height, &descent, &externalLeading);
+	return width;
+}
+
+wxDouble wxChartUtilities::GetWidestText(wxGraphicsContext &gc,
+										 const wxFont &font,
+										 const wxVector<wxString> &strings)
 {
 	wxDouble result = 0;
 

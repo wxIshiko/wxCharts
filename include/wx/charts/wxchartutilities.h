@@ -29,7 +29,9 @@ class wxChartUtilities
 {
 public:
 	static size_t GetDecimalPlaces();
-	static double GetLongestText(wxGraphicsContext &gc, 
+	static wxDouble GetTextWidth(wxGraphicsContext &gc,
+		const wxFont &font, const wxString &string);
+	static wxDouble GetWidestText(wxGraphicsContext &gc, 
 		const wxFont &font, const wxVector<wxString> &strings);
 };
 
