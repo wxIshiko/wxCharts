@@ -20,28 +20,14 @@
 	IN THE SOFTWARE.
 */
 
-#include "wxchart.h"
+#include "wxchartoptions.h"
 
-wxChart::wxChart(wxWindow *parent,
-				 wxWindowID id,
-				 const wxPoint &pos,
-				 const wxSize &size,
-				 long style)
-	: wxControl(parent, id, pos, size, style)
+wxChartOptions::wxChartOptions()
+	: m_responsive(true)
 {
-	SetBackgroundStyle(wxBG_STYLE_PAINT);
-	SetBackgroundColour(*wxWHITE);
 }
 
-void wxChart::OnSize(wxSizeEvent& evt)
+bool wxChartOptions::IsResponsive() const
 {
-	if (m_options.IsResponsive())
-	{
-		Resize(evt.GetSize());
-		Refresh();
-	}
+	return m_responsive;
 }
-
-BEGIN_EVENT_TABLE(wxChart, wxControl)
-	EVT_SIZE(wxChart::OnSize)
-END_EVENT_TABLE()

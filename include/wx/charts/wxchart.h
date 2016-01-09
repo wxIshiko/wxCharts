@@ -23,6 +23,7 @@
 #ifndef _WX_CHARTS_WXCHART_H_
 #define _WX_CHARTS_WXCHART_H_
 
+#include "wxchartoptions.h"
 #include <wx/control.h>
 
 class wxChart : public wxControl
@@ -32,6 +33,16 @@ public:
 		const wxPoint &pos = wxDefaultPosition, 
 		const wxSize &size = wxDefaultSize,
 		long style = 0);
+
+private:
+	virtual void Resize(const wxSize &size) = 0;
+
+	void OnSize(wxSizeEvent& evt);
+
+private:
+	wxChartOptions m_options;
+
+	DECLARE_EVENT_TABLE();
 };
 
 #endif
