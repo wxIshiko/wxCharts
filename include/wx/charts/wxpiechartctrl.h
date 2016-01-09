@@ -24,12 +24,7 @@
 #define _WX_CHARTS_WXPIECHARTCTRL_H_
 
 #include "wxdoughnutandpiechartbase.h"
-
-class wxPieChartOptions : public wxDoughnutAndPieChartOptionsBase
-{
-public:
-	wxPieChartOptions();
-};
+#include "wxpiechartoptions.h"
 
 class wxPieChartCtrl : public wxDoughnutAndPieChartBase
 {

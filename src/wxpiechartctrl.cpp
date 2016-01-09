@@ -22,11 +22,6 @@
 
 #include "wxpiechartctrl.h"
 
-wxPieChartOptions::wxPieChartOptions()
-	: wxDoughnutAndPieChartOptionsBase(0)
-{
-}
-
 wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
 							   wxWindowID id,
 							   const wxPoint &pos,
