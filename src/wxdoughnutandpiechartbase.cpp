@@ -42,13 +42,13 @@ const wxColor& ChartSlice::GetColor() const
 }
 
 wxDoughnutAndPieChartOptionsBase::wxDoughnutAndPieChartOptionsBase(unsigned int percentageInnerCutout)
-	: m_segmentStrokeWidth(2), m_percentageInnerCutout(percentageInnerCutout), m_showTooltips(true)
+	: m_sliceStrokeWidth(2), m_percentageInnerCutout(percentageInnerCutout), m_showTooltips(true)
 {
 }
 
-unsigned int wxDoughnutAndPieChartOptionsBase::GetSegmentStrokeWidth() const
+unsigned int wxDoughnutAndPieChartOptionsBase::GetSliceStrokeWidth() const
 {
-	return m_segmentStrokeWidth;
+	return m_sliceStrokeWidth;
 }
 
 unsigned int wxDoughnutAndPieChartOptionsBase::GetPercentageInnerCutout() const
@@ -114,11 +114,11 @@ void wxDoughnutAndPieChartBase::Add(const ChartSlice &slice, size_t index, bool 
 
 	double x = (GetSize().GetX() / 2) - 2;
 	double y = (GetSize().GetY() / 2) - 2;
-	double outerRadius = ((x < y) ? x : y) - (GetOptions().GetSegmentStrokeWidth() / 2);
+	double outerRadius = ((x < y) ? x : y) - (GetOptions().GetSliceStrokeWidth() / 2);
 	double innerRadius = outerRadius * ((double)GetOptions().GetPercentageInnerCutout()) / 100;
 
 	SliceArc::ptr newSlice = std::make_shared<SliceArc>(slice,
-		x, y, 0, 0, outerRadius, innerRadius, GetOptions().GetSegmentStrokeWidth());
+		x, y, 0, 0, outerRadius, innerRadius, GetOptions().GetSliceStrokeWidth());
 	m_slices.insert(m_slices.begin() + index, newSlice);
 	if (!silent)
 	{

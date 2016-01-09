@@ -46,14 +46,14 @@ class wxDoughnutAndPieChartOptionsBase
 public:
 	wxDoughnutAndPieChartOptionsBase(unsigned int percentageInnerCutout);
 
-	unsigned int GetSegmentStrokeWidth() const;
+	unsigned int GetSliceStrokeWidth() const;
 	unsigned int GetPercentageInnerCutout() const;
 	bool ShowTooltips() const;
 
 private:
-	// The width of each segment stroke, this will increase the 
-	// space between the segments themselves.
-	unsigned int m_segmentStrokeWidth;
+	// The width of each slice stroke, this will increase the 
+	// space between the slices themselves.
+	unsigned int m_sliceStrokeWidth;
 	// The percentage of the chart that we cut out of the middle.
 	unsigned int m_percentageInnerCutout;
 	bool m_showTooltips;
