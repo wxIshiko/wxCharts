@@ -23,10 +23,11 @@
 #ifndef _WX_CHARTS_WXDOUGHNUTANDPIECHARTBASE_H_
 #define _WX_CHARTS_WXDOUGHNUTANDPIECHARTBASE_H_
 
+#include "wxchart.h"
+#include "wxdoughnutandpiechartoptionsbase.h"
 #include "wxchartarc.h"
 #include <wx/control.h>
-#include <vector>
-#include <memory>
+#include <wx/sharedptr.h>
 
 class ChartSlice
 {
@@ -41,29 +42,11 @@ private:
 	wxColor m_color;
 };
 
-class wxDoughnutAndPieChartOptionsBase
-{
-public:
-	wxDoughnutAndPieChartOptionsBase(unsigned int percentageInnerCutout);
-
-	unsigned int GetSliceStrokeWidth() const;
-	unsigned int GetPercentageInnerCutout() const;
-	bool ShowTooltips() const;
-
-private:
-	// The width of each slice stroke, this will increase the 
-	// space between the slices themselves.
-	unsigned int m_sliceStrokeWidth;
-	// The percentage of the chart that we cut out of the middle.
-	unsigned int m_percentageInnerCutout;
-	bool m_showTooltips;
-};
-
 // The doughnut and pie chart are very similar so we use
 // a common base class. It would actually be possible to
 // only have the doughnut classes but I usually favor
 // ease of use over ease of implementation.
-class wxDoughnutAndPieChartBase : public wxControl
+class wxDoughnutAndPieChartBase : public wxChart
 {
 public:
 	wxDoughnutAndPieChartBase(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,
@@ -89,11 +72,11 @@ private:
 private:
 	struct SliceArc : public wxChartArc
 	{
-		typedef std::shared_ptr<SliceArc> ptr;
+		typedef wxSharedPtr<SliceArc> ptr;
 
-		SliceArc(const ChartSlice &slice, double x, double y,
-			double startAngle, double endAngle, double outerRadius,
-			double innerRadius, unsigned int strokeWidth);
+		SliceArc(const ChartSlice &slice, wxDouble x, wxDouble y,
+			wxDouble startAngle, wxDouble endAngle, wxDouble outerRadius,
+			wxDouble innerRadius, unsigned int strokeWidth);
 
 		void Resize(const wxSize &size, const wxDoughnutAndPieChartOptionsBase& options);
 
@@ -101,10 +84,10 @@ private:
 	};
 
 private:
-	std::vector<SliceArc::ptr> m_slices;
+	wxVector<SliceArc::ptr> m_slices;
 	double m_total;
 	bool m_mouseInWindow;
-	std::vector<SliceArc::ptr> m_activeSlices;
+	wxVector<SliceArc::ptr> m_activeSlices;
 
 	DECLARE_EVENT_TABLE();
 };
