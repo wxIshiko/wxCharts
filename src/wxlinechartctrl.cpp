@@ -21,43 +21,12 @@
 */
 
 #include "wxlinechartctrl.h"
-#include <wx/dcclient.h>
+#include <wx/dcbuffer.h>
 #include <wx/graphics.h>
-
-wxLineChartOptions::wxLineChartOptions()
-	: m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x20),
-	m_showDots(true), m_dotRadius(4), m_dotStrokeWidth(1)
-{
-}
-
-unsigned int wxLineChartOptions::GetGridLineWidth() const
-{
-	return m_gridLineWidth;
-}
-
-const wxColor& wxLineChartOptions::GetGridLineColor() const
-{
-	return m_gridLineColor;
-}
-
-bool wxLineChartOptions::ShowDots() const
-{
-	return m_showDots;
-}
-
-double wxLineChartOptions::GetDotRadius() const
-{
-	return m_dotRadius;
-}
-
-unsigned int wxLineChartOptions::GetDotStrokeWidth() const
-{
-	return m_dotStrokeWidth;
-}
 
 wxLineChartDataset::wxLineChartDataset(const wxColor &dotColor,
 									   const wxColor &dotStrokeColor,
-									   const std::vector<double> &data)
+									   const wxVector<wxDouble> &data)
 	: m_dotColor(dotColor), m_dotStrokeColor(dotStrokeColor), m_data(data)
 {
 }
@@ -72,12 +41,12 @@ const wxColor& wxLineChartDataset::GetDotStrokeColor() const
 	return m_dotStrokeColor;
 }
 
-const std::vector<double>& wxLineChartDataset::data() const
+const wxVector<double>& wxLineChartDataset::data() const
 {
 	return m_data;
 }
 
-wxLineChartData::wxLineChartData(const std::vector<std::string> &labels)
+wxLineChartData::wxLineChartData(const wxVector<wxString> &labels)
 	: m_labels(labels)
 {
 }
@@ -87,19 +56,19 @@ void wxLineChartData::AddDataset(wxLineChartDataset::ptr dataset)
 	m_datasets.push_back(dataset);
 }
 
-const std::vector<std::string>& wxLineChartData::GetLabels() const
+const wxVector<wxString>& wxLineChartData::GetLabels() const
 {
 	return m_labels;
 }
 
-const std::vector<wxLineChartDataset::ptr>& wxLineChartData::GetDatasets() const
+const wxVector<wxLineChartDataset::ptr>& wxLineChartData::GetDatasets() const
 {
 	return m_datasets;
 }
 
 double wxLineChartData::GetMinValue() const
 {
-	double result = 0;
+	wxDouble result = 0;
 	bool foundAtLeastOneValue = false;
 
 	for (size_t i = 0; i < m_datasets.size(); ++i)
@@ -109,9 +78,9 @@ double wxLineChartData::GetMinValue() const
 	return result;
 }
 
-double wxLineChartData::GetMaxValue() const
+wxDouble wxLineChartData::GetMaxValue() const
 {
-	double result = 0;
+	wxDouble result = 0;
 	bool foundAtLeastOneValue = false;
 
 	for (size_t i = 0; i < m_datasets.size(); ++i)
@@ -137,21 +106,19 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 								 const wxPoint &pos,
 								 const wxSize &size,
 								 long style)
-	: wxControl(parent, id, pos, size, style), 
-	m_grid(data.GetLabels(), m_options.GetGridLineWidth(),m_options.GetGridLineColor()),
+	: wxChart(parent, id, pos, size, style), 
+	m_grid(data.GetLabels(), m_options.GetGridOptions()),
 	m_minValue(data.GetMinValue()), m_maxValue(data.GetMaxValue())
 {
-	SetBackgroundColour(*wxWHITE);
-
-	const std::vector<wxLineChartDataset::ptr>& datasets = data.GetDatasets();
+	const wxVector<wxLineChartDataset::ptr>& datasets = data.GetDatasets();
 	for (size_t i = 0; i < datasets.size(); ++i)
 	{
-		const std::vector<double>& data = datasets[i]->data();
+		const wxVector<double>& data = datasets[i]->data();
 		for (size_t j = 0; j < data.size(); ++j)
 		{
-			m_points.push_back(std::make_shared<PointClass>(20+j*10, 50+data[j],
+			m_points.push_back(PointClass::ptr(new PointClass(20 + j * 10, 50 + data[j],
 				m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
-				datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor()));
+				datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor())));
 		}
 	}
 }
@@ -168,7 +135,10 @@ double wxLineChartCtrl::GetMaxValue() const
 
 void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 {
-	wxPaintDC dc(this);
+	wxAutoBufferedPaintDC dc(this);
+
+	dc.Clear();
+
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{

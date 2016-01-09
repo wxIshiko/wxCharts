@@ -23,76 +23,58 @@
 #ifndef _WX_CHARTS_WXLINECHARTCTRL_H_
 #define _WX_CHARTS_WXLINECHARTCTRL_H_
 
+#include "wxchart.h"
+#include "wxlinechartoptions.h"
 #include "wxchartgrid.h"
 #include "wxchartpoint.h"
 #include <wx/control.h>
-#include <vector>
-#include <memory>
-
-class wxLineChartOptions
-{
-public:
-	wxLineChartOptions();
-
-	unsigned int GetGridLineWidth() const;
-	const wxColor& GetGridLineColor() const;
-	bool ShowDots() const;
-	double GetDotRadius() const;
-	unsigned int GetDotStrokeWidth() const;
-
-private:
-	unsigned int m_gridLineWidth;
-	wxColor m_gridLineColor;
-	bool m_showDots;
-	double m_dotRadius;
-	unsigned int m_dotStrokeWidth;
-};
+#include <wx/sharedptr.h>
 
 class wxLineChartDataset
 {
 public:
-	typedef std::shared_ptr<wxLineChartDataset> ptr;
+	typedef wxSharedPtr<wxLineChartDataset> ptr;
 
 	wxLineChartDataset(const wxColor &dotColor,
-		const wxColor &dotStrokeColor, const std::vector<double> &data);
+		const wxColor &dotStrokeColor, const wxVector<wxDouble> &data);
 
 	const wxColor& GetDotColor() const;
 	const wxColor& GetDotStrokeColor() const;
-	const std::vector<double>& data() const;
+	const wxVector<wxDouble>& data() const;
 
 private:
 	wxColor m_dotColor;
 	wxColor m_dotStrokeColor;
-	std::vector<double> m_data;
+	wxVector<wxDouble> m_data;
 };
 
 class wxLineChartData
 {
 public:
-	wxLineChartData(const std::vector<std::string> &labels);
+	wxLineChartData(const wxVector<wxString> &labels);
 
 	void AddDataset(wxLineChartDataset::ptr dataset);
 
-	const std::vector<std::string>& GetLabels() const;
-	const std::vector<wxLineChartDataset::ptr>& GetDatasets() const;
+	const wxVector<wxString>& GetLabels() const;
+	const wxVector<wxLineChartDataset::ptr>& GetDatasets() const;
 
-	double GetMinValue() const;
-	double GetMaxValue() const;
+	wxDouble GetMinValue() const;
+	wxDouble GetMaxValue() const;
 
 private:
-	std::vector<std::string> m_labels;
-	std::vector<wxLineChartDataset::ptr> m_datasets;
+	wxVector<wxString> m_labels;
+	wxVector<wxLineChartDataset::ptr> m_datasets;
 };
 
-class wxLineChartCtrl : public wxControl
+class wxLineChartCtrl : public wxChart
 {
 public:
 	wxLineChartCtrl(wxWindow *parent, wxWindowID id, const wxLineChartData& data,
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize, 
 		long style = 0);
 
-	double GetMinValue() const;
-	double GetMaxValue() const;
+	wxDouble GetMinValue() const;
+	wxDouble GetMaxValue() const;
 
 private:
 	void OnPaint(wxPaintEvent &evt);
@@ -101,9 +83,9 @@ private:
 private:
 	struct PointClass : public wxChartPoint
 	{
-		typedef std::shared_ptr<PointClass> ptr;
+		typedef wxSharedPtr<PointClass> ptr;
 
-		PointClass(double x, double y, double radius,
+		PointClass(wxDouble x, wxDouble y, wxDouble radius,
 			unsigned int strokeWidth, const wxColor &strokeColor,
 			const wxColor &fillColor);
 	};
@@ -111,9 +93,9 @@ private:
 private:
 	wxLineChartOptions m_options;
 	wxChartGrid m_grid;
-	std::vector<PointClass::ptr> m_points;
-	double m_minValue;
-	double m_maxValue;
+	wxVector<PointClass::ptr> m_points;
+	wxDouble m_minValue;
+	wxDouble m_maxValue;
 
 	DECLARE_EVENT_TABLE();
 };
