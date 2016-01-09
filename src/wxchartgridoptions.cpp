@@ -21,3 +21,46 @@
 */
 
 #include "wxchartgridoptions.h"
+
+wxChartGridOptions::wxChartGridOptions()
+	: m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x20),
+	m_fontFamily(wxFONTFAMILY_SWISS), m_fontSize(12),
+	m_fontStyle(wxFONTSTYLE_NORMAL), m_fontColor(0x666666)
+{
+}
+
+wxChartGridOptions::wxChartGridOptions(unsigned int gridLineWidth,
+									   const wxColor &gridLineColor)
+	: m_gridLineWidth(gridLineWidth), m_gridLineColor(gridLineColor)
+{
+}
+
+unsigned int wxChartGridOptions::GetGridLineWidth() const
+{
+	return m_gridLineWidth;
+}
+
+const wxColor& wxChartGridOptions::GetGridLineColor() const
+{
+	return m_gridLineColor;
+}
+
+wxFontFamily wxChartGridOptions::GetFontFamily() const
+{
+	return m_fontFamily;
+}
+
+int wxChartGridOptions::GetFontSize() const
+{
+	return m_fontSize;
+}
+
+wxFontStyle wxChartGridOptions::GetFontStyle() const
+{
+	return m_fontStyle;
+}
+
+const wxColor& wxChartGridOptions::GetFontColor() const
+{
+	return m_fontColor;
+}

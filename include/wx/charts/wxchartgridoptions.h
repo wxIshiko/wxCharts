@@ -23,10 +23,33 @@
 #ifndef _WX_CHARTS_WXCHARTGRIDOPTIONS_H_
 #define _WX_CHARTS_WXCHARTGRIDOPTIONS_H_
 
+#include <wx/colour.h>
+#include <wx/font.h>
+
 // Class holding the options for the wxChartGrid
 // element
 class wxChartGridOptions
 {
+public:
+	wxChartGridOptions();
+	wxChartGridOptions(unsigned int gridLineWidth, 
+		const wxColor &gridLineColor);
+
+	unsigned int GetGridLineWidth() const;
+	const wxColor& GetGridLineColor() const;
+
+	wxFontFamily GetFontFamily() const;
+	int GetFontSize() const;
+	wxFontStyle GetFontStyle() const;
+	const wxColor& GetFontColor() const;
+
+private:
+	unsigned int m_gridLineWidth;
+	wxColor m_gridLineColor;
+	wxFontFamily m_fontFamily;
+	int m_fontSize;
+	wxFontStyle m_fontStyle;
+	wxColor m_fontColor;
 };
 
 #endif
