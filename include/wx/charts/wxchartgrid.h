@@ -23,14 +23,8 @@
 #ifndef _WX_CHARTS_WXCHARTGRID_H_
 #define _WX_CHARTS_WXCHARTGRID_H_
 
+#include "wxchartgridoptions.h"
 #include <wx/graphics.h>
-#include <vector>
-
-// Class holding the options for the wxChartGrid
-// element
-class wxChartGridOptions
-{
-};
 
 // This class represents the grid displayed in the background
 // of some of the chart controls like for instance line and 
@@ -38,19 +32,32 @@ class wxChartGridOptions
 class wxChartGrid
 {
 public:
-	wxChartGrid(const std::vector<std::string> &labels, 
-		unsigned int gridLineWidth, const wxColor &gridLineColor);
+	wxChartGrid(const wxVector<wxString> &labels,
+		const wxChartGridOptions& options);
 
 	void Draw(wxGraphicsContext &gc);
 
 private:
-	double CalculateX(size_t index);
+	void Fit(size_t steps, wxGraphicsContext &gc,
+		const wxFont &font);
+	void BuildYLabels(size_t steps, wxGraphicsContext &gc,
+		const wxFont &font);
+	void CalculateXLabelRotation(wxDouble yLabelMaxWidth);
+	wxDouble CalculateX(size_t index);
+	wxDouble CalculateGridRange(const wxVector<wxDouble> &values);
 
 private:
-	std::vector<std::string> m_xLabels;
-	std::vector<std::string> m_yLabels;
-	unsigned int m_gridLineWidth;
-	wxColor m_gridLineColor;
+	wxChartGridOptions m_options;
+	wxVector<wxString> m_xLabels;
+	wxVector<wxString> m_yLabels;
+	wxVector<wxDouble> m_yLabelWidths;
+	wxDouble m_yLabelMaxWidth;
+	// The number of steps on the Y-axis
+	size_t m_steps;
+	wxDouble m_xPaddingLeft;
+	// Whether something has changed and we
+	// need to rearrange the chart
+	bool m_needsFit;
 };
 
 #endif
