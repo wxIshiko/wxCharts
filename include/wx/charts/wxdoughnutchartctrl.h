@@ -24,12 +24,7 @@
 #define _WX_CHARTS_WXDOUGHNUTCHARTCTRL_H_
 
 #include "wxdoughnutandpiechartbase.h"
-
-class wxDougnutChartOptions : public wxDoughnutAndPieChartOptionsBase
-{
-public:
-	wxDougnutChartOptions();
-};
+#include "wxdoughnutchartoptions.h"
 
 class wxDoughnutChartCtrl : public wxDoughnutAndPieChartBase
 {

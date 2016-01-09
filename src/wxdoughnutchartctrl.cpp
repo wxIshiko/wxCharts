@@ -22,11 +22,6 @@
 
 #include "wxdoughnutchartctrl.h"
 
-wxDougnutChartOptions::wxDougnutChartOptions()
-	: wxDoughnutAndPieChartOptionsBase(50)
-{
-}
-
 wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
 										 wxWindowID id,
 										 const wxPoint &pos,
