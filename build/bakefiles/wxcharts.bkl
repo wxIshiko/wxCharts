@@ -29,9 +29,11 @@ library wxcharts
     {
         ../../include/wx/charts/wxcharts.h
         ../../include/wx/charts/wxchartscore.h
+        ../../include/wx/charts/wxchartutilities.h
         ../../include/wx/charts/wxchartgrid.h
         ../../include/wx/charts/wxchartradialgrid.h
         ../../include/wx/charts/wxchartpoint.h
+        ../../include/wx/charts/wxchartrectangle.h
         ../../include/wx/charts/wxchartarc.h
         ../../include/wx/charts/wxcharttooltip.h
         ../../include/wx/charts/wxbarchartctrl.h
@@ -46,9 +48,11 @@ library wxcharts
     sources
     {
         ../../src/wxchartscore.cpp
+        ../../src/wxchartutilities.cpp
         ../../src/wxchartgrid.cpp
         ../../src/wxchartradialgrid.cpp
         ../../src/wxchartpoint.cpp
+        ../../src/wxchartrectangle.cpp
         ../../src/wxchartarc.cpp
         ../../src/wxcharttooltip.cpp
         ../../src/wxbarchartctrl.cpp
