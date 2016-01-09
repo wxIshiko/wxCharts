@@ -22,6 +22,13 @@
 
 #include "wxchart.h"
 
-wxChart::wxChart()
+wxChart::wxChart(wxWindow *parent,
+				 wxWindowID id,
+				 const wxPoint &pos,
+				 const wxSize &size,
+				 long style)
+	: wxChart(parent, id, pos, size, style)
 {
+	SetBackgroundStyle(wxBG_STYLE_PAINT);
+	SetBackgroundColour(*wxWHITE);
 }

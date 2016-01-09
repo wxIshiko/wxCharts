@@ -23,10 +23,15 @@
 #ifndef _WX_CHARTS_WXCHART_H_
 #define _WX_CHARTS_WXCHART_H_
 
-class wxChart
+#include <wx/control.h>
+
+class wxChart : public wxControl
 {
 public:
-	wxChart();
+	wxChart(wxWindow *parent, wxWindowID id, 
+		const wxPoint &pos = wxDefaultPosition, 
+		const wxSize &size = wxDefaultSize,
+		long style = 0);
 };
 
 #endif
