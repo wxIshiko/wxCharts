@@ -21,3 +21,30 @@
 */
 
 #include "wxchartpoint.h"
+
+wxChartPoint::wxChartPoint(double x, 
+						   double y, 
+						   double radius,
+						   unsigned int strokeWidth, 
+						   const wxColor &strokeColor,
+						   const wxColor &fillColor)
+	: m_x(x), m_y(y), m_radius(radius), 
+	m_strokeWidth(strokeWidth), m_strokeColor(strokeColor),
+	m_fillColor(fillColor)
+{
+}
+
+void wxChartPoint::Draw(wxGraphicsContext &gc)
+{
+	wxGraphicsPath path = gc.CreatePath();
+	path.AddArc(m_x, m_y, m_radius, 0, 2* M_PI, false);
+	path.CloseSubpath();
+
+	wxBrush brush(m_fillColor);
+	gc.SetBrush(brush);
+	gc.FillPath(path);
+
+	wxPen pen(m_strokeColor, m_strokeWidth);
+	gc.SetPen(pen);
+	gc.StrokePath(path);
+}

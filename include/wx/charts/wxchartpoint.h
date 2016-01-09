@@ -23,4 +23,24 @@
 #ifndef _WX_CHARTS_WXCHARTPOINT_H_
 #define _WX_CHARTS_WXCHARTPOINT_H_
 
+#include <wx/graphics.h>
+
+class wxChartPoint
+{
+public:
+	wxChartPoint(double x, double y, double radius,
+		unsigned int strokeWidth, const wxColor &strokeColor, 
+		const wxColor &fillColor);
+
+	void Draw(wxGraphicsContext &gc);
+
+private:
+	double m_x;
+	double m_y;
+	double m_radius;
+	unsigned int m_strokeWidth;
+	wxColor m_strokeColor;
+	wxColor m_fillColor;
+};
+
 #endif
