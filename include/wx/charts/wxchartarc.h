@@ -34,13 +34,15 @@ public:
 		double endAngle, double outerRadius, double innerRadius,
 		unsigned int strokeWidth, const wxColor &fillColor);
 
-	void draw(wxGraphicsContext &gc);
+	void Draw(wxGraphicsContext &gc);
 
-	void setCenter(double x, double y);
-	void setAngles(double startAngle, double endAngle);
-	void setRadiuses(double outerRadius, double innerRadius);
+	void SetCenter(double x, double y);
+	void SetAngles(double startAngle, double endAngle);
+	void SetRadiuses(double outerRadius, double innerRadius);
 
-	unsigned int StrokeWidth() const;
+	unsigned int GetStrokeWidth() const;
+
+	wxPoint2DDouble GetTooltipPosition() const;
 
 private:
 	double m_x;
