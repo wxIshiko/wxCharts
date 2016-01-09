@@ -32,8 +32,6 @@ class wxChartGridOptions
 {
 public:
 	wxChartGridOptions();
-	wxChartGridOptions(unsigned int gridLineWidth, 
-		const wxColor &gridLineColor);
 
 	unsigned int GetGridLineWidth() const;
 	const wxColor& GetGridLineColor() const;

@@ -23,16 +23,10 @@
 #include "wxbarchartoptions.h"
 
 wxBarChartOptions::wxBarChartOptions()
-	: m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x20)
 {
 }
 
-unsigned int wxBarChartOptions::GetGridLineWidth() const
+const wxChartGridOptions& wxBarChartOptions::GetGridOptions() const
 {
-	return m_gridLineWidth;
-}
-
-const wxColor& wxBarChartOptions::GetGridLineColor() const
-{
-	return m_gridLineColor;
+	return m_gridOptions;
 }

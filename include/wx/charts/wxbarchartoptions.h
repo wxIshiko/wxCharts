@@ -23,19 +23,17 @@
 #ifndef _WX_CHARTS_WXBARCHARTOPTIONS_H_
 #define _WX_CHARTS_WXBARCHARTOPTIONS_H_
 
-#include <wx/colour.h>
+#include "wxchartgridoptions.h"
 
 class wxBarChartOptions
 {
 public:
 	wxBarChartOptions();
 
-	unsigned int GetGridLineWidth() const;
-	const wxColor& GetGridLineColor() const;
+	const wxChartGridOptions& GetGridOptions() const;
 
 private:
-	unsigned int m_gridLineWidth;
-	wxColor m_gridLineColor;
+	wxChartGridOptions m_gridOptions;
 };
 
 #endif

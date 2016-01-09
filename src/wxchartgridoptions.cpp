@@ -29,12 +29,6 @@ wxChartGridOptions::wxChartGridOptions()
 {
 }
 
-wxChartGridOptions::wxChartGridOptions(unsigned int gridLineWidth,
-									   const wxColor &gridLineColor)
-	: m_gridLineWidth(gridLineWidth), m_gridLineColor(gridLineColor)
-{
-}
-
 unsigned int wxChartGridOptions::GetGridLineWidth() const
 {
 	return m_gridLineWidth;

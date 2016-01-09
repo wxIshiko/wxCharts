@@ -23,19 +23,13 @@
 #include "wxlinechartoptions.h"
 
 wxLineChartOptions::wxLineChartOptions()
-	: m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x20),
-	m_showDots(true), m_dotRadius(4), m_dotStrokeWidth(1)
+	: m_showDots(true), m_dotRadius(4), m_dotStrokeWidth(1)
 {
 }
 
-unsigned int wxLineChartOptions::GetGridLineWidth() const
+const wxChartGridOptions& wxLineChartOptions::GetGridOptions() const
 {
-	return m_gridLineWidth;
-}
-
-const wxColor& wxLineChartOptions::GetGridLineColor() const
-{
-	return m_gridLineColor;
+	return m_gridOptions;
 }
 
 bool wxLineChartOptions::ShowDots() const
@@ -43,7 +37,7 @@ bool wxLineChartOptions::ShowDots() const
 	return m_showDots;
 }
 
-double wxLineChartOptions::GetDotRadius() const
+wxDouble wxLineChartOptions::GetDotRadius() const
 {
 	return m_dotRadius;
 }

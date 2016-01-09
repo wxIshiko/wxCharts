@@ -23,24 +23,22 @@
 #ifndef _WX_CHARTS_WXLINECHARTOPTIONS_H_
 #define _WX_CHARTS_WXLINECHARTOPTIONS_H_
 
-#include <wx/colour.h>
+#include "wxchartgridoptions.h"
 
 class wxLineChartOptions
 {
 public:
 	wxLineChartOptions();
 
-	unsigned int GetGridLineWidth() const;
-	const wxColor& GetGridLineColor() const;
+	const wxChartGridOptions& GetGridOptions() const;
 	bool ShowDots() const;
-	double GetDotRadius() const;
+	wxDouble GetDotRadius() const;
 	unsigned int GetDotStrokeWidth() const;
 
 private:
-	unsigned int m_gridLineWidth;
-	wxColor m_gridLineColor;
+	wxChartGridOptions m_gridOptions;
 	bool m_showDots;
-	double m_dotRadius;
+	wxDouble m_dotRadius;
 	unsigned int m_dotStrokeWidth;
 };
 
