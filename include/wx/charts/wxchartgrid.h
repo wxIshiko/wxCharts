@@ -23,13 +23,14 @@
 #ifndef _WX_CHARTS_WXCHARTGRID_H_
 #define _WX_CHARTS_WXCHARTGRID_H_
 
+#include "wxchartelement.h"
 #include "wxchartgridoptions.h"
 #include <wx/graphics.h>
 
 // This class represents the grid displayed in the background
 // of some of the chart controls like for instance line and 
 // bar charts.
-class wxChartGrid
+class wxChartGrid : public wxChartElement
 {
 public:
 	wxChartGrid(const wxSize &size,

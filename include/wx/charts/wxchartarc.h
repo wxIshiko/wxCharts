@@ -23,11 +23,12 @@
 #ifndef _WX_CHARTS_WXCHARTARC_H_
 #define _WX_CHARTS_WXCHARTARC_H_
 
+#include "wxchartelement.h"
 #include <wx/graphics.h>
 
 // This class is used to draw one of the segments of a circular chart
 // e.g. a pie chart or a doughnut chart.
-class wxChartArc
+class wxChartArc : public wxChartElement
 {
 public:
 	wxChartArc(double x, double y, double startAngle,

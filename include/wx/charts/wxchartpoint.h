@@ -23,9 +23,10 @@
 #ifndef _WX_CHARTS_WXCHARTPOINT_H_
 #define _WX_CHARTS_WXCHARTPOINT_H_
 
+#include "wxchartelement.h"
 #include <wx/graphics.h>
 
-class wxChartPoint
+class wxChartPoint : public wxChartElement
 {
 public:
 	wxChartPoint(double x, double y, double radius,

@@ -32,14 +32,17 @@
 class ChartSlice
 {
 public:
-	ChartSlice(double value, const wxColor &color);
+	ChartSlice(double value, const wxColor &color,
+		const wxString &label);
 
 	double GetValue() const;
 	const wxColor& GetColor() const;
+	const wxString& GetLabel() const;
 
 private:
 	double m_value;
 	wxColor m_color;
+	wxString m_label;
 };
 
 // The doughnut and pie chart are very similar so we use
