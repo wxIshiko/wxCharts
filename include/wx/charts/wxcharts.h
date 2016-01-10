@@ -28,6 +28,7 @@
 #include "wxdoughnutchartctrl.h"
 #include "wxpiechartctrl.h"
 #include "wxpolarareachartctrl.h"
+#include "wxradarchartctrl.h"
 
 #ifdef _MSC_VER
 

@@ -21,3 +21,35 @@
 */
 
 #include "wxradarchartctrl.h"
+#include <wx/dcbuffer.h>
+#include <wx/graphics.h>
+
+wxRadarChartCtrl::wxRadarChartCtrl(wxWindow *parent,
+								   wxWindowID id,
+								   const wxPoint &pos,
+								   const wxSize &size,
+								   long style)
+	: wxChart(parent, id, pos, size, style)
+{
+}
+
+void wxRadarChartCtrl::Resize(const wxSize &size)
+{
+}
+
+void wxRadarChartCtrl::OnPaint(wxPaintEvent &evt)
+{
+	wxAutoBufferedPaintDC dc(this);
+
+	dc.Clear();
+
+	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+	if (gc)
+	{
+		delete gc;
+	}
+}
+
+BEGIN_EVENT_TABLE(wxRadarChartCtrl, wxChart)
+	EVT_PAINT(wxRadarChartCtrl::OnPaint)
+END_EVENT_TABLE()
