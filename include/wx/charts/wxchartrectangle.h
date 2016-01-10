@@ -23,4 +23,21 @@
 #ifndef _WX_CHARTS_WXCHARTRECTANGLE_H_
 #define _WX_CHARTS_WXCHARTRECTANGLE_H_
 
+#include "wxchartrectangleoptions.h"
+#include <wx/graphics.h>
+
+class wxChartRectangle
+{
+public:
+	wxChartRectangle(wxDouble x, wxDouble y, 
+		const wxChartRectangleOptions &options);
+
+	void Draw(wxGraphicsContext &gc);
+
+private:
+	wxChartRectangleOptions m_options;
+	wxDouble m_x;
+	wxDouble m_y;
+};
+
 #endif

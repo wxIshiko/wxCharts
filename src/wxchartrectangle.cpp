@@ -21,3 +21,25 @@
 */
 
 #include "wxchartrectangle.h"
+
+wxChartRectangle::wxChartRectangle(wxDouble x,
+								   wxDouble y,
+								   const wxChartRectangleOptions &options)
+	: m_x(x), m_y(y), m_options(options)
+{
+}
+
+void wxChartRectangle::Draw(wxGraphicsContext &gc)
+{
+	wxGraphicsPath path = gc.CreatePath();
+	path.AddRectangle(m_x, m_y, 50, 50);
+	path.CloseSubpath();
+
+	wxBrush brush(m_options.GetFillColor());
+	gc.SetBrush(brush);
+	gc.FillPath(path);
+
+	wxPen pen(m_options.GetStrokeColor(), 2);
+	gc.SetPen(pen);
+	gc.StrokePath(path);
+}
