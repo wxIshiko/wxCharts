@@ -23,29 +23,66 @@
 #ifndef _WX_CHARTS_WXBARCHARTCTRL_H_
 #define _WX_CHARTS_WXBARCHARTCTRL_H_
 
-#include <wx/control.h>
-#include <vector>
-#include <memory>
+#include "wxchart.h"
+#include "wxbarchartoptions.h"
+#include "wxchartgrid.h"
+#include "wxchartrectangle.h"
+#include <wx/sharedptr.h>
 
-class wxBarChartCtrl : public wxControl
+class wxBarChartData
 {
 public:
-	wxBarChartCtrl(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,
-		const wxSize &size = wxDefaultSize, long style = 0);
+	wxBarChartData(const wxVector<wxString> &labels);
 
-	void AddData();
+	const wxVector<wxString>& GetLabels() const;
 
 private:
+	wxVector<wxString> m_labels;
+};
+
+class wxBarChartCtrl : public wxChart
+{
+public:
+	wxBarChartCtrl(wxWindow *parent, wxWindowID id, const wxBarChartData &data,
+		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
+		long style = 0);
+
+	void AddData(const wxVector<wxDouble>& data);
+
+private:
+	virtual void Resize(const wxSize &size);
+
 	void OnPaint(wxPaintEvent &evt);
 
 private:
+	struct ScaleClass : public wxChartGrid
+	{
+		ScaleClass(const wxSize &size,
+			const wxVector<wxString> &labels,
+			const wxChartGridOptions& options);
+
+		double CalculateBarX(size_t datasetCount, size_t datasetIndex, size_t barIndex);
+		double CalculateBaseWidth();
+		double CalculateBarWidth(size_t datasetCount);
+	};
+
+	struct BarClass : public wxChartRectangle
+	{
+		BarClass(wxDouble x, wxDouble y, const wxColor &fillColor,
+			const wxColor &strokeColor);
+	};
+
 	struct Dataset
 	{
-		typedef std::shared_ptr<Dataset> ptr;
+		typedef wxSharedPtr<Dataset> ptr;
+
+		wxVector<BarClass> bars;
 	};
 
 private:
-	std::vector<Dataset::ptr> m_datasets;
+	wxBarChartOptions m_options;
+	ScaleClass m_grid;
+	wxVector<Dataset::ptr> m_datasets;
 
 	DECLARE_EVENT_TABLE();
 };
