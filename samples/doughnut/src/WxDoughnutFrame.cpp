@@ -33,11 +33,11 @@ WxDoughnutFrame::WxDoughnutFrame(const wxString& title)
 
 	// Create the doughnut chart widget
 	wxDoughnutChartCtrl* doughnutChartCtrl = new wxDoughnutChartCtrl(panel, wxID_ANY);
-	doughnutChartCtrl->Add(ChartSlice(300, wxColor(0x4A46F7)));
-	doughnutChartCtrl->Add(ChartSlice(50, wxColor(0xBDBF46)));
-	doughnutChartCtrl->Add(ChartSlice(100, wxColor(0x5CB4FD)));
-	doughnutChartCtrl->Add(ChartSlice(40, wxColor(0xB19F94)));
-	doughnutChartCtrl->Add(ChartSlice(120, wxColor(0x60534D)));
+	doughnutChartCtrl->Add(ChartSlice(300, wxColor(0x4A46F7), "Red"));
+	doughnutChartCtrl->Add(ChartSlice(50, wxColor(0xBDBF46), "Green"));
+	doughnutChartCtrl->Add(ChartSlice(100, wxColor(0x5CB4FD), "Yellow"));
+	doughnutChartCtrl->Add(ChartSlice(40, wxColor(0xB19F94), "Grey"));
+	doughnutChartCtrl->Add(ChartSlice(120, wxColor(0x60534D), "Dark Grey"));
 
 	// Set up the sizer for the panel
 	wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);

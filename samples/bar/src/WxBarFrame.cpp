@@ -31,9 +31,27 @@ WxBarFrame::WxBarFrame(const wxString& title)
 	// Create a top-level panel to hold all the contents of the frame
 	wxPanel* panel = new wxPanel(this, wxID_ANY);
 
-	// Create the bar chart widget
-	wxBarChartCtrl* barChartCtrl = new wxBarChartCtrl(panel, wxID_ANY);
+	// Create the data for the bar chart widget
+	wxVector<wxString> labels;
+	labels.push_back("January");
+	labels.push_back("February");
+	labels.push_back("March");
+	labels.push_back("April");
+	labels.push_back("May");
+	labels.push_back("June");
+	labels.push_back("July");
+	wxBarChartData data(labels);
 
+	// Create the bar chart widget
+	wxBarChartCtrl* barChartCtrl = new wxBarChartCtrl(panel, wxID_ANY, data);
+	wxVector<wxDouble> data1;
+	data1.push_back(5.0);
+	data1.push_back(3.0);
+	barChartCtrl->AddData(data1);
+	wxVector<wxDouble> data2;
+	data2.push_back(7.5);
+	data2.push_back(1.5);
+	barChartCtrl->AddData(data2);
 
 	// Set up the sizer for the panel
 	wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -43,5 +61,5 @@ WxBarFrame::WxBarFrame(const wxString& title)
 	// Set up the sizer for the frame
 	wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
 	topSizer->Add(panel, 1, wxEXPAND);
-	SetSizer(topSizer);
+	SetSizerAndFit(topSizer);
 }
