@@ -20,24 +20,13 @@
 	IN THE SOFTWARE.
 */
 
-#ifndef _WX_CHARTS_WXCHARTTOOLTIP_H_
-#define _WX_CHARTS_WXCHARTTOOLTIP_H_
+#ifndef _WX_CHARTS_WXCHARTELEMENT_H_
+#define _WX_CHARTS_WXCHARTELEMENT_H_
 
-#include "wxcharttooltipoptions.h"
-#include <wx/graphics.h>
-
-class wxChartTooltip
+class wxChartElement
 {
 public:
-	wxChartTooltip(const wxPoint2DDouble &position,
-		const wxString &text);
-
-	void Draw(wxGraphicsContext &gc);
-
-private:
-	wxChartTooltipOptions m_options;
-	wxPoint2DDouble m_position;
-	wxString m_text;
+	wxChartElement();
 };
 
 #endif

@@ -29,6 +29,7 @@ library wxcharts
     {
         ../../include/wx/charts/wxcharts.h
         ../../include/wx/charts/wxchartutilities.h
+        ../../include/wx/charts/wxchartelement.h
         ../../include/wx/charts/wxchartgridoptions.h
         ../../include/wx/charts/wxchartgrid.h
         ../../include/wx/charts/wxchartradialgrid.h
@@ -57,6 +58,7 @@ library wxcharts
     sources
     {
         ../../src/wxchartutilities.cpp
+        ../../src/wxchartelement.cpp
         ../../src/wxchartgridoptions.cpp
         ../../src/wxchartgrid.cpp
         ../../src/wxchartradialgrid.cpp

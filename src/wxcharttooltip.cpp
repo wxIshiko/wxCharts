@@ -21,3 +21,36 @@
 */
 
 #include "wxcharttooltip.h"
+#include "wxchartutilities.h"
+
+wxChartTooltip::wxChartTooltip(const wxPoint2DDouble &position,
+							   const wxString &text)
+	: m_position(position), m_text(text)
+{
+}
+
+void wxChartTooltip::Draw(wxGraphicsContext &gc)
+{
+	wxFont font(wxSize(0, m_options.GetFontSize()),
+		m_options.GetFontFamily(), m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
+	wxDouble tooltipWidth;
+	wxDouble tooltipHeight;
+	wxChartUtilities::GetTextSize(gc, font, m_text, tooltipWidth, tooltipHeight);
+	tooltipWidth += 2 * m_options.GetHorizontalPadding();
+	tooltipHeight += 2 * m_options.GetVerticalPadding();
+
+
+	wxDouble tooltipX = m_position.m_x - (tooltipWidth / 2);
+	wxDouble tooltipY = m_position.m_y - tooltipHeight;
+
+	wxGraphicsPath path = gc.CreatePath();
+	
+	path.AddRoundedRectangle(tooltipX, tooltipY, tooltipWidth, tooltipHeight, m_options.GetCornerRadius());
+
+	wxBrush brush(m_options.GetBackgroundColor());
+	gc.SetBrush(brush);
+	gc.FillPath(path);
+
+	gc.SetFont(font, m_options.GetFontColor());
+	gc.DrawText(m_text, tooltipX + m_options.GetHorizontalPadding(), tooltipY + m_options.GetVerticalPadding());
+}

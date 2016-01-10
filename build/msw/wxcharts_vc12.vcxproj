@@ -83,6 +83,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\wxchartutilities.cpp" />
+    <ClCompile Include="..\..\src\wxchartelement.cpp" />
     <ClCompile Include="..\..\src\wxchartgridoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartgrid.cpp" />
     <ClCompile Include="..\..\src\wxchartradialgrid.cpp" />
@@ -110,6 +111,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartutilities.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartelement.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartgridoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartgrid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartradialgrid.h" />

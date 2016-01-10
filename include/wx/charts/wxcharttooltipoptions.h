@@ -35,14 +35,21 @@ public:
 	int GetFontSize() const;
 	wxFontStyle GetFontStyle() const;
 	const wxColor& GetFontColor() const;
+
+	wxDouble GetHorizontalPadding() const;
+	wxDouble GetVerticalPadding() const;
 	const wxColor& GetBackgroundColor() const;
+	wxDouble GetCornerRadius() const;
 
 private:
 	wxFontFamily m_fontFamily;
 	int m_fontSize;
 	wxFontStyle m_fontStyle;
 	wxColor m_fontColor;
+	wxDouble m_horizontalPadding;
+	wxDouble m_verticalPadding;
 	wxColor m_backgroundColor;
+	wxDouble m_cornerRadius;
 };
 
 #endif
