@@ -32,12 +32,27 @@ WxLineFrame::WxLineFrame(const wxString& title)
 	wxPanel* panel = new wxPanel(this, wxID_ANY);
 
 	// Create the data for the line chart widget
-	wxLineChartData data({ "January", "February", "March", "April", "May", "June", "July" });
+	wxVector<wxString> labels;
+	labels.push_back("January");
+	labels.push_back("February");
+	labels.push_back("March");
+	labels.push_back("April");
+	labels.push_back("May");
+	labels.push_back("June");
+	labels.push_back("July");
+	wxLineChartData data(labels);
 	
 	// Add the first dataset
-	wxLineChartDataset::ptr dataset = std::make_shared<wxLineChartDataset>(
-		wxColor(220, 220, 220), wxColor(255, 255, 255),
-		std::vector<double>{ 3, -2.5, -1.2, 3, 6, 5, 1 });	   
+	wxVector<wxDouble> points;
+	points.push_back(3);
+	points.push_back(-2.5);
+	points.push_back(-1.2);
+	points.push_back(3);
+	points.push_back(6);
+	points.push_back(5);
+	points.push_back(1);
+	wxLineChartDataset::ptr dataset(new wxLineChartDataset(
+		wxColor(220, 220, 220), wxColor(255, 255, 255), points));  
 	data.AddDataset(dataset);
 
 	// Create the bar chart widget from the constructed data
@@ -51,5 +66,5 @@ WxLineFrame::WxLineFrame(const wxString& title)
 	// Set up the sizer for the frame
 	wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
 	topSizer->Add(panel, 1, wxEXPAND);
-	SetSizer(topSizer);
+	SetSizerAndFit(topSizer);
 }
