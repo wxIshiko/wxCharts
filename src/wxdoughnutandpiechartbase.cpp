@@ -26,8 +26,10 @@
 #include <wx/graphics.h>
 
 ChartSlice::ChartSlice(double value,
-					   const wxColor &color)
-	: m_value(value), m_color(color)
+					   const wxColor &color,
+					   const wxString &label)
+	: m_value(value), m_color(color), 
+	m_label(label)
 {
 }
 
@@ -39,6 +41,11 @@ double ChartSlice::GetValue() const
 const wxColor& ChartSlice::GetColor() const
 {
 	return m_color;
+}
+
+const wxString& ChartSlice::GetLabel() const
+{
+	return m_label;
 }
 
 wxDoughnutAndPieChartBase::SliceArc::SliceArc(const ChartSlice &slice,
@@ -155,7 +162,7 @@ void wxDoughnutAndPieChartBase::OnPaint(wxPaintEvent &evt)
 
 		if (m_activeSlices.size() > 0)
 		{
-			wxChartTooltip tooltip(m_activeSlices[0]->GetTooltipPosition());
+			wxChartTooltip tooltip(m_activeSlices[0]->GetTooltipPosition(), "dummytooltip");
 			tooltip.Draw(*gc);
 		}
 

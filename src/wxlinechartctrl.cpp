@@ -102,7 +102,7 @@ wxLineChartCtrl::PointClass::PointClass(double x,
 
 wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 								 wxWindowID id,
-								 const wxLineChartData& data,
+								 const wxLineChartData &data,
 								 const wxPoint &pos,
 								 const wxSize &size,
 								 long style)

@@ -69,7 +69,7 @@ private:
 class wxLineChartCtrl : public wxChart
 {
 public:
-	wxLineChartCtrl(wxWindow *parent, wxWindowID id, const wxLineChartData& data,
+	wxLineChartCtrl(wxWindow *parent, wxWindowID id, const wxLineChartData &data,
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize, 
 		long style = 0);
 
