@@ -23,10 +23,12 @@
 #ifndef _WX_CHARTS_WXCHARTRADIALGRID_H_
 #define _WX_CHARTS_WXCHARTRADIALGRID_H_
 
+#include "wxchartelement.h"
+
 // This class represents the radial grid displayed in the
 // background of some of the chart controls like for instance 
 // the polar area chart.
-class wxChartRadialGrid
+class wxChartRadialGrid : public wxChartElement
 {
 public:
 	wxChartRadialGrid();

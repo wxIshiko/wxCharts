@@ -23,10 +23,11 @@
 #ifndef _WX_CHARTS_WXCHARTRECTANGLE_H_
 #define _WX_CHARTS_WXCHARTRECTANGLE_H_
 
+#include "wxchartelement.h"
 #include "wxchartrectangleoptions.h"
 #include <wx/graphics.h>
 
-class wxChartRectangle
+class wxChartRectangle : public wxChartElement
 {
 public:
 	wxChartRectangle(wxDouble x, wxDouble y, 

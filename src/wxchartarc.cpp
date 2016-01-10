@@ -86,6 +86,27 @@ unsigned int wxChartArc::GetStrokeWidth() const
 	return m_strokeWidth;
 }
 
+bool wxChartArc::HitTest(const wxPoint &point) const
+{
+	wxDouble distanceFromXCenter = point.x - m_x;
+	wxDouble distanceFromYCenter = point.y - m_y;
+	wxDouble radialDistanceFromCenter = sqrt((distanceFromXCenter * distanceFromXCenter) + (distanceFromYCenter * distanceFromYCenter));
+
+	wxDouble angle = atan2(distanceFromYCenter, distanceFromXCenter);
+	if (angle < 0)
+	{
+		angle += 2 * M_PI;
+	}
+	
+	// Calculate wether the angle is between the start and the end angle
+	bool betweenAngles = ((angle >= m_startAngle) && (angle <= m_endAngle));
+
+	// Ensure within the outside of the arc centre, but inside arc outer
+	bool withinRadius = ((radialDistanceFromCenter >= m_innerRadius) && (radialDistanceFromCenter <= m_outerRadius));
+
+	return (betweenAngles && withinRadius);
+}
+
 wxPoint2DDouble wxChartArc::GetTooltipPosition() const
 {
 	double centreAngle = m_startAngle + (m_endAngle - m_startAngle) / 2;

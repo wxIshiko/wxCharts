@@ -43,6 +43,7 @@ public:
 
 	unsigned int GetStrokeWidth() const;
 
+	bool HitTest(const wxPoint &point) const;
 	wxPoint2DDouble GetTooltipPosition() const;
 
 private:
