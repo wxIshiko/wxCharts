@@ -57,7 +57,7 @@ wxDoughnutAndPieChartBase::SliceArc::SliceArc(const ChartSlice &slice,
 											  double innerRadius,
 											  unsigned int strokeWidth)
 	: wxChartArc(x, y, startAngle, endAngle, outerRadius, innerRadius, strokeWidth, slice.GetColor()),
-	value(slice.GetValue())
+	m_value(slice.GetValue()), m_tooltip(slice.GetLabel())
 {
 }
 
@@ -71,6 +71,16 @@ void wxDoughnutAndPieChartBase::SliceArc::Resize(const wxSize &size,
 
 	SetCenter(x, y);
 	SetRadiuses(outerRadius, innerRadius);
+}
+
+wxDouble wxDoughnutAndPieChartBase::SliceArc::GetValue() const
+{
+	return m_value;
+}
+
+const wxString& wxDoughnutAndPieChartBase::SliceArc::GetTooltip() const
+{
+	return m_tooltip;
 }
 
 wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(wxWindow *parent,
@@ -97,10 +107,10 @@ void wxDoughnutAndPieChartBase::Add(const ChartSlice &slice, size_t index, bool 
 {
 	m_total += slice.GetValue();
 
-	double x = (GetSize().GetX() / 2) - 2;
-	double y = (GetSize().GetY() / 2) - 2;
-	double outerRadius = ((x < y) ? x : y) - (GetOptions().GetSliceStrokeWidth() / 2);
-	double innerRadius = outerRadius * ((double)GetOptions().GetPercentageInnerCutout()) / 100;
+	wxDouble x = (GetSize().GetX() / 2) - 2;
+	wxDouble y = (GetSize().GetY() / 2) - 2;
+	wxDouble outerRadius = ((x < y) ? x : y) - (GetOptions().GetSliceStrokeWidth() / 2);
+	wxDouble innerRadius = outerRadius * ((wxDouble)GetOptions().GetPercentageInnerCutout()) / 100;
 
 	SliceArc::ptr newSlice = SliceArc::ptr(new SliceArc(slice,
 		x, y, 0, 0, outerRadius, innerRadius, GetOptions().GetSliceStrokeWidth()));
@@ -118,7 +128,7 @@ void wxDoughnutAndPieChartBase::Resize(const wxSize &size)
 	}
 }
 
-double wxDoughnutAndPieChartBase::CalculateCircumference(double value)
+double wxDoughnutAndPieChartBase::CalculateCircumference(wxDouble value)
 {
 	if (m_total > 0)
 	{
@@ -133,9 +143,12 @@ double wxDoughnutAndPieChartBase::CalculateCircumference(double value)
 void wxDoughnutAndPieChartBase::GetSegmentsAtEvent(const wxPoint &point)
 {
 	m_activeSlices.clear();
-	if (point.x > 100)
+	for (size_t i = 0; i < m_slices.size(); ++i)
 	{
-		m_activeSlices.push_back(m_slices[0]);
+		if (m_slices[i]->HitTest(point))
+		{
+			m_activeSlices.push_back(m_slices[i]);
+		}
 	}
 }
 
@@ -153,16 +166,16 @@ void wxDoughnutAndPieChartBase::OnPaint(wxPaintEvent &evt)
 		{
 			SliceArc& currentSlice = *m_slices[i];
 
-			double endAngle = startAngle + CalculateCircumference(currentSlice.value);
+			double endAngle = startAngle + CalculateCircumference(currentSlice.GetValue());
 			currentSlice.SetAngles(startAngle, endAngle);
 			startAngle = endAngle;
 
 			currentSlice.Draw(*gc);
 		}
 
-		if (m_activeSlices.size() > 0)
+		for (size_t j = 0; j < m_activeSlices.size(); ++j)
 		{
-			wxChartTooltip tooltip(m_activeSlices[0]->GetTooltipPosition(), "dummytooltip");
+			wxChartTooltip tooltip(m_activeSlices[j]->GetTooltipPosition(), m_activeSlices[j]->GetTooltip());
 			tooltip.Draw(*gc);
 		}
 

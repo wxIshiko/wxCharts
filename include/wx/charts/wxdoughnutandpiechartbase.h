@@ -74,8 +74,9 @@ private:
 	virtual const wxDoughnutAndPieChartOptionsBase& GetOptions() const = 0;
 
 private:
-	struct SliceArc : public wxChartArc
+	class SliceArc : public wxChartArc
 	{
+	public:
 		typedef wxSharedPtr<SliceArc> ptr;
 
 		SliceArc(const ChartSlice &slice, wxDouble x, wxDouble y,
@@ -84,7 +85,12 @@ private:
 
 		void Resize(const wxSize &size, const wxDoughnutAndPieChartOptionsBase& options);
 
-		double value;
+		wxDouble GetValue() const;
+		const wxString& GetTooltip() const;
+
+	private:
+		wxDouble m_value;
+		wxString m_tooltip;
 	};
 
 private:

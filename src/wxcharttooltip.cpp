@@ -25,17 +25,19 @@
 
 wxChartTooltip::wxChartTooltip(const wxPoint2DDouble &position,
 							   const wxString &text)
-	: m_position(position), m_text(text)
+	: m_position(position), m_template(new wxChartTooltipTemplateStatic(text))
 {
 }
 
 void wxChartTooltip::Draw(wxGraphicsContext &gc)
 {
+	wxString text = m_template->GetTooltipText();
+
 	wxFont font(wxSize(0, m_options.GetFontSize()),
 		m_options.GetFontFamily(), m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
 	wxDouble tooltipWidth;
 	wxDouble tooltipHeight;
-	wxChartUtilities::GetTextSize(gc, font, m_text, tooltipWidth, tooltipHeight);
+	wxChartUtilities::GetTextSize(gc, font, text, tooltipWidth, tooltipHeight);
 	tooltipWidth += 2 * m_options.GetHorizontalPadding();
 	tooltipHeight += 2 * m_options.GetVerticalPadding();
 
@@ -52,5 +54,5 @@ void wxChartTooltip::Draw(wxGraphicsContext &gc)
 	gc.FillPath(path);
 
 	gc.SetFont(font, m_options.GetFontColor());
-	gc.DrawText(m_text, tooltipX + m_options.GetHorizontalPadding(), tooltipY + m_options.GetVerticalPadding());
+	gc.DrawText(text, tooltipX + m_options.GetHorizontalPadding(), tooltipY + m_options.GetVerticalPadding());
 }

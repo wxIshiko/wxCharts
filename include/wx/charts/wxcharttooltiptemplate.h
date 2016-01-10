@@ -24,12 +24,15 @@
 #define _WX_CHARTS_WXCHARTTOOLTIPTEMPLATE_H_
 
 #include <wx/string.h>
+#include <wx/sharedptr.h>
 
 // Interface for the classes that are able to generate
 // content for tooltips
 class wxChartTooltipTemplate
 {
 public:
+	typedef wxSharedPtr<wxChartTooltipTemplate> ptr;
+
 	wxChartTooltipTemplate();
 
 	virtual wxString GetTooltipText() const = 0;
@@ -38,7 +41,7 @@ public:
 // An implementation of the wxChartTooltipTemplate
 // interface where the content is a static string
 // passed in at construction time.
-class wxChartTooltipTemplateStatic
+class wxChartTooltipTemplateStatic : public wxChartTooltipTemplate
 {
 public:
 	wxChartTooltipTemplateStatic(const wxString &text);
