@@ -23,9 +23,12 @@
 #include "wxchartgrid.h"
 #include "wxchartutilities.h"
 
-wxChartGrid::wxChartGrid(const wxVector<wxString> &labels,
+wxChartGrid::wxChartGrid(const wxSize &size,
+						 const wxVector<wxString> &labels,
 						 const wxChartGridOptions& options)
-	: m_options(options), m_xLabels(labels), m_yLabelMaxWidth(0),
+	: m_options(options), m_size(size), 
+	m_startPoint(0), m_endPoint(0),
+	m_xLabels(labels), m_yLabelMaxWidth(0),
 	m_xPaddingLeft(0), m_needsFit(true)
 {
 	wxVector<wxDouble> dummy;
@@ -38,25 +41,25 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		m_options.GetFontFamily(), m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
 	Fit(m_steps, gc, font);
 
-	wxDouble yLabelGap = 50 / m_steps;
+	wxDouble yLabelGap = (m_endPoint - m_startPoint) / m_steps;
 	wxDouble xStart = m_xPaddingLeft;
 
 	for (size_t i = 0; i < m_yLabels.size(); ++i)
 	{
-		wxDouble yLabelCenter = yLabelGap * i;
+		wxDouble yLabelCenter = m_endPoint - (yLabelGap * i);
 		wxDouble linePositionY = yLabelCenter;
 		
 		// We always show the X-axis
 		bool drawHorizontalLine = (m_options.ShowHorizontalLines() || (i == 0));
 
 		gc.SetFont(font, m_options.GetFontColor());
-		gc.DrawText(m_yLabels[i], xStart - 10 - m_yLabelWidths[i], yLabelCenter);
+		gc.DrawText(m_yLabels[i], xStart - 10 - m_yLabelWidths[i], yLabelCenter - (m_yLabelHeights[i] / 2));
 
 		if (drawHorizontalLine)
 		{
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(xStart, linePositionY);
-			path.AddLineToPoint(100, linePositionY);
+			path.AddLineToPoint(m_size.GetWidth(), linePositionY);
 			path.CloseSubpath();
 
 			if (i > 0)
@@ -73,8 +76,8 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			}
 
 			wxGraphicsPath path2 = gc.CreatePath();
-			path.MoveToPoint(xStart - 5, linePositionY);
-			path.AddLineToPoint(xStart, linePositionY);
+			path2.MoveToPoint(xStart - 5, linePositionY);
+			path2.AddLineToPoint(xStart, linePositionY);
 			path2.CloseSubpath();
 
 			wxPen pen(m_options.GetAxisLineColor(), m_options.GetAxisLineWidth());
@@ -98,6 +101,12 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 	}
 }
 
+void wxChartGrid::Resize(const wxSize &size)
+{
+	m_size = size;
+	m_needsFit = true;
+}
+
 void wxChartGrid::Fit(size_t steps, 
 					  wxGraphicsContext &gc,
 					  const wxFont &font)
@@ -106,6 +115,14 @@ void wxChartGrid::Fit(size_t steps,
 	{
 		return;
 	}
+
+	m_startPoint = m_options.GetFontSize();
+	m_endPoint = m_size.GetHeight() - (m_options.GetFontSize() * 1.5) - 5; // -5 to pad labels
+
+	// Apply padding settings to the start and end point.
+	//this.startPoint += this.padding;
+	//this.endPoint -= this.padding;
+
 
 	BuildYLabels(steps, gc, font);
 	CalculateXLabelRotation(m_yLabelMaxWidth);
@@ -118,6 +135,8 @@ void wxChartGrid::BuildYLabels(size_t steps,
 							   const wxFont &font)
 {
 	m_yLabels.clear();
+	m_yLabelWidths.clear();
+	m_yLabelHeights.clear();
 	m_yLabelMaxWidth = 0;
 
 	size_t stepDecimalPlaces = wxChartUtilities::GetDecimalPlaces();
@@ -125,12 +144,15 @@ void wxChartGrid::BuildYLabels(size_t steps,
 	for (size_t i = 0; i <= steps; ++i)
 	{
 		m_yLabels.push_back("10");
-		wxDouble labelWidth = wxChartUtilities::GetTextWidth(gc, font, "10");
+		wxDouble labelWidth;
+		wxDouble labelHeight;
+		wxChartUtilities::GetTextSize(gc, font, "10", labelWidth, labelHeight);
 		m_yLabelWidths.push_back(labelWidth);
 		if (labelWidth > m_yLabelMaxWidth)
 		{
 			m_yLabelMaxWidth = labelWidth;
 		}
+		m_yLabelHeights.push_back(labelHeight);
 	}
 	m_yLabelMaxWidth += 10;
 }

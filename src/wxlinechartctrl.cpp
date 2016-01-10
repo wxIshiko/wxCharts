@@ -107,7 +107,7 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 								 const wxSize &size,
 								 long style)
 	: wxChart(parent, id, pos, size, style), 
-	m_grid(data.GetLabels(), m_options.GetGridOptions()),
+	m_grid(size, data.GetLabels(), m_options.GetGridOptions()),
 	m_minValue(data.GetMinValue()), m_maxValue(data.GetMaxValue())
 {
 	const wxVector<wxLineChartDataset::ptr>& datasets = data.GetDatasets();
@@ -133,6 +133,11 @@ double wxLineChartCtrl::GetMaxValue() const
 	return m_maxValue;
 }
 
+void wxLineChartCtrl::Resize(const wxSize &size)
+{
+	m_grid.Resize(size);
+}
+
 void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 {
 	wxAutoBufferedPaintDC dc(this);
@@ -153,12 +158,6 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 	}
 }
 
-void wxLineChartCtrl::OnSize(wxSizeEvent& evt)
-{
-	Refresh();
-}
-
-BEGIN_EVENT_TABLE(wxLineChartCtrl, wxControl)
+BEGIN_EVENT_TABLE(wxLineChartCtrl, wxChart)
 	EVT_PAINT(wxLineChartCtrl::OnPaint)
-	EVT_SIZE(wxLineChartCtrl::OnSize)
 END_EVENT_TABLE()

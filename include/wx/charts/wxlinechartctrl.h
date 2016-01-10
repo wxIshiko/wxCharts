@@ -77,8 +77,9 @@ public:
 	wxDouble GetMaxValue() const;
 
 private:
+	virtual void Resize(const wxSize &size);
+
 	void OnPaint(wxPaintEvent &evt);
-	void OnSize(wxSizeEvent& evt);
 
 private:
 	struct PointClass : public wxChartPoint

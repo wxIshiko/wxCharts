@@ -33,6 +33,11 @@ class wxChartGridOptions
 public:
 	wxChartGridOptions();
 
+	unsigned int GetAxisLineWidth() const;
+	const wxColor& GetAxisLineColor() const;
+
+	bool ShowHorizontalLines() const;
+	bool ShowVerticalLines() const;
 	unsigned int GetGridLineWidth() const;
 	const wxColor& GetGridLineColor() const;
 
@@ -42,6 +47,12 @@ public:
 	const wxColor& GetFontColor() const;
 
 private:
+	unsigned int m_axisLineWidth;
+	wxColor m_axisLineColor;
+	// Whether to show horizontal lines (the X-axis is always shown)
+	bool m_showHorizontalLines;
+	// Whether to show vertical lines (the Y-axis is always shown)
+	bool m_showVerticalLines;
 	unsigned int m_gridLineWidth;
 	wxColor m_gridLineColor;
 	wxFontFamily m_fontFamily;

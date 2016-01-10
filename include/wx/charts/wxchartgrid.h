@@ -32,10 +32,13 @@
 class wxChartGrid
 {
 public:
-	wxChartGrid(const wxVector<wxString> &labels,
+	wxChartGrid(const wxSize &size,
+		const wxVector<wxString> &labels,
 		const wxChartGridOptions& options);
 
 	void Draw(wxGraphicsContext &gc);
+
+	void Resize(const wxSize &size);
 
 private:
 	void Fit(size_t steps, wxGraphicsContext &gc,
@@ -48,9 +51,13 @@ private:
 
 private:
 	wxChartGridOptions m_options;
+	wxSize m_size;
+	wxDouble m_startPoint;
+	wxDouble m_endPoint;
 	wxVector<wxString> m_xLabels;
 	wxVector<wxString> m_yLabels;
 	wxVector<wxDouble> m_yLabelWidths;
+	wxVector<wxDouble> m_yLabelHeights;
 	wxDouble m_yLabelMaxWidth;
 	// The number of steps on the Y-axis
 	size_t m_steps;
