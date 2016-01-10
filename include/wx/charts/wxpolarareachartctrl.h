@@ -23,4 +23,22 @@
 #ifndef _WX_CHARTS_WXPOLARAREACHARTCTRL_H_
 #define _WX_CHARTS_WXPOLARAREACHARTCTRL_H_
 
+#include "wxchart.h"
+
+class wxPolarAreaChartCtrl : public wxChart
+{
+public:
+	wxPolarAreaChartCtrl(wxWindow *parent, wxWindowID id,
+		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
+		long style = 0);
+
+private:
+	virtual void Resize(const wxSize &size);
+
+	void OnPaint(wxPaintEvent &evt);
+
+private:
+	DECLARE_EVENT_TABLE();
+};
+
 #endif

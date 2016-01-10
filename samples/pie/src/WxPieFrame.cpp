@@ -31,7 +31,7 @@ WxPieFrame::WxPieFrame(const wxString& title)
 	// Create a top-level panel to hold all the contents of the frame
 	wxPanel* panel = new wxPanel(this, wxID_ANY);
 
-	// Create the doughnut chart widget
+	// Create the pie chart widget
 	wxPieChartCtrl* pieChartCtrl = new wxPieChartCtrl(panel, wxID_ANY);
 	pieChartCtrl->Add(ChartSlice(300, wxColor(0x4A46F7), "Red"));
 	pieChartCtrl->Add(ChartSlice(50, wxColor(0xBDBF46), "Green"));

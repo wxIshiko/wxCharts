@@ -21,3 +21,35 @@
 */
 
 #include "wxpolarareachartctrl.h"
+#include <wx/dcbuffer.h>
+#include <wx/graphics.h>
+
+wxPolarAreaChartCtrl::wxPolarAreaChartCtrl(wxWindow *parent,
+										   wxWindowID id,
+										   const wxPoint &pos,
+										   const wxSize &size,
+										   long style)
+	: wxChart(parent, id, pos, size, style)
+{
+}
+
+void wxPolarAreaChartCtrl::Resize(const wxSize &size)
+{
+}
+
+void wxPolarAreaChartCtrl::OnPaint(wxPaintEvent &evt)
+{
+	wxAutoBufferedPaintDC dc(this);
+
+	dc.Clear();
+
+	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+	if (gc)
+	{
+		delete gc;
+	}
+}
+
+BEGIN_EVENT_TABLE(wxPolarAreaChartCtrl, wxChart)
+	EVT_PAINT(wxPolarAreaChartCtrl::OnPaint)
+END_EVENT_TABLE()

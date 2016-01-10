@@ -88,16 +88,41 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 	for (size_t i = 0; i < m_xLabels.size(); ++i)
 	{
-		wxGraphicsPath path = gc.CreatePath();
+		// We always show the Y-axis
+		bool drawVerticalLine = (m_options.ShowVerticalLines() || (i == 0));
 
-		wxDouble xPos = CalculateX(i);
-		path.MoveToPoint(xPos, 10);
-		path.AddLineToPoint(xPos, 100);
-		path.CloseSubpath();
+		if (drawVerticalLine)
+		{
+			wxDouble linePos = CalculateX(i);
 
-		wxPen pen(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
-		gc.SetPen(pen);
-		gc.StrokePath(path);
+			wxGraphicsPath path = gc.CreatePath();
+			path.MoveToPoint(linePos, m_endPoint);
+			path.AddLineToPoint(linePos, m_startPoint - 3);
+			path.CloseSubpath();
+
+			if (i > 0)
+			{
+				wxPen pen(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
+				gc.SetPen(pen);
+				gc.StrokePath(path);
+			}
+			else
+			{
+				wxPen pen(m_options.GetAxisLineColor(), m_options.GetAxisLineWidth());
+				gc.SetPen(pen);
+				gc.StrokePath(path);
+			}
+
+			// Small lines at the bottom of the base grid line
+			wxGraphicsPath path2 = gc.CreatePath();
+			path2.MoveToPoint(linePos, m_endPoint);
+			path2.AddLineToPoint(linePos, m_endPoint + 5);
+			path2.CloseSubpath();
+
+			wxPen pen(m_options.GetAxisLineColor(), m_options.GetAxisLineWidth());
+			gc.SetPen(pen);
+			gc.StrokePath(path2);
+		}
 	}
 }
 
@@ -164,10 +189,21 @@ void wxChartGrid::CalculateXLabelRotation(wxDouble yLabelMaxWidth)
 
 double wxChartGrid::CalculateX(size_t index)
 {
-	wxDouble innerWidth = 100;
+	wxDouble innerWidth = m_size.GetWidth() - (m_xPaddingLeft);
 	wxDouble valueWidth = innerWidth / m_xLabels.size();
-	wxDouble valueOffset = (valueWidth * index);
+	wxDouble valueOffset = m_xPaddingLeft + (valueWidth * index);
 
+	/*
+				innerWidth = this.width - (this.xScalePaddingLeft + this.xScalePaddingRight),
+				valueWidth = innerWidth/Math.max((this.valuesCount - ((this.offsetGridLines) ? 0 : 1)), 1),
+				valueOffset = (valueWidth * index) + this.xScalePaddingLeft;
+
+			if (this.offsetGridLines){
+				valueOffset += (valueWidth/2);
+			}
+
+			return Math.round(valueOffset);
+			*/
 	return valueOffset;
 }
 
