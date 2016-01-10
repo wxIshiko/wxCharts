@@ -57,11 +57,12 @@ public:
 	void Add(const ChartSlice &slice, size_t index, bool silent);
 
 private:
+	virtual void Resize(const wxSize &size);
+
 	double CalculateCircumference(double value);
 	void GetSegmentsAtEvent(const wxPoint &point);
 
 	void OnPaint(wxPaintEvent &evt);
-	void OnSize(wxSizeEvent& evt);
 	void OnMouseEnter(wxMouseEvent& evt);
 	void OnMouseOver(wxMouseEvent& evt);
 	void OnMouseExit(wxMouseEvent& evt);

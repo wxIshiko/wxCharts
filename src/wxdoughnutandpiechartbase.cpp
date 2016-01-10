@@ -103,6 +103,14 @@ void wxDoughnutAndPieChartBase::Add(const ChartSlice &slice, size_t index, bool 
 	}
 }
 
+void wxDoughnutAndPieChartBase::Resize(const wxSize &size)
+{
+	for (size_t i = 0; i < m_slices.size(); ++i)
+	{
+		m_slices[i]->Resize(size, GetOptions());
+	}
+}
+
 double wxDoughnutAndPieChartBase::CalculateCircumference(double value)
 {
 	if (m_total > 0)
@@ -155,15 +163,6 @@ void wxDoughnutAndPieChartBase::OnPaint(wxPaintEvent &evt)
 	}
 }
 
-void wxDoughnutAndPieChartBase::OnSize(wxSizeEvent& evt)
-{
-	for (size_t i = 0; i < m_slices.size(); ++i)
-	{
-		m_slices[i]->Resize(evt.GetSize(), GetOptions());
-	}
-	Refresh();
-}
-
 void wxDoughnutAndPieChartBase::OnMouseEnter(wxMouseEvent& evt)
 {
 	if (GetOptions().ShowTooltips())
@@ -191,9 +190,8 @@ void wxDoughnutAndPieChartBase::OnMouseExit(wxMouseEvent& evt)
 	}
 }
 
-BEGIN_EVENT_TABLE(wxDoughnutAndPieChartBase, wxControl)
+BEGIN_EVENT_TABLE(wxDoughnutAndPieChartBase, wxChart)
 	EVT_PAINT(wxDoughnutAndPieChartBase::OnPaint)
-	EVT_SIZE(wxDoughnutAndPieChartBase::OnSize)
 	EVT_ENTER_WINDOW(wxDoughnutAndPieChartBase::OnMouseEnter)
 	EVT_MOTION(wxDoughnutAndPieChartBase::OnMouseOver)
 	EVT_LEAVE_WINDOW(wxDoughnutAndPieChartBase::OnMouseExit)
