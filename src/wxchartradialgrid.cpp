@@ -21,17 +21,49 @@
 */
 
 #include "wxchartradialgrid.h"
+#include "wxchartutilities.h"
 
 wxChartRadialGrid::wxChartRadialGrid(const wxSize &size,
-									 const wxVector<wxString> &labels)
+									 const wxChartRadialGridOptions& options)
+	: m_options(options), m_size(size), m_center(CalculateCenter(size))
 {
-	BuildYLabels();
+	wxVector<wxDouble> dummy;
+	wxDouble valueRange = 0;
+	wxChartUtilities::CalculateGridRange(dummy, valueRange, m_steps);
+	BuildYLabels(m_steps);
 }
 
 void wxChartRadialGrid::Draw(wxGraphicsContext &gc)
 {
+	for (size_t i = 0; i < m_yLabels.size(); ++i)
+	{
+		wxGraphicsPath path = gc.CreatePath();
+		path.AddArc(m_center.m_x, m_center.m_y, 25, 0, 2 * M_PI, true);
+		path.CloseSubpath();
+
+		wxPen pen(m_options.GetLineColor(), m_options.GetLineWidth());
+		gc.SetPen(pen);
+		gc.StrokePath(path);
+	}
 }
 
-void wxChartRadialGrid::BuildYLabels()
+void wxChartRadialGrid::Resize(const wxSize &size)
 {
+	m_size = size;
+	m_center = CalculateCenter(size);
+}
+
+wxPoint2DDouble wxChartRadialGrid::CalculateCenter(const wxSize& size)
+{
+	return wxPoint2DDouble(size.GetWidth() / 2, size.GetHeight() / 2);
+}
+
+void wxChartRadialGrid::BuildYLabels(size_t steps)
+{
+	m_yLabels.clear();
+
+	for (size_t i = 0; i <= steps; ++i)
+	{
+		m_yLabels.push_back("10");
+	}
 }

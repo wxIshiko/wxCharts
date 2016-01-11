@@ -31,15 +31,15 @@
 class wxChartArc : public wxChartElement
 {
 public:
-	wxChartArc(double x, double y, double startAngle,
-		double endAngle, double outerRadius, double innerRadius,
+	wxChartArc(wxDouble x, wxDouble y, wxDouble startAngle,
+		wxDouble endAngle, wxDouble outerRadius, wxDouble innerRadius,
 		unsigned int strokeWidth, const wxColor &fillColor);
 
 	void Draw(wxGraphicsContext &gc);
 
-	void SetCenter(double x, double y);
-	void SetAngles(double startAngle, double endAngle);
-	void SetRadiuses(double outerRadius, double innerRadius);
+	void SetCenter(wxDouble x, wxDouble y);
+	void SetAngles(wxDouble startAngle, wxDouble endAngle);
+	void SetRadiuses(wxDouble outerRadius, wxDouble innerRadius);
 
 	unsigned int GetStrokeWidth() const;
 
@@ -47,12 +47,12 @@ public:
 	wxPoint2DDouble GetTooltipPosition() const;
 
 private:
-	double m_x;
-	double m_y;
-	double m_startAngle;
-	double m_endAngle;
-	double m_outerRadius;
-	double m_innerRadius;
+	wxDouble m_x;
+	wxDouble m_y;
+	wxDouble m_startAngle;
+	wxDouble m_endAngle;
+	wxDouble m_outerRadius;
+	wxDouble m_innerRadius;
 	unsigned int m_strokeWidth;
 	wxColor m_fillColor;
 };

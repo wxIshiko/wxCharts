@@ -22,12 +22,12 @@
 
 #include "wxchartarc.h"
 
-wxChartArc::wxChartArc(double x,
-					   double y, 
-					   double startAngle,
-					   double endAngle, 
-					   double outerRadius,
-					   double innerRadius,
+wxChartArc::wxChartArc(wxDouble x,
+					   wxDouble y, 
+					   wxDouble startAngle,
+					   wxDouble endAngle,
+					   wxDouble outerRadius,
+					   wxDouble innerRadius,
 					   unsigned int strokeWidth,
 					   const wxColor &fillColor)
 	: m_x(x), m_y(y), m_startAngle(startAngle), 
@@ -63,19 +63,19 @@ void wxChartArc::Draw(wxGraphicsContext &gc)
 	gc.StrokePath(path);
 }
 
-void wxChartArc::SetCenter(double x, double y)
+void wxChartArc::SetCenter(wxDouble x, wxDouble y)
 {
 	m_x = x;
 	m_y = y;
 }
 
-void wxChartArc::SetAngles(double startAngle, double endAngle)
+void wxChartArc::SetAngles(wxDouble startAngle, wxDouble endAngle)
 {
 	m_startAngle = startAngle;
 	m_endAngle = endAngle;
 }
 
-void wxChartArc::SetRadiuses(double outerRadius, double innerRadius)
+void wxChartArc::SetRadiuses(wxDouble outerRadius, wxDouble innerRadius)
 {
 	m_outerRadius = outerRadius;
 	m_innerRadius = innerRadius;
@@ -109,9 +109,9 @@ bool wxChartArc::HitTest(const wxPoint &point) const
 
 wxPoint2DDouble wxChartArc::GetTooltipPosition() const
 {
-	double centreAngle = m_startAngle + (m_endAngle - m_startAngle) / 2;
-	double rangeFromCentre = m_innerRadius + (m_outerRadius - m_innerRadius) / 2;
-	double x = m_x + cos(centreAngle) * rangeFromCentre;
-	double y = m_y + sin(centreAngle) * rangeFromCentre;
+	wxDouble centreAngle = m_startAngle + (m_endAngle - m_startAngle) / 2;
+	wxDouble rangeFromCentre = m_innerRadius + (m_outerRadius - m_innerRadius) / 2;
+	wxDouble x = m_x + cos(centreAngle) * rangeFromCentre;
+	wxDouble y = m_y + sin(centreAngle) * rangeFromCentre;
 	return wxPoint2DDouble(x, y);
 }

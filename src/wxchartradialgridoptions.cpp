@@ -23,5 +23,16 @@
 #include "wxchartradialgridoptions.h"
 
 wxChartRadialGridOptions::wxChartRadialGridOptions()
+	: m_lineWidth(1), m_lineColor(0, 0, 0, 0x19)
 {
+}
+
+unsigned int wxChartRadialGridOptions::GetLineWidth() const
+{
+	return m_lineWidth;
+}
+
+const wxColor& wxChartRadialGridOptions::GetLineColor() const
+{
+	return m_lineColor;
 }

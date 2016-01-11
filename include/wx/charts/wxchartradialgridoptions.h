@@ -23,10 +23,19 @@
 #ifndef _WX_CHARTS_WXCHARTRADIALGRIDOPTIONS_H_
 #define _WX_CHARTS_WXCHARTRADIALGRIDOPTIONS_H_
 
+#include <wx/colour.h>
+
 class wxChartRadialGridOptions
 {
 public:
 	wxChartRadialGridOptions();
+
+	unsigned int GetLineWidth() const;
+	const wxColor& GetLineColor() const;
+
+private:
+	unsigned int m_lineWidth;
+	wxColor m_lineColor;
 };
 
 #endif

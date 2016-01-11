@@ -34,16 +34,22 @@ class wxChartRadialGrid : public wxChartElement
 {
 public:
 	wxChartRadialGrid(const wxSize &size,
-		const wxVector<wxString> &labels);
+		const wxChartRadialGridOptions& options);
 
 	void Draw(wxGraphicsContext &gc);
 
+	void Resize(const wxSize &size);
+
 private:
-	void BuildYLabels();
+	static wxPoint2DDouble CalculateCenter(const wxSize& size);
+	void BuildYLabels(size_t steps);
 
 private:
 	wxChartRadialGridOptions m_options;
+	wxSize m_size;
+	wxPoint2DDouble m_center;
 	wxVector<wxString> m_yLabels;
+	size_t m_steps;
 };
 
 #endif
