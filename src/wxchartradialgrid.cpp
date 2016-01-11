@@ -22,6 +22,16 @@
 
 #include "wxchartradialgrid.h"
 
-wxChartRadialGrid::wxChartRadialGrid()
+wxChartRadialGrid::wxChartRadialGrid(const wxSize &size,
+									 const wxVector<wxString> &labels)
+{
+	BuildYLabels();
+}
+
+void wxChartRadialGrid::Draw(wxGraphicsContext &gc)
+{
+}
+
+void wxChartRadialGrid::BuildYLabels()
 {
 }

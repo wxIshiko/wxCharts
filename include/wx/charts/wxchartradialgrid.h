@@ -24,6 +24,8 @@
 #define _WX_CHARTS_WXCHARTRADIALGRID_H_
 
 #include "wxchartelement.h"
+#include "wxchartradialgridoptions.h"
+#include <wx/graphics.h>
 
 // This class represents the radial grid displayed in the
 // background of some of the chart controls like for instance 
@@ -31,7 +33,17 @@
 class wxChartRadialGrid : public wxChartElement
 {
 public:
-	wxChartRadialGrid();
+	wxChartRadialGrid(const wxSize &size,
+		const wxVector<wxString> &labels);
+
+	void Draw(wxGraphicsContext &gc);
+
+private:
+	void BuildYLabels();
+
+private:
+	wxChartRadialGridOptions m_options;
+	wxVector<wxString> m_yLabels;
 };
 
 #endif
