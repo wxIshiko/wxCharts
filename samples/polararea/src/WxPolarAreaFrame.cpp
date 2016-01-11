@@ -31,8 +31,11 @@ WxPolarAreaFrame::WxPolarAreaFrame(const wxString& title)
 	// Create a top-level panel to hold all the contents of the frame
 	wxPanel* panel = new wxPanel(this, wxID_ANY);
 
+	// Create the data for the polar area chart widget
+	wxPolarAreaChartData data;
+
 	// Create the polar area chart widget
-	wxPolarAreaChartCtrl* polarAreaChartCtrl = new wxPolarAreaChartCtrl(panel, wxID_ANY);
+	wxPolarAreaChartCtrl* polarAreaChartCtrl = new wxPolarAreaChartCtrl(panel, wxID_ANY, data);
 
 	// Set up the sizer for the panel
 	wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);

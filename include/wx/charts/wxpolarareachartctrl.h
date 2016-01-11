@@ -30,18 +30,13 @@
 class wxPolarAreaChartData
 {
 public:
-	wxPolarAreaChartData(const wxVector<wxString> &labels);
-
-	const wxVector<wxString>& GetLabels() const;
-
-private:
-	wxVector<wxString> m_labels;
+	wxPolarAreaChartData();
 };
 
 class wxPolarAreaChartCtrl : public wxChart
 {
 public:
-	wxPolarAreaChartCtrl(wxWindow *parent, wxWindowID id,
+	wxPolarAreaChartCtrl(wxWindow *parent, wxWindowID id, const wxPolarAreaChartData &data,
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
 

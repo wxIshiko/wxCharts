@@ -25,3 +25,8 @@
 wxPolarAreaChartCtrlOptions::wxPolarAreaChartCtrlOptions()
 {
 }
+
+const wxChartRadialGridOptions& wxPolarAreaChartCtrlOptions::GetGridOptions() const
+{
+	return m_gridOptions;
+}

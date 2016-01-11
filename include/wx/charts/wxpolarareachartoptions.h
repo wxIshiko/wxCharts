@@ -23,10 +23,17 @@
 #ifndef _WX_CHARTS_WXPOLARAREACHARTOPTIONS_H_
 #define _WX_CHARTS_WXPOLARAREACHARTOPTIONS_H_
 
+#include "wxchartradialgridoptions.h"
+
 class wxPolarAreaChartCtrlOptions
 {
 public:
 	wxPolarAreaChartCtrlOptions();
+
+	const wxChartRadialGridOptions& GetGridOptions() const;
+
+private:
+	wxChartRadialGridOptions m_gridOptions;
 };
 
 #endif
