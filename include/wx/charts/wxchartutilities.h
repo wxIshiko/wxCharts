@@ -29,6 +29,8 @@ class wxChartUtilities
 {
 public:
 	static size_t GetDecimalPlaces();
+	static void CalculateGridRange(const wxVector<wxDouble> &values,
+		wxDouble &valueRange, size_t &steps);
 	static void GetTextSize(wxGraphicsContext &gc,
 		const wxFont &font, const wxString &string,
 		wxDouble &width, wxDouble &height);

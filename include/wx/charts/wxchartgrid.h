@@ -48,7 +48,6 @@ private:
 		const wxFont &font);
 	void CalculateXLabelRotation(wxDouble yLabelMaxWidth);
 	wxDouble CalculateX(size_t index);
-	wxDouble CalculateGridRange(const wxVector<wxDouble> &values);
 
 private:
 	wxChartGridOptions m_options;

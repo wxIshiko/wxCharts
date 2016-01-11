@@ -32,7 +32,8 @@ wxChartGrid::wxChartGrid(const wxSize &size,
 	m_xPaddingLeft(0), m_needsFit(true)
 {
 	wxVector<wxDouble> dummy;
-	wxDouble valueRange = CalculateGridRange(dummy);
+	wxDouble valueRange = 0;
+	wxChartUtilities::CalculateGridRange(dummy, valueRange, m_steps);
 }
 
 void wxChartGrid::Draw(wxGraphicsContext &gc)
@@ -205,45 +206,4 @@ double wxChartGrid::CalculateX(size_t index)
 			return Math.round(valueOffset);
 			*/
 	return valueOffset;
-}
-
-double wxChartGrid::CalculateGridRange(const wxVector<wxDouble> &values)
-{
-	// Set a minimum step of two - a point at the top of the graph, and a point at the base
-	m_steps = 2;
-
-	wxDouble maxValue = 0;
-	wxDouble minValue = 0;
-	if (values.size() > 0)
-	{
-		maxValue = values[0];
-		minValue = values[0];
-		for (size_t i = 1; i < values.size(); ++i)
-		{
-			if (values[i] > maxValue)
-			{
-				maxValue = values[i];
-			}
-			if (values[i] < minValue)
-			{
-				minValue = values[i];
-			}
-		}
-	}
-
-	// We need some degree of separation here to calculate the scales if all the values are the same
-	// Adding/minusing 0.5 will give us a range of 1.
-	if (maxValue == minValue)
-	{
-		maxValue += 0.5;
-		minValue -= 0.5;
-	}
-
-	wxDouble valueRange = maxValue - minValue;
-	if (valueRange < 0)
-	{
-		valueRange = -valueRange;
-	}
-
-	return valueRange;
 }
