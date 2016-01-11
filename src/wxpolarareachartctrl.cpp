@@ -24,12 +24,22 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
+wxPolarAreaChartData::wxPolarAreaChartData(const wxVector<wxString> &labels)
+	: m_labels(labels)
+{
+}
+
+const wxVector<wxString>& wxPolarAreaChartData::GetLabels() const
+{
+	return m_labels;
+};
+
 wxPolarAreaChartCtrl::wxPolarAreaChartCtrl(wxWindow *parent,
 										   wxWindowID id,
 										   const wxPoint &pos,
 										   const wxSize &size,
 										   long style)
-	: wxChart(parent, id, pos, size, style)
+	: wxChart(parent, id, pos, size, style), m_grid(size)
 {
 }
 
@@ -46,6 +56,8 @@ void wxPolarAreaChartCtrl::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{
+		m_grid.Draw(*gc);
+
 		delete gc;
 	}
 }

@@ -23,4 +23,10 @@
 #ifndef _WX_CHARTS_WXRADARCHARTOPTIONS_H_
 #define _WX_CHARTS_WXRADARCHARTOPTIONS_H_
 
+class wxRadarChartCtrlOptions
+{
+public:
+	wxRadarChartCtrlOptions();
+};
+
 #endif

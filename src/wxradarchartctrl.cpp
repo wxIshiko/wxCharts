@@ -24,6 +24,16 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
+wxRadarChartData::wxRadarChartData(const wxVector<wxString> &labels)
+	: m_labels(labels)
+{
+}
+
+const wxVector<wxString>& wxRadarChartData::GetLabels() const
+{
+	return m_labels;
+};
+
 wxRadarChartCtrl::wxRadarChartCtrl(wxWindow *parent,
 								   wxWindowID id,
 								   const wxPoint &pos,

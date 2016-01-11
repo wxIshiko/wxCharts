@@ -24,6 +24,17 @@
 #define _WX_CHARTS_WXRADARCHARTCTRL_H_
 
 #include "wxchart.h"
+#include "wxradarchartoptions.h"
+class wxRadarChartData
+{
+public:
+	wxRadarChartData(const wxVector<wxString> &labels);
+
+	const wxVector<wxString>& GetLabels() const;
+
+private:
+	wxVector<wxString> m_labels;
+};
 
 class wxRadarChartCtrl : public wxChart
 {
@@ -38,6 +49,8 @@ private:
 	void OnPaint(wxPaintEvent &evt);
 
 private:
+	wxRadarChartCtrlOptions m_options;
+
 	DECLARE_EVENT_TABLE();
 };
 

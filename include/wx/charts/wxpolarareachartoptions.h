@@ -23,4 +23,10 @@
 #ifndef _WX_CHARTS_WXPOLARAREACHARTOPTIONS_H_
 #define _WX_CHARTS_WXPOLARAREACHARTOPTIONS_H_
 
+class wxPolarAreaChartCtrlOptions
+{
+public:
+	wxPolarAreaChartCtrlOptions();
+};
+
 #endif

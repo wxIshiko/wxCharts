@@ -24,6 +24,19 @@
 #define _WX_CHARTS_WXPOLARAREACHARTCTRL_H_
 
 #include "wxchart.h"
+#include "wxpolarareachartoptions.h"
+#include "wxchartradialgrid.h"
+
+class wxPolarAreaChartData
+{
+public:
+	wxPolarAreaChartData(const wxVector<wxString> &labels);
+
+	const wxVector<wxString>& GetLabels() const;
+
+private:
+	wxVector<wxString> m_labels;
+};
 
 class wxPolarAreaChartCtrl : public wxChart
 {
@@ -38,6 +51,9 @@ private:
 	void OnPaint(wxPaintEvent &evt);
 
 private:
+	wxPolarAreaChartCtrlOptions m_options;
+	wxChartRadialGrid m_grid;
+
 	DECLARE_EVENT_TABLE();
 };
 

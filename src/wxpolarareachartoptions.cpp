@@ -21,3 +21,7 @@
 */
 
 #include "wxpolarareachartoptions.h"
+
+wxPolarAreaChartCtrlOptions::wxPolarAreaChartCtrlOptions()
+{
+}

@@ -21,3 +21,7 @@
 */
 
 #include "wxradarchartoptions.h"
+
+wxRadarChartCtrlOptions::wxRadarChartCtrlOptions()
+{
+}
