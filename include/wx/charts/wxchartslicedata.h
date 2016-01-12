@@ -23,4 +23,23 @@
 #ifndef _WX_CHARTS_WXCHARTSLICEDATA_H_
 #define _WX_CHARTS_WXCHARTSLICEDATA_H_
 
+#include <wx/string.h>
+#include <wx/colour.h>
+
+class ChartSliceData
+{
+public:
+	ChartSliceData(wxDouble value, const wxColor &color,
+		const wxString &label);
+
+	wxDouble GetValue() const;
+	const wxColor& GetColor() const;
+	const wxString& GetLabel() const;
+
+private:
+	wxDouble m_value;
+	wxColor m_color;
+	wxString m_label;
+};
+
 #endif

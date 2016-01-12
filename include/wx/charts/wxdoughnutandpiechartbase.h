@@ -24,26 +24,11 @@
 #define _WX_CHARTS_WXDOUGHNUTANDPIECHARTBASE_H_
 
 #include "wxchart.h"
+#include "wxchartslicedata.h"
 #include "wxdoughnutandpiechartoptionsbase.h"
 #include "wxchartarc.h"
 #include <wx/control.h>
 #include <wx/sharedptr.h>
-
-class ChartSlice
-{
-public:
-	ChartSlice(double value, const wxColor &color,
-		const wxString &label);
-
-	double GetValue() const;
-	const wxColor& GetColor() const;
-	const wxString& GetLabel() const;
-
-private:
-	double m_value;
-	wxColor m_color;
-	wxString m_label;
-};
 
 // The doughnut and pie chart are very similar so we use
 // a common base class. It would actually be possible to
@@ -55,14 +40,14 @@ public:
 	wxDoughnutAndPieChartBase(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,
 		const wxSize &size = wxDefaultSize, long style = 0);
 
-	void Add(const ChartSlice &slice);
-	void Add(const ChartSlice &slice, size_t index);
-	void Add(const ChartSlice &slice, size_t index, bool silent);
+	void Add(const ChartSliceData &slice);
+	void Add(const ChartSliceData &slice, size_t index);
+	void Add(const ChartSliceData &slice, size_t index, bool silent);
 
 private:
 	virtual void Resize(const wxSize &size);
 
-	double CalculateCircumference(double value);
+	wxDouble CalculateCircumference(double value);
 	void GetSegmentsAtEvent(const wxPoint &point);
 
 	void OnPaint(wxPaintEvent &evt);
@@ -79,7 +64,7 @@ private:
 	public:
 		typedef wxSharedPtr<SliceArc> ptr;
 
-		SliceArc(const ChartSlice &slice, wxDouble x, wxDouble y,
+		SliceArc(const ChartSliceData &slice, wxDouble x, wxDouble y,
 			wxDouble startAngle, wxDouble endAngle, wxDouble outerRadius,
 			wxDouble innerRadius, unsigned int strokeWidth);
 

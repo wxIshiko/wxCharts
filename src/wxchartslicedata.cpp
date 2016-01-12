@@ -21,3 +21,26 @@
 */
 
 #include "wxchartslicedata.h"
+
+ChartSliceData::ChartSliceData(wxDouble value,
+							   const wxColor &color,
+							   const wxString &label)
+	: m_value(value), m_color(color),
+	m_label(label)
+{
+}
+
+wxDouble ChartSliceData::GetValue() const
+{
+	return m_value;
+}
+
+const wxColor& ChartSliceData::GetColor() const
+{
+	return m_color;
+}
+
+const wxString& ChartSliceData::GetLabel() const
+{
+	return m_label;
+}

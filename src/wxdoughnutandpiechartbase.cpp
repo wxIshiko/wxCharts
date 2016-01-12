@@ -25,36 +25,13 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
-ChartSlice::ChartSlice(double value,
-					   const wxColor &color,
-					   const wxString &label)
-	: m_value(value), m_color(color), 
-	m_label(label)
-{
-}
-
-double ChartSlice::GetValue() const
-{
-	return m_value;
-}
-
-const wxColor& ChartSlice::GetColor() const
-{
-	return m_color;
-}
-
-const wxString& ChartSlice::GetLabel() const
-{
-	return m_label;
-}
-
-wxDoughnutAndPieChartBase::SliceArc::SliceArc(const ChartSlice &slice,
-											  double x,
-											  double y,
-											  double startAngle,
-											  double endAngle,
-											  double outerRadius,
-											  double innerRadius,
+wxDoughnutAndPieChartBase::SliceArc::SliceArc(const ChartSliceData &slice,
+											  wxDouble x,
+											  wxDouble y,
+											  wxDouble startAngle,
+											  wxDouble endAngle,
+											  wxDouble outerRadius,
+											  wxDouble innerRadius,
 											  unsigned int strokeWidth)
 	: wxChartArc(x, y, startAngle, endAngle, outerRadius, innerRadius, strokeWidth, slice.GetColor()),
 	m_value(slice.GetValue()), m_tooltip(slice.GetLabel())
@@ -64,10 +41,10 @@ wxDoughnutAndPieChartBase::SliceArc::SliceArc(const ChartSlice &slice,
 void wxDoughnutAndPieChartBase::SliceArc::Resize(const wxSize &size,
 												 const wxDoughnutAndPieChartOptionsBase& options)
 {
-	double x = (size.GetX() / 2) - 2;
-	double y = (size.GetY() / 2) - 2;
-	double outerRadius = ((x < y) ? x : y) - (GetStrokeWidth() / 2);
-	double innerRadius = outerRadius * ((double)options.GetPercentageInnerCutout()) / 100;
+	wxDouble x = (size.GetX() / 2) - 2;
+	wxDouble y = (size.GetY() / 2) - 2;
+	wxDouble outerRadius = ((x < y) ? x : y) - (GetStrokeWidth() / 2);
+	wxDouble innerRadius = outerRadius * ((wxDouble)options.GetPercentageInnerCutout()) / 100;
 
 	SetCenter(x, y);
 	SetRadiuses(outerRadius, innerRadius);
@@ -93,17 +70,17 @@ wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(wxWindow *parent,
 {
 }
 
-void wxDoughnutAndPieChartBase::Add(const ChartSlice &slice)
+void wxDoughnutAndPieChartBase::Add(const ChartSliceData &slice)
 {
 	Add(slice, m_slices.size());
 }
 
-void wxDoughnutAndPieChartBase::Add(const ChartSlice &slice, size_t index)
+void wxDoughnutAndPieChartBase::Add(const ChartSliceData &slice, size_t index)
 {
 	Add(slice, index, false);
 }
 
-void wxDoughnutAndPieChartBase::Add(const ChartSlice &slice, size_t index, bool silent)
+void wxDoughnutAndPieChartBase::Add(const ChartSliceData &slice, size_t index, bool silent)
 {
 	m_total += slice.GetValue();
 
