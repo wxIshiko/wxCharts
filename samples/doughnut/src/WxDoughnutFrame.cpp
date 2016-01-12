@@ -31,13 +31,16 @@ WxDoughnutFrame::WxDoughnutFrame(const wxString& title)
 	// Create a top-level panel to hold all the contents of the frame
 	wxPanel* panel = new wxPanel(this, wxID_ANY);
 
+	// Create the data for the doughnut chart widget
+	wxDoughnutChartData data;
+	data.AppendSlice(wxChartSliceData(300, wxColor(0x4A46F7), "Red"));
+	data.AppendSlice(wxChartSliceData(50, wxColor(0xBDBF46), "Green"));
+	data.AppendSlice(wxChartSliceData(100, wxColor(0x5CB4FD), "Yellow"));
+	data.AppendSlice(wxChartSliceData(40, wxColor(0xB19F94), "Grey"));
+	data.AppendSlice(wxChartSliceData(120, wxColor(0x60534D), "Dark Grey"));
+
 	// Create the doughnut chart widget
-	wxDoughnutChartCtrl* doughnutChartCtrl = new wxDoughnutChartCtrl(panel, wxID_ANY);
-	doughnutChartCtrl->Add(ChartSlice(300, wxColor(0x4A46F7), "Red"));
-	doughnutChartCtrl->Add(ChartSlice(50, wxColor(0xBDBF46), "Green"));
-	doughnutChartCtrl->Add(ChartSlice(100, wxColor(0x5CB4FD), "Yellow"));
-	doughnutChartCtrl->Add(ChartSlice(40, wxColor(0xB19F94), "Grey"));
-	doughnutChartCtrl->Add(ChartSlice(120, wxColor(0x60534D), "Dark Grey"));
+	wxDoughnutChartCtrl* doughnutChartCtrl = new wxDoughnutChartCtrl(panel, wxID_ANY, data);
 
 	// Set up the sizer for the panel
 	wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);

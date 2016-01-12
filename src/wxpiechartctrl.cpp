@@ -44,6 +44,11 @@ wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
 							   long style)
 	: wxDoughnutAndPieChartBase(parent, id, pos, size, style)
 {
+	const wxVector<wxChartSliceData>& slices = data.GetSlices();
+	for (size_t i = 0; i < slices.size(); ++i)
+	{
+		Add(slices[i]);
+	}
 }
 
 const wxDoughnutAndPieChartOptionsBase& wxPieChartCtrl::GetOptions() const
