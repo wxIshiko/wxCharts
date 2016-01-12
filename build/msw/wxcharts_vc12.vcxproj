@@ -98,6 +98,7 @@
     <ClCompile Include="..\..\src\wxchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxchart.cpp" />
     <ClCompile Include="..\..\src\wxbarchartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxchartslicedata.cpp" />
     <ClCompile Include="..\..\src\wxbarchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxlinechartoptions.cpp" />
     <ClCompile Include="..\..\src\wxlinechartctrl.cpp" />
@@ -130,6 +131,7 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartslicedata.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxlinechartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxlinechartctrl.h" />
