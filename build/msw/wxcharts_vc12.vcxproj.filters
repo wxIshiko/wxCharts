@@ -53,7 +53,7 @@
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltipoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxcharttooltiptemplate.h">
+    <ClInclude Include="..\..\include\wx\charts\wxcharttooltipprovider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltip.h">
@@ -145,7 +145,7 @@
     <ClCompile Include="..\..\src\wxcharttooltipoptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxcharttooltiptemplate.cpp">
+    <ClCompile Include="..\..\src\wxcharttooltipprovider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxcharttooltip.cpp">
