@@ -22,8 +22,18 @@
 
 #include "wxdoughnutchartctrl.h"
 
+wxDoughnutChartData::wxDoughnutChartData()
+{
+}
+
+const wxVector<ChartSliceData>& wxDoughnutChartData::GetSlices() const
+{
+	return m_slices;
+}
+
 wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
 										 wxWindowID id,
+										 const wxDoughnutChartData &data,
 										 const wxPoint &pos,
 										 const wxSize &size, 
 										 long style)

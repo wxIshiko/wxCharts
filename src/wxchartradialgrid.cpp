@@ -35,8 +35,11 @@ wxChartRadialGrid::wxChartRadialGrid(const wxSize &size,
 
 void wxChartRadialGrid::Draw(wxGraphicsContext &gc)
 {
-	for (size_t i = 0; i < m_yLabels.size(); ++i)
+	// Don't draw a centre value so start from 1
+	for (size_t i = 1; i < m_yLabels.size(); ++i)
 	{
+		wxDouble yCenterOffset = i * 50;
+
 		wxGraphicsPath path = gc.CreatePath();
 		path.AddArc(m_center.m_x, m_center.m_y, 25, 0, 2 * M_PI, true);
 		path.CloseSubpath();

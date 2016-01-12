@@ -22,8 +22,18 @@
 
 #include "wxpiechartctrl.h"
 
+wxPieChartData::wxPieChartData()
+{
+}
+
+const wxVector<ChartSliceData>& wxPieChartData::GetSlices() const
+{
+	return m_slices;
+}
+
 wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
 							   wxWindowID id,
+							   const wxPieChartData &data,
 							   const wxPoint &pos,
 							   const wxSize &size, 
 							   long style)

@@ -26,11 +26,23 @@
 #include "wxdoughnutandpiechartbase.h"
 #include "wxpiechartoptions.h"
 
+class wxPieChartData
+{
+public:
+	wxPieChartData();
+
+	const wxVector<ChartSliceData>& GetSlices() const;
+
+private:
+	wxVector<ChartSliceData> m_slices;
+};
+
 class wxPieChartCtrl : public wxDoughnutAndPieChartBase
 {
 public:
-	wxPieChartCtrl(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,
-		const wxSize &size = wxDefaultSize, long style = 0);
+	wxPieChartCtrl(wxWindow *parent, wxWindowID id, const wxPieChartData &data,
+		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize, 
+		long style = 0);
 
 private:
 	virtual const wxDoughnutAndPieChartOptionsBase& GetOptions() const;
