@@ -20,18 +20,18 @@
 	IN THE SOFTWARE.
 */
 
-#include "wxcharttooltiptemplate.h"
+#include "wxcharttooltipprovider.h"
 
-wxChartTooltipTemplate::wxChartTooltipTemplate()
+wxChartTooltipProvider::wxChartTooltipProvider()
 {
 }
 
-wxChartTooltipTemplateStatic::wxChartTooltipTemplateStatic(const wxString &text)
+wxChartTooltipProviderStatic::wxChartTooltipProviderStatic(const wxString &text)
 	: m_text(text)
 {
 }
 
-wxString wxChartTooltipTemplateStatic::GetTooltipText() const
+wxString wxChartTooltipProviderStatic::GetTooltipText() const
 {
 	return m_text;
 }

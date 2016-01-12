@@ -25,7 +25,7 @@
 
 wxChartTooltip::wxChartTooltip(const wxPoint2DDouble &position,
 							   const wxString &text)
-	: m_position(position), m_template(new wxChartTooltipTemplateStatic(text))
+	: m_position(position), m_template(new wxChartTooltipProviderStatic(text))
 {
 }
 

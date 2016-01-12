@@ -24,7 +24,7 @@
 #define _WX_CHARTS_WXCHARTTOOLTIP_H_
 
 #include "wxcharttooltipoptions.h"
-#include "wxcharttooltiptemplate.h"
+#include "wxcharttooltipprovider.h"
 #include <wx/graphics.h>
 
 class wxChartTooltip
@@ -38,7 +38,7 @@ public:
 private:
 	wxChartTooltipOptions m_options;
 	wxPoint2DDouble m_position;
-	wxChartTooltipTemplate::ptr m_template;
+	wxChartTooltipProvider::ptr m_template;
 };
 
 #endif

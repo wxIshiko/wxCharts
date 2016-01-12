@@ -20,31 +20,31 @@
 	IN THE SOFTWARE.
 */
 
-#ifndef _WX_CHARTS_WXCHARTTOOLTIPTEMPLATE_H_
-#define _WX_CHARTS_WXCHARTTOOLTIPTEMPLATE_H_
+#ifndef _WX_CHARTS_WXCHARTTOOLTIPPROVIDER_H_
+#define _WX_CHARTS_WXCHARTTOOLTIPPROVIDER_H_
 
 #include <wx/string.h>
 #include <wx/sharedptr.h>
 
 // Interface for the classes that are able to generate
 // content for tooltips
-class wxChartTooltipTemplate
+class wxChartTooltipProvider
 {
 public:
-	typedef wxSharedPtr<wxChartTooltipTemplate> ptr;
+	typedef wxSharedPtr<wxChartTooltipProvider> ptr;
 
-	wxChartTooltipTemplate();
+	wxChartTooltipProvider();
 
 	virtual wxString GetTooltipText() const = 0;
 };
 
-// An implementation of the wxChartTooltipTemplate
+// An implementation of the wxChartTooltipProvider
 // interface where the content is a static string
 // passed in at construction time.
-class wxChartTooltipTemplateStatic : public wxChartTooltipTemplate
+class wxChartTooltipProviderStatic : public wxChartTooltipProvider
 {
 public:
-	wxChartTooltipTemplateStatic(const wxString &text);
+	wxChartTooltipProviderStatic(const wxString &text);
 
 	virtual wxString GetTooltipText() const;
 
