@@ -40,9 +40,10 @@ public:
 	wxDoughnutAndPieChartBase(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,
 		const wxSize &size = wxDefaultSize, long style = 0);
 
-	void Add(const ChartSliceData &slice);
-	void Add(const ChartSliceData &slice, size_t index);
-	void Add(const ChartSliceData &slice, size_t index, bool silent);
+protected:
+	void Add(const wxChartSliceData &slice);
+	void Add(const wxChartSliceData &slice, size_t index);
+	void Add(const wxChartSliceData &slice, size_t index, bool silent);
 
 private:
 	virtual void Resize(const wxSize &size);
@@ -64,7 +65,7 @@ private:
 	public:
 		typedef wxSharedPtr<SliceArc> ptr;
 
-		SliceArc(const ChartSliceData &slice, wxDouble x, wxDouble y,
+		SliceArc(const wxChartSliceData &slice, wxDouble x, wxDouble y,
 			wxDouble startAngle, wxDouble endAngle, wxDouble outerRadius,
 			wxDouble innerRadius, unsigned int strokeWidth);
 

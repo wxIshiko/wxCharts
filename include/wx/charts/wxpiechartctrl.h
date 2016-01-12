@@ -31,10 +31,12 @@ class wxPieChartData
 public:
 	wxPieChartData();
 
-	const wxVector<ChartSliceData>& GetSlices() const;
+	void AppendSlice(const wxChartSliceData &slice);
+
+	const wxVector<wxChartSliceData>& GetSlices() const;
 
 private:
-	wxVector<ChartSliceData> m_slices;
+	wxVector<wxChartSliceData> m_slices;
 };
 
 class wxPieChartCtrl : public wxDoughnutAndPieChartBase

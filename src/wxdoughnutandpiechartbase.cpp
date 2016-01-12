@@ -25,7 +25,7 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
-wxDoughnutAndPieChartBase::SliceArc::SliceArc(const ChartSliceData &slice,
+wxDoughnutAndPieChartBase::SliceArc::SliceArc(const wxChartSliceData &slice,
 											  wxDouble x,
 											  wxDouble y,
 											  wxDouble startAngle,
@@ -70,17 +70,17 @@ wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(wxWindow *parent,
 {
 }
 
-void wxDoughnutAndPieChartBase::Add(const ChartSliceData &slice)
+void wxDoughnutAndPieChartBase::Add(const wxChartSliceData &slice)
 {
 	Add(slice, m_slices.size());
 }
 
-void wxDoughnutAndPieChartBase::Add(const ChartSliceData &slice, size_t index)
+void wxDoughnutAndPieChartBase::Add(const wxChartSliceData &slice, size_t index)
 {
 	Add(slice, index, false);
 }
 
-void wxDoughnutAndPieChartBase::Add(const ChartSliceData &slice, size_t index, bool silent)
+void wxDoughnutAndPieChartBase::Add(const wxChartSliceData &slice, size_t index, bool silent)
 {
 	m_total += slice.GetValue();
 

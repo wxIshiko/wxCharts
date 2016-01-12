@@ -26,7 +26,12 @@ wxDoughnutChartData::wxDoughnutChartData()
 {
 }
 
-const wxVector<ChartSliceData>& wxDoughnutChartData::GetSlices() const
+void wxDoughnutChartData::AppendSlice(const wxChartSliceData &slice)
+{
+	m_slices.push_back(slice);
+}
+
+const wxVector<wxChartSliceData>& wxDoughnutChartData::GetSlices() const
 {
 	return m_slices;
 }

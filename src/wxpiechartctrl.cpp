@@ -26,7 +26,12 @@ wxPieChartData::wxPieChartData()
 {
 }
 
-const wxVector<ChartSliceData>& wxPieChartData::GetSlices() const
+void wxPieChartData::AppendSlice(const wxChartSliceData &slice)
+{
+	m_slices.push_back(slice);
+}
+
+const wxVector<wxChartSliceData>& wxPieChartData::GetSlices() const
 {
 	return m_slices;
 }

@@ -26,10 +26,10 @@
 #include <wx/string.h>
 #include <wx/colour.h>
 
-class ChartSliceData
+class wxChartSliceData
 {
 public:
-	ChartSliceData(wxDouble value, const wxColor &color,
+	wxChartSliceData(wxDouble value, const wxColor &color,
 		const wxString &label);
 
 	wxDouble GetValue() const;
