@@ -20,12 +20,33 @@
 	IN THE SOFTWARE.
 */
 
+/*
+	Part of this file were copied from the Chart.js project (http://chartjs.org/)
+	and translated into C++.
+
+	The files of the Chart.js project have the following copyright and license.
+
+	Copyright (c) 2013-2016 Nick Downie
+	Released under the MIT license
+	https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
+*/
+
 #include "wxpolarareachartctrl.h"
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
 wxPolarAreaChartData::wxPolarAreaChartData()
 {
+}
+
+void wxPolarAreaChartData::AppendSlice(const wxChartSliceData &slice)
+{
+	m_slices.push_back(slice);
+}
+
+const wxVector<wxChartSliceData>& wxPolarAreaChartData::GetSlices() const
+{
+	return m_slices;
 }
 
 wxPolarAreaChartCtrl::wxPolarAreaChartCtrl(wxWindow *parent,
@@ -35,6 +56,25 @@ wxPolarAreaChartCtrl::wxPolarAreaChartCtrl(wxWindow *parent,
 										   const wxSize &size,
 										   long style)
 	: wxChart(parent, id, pos, size, style), m_grid(size, m_options.GetGridOptions())
+{
+	const wxVector<wxChartSliceData>& slices = data.GetSlices();
+	for (size_t i = 0; i < slices.size(); ++i)
+	{
+		Add(slices[i]);
+	}
+}
+
+void wxPolarAreaChartCtrl::Add(const wxChartSliceData &slice)
+{
+	Add(slice, m_slices.size());
+}
+
+void wxPolarAreaChartCtrl::Add(const wxChartSliceData &slice, size_t index)
+{
+	Add(slice, index, false);
+}
+
+void wxPolarAreaChartCtrl::Add(const wxChartSliceData &slice, size_t index, bool silent)
 {
 }
 

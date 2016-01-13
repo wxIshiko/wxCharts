@@ -20,6 +20,17 @@
 	IN THE SOFTWARE.
 */
 
+/*
+	Part of this file were copied from the Chart.js project (http://chartjs.org/)
+	and translated into C++.
+
+	The files of the Chart.js project have the following copyright and license.
+
+	Copyright (c) 2013-2016 Nick Downie
+	Released under the MIT license
+	https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
+*/
+
 #include "wxlinechartctrl.h"
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>

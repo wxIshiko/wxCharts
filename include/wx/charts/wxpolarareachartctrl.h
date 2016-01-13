@@ -35,6 +35,7 @@
 #define _WX_CHARTS_WXPOLARAREACHARTCTRL_H_
 
 #include "wxchart.h"
+#include "wxchartslicedata.h"
 #include "wxpolarareachartoptions.h"
 #include "wxchartradialgrid.h"
 
@@ -42,6 +43,13 @@ class wxPolarAreaChartData
 {
 public:
 	wxPolarAreaChartData();
+
+	void AppendSlice(const wxChartSliceData &slice);
+
+	const wxVector<wxChartSliceData>& GetSlices() const;
+
+private:
+	wxVector<wxChartSliceData> m_slices;
 };
 
 class wxPolarAreaChartCtrl : public wxChart
@@ -52,6 +60,10 @@ public:
 		long style = 0);
 
 private:
+	void Add(const wxChartSliceData &slice);
+	void Add(const wxChartSliceData &slice, size_t index);
+	void Add(const wxChartSliceData &slice, size_t index, bool silent);
+
 	virtual void Resize(const wxSize &size);
 
 	void OnPaint(wxPaintEvent &evt);
@@ -59,6 +71,7 @@ private:
 private:
 	wxPolarAreaChartCtrlOptions m_options;
 	wxChartRadialGrid m_grid;
+	wxVector<wxChartSliceData> m_slices;
 
 	DECLARE_EVENT_TABLE();
 };

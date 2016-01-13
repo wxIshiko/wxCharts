@@ -33,6 +33,11 @@ WxPolarAreaFrame::WxPolarAreaFrame(const wxString& title)
 
 	// Create the data for the polar area chart widget
 	wxPolarAreaChartData data;
+	data.AppendSlice(wxChartSliceData(300, wxColor(0x4A46F7), "Red"));
+	data.AppendSlice(wxChartSliceData(50, wxColor(0xBDBF46), "Green"));
+	data.AppendSlice(wxChartSliceData(100, wxColor(0x5CB4FD), "Yellow"));
+	data.AppendSlice(wxChartSliceData(40, wxColor(0xB19F94), "Grey"));
+	data.AppendSlice(wxChartSliceData(120, wxColor(0x60534D), "Dark Grey"));
 
 	// Create the polar area chart widget
 	wxPolarAreaChartCtrl* polarAreaChartCtrl = new wxPolarAreaChartCtrl(panel, wxID_ANY, data);
