@@ -23,7 +23,9 @@
 #include "wxchartradialgridoptions.h"
 
 wxChartRadialGridOptions::wxChartRadialGridOptions()
-	: m_lineWidth(1), m_lineColor(0, 0, 0, 0x19)
+	: m_lineWidth(1), m_lineColor(0, 0, 0, 0x19), m_showLabels(true),
+	m_fontFamily(wxFONTFAMILY_SWISS), m_fontSize(12),
+	m_fontStyle(wxFONTSTYLE_NORMAL), m_fontColor(0x666666)
 {
 }
 
@@ -35,4 +37,29 @@ unsigned int wxChartRadialGridOptions::GetLineWidth() const
 const wxColor& wxChartRadialGridOptions::GetLineColor() const
 {
 	return m_lineColor;
+}
+
+bool wxChartRadialGridOptions::ShowLabels() const
+{
+	return m_showLabels;
+}
+
+wxFontFamily wxChartRadialGridOptions::GetFontFamily() const
+{
+	return m_fontFamily;
+}
+
+int wxChartRadialGridOptions::GetFontSize() const
+{
+	return m_fontSize;
+}
+
+wxFontStyle wxChartRadialGridOptions::GetFontStyle() const
+{
+	return m_fontStyle;
+}
+
+const wxColor& wxChartRadialGridOptions::GetFontColor() const
+{
+	return m_fontColor;
 }

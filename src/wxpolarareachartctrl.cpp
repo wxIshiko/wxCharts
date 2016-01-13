@@ -55,7 +55,9 @@ wxPolarAreaChartCtrl::wxPolarAreaChartCtrl(wxWindow *parent,
 										   const wxPoint &pos,
 										   const wxSize &size,
 										   long style)
-	: wxChart(parent, id, pos, size, style), m_grid(size, m_options.GetGridOptions())
+	: wxChart(parent, id, pos, size, style), 
+	m_grid(size, GetMinValue(data.GetSlices()), GetMaxValue(data.GetSlices()),
+	m_options.GetGridOptions())
 {
 	const wxVector<wxChartSliceData>& slices = data.GetSlices();
 	for (size_t i = 0; i < slices.size(); ++i)
@@ -76,6 +78,42 @@ void wxPolarAreaChartCtrl::Add(const wxChartSliceData &slice, size_t index)
 
 void wxPolarAreaChartCtrl::Add(const wxChartSliceData &slice, size_t index, bool silent)
 {
+}
+
+wxDouble wxPolarAreaChartCtrl::GetMinValue(const wxVector<wxChartSliceData> &slices)
+{
+	wxDouble result = 0;
+	if (slices.size() > 0)
+	{
+		result = slices[0].GetValue();
+	}
+	for (size_t i = 1; i < slices.size(); ++i)
+	{
+		wxDouble v = slices[i].GetValue();
+		if (v < result)
+		{
+			result = v;
+		}
+	}
+	return result;
+}
+
+wxDouble wxPolarAreaChartCtrl::GetMaxValue(const wxVector<wxChartSliceData> &slices)
+{
+	wxDouble result = 0;
+	if (slices.size() > 0)
+	{
+		result = slices[0].GetValue();
+	}
+	for (size_t i = 1; i < slices.size(); ++i)
+	{
+		wxDouble v = slices[i].GetValue();
+		if (v > result)
+		{
+			result = v;
+		}
+	}
+	return result;
 }
 
 void wxPolarAreaChartCtrl::Resize(const wxSize &size)

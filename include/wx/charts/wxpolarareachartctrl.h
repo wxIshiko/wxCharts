@@ -64,6 +64,9 @@ private:
 	void Add(const wxChartSliceData &slice, size_t index);
 	void Add(const wxChartSliceData &slice, size_t index, bool silent);
 
+	static wxDouble GetMinValue(const wxVector<wxChartSliceData> &slices);
+	static wxDouble GetMaxValue(const wxVector<wxChartSliceData> &slices);
+
 	virtual void Resize(const wxSize &size);
 
 	void OnPaint(wxPaintEvent &evt);

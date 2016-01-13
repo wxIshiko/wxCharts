@@ -42,9 +42,8 @@ wxChartGrid::wxChartGrid(const wxSize &size,
 	m_xLabels(labels), m_yLabelMaxWidth(0),
 	m_xPaddingLeft(0), m_needsFit(true)
 {
-	wxVector<wxDouble> dummy;
 	wxDouble valueRange = 0;
-	wxChartUtilities::CalculateGridRange(dummy, valueRange, m_steps);
+	wxChartUtilities::CalculateGridRange(0, 0, valueRange, m_steps);
 }
 
 void wxChartGrid::Draw(wxGraphicsContext &gc)

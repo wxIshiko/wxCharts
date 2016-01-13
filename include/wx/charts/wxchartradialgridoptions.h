@@ -24,6 +24,7 @@
 #define _WX_CHARTS_WXCHARTRADIALGRIDOPTIONS_H_
 
 #include <wx/colour.h>
+#include <wx/font.h>
 
 class wxChartRadialGridOptions
 {
@@ -33,9 +34,20 @@ public:
 	unsigned int GetLineWidth() const;
 	const wxColor& GetLineColor() const;
 
+	bool ShowLabels() const;
+	wxFontFamily GetFontFamily() const;
+	int GetFontSize() const;
+	wxFontStyle GetFontStyle() const;
+	const wxColor& GetFontColor() const;
+
 private:
 	unsigned int m_lineWidth;
 	wxColor m_lineColor;
+	bool m_showLabels;
+	wxFontFamily m_fontFamily;
+	int m_fontSize;
+	wxFontStyle m_fontStyle;
+	wxColor m_fontColor;
 };
 
 #endif
