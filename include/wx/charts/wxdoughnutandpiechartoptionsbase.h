@@ -32,6 +32,11 @@ public:
 	unsigned int GetPercentageInnerCutout() const;
 	bool ShowTooltips() const;
 
+protected:
+	void SetSliceStrokeWidth(unsigned int strokeWidth);
+	void SetPercentageInnerCutout(unsigned int cutout);
+	void SetShowTooltips(bool show);
+
 private:
 	// The width of each slice stroke, this will increase the 
 	// space between the slices themselves.

@@ -21,6 +21,7 @@
 */
 
 #include "wxchartslicedata.h"
+#include <sstream>
 
 wxChartSliceData::wxChartSliceData(wxDouble value,
 								   const wxColor &color,
@@ -43,4 +44,11 @@ const wxColor& wxChartSliceData::GetColor() const
 const wxString& wxChartSliceData::GetLabel() const
 {
 	return m_label;
+}
+
+wxString wxChartSliceData::GetTooltipText() const
+{
+	std::stringstream result;
+	result << m_label << ": " << m_value;
+	return result.str();
 }

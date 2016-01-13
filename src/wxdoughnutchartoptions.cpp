@@ -26,3 +26,18 @@ wxDougnutChartOptions::wxDougnutChartOptions()
 	: wxDoughnutAndPieChartOptionsBase(50)
 {
 }
+
+void wxDougnutChartOptions::SetSliceStrokeWidth(unsigned int strokeWidth)
+{
+	wxDoughnutAndPieChartOptionsBase::SetSliceStrokeWidth(strokeWidth);
+}
+
+void wxDougnutChartOptions::SetPercentageInnerCutout(unsigned int cutout)
+{
+	wxDoughnutAndPieChartOptionsBase::SetPercentageInnerCutout(cutout);
+}
+
+void wxDougnutChartOptions::SetShowTooltips(bool show)
+{
+	wxDoughnutAndPieChartOptionsBase::SetShowTooltips(show);
+}

@@ -36,6 +36,8 @@ public:
 	const wxColor& GetColor() const;
 	const wxString& GetLabel() const;
 
+	wxString GetTooltipText() const;
+
 private:
 	wxDouble m_value;
 	wxColor m_color;

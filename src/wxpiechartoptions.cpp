@@ -26,3 +26,13 @@ wxPieChartOptions::wxPieChartOptions()
 	: wxDoughnutAndPieChartOptionsBase(0)
 {
 }
+
+void wxPieChartOptions::SetSliceStrokeWidth(unsigned int strokeWidth)
+{
+	wxDoughnutAndPieChartOptionsBase::SetSliceStrokeWidth(strokeWidth);
+}
+
+void wxPieChartOptions::SetShowTooltips(bool show)
+{
+	wxDoughnutAndPieChartOptionsBase::SetShowTooltips(show);
+}

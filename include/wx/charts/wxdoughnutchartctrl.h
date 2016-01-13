@@ -45,6 +45,9 @@ public:
 	wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, const wxDoughnutChartData &data,
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
+	wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, const wxDoughnutChartData &data,
+		const wxDougnutChartOptions &options, const wxPoint &pos = wxDefaultPosition, 
+		const wxSize &size = wxDefaultSize, long style = 0);
 
 private:
 	virtual const wxDoughnutAndPieChartOptionsBase& GetOptions() const;

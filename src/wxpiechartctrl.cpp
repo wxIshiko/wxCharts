@@ -51,6 +51,23 @@ wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
 	}
 }
 
+wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
+							   wxWindowID id,
+							   const wxPieChartData &data,
+							   const wxPieChartOptions &options,
+							   const wxPoint &pos,
+							   const wxSize &size,
+							   long style)
+	: wxDoughnutAndPieChartBase(parent, id, pos, size, style),
+	m_options(options)
+{
+	const wxVector<wxChartSliceData>& slices = data.GetSlices();
+	for (size_t i = 0; i < slices.size(); ++i)
+	{
+		Add(slices[i]);
+	}
+}
+
 const wxDoughnutAndPieChartOptionsBase& wxPieChartCtrl::GetOptions() const
 {
 	return m_options;

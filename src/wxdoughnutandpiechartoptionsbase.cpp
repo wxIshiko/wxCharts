@@ -41,3 +41,18 @@ bool wxDoughnutAndPieChartOptionsBase::ShowTooltips() const
 {
 	return m_showTooltips;
 }
+
+void wxDoughnutAndPieChartOptionsBase::SetSliceStrokeWidth(unsigned int strokeWidth)
+{
+	m_sliceStrokeWidth = strokeWidth;
+}
+
+void wxDoughnutAndPieChartOptionsBase::SetPercentageInnerCutout(unsigned int cutout)
+{
+	m_percentageInnerCutout = cutout;
+}
+
+void wxDoughnutAndPieChartOptionsBase::SetShowTooltips(bool show)
+{
+	m_showTooltips = show;
+}
