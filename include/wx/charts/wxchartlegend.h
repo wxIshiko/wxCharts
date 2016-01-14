@@ -23,4 +23,15 @@
 #ifndef _WX_CHARTS_WXCHARTLEGEND_H_
 #define _WX_CHARTS_WXCHARTLEGEND_H_
 
+#include "wxchartlegendoptions.h"
+
+class wxChartLegend
+{
+public:
+	wxChartLegend();
+
+private:
+	wxChartLegendOptions m_options;
+};
+
 #endif

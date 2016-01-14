@@ -31,6 +31,7 @@ public:
 	wxLineChartOptions();
 
 	const wxChartGridOptions& GetGridOptions() const;
+	wxChartGridOptions& GetGridOptions();
 	bool ShowDots() const;
 	wxDouble GetDotRadius() const;
 	unsigned int GetDotStrokeWidth() const;

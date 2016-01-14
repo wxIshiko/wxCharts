@@ -134,6 +134,30 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 	}
 }
 
+wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
+								 wxWindowID id,
+								 const wxLineChartData &data,
+								 const wxLineChartOptions &options,
+								 const wxPoint &pos,
+								 const wxSize &size, 
+								 long style)
+	: wxChart(parent, id, pos, size, style), m_options(options),
+	m_grid(size, data.GetLabels(), m_options.GetGridOptions()),
+	m_minValue(data.GetMinValue()), m_maxValue(data.GetMaxValue())
+{
+	const wxVector<wxLineChartDataset::ptr>& datasets = data.GetDatasets();
+	for (size_t i = 0; i < datasets.size(); ++i)
+	{
+		const wxVector<double>& data = datasets[i]->data();
+		for (size_t j = 0; j < data.size(); ++j)
+		{
+			m_points.push_back(PointClass::ptr(new PointClass(20 + j * 10, 50 + data[j],
+				m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
+				datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor())));
+		}
+	}
+}
+
 double wxLineChartCtrl::GetMinValue() const
 {
 	return m_minValue;

@@ -21,3 +21,7 @@
 */
 
 #include "wxchartlegend.h"
+
+wxChartLegend::wxChartLegend()
+{
+}

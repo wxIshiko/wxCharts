@@ -32,6 +32,11 @@ const wxChartGridOptions& wxLineChartOptions::GetGridOptions() const
 	return m_gridOptions;
 }
 
+wxChartGridOptions& wxLineChartOptions::GetGridOptions()
+{
+	return m_gridOptions;
+}
+
 bool wxLineChartOptions::ShowDots() const
 {
 	return m_showDots;

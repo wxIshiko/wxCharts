@@ -83,6 +83,9 @@ public:
 	wxLineChartCtrl(wxWindow *parent, wxWindowID id, const wxLineChartData &data,
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize, 
 		long style = 0);
+	wxLineChartCtrl(wxWindow *parent, wxWindowID id, const wxLineChartData &data,
+		const wxLineChartOptions &options, const wxPoint &pos = wxDefaultPosition,
+		const wxSize &size = wxDefaultSize, long style = 0);
 
 	wxDouble GetMinValue() const;
 	wxDouble GetMaxValue() const;

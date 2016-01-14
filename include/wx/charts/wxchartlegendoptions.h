@@ -23,4 +23,10 @@
 #ifndef _WX_CHARTS_WXCHARTLEGENDOPTIONS_H_
 #define _WX_CHARTS_WXCHARTLEGENDOPTIONS_H_
 
+class wxChartLegendOptions
+{
+public:
+	wxChartLegendOptions();
+};
+
 #endif
