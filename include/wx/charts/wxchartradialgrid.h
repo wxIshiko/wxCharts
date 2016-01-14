@@ -44,8 +44,8 @@
 class wxChartRadialGrid : public wxChartElement
 {
 public:
-	wxChartRadialGrid(const wxSize &size,
-		const wxChartRadialGridOptions& options);
+	wxChartRadialGrid(const wxSize &size, wxDouble minValue,
+		wxDouble maxValue, const wxChartRadialGridOptions& options);
 
 	void Draw(wxGraphicsContext &gc);
 
@@ -58,6 +58,7 @@ private:
 private:
 	wxChartRadialGridOptions m_options;
 	wxSize m_size;
+	wxDouble m_drawingArea;
 	wxPoint2DDouble m_center;
 	wxVector<wxString> m_yLabels;
 	size_t m_steps;

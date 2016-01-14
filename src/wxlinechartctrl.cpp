@@ -52,7 +52,7 @@ const wxColor& wxLineChartDataset::GetDotStrokeColor() const
 	return m_dotStrokeColor;
 }
 
-const wxVector<double>& wxLineChartDataset::data() const
+const wxVector<double>& wxLineChartDataset::GetData() const
 {
 	return m_data;
 }
@@ -77,30 +77,6 @@ const wxVector<wxLineChartDataset::ptr>& wxLineChartData::GetDatasets() const
 	return m_datasets;
 }
 
-double wxLineChartData::GetMinValue() const
-{
-	wxDouble result = 0;
-	bool foundAtLeastOneValue = false;
-
-	for (size_t i = 0; i < m_datasets.size(); ++i)
-	{
-	}
-
-	return result;
-}
-
-wxDouble wxLineChartData::GetMaxValue() const
-{
-	wxDouble result = 0;
-	bool foundAtLeastOneValue = false;
-
-	for (size_t i = 0; i < m_datasets.size(); ++i)
-	{
-	}
-
-	return result;
-}
-
 wxLineChartCtrl::PointClass::PointClass(double x, 
 										double y, 
 										double radius,
@@ -118,13 +94,13 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 								 const wxSize &size,
 								 long style)
 	: wxChart(parent, id, pos, size, style), 
-	m_grid(size, data.GetLabels(), m_options.GetGridOptions()),
-	m_minValue(data.GetMinValue()), m_maxValue(data.GetMaxValue())
+	m_grid(size, data.GetLabels(), GetMinValue(data.GetDatasets()),
+	GetMaxValue(data.GetDatasets()), m_options.GetGridOptions())
 {
 	const wxVector<wxLineChartDataset::ptr>& datasets = data.GetDatasets();
 	for (size_t i = 0; i < datasets.size(); ++i)
 	{
-		const wxVector<double>& data = datasets[i]->data();
+		const wxVector<double>& data = datasets[i]->GetData();
 		for (size_t j = 0; j < data.size(); ++j)
 		{
 			m_points.push_back(PointClass::ptr(new PointClass(20 + j * 10, 50 + data[j],
@@ -142,13 +118,13 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 								 const wxSize &size, 
 								 long style)
 	: wxChart(parent, id, pos, size, style), m_options(options),
-	m_grid(size, data.GetLabels(), m_options.GetGridOptions()),
-	m_minValue(data.GetMinValue()), m_maxValue(data.GetMaxValue())
+	m_grid(size, data.GetLabels(), GetMinValue(data.GetDatasets()),
+	GetMaxValue(data.GetDatasets()), m_options.GetGridOptions())
 {
 	const wxVector<wxLineChartDataset::ptr>& datasets = data.GetDatasets();
 	for (size_t i = 0; i < datasets.size(); ++i)
 	{
-		const wxVector<double>& data = datasets[i]->data();
+		const wxVector<double>& data = datasets[i]->GetData();
 		for (size_t j = 0; j < data.size(); ++j)
 		{
 			m_points.push_back(PointClass::ptr(new PointClass(20 + j * 10, 50 + data[j],
@@ -158,15 +134,56 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 	}
 }
 
-double wxLineChartCtrl::GetMinValue() const
+wxDouble wxLineChartCtrl::GetMinValue(const wxVector<wxLineChartDataset::ptr>& datasets)
 {
-	return m_minValue;
+	wxDouble result = 0;
+	bool foundValue = false;
+
+	for (size_t i = 0; i < datasets.size(); ++i)
+	{
+		const wxVector<wxDouble>& values = datasets[i]->GetData();
+		for (size_t j = 0; j < values.size(); ++j)
+		{
+			if (!foundValue)
+			{
+				result = values[j];
+				foundValue = true;
+			}
+			else if (result > values[j])
+			{
+				result = values[j];
+			}
+		}
+	}
+
+	return result;
 }
 
-double wxLineChartCtrl::GetMaxValue() const
+wxDouble wxLineChartCtrl::GetMaxValue(const wxVector<wxLineChartDataset::ptr>& datasets)
 {
-	return m_maxValue;
+	wxDouble result = 0;
+	bool foundValue = false;
+
+	for (size_t i = 0; i < datasets.size(); ++i)
+	{
+		const wxVector<wxDouble>& values = datasets[i]->GetData();
+		for (size_t j = 0; j < values.size(); ++j)
+		{
+			if (!foundValue)
+			{
+				result = values[j];
+				foundValue = true;
+			}
+			else if (result < values[j])
+			{
+				result = values[j];
+			}
+		}
+	}
+
+	return result;
 }
+
 
 void wxLineChartCtrl::Resize(const wxSize &size)
 {

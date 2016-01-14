@@ -34,13 +34,19 @@
 #include "wxchartradialgrid.h"
 #include "wxchartutilities.h"
 
-wxChartRadialGrid::wxChartRadialGrid(const wxSize &size,
+wxChartRadialGrid::wxChartRadialGrid(const wxSize &size, 
+									 wxDouble minValue,
+									 wxDouble maxValue,
 									 const wxChartRadialGridOptions& options)
 	: m_options(options), m_size(size), m_center(CalculateCenter(size))
 {
-	wxVector<wxDouble> dummy;
+	m_drawingArea = (size.x < size.y) ? size.x / 2 : size.y / 2;
+	wxDouble graphMinValue;
+	wxDouble graphMaxValue;
 	wxDouble valueRange = 0;
-	wxChartUtilities::CalculateGridRange(dummy, valueRange, m_steps);
+	wxDouble stepValue;
+	wxChartUtilities::CalculateGridRange(minValue, maxValue, 
+		graphMinValue, graphMaxValue, valueRange, m_steps, stepValue);
 	BuildYLabels(m_steps);
 }
 
@@ -49,21 +55,31 @@ void wxChartRadialGrid::Draw(wxGraphicsContext &gc)
 	// Don't draw a centre value so start from 1
 	for (size_t i = 1; i < m_yLabels.size(); ++i)
 	{
-		wxDouble yCenterOffset = i * 50;
+		wxDouble yCenterOffset = i * (m_drawingArea / m_steps);
+		wxDouble yHeight = m_center.m_y - yCenterOffset;
 
 		wxGraphicsPath path = gc.CreatePath();
-		path.AddArc(m_center.m_x, m_center.m_y, 25, 0, 2 * M_PI, true);
+		path.AddArc(m_center.m_x, m_center.m_y, yCenterOffset, 0, 2 * M_PI, true);
 		path.CloseSubpath();
 
 		wxPen pen(m_options.GetLineColor(), m_options.GetLineWidth());
 		gc.SetPen(pen);
 		gc.StrokePath(path);
+
+		if (m_options.ShowLabels())
+		{
+			wxFont font(wxSize(0, m_options.GetFontSize()),
+				m_options.GetFontFamily(), m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
+			gc.SetFont(font, m_options.GetFontColor());
+			gc.DrawText(m_yLabels[i], m_center.m_x, yHeight);
+		}
 	}
 }
 
 void wxChartRadialGrid::Resize(const wxSize &size)
 {
 	m_size = size;
+	m_drawingArea = (size.x < size.y) ? size.x / 2 : size.y / 2;
 	m_center = CalculateCenter(size);
 }
 

@@ -51,7 +51,7 @@ public:
 
 	const wxColor& GetDotColor() const;
 	const wxColor& GetDotStrokeColor() const;
-	const wxVector<wxDouble>& data() const;
+	const wxVector<wxDouble>& GetData() const;
 
 private:
 	wxColor m_dotColor;
@@ -69,9 +69,6 @@ public:
 	const wxVector<wxString>& GetLabels() const;
 	const wxVector<wxLineChartDataset::ptr>& GetDatasets() const;
 
-	wxDouble GetMinValue() const;
-	wxDouble GetMaxValue() const;
-
 private:
 	wxVector<wxString> m_labels;
 	wxVector<wxLineChartDataset::ptr> m_datasets;
@@ -87,10 +84,10 @@ public:
 		const wxLineChartOptions &options, const wxPoint &pos = wxDefaultPosition,
 		const wxSize &size = wxDefaultSize, long style = 0);
 
-	wxDouble GetMinValue() const;
-	wxDouble GetMaxValue() const;
-
 private:
+	static wxDouble GetMinValue(const wxVector<wxLineChartDataset::ptr>& datasets);
+	static wxDouble GetMaxValue(const wxVector<wxLineChartDataset::ptr>& datasets);
+
 	virtual void Resize(const wxSize &size);
 
 	void OnPaint(wxPaintEvent &evt);
@@ -109,8 +106,6 @@ private:
 	wxLineChartOptions m_options;
 	wxChartGrid m_grid;
 	wxVector<PointClass::ptr> m_points;
-	wxDouble m_minValue;
-	wxDouble m_maxValue;
 
 	DECLARE_EVENT_TABLE();
 };

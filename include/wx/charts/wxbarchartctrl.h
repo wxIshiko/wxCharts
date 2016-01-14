@@ -70,11 +70,12 @@ private:
 	{
 		ScaleClass(const wxSize &size,
 			const wxVector<wxString> &labels,
+			wxDouble minValue, wxDouble maxValue,
 			const wxChartGridOptions& options);
 
-		double CalculateBarX(size_t datasetCount, size_t datasetIndex, size_t barIndex);
-		double CalculateBaseWidth();
-		double CalculateBarWidth(size_t datasetCount);
+		wxDouble CalculateBarX(size_t datasetCount, size_t datasetIndex, size_t barIndex);
+		wxDouble CalculateBaseWidth();
+		wxDouble CalculateBarWidth(size_t datasetCount);
 	};
 
 	struct BarClass : public wxChartRectangle

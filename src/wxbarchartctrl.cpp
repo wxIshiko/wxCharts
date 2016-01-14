@@ -47,8 +47,10 @@ const wxVector<wxString>& wxBarChartData::GetLabels() const
 
 wxBarChartCtrl::ScaleClass::ScaleClass(const wxSize &size,
 									   const wxVector<wxString> &labels,
+									   wxDouble minValue, 
+									   wxDouble maxValue,
 									   const wxChartGridOptions& options)
-	: wxChartGrid(size, labels, options)
+	: wxChartGrid(size, labels, minValue, maxValue, options)
 {
 }
 
@@ -57,9 +59,9 @@ wxDouble wxBarChartCtrl::ScaleClass::CalculateBarX(size_t datasetCount,
 												   size_t barIndex)
 {
 	/*
-	double xWidth = CalculateBaseWidth();
-	double xAbsolute = CalculateX(barIndex) - (xWidth / 2);
-	double barWidth = CalculateBarWidth(datasetCount);
+	wxDouble xWidth = CalculateBaseWidth();
+	wxDouble xAbsolute = CalculateX(barIndex) - (xWidth / 2);
+	wxDouble barWidth = CalculateBarWidth(datasetCount);
 
 	return xAbsolute + (barWidth * datasetIndex) + (datasetIndex * 1) + barWidth / 2;*/
 	return 0;
@@ -92,7 +94,7 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 							   const wxSize &size,
 							   long style)
 	: wxChart(parent, id, pos, size, style), 
-	m_grid(size, data.GetLabels(), m_options.GetGridOptions())
+	m_grid(size, data.GetLabels(), 0, 0, m_options.GetGridOptions())
 {
 }
 
