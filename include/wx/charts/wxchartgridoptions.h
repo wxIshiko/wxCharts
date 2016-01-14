@@ -33,6 +33,8 @@ class wxChartGridOptions
 public:
 	wxChartGridOptions();
 
+	void SetFontSize(int size);
+
 	unsigned int GetAxisLineWidth() const;
 	const wxColor& GetAxisLineColor() const;
 

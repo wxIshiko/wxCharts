@@ -46,6 +46,7 @@ class wxChartGrid : public wxChartElement
 public:
 	wxChartGrid(const wxSize &size,
 		const wxVector<wxString> &labels,
+		wxDouble minValue, wxDouble maxValue,
 		const wxChartGridOptions& options);
 
 	void Draw(wxGraphicsContext &gc);
@@ -53,11 +54,13 @@ public:
 	void Resize(const wxSize &size);
 
 private:
-	void Fit(size_t steps, wxGraphicsContext &gc,
+	void Fit(wxDouble minValue, size_t steps, 
+		wxGraphicsContext &gc, const wxFont &font);
+	void BuildYLabels(wxDouble minValue, size_t steps, 
+		wxGraphicsContext &gc, const wxFont &font);
+	void CalculateXLabelRotation(const wxVector<wxString> &xLabels, 
+		wxDouble yLabelMaxWidth, wxGraphicsContext &gc, 
 		const wxFont &font);
-	void BuildYLabels(size_t steps, wxGraphicsContext &gc,
-		const wxFont &font);
-	void CalculateXLabelRotation(wxDouble yLabelMaxWidth);
 	wxDouble CalculateX(size_t index);
 
 private:
@@ -66,12 +69,15 @@ private:
 	wxDouble m_startPoint;
 	wxDouble m_endPoint;
 	wxVector<wxString> m_xLabels;
+	wxVector<wxDouble> m_xLabelsWidths;
 	wxVector<wxString> m_yLabels;
 	wxVector<wxDouble> m_yLabelWidths;
 	wxVector<wxDouble> m_yLabelHeights;
 	wxDouble m_yLabelMaxWidth;
+	wxDouble m_startYValue;
 	// The number of steps on the Y-axis
 	size_t m_steps;
+	wxDouble m_stepValue;
 	wxDouble m_xPaddingLeft;
 	// Whether something has changed and we
 	// need to rearrange the chart

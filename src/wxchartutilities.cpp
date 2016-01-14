@@ -38,31 +38,16 @@ size_t wxChartUtilities::GetDecimalPlaces()
 	return 1;
 }
 
-void wxChartUtilities::CalculateGridRange(const wxVector<wxDouble> &values, 
+void wxChartUtilities::CalculateGridRange(wxDouble minValue,
+										  wxDouble maxValue, 
+										  wxDouble &graphMinValue,
+										  wxDouble &graphMaxValue,
 										  wxDouble &valueRange,
-										  size_t &steps)
+										  size_t &steps,
+										  wxDouble &stepValue)
 {
 	// Set a minimum step of two - a point at the top of the graph, and a point at the base
 	steps = 2;
-
-	wxDouble maxValue = 0;
-	wxDouble minValue = 0;
-	if (values.size() > 0)
-	{
-		maxValue = values[0];
-		minValue = values[0];
-		for (size_t i = 1; i < values.size(); ++i)
-		{
-			if (values[i] > maxValue)
-			{
-				maxValue = values[i];
-			}
-			if (values[i] < minValue)
-			{
-				minValue = values[i];
-			}
-		}
-	}
 
 	// We need some degree of separation here to calculate the scales if all the values are the same
 	// Adding/minusing 0.5 will give us a range of 1.
@@ -77,6 +62,17 @@ void wxChartUtilities::CalculateGridRange(const wxVector<wxDouble> &values,
 	{
 		valueRange = -valueRange;
 	}
+	wxDouble rangeOrderOfMagnitude = CalculateOrderOfMagnitude(valueRange);
+	graphMaxValue = ceil(maxValue / (1 * pow(10, rangeOrderOfMagnitude))) * pow(10, rangeOrderOfMagnitude);
+	graphMinValue = floor(minValue / (1 * pow(10, rangeOrderOfMagnitude))) * pow(10, rangeOrderOfMagnitude);
+	wxDouble graphRange = graphMaxValue - graphMinValue;
+	stepValue = pow(10, rangeOrderOfMagnitude);
+	steps = round(graphRange / stepValue);
+}
+
+wxDouble wxChartUtilities::CalculateOrderOfMagnitude(wxDouble value)
+{
+	return floor(log10(value));
 }
 
 void wxChartUtilities::GetTextSize(wxGraphicsContext &gc,

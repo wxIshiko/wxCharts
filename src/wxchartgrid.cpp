@@ -33,24 +33,30 @@
 
 #include "wxchartgrid.h"
 #include "wxchartutilities.h"
+#include <sstream>
 
 wxChartGrid::wxChartGrid(const wxSize &size,
 						 const wxVector<wxString> &labels,
+						 wxDouble minValue,
+						 wxDouble maxValue,
 						 const wxChartGridOptions& options)
 	: m_options(options), m_size(size), 
 	m_startPoint(0), m_endPoint(0),
 	m_xLabels(labels), m_yLabelMaxWidth(0),
+	m_startYValue(minValue),
 	m_xPaddingLeft(0), m_needsFit(true)
 {
+	wxDouble graphMaxValue;
 	wxDouble valueRange = 0;
-	wxChartUtilities::CalculateGridRange(0, 0, valueRange, m_steps);
+	wxChartUtilities::CalculateGridRange(minValue, maxValue, 
+		m_startYValue, graphMaxValue, valueRange, m_steps, m_stepValue);
 }
 
 void wxChartGrid::Draw(wxGraphicsContext &gc)
 {
 	wxFont font(wxSize(0, m_options.GetFontSize()), 
 		m_options.GetFontFamily(), m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
-	Fit(m_steps, gc, font);
+	Fit(m_startYValue, m_steps, gc, font);
 
 	wxDouble yLabelGap = (m_endPoint - m_startPoint) / m_steps;
 	wxDouble xStart = m_xPaddingLeft;
@@ -99,13 +105,16 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 	for (size_t i = 0; i < m_xLabels.size(); ++i)
 	{
+		wxDouble linePos = CalculateX(i);
+
 		// We always show the Y-axis
 		bool drawVerticalLine = (m_options.ShowVerticalLines() || (i == 0));
 
+		gc.SetFont(font, m_options.GetFontColor());
+		gc.DrawText(m_xLabels[i], linePos - (m_xLabelsWidths[i] / 2), m_endPoint + 8);
+
 		if (drawVerticalLine)
 		{
-			wxDouble linePos = CalculateX(i);
-
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(linePos, m_endPoint);
 			path.AddLineToPoint(linePos, m_startPoint - 3);
@@ -143,7 +152,8 @@ void wxChartGrid::Resize(const wxSize &size)
 	m_needsFit = true;
 }
 
-void wxChartGrid::Fit(size_t steps, 
+void wxChartGrid::Fit(wxDouble minValue, 
+					  size_t steps,
 					  wxGraphicsContext &gc,
 					  const wxFont &font)
 {
@@ -153,20 +163,21 @@ void wxChartGrid::Fit(size_t steps,
 	}
 
 	m_startPoint = m_options.GetFontSize();
-	m_endPoint = m_size.GetHeight() - (m_options.GetFontSize() * 1.5) - 5; // -5 to pad labels
+	m_endPoint = m_size.GetHeight() - (m_options.GetFontSize() + 15) - 5; // -5 to pad labels
 
 	// Apply padding settings to the start and end point.
 	//this.startPoint += this.padding;
 	//this.endPoint -= this.padding;
 
 
-	BuildYLabels(steps, gc, font);
-	CalculateXLabelRotation(m_yLabelMaxWidth);
+	BuildYLabels(minValue, steps, gc, font);
+	CalculateXLabelRotation(m_xLabels, m_yLabelMaxWidth, gc, font);
 
 	m_needsFit = false;
 }
 
-void wxChartGrid::BuildYLabels(size_t steps, 
+void wxChartGrid::BuildYLabels(wxDouble minValue,
+							   size_t steps,
 							   wxGraphicsContext &gc, 
 							   const wxFont &font)
 {
@@ -179,10 +190,14 @@ void wxChartGrid::BuildYLabels(size_t steps,
 
 	for (size_t i = 0; i <= steps; ++i)
 	{
-		m_yLabels.push_back("10");
+		wxDouble value = minValue + (i * m_stepValue);//.toFixed(stepDecimalPlaces);
+		std::stringstream valueStr;
+		valueStr << value;
+
+		m_yLabels.push_back(valueStr.str());
 		wxDouble labelWidth;
 		wxDouble labelHeight;
-		wxChartUtilities::GetTextSize(gc, font, "10", labelWidth, labelHeight);
+		wxChartUtilities::GetTextSize(gc, font, valueStr.str(), labelWidth, labelHeight);
 		m_yLabelWidths.push_back(labelWidth);
 		if (labelWidth > m_yLabelMaxWidth)
 		{
@@ -193,9 +208,27 @@ void wxChartGrid::BuildYLabels(size_t steps,
 	m_yLabelMaxWidth += 10;
 }
 
-void wxChartGrid::CalculateXLabelRotation(wxDouble yLabelMaxWidth)
+void wxChartGrid::CalculateXLabelRotation(const wxVector<wxString> &xLabels,
+										  wxDouble yLabelMaxWidth,
+										  wxGraphicsContext &gc,
+										  const wxFont &font)
 {
+	m_xLabelsWidths.clear();
+	for (size_t i = 0; i < xLabels.size(); ++i)
+	{
+		wxDouble labelWidth;
+		wxDouble labelHeight;
+		wxChartUtilities::GetTextSize(gc, font, xLabels[i], labelWidth, labelHeight);
+		m_xLabelsWidths.push_back(labelWidth);
+	}
+
+	// Either the first x label or any of the y labels can be the widest
+	// so they are all taken into account to compute the left padding
 	m_xPaddingLeft = yLabelMaxWidth;
+	if ((m_xLabelsWidths.size() > 0) && ((m_xLabelsWidths[0] / 2) > m_xPaddingLeft))
+	{
+		m_xPaddingLeft = (m_xLabelsWidths[0] / 2);
+	}
 }
 
 double wxChartGrid::CalculateX(size_t index)

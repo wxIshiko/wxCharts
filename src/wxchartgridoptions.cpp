@@ -31,6 +31,11 @@ wxChartGridOptions::wxChartGridOptions()
 {
 }
 
+void wxChartGridOptions::SetFontSize(int size)
+{
+	m_fontSize = size;
+}
+
 unsigned int wxChartGridOptions::GetAxisLineWidth() const
 {
 	return m_axisLineWidth;
