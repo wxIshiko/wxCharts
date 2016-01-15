@@ -32,3 +32,25 @@
 */
 
 #include "wxchartgridmapping.h"
+
+wxChartGridMapping::wxChartGridMapping()
+	: m_startPoint(0), m_endPoint(0)
+{
+}
+
+void wxChartGridMapping::Fit(wxDouble startPoint,
+							 wxDouble endPoint)
+{
+	m_startPoint = startPoint;
+	m_endPoint = endPoint;
+}
+
+wxDouble wxChartGridMapping::GetStartPoint() const
+{
+	return m_startPoint;
+}
+
+wxDouble wxChartGridMapping::GetEndPoint() const
+{
+	return m_endPoint;
+}

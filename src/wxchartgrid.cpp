@@ -41,7 +41,6 @@ wxChartGrid::wxChartGrid(const wxSize &size,
 						 wxDouble maxValue,
 						 const wxChartGridOptions& options)
 	: m_options(options), m_size(size), 
-	m_startPoint(0), m_endPoint(0),
 	m_xLabels(labels), m_yLabelMaxWidth(0),
 	m_startYValue(minValue),
 	m_xPaddingLeft(0), m_needsFit(true)
@@ -58,12 +57,12 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		m_options.GetFontFamily(), m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
 	Fit(m_startYValue, m_steps, gc, font);
 
-	wxDouble yLabelGap = (m_endPoint - m_startPoint) / m_steps;
+	wxDouble yLabelGap = (m_mapping.GetEndPoint() - m_mapping.GetStartPoint()) / m_steps;
 	wxDouble xStart = m_xPaddingLeft;
 
 	for (size_t i = 0; i < m_yLabels.size(); ++i)
 	{
-		wxDouble yLabelCenter = m_endPoint - (yLabelGap * i);
+		wxDouble yLabelCenter = m_mapping.GetEndPoint() - (yLabelGap * i);
 		wxDouble linePositionY = yLabelCenter;
 		
 		// We always show the X-axis
@@ -111,13 +110,13 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		bool drawVerticalLine = (m_options.ShowVerticalLines() || (i == 0));
 
 		gc.SetFont(font, m_options.GetFontColor());
-		gc.DrawText(m_xLabels[i], linePos - (m_xLabelsWidths[i] / 2), m_endPoint + 8);
+		gc.DrawText(m_xLabels[i], linePos - (m_xLabelsWidths[i] / 2), m_mapping.GetEndPoint() + 8);
 
 		if (drawVerticalLine)
 		{
 			wxGraphicsPath path = gc.CreatePath();
-			path.MoveToPoint(linePos, m_endPoint);
-			path.AddLineToPoint(linePos, m_startPoint - 3);
+			path.MoveToPoint(linePos, m_mapping.GetEndPoint());
+			path.AddLineToPoint(linePos, m_mapping.GetStartPoint() - 3);
 			path.CloseSubpath();
 
 			if (i > 0)
@@ -135,8 +134,8 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 			// Small lines at the bottom of the base grid line
 			wxGraphicsPath path2 = gc.CreatePath();
-			path2.MoveToPoint(linePos, m_endPoint);
-			path2.AddLineToPoint(linePos, m_endPoint + 5);
+			path2.MoveToPoint(linePos, m_mapping.GetEndPoint());
+			path2.AddLineToPoint(linePos, m_mapping.GetEndPoint() + 5);
 			path2.CloseSubpath();
 
 			wxPen pen(m_options.GetAxisLineColor(), m_options.GetAxisLineWidth());
@@ -162,8 +161,9 @@ void wxChartGrid::Fit(wxDouble minValue,
 		return;
 	}
 
-	m_startPoint = m_options.GetFontSize();
-	m_endPoint = m_size.GetHeight() - (m_options.GetFontSize() + 15) - 5; // -5 to pad labels
+	wxDouble startPoint = m_options.GetFontSize();
+	wxDouble endPoint = m_size.GetHeight() - (m_options.GetFontSize() + 15) - 5; // -5 to pad labels
+	m_mapping.Fit(startPoint, endPoint);
 
 	// Apply padding settings to the start and end point.
 	//this.startPoint += this.padding;

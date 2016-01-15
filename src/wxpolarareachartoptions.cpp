@@ -23,6 +23,7 @@
 #include "wxpolarareachartoptions.h"
 
 wxPolarAreaChartCtrlOptions::wxPolarAreaChartCtrlOptions()
+	: m_gridOptions(wxCHARTRADIALGRIDSTYLE_CIRCULAR)
 {
 }
 

@@ -34,4 +34,23 @@
 #ifndef _WX_CHARTS_WXCHARTGRIDMAPPING_H_
 #define _WX_CHARTS_WXCHARTGRIDMAPPING_H_
 
+#include <wx/defs.h>
+
+// This class maintains a mapping between points
+// on the chart and pixels on the screen.
+class wxChartGridMapping
+{
+public:
+	wxChartGridMapping();
+
+	void Fit(wxDouble startPoint, wxDouble endPoint);
+
+	wxDouble GetStartPoint() const;
+	wxDouble GetEndPoint() const;
+
+private:
+	wxDouble m_startPoint;
+	wxDouble m_endPoint;
+};
+
 #endif

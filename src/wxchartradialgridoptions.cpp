@@ -22,11 +22,17 @@
 
 #include "wxchartradialgridoptions.h"
 
-wxChartRadialGridOptions::wxChartRadialGridOptions()
-	: m_lineWidth(1), m_lineColor(0, 0, 0, 0x19), m_showLabels(true),
-	m_fontFamily(wxFONTFAMILY_SWISS), m_fontSize(12),
-	m_fontStyle(wxFONTSTYLE_NORMAL), m_fontColor(0x666666)
+wxChartRadialGridOptions::wxChartRadialGridOptions(wxChartRadialGridStyle style)
+	: m_style(style), m_lineWidth(1), m_lineColor(0, 0, 0, 0x19),
+	m_showLabels(true), m_fontFamily(wxFONTFAMILY_SWISS), 
+	m_fontSize(12), m_fontStyle(wxFONTSTYLE_NORMAL), 
+	m_fontColor(0x666666)
 {
+}
+
+wxChartRadialGridStyle wxChartRadialGridOptions::GetStyle() const
+{
+	return m_style;
 }
 
 unsigned int wxChartRadialGridOptions::GetLineWidth() const

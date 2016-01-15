@@ -26,10 +26,18 @@
 #include <wx/colour.h>
 #include <wx/font.h>
 
+enum wxChartRadialGridStyle
+{
+	wxCHARTRADIALGRIDSTYLE_CIRCULAR = 0,
+	wxCHARTRADIALGRIDSTYLE_POLYGONAL = 1
+};
+
 class wxChartRadialGridOptions
 {
 public:
-	wxChartRadialGridOptions();
+	wxChartRadialGridOptions(wxChartRadialGridStyle style);
+
+	wxChartRadialGridStyle GetStyle() const;
 
 	unsigned int GetLineWidth() const;
 	const wxColor& GetLineColor() const;
@@ -41,6 +49,7 @@ public:
 	const wxColor& GetFontColor() const;
 
 private:
+	wxChartRadialGridStyle m_style;
 	unsigned int m_lineWidth;
 	wxColor m_lineColor;
 	bool m_showLabels;

@@ -36,6 +36,7 @@
 
 #include "wxchartelement.h"
 #include "wxchartgridoptions.h"
+#include "wxchartgridmapping.h"
 #include <wx/graphics.h>
 
 // This class represents the grid displayed in the background
@@ -66,8 +67,7 @@ private:
 private:
 	wxChartGridOptions m_options;
 	wxSize m_size;
-	wxDouble m_startPoint;
-	wxDouble m_endPoint;
+	wxChartGridMapping m_mapping;
 	wxVector<wxString> m_xLabels;
 	wxVector<wxDouble> m_xLabelsWidths;
 	wxVector<wxString> m_yLabels;
