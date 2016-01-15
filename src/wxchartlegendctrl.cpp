@@ -20,16 +20,22 @@
 	IN THE SOFTWARE.
 */
 
-#include "wxchartlegend.h"
+#include "wxchartlegendctrl.h"
 
 wxChartLegendData::wxChartLegendData()
 {
 }
 
-wxChartLegend::wxChartLegend(const wxChartLegendData &data)
+wxChartLegendCtrl::wxChartLegendCtrl(wxWindow *parent,
+									 wxWindowID id,
+									 const wxChartLegendData &data,
+									 const wxPoint &pos,
+									 const wxSize &size,
+									 long style)
+	: wxControl(parent, id, pos, size, style)
 {
 }
 
-void wxChartLegend::Draw(wxGraphicsContext &gc)
+void wxChartLegendCtrl::Draw(wxGraphicsContext &gc)
 {
 }

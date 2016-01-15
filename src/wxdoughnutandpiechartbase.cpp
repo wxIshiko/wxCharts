@@ -95,13 +95,7 @@ void wxDoughnutAndPieChartBase::Add(const wxChartSliceData &slice, size_t index,
 {
 	m_total += slice.GetValue();
 
-	wxDouble xLegendSize = 0;
-	if (GetOptions().ShowLegend())
-	{
-		xLegendSize = 100;
-	}
-
-	wxDouble x = ((GetSize().GetX() - xLegendSize) / 2) - 2;
+	wxDouble x = (GetSize().GetX() / 2) - 2;
 	wxDouble y = (GetSize().GetY() / 2) - 2;
 	wxDouble outerRadius = ((x < y) ? x : y) - (GetOptions().GetSliceStrokeWidth() / 2);
 	wxDouble innerRadius = outerRadius * ((wxDouble)GetOptions().GetPercentageInnerCutout()) / 100;
@@ -116,16 +110,9 @@ void wxDoughnutAndPieChartBase::Add(const wxChartSliceData &slice, size_t index,
 
 void wxDoughnutAndPieChartBase::Resize(const wxSize &size)
 {
-	wxDouble xLegendSize = 0;
-	if (GetOptions().ShowLegend())
-	{
-		xLegendSize = 100;
-	}
-
-	wxSize chartSize(size.GetWidth() - xLegendSize, size.GetHeight());
 	for (size_t i = 0; i < m_slices.size(); ++i)
 	{
-		m_slices[i]->Resize(chartSize, GetOptions());
+		m_slices[i]->Resize(size, GetOptions());
 	}
 }
 

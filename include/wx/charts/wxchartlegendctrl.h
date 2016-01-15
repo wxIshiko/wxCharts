@@ -20,10 +20,11 @@
 	IN THE SOFTWARE.
 */
 
-#ifndef _WX_CHARTS_WXCHARTLEGEND_H_
-#define _WX_CHARTS_WXCHARTLEGEND_H_
+#ifndef _WX_CHARTS_WXCHARTLEGENDCTRL_H_
+#define _WX_CHARTS_WXCHARTLEGENDCTRL_H_
 
 #include "wxchartlegendoptions.h"
+#include <wx/control.h>
 #include <wx/graphics.h>
 
 class wxChartLegendData
@@ -32,10 +33,14 @@ public:
 	wxChartLegendData();
 };
 
-class wxChartLegend
+class wxChartLegendCtrl : public wxControl
 {
 public:
-	wxChartLegend(const wxChartLegendData &data);
+	wxChartLegendCtrl(wxWindow *parent, wxWindowID id,
+		const wxChartLegendData &data,
+		const wxPoint &pos = wxDefaultPosition,
+		const wxSize &size = wxDefaultSize,
+		long style = 0);
 
 	void Draw(wxGraphicsContext &gc);
 

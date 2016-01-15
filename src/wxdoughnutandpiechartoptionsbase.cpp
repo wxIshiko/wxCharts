@@ -24,7 +24,7 @@
 
 wxDoughnutAndPieChartOptionsBase::wxDoughnutAndPieChartOptionsBase(unsigned int percentageInnerCutout)
 	: m_sliceStrokeWidth(2), m_percentageInnerCutout(percentageInnerCutout), 
-	m_showLegend(true), m_showTooltips(true)
+	m_showTooltips(true)
 {
 }
 
@@ -36,11 +36,6 @@ unsigned int wxDoughnutAndPieChartOptionsBase::GetSliceStrokeWidth() const
 unsigned int wxDoughnutAndPieChartOptionsBase::GetPercentageInnerCutout() const
 {
 	return m_percentageInnerCutout;
-}
-
-bool wxDoughnutAndPieChartOptionsBase::ShowLegend() const
-{
-	return m_showLegend;
 }
 
 bool wxDoughnutAndPieChartOptionsBase::ShowTooltips() const
