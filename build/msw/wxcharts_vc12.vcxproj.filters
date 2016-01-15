@@ -62,10 +62,10 @@
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxchartlegend.h">
+    <ClInclude Include="..\..\include\wx\charts\wxchartlegendoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxchartlegendoptions.h">
+    <ClInclude Include="..\..\include\wx\charts\wxchartlegendctrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxchartoptions.h">
@@ -163,10 +163,10 @@
     <ClCompile Include="..\..\src\wxcharttooltip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartlegend.cpp">
+    <ClCompile Include="..\..\src\wxchartlegendoptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartlegendoptions.cpp">
+    <ClCompile Include="..\..\src\wxchartlegendctrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchartoptions.cpp">

@@ -96,8 +96,8 @@
     <ClCompile Include="..\..\src\wxcharttooltipoptions.cpp" />
     <ClCompile Include="..\..\src\wxcharttooltipprovider.cpp" />
     <ClCompile Include="..\..\src\wxcharttooltip.cpp" />
-    <ClCompile Include="..\..\src\wxchartlegend.cpp" />
     <ClCompile Include="..\..\src\wxchartlegendoptions.cpp" />
+    <ClCompile Include="..\..\src\wxchartlegendctrl.cpp" />
     <ClCompile Include="..\..\src\wxchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxchart.cpp" />
     <ClCompile Include="..\..\src\wxbarchartoptions.cpp" />
@@ -132,8 +132,8 @@
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltipoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltipprovider.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltip.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartlegend.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartlegendoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartlegendctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartoptions.h" />
