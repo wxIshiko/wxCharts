@@ -24,8 +24,34 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
+wxChartLegendItem::wxChartLegendItem(const wxColor &color, 
+									 const wxString &label)
+	: m_color(color), m_label(label)
+{
+}
+
+const wxColor& wxChartLegendItem::GetColor() const
+{
+	return m_color;
+}
+
+const wxString& wxChartLegendItem::GetLabel() const
+{
+	return m_label;
+}
+
 wxChartLegendData::wxChartLegendData()
 {
+}
+
+void wxChartLegendData::Append(const wxChartLegendItem &item)
+{
+	m_items.push_back(item);
+}
+
+const wxVector<wxChartLegendItem>& wxChartLegendData::GetItems() const
+{
+	return m_items;
 }
 
 wxChartLegendCtrl::wxChartLegendCtrl(wxWindow *parent,
@@ -34,7 +60,7 @@ wxChartLegendCtrl::wxChartLegendCtrl(wxWindow *parent,
 									 const wxPoint &pos,
 									 const wxSize &size,
 									 long style)
-	: wxControl(parent, id, pos, size, style)
+	: wxControl(parent, id, pos, size, style), m_items(data.GetItems())
 {
 	SetBackgroundStyle(wxBG_STYLE_PAINT);
 	SetBackgroundColour(*wxWHITE);
@@ -49,6 +75,25 @@ void wxChartLegendCtrl::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{
+		wxFont font(wxSize(0, m_options.GetFontSize()),
+			m_options.GetFontFamily(), m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
+		gc->SetFont(font, m_options.GetFontColor());
+
+		wxDouble y = 0;
+		for (size_t i = 0; i < m_items.size(); ++i)
+		{
+			wxGraphicsPath path = gc->CreatePath();
+
+			path.AddRoundedRectangle(0, y, 10, 10, 0.1);
+
+			wxBrush brush(m_items[i].GetColor());
+			gc->SetBrush(brush);
+			gc->FillPath(path);
+			
+			gc->DrawText(m_items[i].GetLabel(), 30, y);
+			y += m_options.GetFontSize();
+		}
+
 		delete gc;
 	}
 }

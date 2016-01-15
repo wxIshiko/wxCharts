@@ -26,10 +26,31 @@
 #include "wxchartlegendoptions.h"
 #include <wx/control.h>
 
+class wxChartLegendItem
+{
+public:
+	wxChartLegendItem(const wxColor &color, 
+		const wxString &label);
+
+	const wxColor& GetColor() const;
+	const wxString& GetLabel() const;
+
+private:
+	wxColor m_color;
+	wxString m_label;
+};
+
 class wxChartLegendData
 {
 public:
 	wxChartLegendData();
+
+	void Append(const wxChartLegendItem &item);
+
+	const wxVector<wxChartLegendItem>& GetItems() const;
+
+private:
+	wxVector<wxChartLegendItem> m_items;
 };
 
 class wxChartLegendCtrl : public wxControl
@@ -46,6 +67,7 @@ private:
 
 private:
 	wxChartLegendOptions m_options;
+	wxVector<wxChartLegendItem> m_items;
 
 	DECLARE_EVENT_TABLE();
 };
