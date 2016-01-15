@@ -22,6 +22,14 @@
 
 #include "wxchartlegend.h"
 
-wxChartLegend::wxChartLegend()
+wxChartLegendData::wxChartLegendData()
+{
+}
+
+wxChartLegend::wxChartLegend(const wxChartLegendData &data)
+{
+}
+
+void wxChartLegend::Draw(wxGraphicsContext &gc)
 {
 }

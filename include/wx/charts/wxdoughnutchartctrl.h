@@ -51,6 +51,7 @@ public:
 
 private:
 	virtual const wxDoughnutAndPieChartOptionsBase& GetOptions() const;
+	void Initialize(const wxDoughnutChartData &data);
 
 private:
 	wxDougnutChartOptions m_options;

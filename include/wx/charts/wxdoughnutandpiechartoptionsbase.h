@@ -30,6 +30,7 @@ public:
 
 	unsigned int GetSliceStrokeWidth() const;
 	unsigned int GetPercentageInnerCutout() const;
+	bool ShowLegend() const;
 	bool ShowTooltips() const;
 
 protected:
@@ -43,6 +44,7 @@ private:
 	unsigned int m_sliceStrokeWidth;
 	// The percentage of the chart that we cut out of the middle.
 	unsigned int m_percentageInnerCutout;
+	bool m_showLegend;
 	bool m_showTooltips;
 };
 

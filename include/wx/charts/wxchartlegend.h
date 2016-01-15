@@ -24,11 +24,20 @@
 #define _WX_CHARTS_WXCHARTLEGEND_H_
 
 #include "wxchartlegendoptions.h"
+#include <wx/graphics.h>
+
+class wxChartLegendData
+{
+public:
+	wxChartLegendData();
+};
 
 class wxChartLegend
 {
 public:
-	wxChartLegend();
+	wxChartLegend(const wxChartLegendData &data);
+
+	void Draw(wxGraphicsContext &gc);
 
 private:
 	wxChartLegendOptions m_options;

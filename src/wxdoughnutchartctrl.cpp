@@ -44,11 +44,7 @@ wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
 										 long style)
 	: wxDoughnutAndPieChartBase(parent, id, pos, size, style)
 {
-	const wxVector<wxChartSliceData>& slices = data.GetSlices();
-	for (size_t i = 0; i < slices.size(); ++i)
-	{
-		Add(slices[i]);
-	}
+	Initialize(data);
 }
 
 wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent, 
@@ -61,14 +57,19 @@ wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
 	: wxDoughnutAndPieChartBase(parent, id, pos, size, style),
 	m_options(options)
 {
-	const wxVector<wxChartSliceData>& slices = data.GetSlices();
-	for (size_t i = 0; i < slices.size(); ++i)
-	{
-		Add(slices[i]);
-	}
+	Initialize(data);
 }
 
 const wxDoughnutAndPieChartOptionsBase& wxDoughnutChartCtrl::GetOptions() const
 {
 	return m_options;
+}
+
+void wxDoughnutChartCtrl::Initialize(const wxDoughnutChartData &data)
+{
+	const wxVector<wxChartSliceData>& slices = data.GetSlices();
+	for (size_t i = 0; i < slices.size(); ++i)
+	{
+		Add(slices[i]);
+	}
 }
