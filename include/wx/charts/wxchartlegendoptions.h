@@ -23,10 +23,27 @@
 #ifndef _WX_CHARTS_WXCHARTLEGENDOPTIONS_H_
 #define _WX_CHARTS_WXCHARTLEGENDOPTIONS_H_
 
+#include <wx/colour.h>
+#include <wx/font.h>
+
 class wxChartLegendOptions
 {
 public:
 	wxChartLegendOptions();
+
+	wxOrientation GetOrientation() const;
+
+	wxFontFamily GetFontFamily() const;
+	int GetFontSize() const;
+	wxFontStyle GetFontStyle() const;
+	const wxColor& GetFontColor() const;
+
+private:
+	wxOrientation m_orientation;
+	wxFontFamily m_fontFamily;
+	int m_fontSize;
+	wxFontStyle m_fontStyle;
+	wxColor m_fontColor;
 };
 
 #endif

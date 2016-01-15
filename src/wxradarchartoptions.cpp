@@ -23,5 +23,11 @@
 #include "wxradarchartoptions.h"
 
 wxRadarChartCtrlOptions::wxRadarChartCtrlOptions()
+	: m_gridOptions(wxCHARTRADIALGRIDSTYLE_POLYGONAL)
 {
+}
+
+const wxChartRadialGridOptions& wxRadarChartCtrlOptions::GetGridOptions() const
+{
+	return m_gridOptions;
 }
