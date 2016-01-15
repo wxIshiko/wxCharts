@@ -25,7 +25,6 @@
 
 #include "wxchartlegendoptions.h"
 #include <wx/control.h>
-#include <wx/graphics.h>
 
 class wxChartLegendData
 {
@@ -42,10 +41,13 @@ public:
 		const wxSize &size = wxDefaultSize,
 		long style = 0);
 
-	void Draw(wxGraphicsContext &gc);
+private:
+	void OnPaint(wxPaintEvent &evt);
 
 private:
 	wxChartLegendOptions m_options;
+
+	DECLARE_EVENT_TABLE();
 };
 
 #endif

@@ -29,6 +29,7 @@
 #include "wxpiechartctrl.h"
 #include "wxpolarareachartctrl.h"
 #include "wxradarchartctrl.h"
+#include "wxchartlegendctrl.h"
 
 #ifdef _MSC_VER
 

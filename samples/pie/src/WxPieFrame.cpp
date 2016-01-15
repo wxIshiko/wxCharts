@@ -32,19 +32,26 @@ WxPieFrame::WxPieFrame(const wxString& title)
 	wxPanel* panel = new wxPanel(this, wxID_ANY);
 
 	// Create the data for the doughnut chart widget
-	wxPieChartData data;
-	data.AppendSlice(wxChartSliceData(300, wxColor(0x4A46F7), "Red"));
-	data.AppendSlice(wxChartSliceData(50, wxColor(0xBDBF46), "Green"));
-	data.AppendSlice(wxChartSliceData(100, wxColor(0x5CB4FD), "Yellow"));
-	data.AppendSlice(wxChartSliceData(40, wxColor(0xB19F94), "Grey"));
-	data.AppendSlice(wxChartSliceData(120, wxColor(0x60534D), "Dark Grey"));
+	wxPieChartData chartData;
+	chartData.AppendSlice(wxChartSliceData(300, wxColor(0x4A46F7), "Red"));
+	chartData.AppendSlice(wxChartSliceData(50, wxColor(0xBDBF46), "Green"));
+	chartData.AppendSlice(wxChartSliceData(100, wxColor(0x5CB4FD), "Yellow"));
+	chartData.AppendSlice(wxChartSliceData(40, wxColor(0xB19F94), "Grey"));
+	chartData.AppendSlice(wxChartSliceData(120, wxColor(0x60534D), "Dark Grey"));
 
 	// Create the pie chart widget
-	wxPieChartCtrl* pieChartCtrl = new wxPieChartCtrl(panel, wxID_ANY, data);
+	wxPieChartCtrl* pieChartCtrl = new wxPieChartCtrl(panel, wxID_ANY, chartData,
+		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
+
+	// Create the legend widget
+	wxChartLegendData legendData;
+	wxChartLegendCtrl* legendCtrl = new wxChartLegendCtrl(panel, wxID_ANY, legendData,
+		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
 	// Set up the sizer for the panel
 	wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
 	panelSizer->Add(pieChartCtrl, 1, wxEXPAND);
+	panelSizer->Add(legendCtrl, 1, wxEXPAND);
 	panel->SetSizer(panelSizer);
 
 	// Set up the sizer for the frame

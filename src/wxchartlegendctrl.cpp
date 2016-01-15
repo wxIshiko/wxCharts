@@ -21,6 +21,8 @@
 */
 
 #include "wxchartlegendctrl.h"
+#include <wx/dcbuffer.h>
+#include <wx/graphics.h>
 
 wxChartLegendData::wxChartLegendData()
 {
@@ -34,8 +36,23 @@ wxChartLegendCtrl::wxChartLegendCtrl(wxWindow *parent,
 									 long style)
 	: wxControl(parent, id, pos, size, style)
 {
+	SetBackgroundStyle(wxBG_STYLE_PAINT);
+	SetBackgroundColour(*wxWHITE);
 }
 
-void wxChartLegendCtrl::Draw(wxGraphicsContext &gc)
+void wxChartLegendCtrl::OnPaint(wxPaintEvent &evt)
 {
+	wxAutoBufferedPaintDC dc(this);
+
+	dc.Clear();
+
+	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+	if (gc)
+	{
+		delete gc;
+	}
 }
+
+BEGIN_EVENT_TABLE(wxChartLegendCtrl, wxControl)
+	EVT_PAINT(wxChartLegendCtrl::OnPaint)
+END_EVENT_TABLE()
