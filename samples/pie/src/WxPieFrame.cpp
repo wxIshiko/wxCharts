@@ -44,7 +44,7 @@ WxPieFrame::WxPieFrame(const wxString& title)
 		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
 	// Create the legend widget
-	wxChartLegendData legendData;
+	wxChartLegendData legendData(chartData.GetSlices());
 	wxChartLegendCtrl* legendCtrl = new wxChartLegendCtrl(panel, wxID_ANY, legendData,
 		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 

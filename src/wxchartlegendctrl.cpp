@@ -30,6 +30,11 @@ wxChartLegendItem::wxChartLegendItem(const wxColor &color,
 {
 }
 
+wxChartLegendItem::wxChartLegendItem(const wxChartSliceData &slice)
+	: m_color(slice.GetColor()), m_label(slice.GetLabel())
+{
+}
+
 const wxColor& wxChartLegendItem::GetColor() const
 {
 	return m_color;
@@ -42,6 +47,14 @@ const wxString& wxChartLegendItem::GetLabel() const
 
 wxChartLegendData::wxChartLegendData()
 {
+}
+
+wxChartLegendData::wxChartLegendData(const wxVector<wxChartSliceData>& slices)
+{
+	for (size_t i = 0; i < slices.size(); ++i)
+	{
+		m_items.push_back(wxChartLegendItem(slices[i]));
+	}
 }
 
 void wxChartLegendData::Append(const wxChartLegendItem &item)

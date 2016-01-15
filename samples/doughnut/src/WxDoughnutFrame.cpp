@@ -44,9 +44,7 @@ WxDoughnutFrame::WxDoughnutFrame(const wxString& title)
 		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
 	// Create the legend widget
-	wxChartLegendData legendData;
-	legendData.Append(wxChartLegendItem(wxColor(0x4A46F7), "Red"));
-	legendData.Append(wxChartLegendItem(wxColor(0xBDBF46), "Green"));
+	wxChartLegendData legendData(chartData.GetSlices());
 	wxChartLegendCtrl* legendCtrl = new wxChartLegendCtrl(panel, wxID_ANY, legendData,
 		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 

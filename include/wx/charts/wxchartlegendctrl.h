@@ -23,6 +23,7 @@
 #ifndef _WX_CHARTS_WXCHARTLEGENDCTRL_H_
 #define _WX_CHARTS_WXCHARTLEGENDCTRL_H_
 
+#include "wxchartslicedata.h"
 #include "wxchartlegendoptions.h"
 #include <wx/control.h>
 
@@ -31,6 +32,7 @@ class wxChartLegendItem
 public:
 	wxChartLegendItem(const wxColor &color, 
 		const wxString &label);
+	wxChartLegendItem(const wxChartSliceData &slice);
 
 	const wxColor& GetColor() const;
 	const wxString& GetLabel() const;
@@ -44,6 +46,7 @@ class wxChartLegendData
 {
 public:
 	wxChartLegendData();
+	wxChartLegendData(const wxVector<wxChartSliceData>& slices);
 
 	void Append(const wxChartLegendItem &item);
 
