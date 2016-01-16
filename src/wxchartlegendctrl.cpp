@@ -92,19 +92,21 @@ void wxChartLegendCtrl::OnPaint(wxPaintEvent &evt)
 			m_options.GetFontFamily(), m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
 		gc->SetFont(font, m_options.GetFontColor());
 
-		wxDouble y = 0;
+		wxDouble fontSize = m_options.GetFontSize();
+
+		wxDouble y = 1;
 		for (size_t i = 0; i < m_items.size(); ++i)
 		{
 			wxGraphicsPath path = gc->CreatePath();
 
-			path.AddRoundedRectangle(0, y, 10, 10, 0.1);
+			path.AddRoundedRectangle(0, y, fontSize + 2, fontSize + 2, 3);
 
 			wxBrush brush(m_items[i].GetColor());
 			gc->SetBrush(brush);
 			gc->FillPath(path);
 			
-			gc->DrawText(m_items[i].GetLabel(), 30, y);
-			y += m_options.GetFontSize();
+			gc->DrawText(m_items[i].GetLabel(), 20, y);
+			y += fontSize + 5;
 		}
 
 		delete gc;
