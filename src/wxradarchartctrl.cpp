@@ -50,12 +50,27 @@ wxRadarChartCtrl::wxRadarChartCtrl(wxWindow *parent,
 								   const wxPoint &pos,
 								   const wxSize &size,
 								   long style)
-	: wxChart(parent, id, pos, size, style)
+	: wxChart(parent, id, pos, size, style),
+	m_grid(size, GetMinValue(), GetMaxValue(),
+	m_options.GetGridOptions())
 {
+}
+
+wxDouble wxRadarChartCtrl::GetMinValue()
+{
+	wxDouble result = 0;
+	return result;
+}
+
+wxDouble wxRadarChartCtrl::GetMaxValue()
+{
+	wxDouble result = 0;
+	return result;
 }
 
 void wxRadarChartCtrl::Resize(const wxSize &size)
 {
+	m_grid.Resize(size);
 }
 
 void wxRadarChartCtrl::OnPaint(wxPaintEvent &evt)
@@ -67,6 +82,8 @@ void wxRadarChartCtrl::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{
+		m_grid.Draw(*gc);
+
 		delete gc;
 	}
 }

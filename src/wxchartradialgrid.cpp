@@ -52,6 +52,20 @@ wxChartRadialGrid::wxChartRadialGrid(const wxSize &size,
 
 void wxChartRadialGrid::Draw(wxGraphicsContext &gc)
 {
+	switch (m_options.GetStyle())
+	{
+	case wxCHARTRADIALGRIDSTYLE_CIRCULAR:
+		DrawCircular(gc);
+		break;
+
+	case wxCHARTRADIALGRIDSTYLE_POLYGONAL:
+		DrawPolygonal(gc);
+		break;
+	}
+}
+
+void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc)
+{
 	// Don't draw a centre value so start from 1
 	for (size_t i = 1; i < m_yLabels.size(); ++i)
 	{
@@ -76,6 +90,28 @@ void wxChartRadialGrid::Draw(wxGraphicsContext &gc)
 	}
 }
 
+void wxChartRadialGrid::DrawPolygonal(wxGraphicsContext &gc)
+{
+	// Don't draw a centre value so start from 1
+	for (size_t i = 1; i < m_yLabels.size(); ++i)
+	{
+		wxGraphicsPath path = gc.CreatePath();
+		path.MoveToPoint(100, 100);
+		for (size_t j = 1; j < 4; ++j)
+		{
+			path.AddLineToPoint(50, 50);
+			//wxPoint2DDouble pointPosition = 
+			//CalculateCenterOffset();
+
+		}
+		path.CloseSubpath();
+
+		wxPen pen(m_options.GetLineColor(), m_options.GetLineWidth());
+		gc.SetPen(pen);
+		gc.StrokePath(path);
+	}
+}
+
 void wxChartRadialGrid::Resize(const wxSize &size)
 {
 	m_size = size;
@@ -86,6 +122,16 @@ void wxChartRadialGrid::Resize(const wxSize &size)
 wxPoint2DDouble wxChartRadialGrid::CalculateCenter(const wxSize& size)
 {
 	return wxPoint2DDouble(size.GetWidth() / 2, size.GetHeight() / 2);
+}
+
+wxDouble wxChartRadialGrid::CalculateCenterOffset(wxDouble value, 
+												  wxDouble drawingArea,
+												  wxDouble minValue,
+												  wxDouble maxValue)
+{
+	wxDouble scalingFactor = drawingArea / (maxValue - minValue);
+
+	return ((value - minValue) * scalingFactor);
 }
 
 void wxChartRadialGrid::BuildYLabels(size_t steps)

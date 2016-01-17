@@ -52,7 +52,12 @@ public:
 	void Resize(const wxSize &size);
 
 private:
+	void DrawCircular(wxGraphicsContext &gc);
+	void DrawPolygonal(wxGraphicsContext &gc);
 	static wxPoint2DDouble CalculateCenter(const wxSize& size);
+	static wxDouble CalculateCenterOffset(wxDouble value, 
+		wxDouble drawingArea, wxDouble minValue,
+		wxDouble maxValue);
 	void BuildYLabels(size_t steps);
 
 private:

@@ -36,6 +36,8 @@
 
 #include "wxchart.h"
 #include "wxradarchartoptions.h"
+#include "wxchartradialgrid.h"
+
 class wxRadarChartData
 {
 public:
@@ -55,12 +57,16 @@ public:
 		long style = 0);
 
 private:
+	static wxDouble GetMinValue();
+	static wxDouble GetMaxValue();
+
 	virtual void Resize(const wxSize &size);
 
 	void OnPaint(wxPaintEvent &evt);
 
 private:
 	wxRadarChartCtrlOptions m_options;
+	wxChartRadialGrid m_grid;
 
 	DECLARE_EVENT_TABLE();
 };
