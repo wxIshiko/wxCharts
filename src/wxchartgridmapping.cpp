@@ -54,3 +54,9 @@ wxDouble wxChartGridMapping::GetEndPoint() const
 {
 	return m_endPoint;
 }
+
+wxPoint2DDouble wxChartGridMapping::GetPointPosition(size_t i,
+													 wxDouble value) const
+{
+	return wxPoint2DDouble(50, 50);
+}

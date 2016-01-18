@@ -29,16 +29,19 @@
 class wxChartPoint : public wxChartElement
 {
 public:
-	wxChartPoint(double x, double y, double radius,
+	wxChartPoint(wxDouble x, wxDouble y, wxDouble radius,
 		unsigned int strokeWidth, const wxColor &strokeColor, 
 		const wxColor &fillColor);
 
 	void Draw(wxGraphicsContext &gc);
 
+	void SetPosition(wxDouble x, wxDouble y);
+	void SetPosition(wxPoint2DDouble position);
+
 private:
-	double m_x;
-	double m_y;
-	double m_radius;
+	wxDouble m_x;
+	wxDouble m_y;
+	wxDouble m_radius;
 	unsigned int m_strokeWidth;
 	wxColor m_strokeColor;
 	wxColor m_fillColor;

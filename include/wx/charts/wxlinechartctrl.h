@@ -93,13 +93,19 @@ private:
 	void OnPaint(wxPaintEvent &evt);
 
 private:
-	struct PointClass : public wxChartPoint
+	class PointClass : public wxChartPoint
 	{
+	public:
 		typedef wxSharedPtr<PointClass> ptr;
 
-		PointClass(wxDouble x, wxDouble y, wxDouble radius,
+		PointClass(wxDouble value, wxDouble x, wxDouble y, wxDouble radius,
 			unsigned int strokeWidth, const wxColor &strokeColor,
 			const wxColor &fillColor);
+
+		wxDouble GetValue() const;
+
+	private:
+		wxDouble m_value;
 	};
 
 private:

@@ -54,6 +54,8 @@ public:
 
 	void Resize(const wxSize &size);
 
+	const wxChartGridMapping& GetMapping() const;
+
 private:
 	void Fit(wxDouble minValue, size_t steps, 
 		wxGraphicsContext &gc, const wxFont &font);

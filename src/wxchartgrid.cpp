@@ -152,6 +152,11 @@ void wxChartGrid::Resize(const wxSize &size)
 	m_needsFit = true;
 }
 
+const wxChartGridMapping& wxChartGrid::GetMapping() const
+{
+	return m_mapping;
+}
+
 void wxChartGrid::Fit(wxDouble minValue, 
 					  size_t steps,
 					  wxGraphicsContext &gc,

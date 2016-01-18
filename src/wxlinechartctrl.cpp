@@ -77,14 +77,21 @@ const wxVector<wxLineChartDataset::ptr>& wxLineChartData::GetDatasets() const
 	return m_datasets;
 }
 
-wxLineChartCtrl::PointClass::PointClass(double x, 
-										double y, 
-										double radius,
+wxLineChartCtrl::PointClass::PointClass(wxDouble value, 
+										wxDouble x,
+										wxDouble y, 
+										wxDouble radius,
 										unsigned int strokeWidth,
 										const wxColor &strokeColor,
 										const wxColor &fillColor)
-	: wxChartPoint(x, y, radius, strokeWidth, strokeColor, fillColor)
+	: wxChartPoint(x, y, radius, strokeWidth, strokeColor, fillColor),
+	m_value(value)
 {
+}
+
+wxDouble wxLineChartCtrl::PointClass::GetValue() const
+{
+	return m_value;
 }
 
 wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
@@ -103,7 +110,7 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 		const wxVector<double>& data = datasets[i]->GetData();
 		for (size_t j = 0; j < data.size(); ++j)
 		{
-			m_points.push_back(PointClass::ptr(new PointClass(20 + j * 10, 50 + data[j],
+			m_points.push_back(PointClass::ptr(new PointClass(data[j], 20 + j * 10, 0,
 				m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
 				datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor())));
 		}
@@ -127,7 +134,7 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 		const wxVector<double>& data = datasets[i]->GetData();
 		for (size_t j = 0; j < data.size(); ++j)
 		{
-			m_points.push_back(PointClass::ptr(new PointClass(20 + j * 10, 50 + data[j],
+			m_points.push_back(PointClass::ptr(new PointClass(data[j], 20 + j * 10, 0,
 				m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
 				datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor())));
 		}
@@ -203,7 +210,9 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 
 		for (size_t i = 0; i < m_points.size(); ++i)
 		{
-			m_points[i]->Draw(*gc);
+			const PointClass::ptr& point = m_points[i];
+			point->SetPosition(m_grid.GetMapping().GetPointPosition(i, point->GetValue()));
+			point->Draw(*gc);
 		}
 
 		delete gc;

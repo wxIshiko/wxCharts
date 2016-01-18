@@ -33,9 +33,9 @@
 
 #include "wxchartpoint.h"
 
-wxChartPoint::wxChartPoint(double x, 
-						   double y, 
-						   double radius,
+wxChartPoint::wxChartPoint(wxDouble x,
+						   wxDouble y, 
+						   wxDouble radius,
 						   unsigned int strokeWidth, 
 						   const wxColor &strokeColor,
 						   const wxColor &fillColor)
@@ -58,4 +58,16 @@ void wxChartPoint::Draw(wxGraphicsContext &gc)
 	wxPen pen(m_strokeColor, m_strokeWidth);
 	gc.SetPen(pen);
 	gc.StrokePath(path);
+}
+
+void wxChartPoint::SetPosition(wxDouble x, wxDouble y)
+{
+	m_x = x;
+	m_y = y;
+}
+
+void wxChartPoint::SetPosition(wxPoint2DDouble position)
+{
+	m_x = position.m_x;
+	m_y = position.m_y;
 }
