@@ -41,18 +41,28 @@
 class wxChartGridMapping
 {
 public:
-	wxChartGridMapping();
+	wxChartGridMapping(const wxSize &size,
+		unsigned int numberOfVerticalLines);
 
 	void Fit(wxDouble startPoint, wxDouble endPoint);
+	void SetLeftPadding(wxDouble padding);
 
+	const wxSize& GetSize() const;
+	void SetSize(const wxSize &size);
+	wxDouble GetLeftPadding() const;
 	wxDouble GetStartPoint() const;
 	wxDouble GetEndPoint() const;
 
-	wxPoint2DDouble GetPointPosition(size_t i, wxDouble value) const;
+	void GetVerticalLinePositions(size_t index,
+		wxPoint2DDouble &top, wxPoint2DDouble &bottom) const;
+	wxPoint2DDouble GetPointPosition(size_t index, wxDouble value) const;
 
 private:
+	wxSize m_size;
+	wxDouble m_leftPadding;
 	wxDouble m_startPoint;
 	wxDouble m_endPoint;
+	unsigned int m_numberOfVerticalLines;
 };
 
 #endif

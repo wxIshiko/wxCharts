@@ -33,8 +33,11 @@
 
 #include "wxchartgridmapping.h"
 
-wxChartGridMapping::wxChartGridMapping()
-	: m_startPoint(0), m_endPoint(0)
+wxChartGridMapping::wxChartGridMapping(const wxSize &size,
+									   unsigned int numberOfVerticalLines)
+	: m_size(size), m_leftPadding(0),
+	m_startPoint(0), m_endPoint(0),
+	m_numberOfVerticalLines(numberOfVerticalLines)
 {
 }
 
@@ -43,6 +46,26 @@ void wxChartGridMapping::Fit(wxDouble startPoint,
 {
 	m_startPoint = startPoint;
 	m_endPoint = endPoint;
+}
+
+void wxChartGridMapping::SetLeftPadding(wxDouble padding)
+{
+	m_leftPadding = padding;
+}
+
+const wxSize& wxChartGridMapping::GetSize() const
+{
+	return m_size;
+}
+
+void wxChartGridMapping::SetSize(const wxSize &size)
+{
+	m_size = size;
+}
+
+wxDouble wxChartGridMapping::GetLeftPadding() const
+{
+	return m_leftPadding;
 }
 
 wxDouble wxChartGridMapping::GetStartPoint() const
@@ -55,8 +78,23 @@ wxDouble wxChartGridMapping::GetEndPoint() const
 	return m_endPoint;
 }
 
-wxPoint2DDouble wxChartGridMapping::GetPointPosition(size_t i,
+void wxChartGridMapping::GetVerticalLinePositions(size_t index,
+												  wxPoint2DDouble &top,
+												  wxPoint2DDouble &bottom) const
+{
+	wxDouble innerWidth = m_size.GetWidth() - m_leftPadding;
+	wxDouble valueWidth = innerWidth / m_numberOfVerticalLines;
+	wxDouble valueOffset = m_leftPadding + (valueWidth * index);
+
+	top.m_x = bottom.m_x = valueOffset;
+}
+
+wxPoint2DDouble wxChartGridMapping::GetPointPosition(size_t index,
 													 wxDouble value) const
 {
-	return wxPoint2DDouble(50, 50);
+	wxDouble innerWidth = m_size.GetWidth() - m_leftPadding;
+	wxDouble valueWidth = innerWidth / m_numberOfVerticalLines;
+	wxDouble valueOffset = m_leftPadding + (valueWidth * index);
+
+	return wxPoint2DDouble(valueOffset, 50);
 }

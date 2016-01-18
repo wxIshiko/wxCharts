@@ -65,11 +65,9 @@ private:
 		wxDouble yLabelMaxWidth, wxGraphicsContext &gc, 
 		const wxFont &font);
 	wxDouble CalculateLabelPosition(size_t index);
-	wxDouble CalculateLinePosition(size_t index);
 
 private:
 	wxChartGridOptions m_options;
-	wxSize m_size;
 	wxChartGridMapping m_mapping;
 	wxVector<wxString> m_xLabels;
 	wxVector<wxDouble> m_xLabelsWidths;
@@ -81,7 +79,6 @@ private:
 	// The number of steps on the Y-axis
 	size_t m_steps;
 	wxDouble m_stepValue;
-	wxDouble m_xPaddingLeft;
 	// Whether something has changed and we
 	// need to rearrange the chart
 	bool m_needsFit;

@@ -40,10 +40,9 @@ wxChartGrid::wxChartGrid(const wxSize &size,
 						 wxDouble minValue,
 						 wxDouble maxValue,
 						 const wxChartGridOptions& options)
-	: m_options(options), m_size(size), 
-	m_xLabels(labels), m_yLabelMaxWidth(0),
-	m_startYValue(minValue),
-	m_xPaddingLeft(0), m_needsFit(true)
+	: m_options(options), m_mapping(size, labels.size()), m_xLabels(labels),
+	m_yLabelMaxWidth(0), m_startYValue(minValue),
+	m_needsFit(true)
 {
 	wxDouble graphMaxValue;
 	wxDouble valueRange = 0;
@@ -58,7 +57,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 	Fit(m_startYValue, m_steps, gc, font);
 
 	wxDouble yLabelGap = (m_mapping.GetEndPoint() - m_mapping.GetStartPoint()) / m_steps;
-	wxDouble xStart = m_xPaddingLeft;
+	wxDouble xStart = m_mapping.GetLeftPadding();
 
 	for (size_t i = 0; i < m_yLabels.size(); ++i)
 	{
@@ -75,7 +74,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		{
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(xStart, linePositionY);
-			path.AddLineToPoint(m_size.GetWidth(), linePositionY);
+			path.AddLineToPoint(m_mapping.GetSize().GetWidth(), linePositionY);
 			path.CloseSubpath();
 
 			if (i > 0)
@@ -105,7 +104,10 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 	for (size_t i = 0; i < m_xLabels.size(); ++i)
 	{
 		wxDouble labelPosition = CalculateLabelPosition(i);
-		wxDouble linePosition = CalculateLinePosition(i);
+		wxPoint2DDouble s;
+		wxPoint2DDouble t;
+		m_mapping.GetVerticalLinePositions(i, s, t);
+		wxDouble linePosition = s.m_x;
 
 		// We always show the Y-axis
 		bool drawVerticalLine = (m_options.ShowVerticalLines() || (i == 0));
@@ -148,7 +150,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 void wxChartGrid::Resize(const wxSize &size)
 {
-	m_size = size;
+	m_mapping.SetSize(size);
 	m_needsFit = true;
 }
 
@@ -168,7 +170,7 @@ void wxChartGrid::Fit(wxDouble minValue,
 	}
 
 	wxDouble startPoint = m_options.GetFontSize();
-	wxDouble endPoint = m_size.GetHeight() - (m_options.GetFontSize() + 15) - 5; // -5 to pad labels
+	wxDouble endPoint = m_mapping.GetSize().GetHeight() - (m_options.GetFontSize() + 15) - 5; // -5 to pad labels
 	m_mapping.Fit(startPoint, endPoint);
 
 	// Apply padding settings to the start and end point.
@@ -230,18 +232,20 @@ void wxChartGrid::CalculateXLabelRotation(const wxVector<wxString> &xLabels,
 
 	// Either the first x label or any of the y labels can be the widest
 	// so they are all taken into account to compute the left padding
-	m_xPaddingLeft = yLabelMaxWidth;
-	if ((m_xLabelsWidths.size() > 0) && ((m_xLabelsWidths[0] / 2) > m_xPaddingLeft))
+	wxDouble leftPadding = yLabelMaxWidth;
+	if ((m_xLabelsWidths.size() > 0) && ((m_xLabelsWidths[0] / 2) > leftPadding))
 	{
-		m_xPaddingLeft = (m_xLabelsWidths[0] / 2);
+		leftPadding = (m_xLabelsWidths[0] / 2);
 	}
+	m_mapping.SetLeftPadding(leftPadding);
 }
 
 wxDouble wxChartGrid::CalculateLabelPosition(size_t index)
 {
-	wxDouble innerWidth = m_size.GetWidth() - (m_xPaddingLeft);
+	wxDouble leftPadding = m_mapping.GetLeftPadding();
+	wxDouble innerWidth = m_mapping.GetSize().GetWidth() - leftPadding;
 	wxDouble valueWidth = innerWidth / m_xLabels.size();
-	wxDouble valueOffset = m_xPaddingLeft + (valueWidth * index);
+	wxDouble valueOffset = leftPadding + (valueWidth * index);
 
 	/*
 	innerWidth = this.width - (this.xScalePaddingLeft + this.xScalePaddingRight),
@@ -258,14 +262,5 @@ wxDouble wxChartGrid::CalculateLabelPosition(size_t index)
 	return Math.round(valueOffset);
 	*/
 	
-	return valueOffset;
-}
-
-wxDouble wxChartGrid::CalculateLinePosition(size_t index)
-{
-	wxDouble innerWidth = m_size.GetWidth() - (m_xPaddingLeft);
-	wxDouble valueWidth = innerWidth / m_xLabels.size();
-	wxDouble valueOffset = m_xPaddingLeft + (valueWidth * index);
-
 	return valueOffset;
 }
