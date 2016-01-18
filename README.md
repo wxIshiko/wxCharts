@@ -23,8 +23,8 @@ conventions too.
 ## Credits
 
 wxCharts is largely based on the Chart.js project (http://chartjs.org/).
-It re-uses many of the ideas and implementations of that project and
-adpated them to C++ and the wxWidgets environment.
+It re-used many of the ideas and implementations of that project and
+adapted them to C++ and the wxWidgets environment.
 
 ## License
 
