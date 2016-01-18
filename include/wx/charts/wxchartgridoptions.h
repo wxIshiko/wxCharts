@@ -32,6 +32,7 @@ class wxChartGridOptions
 {
 public:
 	wxChartGridOptions();
+	wxChartGridOptions(bool offsetGridLines);
 
 	void SetFontSize(int size);
 
@@ -42,6 +43,7 @@ public:
 	bool ShowVerticalLines() const;
 	unsigned int GetGridLineWidth() const;
 	const wxColor& GetGridLineColor() const;
+	bool OffsetGridLines() const;
 
 	wxFontFamily GetFontFamily() const;
 	int GetFontSize() const;
@@ -57,6 +59,7 @@ private:
 	bool m_showVerticalLines;
 	unsigned int m_gridLineWidth;
 	wxColor m_gridLineColor;
+	bool m_offsetGridLines;
 	wxFontFamily m_fontFamily;
 	int m_fontSize;
 	wxFontStyle m_fontStyle;

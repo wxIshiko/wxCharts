@@ -62,7 +62,8 @@ private:
 	void CalculateXLabelRotation(const wxVector<wxString> &xLabels, 
 		wxDouble yLabelMaxWidth, wxGraphicsContext &gc, 
 		const wxFont &font);
-	wxDouble CalculateX(size_t index);
+	wxDouble CalculateLabelPosition(size_t index);
+	wxDouble CalculateLinePosition(size_t index);
 
 private:
 	wxChartGridOptions m_options;

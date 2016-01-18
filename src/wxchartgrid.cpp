@@ -104,19 +104,20 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 	for (size_t i = 0; i < m_xLabels.size(); ++i)
 	{
-		wxDouble linePos = CalculateX(i);
+		wxDouble labelPosition = CalculateLabelPosition(i);
+		wxDouble linePosition = CalculateLinePosition(i);
 
 		// We always show the Y-axis
 		bool drawVerticalLine = (m_options.ShowVerticalLines() || (i == 0));
 
 		gc.SetFont(font, m_options.GetFontColor());
-		gc.DrawText(m_xLabels[i], linePos - (m_xLabelsWidths[i] / 2), m_mapping.GetEndPoint() + 8);
+		gc.DrawText(m_xLabels[i], labelPosition - (m_xLabelsWidths[i] / 2), m_mapping.GetEndPoint() + 8);
 
 		if (drawVerticalLine)
 		{
 			wxGraphicsPath path = gc.CreatePath();
-			path.MoveToPoint(linePos, m_mapping.GetEndPoint());
-			path.AddLineToPoint(linePos, m_mapping.GetStartPoint() - 3);
+			path.MoveToPoint(linePosition, m_mapping.GetEndPoint());
+			path.AddLineToPoint(linePosition, m_mapping.GetStartPoint() - 3);
 			path.CloseSubpath();
 
 			if (i > 0)
@@ -134,8 +135,8 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 			// Small lines at the bottom of the base grid line
 			wxGraphicsPath path2 = gc.CreatePath();
-			path2.MoveToPoint(linePos, m_mapping.GetEndPoint());
-			path2.AddLineToPoint(linePos, m_mapping.GetEndPoint() + 5);
+			path2.MoveToPoint(linePosition, m_mapping.GetEndPoint());
+			path2.AddLineToPoint(linePosition, m_mapping.GetEndPoint() + 5);
 			path2.CloseSubpath();
 
 			wxPen pen(m_options.GetAxisLineColor(), m_options.GetAxisLineWidth());
@@ -231,22 +232,35 @@ void wxChartGrid::CalculateXLabelRotation(const wxVector<wxString> &xLabels,
 	}
 }
 
-double wxChartGrid::CalculateX(size_t index)
+wxDouble wxChartGrid::CalculateLabelPosition(size_t index)
 {
 	wxDouble innerWidth = m_size.GetWidth() - (m_xPaddingLeft);
 	wxDouble valueWidth = innerWidth / m_xLabels.size();
 	wxDouble valueOffset = m_xPaddingLeft + (valueWidth * index);
 
 	/*
-				innerWidth = this.width - (this.xScalePaddingLeft + this.xScalePaddingRight),
-				valueWidth = innerWidth/Math.max((this.valuesCount - ((this.offsetGridLines) ? 0 : 1)), 1),
-				valueOffset = (valueWidth * index) + this.xScalePaddingLeft;
+	innerWidth = this.width - (this.xScalePaddingLeft + this.xScalePaddingRight),
+	valueWidth = innerWidth/Math.max((this.valuesCount - ((this.offsetGridLines) ? 0 : 1)), 1),
+	valueOffset = (valueWidth * index) + this.xScalePaddingLeft;
+	*/
 
-			if (this.offsetGridLines){
-				valueOffset += (valueWidth/2);
-			}
+	if (m_options.OffsetGridLines())
+	{
+		valueOffset += (valueWidth / 2);
+	}
 
-			return Math.round(valueOffset);
-			*/
+	/*
+	return Math.round(valueOffset);
+	*/
+	
+	return valueOffset;
+}
+
+wxDouble wxChartGrid::CalculateLinePosition(size_t index)
+{
+	wxDouble innerWidth = m_size.GetWidth() - (m_xPaddingLeft);
+	wxDouble valueWidth = innerWidth / m_xLabels.size();
+	wxDouble valueOffset = m_xPaddingLeft + (valueWidth * index);
+
 	return valueOffset;
 }
