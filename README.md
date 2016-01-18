@@ -14,13 +14,17 @@ A library to create charts in wxWidgets applications
 2. Create your feature branch: `git checkout -b my-new-feature`
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+5. Submit a pull request
 
-## History
-
+wxCharts tries to comply with the coding conventions of the main
+wxWidgets project. Contributions should broadly follow these 
+conventions too.
 
 ## Credits
 
+wxCharts is largely based on the Chart.js project (http://chartjs.org/).
+It re-uses many of the ideas and implementations of that project and
+adpated them to C++ and the wxWidgets environment.
 
 ## License
 
