@@ -23,7 +23,7 @@
 #include "wxchartlabel.h"
 
 wxChartLabel::wxChartLabel(const wxString &text)
-	: m_text(text)
+	: m_text(text), m_size(0, 0)
 {
 }
 
@@ -37,4 +37,20 @@ void wxChartLabel::Draw(wxDouble x,
 const wxString& wxChartLabel::GetText() const
 {
 	return m_text;
+}
+
+const wxSize& wxChartLabel::GetSize() const
+{
+	return m_size;
+}
+
+void wxChartLabel::SetSize(const wxSize &size)
+{
+	m_size = size;
+}
+
+void wxChartLabel::SetSize(wxDouble width, wxDouble height)
+{
+	m_size.x = width;
+	m_size.y = height;
 }

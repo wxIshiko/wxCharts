@@ -36,9 +36,13 @@ public:
 		wxGraphicsContext &gc);
 
 	const wxString& GetText() const;
+	const wxSize& GetSize() const;
+	void SetSize(const wxSize &size);
+	void SetSize(wxDouble width, wxDouble height);
 
 private:
 	wxString m_text;
+	wxSize m_size;
 };
 
 #endif

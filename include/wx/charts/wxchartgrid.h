@@ -71,7 +71,6 @@ private:
 	wxChartGridOptions m_options;
 	wxChartGridMapping m_mapping;
 	wxVector<wxChartLabel> m_xLabels;
-	wxVector<wxDouble> m_xLabelsWidths;
 	wxVector<wxChartLabel> m_yLabels;
 	wxVector<wxDouble> m_yLabelWidths;
 	wxVector<wxDouble> m_yLabelHeights;
