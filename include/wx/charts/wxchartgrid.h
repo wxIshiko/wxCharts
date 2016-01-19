@@ -63,9 +63,8 @@ private:
 	static void BuildYLabels(wxDouble minValue, size_t steps, 
 		wxDouble stepValue, wxGraphicsContext &gc, const wxFont &font,
 		wxVector<wxChartLabel> &yLabels, wxDouble &yLabelMaxWidth);
-	static void CalculateXLabelRotation(wxVector<wxChartLabel> &xLabels, 
-		wxDouble startPoint, wxDouble endPoint, wxDouble yLabelMaxWidth, 
-		wxGraphicsContext &gc, const wxFont &font, wxChartGridMapping &mapping);
+	static void CalculateXLabelSizes(wxVector<wxChartLabel> &xLabels, 
+		wxGraphicsContext &gc, const wxFont &font);
 	static wxDouble CalculateLeftPadding(const wxVector<wxChartLabel> &xLabels, 
 		wxDouble yLabelMaxWidth);
 	wxDouble CalculateLabelPosition(size_t index);

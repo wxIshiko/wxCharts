@@ -183,7 +183,10 @@ void wxChartGrid::Fit(wxDouble minValue,
 
 
 	BuildYLabels(minValue, steps, m_stepValue, gc, font, m_yLabels, m_yLabelMaxWidth);
-	CalculateXLabelRotation(m_xLabels, startPoint, endPoint, m_yLabelMaxWidth, gc, font, m_mapping);
+	CalculateXLabelSizes(m_xLabels, gc, font);
+
+	wxDouble leftPadding = CalculateLeftPadding(m_xLabels, m_yLabelMaxWidth);
+	m_mapping.Fit(leftPadding, startPoint, endPoint);
 
 	m_needsFit = false;
 }
@@ -220,13 +223,9 @@ void wxChartGrid::BuildYLabels(wxDouble minValue,
 	yLabelMaxWidth += 10;
 }
 
-void wxChartGrid::CalculateXLabelRotation(wxVector<wxChartLabel> &xLabels,
-										  wxDouble startPoint, 
-										  wxDouble endPoint,
-										  wxDouble yLabelMaxWidth,
-										  wxGraphicsContext &gc,
-										  const wxFont &font,
-										  wxChartGridMapping &mapping)
+void wxChartGrid::CalculateXLabelSizes(wxVector<wxChartLabel> &xLabels,
+									   wxGraphicsContext &gc,
+									   const wxFont &font)
 {
 	for (size_t i = 0; i < xLabels.size(); ++i)
 	{
@@ -235,9 +234,6 @@ void wxChartGrid::CalculateXLabelRotation(wxVector<wxChartLabel> &xLabels,
 		wxChartUtilities::GetTextSize(gc, font, xLabels[i].GetText(), labelWidth, labelHeight);
 		xLabels[i].SetSize(labelWidth, labelHeight);
 	}
-
-	wxDouble leftPadding = CalculateLeftPadding(xLabels, yLabelMaxWidth);
-	mapping.Fit(leftPadding, startPoint, endPoint);
 }
 
 wxDouble wxChartGrid::CalculateLeftPadding(const wxVector<wxChartLabel> &xLabels,
