@@ -60,8 +60,9 @@ public:
 private:
 	void Fit(wxDouble minValue, size_t steps, 
 		wxGraphicsContext &gc, const wxFont &font);
-	void BuildYLabels(wxDouble minValue, size_t steps, 
-		wxGraphicsContext &gc, const wxFont &font);
+	static void BuildYLabels(wxDouble minValue, size_t steps, 
+		wxDouble stepValue, wxGraphicsContext &gc, const wxFont &font,
+		wxVector<wxChartLabel> &yLabels, wxDouble &yLabelMaxWidth);
 	static void CalculateXLabelRotation(wxVector<wxChartLabel> &xLabels, 
 		wxDouble yLabelMaxWidth, wxGraphicsContext &gc, 
 		const wxFont &font, wxChartGridMapping &mapping);

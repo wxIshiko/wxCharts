@@ -183,39 +183,42 @@ void wxChartGrid::Fit(wxDouble minValue,
 	//this.endPoint -= this.padding;
 
 
-	BuildYLabels(minValue, steps, gc, font);
-	CalculateXLabelRotation(m_xLabels, m_yLabelMaxWidth, gc, font,m_mapping);
+	BuildYLabels(minValue, steps, m_stepValue, gc, font, m_yLabels, m_yLabelMaxWidth);
+	CalculateXLabelRotation(m_xLabels, m_yLabelMaxWidth, gc, font, m_mapping);
 
 	m_needsFit = false;
 }
 
 void wxChartGrid::BuildYLabels(wxDouble minValue,
 							   size_t steps,
+							   wxDouble stepValue,
 							   wxGraphicsContext &gc, 
-							   const wxFont &font)
+							   const wxFont &font,
+							   wxVector<wxChartLabel> &yLabels, 
+							   wxDouble &yLabelMaxWidth)
 {
-	m_yLabels.clear();
-	m_yLabelMaxWidth = 0;
+	yLabels.clear();
+	yLabelMaxWidth = 0;
 
 	size_t stepDecimalPlaces = wxChartUtilities::GetDecimalPlaces();
 
 	for (size_t i = 0; i <= steps; ++i)
 	{
-		wxDouble value = minValue + (i * m_stepValue);//.toFixed(stepDecimalPlaces);
+		wxDouble value = minValue + (i * stepValue);//.toFixed(stepDecimalPlaces);
 		std::stringstream valueStr;
 		valueStr << value;
 
 		wxDouble labelWidth;
 		wxDouble labelHeight;
 		wxChartUtilities::GetTextSize(gc, font, valueStr.str(), labelWidth, labelHeight);
-		if (labelWidth > m_yLabelMaxWidth)
+		if (labelWidth > yLabelMaxWidth)
 		{
-			m_yLabelMaxWidth = labelWidth;
+			yLabelMaxWidth = labelWidth;
 		}
 		
-		m_yLabels.push_back(wxChartLabel(valueStr.str(), labelWidth, labelHeight));
+		yLabels.push_back(wxChartLabel(valueStr.str(), labelWidth, labelHeight));
 	}
-	m_yLabelMaxWidth += 10;
+	yLabelMaxWidth += 10;
 }
 
 void wxChartGrid::CalculateXLabelRotation(wxVector<wxChartLabel> &xLabels,
