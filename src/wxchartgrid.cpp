@@ -40,10 +40,15 @@ wxChartGrid::wxChartGrid(const wxSize &size,
 						 wxDouble minValue,
 						 wxDouble maxValue,
 						 const wxChartGridOptions& options)
-	: m_options(options), m_mapping(size, labels.size()), m_xLabels(labels),
+	: m_options(options), m_mapping(size, labels.size()), 
 	m_yLabelMaxWidth(0), m_startYValue(minValue),
 	m_needsFit(true)
 {
+	for (size_t i = 0; i < labels.size(); ++i)
+	{
+		m_xLabels.push_back(wxChartLabel(labels[i]));
+	}
+
 	wxDouble graphMaxValue;
 	wxDouble valueRange = 0;
 	wxChartUtilities::CalculateGridRange(minValue, maxValue, 
@@ -113,7 +118,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		bool drawVerticalLine = (m_options.ShowVerticalLines() || (i == 0));
 
 		gc.SetFont(font, m_options.GetFontColor());
-		gc.DrawText(m_xLabels[i], labelPosition - (m_xLabelsWidths[i] / 2), m_mapping.GetEndPoint() + 8);
+		m_xLabels[i].Draw(labelPosition - (m_xLabelsWidths[i] / 2), m_mapping.GetEndPoint() + 8, gc);
 
 		if (drawVerticalLine)
 		{
@@ -216,7 +221,7 @@ void wxChartGrid::BuildYLabels(wxDouble minValue,
 	m_yLabelMaxWidth += 10;
 }
 
-void wxChartGrid::CalculateXLabelRotation(const wxVector<wxString> &xLabels,
+void wxChartGrid::CalculateXLabelRotation(const wxVector<wxChartLabel> &xLabels,
 										  wxDouble yLabelMaxWidth,
 										  wxGraphicsContext &gc,
 										  const wxFont &font)
@@ -226,7 +231,7 @@ void wxChartGrid::CalculateXLabelRotation(const wxVector<wxString> &xLabels,
 	{
 		wxDouble labelWidth;
 		wxDouble labelHeight;
-		wxChartUtilities::GetTextSize(gc, font, xLabels[i], labelWidth, labelHeight);
+		wxChartUtilities::GetTextSize(gc, font, xLabels[i].GetText(), labelWidth, labelHeight);
 		m_xLabelsWidths.push_back(labelWidth);
 	}
 

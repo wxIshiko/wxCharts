@@ -23,4 +23,10 @@
 #ifndef _WX_CHARTS_WXCHARTMULTITOOLTIP_H_
 #define _WX_CHARTS_WXCHARTMULTITOOLTIP_H_
 
+class wxChartMultiTooltip
+{
+public:
+	wxChartMultiTooltip();
+};
+
 #endif

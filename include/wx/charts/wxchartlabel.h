@@ -23,4 +23,22 @@
 #ifndef _WX_CHARTS_WXCHARTLABEL_H_
 #define _WX_CHARTS_WXCHARTLABEL_H_
 
+#include "wxchartelement.h"
+#include <wx/graphics.h>
+#include <wx/string.h>
+
+class wxChartLabel : public wxChartElement
+{
+public:
+	wxChartLabel(const wxString &text);
+
+	void Draw(wxDouble x, wxDouble y, 
+		wxGraphicsContext &gc);
+
+	const wxString& GetText() const;
+
+private:
+	wxString m_text;
+};
+
 #endif

@@ -21,3 +21,20 @@
 */
 
 #include "wxchartlabel.h"
+
+wxChartLabel::wxChartLabel(const wxString &text)
+	: m_text(text)
+{
+}
+
+void wxChartLabel::Draw(wxDouble x, 
+						wxDouble y, 
+						wxGraphicsContext &gc)
+{
+	gc.DrawText(m_text, x, y);
+}
+
+const wxString& wxChartLabel::GetText() const
+{
+	return m_text;
+}

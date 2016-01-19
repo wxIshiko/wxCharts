@@ -32,3 +32,7 @@
 */
 
 #include "wxchartmultitooltip.h"
+
+wxChartMultiTooltip::wxChartMultiTooltip()
+{
+}
