@@ -236,6 +236,13 @@ void wxChartGrid::CalculateXLabelRotation(wxVector<wxChartLabel> &xLabels,
 		xLabels[i].SetSize(labelWidth, labelHeight);
 	}
 
+	wxDouble leftPadding = CalculateLeftPadding(xLabels, yLabelMaxWidth);
+	mapping.Fit(leftPadding, startPoint, endPoint);
+}
+
+wxDouble wxChartGrid::CalculateLeftPadding(const wxVector<wxChartLabel> &xLabels,
+										   wxDouble yLabelMaxWidth)
+{
 	// Either the first x label or any of the y labels can be the widest
 	// so they are all taken into account to compute the left padding
 	wxDouble leftPadding = yLabelMaxWidth;
@@ -243,7 +250,7 @@ void wxChartGrid::CalculateXLabelRotation(wxVector<wxChartLabel> &xLabels,
 	{
 		leftPadding = (xLabels[0].GetSize().GetWidth() / 2);
 	}
-	mapping.Fit(leftPadding, startPoint, endPoint);
+	return leftPadding;
 }
 
 wxDouble wxChartGrid::CalculateLabelPosition(size_t index)
