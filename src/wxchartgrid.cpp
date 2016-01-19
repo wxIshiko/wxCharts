@@ -73,8 +73,8 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		bool drawHorizontalLine = (m_options.ShowHorizontalLines() || (i == 0));
 
 		gc.SetFont(font, m_options.GetFontColor());
-		gc.DrawText(m_yLabels[i], xStart - 10 - m_yLabelWidths[i], yLabelCenter - (m_yLabelHeights[i] / 2));
-
+		m_yLabels[i].Draw(xStart - 10 - m_yLabelWidths[i], yLabelCenter - (m_yLabelHeights[i] / 2), gc);
+		
 		if (drawHorizontalLine)
 		{
 			wxGraphicsPath path = gc.CreatePath();
@@ -207,7 +207,7 @@ void wxChartGrid::BuildYLabels(wxDouble minValue,
 		std::stringstream valueStr;
 		valueStr << value;
 
-		m_yLabels.push_back(valueStr.str());
+		m_yLabels.push_back(wxChartLabel(valueStr.str()));
 		wxDouble labelWidth;
 		wxDouble labelHeight;
 		wxChartUtilities::GetTextSize(gc, font, valueStr.str(), labelWidth, labelHeight);
