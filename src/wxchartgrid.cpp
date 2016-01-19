@@ -73,7 +73,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		bool drawHorizontalLine = (m_options.ShowHorizontalLines() || (i == 0));
 
 		gc.SetFont(font, m_options.GetFontColor());
-		m_yLabels[i].Draw(xStart - 10 - m_yLabelWidths[i], yLabelCenter - (m_yLabelHeights[i] / 2), gc);
+		m_yLabels[i].Draw(xStart - 10 - m_yLabels[i].GetSize().GetWidth(), yLabelCenter - (m_yLabels[i].GetSize().GetHeight() / 2), gc);
 		
 		if (drawHorizontalLine)
 		{
@@ -195,8 +195,6 @@ void wxChartGrid::BuildYLabels(wxDouble minValue,
 							   const wxFont &font)
 {
 	m_yLabels.clear();
-	m_yLabelWidths.clear();
-	m_yLabelHeights.clear();
 	m_yLabelMaxWidth = 0;
 
 	size_t stepDecimalPlaces = wxChartUtilities::GetDecimalPlaces();
@@ -207,16 +205,15 @@ void wxChartGrid::BuildYLabels(wxDouble minValue,
 		std::stringstream valueStr;
 		valueStr << value;
 
-		m_yLabels.push_back(wxChartLabel(valueStr.str()));
 		wxDouble labelWidth;
 		wxDouble labelHeight;
 		wxChartUtilities::GetTextSize(gc, font, valueStr.str(), labelWidth, labelHeight);
-		m_yLabelWidths.push_back(labelWidth);
 		if (labelWidth > m_yLabelMaxWidth)
 		{
 			m_yLabelMaxWidth = labelWidth;
 		}
-		m_yLabelHeights.push_back(labelHeight);
+		
+		m_yLabels.push_back(wxChartLabel(valueStr.str(), labelWidth, labelHeight));
 	}
 	m_yLabelMaxWidth += 10;
 }

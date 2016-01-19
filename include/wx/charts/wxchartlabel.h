@@ -31,6 +31,8 @@ class wxChartLabel : public wxChartElement
 {
 public:
 	wxChartLabel(const wxString &text);
+	wxChartLabel(const wxString &text, wxDouble width,
+		wxDouble height);
 
 	void Draw(wxDouble x, wxDouble y, 
 		wxGraphicsContext &gc);

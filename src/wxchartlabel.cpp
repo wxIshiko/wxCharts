@@ -27,6 +27,13 @@ wxChartLabel::wxChartLabel(const wxString &text)
 {
 }
 
+wxChartLabel::wxChartLabel(const wxString &text,
+						   wxDouble width,
+						   wxDouble height)
+	: m_text(text), m_size(width, height)
+{
+}
+
 void wxChartLabel::Draw(wxDouble x, 
 						wxDouble y, 
 						wxGraphicsContext &gc)
