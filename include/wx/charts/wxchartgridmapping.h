@@ -44,7 +44,8 @@ public:
 	wxChartGridMapping(const wxSize &size,
 		unsigned int numberOfVerticalLines);
 
-	void Fit(wxDouble startPoint, wxDouble endPoint);
+	void Fit(wxDouble leftPadding, wxDouble startPoint, 
+		wxDouble endPoint);
 	void SetLeftPadding(wxDouble padding);
 
 	const wxSize& GetSize() const;

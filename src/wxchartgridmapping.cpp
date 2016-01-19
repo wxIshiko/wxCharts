@@ -41,9 +41,11 @@ wxChartGridMapping::wxChartGridMapping(const wxSize &size,
 {
 }
 
-void wxChartGridMapping::Fit(wxDouble startPoint,
+void wxChartGridMapping::Fit(wxDouble leftPadding, 
+							 wxDouble startPoint,
 							 wxDouble endPoint)
 {
+	m_leftPadding = leftPadding;
 	m_startPoint = startPoint;
 	m_endPoint = endPoint;
 }

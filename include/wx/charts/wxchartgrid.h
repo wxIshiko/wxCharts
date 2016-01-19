@@ -64,8 +64,8 @@ private:
 		wxDouble stepValue, wxGraphicsContext &gc, const wxFont &font,
 		wxVector<wxChartLabel> &yLabels, wxDouble &yLabelMaxWidth);
 	static void CalculateXLabelRotation(wxVector<wxChartLabel> &xLabels, 
-		wxDouble yLabelMaxWidth, wxGraphicsContext &gc, 
-		const wxFont &font, wxChartGridMapping &mapping);
+		wxDouble startPoint, wxDouble endPoint, wxDouble yLabelMaxWidth, 
+		wxGraphicsContext &gc, const wxFont &font, wxChartGridMapping &mapping);
 	wxDouble CalculateLabelPosition(size_t index);
 
 private:
