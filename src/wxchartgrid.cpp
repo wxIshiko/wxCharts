@@ -184,7 +184,7 @@ void wxChartGrid::Fit(wxDouble minValue,
 
 
 	BuildYLabels(minValue, steps, gc, font);
-	CalculateXLabelRotation(m_xLabels, m_yLabelMaxWidth, gc, font);
+	CalculateXLabelRotation(m_xLabels, m_yLabelMaxWidth, gc, font,m_mapping);
 
 	m_needsFit = false;
 }
@@ -218,27 +218,28 @@ void wxChartGrid::BuildYLabels(wxDouble minValue,
 	m_yLabelMaxWidth += 10;
 }
 
-void wxChartGrid::CalculateXLabelRotation(const wxVector<wxChartLabel> &xLabels,
+void wxChartGrid::CalculateXLabelRotation(wxVector<wxChartLabel> &xLabels,
 										  wxDouble yLabelMaxWidth,
 										  wxGraphicsContext &gc,
-										  const wxFont &font)
+										  const wxFont &font,
+										  wxChartGridMapping &mapping)
 {
 	for (size_t i = 0; i < xLabels.size(); ++i)
 	{
 		wxDouble labelWidth;
 		wxDouble labelHeight;
 		wxChartUtilities::GetTextSize(gc, font, xLabels[i].GetText(), labelWidth, labelHeight);
-		m_xLabels[i].SetSize(labelWidth, labelHeight);
+		xLabels[i].SetSize(labelWidth, labelHeight);
 	}
 
 	// Either the first x label or any of the y labels can be the widest
 	// so they are all taken into account to compute the left padding
 	wxDouble leftPadding = yLabelMaxWidth;
-	if ((m_xLabels.size() > 0) && ((m_xLabels[0].GetSize().GetWidth() / 2) > leftPadding))
+	if ((xLabels.size() > 0) && ((xLabels[0].GetSize().GetWidth() / 2) > leftPadding))
 	{
-		leftPadding = (m_xLabels[0].GetSize().GetWidth() / 2);
+		leftPadding = (xLabels[0].GetSize().GetWidth() / 2);
 	}
-	m_mapping.SetLeftPadding(leftPadding);
+	mapping.SetLeftPadding(leftPadding);
 }
 
 wxDouble wxChartGrid::CalculateLabelPosition(size_t index)
