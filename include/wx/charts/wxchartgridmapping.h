@@ -51,6 +51,10 @@ public:
 	const wxSize& GetSize() const;
 	void SetSize(const wxSize &size);
 	wxDouble GetLeftPadding() const;
+	wxDouble GetMinValue() const;
+	void SetMinValue(wxDouble minValue);
+	wxDouble GetMaxValue() const;
+	void SetMaxValue(wxDouble maxValue);
 	wxDouble GetStartPoint() const;
 	wxDouble GetEndPoint() const;
 
@@ -63,6 +67,8 @@ private:
 	wxDouble m_leftPadding;
 	wxDouble m_startPoint;
 	wxDouble m_endPoint;
+	wxDouble m_minValue;
+	wxDouble m_maxValue;
 	unsigned int m_numberOfVerticalLines;
 };
 

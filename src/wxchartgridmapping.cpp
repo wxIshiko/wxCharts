@@ -36,6 +36,7 @@
 wxChartGridMapping::wxChartGridMapping(const wxSize &size,
 									   unsigned int numberOfVerticalLines)
 	: m_size(size), m_leftPadding(0),
+	m_minValue(0), m_maxValue(0),
 	m_startPoint(0), m_endPoint(0),
 	m_numberOfVerticalLines(numberOfVerticalLines)
 {
@@ -70,6 +71,26 @@ wxDouble wxChartGridMapping::GetLeftPadding() const
 	return m_leftPadding;
 }
 
+wxDouble wxChartGridMapping::GetMinValue() const
+{
+	return m_minValue;
+}
+
+void wxChartGridMapping::SetMinValue(wxDouble minValue)
+{
+	m_minValue = minValue;
+}
+
+wxDouble wxChartGridMapping::GetMaxValue() const
+{
+	return m_maxValue;
+}
+
+void wxChartGridMapping::SetMaxValue(wxDouble maxValue)
+{
+	m_maxValue = maxValue;
+}
+
 wxDouble wxChartGridMapping::GetStartPoint() const
 {
 	return m_startPoint;
@@ -96,7 +117,10 @@ wxPoint2DDouble wxChartGridMapping::GetPointPosition(size_t index,
 {
 	wxDouble innerWidth = m_size.GetWidth() - m_leftPadding;
 	wxDouble valueWidth = innerWidth / m_numberOfVerticalLines;
-	wxDouble valueOffset = m_leftPadding + (valueWidth * index);
+	wxDouble x = m_leftPadding + (valueWidth * index);
 
-	return wxPoint2DDouble(valueOffset, 50);
+	wxDouble scalingFactor = 10;// this.drawingArea() / (this.min - this.max);
+	wxDouble y  = m_endPoint - (scalingFactor * (value - m_minValue));
+
+	return wxPoint2DDouble(x, y);
 }

@@ -41,25 +41,27 @@ wxChartGrid::wxChartGrid(const wxSize &size,
 						 wxDouble maxValue,
 						 const wxChartGridOptions& options)
 	: m_options(options), m_mapping(size, labels.size()), 
-	m_yLabelMaxWidth(0), m_startYValue(minValue),
-	m_needsFit(true)
+	m_yLabelMaxWidth(0), m_needsFit(true)
 {
 	for (size_t i = 0; i < labels.size(); ++i)
 	{
 		m_xLabels.push_back(wxChartLabel(labels[i]));
 	}
 
+	wxDouble graphMinValue;
 	wxDouble graphMaxValue;
 	wxDouble valueRange = 0;
 	wxChartUtilities::CalculateGridRange(minValue, maxValue, 
-		m_startYValue, graphMaxValue, valueRange, m_steps, m_stepValue);
+		graphMinValue, graphMaxValue, valueRange, m_steps, m_stepValue);
+	m_mapping.SetMinValue(graphMinValue);
+	m_mapping.SetMaxValue(graphMaxValue);
 }
 
 void wxChartGrid::Draw(wxGraphicsContext &gc)
 {
 	wxFont font(wxSize(0, m_options.GetFontSize()), 
 		m_options.GetFontFamily(), m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
-	Fit(m_startYValue, m_steps, gc, font);
+	Fit(m_steps, gc, font);
 
 	wxDouble yLabelGap = (m_mapping.GetEndPoint() - m_mapping.GetStartPoint()) / m_steps;
 	wxDouble xStart = m_mapping.GetLeftPadding();
@@ -164,8 +166,7 @@ const wxChartGridMapping& wxChartGrid::GetMapping() const
 	return m_mapping;
 }
 
-void wxChartGrid::Fit(wxDouble minValue, 
-					  size_t steps,
+void wxChartGrid::Fit(size_t steps,
 					  wxGraphicsContext &gc,
 					  const wxFont &font)
 {
@@ -182,7 +183,7 @@ void wxChartGrid::Fit(wxDouble minValue,
 	//this.endPoint -= this.padding;
 
 
-	BuildYLabels(minValue, steps, m_stepValue, gc, font, m_yLabels, m_yLabelMaxWidth);
+	BuildYLabels(m_mapping.GetMinValue(), steps, m_stepValue, gc, font, m_yLabels, m_yLabelMaxWidth);
 	CalculateXLabelSizes(m_xLabels, gc, font);
 
 	wxDouble leftPadding = CalculateLeftPadding(m_xLabels, m_yLabelMaxWidth);

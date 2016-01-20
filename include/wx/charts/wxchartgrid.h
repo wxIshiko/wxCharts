@@ -58,8 +58,7 @@ public:
 	const wxChartGridMapping& GetMapping() const;
 
 private:
-	void Fit(wxDouble minValue, size_t steps, 
-		wxGraphicsContext &gc, const wxFont &font);
+	void Fit(size_t steps, wxGraphicsContext &gc, const wxFont &font);
 	static void BuildYLabels(wxDouble minValue, size_t steps, 
 		wxDouble stepValue, wxGraphicsContext &gc, const wxFont &font,
 		wxVector<wxChartLabel> &yLabels, wxDouble &yLabelMaxWidth);
@@ -75,7 +74,6 @@ private:
 	wxVector<wxChartLabel> m_xLabels;
 	wxVector<wxChartLabel> m_yLabels;
 	wxDouble m_yLabelMaxWidth;
-	wxDouble m_startYValue;
 	// The number of steps on the Y-axis
 	size_t m_steps;
 	wxDouble m_stepValue;
