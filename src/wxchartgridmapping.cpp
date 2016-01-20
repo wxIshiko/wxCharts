@@ -119,7 +119,7 @@ wxPoint2DDouble wxChartGridMapping::GetPointPosition(size_t index,
 	wxDouble valueWidth = innerWidth / m_numberOfVerticalLines;
 	wxDouble x = m_leftPadding + (valueWidth * index);
 
-	wxDouble scalingFactor = 10;// this.drawingArea() / (this.min - this.max);
+	wxDouble scalingFactor = ((m_endPoint - m_startPoint) / (m_maxValue - m_minValue));
 	wxDouble y  = m_endPoint - (scalingFactor * (value - m_minValue));
 
 	return wxPoint2DDouble(x, y);

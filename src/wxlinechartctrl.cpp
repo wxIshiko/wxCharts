@@ -38,7 +38,8 @@
 wxLineChartDataset::wxLineChartDataset(const wxColor &dotColor,
 									   const wxColor &dotStrokeColor,
 									   const wxVector<wxDouble> &data)
-	: m_dotColor(dotColor), m_dotStrokeColor(dotStrokeColor), m_data(data)
+	: m_dotColor(dotColor), m_dotStrokeColor(dotStrokeColor), 
+	m_showLines(true), m_data(data)
 {
 }
 
@@ -50,6 +51,11 @@ const wxColor& wxLineChartDataset::GetDotColor() const
 const wxColor& wxLineChartDataset::GetDotStrokeColor() const
 {
 	return m_dotStrokeColor;
+}
+
+bool wxLineChartDataset::ShowLines() const
+{
+	return m_showLines;
 }
 
 const wxVector<double>& wxLineChartDataset::GetData() const
@@ -207,6 +213,35 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 	if (gc)
 	{
 		m_grid.Draw(*gc);
+
+		if (true) // TODO : check if dataset ShowLines())
+		{
+			if (m_points.size() > 0)
+			{
+				wxGraphicsPath path = gc->CreatePath();
+
+				const PointClass::ptr& point = m_points[0];
+				wxPoint2DDouble position = m_grid.GetMapping().GetPointPosition(0, point->GetValue());
+				path.MoveToPoint(position);
+
+				for (size_t i = 1; i < m_points.size(); ++i)
+				{
+					const PointClass::ptr& point = m_points[i];
+					wxPoint2DDouble position = m_grid.GetMapping().GetPointPosition(i, point->GetValue());
+					path.AddLineToPoint(position);
+				}
+
+				//path.CloseSubpath();
+
+				//wxBrush brush(m_fillColor);
+				//gc.SetBrush(brush);
+				//gc.FillPath(path);
+
+				wxPen pen(*wxBLUE, 2);
+				gc->SetPen(pen);
+				gc->StrokePath(path);
+			}
+		}
 
 		for (size_t i = 0; i < m_points.size(); ++i)
 		{

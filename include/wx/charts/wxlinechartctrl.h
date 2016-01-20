@@ -51,11 +51,13 @@ public:
 
 	const wxColor& GetDotColor() const;
 	const wxColor& GetDotStrokeColor() const;
+	bool ShowLines() const;
 	const wxVector<wxDouble>& GetData() const;
 
 private:
 	wxColor m_dotColor;
 	wxColor m_dotStrokeColor;
+	bool m_showLines;
 	wxVector<wxDouble> m_data;
 };
 
