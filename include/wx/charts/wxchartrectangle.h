@@ -33,6 +33,8 @@ public:
 	wxChartRectangle(wxDouble x, wxDouble y, 
 		const wxChartRectangleOptions &options);
 
+	virtual bool HitTest(const wxPoint &point) const;
+
 	void Draw(wxGraphicsContext &gc);
 
 private:

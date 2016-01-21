@@ -50,6 +50,11 @@ wxChartRadialGrid::wxChartRadialGrid(const wxSize &size,
 	BuildYLabels(m_steps);
 }
 
+bool wxChartRadialGrid::HitTest(const wxPoint &point) const
+{
+	return false;
+}
+
 void wxChartRadialGrid::Draw(wxGraphicsContext &gc)
 {
 	switch (m_options.GetStyle())

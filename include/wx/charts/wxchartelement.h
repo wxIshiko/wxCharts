@@ -23,6 +23,8 @@
 #ifndef _WX_CHARTS_WXCHARTELEMENT_H_
 #define _WX_CHARTS_WXCHARTELEMENT_H_
 
+#include <wx/gdicmn.h>
+
 /// This is the base class for chart elements.
 
 /// Chart elements are building blocks (arc, rectangles, labels...)
@@ -34,6 +36,8 @@ class wxChartElement
 public:
 	/// Constructs a new wxChartElement instance.
 	wxChartElement();
+
+	virtual bool HitTest(const wxPoint &point) const = 0;
 };
 
 #endif

@@ -34,6 +34,8 @@ public:
 		unsigned int strokeWidth, const wxColor &strokeColor, 
 		const wxColor &fillColor);
 
+	virtual bool HitTest(const wxPoint &point) const;
+
 	void Draw(wxGraphicsContext &gc);
 
 	void SetPosition(wxDouble x, wxDouble y);

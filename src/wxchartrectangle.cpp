@@ -40,6 +40,11 @@ wxChartRectangle::wxChartRectangle(wxDouble x,
 {
 }
 
+bool wxChartRectangle::HitTest(const wxPoint &point) const
+{
+	return false;
+}
+
 void wxChartRectangle::Draw(wxGraphicsContext &gc)
 {
 	wxGraphicsPath path = gc.CreatePath();

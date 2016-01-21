@@ -53,6 +53,8 @@ public:
 		wxDouble minValue, wxDouble maxValue,
 		const wxChartGridOptions& options);
 
+	virtual bool HitTest(const wxPoint &point) const;
+
 	void Draw(wxGraphicsContext &gc);
 
 	void Resize(const wxSize &size);

@@ -60,6 +60,8 @@ public:
 		wxDouble endAngle, wxDouble outerRadius, wxDouble innerRadius,
 		unsigned int strokeWidth, const wxColor &fillColor);
 
+	virtual bool HitTest(const wxPoint &point) const;
+
 	void Draw(wxGraphicsContext &gc);
 
 	void SetCenter(wxDouble x, wxDouble y);
@@ -68,7 +70,6 @@ public:
 
 	unsigned int GetStrokeWidth() const;
 
-	bool HitTest(const wxPoint &point) const;
 	wxPoint2DDouble GetTooltipPosition() const;
 
 private:

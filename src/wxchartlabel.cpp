@@ -34,6 +34,11 @@ wxChartLabel::wxChartLabel(const wxString &text,
 {
 }
 
+bool wxChartLabel::HitTest(const wxPoint &point) const
+{
+	return false;
+}
+
 void wxChartLabel::Draw(wxDouble x, 
 						wxDouble y, 
 						wxGraphicsContext &gc)

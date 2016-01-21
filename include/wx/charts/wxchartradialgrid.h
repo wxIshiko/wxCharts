@@ -47,6 +47,8 @@ public:
 	wxChartRadialGrid(const wxSize &size, wxDouble minValue,
 		wxDouble maxValue, const wxChartRadialGridOptions& options);
 
+	virtual bool HitTest(const wxPoint &point) const;
+
 	void Draw(wxGraphicsContext &gc);
 
 	void Resize(const wxSize &size);

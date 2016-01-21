@@ -34,6 +34,8 @@ public:
 	wxChartLabel(const wxString &text, wxDouble width,
 		wxDouble height);
 
+	virtual bool HitTest(const wxPoint &point) const;
+
 	void Draw(wxDouble x, wxDouble y, 
 		wxGraphicsContext &gc);
 

@@ -45,6 +45,11 @@ wxChartPoint::wxChartPoint(wxDouble x,
 {
 }
 
+bool wxChartPoint::HitTest(const wxPoint &point) const
+{
+	return false;
+}
+
 void wxChartPoint::Draw(wxGraphicsContext &gc)
 {
 	wxGraphicsPath path = gc.CreatePath();

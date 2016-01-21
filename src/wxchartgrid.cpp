@@ -57,6 +57,11 @@ wxChartGrid::wxChartGrid(const wxSize &size,
 	m_mapping.SetMaxValue(graphMaxValue);
 }
 
+bool wxChartGrid::HitTest(const wxPoint &point) const
+{
+	return false;
+}
+
 void wxChartGrid::Draw(wxGraphicsContext &gc)
 {
 	wxFont font(wxSize(0, m_options.GetFontSize()), 
