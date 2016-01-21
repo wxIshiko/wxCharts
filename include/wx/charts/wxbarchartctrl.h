@@ -51,6 +51,7 @@ private:
 	wxVector<wxString> m_labels;
 };
 
+/// A control that displays a bar chart.
 class wxBarChartCtrl : public wxChartCtrl
 {
 public:

@@ -40,9 +40,11 @@
 #include "wxchartlabel.h"
 #include <wx/graphics.h>
 
-// This class represents the grid displayed in the background
-// of some of the chart controls like for instance line and 
-// bar charts.
+/// This class is used to display a grid.
+
+/// It represents the grid displayed in the background
+/// of some of the chart controls like for instance line and 
+/// bar charts.
 class wxChartGrid : public wxChartElement
 {
 public:

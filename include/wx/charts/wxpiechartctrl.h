@@ -39,6 +39,7 @@ private:
 	wxVector<wxChartSliceData> m_slices;
 };
 
+/// A control that displays a pie chart.
 class wxPieChartCtrl : public wxDoughnutAndPieChartBase
 {
 public:

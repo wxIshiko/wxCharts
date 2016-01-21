@@ -27,12 +27,24 @@
 #include "wxcharttooltipprovider.h"
 #include <wx/graphics.h>
 
+/// This class is used to display a tooltip.
+
+/// Charts can display tooltips in response to a user
+/// action (e.g. hoverin with the mouse over some part
+/// of the chart). This class implements such 
+/// tooltips.
 class wxChartTooltip
 {
 public:
+	/// Constructs a new wxChartTooltip instance.
+	/// @param position The position of the tooltip.
+	/// @param text The text to display in the tooltip.
 	wxChartTooltip(const wxPoint2DDouble &position,
 		const wxString &text);
 
+	/// Draws the tooltip using the graphics context passed
+	/// in as argument.
+	/// @param gc The graphics context.
 	void Draw(wxGraphicsContext &gc);
 
 private:

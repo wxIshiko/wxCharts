@@ -49,6 +49,7 @@ private:
 	wxVector<wxString> m_labels;
 };
 
+/// A control that displays a radar chart.
 class wxRadarChartCtrl : public wxChartCtrl
 {
 public:

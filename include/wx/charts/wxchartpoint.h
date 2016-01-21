@@ -26,6 +26,7 @@
 #include "wxchartelement.h"
 #include <wx/graphics.h>
 
+/// This class is used to display points on a chart.
 class wxChartPoint : public wxChartElement
 {
 public:

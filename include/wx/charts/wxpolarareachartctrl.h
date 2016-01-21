@@ -52,6 +52,7 @@ private:
 	wxVector<wxChartSliceData> m_slices;
 };
 
+/// A control that displays a polar area chart.
 class wxPolarAreaChartCtrl : public wxChartCtrl
 {
 public:

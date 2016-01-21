@@ -23,9 +23,16 @@
 #ifndef _WX_CHARTS_WXCHARTELEMENT_H_
 #define _WX_CHARTS_WXCHARTELEMENT_H_
 
+/// This is the base class for chart elements.
+
+/// Chart elements are building blocks (arc, rectangles, labels...)
+/// that can be used to build charts. These are not visible to
+/// users of the charts, they are there for people implementing
+/// charts.
 class wxChartElement
 {
 public:
+	/// Constructs a new wxChartElement instance.
 	wxChartElement();
 };
 
