@@ -22,12 +22,12 @@
 
 #include "wxpolarareachartoptions.h"
 
-wxPolarAreaChartCtrlOptions::wxPolarAreaChartCtrlOptions()
+wxPolarAreaChartOptions::wxPolarAreaChartOptions()
 	: m_gridOptions(wxCHARTRADIALGRIDSTYLE_CIRCULAR)
 {
 }
 
-const wxChartRadialGridOptions& wxPolarAreaChartCtrlOptions::GetGridOptions() const
+const wxChartRadialGridOptions& wxPolarAreaChartOptions::GetGridOptions() const
 {
 	return m_gridOptions;
 }

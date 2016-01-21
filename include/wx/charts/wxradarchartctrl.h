@@ -38,11 +38,16 @@
 #include "wxradarchartoptions.h"
 #include "wxchartradialgrid.h"
 
+/// Data for the wxRadarChartCtrl.
 class wxRadarChartData
 {
 public:
+	/// Constructs a wxRadarChartData instance.
 	wxRadarChartData(const wxVector<wxString> &labels);
 
+	/// Gets the labels of the X axis.
+	/// @return A vector containing the labels of the
+	/// X axis.
 	const wxVector<wxString>& GetLabels() const;
 
 private:
@@ -78,7 +83,7 @@ private:
 	void OnPaint(wxPaintEvent &evt);
 
 private:
-	wxRadarChartCtrlOptions m_options;
+	wxRadarChartOptions m_options;
 	wxChartRadialGrid m_grid;
 
 	DECLARE_EVENT_TABLE();

@@ -25,11 +25,15 @@
 
 #include "wxchartradialgridoptions.h"
 
-class wxPolarAreaChartCtrlOptions
+/// The options for the wxPolarAreaChartCtrl control.
+class wxPolarAreaChartOptions
 {
 public:
-	wxPolarAreaChartCtrlOptions();
+	/// Constructs a wxPolarAreaChartOptions instance.
+	wxPolarAreaChartOptions();
 
+	/// Gets the options for the grid.
+	/// @return The options for the grid.
 	const wxChartRadialGridOptions& GetGridOptions() const;
 
 private:

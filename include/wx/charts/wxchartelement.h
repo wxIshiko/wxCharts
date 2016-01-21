@@ -37,6 +37,11 @@ public:
 	/// Constructs a new wxChartElement instance.
 	wxChartElement();
 
+	/// Elements can be activated with the mouse. This function
+	/// checks whether the mouse is in the activation zone for 
+	/// this element.
+	/// @param point The position of the mouse.
+	/// @return Whether the mouse is in the activation zone.
 	virtual bool HitTest(const wxPoint &point) const = 0;
 };
 

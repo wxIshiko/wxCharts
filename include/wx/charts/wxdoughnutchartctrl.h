@@ -26,6 +26,7 @@
 #include "wxdoughnutandpiechartbase.h"
 #include "wxdoughnutchartoptions.h"
 
+/// Data for the wxDoughnutChartCtrl.
 class wxDoughnutChartData
 {
 public:

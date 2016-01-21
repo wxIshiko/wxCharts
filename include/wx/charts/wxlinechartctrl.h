@@ -61,6 +61,7 @@ private:
 	wxVector<wxDouble> m_data;
 };
 
+/// Data for the wxLineChartCtrl.
 class wxLineChartData
 {
 public:

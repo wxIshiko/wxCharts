@@ -39,6 +39,7 @@
 #include "wxpolarareachartoptions.h"
 #include "wxchartradialgrid.h"
 
+/// Data for the wxPolarAreaChartCtrl.
 class wxPolarAreaChartData
 {
 public:
@@ -86,7 +87,7 @@ private:
 	void OnPaint(wxPaintEvent &evt);
 
 private:
-	wxPolarAreaChartCtrlOptions m_options;
+	wxPolarAreaChartOptions m_options;
 	wxChartRadialGrid m_grid;
 	wxVector<wxChartSliceData> m_slices;
 

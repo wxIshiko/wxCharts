@@ -40,11 +40,16 @@
 #include "wxchartrectangle.h"
 #include <wx/sharedptr.h>
 
+/// Data for the wxBarChartCtrl.
 class wxBarChartData
 {
 public:
+	/// Constructs a wxBarChartData instance.
 	wxBarChartData(const wxVector<wxString> &labels);
 
+	/// Gets the labels of the X axis.
+	/// @return A vector containing the labels of the
+	/// X axis.
 	const wxVector<wxString>& GetLabels() const;
 
 private:
