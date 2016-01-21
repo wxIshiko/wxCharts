@@ -34,7 +34,7 @@
 #ifndef _WX_CHARTS_WXRADARCHARTCTRL_H_
 #define _WX_CHARTS_WXRADARCHARTCTRL_H_
 
-#include "wxchart.h"
+#include "wxchartctrl.h"
 #include "wxradarchartoptions.h"
 #include "wxchartradialgrid.h"
 
@@ -49,7 +49,7 @@ private:
 	wxVector<wxString> m_labels;
 };
 
-class wxRadarChartCtrl : public wxChart
+class wxRadarChartCtrl : public wxChartCtrl
 {
 public:
 	wxRadarChartCtrl(wxWindow *parent, wxWindowID id,

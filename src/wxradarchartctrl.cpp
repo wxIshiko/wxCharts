@@ -50,7 +50,7 @@ wxRadarChartCtrl::wxRadarChartCtrl(wxWindow *parent,
 								   const wxPoint &pos,
 								   const wxSize &size,
 								   long style)
-	: wxChart(parent, id, pos, size, style),
+	: wxChartCtrl(parent, id, pos, size, style),
 	m_grid(size, GetMinValue(), GetMaxValue(),
 	m_options.GetGridOptions())
 {
@@ -88,6 +88,6 @@ void wxRadarChartCtrl::OnPaint(wxPaintEvent &evt)
 	}
 }
 
-BEGIN_EVENT_TABLE(wxRadarChartCtrl, wxChart)
+BEGIN_EVENT_TABLE(wxRadarChartCtrl, wxChartCtrl)
 	EVT_PAINT(wxRadarChartCtrl::OnPaint)
 END_EVENT_TABLE()

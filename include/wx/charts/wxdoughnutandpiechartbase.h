@@ -34,7 +34,7 @@
 #ifndef _WX_CHARTS_WXDOUGHNUTANDPIECHARTBASE_H_
 #define _WX_CHARTS_WXDOUGHNUTANDPIECHARTBASE_H_
 
-#include "wxchart.h"
+#include "wxchartctrl.h"
 #include "wxchartslicedata.h"
 #include "wxdoughnutandpiechartoptionsbase.h"
 #include "wxchartarc.h"
@@ -45,7 +45,7 @@
 // a common base class. It would actually be possible to
 // only have the doughnut classes but I usually favor
 // ease of use over ease of implementation.
-class wxDoughnutAndPieChartBase : public wxChart
+class wxDoughnutAndPieChartBase : public wxChartCtrl
 {
 public:
 	wxDoughnutAndPieChartBase(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,

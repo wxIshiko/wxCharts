@@ -34,7 +34,7 @@
 #ifndef _WX_CHARTS_WXBARCHARTCTRL_H_
 #define _WX_CHARTS_WXBARCHARTCTRL_H_
 
-#include "wxchart.h"
+#include "wxchartctrl.h"
 #include "wxbarchartoptions.h"
 #include "wxchartgrid.h"
 #include "wxchartrectangle.h"
@@ -51,7 +51,7 @@ private:
 	wxVector<wxString> m_labels;
 };
 
-class wxBarChartCtrl : public wxChart
+class wxBarChartCtrl : public wxChartCtrl
 {
 public:
 	wxBarChartCtrl(wxWindow *parent, wxWindowID id, const wxBarChartData &data,

@@ -55,7 +55,7 @@ wxPolarAreaChartCtrl::wxPolarAreaChartCtrl(wxWindow *parent,
 										   const wxPoint &pos,
 										   const wxSize &size,
 										   long style)
-	: wxChart(parent, id, pos, size, style), 
+	: wxChartCtrl(parent, id, pos, size, style), 
 	m_grid(size, GetMinValue(data.GetSlices()), GetMaxValue(data.GetSlices()),
 	m_options.GetGridOptions())
 {
@@ -136,6 +136,6 @@ void wxPolarAreaChartCtrl::OnPaint(wxPaintEvent &evt)
 	}
 }
 
-BEGIN_EVENT_TABLE(wxPolarAreaChartCtrl, wxChart)
+BEGIN_EVENT_TABLE(wxPolarAreaChartCtrl, wxChartCtrl)
 	EVT_PAINT(wxPolarAreaChartCtrl::OnPaint)
 END_EVENT_TABLE()

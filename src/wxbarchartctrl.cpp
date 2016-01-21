@@ -93,7 +93,7 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 							   const wxPoint &pos,
 							   const wxSize &size,
 							   long style)
-	: wxChart(parent, id, pos, size, style), 
+	: wxChartCtrl(parent, id, pos, size, style), 
 	m_grid(size, data.GetLabels(), 0, 0, m_options.GetGridOptions())
 {
 }
@@ -136,6 +136,6 @@ void wxBarChartCtrl::OnPaint(wxPaintEvent &evt)
 	}
 }
 
-BEGIN_EVENT_TABLE(wxBarChartCtrl, wxChart)
+BEGIN_EVENT_TABLE(wxBarChartCtrl, wxChartCtrl)
 	EVT_PAINT(wxBarChartCtrl::OnPaint)
 END_EVENT_TABLE()

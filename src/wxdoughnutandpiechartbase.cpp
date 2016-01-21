@@ -76,7 +76,7 @@ wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(wxWindow *parent,
 													 const wxPoint &pos,
 													 const wxSize &size,
 													 long style)
-	: wxChart(parent, id, pos, size, style), m_total(0),
+	: wxChartCtrl(parent, id, pos, size, style), m_total(0),
 	m_mouseInWindow(false)
 {
 }
@@ -198,7 +198,7 @@ void wxDoughnutAndPieChartBase::OnMouseExit(wxMouseEvent& evt)
 	}
 }
 
-BEGIN_EVENT_TABLE(wxDoughnutAndPieChartBase, wxChart)
+BEGIN_EVENT_TABLE(wxDoughnutAndPieChartBase, wxChartCtrl)
 	EVT_PAINT(wxDoughnutAndPieChartBase::OnPaint)
 	EVT_ENTER_WINDOW(wxDoughnutAndPieChartBase::OnMouseEnter)
 	EVT_MOTION(wxDoughnutAndPieChartBase::OnMouseOver)

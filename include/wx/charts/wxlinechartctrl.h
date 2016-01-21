@@ -34,7 +34,7 @@
 #ifndef _WX_CHARTS_WXLINECHARTCTRL_H_
 #define _WX_CHARTS_WXLINECHARTCTRL_H_
 
-#include "wxchart.h"
+#include "wxchartctrl.h"
 #include "wxlinechartoptions.h"
 #include "wxchartgrid.h"
 #include "wxchartpoint.h"
@@ -77,7 +77,7 @@ private:
 };
 
 /// A control that displays a line chart.
-class wxLineChartCtrl : public wxChart
+class wxLineChartCtrl : public wxChartCtrl
 {
 public:
 	/// Constructs a wxLineChartCtrl control.

@@ -120,7 +120,7 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 								 const wxPoint &pos,
 								 const wxSize &size,
 								 long style)
-	: wxChart(parent, id, pos, size, style), 
+	: wxChartCtrl(parent, id, pos, size, style), 
 	m_grid(size, data.GetLabels(), GetMinValue(data.GetDatasets()),
 	GetMaxValue(data.GetDatasets()), m_options.GetGridOptions())
 {
@@ -134,7 +134,7 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 								 const wxPoint &pos,
 								 const wxSize &size, 
 								 long style)
-	: wxChart(parent, id, pos, size, style), m_options(options),
+	: wxChartCtrl(parent, id, pos, size, style), m_options(options),
 	m_grid(size, data.GetLabels(), GetMinValue(data.GetDatasets()),
 	GetMaxValue(data.GetDatasets()), m_options.GetGridOptions())
 {
@@ -272,6 +272,6 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 	}
 }
 
-BEGIN_EVENT_TABLE(wxLineChartCtrl, wxChart)
+BEGIN_EVENT_TABLE(wxLineChartCtrl, wxChartCtrl)
 	EVT_PAINT(wxLineChartCtrl::OnPaint)
 END_EVENT_TABLE()

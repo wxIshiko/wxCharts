@@ -34,7 +34,7 @@
 #ifndef _WX_CHARTS_WXPOLARAREACHARTCTRL_H_
 #define _WX_CHARTS_WXPOLARAREACHARTCTRL_H_
 
-#include "wxchart.h"
+#include "wxchartctrl.h"
 #include "wxchartslicedata.h"
 #include "wxpolarareachartoptions.h"
 #include "wxchartradialgrid.h"
@@ -52,7 +52,7 @@ private:
 	wxVector<wxChartSliceData> m_slices;
 };
 
-class wxPolarAreaChartCtrl : public wxChart
+class wxPolarAreaChartCtrl : public wxChartCtrl
 {
 public:
 	wxPolarAreaChartCtrl(wxWindow *parent, wxWindowID id, const wxPolarAreaChartData &data,

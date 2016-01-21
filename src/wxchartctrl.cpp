@@ -20,20 +20,20 @@
 	IN THE SOFTWARE.
 */
 
-#include "wxchart.h"
+#include "wxchartctrl.h"
 
-wxChart::wxChart(wxWindow *parent,
-				 wxWindowID id,
-				 const wxPoint &pos,
-				 const wxSize &size,
-				 long style)
+wxChartCtrl::wxChartCtrl(wxWindow *parent,
+						 wxWindowID id,
+						 const wxPoint &pos,
+						 const wxSize &size,
+						 long style)
 	: wxControl(parent, id, pos, size, style)
 {
 	SetBackgroundStyle(wxBG_STYLE_PAINT);
 	SetBackgroundColour(*wxWHITE);
 }
 
-void wxChart::OnSize(wxSizeEvent& evt)
+void wxChartCtrl::OnSize(wxSizeEvent& evt)
 {
 	if (m_options.IsResponsive())
 	{
@@ -42,6 +42,6 @@ void wxChart::OnSize(wxSizeEvent& evt)
 	}
 }
 
-BEGIN_EVENT_TABLE(wxChart, wxControl)
-	EVT_SIZE(wxChart::OnSize)
+BEGIN_EVENT_TABLE(wxChartCtrl, wxControl)
+	EVT_SIZE(wxChartCtrl::OnSize)
 END_EVENT_TABLE()
