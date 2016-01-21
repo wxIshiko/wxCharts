@@ -77,7 +77,7 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxchart.h">
+    <ClInclude Include="..\..\include\wx\charts\wxchartctrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxbarchartoptions.h">
@@ -184,7 +184,7 @@
     <ClCompile Include="..\..\src\wxchartoptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchart.cpp">
+    <ClCompile Include="..\..\src\wxchartctrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxbarchartoptions.cpp">
