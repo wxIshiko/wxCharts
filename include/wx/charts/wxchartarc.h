@@ -37,11 +37,25 @@
 #include "wxchartelement.h"
 #include <wx/graphics.h>
 
-// This class is used to draw one of the segments of a circular chart
-// e.g. a pie chart or a doughnut chart.
+/// This class is used to draw one of the segments of a circular chart e.g. a pie chart or a doughnut chart.
 class wxChartArc : public wxChartElement
 {
 public:
+	/// Constructs a wxChartArc element. The arc is defined by the 
+	/// coordinates of its centre (x, y), its inner radius and its 
+	/// outer radius. The arc goes from the starting angle startAngle
+	/// to endAngle clockwise. The angles are measured in radians but,
+	/// contrary to the usual mathematical convention, are always 
+	/// clockwise from the horizontal axis.
+	/// @param x The x coordinate of the center of the arc.
+	/// @param y The y coordinate of the center of the arc.
+	/// @param startAngle The angle (in radians) at which the arc starts.
+	/// @param endAngle The angle (in radians) at which the arc ends.
+	/// @param outerRadius The outer radius of the arc.
+	/// @param innerRadius The inner radius of the arc. This can be 0.
+	/// @param strokeWidth The width of the pen used to draw the contour
+	/// of the arc.
+	/// @param fillColor The color of the brush used to fill the arc.
 	wxChartArc(wxDouble x, wxDouble y, wxDouble startAngle,
 		wxDouble endAngle, wxDouble outerRadius, wxDouble innerRadius,
 		unsigned int strokeWidth, const wxColor &fillColor);

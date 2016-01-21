@@ -26,11 +26,11 @@
 #include <wx/colour.h>
 #include <wx/font.h>
 
-// Class holding the options for the wxChartGrid
-// element
+/// The options for the wxChartGrid element.
 class wxChartGridOptions
 {
 public:
+	/// Constructs a wxChartGridOptions instance.
 	wxChartGridOptions();
 	wxChartGridOptions(bool offsetGridLines);
 
@@ -45,9 +45,18 @@ public:
 	const wxColor& GetGridLineColor() const;
 	bool OffsetGridLines() const;
 
+	/// Gets the font family to be used for 
+	/// the labels on the X and Y axes.
+	/// @return The font family.
 	wxFontFamily GetFontFamily() const;
 	int GetFontSize() const;
+	/// Gets the font style to be used for 
+	/// the labels on the X and Y axes.
+	/// @return The font style.
 	wxFontStyle GetFontStyle() const;
+	/// Gets the font color to be used for 
+	/// the labels on the X and Y axes.
+	/// @return The font color.
 	const wxColor& GetFontColor() const;
 
 private:

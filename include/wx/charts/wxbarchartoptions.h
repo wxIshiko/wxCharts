@@ -25,11 +25,15 @@
 
 #include "wxchartgridoptions.h"
 
+/// The options for the wxBarChartCtrl control.
 class wxBarChartOptions
 {
 public:
+	/// Constructs a wxBarChartOptions instance.
 	wxBarChartOptions();
 
+	/// Gets the options for the grid.
+	/// @return The options for the grid.
 	const wxChartGridOptions& GetGridOptions() const;
 
 private:

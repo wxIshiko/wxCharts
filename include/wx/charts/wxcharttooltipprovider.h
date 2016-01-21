@@ -26,24 +26,32 @@
 #include <wx/string.h>
 #include <wx/sharedptr.h>
 
-// Interface for the classes that are able to generate
-// content for tooltips
+/// Interface for the classes that are able to generate content for tooltips
 class wxChartTooltipProvider
 {
 public:
+	/// Smart pointer typedef.
 	typedef wxSharedPtr<wxChartTooltipProvider> ptr;
 
+	/// Constructs a wxChartTooltipProvider instance.
 	wxChartTooltipProvider();
 
+	/// Gets the text to display in the tooltip.
+	/// @return A wxString containing the text of the tooltip.
 	virtual wxString GetTooltipText() const = 0;
 };
 
-// An implementation of the wxChartTooltipProvider
-// interface where the content is a static string
-// passed in at construction time.
+/// Implementation of the wxChartTooltipProvider interface that simply returns a static string.
+
+/// An implementation of the wxChartTooltipProvider
+/// interface where the content is a static string
+/// passed in at construction time.
 class wxChartTooltipProviderStatic : public wxChartTooltipProvider
 {
 public:
+	/// Constructs a wxChartTooltipProviderStatic instance.
+	/// @param text The text of the tooltip which will be returned by
+	/// the GetTooltipText() function.
 	wxChartTooltipProviderStatic(const wxString &text);
 
 	virtual wxString GetTooltipText() const;
