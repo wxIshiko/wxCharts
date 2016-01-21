@@ -20,13 +20,15 @@
 	IN THE SOFTWARE.
 */
 
+/// @file
+
 #ifndef _WX_CHARTS_WXCHARTPOINT_H_
 #define _WX_CHARTS_WXCHARTPOINT_H_
 
 #include "wxchartelement.h"
 #include <wx/graphics.h>
 
-/// This class is used to display points on a chart.
+/// This class is used to display a point on a chart.
 class wxChartPoint : public wxChartElement
 {
 public:

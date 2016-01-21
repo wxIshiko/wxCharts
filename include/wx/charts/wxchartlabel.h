@@ -20,6 +20,8 @@
 	IN THE SOFTWARE.
 */
 
+/// @file
+
 #ifndef _WX_CHARTS_WXCHARTLABEL_H_
 #define _WX_CHARTS_WXCHARTLABEL_H_
 
@@ -27,10 +29,25 @@
 #include <wx/graphics.h>
 #include <wx/string.h>
 
+/// This class is used to display text on a chart.
+
+/// In addition to the text this class stores
+/// the width and height of the label. However
+/// this class itself is unable to compute them
+/// as that requires a graphics context. The code
+/// that uses this class needs to set and update 
+/// the width and height.
 class wxChartLabel : public wxChartElement
 {
 public:
+	/// Constructs a wxChartLabel element. The width
+	/// and height are set to 0.
+	/// @param text The text to display.
 	wxChartLabel(const wxString &text);
+	/// Constructs a wxChartLabel element.
+	/// @param text The text to display.
+	/// @param width The width of the label.
+	/// @param height The height of the label.
 	wxChartLabel(const wxString &text, wxDouble width,
 		wxDouble height);
 

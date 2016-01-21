@@ -20,6 +20,8 @@
 	IN THE SOFTWARE.
 */
 
+/// @file
+
 #ifndef _WX_CHARTS_WXCHARTTOOLTIP_H_
 #define _WX_CHARTS_WXCHARTTOOLTIP_H_
 

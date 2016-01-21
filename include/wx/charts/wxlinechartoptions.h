@@ -20,14 +20,18 @@
 	IN THE SOFTWARE.
 */
 
+/// @file
+
 #ifndef _WX_CHARTS_WXLINECHARTOPTIONS_H_
 #define _WX_CHARTS_WXLINECHARTOPTIONS_H_
 
 #include "wxchartgridoptions.h"
 
+/// The options for the wxLineChartCtrl control.
 class wxLineChartOptions
 {
 public:
+	/// Constructs a wxLineChartOptions instance.
 	wxLineChartOptions();
 
 	const wxChartGridOptions& GetGridOptions() const;

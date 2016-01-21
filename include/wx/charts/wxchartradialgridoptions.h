@@ -20,23 +20,32 @@
 	IN THE SOFTWARE.
 */
 
+/// @file
+
 #ifndef _WX_CHARTS_WXCHARTRADIALGRIDOPTIONS_H_
 #define _WX_CHARTS_WXCHARTRADIALGRIDOPTIONS_H_
 
 #include <wx/colour.h>
 #include <wx/font.h>
 
+/// Styles for the wxChartRadialGrid element.
 enum wxChartRadialGridStyle
 {
+	/// The grid is a series of concentric circles.
 	wxCHARTRADIALGRIDSTYLE_CIRCULAR = 0,
+	/// The grid is a series of polygons.
 	wxCHARTRADIALGRIDSTYLE_POLYGONAL = 1
 };
 
+/// Options for the wxChartRadialGrid element.
 class wxChartRadialGridOptions
 {
 public:
+	/// Constructs a wxChartRadialGridOptions instance.
 	wxChartRadialGridOptions(wxChartRadialGridStyle style);
 
+	/// Gets the style of the radial grid.
+	/// @return The style of the radial grid.
 	wxChartRadialGridStyle GetStyle() const;
 
 	unsigned int GetLineWidth() const;

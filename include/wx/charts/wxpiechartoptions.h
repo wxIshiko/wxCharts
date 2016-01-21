@@ -20,14 +20,18 @@
 	IN THE SOFTWARE.
 */
 
+/// @file
+
 #ifndef _WX_CHARTS_WXPIECHARTOPTIONS_H_
 #define _WX_CHARTS_WXPIECHARTOPTIONS_H_
 
 #include "wxdoughnutandpiechartoptionsbase.h"
 
+/// The options for the wxPieChartCtrl control.
 class wxPieChartOptions : public wxDoughnutAndPieChartOptionsBase
 {
 public:
+	/// Constructs a wxPieChartOptions instance.
 	wxPieChartOptions();
 
 	void SetSliceStrokeWidth(unsigned int strokeWidth);

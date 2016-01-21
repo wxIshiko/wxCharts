@@ -23,6 +23,8 @@
 #ifndef _WX_CHARTS_WXCHARTSLICEDATA_H_
 #define _WX_CHARTS_WXCHARTSLICEDATA_H_
 
+/// @file
+
 #include <wx/string.h>
 #include <wx/colour.h>
 

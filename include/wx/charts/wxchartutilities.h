@@ -31,11 +31,14 @@
 	https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
+/// @file
+
 #ifndef _WX_CHARTS_WXCHARTUTILITIES_H_
 #define _WX_CHARTS_WXCHARTUTILITIES_H_
 
 #include <wx/graphics.h>
 
+/// This class contains a set of static utility functions.
 class wxChartUtilities
 {
 public:
