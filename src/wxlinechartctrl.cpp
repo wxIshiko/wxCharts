@@ -100,6 +100,20 @@ wxDouble wxLineChartCtrl::PointClass::GetValue() const
 	return m_value;
 }
 
+wxLineChartCtrl::Dataset::Dataset()
+{
+}
+
+const wxVector<wxLineChartCtrl::PointClass::ptr>& wxLineChartCtrl::Dataset::GetPoints() const
+{
+	return m_points;
+}
+
+void wxLineChartCtrl::Dataset::AppendPoint(PointClass::ptr point)
+{
+	m_points.push_back(point);
+}
+
 wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 								 wxWindowID id,
 								 const wxLineChartData &data,
@@ -110,17 +124,7 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 	m_grid(size, data.GetLabels(), GetMinValue(data.GetDatasets()),
 	GetMaxValue(data.GetDatasets()), m_options.GetGridOptions())
 {
-	const wxVector<wxLineChartDataset::ptr>& datasets = data.GetDatasets();
-	for (size_t i = 0; i < datasets.size(); ++i)
-	{
-		const wxVector<double>& data = datasets[i]->GetData();
-		for (size_t j = 0; j < data.size(); ++j)
-		{
-			m_points.push_back(PointClass::ptr(new PointClass(data[j], 20 + j * 10, 0,
-				m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
-				datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor())));
-		}
-	}
+	Initialize(data);
 }
 
 wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
@@ -134,16 +138,25 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 	m_grid(size, data.GetLabels(), GetMinValue(data.GetDatasets()),
 	GetMaxValue(data.GetDatasets()), m_options.GetGridOptions())
 {
+	Initialize(data);
+}
+
+void wxLineChartCtrl::Initialize(const wxLineChartData &data)
+{
 	const wxVector<wxLineChartDataset::ptr>& datasets = data.GetDatasets();
 	for (size_t i = 0; i < datasets.size(); ++i)
 	{
-		const wxVector<double>& data = datasets[i]->GetData();
+		Dataset::ptr newDataset(new Dataset());
+		
+		const wxVector<wxDouble>& data = datasets[i]->GetData();
 		for (size_t j = 0; j < data.size(); ++j)
 		{
-			m_points.push_back(PointClass::ptr(new PointClass(data[j], 20 + j * 10, 0,
+			newDataset->AppendPoint(PointClass::ptr(new PointClass(data[j], 20 + j * 10, 0,
 				m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
 				datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor())));
 		}
+
+		m_datasets.push_back(newDataset);
 	}
 }
 
@@ -214,40 +227,45 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 	{
 		m_grid.Draw(*gc);
 
-		if (true) // TODO : check if dataset ShowLines())
+		for (size_t i = 0; i < m_datasets.size(); ++i)
 		{
-			if (m_points.size() > 0)
+			const wxVector<PointClass::ptr>& points = m_datasets[i]->GetPoints();
+
+			if (true) // TODO : check if dataset ShowLines())
 			{
-				wxGraphicsPath path = gc->CreatePath();
-
-				const PointClass::ptr& point = m_points[0];
-				wxPoint2DDouble position = m_grid.GetMapping().GetPointPosition(0, point->GetValue());
-				path.MoveToPoint(position);
-
-				for (size_t i = 1; i < m_points.size(); ++i)
+				if (points.size() > 0)
 				{
-					const PointClass::ptr& point = m_points[i];
-					wxPoint2DDouble position = m_grid.GetMapping().GetPointPosition(i, point->GetValue());
-					path.AddLineToPoint(position);
+					wxGraphicsPath path = gc->CreatePath();
+
+					const PointClass::ptr& point = points[0];
+					wxPoint2DDouble position = m_grid.GetMapping().GetPointPosition(0, point->GetValue());
+					path.MoveToPoint(position);
+
+					for (size_t j = 1; j < points.size(); ++j)
+					{
+						const PointClass::ptr& point = points[j];
+						wxPoint2DDouble position = m_grid.GetMapping().GetPointPosition(j, point->GetValue());
+						path.AddLineToPoint(position);
+					}
+
+					//path.CloseSubpath();
+
+					//wxBrush brush(m_fillColor);
+					//gc.SetBrush(brush);
+					//gc.FillPath(path);
+
+					wxPen pen(*wxBLUE, 2);
+					gc->SetPen(pen);
+					gc->StrokePath(path);
 				}
-
-				//path.CloseSubpath();
-
-				//wxBrush brush(m_fillColor);
-				//gc.SetBrush(brush);
-				//gc.FillPath(path);
-
-				wxPen pen(*wxBLUE, 2);
-				gc->SetPen(pen);
-				gc->StrokePath(path);
 			}
-		}
 
-		for (size_t i = 0; i < m_points.size(); ++i)
-		{
-			const PointClass::ptr& point = m_points[i];
-			point->SetPosition(m_grid.GetMapping().GetPointPosition(i, point->GetValue()));
-			point->Draw(*gc);
+			for (size_t j = 0; j < points.size(); ++j)
+			{
+				const PointClass::ptr& point = points[j];
+				point->SetPosition(m_grid.GetMapping().GetPointPosition(j, point->GetValue()));
+				point->Draw(*gc);
+			}
 		}
 
 		delete gc;

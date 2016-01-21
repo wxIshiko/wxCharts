@@ -36,8 +36,7 @@
 
 #include <wx/geometry.h>
 
-// This class maintains a mapping between points
-// on the chart and pixels on the screen.
+/// This class maintains a mapping between points on the chart and pixels on the screen.
 class wxChartGridMapping
 {
 public:

@@ -87,6 +87,8 @@ public:
 		const wxSize &size = wxDefaultSize, long style = 0);
 
 private:
+	void Initialize(const wxLineChartData &data);
+
 	static wxDouble GetMinValue(const wxVector<wxLineChartDataset::ptr>& datasets);
 	static wxDouble GetMaxValue(const wxVector<wxLineChartDataset::ptr>& datasets);
 
@@ -110,10 +112,24 @@ private:
 		wxDouble m_value;
 	};
 
+	class Dataset
+	{
+	public:
+		typedef wxSharedPtr<Dataset> ptr;
+
+		Dataset();
+
+		const wxVector<PointClass::ptr>& GetPoints() const;
+		void AppendPoint(PointClass::ptr point);
+
+	private:
+		wxVector<PointClass::ptr> m_points;
+	};
+
 private:
 	wxLineChartOptions m_options;
 	wxChartGrid m_grid;
-	wxVector<PointClass::ptr> m_points;
+	wxVector<Dataset::ptr> m_datasets;
 
 	DECLARE_EVENT_TABLE();
 };
