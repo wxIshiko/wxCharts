@@ -29,8 +29,7 @@
 #include "wxchartlegendoptions.h"
 #include <wx/control.h>
 
-/// Class that represent items of the
-/// wxChartLegendData class.
+/// Class that represents items of the wxChartLegendData class.
 class wxChartLegendItem
 {
 public:

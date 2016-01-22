@@ -47,6 +47,7 @@ class wxBarChartData
 {
 public:
 	/// Constructs a wxBarChartData instance.
+	/// @param labels The labels of the X axis.
 	wxBarChartData(const wxVector<wxString> &labels);
 
 	/// Gets the labels of the X axis.

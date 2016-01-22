@@ -50,6 +50,16 @@
 class wxChartGrid : public wxChartElement
 {
 public:
+	/// Constructs a wxChartGrid element.
+	/// @param size The size of the area where the chart 
+	/// will be displayed.
+	/// @param labels The labels of the X axis.
+	/// @param minValue The minimum of the values that
+	/// will be shown on the chart.
+	/// @param maxValue The maximum of the values that
+	/// will be shown on the chart.
+	/// @param options The settings to be used for the
+	/// grid.
 	wxChartGrid(const wxSize &size,
 		const wxVector<wxString> &labels,
 		wxDouble minValue, wxDouble maxValue,
