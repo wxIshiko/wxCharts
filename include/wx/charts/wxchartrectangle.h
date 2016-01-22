@@ -33,6 +33,13 @@
 class wxChartRectangle : public wxChartElement
 {
 public:
+	/// Constructs a wxChartRectangle element.
+	/// @param x The X coordinate of the top left
+	/// corner of the rectangle.
+	/// @param y The Y coordinate of the top left
+	/// corner of the rectangle.
+	/// @param options The settings to be used for the
+	/// rectangle.
 	wxChartRectangle(wxDouble x, wxDouble y, 
 		const wxChartRectangleOptions &options);
 

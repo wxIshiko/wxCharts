@@ -48,7 +48,13 @@ public:
 	/// @return The style of the radial grid.
 	wxChartRadialGridStyle GetStyle() const;
 
+	/// Gets the width of the pen used to draw 
+	/// the lines of the grid.
+	/// @return The width of the grid lines.
 	unsigned int GetLineWidth() const;
+	/// Gets the color of the pen used to draw 
+	/// the lines of the grid.
+	/// @return The color of the grid lines.
 	const wxColor& GetLineColor() const;
 
 	bool ShowLabels() const;

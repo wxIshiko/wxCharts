@@ -48,7 +48,7 @@ bool wxChartRectangle::HitTest(const wxPoint &point) const
 void wxChartRectangle::Draw(wxGraphicsContext &gc)
 {
 	wxGraphicsPath path = gc.CreatePath();
-	path.AddRectangle(m_x, m_y, 50, 50);
+	path.AddRectangle(m_x, m_y, 150, 150);
 	path.CloseSubpath();
 
 	wxBrush brush(m_options.GetFillColor());
