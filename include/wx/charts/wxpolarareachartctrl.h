@@ -41,7 +41,7 @@
 #include "wxpolarareachartoptions.h"
 #include "wxchartradialgrid.h"
 
-/// Data for the wxPolarAreaChartCtrl.
+/// Data for the wxPolarAreaChartCtrl control.
 class wxPolarAreaChartData
 {
 public:

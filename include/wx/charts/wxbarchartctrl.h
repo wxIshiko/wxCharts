@@ -42,7 +42,7 @@
 #include "wxchartrectangle.h"
 #include <wx/sharedptr.h>
 
-/// Data for the wxBarChartCtrl.
+/// Data for the wxBarChartCtrl control.
 class wxBarChartData
 {
 public:

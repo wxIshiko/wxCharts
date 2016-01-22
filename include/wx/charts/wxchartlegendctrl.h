@@ -29,14 +29,28 @@
 #include "wxchartlegendoptions.h"
 #include <wx/control.h>
 
+/// Class that represent items of the
+/// wxChartLegendData class.
 class wxChartLegendItem
 {
 public:
+	/// Constructs a wxChartLegendItem instance.
+	/// @param color The color associated with this
+	/// item on the chart.
+	/// @param label The text to be display in the legend.
 	wxChartLegendItem(const wxColor &color, 
 		const wxString &label);
+	/// Constructs a wxChartLegendItem instance from a
+	/// slice data.
+	/// @param slice The slice of the chart this legend item
+	/// corresponds to.
 	wxChartLegendItem(const wxChartSliceData &slice);
 
+	/// Gets the color of the item.
+	/// @return The color of the item.
 	const wxColor& GetColor() const;
+	/// Gets the label of the item.
+	/// @return The label of the item.
 	const wxString& GetLabel() const;
 
 private:
@@ -44,10 +58,18 @@ private:
 	wxString m_label;
 };
 
+/// Data for the wxChartLegendCtrl control.
 class wxChartLegendData
 {
 public:
+	/// Constructs a wxChartLegendData 
+	/// instance.
 	wxChartLegendData();
+	/// Constructs a wxChartLegendData instance from
+	/// a list of slices. This can be used to build
+	/// a legend for the wxPieChartCtrl and 
+	/// wxDoughnutChartCtrl controls for instance.
+	/// @param slices List of slices.
 	wxChartLegendData(const wxVector<wxChartSliceData>& slices);
 
 	void Append(const wxChartLegendItem &item);

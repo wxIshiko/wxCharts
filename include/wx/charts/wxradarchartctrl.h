@@ -40,7 +40,7 @@
 #include "wxradarchartoptions.h"
 #include "wxchartradialgrid.h"
 
-/// Data for the wxRadarChartCtrl.
+/// Data for the wxRadarChartCtrl control.
 class wxRadarChartData
 {
 public:
