@@ -51,7 +51,7 @@ class wxChartGrid : public wxChartElement
 {
 public:
 	/// Constructs a wxChartGrid element.
-	/// @param size The size of the area where the chart 
+	/// @param size The size of the area where the grid 
 	/// will be displayed.
 	/// @param labels The labels of the X axis.
 	/// @param minValue The minimum of the values that
@@ -71,8 +71,14 @@ public:
 	/// @param gc The graphics context.
 	void Draw(wxGraphicsContext &gc);
 
+	/// Resizes the grid.
+	/// @param size The new size of the area where the grid 
+	/// is displayed.
 	void Resize(const wxSize &size);
 
+	/// Gets the mapping that allows external code
+	/// to correctly position points on the grid.
+	/// @return The grid mapping.
 	const wxChartGridMapping& GetMapping() const;
 
 private:

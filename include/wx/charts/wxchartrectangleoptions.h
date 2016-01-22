@@ -27,13 +27,27 @@
 
 #include <wx/colour.h>
 
+/// The options for the wxChartRectangle element.
 class wxChartRectangleOptions
 {
 public:
+	/// Constructs a wxChartRectangleOptions instance.
+	/// @param fillColor The color of the brush used to 
+	/// fill the rectangle.
+	/// @param strokeColor The color of the pen used to
+	/// draw the outline of the rectangle.
 	wxChartRectangleOptions(const wxColor &fillColor,
 		const wxColor &strokeColor);
 
+	/// Gets the color of the brush used to fill the
+	/// rectangle.
+	/// @return The color of the brush used to fill the
+	/// rectangle.
 	const wxColor& GetFillColor() const;
+	/// Gets the color of the pen used to draw the outline
+	/// of the rectangle.
+	/// @return The color of the pen used to draw the 
+	/// outline of the rectangle.
 	const wxColor& GetStrokeColor() const;
 
 private:

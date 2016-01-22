@@ -51,6 +51,9 @@ public:
 	/// the labels on the X and Y axes.
 	/// @return The font family.
 	wxFontFamily GetFontFamily() const;
+	/// Gets the font size to be used for 
+	/// the labels on the X and Y axes.
+	/// @return The font size in pixels.
 	int GetFontSize() const;
 	/// Gets the font style to be used for 
 	/// the labels on the X and Y axes.
