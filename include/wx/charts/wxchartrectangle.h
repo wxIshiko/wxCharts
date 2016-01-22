@@ -29,6 +29,7 @@
 #include "wxchartrectangleoptions.h"
 #include <wx/graphics.h>
 
+/// This class is used to display a rectangle on a chart.
 class wxChartRectangle : public wxChartElement
 {
 public:
@@ -37,6 +38,8 @@ public:
 
 	virtual bool HitTest(const wxPoint &point) const;
 
+	/// Draws the rectangle.
+	/// @param gc The graphics context.
 	void Draw(wxGraphicsContext &gc);
 
 private:

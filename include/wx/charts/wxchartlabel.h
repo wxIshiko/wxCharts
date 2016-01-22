@@ -53,6 +53,10 @@ public:
 
 	virtual bool HitTest(const wxPoint &point) const;
 
+	/// Draws the label.
+	/// @param x The X coordinate.
+	/// @param y The Y coordinate.
+	/// @param gc The graphics context.
 	void Draw(wxDouble x, wxDouble y, 
 		wxGraphicsContext &gc);
 

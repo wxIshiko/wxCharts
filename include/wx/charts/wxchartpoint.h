@@ -32,12 +32,24 @@
 class wxChartPoint : public wxChartElement
 {
 public:
+	/// Constructs a wxChartPoint element.
+	/// @param x The X coordinate of the center of the point.
+	/// @param y The Y coordinate of the center of the point.
+	/// @param radius The radius of the circle used to represent
+	/// the point.
+	/// @param strokeWidth The size of the pen used to draw the 
+	/// outline of the circle.
+	/// @param strokeColor The color of the pen used to draw the
+	/// outline of the circle.
+	/// @param fillColor The color of the point.
 	wxChartPoint(wxDouble x, wxDouble y, wxDouble radius,
 		unsigned int strokeWidth, const wxColor &strokeColor, 
 		const wxColor &fillColor);
 
 	virtual bool HitTest(const wxPoint &point) const;
 
+	/// Draws the point.
+	/// @param gc The graphics context.
 	void Draw(wxGraphicsContext &gc);
 
 	void SetPosition(wxDouble x, wxDouble y);

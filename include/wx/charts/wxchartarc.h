@@ -49,8 +49,8 @@ public:
 	/// to endAngle clockwise. The angles are measured in radians but,
 	/// contrary to the usual mathematical convention, are always 
 	/// clockwise from the horizontal axis.
-	/// @param x The x coordinate of the center of the arc.
-	/// @param y The y coordinate of the center of the arc.
+	/// @param x The X coordinate of the center of the arc.
+	/// @param y The Y coordinate of the center of the arc.
 	/// @param startAngle The angle (in radians) at which the arc starts.
 	/// @param endAngle The angle (in radians) at which the arc ends.
 	/// @param outerRadius The outer radius of the arc.
@@ -64,6 +64,8 @@ public:
 
 	virtual bool HitTest(const wxPoint &point) const;
 
+	/// Draws the arc.
+	/// @param gc The graphics context.
 	void Draw(wxGraphicsContext &gc);
 
 	void SetCenter(wxDouble x, wxDouble y);
