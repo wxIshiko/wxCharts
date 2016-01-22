@@ -28,11 +28,18 @@
 #include <wx/colour.h>
 #include <wx/font.h>
 
+/// Options for the wxChartLegendCtrl control.
 class wxChartLegendOptions
 {
 public:
+	/// Constructs a wxChartLegendOptions instance.
 	wxChartLegendOptions();
 
+	/// Gets the orientation of the legend.
+	/// @retval wxHORIZONTAL The legend items
+	/// are organized horizontally.
+	/// @retval wxVERTICAL The legend items
+	/// are organized vertically.
 	wxOrientation GetOrientation() const;
 
 	wxFontFamily GetFontFamily() const;

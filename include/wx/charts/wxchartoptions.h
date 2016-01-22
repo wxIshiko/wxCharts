@@ -25,11 +25,19 @@
 #ifndef _WX_CHARTS_WXCHARTOPTIONS_H_
 #define _WX_CHARTS_WXCHARTOPTIONS_H_
 
+/// Options for the wxChartCtrl control.
 class wxChartOptions
 {
 public:
+	/// Constructs a wxChartOptions instance.
 	wxChartOptions();
 
+	/// Whether the chart automatically resizes 
+	/// when the control size changes.
+	/// @retval true Resize the chart when control
+	/// size changes.
+	/// @retval false Don't automatically resize
+	/// the chart when the control size changes.
 	bool IsResponsive() const;
 
 private:

@@ -28,9 +28,11 @@
 #include <wx/colour.h>
 #include <wx/font.h>
 
+/// The options for the wxChartTooltip element.
 class wxChartTooltipOptions
 {
 public:
+	/// Constructs a wxChartTooltipOptions instance.
 	wxChartTooltipOptions();
 
 	wxFontFamily GetFontFamily() const;

@@ -58,9 +58,26 @@ private:
 	wxVector<wxChartLegendItem> m_items;
 };
 
+/// This control can be used to display a chart legend.
+
+/// The legend is implemented as a separate control (and not
+/// as part of the chart control itself) to allow for more
+/// flexible layouts with the help of wxWidgets sizers.
 class wxChartLegendCtrl : public wxControl
 {
 public:
+	/// Constructs a wxChartLegendCtrl control.
+	/// @param parent Pointer to a parent window.
+	/// @param id Control identifier. If wxID_ANY, will automatically
+	/// create an identifier.
+	/// @param pos Control position. wxDefaultPosition indicates that 
+	/// wxWidgets should generate a default position for the control.
+	/// @param size Control size. wxDefaultSize indicates that wxWidgets
+	/// should generate a default size for the window. If no suitable 
+	/// size can  be found, the window will be sized to 20x20 pixels 
+	/// so that the window is visible but obviously not correctly sized.
+	/// @param style Control style. For generic window styles, please 
+	/// see wxWindow.
 	wxChartLegendCtrl(wxWindow *parent, wxWindowID id,
 		const wxChartLegendData &data,
 		const wxPoint &pos = wxDefaultPosition,
