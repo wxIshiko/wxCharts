@@ -25,6 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTGRIDOPTIONS_H_
 #define _WX_CHARTS_WXCHARTGRIDOPTIONS_H_
 
+#include "wxchartaxisoptions.h"
 #include <wx/colour.h>
 #include <wx/font.h>
 
@@ -38,8 +39,8 @@ public:
 
 	void SetFontSize(int size);
 
-	unsigned int GetAxisLineWidth() const;
-	const wxColor& GetAxisLineColor() const;
+	const wxChartAxisOptions& GetXAxisOptions() const;
+	const wxChartAxisOptions& GetYAxisOptions() const;
 
 	bool ShowHorizontalLines() const;
 	bool ShowVerticalLines() const;
@@ -65,8 +66,8 @@ public:
 	const wxColor& GetFontColor() const;
 
 private:
-	unsigned int m_axisLineWidth;
-	wxColor m_axisLineColor;
+	wxChartAxisOptions m_XAxisOptions;
+	wxChartAxisOptions m_YAxisOptions;
 	// Whether to show horizontal lines (the X-axis is always shown)
 	bool m_showHorizontalLines;
 	// Whether to show vertical lines (the Y-axis is always shown)

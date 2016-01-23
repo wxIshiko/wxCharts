@@ -23,8 +23,7 @@
 #include "wxchartgridoptions.h"
 
 wxChartGridOptions::wxChartGridOptions()
-	: m_axisLineWidth(1), m_axisLineColor(0, 0, 0, 0x19),
-	m_showHorizontalLines(true), m_showVerticalLines(true),
+	: m_showHorizontalLines(true), m_showVerticalLines(true),
 	m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x0C),
 	m_offsetGridLines(false),
 	m_fontFamily(wxFONTFAMILY_SWISS), m_fontSize(12),
@@ -33,8 +32,7 @@ wxChartGridOptions::wxChartGridOptions()
 }
 
 wxChartGridOptions::wxChartGridOptions(bool offsetGridLines)
-	: m_axisLineWidth(1), m_axisLineColor(0, 0, 0, 0x19),
-	m_showHorizontalLines(true), m_showVerticalLines(true),
+	: m_showHorizontalLines(true), m_showVerticalLines(true),
 	m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x0C),
 	m_offsetGridLines(offsetGridLines),
 	m_fontFamily(wxFONTFAMILY_SWISS), m_fontSize(12),
@@ -47,14 +45,14 @@ void wxChartGridOptions::SetFontSize(int size)
 	m_fontSize = size;
 }
 
-unsigned int wxChartGridOptions::GetAxisLineWidth() const
+const wxChartAxisOptions& wxChartGridOptions::GetXAxisOptions() const
 {
-	return m_axisLineWidth;
+	return m_XAxisOptions;
 }
 
-const wxColor& wxChartGridOptions::GetAxisLineColor() const
+const wxChartAxisOptions& wxChartGridOptions::GetYAxisOptions() const
 {
-	return m_axisLineColor;
+	return m_YAxisOptions;
 }
 
 bool wxChartGridOptions::ShowHorizontalLines() const

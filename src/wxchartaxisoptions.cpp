@@ -21,3 +21,18 @@
 */
 
 #include "wxchartaxisoptions.h"
+
+wxChartAxisOptions::wxChartAxisOptions()
+	: m_lineWidth(1), m_lineColor(0, 0, 0, 0x19)
+{
+}
+
+unsigned int wxChartAxisOptions::GetLineWidth() const
+{
+	return m_lineWidth;
+}
+
+const wxColor& wxChartAxisOptions::GetLineColor() const
+{
+	return m_lineColor;
+}

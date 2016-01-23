@@ -25,4 +25,22 @@
 #ifndef _WX_CHARTS_WXCHARTAXISOPTIONS_H_
 #define _WX_CHARTS_WXCHARTAXISOPTIONS_H_
 
+#include <wx/colour.h>
+
+/// The options for the wxChartAxis element.
+class wxChartAxisOptions
+{
+public:
+	/// Constructs a new wxChartAxisOptions
+	/// instance.
+	wxChartAxisOptions();
+
+	unsigned int GetLineWidth() const;
+	const wxColor& GetLineColor() const;
+
+private:
+	unsigned int m_lineWidth;
+	wxColor m_lineColor;
+};
+
 #endif
