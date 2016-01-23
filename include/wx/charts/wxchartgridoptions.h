@@ -27,7 +27,6 @@
 
 #include "wxchartaxisoptions.h"
 #include <wx/colour.h>
-#include <wx/font.h>
 
 /// The options for the wxChartGrid element.
 class wxChartGridOptions
@@ -48,23 +47,6 @@ public:
 	const wxColor& GetGridLineColor() const;
 	bool OffsetGridLines() const;
 
-	/// Gets the font family to be used for 
-	/// the labels on the X and Y axes.
-	/// @return The font family.
-	wxFontFamily GetFontFamily() const;
-	/// Gets the font size to be used for 
-	/// the labels on the X and Y axes.
-	/// @return The font size in pixels.
-	int GetFontSize() const;
-	/// Gets the font style to be used for 
-	/// the labels on the X and Y axes.
-	/// @return The font style.
-	wxFontStyle GetFontStyle() const;
-	/// Gets the font color to be used for 
-	/// the labels on the X and Y axes.
-	/// @return The font color.
-	const wxColor& GetFontColor() const;
-
 private:
 	wxChartAxisOptions m_XAxisOptions;
 	wxChartAxisOptions m_YAxisOptions;
@@ -75,10 +57,6 @@ private:
 	unsigned int m_gridLineWidth;
 	wxColor m_gridLineColor;
 	bool m_offsetGridLines;
-	wxFontFamily m_fontFamily;
-	int m_fontSize;
-	wxFontStyle m_fontStyle;
-	wxColor m_fontColor;
 };
 
 #endif

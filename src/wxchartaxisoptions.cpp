@@ -23,7 +23,9 @@
 #include "wxchartaxisoptions.h"
 
 wxChartAxisOptions::wxChartAxisOptions()
-	: m_lineWidth(1), m_lineColor(0, 0, 0, 0x19)
+	: m_lineWidth(1), m_lineColor(0, 0, 0, 0x19),
+	m_fontFamily(wxFONTFAMILY_SWISS), m_fontSize(12),
+	m_fontStyle(wxFONTSTYLE_NORMAL), m_fontColor(0x666666)
 {
 }
 
@@ -35,4 +37,24 @@ unsigned int wxChartAxisOptions::GetLineWidth() const
 const wxColor& wxChartAxisOptions::GetLineColor() const
 {
 	return m_lineColor;
+}
+
+wxFontFamily wxChartAxisOptions::GetFontFamily() const
+{
+	return m_fontFamily;
+}
+
+int wxChartAxisOptions::GetFontSize() const
+{
+	return m_fontSize;
+}
+
+wxFontStyle wxChartAxisOptions::GetFontStyle() const
+{
+	return m_fontStyle;
+}
+
+const wxColor& wxChartAxisOptions::GetFontColor() const
+{
+	return m_fontColor;
 }

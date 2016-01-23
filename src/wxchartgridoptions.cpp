@@ -25,18 +25,14 @@
 wxChartGridOptions::wxChartGridOptions()
 	: m_showHorizontalLines(true), m_showVerticalLines(true),
 	m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x0C),
-	m_offsetGridLines(false),
-	m_fontFamily(wxFONTFAMILY_SWISS), m_fontSize(12),
-	m_fontStyle(wxFONTSTYLE_NORMAL), m_fontColor(0x666666)
+	m_offsetGridLines(false)
 {
 }
 
 wxChartGridOptions::wxChartGridOptions(bool offsetGridLines)
 	: m_showHorizontalLines(true), m_showVerticalLines(true),
 	m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x0C),
-	m_offsetGridLines(offsetGridLines),
-	m_fontFamily(wxFONTFAMILY_SWISS), m_fontSize(12),
-	m_fontStyle(wxFONTSTYLE_NORMAL), m_fontColor(0x666666)
+	m_offsetGridLines(offsetGridLines)
 {
 }
 
@@ -78,24 +74,4 @@ const wxColor& wxChartGridOptions::GetGridLineColor() const
 bool wxChartGridOptions::OffsetGridLines() const
 {
 	return m_offsetGridLines;
-}
-
-wxFontFamily wxChartGridOptions::GetFontFamily() const
-{
-	return m_fontFamily;
-}
-
-int wxChartGridOptions::GetFontSize() const
-{
-	return m_fontSize;
-}
-
-wxFontStyle wxChartGridOptions::GetFontStyle() const
-{
-	return m_fontStyle;
-}
-
-const wxColor& wxChartGridOptions::GetFontColor() const
-{
-	return m_fontColor;
 }
