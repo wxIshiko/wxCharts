@@ -37,11 +37,28 @@
 #define _WX_CHARTS_WXCHARTAXIS_H_
 
 #include "wxchartelement.h"
+#include "wxchartlabel.h"
 
+/// This class represents an axis.
 class wxChartAxis : public wxChartElement
 {
 public:
-	wxChartAxis();
+	/// Constructs a wxChartAxis element.
+	/// @param labels The labels to display along the axis.
+	wxChartAxis(const wxVector<wxString> &labels);
+
+	virtual bool HitTest(const wxPoint &point) const;
+
+	void Fit(wxGraphicsContext &gc, const wxFont &font);
+
+	const wxVector<wxChartLabel>& GetLabels();
+
+private:
+	void UpdateLabelSizes(wxGraphicsContext &gc, 
+		const wxFont &font);
+
+private:
+	wxVector<wxChartLabel> m_labels;
 };
 
 #endif

@@ -32,7 +32,40 @@
 */
 
 #include "wxchartaxis.h"
+#include "wxchartutilities.h"
 
-wxChartAxis::wxChartAxis()
+wxChartAxis::wxChartAxis(const wxVector<wxString> &labels)
 {
+	for (size_t i = 0; i < labels.size(); ++i)
+	{
+		m_labels.push_back(wxChartLabel(labels[i]));
+	}
+}
+
+void wxChartAxis::Fit(wxGraphicsContext &gc,
+					  const wxFont &font)
+{
+	UpdateLabelSizes(gc, font);
+}
+
+bool wxChartAxis::HitTest(const wxPoint &point) const
+{
+	return false;
+}
+
+const wxVector<wxChartLabel>& wxChartAxis::GetLabels()
+{
+	return m_labels;
+}
+
+void wxChartAxis::UpdateLabelSizes(wxGraphicsContext &gc,
+								   const wxFont &font)
+{
+	for (size_t i = 0; i < m_labels.size(); ++i)
+	{
+		wxDouble labelWidth;
+		wxDouble labelHeight;
+		wxChartUtilities::GetTextSize(gc, font, m_labels[i].GetText(), labelWidth, labelHeight);
+		m_labels[i].SetSize(labelWidth, labelHeight);
+	}
 }

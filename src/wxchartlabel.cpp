@@ -41,7 +41,7 @@ bool wxChartLabel::HitTest(const wxPoint &point) const
 
 void wxChartLabel::Draw(wxDouble x, 
 						wxDouble y, 
-						wxGraphicsContext &gc)
+						wxGraphicsContext &gc) const
 {
 	gc.DrawText(m_text, x, y);
 }

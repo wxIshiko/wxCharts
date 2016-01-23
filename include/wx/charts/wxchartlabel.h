@@ -58,7 +58,7 @@ public:
 	/// @param y The Y coordinate.
 	/// @param gc The graphics context.
 	void Draw(wxDouble x, wxDouble y, 
-		wxGraphicsContext &gc);
+		wxGraphicsContext &gc) const;
 
 	const wxString& GetText() const;
 	const wxSize& GetSize() const;

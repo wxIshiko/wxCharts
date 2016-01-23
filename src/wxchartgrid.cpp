@@ -41,13 +41,8 @@ wxChartGrid::wxChartGrid(const wxSize &size,
 						 wxDouble maxValue,
 						 const wxChartGridOptions& options)
 	: m_options(options), m_mapping(size, labels.size()), 
-	m_yLabelMaxWidth(0), m_needsFit(true)
+	m_XAxis(labels), m_yLabelMaxWidth(0), m_needsFit(true)
 {
-	for (size_t i = 0; i < labels.size(); ++i)
-	{
-		m_xLabels.push_back(wxChartLabel(labels[i]));
-	}
-
 	wxDouble graphMinValue;
 	wxDouble graphMaxValue;
 	wxDouble valueRange = 0;
@@ -113,7 +108,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		}
 	}
 
-	for (size_t i = 0; i < m_xLabels.size(); ++i)
+	for (size_t i = 0; i < m_XAxis.GetLabels().size(); ++i)
 	{
 		wxDouble labelPosition = CalculateLabelPosition(i);
 		wxPoint2DDouble s;
@@ -125,7 +120,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		bool drawVerticalLine = (m_options.ShowVerticalLines() || (i == 0));
 
 		gc.SetFont(font, m_options.GetFontColor());
-		m_xLabels[i].Draw(labelPosition - (m_xLabels[i].GetSize().GetWidth() / 2), m_mapping.GetEndPoint() + 8, gc);
+		m_XAxis.GetLabels()[i].Draw(labelPosition - (m_XAxis.GetLabels()[i].GetSize().GetWidth() / 2), m_mapping.GetEndPoint() + 8, gc);
 
 		if (drawVerticalLine)
 		{
@@ -189,9 +184,9 @@ void wxChartGrid::Fit(size_t steps,
 
 
 	BuildYLabels(m_mapping.GetMinValue(), steps, m_stepValue, gc, font, m_yLabels, m_yLabelMaxWidth);
-	CalculateXLabelSizes(m_xLabels, gc, font);
+	m_XAxis.Fit(gc, font);
 
-	wxDouble leftPadding = CalculateLeftPadding(m_xLabels, m_yLabelMaxWidth);
+	wxDouble leftPadding = CalculateLeftPadding(m_XAxis.GetLabels(), m_yLabelMaxWidth);
 	m_mapping.Fit(leftPadding, startPoint, endPoint);
 
 	m_needsFit = false;
@@ -229,19 +224,6 @@ void wxChartGrid::BuildYLabels(wxDouble minValue,
 	yLabelMaxWidth += 10;
 }
 
-void wxChartGrid::CalculateXLabelSizes(wxVector<wxChartLabel> &xLabels,
-									   wxGraphicsContext &gc,
-									   const wxFont &font)
-{
-	for (size_t i = 0; i < xLabels.size(); ++i)
-	{
-		wxDouble labelWidth;
-		wxDouble labelHeight;
-		wxChartUtilities::GetTextSize(gc, font, xLabels[i].GetText(), labelWidth, labelHeight);
-		xLabels[i].SetSize(labelWidth, labelHeight);
-	}
-}
-
 wxDouble wxChartGrid::CalculateLeftPadding(const wxVector<wxChartLabel> &xLabels,
 										   wxDouble yLabelMaxWidth)
 {
@@ -259,7 +241,7 @@ wxDouble wxChartGrid::CalculateLabelPosition(size_t index)
 {
 	wxDouble leftPadding = m_mapping.GetLeftPadding();
 	wxDouble innerWidth = m_mapping.GetSize().GetWidth() - leftPadding;
-	wxDouble valueWidth = innerWidth / m_xLabels.size();
+	wxDouble valueWidth = innerWidth / m_XAxis.GetLabels().size();
 	wxDouble valueOffset = leftPadding + (valueWidth * index);
 
 	/*
