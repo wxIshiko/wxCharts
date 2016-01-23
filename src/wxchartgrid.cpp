@@ -40,7 +40,7 @@ wxChartGrid::wxChartGrid(const wxSize &size,
 						 wxDouble maxValue,
 						 const wxChartGridOptions& options)
 	: m_options(options), m_mapping(size, labels.size()), 
-	m_XAxis(labels), m_yLabelMaxWidth(0), m_needsFit(true)
+	m_XAxis(labels), m_needsFit(true)
 {
 	wxDouble graphMinValue;
 	wxDouble graphMaxValue;
@@ -183,10 +183,10 @@ void wxChartGrid::Fit(size_t steps,
 	//this.endPoint -= this.padding;
 
 
-	m_YAxis.BuildYLabels(m_mapping.GetMinValue(), steps, m_stepValue, gc, font, m_yLabelMaxWidth);
+	m_YAxis.BuildYLabels(m_mapping.GetMinValue(), steps, m_stepValue, gc, font);
 	m_XAxis.Fit(gc, font);
 
-	wxDouble leftPadding = CalculateLeftPadding(m_XAxis.GetLabels(), m_yLabelMaxWidth);
+	wxDouble leftPadding = CalculateLeftPadding(m_XAxis.GetLabels(), m_YAxis.GetLabelMaxWidth());
 	m_mapping.Fit(leftPadding, startPoint, endPoint);
 
 	m_needsFit = false;

@@ -35,16 +35,18 @@
 #include "wxchartutilities.h"
 #include <sstream>
 
+wxChartAxis::wxChartAxis()
+	: m_labelMaxWidth(0)
+{
+}
+
 wxChartAxis::wxChartAxis(const wxVector<wxString> &labels)
+	: m_labelMaxWidth(0)
 {
 	for (size_t i = 0; i < labels.size(); ++i)
 	{
 		m_labels.push_back(wxChartLabel(labels[i]));
 	}
-}
-
-wxChartAxis::wxChartAxis()
-{
 }
 
 void wxChartAxis::Fit(wxGraphicsContext &gc,
@@ -57,11 +59,10 @@ void wxChartAxis::BuildYLabels(wxDouble minValue,
 							   size_t steps,
 							   wxDouble stepValue,
 							   wxGraphicsContext &gc,
-							   const wxFont &font,
-							   wxDouble &yLabelMaxWidth)
+							   const wxFont &font)
 {
 	m_labels.clear();
-	yLabelMaxWidth = 0;
+	m_labelMaxWidth = 0;
 
 	size_t stepDecimalPlaces = wxChartUtilities::GetDecimalPlaces();
 
@@ -74,14 +75,14 @@ void wxChartAxis::BuildYLabels(wxDouble minValue,
 		wxDouble labelWidth;
 		wxDouble labelHeight;
 		wxChartUtilities::GetTextSize(gc, font, valueStr.str(), labelWidth, labelHeight);
-		if (labelWidth > yLabelMaxWidth)
+		if (labelWidth > m_labelMaxWidth)
 		{
-			yLabelMaxWidth = labelWidth;
+			m_labelMaxWidth = labelWidth;
 		}
 
 		m_labels.push_back(wxChartLabel(valueStr.str(), labelWidth, labelHeight));
 	}
-	yLabelMaxWidth += 10;
+	m_labelMaxWidth += 10;
 }
 
 bool wxChartAxis::HitTest(const wxPoint &point) const
@@ -92,6 +93,11 @@ bool wxChartAxis::HitTest(const wxPoint &point) const
 const wxVector<wxChartLabel>& wxChartAxis::GetLabels()
 {
 	return m_labels;
+}
+
+wxDouble wxChartAxis::GetLabelMaxWidth() const
+{
+	return m_labelMaxWidth;
 }
 
 void wxChartAxis::UpdateLabelSizes(wxGraphicsContext &gc,

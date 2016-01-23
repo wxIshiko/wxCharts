@@ -43,21 +43,22 @@
 class wxChartAxis : public wxChartElement
 {
 public:
-	/// Constructs a wxChartAxis element.
-	/// @param labels The labels to display along the axis.
-	wxChartAxis(const wxVector<wxString> &labels);
 	/// Construcs a wxChartAxis
 	/// element.
 	wxChartAxis();
+	/// Constructs a wxChartAxis element.
+	/// @param labels The labels to display along the axis.
+	wxChartAxis(const wxVector<wxString> &labels);
 
 	virtual bool HitTest(const wxPoint &point) const;
 
 	void Fit(wxGraphicsContext &gc, const wxFont &font);
 	void BuildYLabels(wxDouble minValue, size_t steps,
-		wxDouble stepValue, wxGraphicsContext &gc, const wxFont &font,
-		wxDouble &yLabelMaxWidth);
+		wxDouble stepValue, wxGraphicsContext &gc, 
+		const wxFont &font);
 
 	const wxVector<wxChartLabel>& GetLabels();
+	wxDouble GetLabelMaxWidth() const;
 
 private:
 	void UpdateLabelSizes(wxGraphicsContext &gc, 
@@ -65,6 +66,7 @@ private:
 
 private:
 	wxVector<wxChartLabel> m_labels;
+	wxDouble m_labelMaxWidth;
 };
 
 #endif

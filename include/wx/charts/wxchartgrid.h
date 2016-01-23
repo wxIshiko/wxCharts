@@ -92,7 +92,6 @@ private:
 	wxChartGridMapping m_mapping;
 	wxChartAxis m_XAxis;
 	wxChartAxis m_YAxis;
-	wxDouble m_yLabelMaxWidth;
 	// The number of steps on the Y-axis
 	size_t m_steps;
 	wxDouble m_stepValue;
