@@ -46,10 +46,16 @@ public:
 	/// Constructs a wxChartAxis element.
 	/// @param labels The labels to display along the axis.
 	wxChartAxis(const wxVector<wxString> &labels);
+	/// Construcs a wxChartAxis
+	/// element.
+	wxChartAxis();
 
 	virtual bool HitTest(const wxPoint &point) const;
 
 	void Fit(wxGraphicsContext &gc, const wxFont &font);
+	void BuildYLabels(wxDouble minValue, size_t steps,
+		wxDouble stepValue, wxGraphicsContext &gc, const wxFont &font,
+		wxDouble &yLabelMaxWidth);
 
 	const wxVector<wxChartLabel>& GetLabels();
 

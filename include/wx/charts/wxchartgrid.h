@@ -83,9 +83,6 @@ public:
 
 private:
 	void Fit(size_t steps, wxGraphicsContext &gc, const wxFont &font);
-	static void BuildYLabels(wxDouble minValue, size_t steps, 
-		wxDouble stepValue, wxGraphicsContext &gc, const wxFont &font,
-		wxVector<wxChartLabel> &yLabels, wxDouble &yLabelMaxWidth);
 	static wxDouble CalculateLeftPadding(const wxVector<wxChartLabel> &xLabels, 
 		wxDouble yLabelMaxWidth);
 	wxDouble CalculateLabelPosition(size_t index);
@@ -94,7 +91,7 @@ private:
 	wxChartGridOptions m_options;
 	wxChartGridMapping m_mapping;
 	wxChartAxis m_XAxis;
-	wxVector<wxChartLabel> m_yLabels;
+	wxChartAxis m_YAxis;
 	wxDouble m_yLabelMaxWidth;
 	// The number of steps on the Y-axis
 	size_t m_steps;

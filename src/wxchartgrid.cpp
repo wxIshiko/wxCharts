@@ -33,7 +33,6 @@
 
 #include "wxchartgrid.h"
 #include "wxchartutilities.h"
-#include <sstream>
 
 wxChartGrid::wxChartGrid(const wxSize &size,
 						 const wxVector<wxString> &labels,
@@ -66,7 +65,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 	wxDouble yLabelGap = (m_mapping.GetEndPoint() - m_mapping.GetStartPoint()) / m_steps;
 	wxDouble xStart = m_mapping.GetLeftPadding();
 
-	for (size_t i = 0; i < m_yLabels.size(); ++i)
+	for (size_t i = 0; i < m_YAxis.GetLabels().size(); ++i)
 	{
 		wxDouble yLabelCenter = m_mapping.GetEndPoint() - (yLabelGap * i);
 		wxDouble linePositionY = yLabelCenter;
@@ -75,7 +74,8 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		bool drawHorizontalLine = (m_options.ShowHorizontalLines() || (i == 0));
 
 		gc.SetFont(font, m_options.GetFontColor());
-		m_yLabels[i].Draw(xStart - 10 - m_yLabels[i].GetSize().GetWidth(), yLabelCenter - (m_yLabels[i].GetSize().GetHeight() / 2), gc);
+		m_YAxis.GetLabels()[i].Draw(xStart - 10 - m_YAxis.GetLabels()[i].GetSize().GetWidth(), 
+			yLabelCenter - (m_YAxis.GetLabels()[i].GetSize().GetHeight() / 2), gc);
 		
 		if (drawHorizontalLine)
 		{
@@ -183,45 +183,13 @@ void wxChartGrid::Fit(size_t steps,
 	//this.endPoint -= this.padding;
 
 
-	BuildYLabels(m_mapping.GetMinValue(), steps, m_stepValue, gc, font, m_yLabels, m_yLabelMaxWidth);
+	m_YAxis.BuildYLabels(m_mapping.GetMinValue(), steps, m_stepValue, gc, font, m_yLabelMaxWidth);
 	m_XAxis.Fit(gc, font);
 
 	wxDouble leftPadding = CalculateLeftPadding(m_XAxis.GetLabels(), m_yLabelMaxWidth);
 	m_mapping.Fit(leftPadding, startPoint, endPoint);
 
 	m_needsFit = false;
-}
-
-void wxChartGrid::BuildYLabels(wxDouble minValue,
-							   size_t steps,
-							   wxDouble stepValue,
-							   wxGraphicsContext &gc, 
-							   const wxFont &font,
-							   wxVector<wxChartLabel> &yLabels, 
-							   wxDouble &yLabelMaxWidth)
-{
-	yLabels.clear();
-	yLabelMaxWidth = 0;
-
-	size_t stepDecimalPlaces = wxChartUtilities::GetDecimalPlaces();
-
-	for (size_t i = 0; i <= steps; ++i)
-	{
-		wxDouble value = minValue + (i * stepValue);//.toFixed(stepDecimalPlaces);
-		std::stringstream valueStr;
-		valueStr << value;
-
-		wxDouble labelWidth;
-		wxDouble labelHeight;
-		wxChartUtilities::GetTextSize(gc, font, valueStr.str(), labelWidth, labelHeight);
-		if (labelWidth > yLabelMaxWidth)
-		{
-			yLabelMaxWidth = labelWidth;
-		}
-		
-		yLabels.push_back(wxChartLabel(valueStr.str(), labelWidth, labelHeight));
-	}
-	yLabelMaxWidth += 10;
 }
 
 wxDouble wxChartGrid::CalculateLeftPadding(const wxVector<wxChartLabel> &xLabels,
