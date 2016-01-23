@@ -36,11 +36,6 @@ wxChartGridOptions::wxChartGridOptions(bool offsetGridLines)
 {
 }
 
-void wxChartGridOptions::SetFontSize(int size)
-{
-	m_fontSize = size;
-}
-
 const wxChartAxisOptions& wxChartGridOptions::GetXAxisOptions() const
 {
 	return m_XAxisOptions;

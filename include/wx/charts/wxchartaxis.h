@@ -37,6 +37,7 @@
 #define _WX_CHARTS_WXCHARTAXIS_H_
 
 #include "wxchartelement.h"
+#include "wxchartaxisoptions.h"
 #include "wxchartlabel.h"
 
 /// This class represents an axis.
@@ -52,10 +53,13 @@ public:
 
 	virtual bool HitTest(const wxPoint &point) const;
 
-	void Fit(wxGraphicsContext &gc, const wxFont &font);
+	/// Draws the axis.
+	/// @param gc The graphics context.
+	void Draw(wxGraphicsContext &gc);
+
+	void Fit(wxGraphicsContext &gc);
 	void BuildYLabels(wxDouble minValue, size_t steps,
-		wxDouble stepValue, wxGraphicsContext &gc, 
-		const wxFont &font);
+		wxDouble stepValue, wxGraphicsContext &gc);
 	void UpdateLabelPosition(size_t index, wxDouble x,
 		wxDouble y);
 
@@ -63,10 +67,10 @@ public:
 	wxDouble GetLabelMaxWidth() const;
 
 private:
-	void UpdateLabelSizes(wxGraphicsContext &gc, 
-		const wxFont &font);
+	void UpdateLabelSizes(wxGraphicsContext &gc);
 
 private:
+	wxChartAxisOptions m_options;
 	wxVector<wxChartLabel> m_labels;
 	wxDouble m_labelMaxWidth;
 };

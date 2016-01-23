@@ -58,9 +58,7 @@ bool wxChartGrid::HitTest(const wxPoint &point) const
 
 void wxChartGrid::Draw(wxGraphicsContext &gc)
 {
-	wxFont font(wxSize(0, m_options.GetFontSize()), 
-		m_options.GetFontFamily(), m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
-	Fit(m_steps, gc, font);
+	Fit(m_steps, gc);
 
 	wxDouble yLabelGap = (m_mapping.GetEndPoint() - m_mapping.GetStartPoint()) / m_steps;
 	wxDouble xStart = m_mapping.GetLeftPadding();
@@ -72,6 +70,8 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			yLabelCenter - (m_YAxis.GetLabels()[i].GetSize().GetHeight() / 2));
 	}
 
+	m_YAxis.Draw(gc);
+
 	for (size_t i = 0; i < m_YAxis.GetLabels().size(); ++i)
 	{
 		wxDouble yLabelCenter = m_mapping.GetEndPoint() - (yLabelGap * i);
@@ -80,9 +80,6 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		// We always show the X-axis
 		bool drawHorizontalLine = (m_options.ShowHorizontalLines() || (i == 0));
 
-		gc.SetFont(font, m_options.GetFontColor());
-		m_YAxis.GetLabels()[i].Draw(gc);
-		
 		if (drawHorizontalLine)
 		{
 			wxGraphicsPath path = gc.CreatePath();
@@ -98,7 +95,8 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			}
 			else
 			{
-				wxPen pen(m_options.GetAxisLineColor(), m_options.GetAxisLineWidth());
+				wxPen pen(m_options.GetXAxisOptions().GetLineColor(), 
+					m_options.GetXAxisOptions().GetLineWidth());
 				gc.SetPen(pen);
 				gc.StrokePath(path);
 			}
@@ -108,7 +106,8 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			path2.AddLineToPoint(xStart, linePositionY);
 			path2.CloseSubpath();
 
-			wxPen pen(m_options.GetAxisLineColor(), m_options.GetAxisLineWidth());
+			wxPen pen(m_options.GetXAxisOptions().GetLineColor(), 
+				m_options.GetXAxisOptions().GetLineWidth());
 			gc.SetPen(pen);
 			gc.StrokePath(path2);
 		}
@@ -121,6 +120,8 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			m_mapping.GetEndPoint() + 8);
 	}
 
+	m_XAxis.Draw(gc);
+
 	for (size_t i = 0; i < m_XAxis.GetLabels().size(); ++i)
 	{
 		wxDouble labelPosition = CalculateLabelPosition(i);
@@ -131,9 +132,6 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 		// We always show the Y-axis
 		bool drawVerticalLine = (m_options.ShowVerticalLines() || (i == 0));
-
-		gc.SetFont(font, m_options.GetFontColor());
-		m_XAxis.GetLabels()[i].Draw(gc);
 
 		if (drawVerticalLine)
 		{
@@ -150,7 +148,8 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			}
 			else
 			{
-				wxPen pen(m_options.GetAxisLineColor(), m_options.GetAxisLineWidth());
+				wxPen pen(m_options.GetYAxisOptions().GetLineColor(), 
+					m_options.GetYAxisOptions().GetLineWidth());
 				gc.SetPen(pen);
 				gc.StrokePath(path);
 			}
@@ -161,7 +160,8 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			path2.AddLineToPoint(linePosition, m_mapping.GetEndPoint() + 5);
 			path2.CloseSubpath();
 
-			wxPen pen(m_options.GetAxisLineColor(), m_options.GetAxisLineWidth());
+			wxPen pen(m_options.GetYAxisOptions().GetLineColor(), 
+				m_options.GetYAxisOptions().GetLineWidth());
 			gc.SetPen(pen);
 			gc.StrokePath(path2);
 		}
@@ -180,24 +180,23 @@ const wxChartGridMapping& wxChartGrid::GetMapping() const
 }
 
 void wxChartGrid::Fit(size_t steps,
-					  wxGraphicsContext &gc,
-					  const wxFont &font)
+					  wxGraphicsContext &gc)
 {
 	if (!m_needsFit)
 	{
 		return;
 	}
 
-	wxDouble startPoint = m_options.GetFontSize();
-	wxDouble endPoint = m_mapping.GetSize().GetHeight() - (m_options.GetFontSize() + 15) - 5; // -5 to pad labels
+	wxDouble startPoint = m_options.GetYAxisOptions().GetFontSize();
+	wxDouble endPoint = m_mapping.GetSize().GetHeight() - (m_options.GetYAxisOptions().GetFontSize() + 15) - 5; // -5 to pad labels
 
 	// Apply padding settings to the start and end point.
 	//this.startPoint += this.padding;
 	//this.endPoint -= this.padding;
 
 
-	m_YAxis.BuildYLabels(m_mapping.GetMinValue(), steps, m_stepValue, gc, font);
-	m_XAxis.Fit(gc, font);
+	m_YAxis.BuildYLabels(m_mapping.GetMinValue(), steps, m_stepValue, gc);
+	m_XAxis.Fit(gc);
 
 	wxDouble leftPadding = CalculateLeftPadding(m_XAxis.GetLabels(), m_YAxis.GetLabelMaxWidth());
 	m_mapping.Fit(leftPadding, startPoint, endPoint);

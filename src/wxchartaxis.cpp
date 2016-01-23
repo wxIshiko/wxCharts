@@ -49,22 +49,39 @@ wxChartAxis::wxChartAxis(const wxVector<wxString> &labels)
 	}
 }
 
-void wxChartAxis::Fit(wxGraphicsContext &gc,
-					  const wxFont &font)
+bool wxChartAxis::HitTest(const wxPoint &point) const
 {
-	UpdateLabelSizes(gc, font);
+	return false;
+}
+
+void wxChartAxis::Draw(wxGraphicsContext &gc)
+{
+	wxFont font(wxSize(0, m_options.GetFontSize()), m_options.GetFontFamily(), 
+		m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
+	gc.SetFont(font, m_options.GetFontColor());
+	for (size_t i = 0; i < m_labels.size(); ++i)
+	{
+		m_labels[i].Draw(gc);
+	}
+}
+
+void wxChartAxis::Fit(wxGraphicsContext &gc)
+{
+	UpdateLabelSizes(gc);
 }
 
 void wxChartAxis::BuildYLabels(wxDouble minValue,
 							   size_t steps,
 							   wxDouble stepValue,
-							   wxGraphicsContext &gc,
-							   const wxFont &font)
+							   wxGraphicsContext &gc)
 {
 	m_labels.clear();
 	m_labelMaxWidth = 0;
 
 	size_t stepDecimalPlaces = wxChartUtilities::GetDecimalPlaces();
+
+	wxFont font(wxSize(0, m_options.GetFontSize()), m_options.GetFontFamily(),
+		m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
 
 	for (size_t i = 0; i <= steps; ++i)
 	{
@@ -92,11 +109,6 @@ void wxChartAxis::UpdateLabelPosition(size_t index,
 	m_labels[index].SetPosition(x, y);
 }
 
-bool wxChartAxis::HitTest(const wxPoint &point) const
-{
-	return false;
-}
-
 const wxVector<wxChartLabel>& wxChartAxis::GetLabels()
 {
 	return m_labels;
@@ -107,9 +119,11 @@ wxDouble wxChartAxis::GetLabelMaxWidth() const
 	return m_labelMaxWidth;
 }
 
-void wxChartAxis::UpdateLabelSizes(wxGraphicsContext &gc,
-								   const wxFont &font)
+void wxChartAxis::UpdateLabelSizes(wxGraphicsContext &gc)
 {
+	wxFont font(wxSize(0, m_options.GetFontSize()), m_options.GetFontFamily(),
+		m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
+
 	for (size_t i = 0; i < m_labels.size(); ++i)
 	{
 		wxDouble labelWidth;
