@@ -23,14 +23,15 @@
 #include "wxchartlabel.h"
 
 wxChartLabel::wxChartLabel(const wxString &text)
-	: m_text(text), m_size(0, 0)
+	: m_text(text), m_position(0, 0), m_size(0, 0)
 {
 }
 
 wxChartLabel::wxChartLabel(const wxString &text,
 						   wxDouble width,
 						   wxDouble height)
-	: m_text(text), m_size(width, height)
+	: m_text(text), m_position(0, 0), 
+	m_size(width, height)
 {
 }
 
@@ -39,16 +40,26 @@ bool wxChartLabel::HitTest(const wxPoint &point) const
 	return false;
 }
 
-void wxChartLabel::Draw(wxDouble x, 
-						wxDouble y, 
-						wxGraphicsContext &gc) const
+void wxChartLabel::Draw(wxGraphicsContext &gc) const
 {
-	gc.DrawText(m_text, x, y);
+	gc.DrawText(m_text, m_position.m_x, m_position.m_y);
 }
 
 const wxString& wxChartLabel::GetText() const
 {
 	return m_text;
+}
+
+const wxPoint2DDouble& wxChartLabel::GetPosition() const
+{
+	return m_position;
+}
+
+void wxChartLabel::SetPosition(wxDouble x,
+							   wxDouble y)
+{
+	m_position.m_x = x;
+	m_position.m_y = y;
 }
 
 const wxSize& wxChartLabel::GetSize() const

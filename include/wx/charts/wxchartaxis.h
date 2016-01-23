@@ -56,6 +56,8 @@ public:
 	void BuildYLabels(wxDouble minValue, size_t steps,
 		wxDouble stepValue, wxGraphicsContext &gc, 
 		const wxFont &font);
+	void UpdateLabelPosition(size_t index, wxDouble x,
+		wxDouble y);
 
 	const wxVector<wxChartLabel>& GetLabels();
 	wxDouble GetLabelMaxWidth() const;

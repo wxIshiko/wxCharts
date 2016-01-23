@@ -85,6 +85,13 @@ void wxChartAxis::BuildYLabels(wxDouble minValue,
 	m_labelMaxWidth += 10;
 }
 
+void wxChartAxis::UpdateLabelPosition(size_t index,
+									  wxDouble x,
+									  wxDouble y)
+{
+	m_labels[index].SetPosition(x, y);
+}
+
 bool wxChartAxis::HitTest(const wxPoint &point) const
 {
 	return false;

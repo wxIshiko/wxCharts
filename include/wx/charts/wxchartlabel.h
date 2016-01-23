@@ -54,19 +54,19 @@ public:
 	virtual bool HitTest(const wxPoint &point) const;
 
 	/// Draws the label.
-	/// @param x The X coordinate.
-	/// @param y The Y coordinate.
 	/// @param gc The graphics context.
-	void Draw(wxDouble x, wxDouble y, 
-		wxGraphicsContext &gc) const;
+	void Draw(wxGraphicsContext &gc) const;
 
 	const wxString& GetText() const;
+	const wxPoint2DDouble& GetPosition() const;
+	void SetPosition(wxDouble x, wxDouble y);
 	const wxSize& GetSize() const;
 	void SetSize(const wxSize &size);
 	void SetSize(wxDouble width, wxDouble height);
 
 private:
 	wxString m_text;
+	wxPoint2DDouble m_position;
 	wxSize m_size;
 };
 

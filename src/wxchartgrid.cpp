@@ -68,14 +68,20 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 	for (size_t i = 0; i < m_YAxis.GetLabels().size(); ++i)
 	{
 		wxDouble yLabelCenter = m_mapping.GetEndPoint() - (yLabelGap * i);
+		m_YAxis.UpdateLabelPosition(i, xStart - 10 - m_YAxis.GetLabels()[i].GetSize().GetWidth(), 
+			yLabelCenter - (m_YAxis.GetLabels()[i].GetSize().GetHeight() / 2));
+	}
+
+	for (size_t i = 0; i < m_YAxis.GetLabels().size(); ++i)
+	{
+		wxDouble yLabelCenter = m_mapping.GetEndPoint() - (yLabelGap * i);
 		wxDouble linePositionY = yLabelCenter;
 		
 		// We always show the X-axis
 		bool drawHorizontalLine = (m_options.ShowHorizontalLines() || (i == 0));
 
 		gc.SetFont(font, m_options.GetFontColor());
-		m_YAxis.GetLabels()[i].Draw(xStart - 10 - m_YAxis.GetLabels()[i].GetSize().GetWidth(), 
-			yLabelCenter - (m_YAxis.GetLabels()[i].GetSize().GetHeight() / 2), gc);
+		m_YAxis.GetLabels()[i].Draw(gc);
 		
 		if (drawHorizontalLine)
 		{
@@ -111,6 +117,13 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 	for (size_t i = 0; i < m_XAxis.GetLabels().size(); ++i)
 	{
 		wxDouble labelPosition = CalculateLabelPosition(i);
+		m_XAxis.UpdateLabelPosition(i, labelPosition - (m_XAxis.GetLabels()[i].GetSize().GetWidth() / 2),
+			m_mapping.GetEndPoint() + 8);
+	}
+
+	for (size_t i = 0; i < m_XAxis.GetLabels().size(); ++i)
+	{
+		wxDouble labelPosition = CalculateLabelPosition(i);
 		wxPoint2DDouble s;
 		wxPoint2DDouble t;
 		m_mapping.GetVerticalLinePositions(i, s, t);
@@ -120,7 +133,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		bool drawVerticalLine = (m_options.ShowVerticalLines() || (i == 0));
 
 		gc.SetFont(font, m_options.GetFontColor());
-		m_XAxis.GetLabels()[i].Draw(labelPosition - (m_XAxis.GetLabels()[i].GetSize().GetWidth() / 2), m_mapping.GetEndPoint() + 8, gc);
+		m_XAxis.GetLabels()[i].Draw(gc);
 
 		if (drawVerticalLine)
 		{
