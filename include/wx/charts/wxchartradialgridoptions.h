@@ -57,10 +57,26 @@ public:
 	/// @return The color of the grid lines.
 	const wxColor& GetLineColor() const;
 
+	/// Whether to display the value that
+	/// each grid line represents.
+	/// @retval true Display the values.
+	/// @retval false Don't display the values.
 	bool ShowLabels() const;
+	/// Gets the font family to be used for 
+	/// the labels.
+	/// @return The font family.
 	wxFontFamily GetFontFamily() const;
+	/// Gets the font size to be used for 
+	/// the labels.
+	/// @return The font size in pixels.
 	int GetFontSize() const;
+	/// Gets the font style to be used for 
+	/// the labels.
+	/// @return The font style.
 	wxFontStyle GetFontStyle() const;
+	/// Gets the font color to be used for 
+	/// the labels.
+	/// @return The font color.
 	const wxColor& GetFontColor() const;
 
 private:

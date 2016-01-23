@@ -31,6 +31,7 @@ library wxcharts
         ../../include/wx/charts/wxchartutilities.h
         ../../include/wx/charts/wxchartelement.h
         ../../include/wx/charts/wxchartlabel.h
+        ../../include/wx/charts/wxchartaxis.h
         ../../include/wx/charts/wxchartgridmapping.h
         ../../include/wx/charts/wxchartgridoptions.h
         ../../include/wx/charts/wxchartgrid.h
@@ -70,6 +71,7 @@ library wxcharts
         ../../src/wxchartutilities.cpp
         ../../src/wxchartelement.cpp
         ../../src/wxchartlabel.cpp
+        ../../src/wxchartaxis.cpp
         ../../src/wxchartgridmapping.cpp
         ../../src/wxchartgridoptions.cpp
         ../../src/wxchartgrid.cpp
