@@ -70,6 +70,13 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			yLabelCenter - (m_YAxis.GetLabels()[i].GetSize().GetHeight() / 2));
 	}
 
+	for (size_t i = 0; i < m_XAxis.GetLabels().size(); ++i)
+	{
+		wxDouble labelPosition = CalculateLabelPosition(i);
+		m_XAxis.UpdateLabelPosition(i, labelPosition - (m_XAxis.GetLabels()[i].GetSize().GetWidth() / 2),
+			m_mapping.GetEndPoint() + 8);
+	}
+
 	m_YAxis.Draw(gc);
 
 	for (size_t i = 0; i < m_YAxis.GetLabels().size(); ++i)
@@ -111,13 +118,6 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			gc.SetPen(pen);
 			gc.StrokePath(path2);
 		}
-	}
-
-	for (size_t i = 0; i < m_XAxis.GetLabels().size(); ++i)
-	{
-		wxDouble labelPosition = CalculateLabelPosition(i);
-		m_XAxis.UpdateLabelPosition(i, labelPosition - (m_XAxis.GetLabels()[i].GetSize().GetWidth() / 2),
-			m_mapping.GetEndPoint() + 8);
 	}
 
 	m_XAxis.Draw(gc);
@@ -230,7 +230,7 @@ wxDouble wxChartGrid::CalculateLabelPosition(size_t index)
 	valueOffset = (valueWidth * index) + this.xScalePaddingLeft;
 	*/
 
-	if (m_options.OffsetGridLines())
+	if (m_options.GetXAxisOptions().GetLabelAlignment() == wxCHARTLABELALIGNMENT_BETWEEN_LINES)
 	{
 		valueOffset += (valueWidth / 2);
 	}

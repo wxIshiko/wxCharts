@@ -23,7 +23,7 @@
 #include "wxbarchartoptions.h"
 
 wxBarChartOptions::wxBarChartOptions()
-	: m_gridOptions(true)
+	: m_gridOptions(wxChartAxisOptions(wxCHARTLABELALIGNMENT_BETWEEN_LINES), wxChartAxisOptions())
 {
 }
 

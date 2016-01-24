@@ -34,7 +34,8 @@ class wxChartGridOptions
 public:
 	/// Constructs a wxChartGridOptions instance.
 	wxChartGridOptions();
-	wxChartGridOptions(bool offsetGridLines);
+	wxChartGridOptions(const wxChartAxisOptions &xAxisOptions,
+		const wxChartAxisOptions &yAxisOptions);
 
 	const wxChartAxisOptions& GetXAxisOptions() const;
 	const wxChartAxisOptions& GetYAxisOptions() const;
@@ -43,7 +44,6 @@ public:
 	bool ShowVerticalLines() const;
 	unsigned int GetGridLineWidth() const;
 	const wxColor& GetGridLineColor() const;
-	bool OffsetGridLines() const;
 
 private:
 	wxChartAxisOptions m_XAxisOptions;
@@ -54,7 +54,6 @@ private:
 	bool m_showVerticalLines;
 	unsigned int m_gridLineWidth;
 	wxColor m_gridLineColor;
-	bool m_offsetGridLines;
 };
 
 #endif

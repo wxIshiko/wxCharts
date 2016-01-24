@@ -28,6 +28,12 @@
 #include <wx/colour.h>
 #include <wx/font.h>
 
+enum wxChartLabelAlignment
+{
+	wxCHARTLABELALIGNMENT_ON_LINES = 0,
+	wxCHARTLABELALIGNMENT_BETWEEN_LINES = 1
+};
+
 /// The options for the wxChartAxis element.
 class wxChartAxisOptions
 {
@@ -35,6 +41,9 @@ public:
 	/// Constructs a new wxChartAxisOptions
 	/// instance.
 	wxChartAxisOptions();
+	wxChartAxisOptions(wxChartLabelAlignment labelAlignment);
+
+	wxChartLabelAlignment GetLabelAlignment() const;
 
 	unsigned int GetLineWidth() const;
 	const wxColor& GetLineColor() const;
@@ -57,6 +66,7 @@ public:
 	const wxColor& GetFontColor() const;
 
 private:
+	wxChartLabelAlignment m_labelAlignment;
 	unsigned int m_lineWidth;
 	wxColor m_lineColor;
 	wxFontFamily m_fontFamily;

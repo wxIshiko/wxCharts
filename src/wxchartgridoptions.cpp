@@ -24,15 +24,15 @@
 
 wxChartGridOptions::wxChartGridOptions()
 	: m_showHorizontalLines(true), m_showVerticalLines(true),
-	m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x0C),
-	m_offsetGridLines(false)
+	m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x0C)
 {
 }
 
-wxChartGridOptions::wxChartGridOptions(bool offsetGridLines)
-	: m_showHorizontalLines(true), m_showVerticalLines(true),
-	m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x0C),
-	m_offsetGridLines(offsetGridLines)
+wxChartGridOptions::wxChartGridOptions(const wxChartAxisOptions &xAxisOptions,
+									   const wxChartAxisOptions &yAxisOptions)
+	: m_XAxisOptions(xAxisOptions), m_YAxisOptions(yAxisOptions),
+	m_showHorizontalLines(true), m_showVerticalLines(true),
+	m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x0C)
 {
 }
 
@@ -64,9 +64,4 @@ unsigned int wxChartGridOptions::GetGridLineWidth() const
 const wxColor& wxChartGridOptions::GetGridLineColor() const
 {
 	return m_gridLineColor;
-}
-
-bool wxChartGridOptions::OffsetGridLines() const
-{
-	return m_offsetGridLines;
 }
