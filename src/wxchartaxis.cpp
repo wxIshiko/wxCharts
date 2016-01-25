@@ -58,7 +58,7 @@ bool wxChartAxis::HitTest(const wxPoint &point) const
 
 void wxChartAxis::Draw1(wxGraphicsContext &gc)
 {
-	// Draw the Y-axis
+	// Draw the axis
 	wxGraphicsPath path = gc.CreatePath();
 	path.MoveToPoint(m_leftPadding, m_endPoint);
 	path.AddLineToPoint(m_leftPadding, m_startPoint - 3);
@@ -80,6 +80,17 @@ void wxChartAxis::Draw1(wxGraphicsContext &gc)
 
 void wxChartAxis::Draw2(wxGraphicsContext &gc)
 {
+	// Draw the axis
+	wxGraphicsPath path = gc.CreatePath();
+	path.MoveToPoint(m_leftPadding, m_endPoint);
+	path.AddLineToPoint(m_leftPadding + m_length, m_endPoint);
+	path.CloseSubpath();
+
+	wxPen pen(m_options.GetLineColor(), m_options.GetLineWidth());
+	gc.SetPen(pen);
+	gc.StrokePath(path);
+
+	// Draw the labels
 	wxFont font(wxSize(0, m_options.GetFontSize()), m_options.GetFontFamily(),
 		m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
 	gc.SetFont(font, m_options.GetFontColor());

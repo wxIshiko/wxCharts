@@ -130,23 +130,6 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 	m_XAxis.Draw2(gc);
 	m_YAxis.Draw1(gc);
 
-	// Draw the X-axis
-	if (m_YAxis.GetLabels().size() > 0)
-	{
-		wxDouble yLabelCenter = m_mapping.GetEndPoint();
-		wxDouble linePositionY = yLabelCenter;
-
-		wxGraphicsPath path = gc.CreatePath();
-		path.MoveToPoint(xStart, linePositionY);
-		path.AddLineToPoint(m_mapping.GetSize().GetWidth(), linePositionY);
-		path.CloseSubpath();
-
-		wxPen pen(m_options.GetXAxisOptions().GetLineColor(),
-			m_options.GetXAxisOptions().GetLineWidth());
-		gc.SetPen(pen);
-		gc.StrokePath(path);
-	}
-
 	if (m_XAxis.GetLabels().size() > 0)
 	{
 		wxPoint2DDouble s;
