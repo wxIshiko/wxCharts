@@ -61,10 +61,9 @@ public:
 	void Fit(wxDouble leftPadding, wxDouble length);
 	void BuildYLabels(wxDouble minValue, size_t steps,
 		wxDouble stepValue);
-	void UpdateLabelPositions(wxDouble startPoint, 
+	void UpdateLabelPositions1(wxDouble startPoint, 
 		wxDouble endPoint);
-	void UpdateLabelPosition(size_t index, wxDouble x,
-		wxDouble y);
+	void UpdateLabelPositions2(wxDouble endPoint);
 
 	const wxVector<wxChartLabel>& GetLabels();
 	wxDouble GetLabelMaxWidth() const;

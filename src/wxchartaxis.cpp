@@ -116,8 +116,8 @@ void wxChartAxis::BuildYLabels(wxDouble minValue,
 	}
 }
 
-void wxChartAxis::UpdateLabelPositions(wxDouble startPoint,
-									   wxDouble endPoint)
+void wxChartAxis::UpdateLabelPositions1(wxDouble startPoint,
+										wxDouble endPoint)
 {
 	wxDouble yLabelGap = (endPoint - startPoint) / (m_labels.size() - 1);
 
@@ -129,11 +129,14 @@ void wxChartAxis::UpdateLabelPositions(wxDouble startPoint,
 	}
 }
 
-void wxChartAxis::UpdateLabelPosition(size_t index,
-									  wxDouble x,
-									  wxDouble y)
+void wxChartAxis::UpdateLabelPositions2(wxDouble endPoint)
 {
-	m_labels[index].SetPosition(x, y);
+	for (size_t i = 0; i < m_labels.size(); ++i)
+	{
+		wxDouble labelPosition = CalculateLabelPosition(i);
+		m_labels[i].SetPosition(labelPosition - (m_labels[i].GetSize().GetWidth() / 2),
+			endPoint + 8);
+	}
 }
 
 const wxVector<wxChartLabel>& wxChartAxis::GetLabels()
