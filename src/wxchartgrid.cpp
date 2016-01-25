@@ -183,12 +183,20 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			m_options.GetXAxisOptions().GetLineWidth());
 		gc.SetPen(pen);
 		gc.StrokePath(path);
+	}
+
+	if (m_YAxis.GetLabels().size() > 0)
+	{
+		wxDouble yLabelCenter = m_mapping.GetEndPoint();
+		wxDouble linePositionY = yLabelCenter;
 
 		wxGraphicsPath path2 = gc.CreatePath();
 		path2.MoveToPoint(xStart - 5, linePositionY);
 		path2.AddLineToPoint(xStart, linePositionY);
 		path2.CloseSubpath();
 
+		wxPen pen(m_options.GetXAxisOptions().GetLineColor(),
+			m_options.GetXAxisOptions().GetLineWidth());
 		gc.SetPen(pen);
 		gc.StrokePath(path2);
 	}
