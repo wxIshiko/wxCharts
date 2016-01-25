@@ -85,7 +85,6 @@ private:
 	void Fit(size_t steps, wxGraphicsContext &gc);
 	static wxDouble CalculateLeftPadding(const wxVector<wxChartLabel> &xLabels, 
 		wxDouble yLabelMaxWidth);
-	wxDouble CalculateLabelPosition(size_t index);
 
 private:
 	wxChartGridOptions m_options;

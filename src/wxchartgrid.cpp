@@ -72,7 +72,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 	for (size_t i = 0; i < m_XAxis.GetLabels().size(); ++i)
 	{
-		wxDouble labelPosition = CalculateLabelPosition(i);
+		wxDouble labelPosition = m_XAxis.CalculateLabelPosition(i);
 		m_XAxis.UpdateLabelPosition(i, labelPosition - (m_XAxis.GetLabels()[i].GetSize().GetWidth() / 2),
 			m_mapping.GetEndPoint() + 8);
 	}
@@ -124,7 +124,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 	for (size_t i = 0; i < m_XAxis.GetLabels().size(); ++i)
 	{
-		wxDouble labelPosition = CalculateLabelPosition(i);
+		wxDouble labelPosition = m_XAxis.CalculateLabelPosition(i);
 		wxPoint2DDouble s;
 		wxPoint2DDouble t;
 		m_mapping.GetVerticalLinePositions(i, s, t);
@@ -194,11 +194,14 @@ void wxChartGrid::Fit(size_t steps,
 	//this.startPoint += this.padding;
 	//this.endPoint -= this.padding;
 
+	
+	m_YAxis.BuildYLabels(m_mapping.GetMinValue(), steps, m_stepValue);
+	m_YAxis.UpdateLabelSizes(gc);
 
-	m_YAxis.BuildYLabels(m_mapping.GetMinValue(), steps, m_stepValue, gc);
-	m_XAxis.Fit(gc);
-
+	m_XAxis.UpdateLabelSizes(gc);
 	wxDouble leftPadding = CalculateLeftPadding(m_XAxis.GetLabels(), m_YAxis.GetLabelMaxWidth());
+	m_XAxis.Fit(leftPadding, m_mapping.GetSize().GetWidth() - leftPadding, gc);
+
 	m_mapping.Fit(leftPadding, startPoint, endPoint);
 
 	m_needsFit = false;
@@ -215,29 +218,4 @@ wxDouble wxChartGrid::CalculateLeftPadding(const wxVector<wxChartLabel> &xLabels
 		leftPadding = (xLabels[0].GetSize().GetWidth() / 2);
 	}
 	return leftPadding;
-}
-
-wxDouble wxChartGrid::CalculateLabelPosition(size_t index)
-{
-	wxDouble leftPadding = m_mapping.GetLeftPadding();
-	wxDouble innerWidth = m_mapping.GetSize().GetWidth() - leftPadding;
-	wxDouble valueWidth = innerWidth / m_XAxis.GetLabels().size();
-	wxDouble valueOffset = leftPadding + (valueWidth * index);
-
-	/*
-	innerWidth = this.width - (this.xScalePaddingLeft + this.xScalePaddingRight),
-	valueWidth = innerWidth/Math.max((this.valuesCount - ((this.offsetGridLines) ? 0 : 1)), 1),
-	valueOffset = (valueWidth * index) + this.xScalePaddingLeft;
-	*/
-
-	if (m_options.GetXAxisOptions().GetLabelAlignment() == wxCHARTLABELALIGNMENT_BETWEEN_LINES)
-	{
-		valueOffset += (valueWidth / 2);
-	}
-
-	/*
-	return Math.round(valueOffset);
-	*/
-	
-	return valueOffset;
 }

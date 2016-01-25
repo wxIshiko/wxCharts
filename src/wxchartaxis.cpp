@@ -36,12 +36,12 @@
 #include <sstream>
 
 wxChartAxis::wxChartAxis()
-	: m_labelMaxWidth(0)
+	: m_leftPadding(0), m_length(0), m_labelMaxWidth(0)
 {
 }
 
 wxChartAxis::wxChartAxis(const wxVector<wxString> &labels)
-	: m_labelMaxWidth(0)
+	: m_leftPadding(0), m_length(0), m_labelMaxWidth(0)
 {
 	for (size_t i = 0; i < labels.size(); ++i)
 	{
@@ -65,18 +65,42 @@ void wxChartAxis::Draw(wxGraphicsContext &gc)
 	}
 }
 
-void wxChartAxis::Fit(wxGraphicsContext &gc)
+void wxChartAxis::Fit(wxDouble leftPadding,
+					  wxDouble length,
+					  wxGraphicsContext &gc)
 {
-	UpdateLabelSizes(gc);
+	m_leftPadding = leftPadding;
+	m_length = length;
+}
+
+void wxChartAxis::UpdateLabelSizes(wxGraphicsContext &gc)
+{
+	m_labelMaxWidth = 0;
+
+	wxFont font(wxSize(0, m_options.GetFontSize()), m_options.GetFontFamily(),
+		m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
+
+	for (size_t i = 0; i < m_labels.size(); ++i)
+	{
+		wxDouble labelWidth;
+		wxDouble labelHeight;
+		wxChartUtilities::GetTextSize(gc, font, m_labels[i].GetText(), labelWidth, labelHeight);
+
+		m_labels[i].SetSize(labelWidth, labelHeight);
+		if (labelWidth > m_labelMaxWidth)
+		{
+			m_labelMaxWidth = labelWidth;
+		}
+	}
+
+	m_labelMaxWidth += 10;
 }
 
 void wxChartAxis::BuildYLabels(wxDouble minValue,
 							   size_t steps,
-							   wxDouble stepValue,
-							   wxGraphicsContext &gc)
+							   wxDouble stepValue)
 {
 	m_labels.clear();
-	m_labelMaxWidth = 0;
 
 	size_t stepDecimalPlaces = wxChartUtilities::GetDecimalPlaces();
 
@@ -89,17 +113,8 @@ void wxChartAxis::BuildYLabels(wxDouble minValue,
 		std::stringstream valueStr;
 		valueStr << value;
 
-		wxDouble labelWidth;
-		wxDouble labelHeight;
-		wxChartUtilities::GetTextSize(gc, font, valueStr.str(), labelWidth, labelHeight);
-		if (labelWidth > m_labelMaxWidth)
-		{
-			m_labelMaxWidth = labelWidth;
-		}
-
-		m_labels.push_back(wxChartLabel(valueStr.str(), labelWidth, labelHeight));
+		m_labels.push_back(wxChartLabel(valueStr.str()));
 	}
-	m_labelMaxWidth += 10;
 }
 
 void wxChartAxis::UpdateLabelPosition(size_t index,
@@ -119,16 +134,27 @@ wxDouble wxChartAxis::GetLabelMaxWidth() const
 	return m_labelMaxWidth;
 }
 
-void wxChartAxis::UpdateLabelSizes(wxGraphicsContext &gc)
+wxDouble wxChartAxis::CalculateLabelPosition(size_t index)
 {
-	wxFont font(wxSize(0, m_options.GetFontSize()), m_options.GetFontFamily(),
-		m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
+	wxDouble leftPadding = m_leftPadding;
+	wxDouble innerWidth = m_length;
+	wxDouble valueWidth = innerWidth / m_labels.size();
+	wxDouble valueOffset = leftPadding + (valueWidth * index);
 
-	for (size_t i = 0; i < m_labels.size(); ++i)
+	/*
+	innerWidth = this.width - (this.xScalePaddingLeft + this.xScalePaddingRight),
+	valueWidth = innerWidth/Math.max((this.valuesCount - ((this.offsetGridLines) ? 0 : 1)), 1),
+	valueOffset = (valueWidth * index) + this.xScalePaddingLeft;
+	*/
+
+	if (m_options.GetLabelAlignment() == wxCHARTLABELALIGNMENT_BETWEEN_LINES)
 	{
-		wxDouble labelWidth;
-		wxDouble labelHeight;
-		wxChartUtilities::GetTextSize(gc, font, m_labels[i].GetText(), labelWidth, labelHeight);
-		m_labels[i].SetSize(labelWidth, labelHeight);
+		valueOffset += (valueWidth / 2);
 	}
+
+	/*
+	return Math.round(valueOffset);
+	*/
+
+	return valueOffset;
 }

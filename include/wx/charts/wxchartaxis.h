@@ -57,20 +57,23 @@ public:
 	/// @param gc The graphics context.
 	void Draw(wxGraphicsContext &gc);
 
-	void Fit(wxGraphicsContext &gc);
+	void UpdateLabelSizes(wxGraphicsContext &gc);
+	void Fit(wxDouble leftPadding, wxDouble length,
+		wxGraphicsContext &gc);
 	void BuildYLabels(wxDouble minValue, size_t steps,
-		wxDouble stepValue, wxGraphicsContext &gc);
+		wxDouble stepValue);
 	void UpdateLabelPosition(size_t index, wxDouble x,
 		wxDouble y);
 
 	const wxVector<wxChartLabel>& GetLabels();
 	wxDouble GetLabelMaxWidth() const;
 
-private:
-	void UpdateLabelSizes(wxGraphicsContext &gc);
+	wxDouble CalculateLabelPosition(size_t index);
 
 private:
 	wxChartAxisOptions m_options;
+	wxDouble m_leftPadding;
+	wxDouble m_length;
 	wxVector<wxChartLabel> m_labels;
 	wxDouble m_labelMaxWidth;
 };
