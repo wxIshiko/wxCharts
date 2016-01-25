@@ -68,13 +68,13 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 	m_XAxis.UpdateLabelPositions2();
 	m_YAxis.UpdateLabelPositions1();
 
-	for (size_t i = 1; i < m_YAxis.GetLabels().size(); ++i)
+	if (m_options.ShowHorizontalLines())
 	{
-		wxDouble yLabelCenter = m_mapping.GetEndPoint() - (yLabelGap * i);
-		wxDouble linePositionY = yLabelCenter;
-		
-		if (m_options.ShowHorizontalLines())
+		for (size_t i = 1; i < m_YAxis.GetLabels().size(); ++i)
 		{
+			wxDouble yLabelCenter = m_mapping.GetEndPoint() - (yLabelGap * i);
+			wxDouble linePositionY = yLabelCenter;
+
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(xStart, linePositionY);
 			path.AddLineToPoint(m_mapping.GetSize().GetWidth(), linePositionY);
@@ -89,23 +89,23 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			path2.AddLineToPoint(xStart, linePositionY);
 			path2.CloseSubpath();
 
-			wxPen pen(m_options.GetXAxisOptions().GetLineColor(), 
+			wxPen pen(m_options.GetXAxisOptions().GetLineColor(),
 				m_options.GetXAxisOptions().GetLineWidth());
 			gc.SetPen(pen);
 			gc.StrokePath(path2);
 		}
 	}
 
-	for (size_t i = 1; i < m_XAxis.GetLabels().size(); ++i)
+	if (m_options.ShowVerticalLines())
 	{
-		wxDouble labelPosition = m_XAxis.CalculateLabelPosition(i);
-		wxPoint2DDouble s;
-		wxPoint2DDouble t;
-		m_mapping.GetVerticalLinePositions(i, s, t);
-		wxDouble linePosition = s.m_x;
-
-		if (m_options.ShowVerticalLines())
+		for (size_t i = 1; i < m_XAxis.GetLabels().size(); ++i)
 		{
+			wxDouble labelPosition = m_XAxis.CalculateLabelPosition(i);
+			wxPoint2DDouble s;
+			wxPoint2DDouble t;
+			m_mapping.GetVerticalLinePositions(i, s, t);
+			wxDouble linePosition = s.m_x;
+
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(linePosition, m_mapping.GetEndPoint());
 			path.AddLineToPoint(linePosition, m_mapping.GetStartPoint() - 3);
@@ -121,7 +121,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			path2.AddLineToPoint(linePosition, m_mapping.GetEndPoint() + 5);
 			path2.CloseSubpath();
 
-			wxPen pen(m_options.GetYAxisOptions().GetLineColor(), 
+			wxPen pen(m_options.GetYAxisOptions().GetLineColor(),
 				m_options.GetYAxisOptions().GetLineWidth());
 			gc.SetPen(pen);
 			gc.StrokePath(path2);
