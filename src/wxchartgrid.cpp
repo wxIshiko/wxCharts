@@ -66,7 +66,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 	wxDouble xStart = m_mapping.GetLeftPadding();
 
 	m_XAxis.UpdateLabelPositions2(m_mapping.GetEndPoint());
-	m_YAxis.UpdateLabelPositions1(m_mapping.GetStartPoint(), m_mapping.GetEndPoint());
+	m_YAxis.UpdateLabelPositions1(m_mapping.GetEndPoint());
 
 	m_YAxis.Draw(gc);
 
@@ -190,8 +190,8 @@ void wxChartGrid::Fit(size_t steps,
 
 	m_XAxis.UpdateLabelSizes(gc);
 	wxDouble leftPadding = CalculateLeftPadding(m_XAxis.GetLabels(), m_YAxis.GetLabelMaxWidth());
-	m_XAxis.Fit(leftPadding, m_mapping.GetSize().GetWidth() - leftPadding);
-	m_YAxis.Fit(leftPadding, 0);
+	m_XAxis.Fit(leftPadding, 0, m_mapping.GetSize().GetWidth() - leftPadding);
+	m_YAxis.Fit(leftPadding, startPoint, 0);
 
 	m_mapping.Fit(leftPadding, startPoint, endPoint);
 

@@ -58,11 +58,11 @@ public:
 	void Draw(wxGraphicsContext &gc);
 
 	void UpdateLabelSizes(wxGraphicsContext &gc);
-	void Fit(wxDouble leftPadding, wxDouble length);
+	void Fit(wxDouble leftPadding, wxDouble startPoint,
+		wxDouble length);
 	void BuildYLabels(wxDouble minValue, size_t steps,
 		wxDouble stepValue);
-	void UpdateLabelPositions1(wxDouble startPoint, 
-		wxDouble endPoint);
+	void UpdateLabelPositions1(wxDouble endPoint);
 	void UpdateLabelPositions2(wxDouble endPoint);
 
 	const wxVector<wxChartLabel>& GetLabels();
@@ -73,6 +73,7 @@ public:
 private:
 	wxChartAxisOptions m_options;
 	wxDouble m_leftPadding;
+	wxDouble m_startPoint;
 	wxDouble m_length;
 	wxVector<wxChartLabel> m_labels;
 	wxDouble m_labelMaxWidth;

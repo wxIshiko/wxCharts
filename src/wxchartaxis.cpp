@@ -36,12 +36,14 @@
 #include <sstream>
 
 wxChartAxis::wxChartAxis()
-	: m_leftPadding(0), m_length(0), m_labelMaxWidth(0)
+	: m_leftPadding(0), m_startPoint(0),
+	m_length(0), m_labelMaxWidth(0)
 {
 }
 
 wxChartAxis::wxChartAxis(const wxVector<wxString> &labels)
-	: m_leftPadding(0), m_length(0), m_labelMaxWidth(0)
+	: m_leftPadding(0), m_startPoint(0),
+	m_length(0), m_labelMaxWidth(0)
 {
 	for (size_t i = 0; i < labels.size(); ++i)
 	{
@@ -66,9 +68,11 @@ void wxChartAxis::Draw(wxGraphicsContext &gc)
 }
 
 void wxChartAxis::Fit(wxDouble leftPadding,
+					  wxDouble startPoint,
 					  wxDouble length)
 {
 	m_leftPadding = leftPadding;
+	m_startPoint = startPoint;
 	m_length = length;
 }
 
@@ -116,10 +120,9 @@ void wxChartAxis::BuildYLabels(wxDouble minValue,
 	}
 }
 
-void wxChartAxis::UpdateLabelPositions1(wxDouble startPoint,
-										wxDouble endPoint)
+void wxChartAxis::UpdateLabelPositions1(wxDouble endPoint)
 {
-	wxDouble yLabelGap = (endPoint - startPoint) / (m_labels.size() - 1);
+	wxDouble yLabelGap = (endPoint - m_startPoint) / (m_labels.size() - 1);
 
 	for (size_t i = 0; i < m_labels.size(); ++i)
 	{		
