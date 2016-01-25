@@ -56,9 +56,20 @@ bool wxChartAxis::HitTest(const wxPoint &point) const
 	return false;
 }
 
-void wxChartAxis::Draw(wxGraphicsContext &gc)
+void wxChartAxis::Draw1(wxGraphicsContext &gc)
 {
 	wxFont font(wxSize(0, m_options.GetFontSize()), m_options.GetFontFamily(), 
+		m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
+	gc.SetFont(font, m_options.GetFontColor());
+	for (size_t i = 0; i < m_labels.size(); ++i)
+	{
+		m_labels[i].Draw(gc);
+	}
+}
+
+void wxChartAxis::Draw2(wxGraphicsContext &gc)
+{
+	wxFont font(wxSize(0, m_options.GetFontSize()), m_options.GetFontFamily(),
 		m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
 	gc.SetFont(font, m_options.GetFontColor());
 	for (size_t i = 0; i < m_labels.size(); ++i)

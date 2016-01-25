@@ -127,8 +127,8 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		}
 	}
 
-	m_XAxis.Draw(gc);
-	m_YAxis.Draw(gc);
+	m_XAxis.Draw2(gc);
+	m_YAxis.Draw1(gc);
 
 	// Draw the Y-axis
 	if (m_XAxis.GetLabels().size() > 0)
@@ -145,6 +145,23 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 		wxPen pen(m_options.GetYAxisOptions().GetLineColor(),
 			m_options.GetYAxisOptions().GetLineWidth());
+		gc.SetPen(pen);
+		gc.StrokePath(path);
+	}
+
+	// Draw the X-axis
+	if (m_YAxis.GetLabels().size() > 0)
+	{
+		wxDouble yLabelCenter = m_mapping.GetEndPoint();
+		wxDouble linePositionY = yLabelCenter;
+
+		wxGraphicsPath path = gc.CreatePath();
+		path.MoveToPoint(xStart, linePositionY);
+		path.AddLineToPoint(m_mapping.GetSize().GetWidth(), linePositionY);
+		path.CloseSubpath();
+
+		wxPen pen(m_options.GetXAxisOptions().GetLineColor(),
+			m_options.GetXAxisOptions().GetLineWidth());
 		gc.SetPen(pen);
 		gc.StrokePath(path);
 	}
@@ -166,23 +183,6 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			m_options.GetYAxisOptions().GetLineWidth());
 		gc.SetPen(pen);
 		gc.StrokePath(path2);
-	}
-
-	// Draw the X-axis
-	if (m_YAxis.GetLabels().size() > 0)
-	{
-		wxDouble yLabelCenter = m_mapping.GetEndPoint();
-		wxDouble linePositionY = yLabelCenter;
-
-		wxGraphicsPath path = gc.CreatePath();
-		path.MoveToPoint(xStart, linePositionY);
-		path.AddLineToPoint(m_mapping.GetSize().GetWidth(), linePositionY);
-		path.CloseSubpath();
-
-		wxPen pen(m_options.GetXAxisOptions().GetLineColor(),
-			m_options.GetXAxisOptions().GetLineWidth());
-		gc.SetPen(pen);
-		gc.StrokePath(path);
 	}
 
 	if (m_YAxis.GetLabels().size() > 0)

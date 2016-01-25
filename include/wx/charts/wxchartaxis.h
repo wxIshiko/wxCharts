@@ -55,7 +55,8 @@ public:
 
 	/// Draws the axis.
 	/// @param gc The graphics context.
-	void Draw(wxGraphicsContext &gc);
+	void Draw1(wxGraphicsContext &gc);
+	void Draw2(wxGraphicsContext &gc);
 
 	void UpdateLabelSizes(wxGraphicsContext &gc);
 	void Fit(wxDouble leftPadding, wxDouble startPoint,
