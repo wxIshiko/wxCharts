@@ -49,6 +49,8 @@ wxChartGrid::wxChartGrid(const wxSize &size,
 		graphMinValue, graphMaxValue, valueRange, m_steps, m_stepValue);
 	m_mapping.SetMinValue(graphMinValue);
 	m_mapping.SetMaxValue(graphMaxValue);
+
+	m_YAxis.BuildYLabels(m_mapping.GetMinValue(), m_steps, m_stepValue);
 }
 
 bool wxChartGrid::HitTest(const wxPoint &point) const
@@ -194,8 +196,6 @@ void wxChartGrid::Fit(size_t steps,
 	//this.startPoint += this.padding;
 	//this.endPoint -= this.padding;
 
-	
-	m_YAxis.BuildYLabels(m_mapping.GetMinValue(), steps, m_stepValue);
 	m_YAxis.UpdateLabelSizes(gc);
 
 	m_XAxis.UpdateLabelSizes(gc);
