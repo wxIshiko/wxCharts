@@ -100,10 +100,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		wxDouble yLabelCenter = m_mapping.GetEndPoint() - (yLabelGap * i);
 		wxDouble linePositionY = yLabelCenter;
 		
-		// We always show the X-axis
-		bool drawHorizontalLine = (m_options.ShowHorizontalLines() || (i == 0));
-
-		if (drawHorizontalLine)
+		if (m_options.ShowHorizontalLines())
 		{
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(xStart, linePositionY);
@@ -128,7 +125,36 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 	m_XAxis.Draw(gc);
 
-	for (size_t i = 0; i < m_XAxis.GetLabels().size(); ++i)
+	// Draw the Y-axis
+	if (m_XAxis.GetLabels().size() > 0)
+	{
+		wxDouble labelPosition = m_XAxis.CalculateLabelPosition(0);
+		wxPoint2DDouble s;
+		wxPoint2DDouble t;
+		m_mapping.GetVerticalLinePositions(0, s, t);
+		wxDouble linePosition = s.m_x;
+
+		wxGraphicsPath path = gc.CreatePath();
+		path.MoveToPoint(linePosition, m_mapping.GetEndPoint());
+		path.AddLineToPoint(linePosition, m_mapping.GetStartPoint() - 3);
+		path.CloseSubpath();
+
+		wxPen pen(m_options.GetYAxisOptions().GetLineColor(),
+			m_options.GetYAxisOptions().GetLineWidth());
+		gc.SetPen(pen);
+		gc.StrokePath(path);
+		
+		// Small lines at the bottom of the base grid line
+		wxGraphicsPath path2 = gc.CreatePath();
+		path2.MoveToPoint(linePosition, m_mapping.GetEndPoint());
+		path2.AddLineToPoint(linePosition, m_mapping.GetEndPoint() + 5);
+		path2.CloseSubpath();
+
+		gc.SetPen(pen);
+		gc.StrokePath(path2);
+	}
+
+	for (size_t i = 1; i < m_XAxis.GetLabels().size(); ++i)
 	{
 		wxDouble labelPosition = m_XAxis.CalculateLabelPosition(i);
 		wxPoint2DDouble s;
@@ -136,29 +162,16 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		m_mapping.GetVerticalLinePositions(i, s, t);
 		wxDouble linePosition = s.m_x;
 
-		// We always show the Y-axis
-		bool drawVerticalLine = (m_options.ShowVerticalLines() || (i == 0));
-
-		if (drawVerticalLine)
+		if (m_options.ShowVerticalLines())
 		{
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(linePosition, m_mapping.GetEndPoint());
 			path.AddLineToPoint(linePosition, m_mapping.GetStartPoint() - 3);
 			path.CloseSubpath();
 
-			if (i > 0)
-			{
-				wxPen pen(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
-				gc.SetPen(pen);
-				gc.StrokePath(path);
-			}
-			else
-			{
-				wxPen pen(m_options.GetYAxisOptions().GetLineColor(), 
-					m_options.GetYAxisOptions().GetLineWidth());
-				gc.SetPen(pen);
-				gc.StrokePath(path);
-			}
+			wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
+			gc.SetPen(pen1);
+			gc.StrokePath(path);
 
 			// Small lines at the bottom of the base grid line
 			wxGraphicsPath path2 = gc.CreatePath();
