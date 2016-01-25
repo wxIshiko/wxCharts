@@ -37,13 +37,13 @@
 
 wxChartAxis::wxChartAxis()
 	: m_leftPadding(0), m_startPoint(0),
-	m_length(0), m_labelMaxWidth(0)
+	m_endPoint(0), m_length(0), m_labelMaxWidth(0)
 {
 }
 
 wxChartAxis::wxChartAxis(const wxVector<wxString> &labels)
 	: m_leftPadding(0), m_startPoint(0),
-	m_length(0), m_labelMaxWidth(0)
+	m_endPoint(0), m_length(0), m_labelMaxWidth(0)
 {
 	for (size_t i = 0; i < labels.size(); ++i)
 	{
@@ -69,10 +69,12 @@ void wxChartAxis::Draw(wxGraphicsContext &gc)
 
 void wxChartAxis::Fit(wxDouble leftPadding,
 					  wxDouble startPoint,
+					  wxDouble endPoint,
 					  wxDouble length)
 {
 	m_leftPadding = leftPadding;
 	m_startPoint = startPoint;
+	m_endPoint = endPoint;
 	m_length = length;
 }
 
@@ -120,25 +122,25 @@ void wxChartAxis::BuildYLabels(wxDouble minValue,
 	}
 }
 
-void wxChartAxis::UpdateLabelPositions1(wxDouble endPoint)
+void wxChartAxis::UpdateLabelPositions1()
 {
-	wxDouble yLabelGap = (endPoint - m_startPoint) / (m_labels.size() - 1);
+	wxDouble yLabelGap = (m_endPoint - m_startPoint) / (m_labels.size() - 1);
 
 	for (size_t i = 0; i < m_labels.size(); ++i)
 	{		
-		wxDouble yLabelCenter = endPoint - (yLabelGap * i);
+		wxDouble yLabelCenter = m_endPoint - (yLabelGap * i);
 		m_labels[i].SetPosition(m_leftPadding - 10 - m_labels[i].GetSize().GetWidth(), 
 			yLabelCenter - (m_labels[i].GetSize().GetHeight() / 2));
 	}
 }
 
-void wxChartAxis::UpdateLabelPositions2(wxDouble endPoint)
+void wxChartAxis::UpdateLabelPositions2()
 {
 	for (size_t i = 0; i < m_labels.size(); ++i)
 	{
 		wxDouble labelPosition = CalculateLabelPosition(i);
 		m_labels[i].SetPosition(labelPosition - (m_labels[i].GetSize().GetWidth() / 2),
-			endPoint + 8);
+			m_endPoint + 8);
 	}
 }
 
