@@ -70,7 +70,32 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 	m_YAxis.Draw(gc);
 
-	for (size_t i = 0; i < m_YAxis.GetLabels().size(); ++i)
+	// Draw the X-axis
+	if (m_YAxis.GetLabels().size() > 0)
+	{
+		wxDouble yLabelCenter = m_mapping.GetEndPoint();
+		wxDouble linePositionY = yLabelCenter;
+
+		wxGraphicsPath path = gc.CreatePath();
+		path.MoveToPoint(xStart, linePositionY);
+		path.AddLineToPoint(m_mapping.GetSize().GetWidth(), linePositionY);
+		path.CloseSubpath();
+
+		wxPen pen(m_options.GetXAxisOptions().GetLineColor(),
+			m_options.GetXAxisOptions().GetLineWidth());
+		gc.SetPen(pen);
+		gc.StrokePath(path);
+			
+		wxGraphicsPath path2 = gc.CreatePath();
+		path2.MoveToPoint(xStart - 5, linePositionY);
+		path2.AddLineToPoint(xStart, linePositionY);
+		path2.CloseSubpath();
+		
+		gc.SetPen(pen);
+		gc.StrokePath(path2);
+	}
+
+	for (size_t i = 1; i < m_YAxis.GetLabels().size(); ++i)
 	{
 		wxDouble yLabelCenter = m_mapping.GetEndPoint() - (yLabelGap * i);
 		wxDouble linePositionY = yLabelCenter;
@@ -85,19 +110,9 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			path.AddLineToPoint(m_mapping.GetSize().GetWidth(), linePositionY);
 			path.CloseSubpath();
 
-			if (i > 0)
-			{
-				wxPen pen(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
-				gc.SetPen(pen);
-				gc.StrokePath(path);
-			}
-			else
-			{
-				wxPen pen(m_options.GetXAxisOptions().GetLineColor(), 
-					m_options.GetXAxisOptions().GetLineWidth());
-				gc.SetPen(pen);
-				gc.StrokePath(path);
-			}
+			wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
+			gc.SetPen(pen1);
+			gc.StrokePath(path);
 
 			wxGraphicsPath path2 = gc.CreatePath();
 			path2.MoveToPoint(xStart - 5, linePositionY);
