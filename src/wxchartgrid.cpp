@@ -102,7 +102,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		{
 			wxPoint2DDouble s;
 			wxPoint2DDouble t;
-			m_mapping.GetVerticalLinePositions(i, s, t);
+			m_XAxis.GetVerticalLinePositions(i, s, t);
 			wxDouble linePosition = s.m_x;
 
 			wxGraphicsPath path = gc.CreatePath();
@@ -135,7 +135,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 	{
 		wxPoint2DDouble s;
 		wxPoint2DDouble t;
-		m_mapping.GetVerticalLinePositions(0, s, t);
+		m_XAxis.GetVerticalLinePositions(0, s, t);
 		wxDouble linePosition = s.m_x;
 
 		wxGraphicsPath path = gc.CreatePath();
@@ -170,7 +170,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 	{
 		wxPoint2DDouble s;
 		wxPoint2DDouble t;
-		m_mapping.GetVerticalLinePositions(0, s, t);
+		m_XAxis.GetVerticalLinePositions(0, s, t);
 		wxDouble linePosition = s.m_x;
 
 		// Small lines at the bottom of the base grid line

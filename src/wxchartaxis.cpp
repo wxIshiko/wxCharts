@@ -189,3 +189,14 @@ wxDouble wxChartAxis::CalculateLabelPosition(size_t index)
 
 	return valueOffset;
 }
+
+void wxChartAxis::GetVerticalLinePositions(size_t index,
+										   wxPoint2DDouble &top,
+										   wxPoint2DDouble &bottom) const
+{
+	wxDouble innerWidth = m_length;
+	wxDouble valueWidth = innerWidth / m_labels.size();
+	wxDouble valueOffset = m_leftPadding + (valueWidth * index);
+
+	top.m_x = bottom.m_x = valueOffset;
+}

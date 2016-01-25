@@ -59,8 +59,6 @@ public:
 	wxDouble GetStartPoint() const;
 	wxDouble GetEndPoint() const;
 
-	void GetVerticalLinePositions(size_t index,
-		wxPoint2DDouble &top, wxPoint2DDouble &bottom) const;
 	wxPoint2DDouble GetPointPosition(size_t index, wxDouble value) const;
 
 private:

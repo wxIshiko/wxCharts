@@ -101,17 +101,6 @@ wxDouble wxChartGridMapping::GetEndPoint() const
 	return m_endPoint;
 }
 
-void wxChartGridMapping::GetVerticalLinePositions(size_t index,
-												  wxPoint2DDouble &top,
-												  wxPoint2DDouble &bottom) const
-{
-	wxDouble innerWidth = m_size.GetWidth() - m_leftPadding;
-	wxDouble valueWidth = innerWidth / m_numberOfVerticalLines;
-	wxDouble valueOffset = m_leftPadding + (valueWidth * index);
-
-	top.m_x = bottom.m_x = valueOffset;
-}
-
 wxPoint2DDouble wxChartGridMapping::GetPointPosition(size_t index,
 													 wxDouble value) const
 {
