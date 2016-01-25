@@ -58,10 +58,11 @@ public:
 	void Draw(wxGraphicsContext &gc);
 
 	void UpdateLabelSizes(wxGraphicsContext &gc);
-	void Fit(wxDouble leftPadding, wxDouble length,
-		wxGraphicsContext &gc);
+	void Fit(wxDouble leftPadding, wxDouble length);
 	void BuildYLabels(wxDouble minValue, size_t steps,
 		wxDouble stepValue);
+	void UpdateLabelPositions(wxDouble startPoint, 
+		wxDouble endPoint);
 	void UpdateLabelPosition(size_t index, wxDouble x,
 		wxDouble y);
 

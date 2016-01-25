@@ -66,8 +66,7 @@ void wxChartAxis::Draw(wxGraphicsContext &gc)
 }
 
 void wxChartAxis::Fit(wxDouble leftPadding,
-					  wxDouble length,
-					  wxGraphicsContext &gc)
+					  wxDouble length)
 {
 	m_leftPadding = leftPadding;
 	m_length = length;
@@ -114,6 +113,19 @@ void wxChartAxis::BuildYLabels(wxDouble minValue,
 		valueStr << value;
 
 		m_labels.push_back(wxChartLabel(valueStr.str()));
+	}
+}
+
+void wxChartAxis::UpdateLabelPositions(wxDouble startPoint,
+									   wxDouble endPoint)
+{
+	wxDouble yLabelGap = (endPoint - startPoint) / (m_labels.size() - 1);
+
+	for (size_t i = 0; i < m_labels.size(); ++i)
+	{		
+		wxDouble yLabelCenter = endPoint - (yLabelGap * i);
+		m_labels[i].SetPosition(m_leftPadding - 10 - m_labels[i].GetSize().GetWidth(), 
+			yLabelCenter - (m_labels[i].GetSize().GetHeight() / 2));
 	}
 }
 
