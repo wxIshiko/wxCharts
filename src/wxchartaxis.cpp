@@ -80,15 +80,32 @@ void wxChartAxis::Draw1(wxGraphicsContext &gc)
 
 void wxChartAxis::Draw2(wxGraphicsContext &gc)
 {
+	wxPen pen(m_options.GetLineColor(), m_options.GetLineWidth());
+	gc.SetPen(pen);
+
 	// Draw the axis
 	wxGraphicsPath path = gc.CreatePath();
 	path.MoveToPoint(m_leftPadding, m_endPoint);
 	path.AddLineToPoint(m_leftPadding + m_length, m_endPoint);
 	path.CloseSubpath();
 
-	wxPen pen(m_options.GetLineColor(), m_options.GetLineWidth());
-	gc.SetPen(pen);
 	gc.StrokePath(path);
+
+	// Draw the little lines corresponding to the labels
+	for (size_t i = 0; i < m_labels.size(); ++i)
+	{
+		wxPoint2DDouble s;
+		wxPoint2DDouble t;
+		GetVerticalLinePositions(i, s, t);
+		wxDouble linePosition = s.m_x;
+
+		wxGraphicsPath path2 = gc.CreatePath();
+		path2.MoveToPoint(linePosition, m_endPoint);
+		path2.AddLineToPoint(linePosition, m_endPoint + 5);
+		path2.CloseSubpath();
+
+		gc.StrokePath(path2);
+	}
 
 	// Draw the labels
 	wxFont font(wxSize(0, m_options.GetFontSize()), m_options.GetFontFamily(),
