@@ -52,7 +52,12 @@ public:
 	/// @param gc The graphics context.
 	void Draw(wxGraphicsContext &gc);
 
+	/// Sets the position of the point.
+	/// @param x The new X coordinate of the point.
+	/// @param y The new Y coordinate of the point.
 	void SetPosition(wxDouble x, wxDouble y);
+	/// Sets the position of the point.
+	/// @param position The new position of the point.
 	void SetPosition(wxPoint2DDouble position);
 
 private:

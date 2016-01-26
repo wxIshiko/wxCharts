@@ -71,8 +71,12 @@ public:
 	/// @param slices List of slices.
 	wxChartLegendData(const wxVector<wxChartSliceData>& slices);
 
+	/// Appends an item to the legend.
+	/// @param item The new item.
 	void Append(const wxChartLegendItem &item);
 
+	/// Gets the list of items in the legend.
+	/// @return The list of legend items.
 	const wxVector<wxChartLegendItem>& GetItems() const;
 
 private:
@@ -91,6 +95,7 @@ public:
 	/// @param parent Pointer to a parent window.
 	/// @param id Control identifier. If wxID_ANY, will automatically
 	/// create an identifier.
+	/// @param data The initialization data for the control.
 	/// @param pos Control position. wxDefaultPosition indicates that 
 	/// wxWidgets should generate a default position for the control.
 	/// @param size Control size. wxDefaultSize indicates that wxWidgets

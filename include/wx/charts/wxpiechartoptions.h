@@ -31,7 +31,8 @@
 class wxPieChartOptions : public wxDoughnutAndPieChartOptionsBase
 {
 public:
-	/// Constructs a wxPieChartOptions instance.
+	/// Constructs a wxPieChartOptions
+	/// instance.
 	wxPieChartOptions();
 
 	void SetSliceStrokeWidth(unsigned int strokeWidth);

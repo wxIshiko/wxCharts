@@ -27,9 +27,12 @@
 
 #include "wxdoughnutandpiechartoptionsbase.h"
 
+/// The options for the wxDoughnutChartCtrl control.
 class wxDougnutChartOptions : public wxDoughnutAndPieChartOptionsBase
 {
 public:
+	/// Constructs a wxDougnutChartOptions
+	/// instance.
 	wxDougnutChartOptions();
 
 	void SetSliceStrokeWidth(unsigned int strokeWidth);
