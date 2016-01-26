@@ -23,8 +23,8 @@
 #include "wxlinechartoptions.h"
 
 wxLineChartOptions::wxLineChartOptions()
-	: m_showDots(true), m_dotRadius(4), m_dotStrokeWidth(1),
-	m_showLines(true), m_lineWidth(2)
+	: m_dotRadius(4), m_dotStrokeWidth(1),
+	m_lineWidth(2)
 {
 }
 
@@ -38,11 +38,6 @@ wxChartGridOptions& wxLineChartOptions::GetGridOptions()
 	return m_gridOptions;
 }
 
-bool wxLineChartOptions::ShowDots() const
-{
-	return m_showDots;
-}
-
 wxDouble wxLineChartOptions::GetDotRadius() const
 {
 	return m_dotRadius;
@@ -51,11 +46,6 @@ wxDouble wxLineChartOptions::GetDotRadius() const
 unsigned int wxLineChartOptions::GetDotStrokeWidth() const
 {
 	return m_dotStrokeWidth;
-}
-
-bool wxLineChartOptions::ShowLines() const
-{
-	return m_showLines;
 }
 
 unsigned int wxLineChartOptions::GetLineWidth() const

@@ -38,9 +38,14 @@
 wxLineChartDataset::wxLineChartDataset(const wxColor &dotColor,
 									   const wxColor &dotStrokeColor,
 									   const wxVector<wxDouble> &data)
-	: m_dotColor(dotColor), m_dotStrokeColor(dotStrokeColor), 
-	m_lineColor(dotColor), m_data(data)
+	: m_showDots(true), m_dotColor(dotColor), m_dotStrokeColor(dotStrokeColor), 
+	m_showLines(true), m_lineColor(dotColor), m_data(data)
 {
+}
+
+bool wxLineChartDataset::ShowDots() const
+{
+	return m_showDots;
 }
 
 const wxColor& wxLineChartDataset::GetDotColor() const
@@ -51,6 +56,11 @@ const wxColor& wxLineChartDataset::GetDotColor() const
 const wxColor& wxLineChartDataset::GetDotStrokeColor() const
 {
 	return m_dotStrokeColor;
+}
+
+bool wxLineChartDataset::ShowLines() const
+{
+	return m_showLines;
 }
 
 const wxColor& wxLineChartDataset::GetLineColor() const
@@ -100,9 +110,22 @@ wxDouble wxLineChartCtrl::PointClass::GetValue() const
 	return m_value;
 }
 
-wxLineChartCtrl::Dataset::Dataset(const wxColor &lineColor)
-	: m_lineColor(lineColor)
+wxLineChartCtrl::Dataset::Dataset(bool showDots,
+								  bool showLines,
+								  const wxColor &lineColor)
+	: m_showDots(showDots), m_showLines(showLines), 
+	m_lineColor(lineColor)
 {
+}
+
+bool wxLineChartCtrl::Dataset::ShowDots() const
+{
+	return m_showDots;
+}
+
+bool wxLineChartCtrl::Dataset::ShowLines() const
+{
+	return m_showLines;
 }
 
 const wxColor& wxLineChartCtrl::Dataset::GetLineColor() const
@@ -152,7 +175,8 @@ void wxLineChartCtrl::Initialize(const wxLineChartData &data)
 	const wxVector<wxLineChartDataset::ptr>& datasets = data.GetDatasets();
 	for (size_t i = 0; i < datasets.size(); ++i)
 	{
-		Dataset::ptr newDataset(new Dataset(datasets[i]->GetLineColor()));
+		Dataset::ptr newDataset(new Dataset(datasets[i]->ShowDots(),
+			datasets[i]->ShowLines(), datasets[i]->GetLineColor()));
 		
 		const wxVector<wxDouble>& data = datasets[i]->GetData();
 		for (size_t j = 0; j < data.size(); ++j)
@@ -237,7 +261,7 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 		{
 			const wxVector<PointClass::ptr>& points = m_datasets[i]->GetPoints();
 
-			if (m_options.ShowLines())
+			if (m_datasets[i]->ShowLines())
 			{
 				if (points.size() > 0)
 				{
@@ -266,7 +290,7 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 				}
 			}
 
-			if (m_options.ShowDots())
+			if (m_datasets[i]->ShowDots())
 			{
 				for (size_t j = 0; j < points.size(); ++j)
 				{
