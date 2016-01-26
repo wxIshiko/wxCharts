@@ -49,13 +49,16 @@ public:
 	typedef wxSharedPtr<wxLineChartDataset> ptr;
 
 	wxLineChartDataset(const wxColor &dotColor,
-		const wxColor &dotStrokeColor, const wxVector<wxDouble> &data);
+		const wxColor &dotStrokeColor, const wxColor &fillColor,
+		const wxVector<wxDouble> &data);
 
 	bool ShowDots() const;
 	const wxColor& GetDotColor() const;
 	const wxColor& GetDotStrokeColor() const;
 	bool ShowLines() const;
 	const wxColor& GetLineColor() const;
+	bool Fill() const;
+	const wxColor& GetFillColor() const;
 	const wxVector<wxDouble>& GetData() const;
 
 private:
@@ -64,6 +67,8 @@ private:
 	wxColor m_dotStrokeColor;
 	bool m_showLines;
 	wxColor m_lineColor;
+	bool m_fill;
+	wxColor m_fillColor;
 	wxVector<wxDouble> m_data;
 };
 
@@ -152,11 +157,14 @@ private:
 	public:
 		typedef wxSharedPtr<Dataset> ptr;
 
-		Dataset(bool showDots, bool showLines, const wxColor &lineColor);
+		Dataset(bool showDots, bool showLines, const wxColor &lineColor,
+			bool fill, const wxColor &fillColor);
 
 		bool ShowDots() const;
 		bool ShowLines() const;
 		const wxColor& GetLineColor() const;
+		bool Fill() const;
+		const wxColor& GetFillColor() const;
 
 		const wxVector<PointClass::ptr>& GetPoints() const;
 		void AppendPoint(PointClass::ptr point);
@@ -165,6 +173,8 @@ private:
 		bool m_showDots;
 		bool m_showLines;
 		wxColor m_lineColor;
+		bool m_fill;
+		wxColor m_fillColor;
 		wxVector<PointClass::ptr> m_points;
 	};
 

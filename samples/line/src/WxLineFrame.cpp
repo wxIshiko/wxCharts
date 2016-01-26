@@ -52,7 +52,8 @@ WxLineFrame::WxLineFrame(const wxString& title)
 	points1.push_back(5);
 	points1.push_back(1);
 	wxLineChartDataset::ptr dataset1(new wxLineChartDataset(
-		wxColor(220, 220, 220), wxColor(255, 255, 255), points1));  
+		wxColor(220, 220, 220), wxColor(255, 255, 255), 
+		wxColor(220, 220, 220, 0x33), points1));  
 	data.AddDataset(dataset1);
 
 	// Add the second dataset
@@ -65,7 +66,8 @@ WxLineFrame::WxLineFrame(const wxString& title)
 	points2.push_back(-1.8);
 	points2.push_back(0.4);
 	wxLineChartDataset::ptr dataset2(new wxLineChartDataset(
-		wxColor(151, 187, 205), wxColor(255, 255, 255), points2));
+		wxColor(151, 187, 205), wxColor(255, 255, 255), 
+		wxColor(151, 187, 205, 0x33), points2));
 	data.AddDataset(dataset2);
 
 	// Create the bar chart widget from the constructed data
