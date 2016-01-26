@@ -32,17 +32,41 @@
 class wxChartGridOptions
 {
 public:
-	/// Constructs a wxChartGridOptions instance.
+	/// Constructs a wxChartGridOptions instance with
+	/// default options for the X and Y axes.
 	wxChartGridOptions();
+	/// Constructs a wxChartGridOptions instance with
+	/// the options for the X and Y axes passed in as
+	/// arguments.
+	/// @param xAxisOptions The options for the X axis.
+	/// @param yAxisOptions The options for the Y axis.
 	wxChartGridOptions(const wxChartAxisOptions &xAxisOptions,
 		const wxChartAxisOptions &yAxisOptions);
 
+	/// Gets the options for the X axis.
+	/// @return The options for the X axis.
 	const wxChartAxisOptions& GetXAxisOptions() const;
+	/// Gets the options for the Y axis.
+	/// @return The options for the Y axis.
 	const wxChartAxisOptions& GetYAxisOptions() const;
 
+	/// Whether to show horizontal grid lines. This doesn't affect
+	/// the visibility of the X axis.
+	/// @retval true Show horizontal grid lines.
+	/// @retval false Don't show horizontal grid lines.
 	bool ShowHorizontalLines() const;
+	/// Whether to show vertical grid lines. This doesn't affect
+	/// the visibility of the Y axis.
+	/// @retval true Show vertical grid lines.
+	/// @retval false Don't show vertical grid lines.
 	bool ShowVerticalLines() const;
+	/// Gets the width of the grid lines. This doesn't affect
+	/// the width of the axes.
+	/// @return The width of the grid lines.
 	unsigned int GetGridLineWidth() const;
+	/// Gets the color of the grid lines. This doesn't affect
+	/// the color of the axes.
+	/// @return The color of the grid lines.
 	const wxColor& GetGridLineColor() const;
 
 private:
