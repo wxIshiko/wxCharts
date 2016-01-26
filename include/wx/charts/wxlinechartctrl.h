@@ -53,13 +53,13 @@ public:
 
 	const wxColor& GetDotColor() const;
 	const wxColor& GetDotStrokeColor() const;
-	bool ShowLines() const;
+	const wxColor& GetLineColor() const;
 	const wxVector<wxDouble>& GetData() const;
 
 private:
 	wxColor m_dotColor;
 	wxColor m_dotStrokeColor;
-	bool m_showLines;
+	wxColor m_lineColor;
 	wxVector<wxDouble> m_data;
 };
 
@@ -148,12 +148,15 @@ private:
 	public:
 		typedef wxSharedPtr<Dataset> ptr;
 
-		Dataset();
+		Dataset(const wxColor &lineColor);
+
+		const wxColor& GetLineColor() const;
 
 		const wxVector<PointClass::ptr>& GetPoints() const;
 		void AppendPoint(PointClass::ptr point);
 
 	private:
+		wxColor m_lineColor;
 		wxVector<PointClass::ptr> m_points;
 	};
 

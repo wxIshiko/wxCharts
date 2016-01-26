@@ -39,12 +39,16 @@ public:
 	bool ShowDots() const;
 	wxDouble GetDotRadius() const;
 	unsigned int GetDotStrokeWidth() const;
+	bool ShowLines() const;
+	unsigned int GetLineWidth() const;
 
 private:
 	wxChartGridOptions m_gridOptions;
 	bool m_showDots;
 	wxDouble m_dotRadius;
 	unsigned int m_dotStrokeWidth;
+	bool m_showLines;
+	unsigned int m_lineWidth;
 };
 
 #endif

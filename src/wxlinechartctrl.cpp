@@ -39,7 +39,7 @@ wxLineChartDataset::wxLineChartDataset(const wxColor &dotColor,
 									   const wxColor &dotStrokeColor,
 									   const wxVector<wxDouble> &data)
 	: m_dotColor(dotColor), m_dotStrokeColor(dotStrokeColor), 
-	m_showLines(true), m_data(data)
+	m_lineColor(dotColor), m_data(data)
 {
 }
 
@@ -53,9 +53,9 @@ const wxColor& wxLineChartDataset::GetDotStrokeColor() const
 	return m_dotStrokeColor;
 }
 
-bool wxLineChartDataset::ShowLines() const
+const wxColor& wxLineChartDataset::GetLineColor() const
 {
-	return m_showLines;
+	return m_lineColor;
 }
 
 const wxVector<double>& wxLineChartDataset::GetData() const
@@ -100,8 +100,14 @@ wxDouble wxLineChartCtrl::PointClass::GetValue() const
 	return m_value;
 }
 
-wxLineChartCtrl::Dataset::Dataset()
+wxLineChartCtrl::Dataset::Dataset(const wxColor &lineColor)
+	: m_lineColor(lineColor)
 {
+}
+
+const wxColor& wxLineChartCtrl::Dataset::GetLineColor() const
+{
+	return m_lineColor;
 }
 
 const wxVector<wxLineChartCtrl::PointClass::ptr>& wxLineChartCtrl::Dataset::GetPoints() const
@@ -146,7 +152,7 @@ void wxLineChartCtrl::Initialize(const wxLineChartData &data)
 	const wxVector<wxLineChartDataset::ptr>& datasets = data.GetDatasets();
 	for (size_t i = 0; i < datasets.size(); ++i)
 	{
-		Dataset::ptr newDataset(new Dataset());
+		Dataset::ptr newDataset(new Dataset(datasets[i]->GetLineColor()));
 		
 		const wxVector<wxDouble>& data = datasets[i]->GetData();
 		for (size_t j = 0; j < data.size(); ++j)
@@ -231,7 +237,7 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 		{
 			const wxVector<PointClass::ptr>& points = m_datasets[i]->GetPoints();
 
-			if (true) // TODO : check if dataset ShowLines())
+			if (m_options.ShowLines())
 			{
 				if (points.size() > 0)
 				{
@@ -254,17 +260,20 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 					//gc.SetBrush(brush);
 					//gc.FillPath(path);
 
-					wxPen pen(*wxBLUE, 2);
+					wxPen pen(m_datasets[i]->GetLineColor(), m_options.GetLineWidth());
 					gc->SetPen(pen);
 					gc->StrokePath(path);
 				}
 			}
 
-			for (size_t j = 0; j < points.size(); ++j)
+			if (m_options.ShowDots())
 			{
-				const PointClass::ptr& point = points[j];
-				point->SetPosition(m_grid.GetMapping().GetPointPosition(j, point->GetValue()));
-				point->Draw(*gc);
+				for (size_t j = 0; j < points.size(); ++j)
+				{
+					const PointClass::ptr& point = points[j];
+					point->SetPosition(m_grid.GetMapping().GetPointPosition(j, point->GetValue()));
+					point->Draw(*gc);
+				}
 			}
 		}
 

@@ -43,17 +43,30 @@ WxLineFrame::WxLineFrame(const wxString& title)
 	wxLineChartData data(labels);
 	
 	// Add the first dataset
-	wxVector<wxDouble> points;
-	points.push_back(3);
-	points.push_back(-2.5);
-	points.push_back(-1.2);
-	points.push_back(3);
-	points.push_back(6);
-	points.push_back(5);
-	points.push_back(1);
-	wxLineChartDataset::ptr dataset(new wxLineChartDataset(
-		wxColor(220, 220, 220), wxColor(255, 255, 255), points));  
-	data.AddDataset(dataset);
+	wxVector<wxDouble> points1;
+	points1.push_back(3);
+	points1.push_back(-2.5);
+	points1.push_back(-1.2);
+	points1.push_back(3);
+	points1.push_back(6);
+	points1.push_back(5);
+	points1.push_back(1);
+	wxLineChartDataset::ptr dataset1(new wxLineChartDataset(
+		wxColor(220, 220, 220), wxColor(255, 255, 255), points1));  
+	data.AddDataset(dataset1);
+
+	// Add the second dataset
+	wxVector<wxDouble> points2;
+	points2.push_back(1);
+	points2.push_back(-1.33);
+	points2.push_back(2.5);
+	points2.push_back(7);
+	points2.push_back(3);
+	points2.push_back(-1.8);
+	points2.push_back(0.4);
+	wxLineChartDataset::ptr dataset2(new wxLineChartDataset(
+		wxColor(151, 187, 205), wxColor(255, 255, 255), points2));
+	data.AddDataset(dataset2);
 
 	// Create the bar chart widget from the constructed data
 	wxLineChartCtrl* lineChartCtrl = new wxLineChartCtrl(panel, wxID_ANY, data);
