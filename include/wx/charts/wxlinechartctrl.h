@@ -43,21 +43,46 @@
 #include <wx/control.h>
 #include <wx/sharedptr.h>
 
+/// Stores the information about a dataset to be shown on a wxLineChartCtrl.
 class wxLineChartDataset
 {
 public:
+	/// Smart pointer typedef.
 	typedef wxSharedPtr<wxLineChartDataset> ptr;
 
+	/// Constructs a wxLineChartDataset instance.
+	/// @param dotColor The color of the points.
+	/// @param dotStrokeColor The color of the pen
+	/// used to draw the outline of the points.
+	/// @param fillColor The part of the graph between
+	/// the X-axis and the line will be filled using 
+	/// this color.
+	/// @param data The list of values.
 	wxLineChartDataset(const wxColor &dotColor,
 		const wxColor &dotStrokeColor, const wxColor &fillColor,
 		const wxVector<wxDouble> &data);
 
+	/// Whether to show the points on the chart.
+	/// @retval true Show the points.
+	/// @retval false Don't show the points.
 	bool ShowDots() const;
 	const wxColor& GetDotColor() const;
 	const wxColor& GetDotStrokeColor() const;
-	bool ShowLines() const;
+	/// Whether to show the line on the chart.
+	/// @retval true Show the line.
+	/// @retval false Don't show the line.
+	bool ShowLine() const;
 	const wxColor& GetLineColor() const;
+	/// Whether to fill the part of the chart
+	/// between the line and X-axis with the
+	/// color returned by GetFillColor().
+	/// @retval true Fill.
+	/// @retval false Don't fill.
 	bool Fill() const;
+	/// Returns the color with which to
+	/// fill the part of the chart between
+	/// the line and the X-axis.
+	/// @return The fill color.
 	const wxColor& GetFillColor() const;
 	const wxVector<wxDouble>& GetData() const;
 
@@ -65,7 +90,7 @@ private:
 	bool m_showDots;
 	wxColor m_dotColor;
 	wxColor m_dotStrokeColor;
-	bool m_showLines;
+	bool m_showLine;
 	wxColor m_lineColor;
 	bool m_fill;
 	wxColor m_fillColor;
@@ -76,8 +101,12 @@ private:
 class wxLineChartData
 {
 public:
+	/// Constructs a wxLineChartData instance.
+	/// @param labels The labels of the X axis.
 	wxLineChartData(const wxVector<wxString> &labels);
 
+	/// Adds a dataset.
+	/// @param dataset The dataset to add.
 	void AddDataset(wxLineChartDataset::ptr dataset);
 
 	const wxVector<wxString>& GetLabels() const;
@@ -157,11 +186,11 @@ private:
 	public:
 		typedef wxSharedPtr<Dataset> ptr;
 
-		Dataset(bool showDots, bool showLines, const wxColor &lineColor,
+		Dataset(bool showDots, bool showLine, const wxColor &lineColor,
 			bool fill, const wxColor &fillColor);
 
 		bool ShowDots() const;
-		bool ShowLines() const;
+		bool ShowLine() const;
 		const wxColor& GetLineColor() const;
 		bool Fill() const;
 		const wxColor& GetFillColor() const;
@@ -171,7 +200,7 @@ private:
 
 	private:
 		bool m_showDots;
-		bool m_showLines;
+		bool m_showLine;
 		wxColor m_lineColor;
 		bool m_fill;
 		wxColor m_fillColor;

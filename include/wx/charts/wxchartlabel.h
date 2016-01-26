@@ -57,11 +57,31 @@ public:
 	/// @param gc The graphics context.
 	void Draw(wxGraphicsContext &gc) const;
 
+	/// Gets the text of the label.
+	/// @return The text of the label.
 	const wxString& GetText() const;
+	/// Gets the position of the label. The position
+	/// must have been set by the 
+	/// SetPosition(wxDouble x, wxDouble y) function.
+	/// @return The position of the label.
 	const wxPoint2DDouble& GetPosition() const;
+	/// Sets the position of the label.
+	/// @param x The X coordinate of the label.
+	/// @param y The Y coordinate of the label.
 	void SetPosition(wxDouble x, wxDouble y);
+	/// Gets the size of the label. The size must
+	/// have been set at construction or by one of
+	/// the functions that set the size.
+	/// @return The size of the label.
+	/// @see SetSize(const wxSize &size)
+	/// @see SetSize(wxDouble width, wxDouble height)
 	const wxSize& GetSize() const;
+	/// Sets the size of the label.
+	/// @param size The new size.
 	void SetSize(const wxSize &size);
+	/// Sets the size of the label.
+	/// @param width The new width.
+	/// @param height The new height.
 	void SetSize(wxDouble width, wxDouble height);
 
 private:

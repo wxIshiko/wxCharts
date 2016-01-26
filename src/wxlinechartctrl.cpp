@@ -40,7 +40,7 @@ wxLineChartDataset::wxLineChartDataset(const wxColor &dotColor,
 									   const wxColor &fillColor,
 									   const wxVector<wxDouble> &data)
 	: m_showDots(true), m_dotColor(dotColor), m_dotStrokeColor(dotStrokeColor), 
-	m_showLines(true), m_lineColor(dotColor), m_fill(true), 
+	m_showLine(true), m_lineColor(dotColor), m_fill(true), 
 	m_fillColor(fillColor), m_data(data)
 {
 }
@@ -60,9 +60,9 @@ const wxColor& wxLineChartDataset::GetDotStrokeColor() const
 	return m_dotStrokeColor;
 }
 
-bool wxLineChartDataset::ShowLines() const
+bool wxLineChartDataset::ShowLine() const
 {
-	return m_showLines;
+	return m_showLine;
 }
 
 const wxColor& wxLineChartDataset::GetLineColor() const
@@ -123,11 +123,11 @@ wxDouble wxLineChartCtrl::PointClass::GetValue() const
 }
 
 wxLineChartCtrl::Dataset::Dataset(bool showDots,
-								  bool showLines,
+								  bool showLine,
 								  const wxColor &lineColor,
 								  bool fill, 
 								  const wxColor &fillColor)
-	: m_showDots(showDots), m_showLines(showLines), 
+	: m_showDots(showDots), m_showLine(showLine), 
 	m_lineColor(lineColor), m_fill(fill), m_fillColor(fillColor)
 {
 }
@@ -137,9 +137,9 @@ bool wxLineChartCtrl::Dataset::ShowDots() const
 	return m_showDots;
 }
 
-bool wxLineChartCtrl::Dataset::ShowLines() const
+bool wxLineChartCtrl::Dataset::ShowLine() const
 {
-	return m_showLines;
+	return m_showLine;
 }
 
 const wxColor& wxLineChartCtrl::Dataset::GetLineColor() const
@@ -200,7 +200,7 @@ void wxLineChartCtrl::Initialize(const wxLineChartData &data)
 	for (size_t i = 0; i < datasets.size(); ++i)
 	{
 		Dataset::ptr newDataset(new Dataset(datasets[i]->ShowDots(),
-			datasets[i]->ShowLines(), datasets[i]->GetLineColor(),
+			datasets[i]->ShowLine(), datasets[i]->GetLineColor(),
 			datasets[i]->Fill(), datasets[i]->GetFillColor()));
 		
 		const wxVector<wxDouble>& data = datasets[i]->GetData();
@@ -302,7 +302,7 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 					path.AddLineToPoint(lastPosition);
 				}
 
-				if (m_datasets[i]->ShowLines())
+				if (m_datasets[i]->ShowLine())
 				{
 					wxPen pen(m_datasets[i]->GetLineColor(), m_options.GetLineWidth());
 					gc->SetPen(pen);
