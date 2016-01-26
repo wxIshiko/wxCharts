@@ -83,16 +83,6 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
 			gc.SetPen(pen1);
 			gc.StrokePath(path);
-
-			wxGraphicsPath path2 = gc.CreatePath();
-			path2.MoveToPoint(xStart - 5, linePositionY);
-			path2.AddLineToPoint(xStart, linePositionY);
-			path2.CloseSubpath();
-
-			wxPen pen(m_options.GetXAxisOptions().GetLineColor(),
-				m_options.GetXAxisOptions().GetLineWidth());
-			gc.SetPen(pen);
-			gc.StrokePath(path2);
 		}
 	}
 
@@ -118,22 +108,6 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 	m_XAxis.Draw2(gc);
 	m_YAxis.Draw1(gc);
-
-	if (m_YAxis.GetLabels().size() > 0)
-	{
-		wxDouble yLabelCenter = m_mapping.GetEndPoint();
-		wxDouble linePositionY = yLabelCenter;
-
-		wxGraphicsPath path2 = gc.CreatePath();
-		path2.MoveToPoint(xStart - 5, linePositionY);
-		path2.AddLineToPoint(xStart, linePositionY);
-		path2.CloseSubpath();
-
-		wxPen pen(m_options.GetXAxisOptions().GetLineColor(),
-			m_options.GetXAxisOptions().GetLineWidth());
-		gc.SetPen(pen);
-		gc.StrokePath(path2);
-	}
 }
 
 void wxChartGrid::Resize(const wxSize &size)
