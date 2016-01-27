@@ -35,6 +35,23 @@ wxChartLegendItem::wxChartLegendItem(const wxChartSliceData &slice)
 {
 }
 
+wxChartLegendItem::wxChartLegendItem(const wxLineChartDataset &dataset)
+	: m_color(*wxWHITE), m_label(dataset.GetLabel())
+{
+	if (dataset.ShowDots())
+	{
+		m_color = dataset.GetDotColor();
+	}
+	else if (dataset.ShowLine())
+	{
+		m_color = dataset.GetLineColor();
+	}
+	else if (dataset.Fill())
+	{
+		m_color = dataset.GetFillColor();
+	}
+}
+
 const wxColor& wxChartLegendItem::GetColor() const
 {
 	return m_color;
@@ -54,6 +71,14 @@ wxChartLegendData::wxChartLegendData(const wxVector<wxChartSliceData>& slices)
 	for (size_t i = 0; i < slices.size(); ++i)
 	{
 		m_items.push_back(wxChartLegendItem(slices[i]));
+	}
+}
+
+wxChartLegendData::wxChartLegendData(const wxVector<wxLineChartDataset::ptr>& datasets)
+{
+	for (size_t i = 0; i < datasets.size(); ++i)
+	{
+		m_items.push_back(wxChartLegendItem(*datasets[i]));
 	}
 }
 

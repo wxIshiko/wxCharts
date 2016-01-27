@@ -35,14 +35,21 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
-wxLineChartDataset::wxLineChartDataset(const wxColor &dotColor,
+wxLineChartDataset::wxLineChartDataset(const wxString &label,
+									   const wxColor &dotColor,
 									   const wxColor &dotStrokeColor,
 									   const wxColor &fillColor,
 									   const wxVector<wxDouble> &data)
-	: m_showDots(true), m_dotColor(dotColor), m_dotStrokeColor(dotStrokeColor), 
-	m_showLine(true), m_lineColor(dotColor), m_fill(true), 
-	m_fillColor(fillColor), m_data(data)
+	: m_label(label), m_showDots(true), m_dotColor(dotColor), 
+	m_dotStrokeColor(dotStrokeColor), m_showLine(true), 
+	m_lineColor(dotColor), m_fill(true), m_fillColor(fillColor), 
+	m_data(data)
 {
+}
+
+const wxString& wxLineChartDataset::GetLabel() const
+{
+	return m_label;
 }
 
 bool wxLineChartDataset::ShowDots() const

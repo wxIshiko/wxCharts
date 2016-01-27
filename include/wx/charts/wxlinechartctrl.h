@@ -51,6 +51,8 @@ public:
 	typedef wxSharedPtr<wxLineChartDataset> ptr;
 
 	/// Constructs a wxLineChartDataset instance.
+	/// @param label The name of the dataset. This
+	/// is the name that will be used in the legend.
 	/// @param dotColor The color of the points.
 	/// @param dotStrokeColor The color of the pen
 	/// used to draw the outline of the points.
@@ -58,10 +60,13 @@ public:
 	/// the X-axis and the line will be filled using 
 	/// this color.
 	/// @param data The list of values.
-	wxLineChartDataset(const wxColor &dotColor,
-		const wxColor &dotStrokeColor, const wxColor &fillColor,
-		const wxVector<wxDouble> &data);
+	wxLineChartDataset(const wxString &label, 
+		const wxColor &dotColor, const wxColor &dotStrokeColor, 
+		const wxColor &fillColor, const wxVector<wxDouble> &data);
 
+	/// Gets the name of the dataset.
+	/// @return The name of the dataset.
+	const wxString& GetLabel() const;
 	/// Whether to show the points on the chart.
 	/// @retval true Show the points.
 	/// @retval false Don't show the points.
@@ -87,6 +92,7 @@ public:
 	const wxVector<wxDouble>& GetData() const;
 
 private:
+	wxString m_label;
 	bool m_showDots;
 	wxColor m_dotColor;
 	wxColor m_dotStrokeColor;

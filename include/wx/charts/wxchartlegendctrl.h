@@ -26,6 +26,7 @@
 #define _WX_CHARTS_WXCHARTLEGENDCTRL_H_
 
 #include "wxchartslicedata.h"
+#include "wxlinechartctrl.h"
 #include "wxchartlegendoptions.h"
 #include <wx/control.h>
 
@@ -44,6 +45,11 @@ public:
 	/// @param slice The slice of the chart this legend item
 	/// corresponds to.
 	wxChartLegendItem(const wxChartSliceData &slice);
+	/// Constructs a wxChartLegendItem instance from a
+	/// line chart dataset.
+	/// @param dataset The dataset this legend item
+	/// corresponds to.
+	wxChartLegendItem(const wxLineChartDataset &dataset);
 
 	/// Gets the color of the item.
 	/// @return The color of the item.
@@ -70,6 +76,11 @@ public:
 	/// wxDoughnutChartCtrl controls for instance.
 	/// @param slices List of slices.
 	wxChartLegendData(const wxVector<wxChartSliceData>& slices);
+	/// Constructs a wxChartLegendData instance from
+	/// a list of datasets. This can be used to build
+	/// a legend for the wxLineChartCtrl control.
+	/// @param datasets List of datasets.
+	wxChartLegendData(const wxVector<wxLineChartDataset::ptr>& datasets);
 
 	/// Appends an item to the legend.
 	/// @param item The new item.
