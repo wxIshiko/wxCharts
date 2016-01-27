@@ -86,26 +86,3 @@ void wxChartUtilities::GetTextSize(wxGraphicsContext &gc,
 	gc.SetFont(font, *wxBLACK);
 	gc.GetTextExtent(string, &width, &height, &descent, &externalLeading);
 }
-
-wxDouble wxChartUtilities::GetWidestText(wxGraphicsContext &gc,
-										 const wxFont &font,
-										 const wxVector<wxString> &strings)
-{
-	wxDouble result = 0;
-
-	for (size_t i = 0; i < strings.size(); ++i)
-	{
-		wxDouble width;
-		wxDouble height;
-		wxDouble descent;
-		wxDouble externalLeading;
-		gc.SetFont(font, *wxBLACK);
-		gc.GetTextExtent(strings[i], &width, &height, &descent, &externalLeading);
-		if (width > result)
-		{
-			result = width;
-		}
-	}
-
-	return result;
-}

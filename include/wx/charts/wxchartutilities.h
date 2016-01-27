@@ -48,11 +48,17 @@ public:
 		wxDouble &graphMaxValue, wxDouble &valueRange, 
 		size_t &steps, wxDouble &stepValue);
 	static wxDouble CalculateOrderOfMagnitude(wxDouble value);
+	/// Gets the size of the text for the given font.
+	/// @param gc The graphics context.
+	/// @param font The font.
+	/// @param string The text that we need to measure.
+	/// @param width When the function returns this will contain
+	/// the width of the string.
+	/// @param height When the function returns this will contain
+	/// the height of the string.
 	static void GetTextSize(wxGraphicsContext &gc,
 		const wxFont &font, const wxString &string,
 		wxDouble &width, wxDouble &height);
-	static wxDouble GetWidestText(wxGraphicsContext &gc, 
-		const wxFont &font, const wxVector<wxString> &strings);
 };
 
 #endif
