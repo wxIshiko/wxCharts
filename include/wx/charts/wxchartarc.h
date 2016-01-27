@@ -72,8 +72,13 @@ public:
 	void SetAngles(wxDouble startAngle, wxDouble endAngle);
 	void SetRadiuses(wxDouble outerRadius, wxDouble innerRadius);
 
+	/// Gets the width of the pen used to draw
+	/// the outline of the arc.
+	/// @return The width of the pen.
 	unsigned int GetStrokeWidth() const;
 
+	/// Gets the position of the tooltip.
+	/// @return The position of the tooltip.
 	wxPoint2DDouble GetTooltipPosition() const;
 
 private:
