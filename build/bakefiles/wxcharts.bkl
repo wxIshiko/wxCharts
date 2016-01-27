@@ -42,6 +42,7 @@ library wxcharts
         ../../include/wx/charts/wxchartrectangleoptions.h
         ../../include/wx/charts/wxchartrectangle.h
         ../../include/wx/charts/wxchartarc.h
+        ../../include/wx/charts/wxchartarcoptions.h
         ../../include/wx/charts/wxcharttooltipoptions.h
         ../../include/wx/charts/wxcharttooltipprovider.h
         ../../include/wx/charts/wxcharttooltip.h
@@ -83,6 +84,7 @@ library wxcharts
         ../../src/wxchartrectangleoptions.cpp
         ../../src/wxchartrectangle.cpp
         ../../src/wxchartarc.cpp
+        ../../src/wxchartarcoptions.cpp
         ../../src/wxcharttooltipoptions.cpp
         ../../src/wxcharttooltipprovider.cpp
         ../../src/wxcharttooltip.cpp
