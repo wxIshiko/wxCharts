@@ -28,9 +28,15 @@
 #include <wx/string.h>
 #include <wx/colour.h>
 
+/// The data associated with a slice in some charts like the pie and doughnut charts.
 class wxChartSliceData
 {
 public:
+	/// Constructs a wxChartSliceData instance.
+	/// @param value The value of the slice.
+	/// @param color The slice will be filled with this color.
+	/// @param label The label of the slice. By default this will
+	/// be used in the legend and the tooltips.
 	wxChartSliceData(wxDouble value, const wxColor &color,
 		const wxString &label);
 

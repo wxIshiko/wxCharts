@@ -35,9 +35,21 @@ public:
 	/// Constructs a wxChartTooltipOptions instance.
 	wxChartTooltipOptions();
 
+	/// Gets the font family to be used for 
+	/// the text.
+	/// @return The font family.
 	wxFontFamily GetFontFamily() const;
+	/// Gets the font size to be used for 
+	/// the text.
+	/// @return The font size in pixels.
 	int GetFontSize() const;
+	/// Gets the font style to be used for 
+	/// the text.
+	/// @return The font style.
 	wxFontStyle GetFontStyle() const;
+	/// Gets the font color to be used for 
+	/// the text.
+	/// @return The font color.
 	const wxColor& GetFontColor() const;
 
 	wxDouble GetHorizontalPadding() const;

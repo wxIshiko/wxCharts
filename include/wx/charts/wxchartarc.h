@@ -67,14 +67,29 @@ public:
 	/// @param gc The graphics context.
 	void Draw(wxGraphicsContext &gc);
 
+	/// Sets the center of the arc.
+	/// @param x The X coordinate of the center.
+	/// @param y The Y coordinate of the center.
 	void SetCenter(wxDouble x, wxDouble y);
+	/// Sets the start and end angles. The angles are measured
+	/// in radians, they start from the 3 o'clock position
+	/// and follow a clockwise direction.
+	/// @param startAngle The start angle in radians. This must be a
+	/// value between 0 and 2*PI.
+	/// @param endAngle The end angle in radians. This must be greater
+	/// than the start angle.
 	void SetAngles(wxDouble startAngle, wxDouble endAngle);
+	/// Sets the inner and outer radiuses.
+	/// @param outerRadius The new outer radius.
+	/// @param innerRadius The new inner radius.
 	void SetRadiuses(wxDouble outerRadius, wxDouble innerRadius);
 
 	/// Gets the position of the tooltip.
 	/// @return The position of the tooltip.
 	wxPoint2DDouble GetTooltipPosition() const;
 
+	/// Gets the arc options.
+	/// @return The arc options.
 	const wxChartArcOptions& GetOptions() const;
 
 private:

@@ -43,9 +43,15 @@ public:
 	wxChartAxisOptions();
 	wxChartAxisOptions(wxChartLabelAlignment labelAlignment);
 
+	/// Gets the desired label alignment.
+	/// @return The label alignment.
 	wxChartLabelAlignment GetLabelAlignment() const;
 
+	/// Gets the width of the line.
+	/// @return The width of the line.
 	unsigned int GetLineWidth() const;
+	/// Gets the color of the line.
+	/// @return The color of the line.
 	const wxColor& GetLineColor() const;
 
 	/// Gets the font family to be used for 
