@@ -25,4 +25,32 @@
 #ifndef _WX_CHARTS_WXCHARTARCOPTIONS_H_
 #define _WX_CHARTS_WXCHARTARCOPTIONS_H_
 
+#include <wx/colour.h>
+
+/// Options for the wxChartArc class.
+class wxChartArcOptions
+{
+public:
+	/// Constructs a wxChartArcOptions instance.
+	/// @param strokeWidth The width of the pen used to draw the contour
+	/// of the arc.
+	/// @param fillColor The color of the brush used to fill the arc.
+	wxChartArcOptions(unsigned int strokeWidth, const wxColor &fillColor);
+
+	/// Gets the width of the pen used to draw
+	/// the outline of the arc.
+	/// @return The width of the pen.
+	unsigned int GetStrokeWidth() const;
+
+	/// Gets the color of the brush used to fill the
+	/// arc.
+	/// @return The color of the brush used to fill the
+	/// arc.
+	const wxColor& GetFillColor() const;
+
+private:
+	unsigned int m_strokeWidth;
+	wxColor m_fillColor;
+};
+
 #endif

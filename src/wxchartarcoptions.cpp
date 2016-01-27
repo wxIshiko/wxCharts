@@ -21,3 +21,20 @@
 */
 
 #include "wxchartarcoptions.h"
+
+wxChartArcOptions::wxChartArcOptions(unsigned int strokeWidth,
+									 const wxColor &fillColor)
+	: m_strokeWidth(strokeWidth),
+	m_fillColor(fillColor)
+{
+}
+
+unsigned int wxChartArcOptions::GetStrokeWidth() const
+{
+	return m_strokeWidth;
+}
+
+const wxColor& wxChartArcOptions::GetFillColor() const
+{
+	return m_fillColor;
+}

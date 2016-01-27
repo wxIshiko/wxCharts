@@ -39,12 +39,10 @@ wxChartArc::wxChartArc(wxDouble x,
 					   wxDouble endAngle,
 					   wxDouble outerRadius,
 					   wxDouble innerRadius,
-					   unsigned int strokeWidth,
-					   const wxColor &fillColor)
+					   const wxChartArcOptions &options)
 	: m_x(x), m_y(y), m_startAngle(startAngle), 
 	m_endAngle(endAngle), m_outerRadius(outerRadius),
-	m_innerRadius(innerRadius), m_strokeWidth(strokeWidth),
-	m_fillColor(fillColor)
+	m_innerRadius(innerRadius), m_options(options)
 {
 }
 
@@ -86,11 +84,11 @@ void wxChartArc::Draw(wxGraphicsContext &gc)
 
 	path.CloseSubpath();
 
-	wxBrush brush(m_fillColor);
+	wxBrush brush(m_options.GetFillColor());
 	gc.SetBrush(brush);
 	gc.FillPath(path);
 
-	wxPen pen(*wxWHITE, m_strokeWidth);
+	wxPen pen(*wxWHITE, m_options.GetStrokeWidth());
 	gc.SetPen(pen);
 	gc.StrokePath(path);
 }
@@ -113,11 +111,6 @@ void wxChartArc::SetRadiuses(wxDouble outerRadius, wxDouble innerRadius)
 	m_innerRadius = innerRadius;
 }
 
-unsigned int wxChartArc::GetStrokeWidth() const
-{
-	return m_strokeWidth;
-}
-
 wxPoint2DDouble wxChartArc::GetTooltipPosition() const
 {
 	wxDouble centreAngle = m_startAngle + (m_endAngle - m_startAngle) / 2;
@@ -125,4 +118,9 @@ wxPoint2DDouble wxChartArc::GetTooltipPosition() const
 	wxDouble x = m_x + cos(centreAngle) * rangeFromCentre;
 	wxDouble y = m_y + sin(centreAngle) * rangeFromCentre;
 	return wxPoint2DDouble(x, y);
+}
+
+const wxChartArcOptions& wxChartArc::GetOptions() const
+{
+	return m_options;
 }

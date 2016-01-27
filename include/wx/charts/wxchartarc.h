@@ -37,6 +37,7 @@
 #define _WX_CHARTS_WXCHARTARC_H_
 
 #include "wxchartelement.h"
+#include "wxchartarcoptions.h"
 #include <wx/graphics.h>
 
 /// This class is used to draw one of the segments of a circular chart e.g. a pie chart or a doughnut chart.
@@ -55,12 +56,10 @@ public:
 	/// @param endAngle The angle (in radians) at which the arc ends.
 	/// @param outerRadius The outer radius of the arc.
 	/// @param innerRadius The inner radius of the arc. This can be 0.
-	/// @param strokeWidth The width of the pen used to draw the contour
-	/// of the arc.
-	/// @param fillColor The color of the brush used to fill the arc.
+	/// @param options The settings to be used for the arc.
 	wxChartArc(wxDouble x, wxDouble y, wxDouble startAngle,
 		wxDouble endAngle, wxDouble outerRadius, wxDouble innerRadius,
-		unsigned int strokeWidth, const wxColor &fillColor);
+		const wxChartArcOptions &options);
 
 	virtual bool HitTest(const wxPoint &point) const;
 
@@ -72,24 +71,20 @@ public:
 	void SetAngles(wxDouble startAngle, wxDouble endAngle);
 	void SetRadiuses(wxDouble outerRadius, wxDouble innerRadius);
 
-	/// Gets the width of the pen used to draw
-	/// the outline of the arc.
-	/// @return The width of the pen.
-	unsigned int GetStrokeWidth() const;
-
 	/// Gets the position of the tooltip.
 	/// @return The position of the tooltip.
 	wxPoint2DDouble GetTooltipPosition() const;
 
+	const wxChartArcOptions& GetOptions() const;
+
 private:
+	wxChartArcOptions m_options;
 	wxDouble m_x;
 	wxDouble m_y;
 	wxDouble m_startAngle;
 	wxDouble m_endAngle;
 	wxDouble m_outerRadius;
 	wxDouble m_innerRadius;
-	unsigned int m_strokeWidth;
-	wxColor m_fillColor;
 };
 
 #endif
