@@ -28,10 +28,33 @@
 #include <wx/colour.h>
 #include <wx/font.h>
 
-enum wxChartLabelAlignment
+/// Label types for the wxChartAxis class.
+
+/// Labels on an axis can represent 2 things. 
+/// - A specific value or point, in which case 
+/// the labels should be centered on the grid
+/// lines.
+/// - A range, in which case the labels should
+/// be positioned in between grid lines.
+///
+/// Note that the wxChartAxis class can be used
+/// for many things so the above description may
+/// not make sense for a particular type of data
+/// shown on the axis.
+///
+/// This terminology was chosen because the type of 
+/// label may affect more than just where they are
+/// positioned so something like 'centered' would
+/// have its own issues.
+enum wxChartLabelType
 {
-	wxCHARTLABELALIGNMENT_ON_LINES = 0,
-	wxCHARTLABELALIGNMENT_BETWEEN_LINES = 1
+	/// The labels represent specific points on the 
+	/// axis. Grid lines are drawn at these points.
+	wxCHARTLABELTYPE_POINT = 0,
+	/// The labels represent portions of the axis.
+	/// The start and end of each portion are marked
+	/// by the grid lines.
+	wxCHARTLABELTYPE_RANGE = 1
 };
 
 /// The options for the wxChartAxis element.
@@ -41,11 +64,11 @@ public:
 	/// Constructs a new wxChartAxisOptions
 	/// instance.
 	wxChartAxisOptions();
-	wxChartAxisOptions(wxChartLabelAlignment labelAlignment);
+	wxChartAxisOptions(wxChartLabelType labelType);
 
-	/// Gets the desired label alignment.
-	/// @return The label alignment.
-	wxChartLabelAlignment GetLabelAlignment() const;
+	/// Gets the label type.
+	/// @return The label type.
+	wxChartLabelType GetLabelType() const;
 
 	/// Gets the width of the line.
 	/// @return The width of the line.
@@ -72,7 +95,7 @@ public:
 	const wxColor& GetFontColor() const;
 
 private:
-	wxChartLabelAlignment m_labelAlignment;
+	wxChartLabelType m_labelType;
 	unsigned int m_lineWidth;
 	wxColor m_lineColor;
 	wxFontFamily m_fontFamily;

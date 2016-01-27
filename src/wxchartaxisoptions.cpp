@@ -23,24 +23,24 @@
 #include "wxchartaxisoptions.h"
 
 wxChartAxisOptions::wxChartAxisOptions()
-	: m_labelAlignment(wxCHARTLABELALIGNMENT_ON_LINES),
+	: m_labelType(wxCHARTLABELTYPE_POINT),
 	m_lineWidth(1), m_lineColor(0, 0, 0, 0x19),
 	m_fontFamily(wxFONTFAMILY_SWISS), m_fontSize(12),
 	m_fontStyle(wxFONTSTYLE_NORMAL), m_fontColor(0x666666)
 {
 }
 
-wxChartAxisOptions::wxChartAxisOptions(wxChartLabelAlignment labelAlignment)
-	: m_labelAlignment(labelAlignment),
+wxChartAxisOptions::wxChartAxisOptions(wxChartLabelType labelType)
+	: m_labelType(labelType),
 	m_lineWidth(1), m_lineColor(0, 0, 0, 0x19),
 	m_fontFamily(wxFONTFAMILY_SWISS), m_fontSize(12),
 	m_fontStyle(wxFONTSTYLE_NORMAL), m_fontColor(0x666666)
 {
 }
 
-wxChartLabelAlignment wxChartAxisOptions::GetLabelAlignment() const
+wxChartLabelType wxChartAxisOptions::GetLabelType() const
 {
-	return m_labelAlignment;
+	return m_labelType;
 }
 
 unsigned int wxChartAxisOptions::GetLineWidth() const
