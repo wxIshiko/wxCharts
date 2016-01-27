@@ -58,6 +58,10 @@ public:
 	void Draw1(wxGraphicsContext &gc);
 	void Draw2(wxGraphicsContext &gc);
 
+	/// Updates the size of each label using the 
+	/// font details specified in the axis options
+	/// and the provided graphics context.
+	/// @param gc The graphics context.
 	void UpdateLabelSizes(wxGraphicsContext &gc);
 	void Fit(wxDouble leftPadding, wxDouble startPoint,
 		wxDouble endPoint, wxDouble length);
@@ -66,7 +70,14 @@ public:
 	void UpdateLabelPositions1();
 	void UpdateLabelPositions2();
 
+	/// Gets the labels.
+	/// @return The list of labels.
 	const wxVector<wxChartLabel>& GetLabels();
+	/// Gets the width of the widest label. Note that
+	/// this assumes the size of the labels has been
+	/// correctly set for instance using the 
+	/// UpdateLabelSizes(wxGraphicsContext &gc) function.
+	/// @return The maximum width of the labels.
 	wxDouble GetLabelMaxWidth() const;
 
 	wxDouble CalculateLabelPosition(size_t index);
