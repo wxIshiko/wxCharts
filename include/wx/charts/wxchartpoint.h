@@ -52,6 +52,9 @@ public:
 	/// @param gc The graphics context.
 	void Draw(wxGraphicsContext &gc);
 
+	/// Gets the position of the point.
+	/// @return The position of the point.
+	const wxPoint2DDouble& GetPosition() const;
 	/// Sets the position of the point.
 	/// @param x The new X coordinate of the point.
 	/// @param y The new Y coordinate of the point.
@@ -61,8 +64,7 @@ public:
 	void SetPosition(wxPoint2DDouble position);
 
 private:
-	wxDouble m_x;
-	wxDouble m_y;
+	wxPoint2DDouble m_position;
 	wxDouble m_radius;
 	unsigned int m_strokeWidth;
 	wxColor m_strokeColor;

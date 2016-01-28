@@ -39,7 +39,7 @@ wxChartPoint::wxChartPoint(wxDouble x,
 						   unsigned int strokeWidth, 
 						   const wxColor &strokeColor,
 						   const wxColor &fillColor)
-	: m_x(x), m_y(y), m_radius(radius), 
+	: m_position(x, y), m_radius(radius), 
 	m_strokeWidth(strokeWidth), m_strokeColor(strokeColor),
 	m_fillColor(fillColor)
 {
@@ -53,7 +53,7 @@ bool wxChartPoint::HitTest(const wxPoint &point) const
 void wxChartPoint::Draw(wxGraphicsContext &gc)
 {
 	wxGraphicsPath path = gc.CreatePath();
-	path.AddArc(m_x, m_y, m_radius, 0, 2* M_PI, false);
+	path.AddArc(m_position.m_x, m_position.m_y, m_radius, 0, 2 * M_PI, false);
 	path.CloseSubpath();
 
 	wxBrush brush(m_fillColor);
@@ -65,14 +65,18 @@ void wxChartPoint::Draw(wxGraphicsContext &gc)
 	gc.StrokePath(path);
 }
 
+const wxPoint2DDouble& wxChartPoint::GetPosition() const
+{
+	return m_position;
+}
+
 void wxChartPoint::SetPosition(wxDouble x, wxDouble y)
 {
-	m_x = x;
-	m_y = y;
+	m_position.m_x = x;
+	m_position.m_y = y;
 }
 
 void wxChartPoint::SetPosition(wxPoint2DDouble position)
 {
-	m_x = position.m_x;
-	m_y = position.m_y;
+	m_position = position;
 }
