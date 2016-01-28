@@ -56,6 +56,11 @@ bool wxChartAxis::HitTest(const wxPoint &point) const
 	return false;
 }
 
+wxPoint2DDouble wxChartAxis::GetTooltipPosition() const
+{
+	return wxPoint2DDouble(0, 0);
+}
+
 void wxChartAxis::Draw1(wxGraphicsContext &gc)
 {
 	// Draw the axis

@@ -45,6 +45,11 @@ bool wxChartRectangle::HitTest(const wxPoint &point) const
 	return false;
 }
 
+wxPoint2DDouble wxChartRectangle::GetTooltipPosition() const
+{
+	return wxPoint2DDouble(0, 0);
+}
+
 void wxChartRectangle::Draw(wxGraphicsContext &gc)
 {
 	wxGraphicsPath path = gc.CreatePath();

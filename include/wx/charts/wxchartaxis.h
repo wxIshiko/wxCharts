@@ -53,6 +53,8 @@ public:
 
 	virtual bool HitTest(const wxPoint &point) const;
 
+	virtual wxPoint2DDouble GetTooltipPosition() const;
+
 	/// Draws the axis.
 	/// @param gc The graphics context.
 	void Draw1(wxGraphicsContext &gc);

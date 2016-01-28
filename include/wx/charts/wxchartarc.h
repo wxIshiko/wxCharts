@@ -64,6 +64,8 @@ public:
 
 	virtual bool HitTest(const wxPoint &point) const;
 
+	virtual wxPoint2DDouble GetTooltipPosition() const;
+
 	/// Draws the arc.
 	/// @param gc The graphics context.
 	void Draw(wxGraphicsContext &gc);
@@ -84,10 +86,6 @@ public:
 	/// @param outerRadius The new outer radius.
 	/// @param innerRadius The new inner radius.
 	void SetRadiuses(wxDouble outerRadius, wxDouble innerRadius);
-
-	/// Gets the position of the tooltip.
-	/// @return The position of the tooltip.
-	wxPoint2DDouble GetTooltipPosition() const;
 
 	/// Gets the arc options.
 	/// @return The arc options.

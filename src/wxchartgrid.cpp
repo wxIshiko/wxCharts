@@ -58,6 +58,11 @@ bool wxChartGrid::HitTest(const wxPoint &point) const
 	return false;
 }
 
+wxPoint2DDouble wxChartGrid::GetTooltipPosition() const
+{
+	return wxPoint2DDouble(0, 0);
+}
+
 void wxChartGrid::Draw(wxGraphicsContext &gc)
 {
 	Fit(m_steps, gc);

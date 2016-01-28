@@ -62,6 +62,8 @@ public:
 
 	virtual bool HitTest(const wxPoint &point) const;
 
+	virtual wxPoint2DDouble GetTooltipPosition() const;
+
 	/// Draws the radial grid.
 	/// @param gc The graphics context.
 	void Draw(wxGraphicsContext &gc);

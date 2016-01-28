@@ -55,6 +55,11 @@ bool wxChartRadialGrid::HitTest(const wxPoint &point) const
 	return false;
 }
 
+wxPoint2DDouble wxChartRadialGrid::GetTooltipPosition() const
+{
+	return wxPoint2DDouble(0, 0);
+}
+
 void wxChartRadialGrid::Draw(wxGraphicsContext &gc)
 {
 	switch (m_options.GetStyle())

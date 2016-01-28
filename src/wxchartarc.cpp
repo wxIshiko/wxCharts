@@ -69,6 +69,15 @@ bool wxChartArc::HitTest(const wxPoint &point) const
 	return (betweenAngles && withinRadius);
 }
 
+wxPoint2DDouble wxChartArc::GetTooltipPosition() const
+{
+	wxDouble centreAngle = m_startAngle + (m_endAngle - m_startAngle) / 2;
+	wxDouble rangeFromCentre = m_innerRadius + (m_outerRadius - m_innerRadius) / 2;
+	wxDouble x = m_x + cos(centreAngle) * rangeFromCentre;
+	wxDouble y = m_y + sin(centreAngle) * rangeFromCentre;
+	return wxPoint2DDouble(x, y);
+}
+
 void wxChartArc::Draw(wxGraphicsContext &gc)
 {
 	wxGraphicsPath path = gc.CreatePath();
@@ -111,15 +120,6 @@ void wxChartArc::SetRadiuses(wxDouble outerRadius, wxDouble innerRadius)
 {
 	m_outerRadius = outerRadius;
 	m_innerRadius = innerRadius;
-}
-
-wxPoint2DDouble wxChartArc::GetTooltipPosition() const
-{
-	wxDouble centreAngle = m_startAngle + (m_endAngle - m_startAngle) / 2;
-	wxDouble rangeFromCentre = m_innerRadius + (m_outerRadius - m_innerRadius) / 2;
-	wxDouble x = m_x + cos(centreAngle) * rangeFromCentre;
-	wxDouble y = m_y + sin(centreAngle) * rangeFromCentre;
-	return wxPoint2DDouble(x, y);
 }
 
 const wxChartArcOptions& wxChartArc::GetOptions() const

@@ -26,7 +26,7 @@
 #define _WX_CHARTS_WXCHARTELEMENT_H_
 
 #include <wx/sharedptr.h>
-#include <wx/gdicmn.h>
+#include <wx/graphics.h>
 
 /// This is the base class for chart elements.
 
@@ -54,6 +54,9 @@ public:
 	virtual bool HitTest(const wxPoint &point) const = 0;
 
 	const wxString& GetTooltip() const;
+	/// Gets the position of the tooltip.
+	/// @return The position of the tooltip.
+	virtual wxPoint2DDouble GetTooltipPosition() const = 0;
 
 private:
 	wxString m_tooltip;

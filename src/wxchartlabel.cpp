@@ -40,6 +40,11 @@ bool wxChartLabel::HitTest(const wxPoint &point) const
 	return false;
 }
 
+wxPoint2DDouble wxChartLabel::GetTooltipPosition() const
+{
+	return wxPoint2DDouble(0, 0);
+}
+
 void wxChartLabel::Draw(wxGraphicsContext &gc) const
 {
 	gc.DrawText(m_text, m_position.m_x, m_position.m_y);

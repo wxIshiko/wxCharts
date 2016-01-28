@@ -50,6 +50,11 @@ bool wxChartPoint::HitTest(const wxPoint &point) const
 	return false;
 }
 
+wxPoint2DDouble wxChartPoint::GetTooltipPosition() const
+{
+	return wxPoint2DDouble(0, 0);
+}
+
 void wxChartPoint::Draw(wxGraphicsContext &gc)
 {
 	wxGraphicsPath path = gc.CreatePath();
