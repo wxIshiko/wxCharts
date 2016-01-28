@@ -126,12 +126,12 @@ double wxDoughnutAndPieChartBase::CalculateCircumference(wxDouble value)
 
 void wxDoughnutAndPieChartBase::GetSegmentsAtEvent(const wxPoint &point)
 {
-	m_activeSlices.clear();
+	m_activeElements.clear();
 	for (size_t i = 0; i < m_slices.size(); ++i)
 	{
 		if (m_slices[i]->HitTest(point))
 		{
-			m_activeSlices.push_back(m_slices[i]);
+			m_activeElements.push_back(*(reinterpret_cast<wxChartElement::ptr*>(&m_slices[i])));
 		}
 	}
 }
@@ -157,9 +157,9 @@ void wxDoughnutAndPieChartBase::OnPaint(wxPaintEvent &evt)
 			currentSlice.Draw(*gc);
 		}
 
-		for (size_t j = 0; j < m_activeSlices.size(); ++j)
+		for (size_t j = 0; j < m_activeElements.size(); ++j)
 		{
-			wxChartTooltip tooltip(m_activeSlices[j]->GetTooltipPosition(), m_activeSlices[j]->GetTooltip());
+			wxChartTooltip tooltip(m_activeElements[j]->GetTooltipPosition(), m_activeElements[j]->GetTooltip());
 			tooltip.Draw(*gc);
 		}
 

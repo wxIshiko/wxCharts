@@ -108,7 +108,7 @@ private:
 	wxVector<SliceArc::ptr> m_slices;
 	double m_total;
 	bool m_mouseInWindow;
-	wxVector<SliceArc::ptr> m_activeSlices;
+	wxVector<wxChartElement::ptr> m_activeElements;
 
 	DECLARE_EVENT_TABLE();
 };
