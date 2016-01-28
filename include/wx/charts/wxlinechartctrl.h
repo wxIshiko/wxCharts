@@ -179,12 +179,15 @@ private:
 
 		PointClass(wxDouble value, wxDouble x, wxDouble y, wxDouble radius,
 			unsigned int strokeWidth, const wxColor &strokeColor,
-			const wxColor &fillColor);
+			const wxColor &fillColor, wxDouble hitDetectionRange);
+
+		virtual bool HitTest(const wxPoint &point) const;
 
 		wxDouble GetValue() const;
 
 	private:
 		wxDouble m_value;
+		wxDouble m_hitDetectionRange;
 	};
 
 	class Dataset

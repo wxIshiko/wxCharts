@@ -118,10 +118,21 @@ wxLineChartCtrl::PointClass::PointClass(wxDouble value,
 										wxDouble radius,
 										unsigned int strokeWidth,
 										const wxColor &strokeColor,
-										const wxColor &fillColor)
+										const wxColor &fillColor,
+										wxDouble hitDetectionRange)
 	: wxChartPoint(x, y, radius, strokeWidth, strokeColor, fillColor),
-	m_value(value)
+	m_value(value), m_hitDetectionRange(hitDetectionRange)
 {
+}
+
+bool wxLineChartCtrl::PointClass::HitTest(const wxPoint &point) const
+{
+	wxDouble distance = (point.x - GetPosition().m_x);
+	if (distance < 0)
+	{
+		distance = -distance;
+	}
+	return (distance < m_hitDetectionRange);
 }
 
 wxDouble wxLineChartCtrl::PointClass::GetValue() const
@@ -215,7 +226,8 @@ void wxLineChartCtrl::Initialize(const wxLineChartData &data)
 		{
 			newDataset->AppendPoint(PointClass::ptr(new PointClass(data[j], 20 + j * 10, 0,
 				m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
-				datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor())));
+				datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor(),
+				m_options.GetHitDetectionRange())));
 		}
 
 		m_datasets.push_back(newDataset);
