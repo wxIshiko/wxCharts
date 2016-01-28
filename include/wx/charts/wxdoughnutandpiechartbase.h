@@ -70,13 +70,12 @@ public:
 protected:
 	void Add(const wxChartSliceData &slice);
 	void Add(const wxChartSliceData &slice, size_t index);
-	void Add(const wxChartSliceData &slice, size_t index, bool silent);
-
+	
 private:
 	virtual void Resize(const wxSize &size);
 
 	wxDouble CalculateCircumference(double value);
-	void GetSegmentsAtEvent(const wxPoint &point);
+	wxSharedPtr<wxVector<wxChartElement::ptr> > GetSegmentsAtEvent1(const wxPoint &point);
 
 	void OnPaint(wxPaintEvent &evt);
 	void OnMouseEnter(wxMouseEvent& evt);
@@ -108,7 +107,7 @@ private:
 	wxVector<SliceArc::ptr> m_slices;
 	double m_total;
 	bool m_mouseInWindow;
-	wxVector<wxChartElement::ptr> m_activeElements;
+	wxSharedPtr<wxVector<wxChartElement::ptr> > m_activeElements;
 
 	DECLARE_EVENT_TABLE();
 };
