@@ -24,7 +24,7 @@
 
 wxLineChartOptions::wxLineChartOptions()
 	: m_dotRadius(4), m_dotStrokeWidth(1),
-	m_lineWidth(2)
+	m_lineWidth(2), m_hitDetectionRange(24)
 {
 }
 
@@ -51,4 +51,9 @@ unsigned int wxLineChartOptions::GetDotStrokeWidth() const
 unsigned int wxLineChartOptions::GetLineWidth() const
 {
 	return m_lineWidth;
+}
+
+wxDouble wxLineChartOptions::GetHitDetectionRange() const
+{
+	return m_hitDetectionRange;
 }
