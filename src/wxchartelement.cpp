@@ -25,3 +25,13 @@
 wxChartElement::wxChartElement()
 {
 }
+
+wxChartElement::wxChartElement(const wxString &tooltip)
+	: m_tooltip(tooltip)
+{
+}
+
+const wxString& wxChartElement::GetTooltip() const
+{
+	return m_tooltip;
+}

@@ -99,11 +99,9 @@ private:
 		void Resize(const wxSize &size, const wxDoughnutAndPieChartOptionsBase& options);
 
 		wxDouble GetValue() const;
-		const wxString& GetTooltip() const;
 
 	private:
 		wxDouble m_value;
-		wxString m_tooltip;
 	};
 
 private:

@@ -56,10 +56,11 @@ public:
 	/// @param endAngle The angle (in radians) at which the arc ends.
 	/// @param outerRadius The outer radius of the arc.
 	/// @param innerRadius The inner radius of the arc. This can be 0.
+	/// @param tooltip The tooltip.
 	/// @param options The settings to be used for the arc.
 	wxChartArc(wxDouble x, wxDouble y, wxDouble startAngle,
 		wxDouble endAngle, wxDouble outerRadius, wxDouble innerRadius,
-		const wxChartArcOptions &options);
+		const wxString &tooltip, const wxChartArcOptions &options);
 
 	virtual bool HitTest(const wxPoint &point) const;
 

@@ -39,10 +39,12 @@ wxChartArc::wxChartArc(wxDouble x,
 					   wxDouble endAngle,
 					   wxDouble outerRadius,
 					   wxDouble innerRadius,
+					   const wxString &tooltip,
 					   const wxChartArcOptions &options)
-	: m_x(x), m_y(y), m_startAngle(startAngle), 
-	m_endAngle(endAngle), m_outerRadius(outerRadius),
-	m_innerRadius(innerRadius), m_options(options)
+	: wxChartElement(tooltip), m_x(x), m_y(y), 
+	m_startAngle(startAngle), m_endAngle(endAngle), 
+	m_outerRadius(outerRadius), m_innerRadius(innerRadius), 
+	m_options(options)
 {
 }
 

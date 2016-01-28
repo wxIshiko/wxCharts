@@ -25,6 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTELEMENT_H_
 #define _WX_CHARTS_WXCHARTELEMENT_H_
 
+#include <wx/sharedptr.h>
 #include <wx/gdicmn.h>
 
 /// This is the base class for chart elements.
@@ -36,8 +37,14 @@
 class wxChartElement
 {
 public:
-	/// Constructs a new wxChartElement instance.
+	typedef wxSharedPtr<wxChartElement> ptr;
+
+	/// Constructs a wxChartElement instance with no
+	/// tooltip.
 	wxChartElement();
+	/// Constructs a wxChartElement instance.
+	/// @param tooltip The tooltip.
+	wxChartElement(const wxString &tooltip);
 
 	/// Elements can be activated with the mouse. This function
 	/// checks whether the mouse is in the activation zone for 
@@ -45,6 +52,11 @@ public:
 	/// @param point The position of the mouse.
 	/// @return Whether the mouse is in the activation zone.
 	virtual bool HitTest(const wxPoint &point) const = 0;
+
+	const wxString& GetTooltip() const;
+
+private:
+	wxString m_tooltip;
 };
 
 #endif
