@@ -168,6 +168,7 @@ private:
 	static wxDouble GetMaxValue(const wxVector<wxLineChartDataset::ptr>& datasets);
 
 	virtual void Resize(const wxSize &size);
+	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 	void OnPaint(wxPaintEvent &evt);
 

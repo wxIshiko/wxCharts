@@ -73,10 +73,10 @@ protected:
 	
 private:
 	virtual void Resize(const wxSize &size);
+	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 	wxDouble CalculateCircumference(double value);
-	wxSharedPtr<wxVector<wxChartElement::ptr> > GetSegmentsAtEvent1(const wxPoint &point);
-
+	
 	void OnPaint(wxPaintEvent &evt);
 	void OnMouseEnter(wxMouseEvent& evt);
 	void OnMouseOver(wxMouseEvent& evt);
@@ -107,7 +107,7 @@ private:
 	wxVector<SliceArc::ptr> m_slices;
 	double m_total;
 	bool m_mouseInWindow;
-	wxSharedPtr<wxVector<wxChartElement::ptr> > m_activeElements;
+	wxSharedPtr<wxVector<const wxChartElement*> > m_activeElements;
 
 	DECLARE_EVENT_TABLE();
 };

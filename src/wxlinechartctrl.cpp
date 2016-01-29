@@ -284,10 +284,26 @@ wxDouble wxLineChartCtrl::GetMaxValue(const wxVector<wxLineChartDataset::ptr>& d
 	return result;
 }
 
-
 void wxLineChartCtrl::Resize(const wxSize &size)
 {
 	m_grid.Resize(size);
+}
+
+wxSharedPtr<wxVector<const wxChartElement*> > wxLineChartCtrl::GetActiveElements(const wxPoint &point)
+{
+	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+	for (size_t i = 0; i < m_datasets.size(); ++i)
+	{
+		const wxVector<PointClass::ptr>& points = m_datasets[i]->GetPoints();
+		for (size_t j = 0; j < points.size(); ++j)
+		{
+			if (points[j]->HitTest(point))
+			{
+				activeElements->push_back(points[j].get());
+			}
+		}
+	}
+	return activeElements;
 }
 
 void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)

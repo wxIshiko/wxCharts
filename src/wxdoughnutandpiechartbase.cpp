@@ -73,7 +73,7 @@ wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(wxWindow *parent,
 													 const wxSize &size,
 													 long style)
 	: wxChartCtrl(parent, id, pos, size, style), m_total(0),
-	m_mouseInWindow(false), m_activeElements(new wxVector<wxChartElement::ptr>())
+	m_mouseInWindow(false), m_activeElements(new wxVector<const wxChartElement*>())
 {
 }
 
@@ -104,6 +104,19 @@ void wxDoughnutAndPieChartBase::Resize(const wxSize &size)
 	}
 }
 
+wxSharedPtr<wxVector<const wxChartElement*> > wxDoughnutAndPieChartBase::GetActiveElements(const wxPoint &point)
+{
+	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+	for (size_t i = 0; i < m_slices.size(); ++i)
+	{
+		if (m_slices[i]->HitTest(point))
+		{
+			activeElements->push_back(m_slices[i].get());
+		}
+	}
+	return activeElements;
+}
+
 double wxDoughnutAndPieChartBase::CalculateCircumference(wxDouble value)
 {
 	if (m_total > 0)
@@ -114,19 +127,6 @@ double wxDoughnutAndPieChartBase::CalculateCircumference(wxDouble value)
 	{
 		return 0;
 	}
-}
-
-wxSharedPtr<wxVector<wxChartElement::ptr> > wxDoughnutAndPieChartBase::GetSegmentsAtEvent1(const wxPoint &point)
-{
-	wxSharedPtr<wxVector<wxChartElement::ptr> > activeElements(new wxVector<wxChartElement::ptr>());
-	for (size_t i = 0; i < m_slices.size(); ++i)
-	{
-		if (m_slices[i]->HitTest(point))
-		{
-			activeElements->push_back(*(reinterpret_cast<wxChartElement::ptr*>(&m_slices[i])));
-		}
-	}
-	return activeElements;
 }
 
 void wxDoughnutAndPieChartBase::OnPaint(wxPaintEvent &evt)
@@ -173,7 +173,7 @@ void wxDoughnutAndPieChartBase::OnMouseOver(wxMouseEvent& evt)
 {
 	if (GetOptions().ShowTooltips())
 	{
-		m_activeElements = GetSegmentsAtEvent1(evt.GetPosition());
+		m_activeElements = GetActiveElements(evt.GetPosition());
 		Refresh();
 	}
 }

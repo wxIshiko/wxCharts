@@ -26,6 +26,7 @@
 #define _WX_CHARTS_WXCHARTCTRL_H_
 
 #include "wxchartoptions.h"
+#include "wxchartelement.h"
 #include <wx/control.h>
 
 /// Base class for the chart controls.
@@ -55,6 +56,7 @@ public:
 
 private:
 	virtual void Resize(const wxSize &size) = 0;
+	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) = 0;
 
 	void OnSize(wxSizeEvent& evt);
 
