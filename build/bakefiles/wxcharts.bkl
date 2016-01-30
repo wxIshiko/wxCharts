@@ -1,5 +1,6 @@
-toolsets = vs2013;
+toolsets = vs2015 vs2013;
 
+vs2015.solutionfile = ../msw/wxcharts_vc15.sln;
 vs2013.solutionfile = ../msw/wxcharts_vc12.sln;
 
 setting WXWIDGETS_ROOT
@@ -10,6 +11,7 @@ setting WXWIDGETS_ROOT
 
 library wxcharts
 {
+    vs2015.projectfile = ../msw/wxcharts_vc15.vcxproj;
     vs2013.projectfile = ../msw/wxcharts_vc12.vcxproj;
 
     includedirs += ../../include/wx/charts;
