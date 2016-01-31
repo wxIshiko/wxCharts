@@ -40,8 +40,17 @@ public:
 	/// the chart when the control size changes.
 	bool IsResponsive() const;
 
+	/// Whether to display tooltips.
+	/// @retval true Display tooltips.
+	/// @retval false Don't display tooltips.
+	bool ShowTooltips() const;
+	/// Enables or disable tooltips.
+	/// @param show True to enable tooltips, false to disable them.
+	void SetShowTooltips(bool show);
+
 private:
 	bool m_responsive;
+	bool m_showTooltips;
 };
 
 #endif

@@ -23,11 +23,21 @@
 #include "wxchartoptions.h"
 
 wxChartOptions::wxChartOptions()
-	: m_responsive(true)
+	: m_responsive(true), m_showTooltips(true)
 {
 }
 
 bool wxChartOptions::IsResponsive() const
 {
 	return m_responsive;
+}
+
+bool wxChartOptions::ShowTooltips() const
+{
+	return m_showTooltips;
+}
+
+void wxChartOptions::SetShowTooltips(bool show)
+{
+	m_showTooltips = show;
 }
