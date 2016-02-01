@@ -3,6 +3,7 @@
 *.sdf
 *.suo
 *.pdb
+*.opendb
 Debug/
 Release/
 /lib/
