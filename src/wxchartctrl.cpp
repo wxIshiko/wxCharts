@@ -21,27 +21,48 @@
 */
 
 #include "wxchartctrl.h"
+#include "wxcharttooltip.h"
 
 wxChartCtrl::wxChartCtrl(wxWindow *parent,
 						 wxWindowID id,
 						 const wxPoint &pos,
 						 const wxSize &size,
 						 long style)
-	: wxControl(parent, id, pos, size, style)
+	: wxControl(parent, id, pos, size, style),
+	m_activeElements(new wxVector<const wxChartElement*>())
 {
 	SetBackgroundStyle(wxBG_STYLE_PAINT);
 	SetBackgroundColour(*wxWHITE);
 }
 
+void wxChartCtrl::DrawTooltips(wxGraphicsContext &gc)
+{
+	for (size_t j = 0; j < m_activeElements->size(); ++j)
+	{
+		wxChartTooltip tooltip((*m_activeElements)[j]->GetTooltipPosition(), (*m_activeElements)[j]->GetTooltip());
+		tooltip.Draw(gc);
+	}
+}
+
 void wxChartCtrl::OnSize(wxSizeEvent& evt)
 {
-	if (m_options.IsResponsive())
+	if (GetOptions().IsResponsive())
 	{
 		Resize(evt.GetSize());
 		Refresh();
 	}
 }
 
+void wxChartCtrl::OnMouseOver(wxMouseEvent& evt)
+{
+	if (GetOptions().ShowTooltips())
+	{
+		m_activeElements = GetActiveElements(evt.GetPosition());
+		Refresh();
+	}
+}
+
 BEGIN_EVENT_TABLE(wxChartCtrl, wxControl)
 	EVT_SIZE(wxChartCtrl::OnSize)
+	EVT_MOTION(wxChartCtrl::OnMouseOver)
 END_EVENT_TABLE()

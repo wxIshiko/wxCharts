@@ -80,10 +80,13 @@ public:
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
 
+	virtual const wxBarChartOptions& GetOptions() const;
+
 	void AddData(const wxVector<wxDouble>& data);
 
 private:
 	virtual void Resize(const wxSize &size);
+	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 	void OnPaint(wxPaintEvent &evt);
 

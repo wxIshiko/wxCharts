@@ -98,6 +98,11 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 {
 }
 
+const wxBarChartOptions& wxBarChartCtrl::GetOptions() const
+{
+	return m_options;
+}
+
 void wxBarChartCtrl::AddData(const wxVector<wxDouble>& data)
 {
 	Dataset::ptr newDataset(new Dataset());
@@ -108,6 +113,12 @@ void wxBarChartCtrl::AddData(const wxVector<wxDouble>& data)
 void wxBarChartCtrl::Resize(const wxSize &size)
 {
 	m_grid.Resize(size);
+}
+
+wxSharedPtr<wxVector<const wxChartElement*> > wxBarChartCtrl::GetActiveElements(const wxPoint &point)
+{
+	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+	return activeElements;
 }
 
 void wxBarChartCtrl::OnPaint(wxPaintEvent &evt)

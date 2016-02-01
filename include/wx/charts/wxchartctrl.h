@@ -54,14 +54,20 @@ public:
 		const wxSize &size = wxDefaultSize,
 		long style = 0);
 
+	virtual const wxChartOptions& GetOptions() const = 0;
+
+protected:
+	void DrawTooltips(wxGraphicsContext &gc);
+
 private:
 	virtual void Resize(const wxSize &size) = 0;
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) = 0;
 
 	void OnSize(wxSizeEvent& evt);
+	void OnMouseOver(wxMouseEvent& evt);
 
 private:
-	wxChartOptions m_options;
+	wxSharedPtr<wxVector<const wxChartElement*> > m_activeElements;
 
 	DECLARE_EVENT_TABLE();
 };
