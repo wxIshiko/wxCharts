@@ -1,5 +1,6 @@
-toolsets = vs2013;
+toolsets = vs2015 vs2013;
 
+vs2015.solutionfile = ../msw/WxPie_vc14.sln;
 vs2013.solutionfile = ../msw/WxPie_vc12.sln;
 
 setting WXWIDGETS_ROOT
@@ -16,6 +17,7 @@ setting WXCHARTS_ROOT
 
 program WxPie
 {
+    vs2015.projectfile = ../msw/WxPie_vc14.vcxproj;
     vs2013.projectfile = ../msw/WxPie_vc12.vcxproj;
 
     win32-subsystem = windows;
