@@ -79,7 +79,6 @@ private:
 	
 	void OnPaint(wxPaintEvent &evt);
 	void OnMouseEnter(wxMouseEvent& evt);
-	void OnMouseOver(wxMouseEvent& evt);
 	void OnMouseExit(wxMouseEvent& evt);
 
 private:
@@ -107,8 +106,7 @@ private:
 	wxVector<SliceArc::ptr> m_slices;
 	double m_total;
 	bool m_mouseInWindow;
-	wxSharedPtr<wxVector<const wxChartElement*> > m_activeElements;
-
+	
 	DECLARE_EVENT_TABLE();
 };
 

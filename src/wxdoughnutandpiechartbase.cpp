@@ -32,7 +32,6 @@
 */
 
 #include "wxdoughnutandpiechartbase.h"
-#include "wxcharttooltip.h"
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
@@ -73,7 +72,7 @@ wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(wxWindow *parent,
 													 const wxSize &size,
 													 long style)
 	: wxChartCtrl(parent, id, pos, size, style), m_total(0),
-	m_mouseInWindow(false), m_activeElements(new wxVector<const wxChartElement*>())
+	m_mouseInWindow(false)
 {
 }
 
@@ -150,11 +149,7 @@ void wxDoughnutAndPieChartBase::OnPaint(wxPaintEvent &evt)
 			currentSlice.Draw(*gc);
 		}
 
-		for (size_t j = 0; j < m_activeElements->size(); ++j)
-		{
-			wxChartTooltip tooltip((*m_activeElements)[j]->GetTooltipPosition(), (*m_activeElements)[j]->GetTooltip());
-			tooltip.Draw(*gc);
-		}
+		DrawTooltips(*gc);
 
 		delete gc;
 	}
@@ -165,15 +160,6 @@ void wxDoughnutAndPieChartBase::OnMouseEnter(wxMouseEvent& evt)
 	if (GetOptions().ShowTooltips())
 	{
 		m_mouseInWindow = true;
-		Refresh();
-	}
-}
-
-void wxDoughnutAndPieChartBase::OnMouseOver(wxMouseEvent& evt)
-{
-	if (GetOptions().ShowTooltips())
-	{
-		m_activeElements = GetActiveElements(evt.GetPosition());
 		Refresh();
 	}
 }
@@ -190,6 +176,5 @@ void wxDoughnutAndPieChartBase::OnMouseExit(wxMouseEvent& evt)
 BEGIN_EVENT_TABLE(wxDoughnutAndPieChartBase, wxChartCtrl)
 	EVT_PAINT(wxDoughnutAndPieChartBase::OnPaint)
 	EVT_ENTER_WINDOW(wxDoughnutAndPieChartBase::OnMouseEnter)
-	EVT_MOTION(wxDoughnutAndPieChartBase::OnMouseOver)
 	EVT_LEAVE_WINDOW(wxDoughnutAndPieChartBase::OnMouseExit)
 END_EVENT_TABLE()

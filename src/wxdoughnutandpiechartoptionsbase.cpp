@@ -23,8 +23,7 @@
 #include "wxdoughnutandpiechartoptionsbase.h"
 
 wxDoughnutAndPieChartOptionsBase::wxDoughnutAndPieChartOptionsBase(unsigned int percentageInnerCutout)
-	: m_sliceStrokeWidth(2), m_percentageInnerCutout(percentageInnerCutout), 
-	m_showTooltips(true)
+	: m_sliceStrokeWidth(2), m_percentageInnerCutout(percentageInnerCutout)
 {
 }
 
@@ -38,11 +37,6 @@ unsigned int wxDoughnutAndPieChartOptionsBase::GetPercentageInnerCutout() const
 	return m_percentageInnerCutout;
 }
 
-bool wxDoughnutAndPieChartOptionsBase::ShowTooltips() const
-{
-	return m_showTooltips;
-}
-
 void wxDoughnutAndPieChartOptionsBase::SetSliceStrokeWidth(unsigned int strokeWidth)
 {
 	m_sliceStrokeWidth = strokeWidth;
@@ -51,9 +45,4 @@ void wxDoughnutAndPieChartOptionsBase::SetSliceStrokeWidth(unsigned int strokeWi
 void wxDoughnutAndPieChartOptionsBase::SetPercentageInnerCutout(unsigned int cutout)
 {
 	m_percentageInnerCutout = cutout;
-}
-
-void wxDoughnutAndPieChartOptionsBase::SetShowTooltips(bool show)
-{
-	m_showTooltips = show;
 }

@@ -25,8 +25,10 @@
 #ifndef _WX_CHARTS_WXDOUGHNUTANDPIECHARTOPTIONSBASE_H_
 #define _WX_CHARTS_WXDOUGHNUTANDPIECHARTOPTIONSBASE_H_
 
+#include "wxchartoptions.h"
+
 /// Options for the wxDoughnutAndPieChartBase class. 
-class wxDoughnutAndPieChartOptionsBase
+class wxDoughnutAndPieChartOptionsBase : public wxChartOptions
 {
 public:
 	/// Constructs a wxDoughnutAndPieChartOptionsBase instance.
@@ -42,10 +44,6 @@ public:
 	/// @return The size of the inner radius
 	/// expressed as a percentage of the outer radius.
 	unsigned int GetPercentageInnerCutout() const;
-	/// Whether to display tooltips.
-	/// @retval true Display tooltips.
-	/// @retval false Don't display tooltips.
-	bool ShowTooltips() const;
 
 protected:
 	/// Sets the width of the pen used to draw the outline
@@ -56,9 +54,6 @@ protected:
 	/// @param cutout The size of the inner radius
 	/// expressed as a percentage of the outer radius.
 	void SetPercentageInnerCutout(unsigned int cutout);
-	/// Enables or disable tooltips.
-	/// @param show True to enable tooltips, false to disable them.
-	void SetShowTooltips(bool show);
 
 private:
 	// The width of each slice stroke, this will increase the 
@@ -66,7 +61,6 @@ private:
 	unsigned int m_sliceStrokeWidth;
 	// The percentage of the chart that we cut out of the middle.
 	unsigned int m_percentageInnerCutout;
-	bool m_showTooltips;
 };
 
 #endif
