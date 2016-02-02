@@ -33,6 +33,7 @@
 
 #include "wxchartaxis.h"
 #include "wxchartutilities.h"
+#include <wx/pen.h>
 #include <sstream>
 
 wxChartAxis::wxChartAxis()

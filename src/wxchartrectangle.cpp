@@ -32,6 +32,8 @@
 */
 
 #include "wxchartrectangle.h"
+#include <wx/pen.h>
+#include <wx/brush.h>
 
 wxChartRectangle::wxChartRectangle(wxDouble x,
 								   wxDouble y,

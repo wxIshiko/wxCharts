@@ -39,6 +39,7 @@
 #include "wxchartelement.h"
 #include "wxchartaxisoptions.h"
 #include "wxchartlabel.h"
+#include <wx/graphics.h>
 
 /// This class represents an axis.
 class wxChartAxis : public wxChartElement

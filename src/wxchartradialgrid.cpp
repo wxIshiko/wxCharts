@@ -33,6 +33,7 @@
 
 #include "wxchartradialgrid.h"
 #include "wxchartutilities.h"
+#include <wx/pen.h>
 
 wxChartRadialGrid::wxChartRadialGrid(const wxSize &size, 
 									 wxDouble minValue,
