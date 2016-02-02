@@ -56,6 +56,11 @@ wxRadarChartCtrl::wxRadarChartCtrl(wxWindow *parent,
 {
 }
 
+const wxRadarChartOptions& wxRadarChartCtrl::GetOptions() const
+{
+	return m_options;
+}
+
 wxDouble wxRadarChartCtrl::GetMinValue()
 {
 	wxDouble result = 0;
@@ -71,6 +76,12 @@ wxDouble wxRadarChartCtrl::GetMaxValue()
 void wxRadarChartCtrl::Resize(const wxSize &size)
 {
 	m_grid.Resize(size);
+}
+
+wxSharedPtr<wxVector<const wxChartElement*> > wxRadarChartCtrl::GetActiveElements(const wxPoint &point)
+{
+	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+	return activeElements;
 }
 
 void wxRadarChartCtrl::OnPaint(wxPaintEvent &evt)

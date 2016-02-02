@@ -25,10 +25,11 @@
 #ifndef _WX_CHARTS_WXRADARCHARTOPTIONS_H_
 #define _WX_CHARTS_WXRADARCHARTOPTIONS_H_
 
+#include "wxchartoptions.h"
 #include "wxchartradialgridoptions.h"
 
 /// The options for the wxRadarChartCtrl control.
-class wxRadarChartOptions
+class wxRadarChartOptions : public wxChartOptions
 {
 public:
 	/// Constructs a wxRadarChartOptions instance.

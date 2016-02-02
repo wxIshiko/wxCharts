@@ -76,11 +76,14 @@ public:
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
 
+	virtual const wxRadarChartOptions& GetOptions() const;
+
 private:
 	static wxDouble GetMinValue();
 	static wxDouble GetMaxValue();
 
 	virtual void Resize(const wxSize &size);
+	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 	void OnPaint(wxPaintEvent &evt);
 
