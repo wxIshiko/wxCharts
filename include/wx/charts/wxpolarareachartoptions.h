@@ -25,10 +25,11 @@
 #ifndef _WX_CHARTS_WXPOLARAREACHARTOPTIONS_H_
 #define _WX_CHARTS_WXPOLARAREACHARTOPTIONS_H_
 
+#include "wxchartoptions.h"
 #include "wxchartradialgridoptions.h"
 
 /// The options for the wxPolarAreaChartCtrl control.
-class wxPolarAreaChartOptions
+class wxPolarAreaChartOptions : public wxChartOptions
 {
 public:
 	/// Constructs a wxPolarAreaChartOptions instance.

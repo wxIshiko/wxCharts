@@ -76,6 +76,8 @@ public:
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
 
+	virtual const wxPolarAreaChartOptions& GetOptions() const;
+
 private:
 	void Add(const wxChartSliceData &slice);
 	void Add(const wxChartSliceData &slice, size_t index);
@@ -85,6 +87,7 @@ private:
 	static wxDouble GetMaxValue(const wxVector<wxChartSliceData> &slices);
 
 	virtual void Resize(const wxSize &size);
+	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 	void OnPaint(wxPaintEvent &evt);
 

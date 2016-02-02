@@ -66,6 +66,11 @@ wxPolarAreaChartCtrl::wxPolarAreaChartCtrl(wxWindow *parent,
 	}
 }
 
+const wxPolarAreaChartOptions& wxPolarAreaChartCtrl::GetOptions() const
+{
+	return m_options;
+}
+
 void wxPolarAreaChartCtrl::Add(const wxChartSliceData &slice)
 {
 	Add(slice, m_slices.size());
@@ -119,6 +124,12 @@ wxDouble wxPolarAreaChartCtrl::GetMaxValue(const wxVector<wxChartSliceData> &sli
 void wxPolarAreaChartCtrl::Resize(const wxSize &size)
 {
 	m_grid.Resize(size);
+}
+
+wxSharedPtr<wxVector<const wxChartElement*> > wxPolarAreaChartCtrl::GetActiveElements(const wxPoint &point)
+{
+	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+	return activeElements;
 }
 
 void wxPolarAreaChartCtrl::OnPaint(wxPaintEvent &evt)
