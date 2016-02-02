@@ -161,6 +161,8 @@ public:
 		const wxLineChartOptions &options, const wxPoint &pos = wxDefaultPosition,
 		const wxSize &size = wxDefaultSize, long style = 0);
 
+	virtual const wxLineChartOptions& GetOptions() const;
+
 private:
 	void Initialize(const wxLineChartData &data);
 
@@ -178,11 +180,14 @@ private:
 	public:
 		typedef wxSharedPtr<PointClass> ptr;
 
-		PointClass(wxDouble value, wxDouble x, wxDouble y, wxDouble radius,
+		PointClass(wxDouble value, const wxString &tooltip,
+			wxDouble x, wxDouble y, wxDouble radius,
 			unsigned int strokeWidth, const wxColor &strokeColor,
 			const wxColor &fillColor, wxDouble hitDetectionRange);
 
 		virtual bool HitTest(const wxPoint &point) const;
+
+		virtual wxPoint2DDouble GetTooltipPosition() const;
 
 		wxDouble GetValue() const;
 

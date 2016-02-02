@@ -113,6 +113,7 @@ const wxVector<wxLineChartDataset::ptr>& wxLineChartData::GetDatasets() const
 }
 
 wxLineChartCtrl::PointClass::PointClass(wxDouble value, 
+										const wxString &tooltip,
 										wxDouble x,
 										wxDouble y, 
 										wxDouble radius,
@@ -120,7 +121,7 @@ wxLineChartCtrl::PointClass::PointClass(wxDouble value,
 										const wxColor &strokeColor,
 										const wxColor &fillColor,
 										wxDouble hitDetectionRange)
-	: wxChartPoint(x, y, radius, strokeWidth, strokeColor, fillColor),
+	: wxChartPoint(x, y, radius, strokeWidth, strokeColor, fillColor, tooltip),
 	m_value(value), m_hitDetectionRange(hitDetectionRange)
 {
 }
@@ -133,6 +134,11 @@ bool wxLineChartCtrl::PointClass::HitTest(const wxPoint &point) const
 		distance = -distance;
 	}
 	return (distance < m_hitDetectionRange);
+}
+
+wxPoint2DDouble wxLineChartCtrl::PointClass::GetTooltipPosition() const
+{
+	return wxPoint2DDouble(100, 100);
 }
 
 wxDouble wxLineChartCtrl::PointClass::GetValue() const
@@ -212,6 +218,11 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 	Initialize(data);
 }
 
+const wxLineChartOptions& wxLineChartCtrl::GetOptions() const
+{
+	return m_options;
+}
+
 void wxLineChartCtrl::Initialize(const wxLineChartData &data)
 {
 	const wxVector<wxLineChartDataset::ptr>& datasets = data.GetDatasets();
@@ -224,8 +235,9 @@ void wxLineChartCtrl::Initialize(const wxLineChartData &data)
 		const wxVector<wxDouble>& data = datasets[i]->GetData();
 		for (size_t j = 0; j < data.size(); ++j)
 		{
-			newDataset->AppendPoint(PointClass::ptr(new PointClass(data[j], 20 + j * 10, 0,
-				m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
+			wxString tooltip = datasets[i]->GetLabel();
+			newDataset->AppendPoint(PointClass::ptr(new PointClass(data[j], tooltip,
+				20 + j * 10, 0, m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
 				datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor(),
 				m_options.GetHitDetectionRange())));
 		}
@@ -368,6 +380,8 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 				}
 			}
 		}
+
+		DrawTooltips(*gc);
 
 		delete gc;
 	}

@@ -33,6 +33,7 @@
 
 #include "wxcharttooltip.h"
 #include "wxchartutilities.h"
+#include <wx/brush.h>
 
 wxChartTooltip::wxChartTooltip(const wxPoint2DDouble &position,
 							   const wxString &text)
