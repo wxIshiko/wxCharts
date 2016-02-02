@@ -36,7 +36,6 @@ public:
 	wxPieChartOptions();
 
 	void SetSliceStrokeWidth(unsigned int strokeWidth);
-	void SetShowTooltips(bool show);
 };
 
 #endif

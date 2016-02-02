@@ -36,8 +36,3 @@ void wxDougnutChartOptions::SetPercentageInnerCutout(unsigned int cutout)
 {
 	wxDoughnutAndPieChartOptionsBase::SetPercentageInnerCutout(cutout);
 }
-
-void wxDougnutChartOptions::SetShowTooltips(bool show)
-{
-	wxDoughnutAndPieChartOptionsBase::SetShowTooltips(show);
-}

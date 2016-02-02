@@ -37,7 +37,6 @@ public:
 
 	void SetSliceStrokeWidth(unsigned int strokeWidth);
 	void SetPercentageInnerCutout(unsigned int cutout);
-	void SetShowTooltips(bool show);
 };
 
 #endif
