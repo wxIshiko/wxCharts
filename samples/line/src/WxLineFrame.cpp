@@ -72,7 +72,7 @@ WxLineFrame::WxLineFrame(const wxString& title)
 		points2));
 	chartData.AddDataset(dataset2);
 
-	// Create the bar chart widget from the constructed data
+	// Create the line chart widget from the constructed data
 	wxLineChartCtrl* lineChartCtrl = new wxLineChartCtrl(panel, wxID_ANY, chartData,
 		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
