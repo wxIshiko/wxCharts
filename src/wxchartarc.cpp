@@ -32,6 +32,8 @@
 */
 
 #include "wxchartarc.h"
+#include <wx/pen.h>
+#include <wx/brush.h>
 
 wxChartArc::wxChartArc(wxDouble x,
 					   wxDouble y, 

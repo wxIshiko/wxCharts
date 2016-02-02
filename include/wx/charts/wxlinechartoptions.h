@@ -25,10 +25,11 @@
 #ifndef _WX_CHARTS_WXLINECHARTOPTIONS_H_
 #define _WX_CHARTS_WXLINECHARTOPTIONS_H_
 
+#include "wxchartoptions.h"
 #include "wxchartgridoptions.h"
 
 /// The options for the wxLineChartCtrl control.
-class wxLineChartOptions
+class wxLineChartOptions : public wxChartOptions
 {
 public:
 	/// Constructs a wxLineChartOptions instance.

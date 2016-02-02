@@ -32,14 +32,17 @@
 */
 
 #include "wxchartpoint.h"
+#include <wx/pen.h>
+#include <wx/brush.h>
 
 wxChartPoint::wxChartPoint(wxDouble x,
 						   wxDouble y, 
 						   wxDouble radius,
 						   unsigned int strokeWidth, 
 						   const wxColor &strokeColor,
-						   const wxColor &fillColor)
-	: m_position(x, y), m_radius(radius), 
+						   const wxColor &fillColor,
+						   const wxString &tooltip)
+	: wxChartElement(tooltip), m_position(x, y), m_radius(radius), 
 	m_strokeWidth(strokeWidth), m_strokeColor(strokeColor),
 	m_fillColor(fillColor)
 {

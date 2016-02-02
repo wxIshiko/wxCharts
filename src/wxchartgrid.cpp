@@ -33,6 +33,7 @@
 
 #include "wxchartgrid.h"
 #include "wxchartutilities.h"
+#include <wx/pen.h>
 
 wxChartGrid::wxChartGrid(const wxSize &size,
 						 const wxVector<wxString> &labels,
