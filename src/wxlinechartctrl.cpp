@@ -34,6 +34,7 @@
 #include "wxlinechartctrl.h"
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
+#include <sstream>
 
 wxLineChartDataset::wxLineChartDataset(const wxString &label,
 									   const wxColor &dotColor,
@@ -136,11 +137,6 @@ bool wxLineChartCtrl::PointClass::HitTest(const wxPoint &point) const
 	return (distance < m_hitDetectionRange);
 }
 
-wxPoint2DDouble wxLineChartCtrl::PointClass::GetTooltipPosition() const
-{
-	return wxPoint2DDouble(100, 100);
-}
-
 wxDouble wxLineChartCtrl::PointClass::GetValue() const
 {
 	return m_value;
@@ -232,11 +228,12 @@ void wxLineChartCtrl::Initialize(const wxLineChartData &data)
 			datasets[i]->ShowLine(), datasets[i]->GetLineColor(),
 			datasets[i]->Fill(), datasets[i]->GetFillColor()));
 		
-		const wxVector<wxDouble>& data = datasets[i]->GetData();
-		for (size_t j = 0; j < data.size(); ++j)
+		const wxVector<wxDouble>& datasetData = datasets[i]->GetData();
+		for (size_t j = 0; j < datasetData.size(); ++j)
 		{
-			wxString tooltip = datasets[i]->GetLabel();
-			newDataset->AppendPoint(PointClass::ptr(new PointClass(data[j], tooltip,
+			std::stringstream tooltip;
+			tooltip << data.GetLabels()[j] << ": " << datasetData[j];
+			newDataset->AppendPoint(PointClass::ptr(new PointClass(datasetData[j], tooltip.str(),
 				20 + j * 10, 0, m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
 				datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor(),
 				m_options.GetHitDetectionRange())));

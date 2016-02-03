@@ -187,8 +187,6 @@ private:
 
 		virtual bool HitTest(const wxPoint &point) const;
 
-		virtual wxPoint2DDouble GetTooltipPosition() const;
-
 		wxDouble GetValue() const;
 
 	private:

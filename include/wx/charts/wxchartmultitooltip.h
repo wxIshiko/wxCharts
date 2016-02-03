@@ -25,6 +25,9 @@
 #ifndef _WX_CHARTS_WXCHARTMULTITOOLTIP_H_
 #define _WX_CHARTS_WXCHARTMULTITOOLTIP_H_
 
+#include "wxcharttooltip.h"
+#include <wx/graphics.h>
+
 /// This class is used to display a tooltip.
 
 /// Charts can display tooltips in response to a user
@@ -41,6 +44,13 @@ public:
 	/// Constructs a wxChartMultiTooltip
 	/// instance.
 	wxChartMultiTooltip();
+
+	/// Draws the tooltip using the graphics context passed
+	/// in as argument.
+	/// @param gc The graphics context.
+	void Draw(wxGraphicsContext &gc);
+
+	void AddTooltip(const wxChartTooltip &tooltip);
 };
 
 #endif

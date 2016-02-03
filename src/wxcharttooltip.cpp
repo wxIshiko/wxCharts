@@ -68,3 +68,8 @@ void wxChartTooltip::Draw(wxGraphicsContext &gc)
 	gc.SetFont(font, m_options.GetFontColor());
 	gc.DrawText(text, tooltipX + m_options.GetHorizontalPadding(), tooltipY + m_options.GetVerticalPadding());
 }
+
+const wxPoint2DDouble& wxChartTooltip::GetPosition() const
+{
+	return m_position;
+}

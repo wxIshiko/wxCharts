@@ -49,6 +49,8 @@ public:
 	/// @param gc The graphics context.
 	void Draw(wxGraphicsContext &gc);
 
+	const wxPoint2DDouble& GetPosition() const;
+
 private:
 	wxChartTooltipOptions m_options;
 	wxPoint2DDouble m_position;

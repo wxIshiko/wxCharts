@@ -36,3 +36,11 @@
 wxChartMultiTooltip::wxChartMultiTooltip()
 {
 }
+
+void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
+{
+}
+
+void wxChartMultiTooltip::AddTooltip(const wxChartTooltip &tooltip)
+{
+}

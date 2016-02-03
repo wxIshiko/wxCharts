@@ -55,7 +55,7 @@ bool wxChartPoint::HitTest(const wxPoint &point) const
 
 wxPoint2DDouble wxChartPoint::GetTooltipPosition() const
 {
-	return wxPoint2DDouble(0, 0);
+	return m_position;
 }
 
 void wxChartPoint::Draw(wxGraphicsContext &gc)
