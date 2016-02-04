@@ -23,5 +23,27 @@
 #include "wxchartmultitooltipoptions.h"
 
 wxChartMultiTooltipOptions::wxChartMultiTooltipOptions()
+	: m_fontFamily(wxFONTFAMILY_SWISS), m_fontSize(14),
+	m_fontStyle(wxFONTSTYLE_NORMAL), m_fontColor(0xFFFFFF)
 {
+}
+
+wxFontFamily wxChartMultiTooltipOptions::GetFontFamily() const
+{
+	return m_fontFamily;
+}
+
+int wxChartMultiTooltipOptions::GetFontSize() const
+{
+	return m_fontSize;
+}
+
+wxFontStyle wxChartMultiTooltipOptions::GetFontStyle() const
+{
+	return m_fontStyle;
+}
+
+const wxColor& wxChartMultiTooltipOptions::GetFontColor() const
+{
+	return m_fontColor;
 }
