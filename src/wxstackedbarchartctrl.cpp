@@ -21,3 +21,27 @@
 */
 
 #include "wxstackedbarchartctrl.h"
+
+wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
+											 wxWindowID id,
+											 const wxPoint &pos,
+											 const wxSize &size,
+											 long style)
+	: wxChartCtrl(parent, id, pos, size, style)
+{
+}
+
+const wxStackedBarChartOptions& wxStackedBarChartCtrl::GetOptions() const
+{
+	return m_options;
+}
+
+void wxStackedBarChartCtrl::Resize(const wxSize &size)
+{
+}
+
+wxSharedPtr<wxVector<const wxChartElement*> > wxStackedBarChartCtrl::GetActiveElements(const wxPoint &point)
+{
+	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+	return activeElements;
+}

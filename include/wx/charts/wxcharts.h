@@ -26,6 +26,7 @@
 #define _WX_CHARTS_WXCHARTS_H_
 
 #include "wxbarchartctrl.h"
+#include "wxstackedbarchartctrl.h"
 #include "wxlinechartctrl.h"
 #include "wxdoughnutchartctrl.h"
 #include "wxpiechartctrl.h"

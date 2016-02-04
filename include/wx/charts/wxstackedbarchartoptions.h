@@ -25,4 +25,22 @@
 #ifndef _WX_CHARTS_WXSTACKEDBARCHARTOPTIONS_H_
 #define _WX_CHARTS_WXSTACKEDBARCHARTOPTIONS_H_
 
+#include "wxchartoptions.h"
+#include "wxchartgridoptions.h"
+
+/// The options for the wxStackedBarChartCtrl control.
+class wxStackedBarChartOptions : public wxChartOptions
+{
+public:
+	/// Constructs a wxStackedBarChartOptions instance.
+	wxStackedBarChartOptions();
+
+	/// Gets the options for the grid.
+	/// @return The options for the grid.
+	const wxChartGridOptions& GetGridOptions() const;
+
+private:
+	wxChartGridOptions m_gridOptions;
+};
+
 #endif

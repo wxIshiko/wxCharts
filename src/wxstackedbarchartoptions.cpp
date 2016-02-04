@@ -21,3 +21,13 @@
 */
 
 #include "wxstackedbarchartoptions.h"
+
+wxStackedBarChartOptions::wxStackedBarChartOptions()
+	: m_gridOptions(wxChartAxisOptions(wxCHARTLABELTYPE_RANGE), wxChartAxisOptions())
+{
+}
+
+const wxChartGridOptions& wxStackedBarChartOptions::GetGridOptions() const
+{
+	return m_gridOptions;
+}
