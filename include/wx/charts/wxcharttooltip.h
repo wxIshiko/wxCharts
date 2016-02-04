@@ -50,11 +50,12 @@ public:
 	void Draw(wxGraphicsContext &gc);
 
 	const wxPoint2DDouble& GetPosition() const;
+	const wxChartTooltipProvider::ptr& GetProvider() const;
 
 private:
 	wxChartTooltipOptions m_options;
 	wxPoint2DDouble m_position;
-	wxChartTooltipProvider::ptr m_template;
+	wxChartTooltipProvider::ptr m_provider;
 };
 
 #endif

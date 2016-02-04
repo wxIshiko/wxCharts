@@ -54,6 +54,10 @@ public:
 		const wxSize &size = wxDefaultSize,
 		long style = 0);
 
+	/// Gets the options for the chart. Derived classes
+	/// would typically change the signature of this method
+	/// to return a class derived from wxChartOptions.
+	/// @return The options.
 	virtual const wxChartOptions& GetOptions() const = 0;
 
 protected:

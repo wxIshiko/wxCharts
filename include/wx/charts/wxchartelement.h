@@ -37,6 +37,7 @@
 class wxChartElement
 {
 public:
+	/// Smart pointer typedef.
 	typedef wxSharedPtr<wxChartElement> ptr;
 
 	/// Constructs a wxChartElement instance with no

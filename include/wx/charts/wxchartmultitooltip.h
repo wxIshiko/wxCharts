@@ -25,6 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTMULTITOOLTIP_H_
 #define _WX_CHARTS_WXCHARTMULTITOOLTIP_H_
 
+#include "wxchartmultitooltipoptions.h"
 #include "wxcharttooltip.h"
 #include <wx/graphics.h>
 
@@ -51,6 +52,11 @@ public:
 	void Draw(wxGraphicsContext &gc);
 
 	void AddTooltip(const wxChartTooltip &tooltip);
+
+private:
+	wxChartMultiTooltipOptions m_options;
+	wxVector<wxPoint2DDouble> m_tooltipPositions;
+	wxVector<wxChartTooltipProvider::ptr> m_tooltipProviders;
 };
 
 #endif

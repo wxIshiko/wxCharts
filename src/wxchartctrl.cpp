@@ -22,6 +22,7 @@
 
 #include "wxchartctrl.h"
 #include "wxcharttooltip.h"
+#include "wxchartmultitooltip.h"
 
 wxChartCtrl::wxChartCtrl(wxWindow *parent,
 						 wxWindowID id,
@@ -37,10 +38,22 @@ wxChartCtrl::wxChartCtrl(wxWindow *parent,
 
 void wxChartCtrl::DrawTooltips(wxGraphicsContext &gc)
 {
-	for (size_t j = 0; j < m_activeElements->size(); ++j)
+	if (m_activeElements->size() == 1)
 	{
-		wxChartTooltip tooltip((*m_activeElements)[j]->GetTooltipPosition(), (*m_activeElements)[j]->GetTooltip());
+		// If only one element is active draw a normal tooltip
+		wxChartTooltip tooltip((*m_activeElements)[0]->GetTooltipPosition(), (*m_activeElements)[0]->GetTooltip());
 		tooltip.Draw(gc);
+	}
+	else
+	{
+		wxChartMultiTooltip multiTooltip;
+		// If more than one element is active draw a multi-tooltip
+		for (size_t j = 0; j < m_activeElements->size(); ++j)
+		{
+			wxChartTooltip tooltip((*m_activeElements)[j]->GetTooltipPosition(), (*m_activeElements)[j]->GetTooltip());
+			multiTooltip.AddTooltip(tooltip);
+		}
+		multiTooltip.Draw(gc);
 	}
 }
 

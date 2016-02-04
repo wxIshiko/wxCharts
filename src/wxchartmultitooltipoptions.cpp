@@ -21,3 +21,7 @@
 */
 
 #include "wxchartmultitooltipoptions.h"
+
+wxChartMultiTooltipOptions::wxChartMultiTooltipOptions()
+{
+}

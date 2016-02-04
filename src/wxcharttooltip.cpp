@@ -37,13 +37,13 @@
 
 wxChartTooltip::wxChartTooltip(const wxPoint2DDouble &position,
 							   const wxString &text)
-	: m_position(position), m_template(new wxChartTooltipProviderStatic(text))
+	: m_position(position), m_provider(new wxChartTooltipProviderStatic(text))
 {
 }
 
 void wxChartTooltip::Draw(wxGraphicsContext &gc)
 {
-	wxString text = m_template->GetTooltipText();
+	wxString text = m_provider->GetTooltipText();
 
 	wxFont font(wxSize(0, m_options.GetFontSize()),
 		m_options.GetFontFamily(), m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
@@ -72,4 +72,9 @@ void wxChartTooltip::Draw(wxGraphicsContext &gc)
 const wxPoint2DDouble& wxChartTooltip::GetPosition() const
 {
 	return m_position;
+}
+
+const wxChartTooltipProvider::ptr& wxChartTooltip::GetProvider() const
+{
+	return m_provider;
 }

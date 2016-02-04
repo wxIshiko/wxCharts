@@ -25,4 +25,12 @@
 #ifndef _WX_CHARTS_WXCHARTMULTITOOLTIPOPTIONS_H_
 #define _WX_CHARTS_WXCHARTMULTITOOLTIPOPTIONS_H_
 
+/// The options for the wxChartMultiTooltip element.
+class wxChartMultiTooltipOptions
+{
+public:
+	/// Constructs a wxChartMultiTooltipOptions instance.
+	wxChartMultiTooltipOptions();
+};
+
 #endif

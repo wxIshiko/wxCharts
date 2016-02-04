@@ -39,8 +39,16 @@ wxChartMultiTooltip::wxChartMultiTooltip()
 
 void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 {
+	wxPoint2DDouble position;
+	for (size_t i = 0; i < m_tooltipPositions.size(); ++i)
+	{
+	}
+
+	
 }
 
 void wxChartMultiTooltip::AddTooltip(const wxChartTooltip &tooltip)
 {
+	m_tooltipPositions.push_back(tooltip.GetPosition());
+	m_tooltipProviders.push_back(tooltip.GetProvider());
 }
