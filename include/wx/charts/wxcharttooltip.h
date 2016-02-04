@@ -49,7 +49,11 @@ public:
 	/// @param gc The graphics context.
 	void Draw(wxGraphicsContext &gc);
 
+	/// Gets the position of the tooltip.
+	/// @return The position of the tooltip.
 	const wxPoint2DDouble& GetPosition() const;
+	/// Gets the tooltip text provider.
+	/// @return The tooltip provider.
 	const wxChartTooltipProvider::ptr& GetProvider() const;
 
 private:

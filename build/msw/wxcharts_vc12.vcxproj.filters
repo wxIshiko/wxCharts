@@ -101,6 +101,12 @@
     <ClInclude Include="..\..\include\wx\charts\wxbarchartctrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\charts\wxstackedbarchartoptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx\charts\wxstackedbarchartctrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxlinechartoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -218,6 +224,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxbarchartctrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wxstackedbarchartoptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wxstackedbarchartctrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxlinechartoptions.cpp">
