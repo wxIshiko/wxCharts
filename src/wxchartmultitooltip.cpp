@@ -33,18 +33,30 @@
 
 #include "wxchartmultitooltip.h"
 
-wxChartMultiTooltip::wxChartMultiTooltip()
+wxChartMultiTooltip::wxChartMultiTooltip(const wxString &title)
+	: m_title(title)
 {
 }
 
 void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 {
-	wxPoint2DDouble position;
-	for (size_t i = 0; i < m_tooltipPositions.size(); ++i)
+	wxPoint2DDouble position(0, 0);
+	if (m_tooltipPositions.size() > 0)
 	{
+		for (size_t i = 0; i < m_tooltipPositions.size(); ++i)
+		{
+			position.m_x += m_tooltipPositions[i].m_x;
+			position.m_y += m_tooltipPositions[i].m_y;
+		}
+
+		position.m_x /= m_tooltipPositions.size();
+		position.m_y /= m_tooltipPositions.size();
 	}
 
-	
+	wxFont font(m_options.GetTitleFontOptions().GetFont());
+	gc.SetFont(font, m_options.GetTitleFontOptions().GetColor());
+
+	gc.DrawText(m_title, position.m_x, position.m_y);
 }
 
 void wxChartMultiTooltip::AddTooltip(const wxChartTooltip &tooltip)

@@ -37,7 +37,7 @@
 
 wxChartTooltip::wxChartTooltip(const wxPoint2DDouble &position,
 							   const wxString &text)
-	: m_position(position), m_provider(new wxChartTooltipProviderStatic(text))
+	: m_position(position), m_provider(new wxChartTooltipProviderStatic("", text))
 {
 }
 

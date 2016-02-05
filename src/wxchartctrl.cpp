@@ -41,16 +41,18 @@ void wxChartCtrl::DrawTooltips(wxGraphicsContext &gc)
 	if (m_activeElements->size() == 1)
 	{
 		// If only one element is active draw a normal tooltip
-		wxChartTooltip tooltip((*m_activeElements)[0]->GetTooltipPosition(), (*m_activeElements)[0]->GetTooltip());
+		wxChartTooltip tooltip((*m_activeElements)[0]->GetTooltipPosition(), 
+			(*m_activeElements)[0]->GetTooltipProvider().GetTooltipText());
 		tooltip.Draw(gc);
 	}
-	else
+	else if (m_activeElements->size() > 1)
 	{
-		wxChartMultiTooltip multiTooltip;
 		// If more than one element is active draw a multi-tooltip
+		wxChartMultiTooltip multiTooltip((*m_activeElements)[0]->GetTooltipProvider().GetTooltipTitle());
 		for (size_t j = 0; j < m_activeElements->size(); ++j)
 		{
-			wxChartTooltip tooltip((*m_activeElements)[j]->GetTooltipPosition(), (*m_activeElements)[j]->GetTooltip());
+			wxChartTooltip tooltip((*m_activeElements)[j]->GetTooltipPosition(),
+				(*m_activeElements)[j]->GetTooltipProvider().GetTooltipText());
 			multiTooltip.AddTooltip(tooltip);
 		}
 		multiTooltip.Draw(gc);

@@ -44,7 +44,7 @@ class wxChartMultiTooltip
 public:
 	/// Constructs a wxChartMultiTooltip
 	/// instance.
-	wxChartMultiTooltip();
+	wxChartMultiTooltip(const wxString &title);
 
 	/// Draws the tooltip using the graphics context passed
 	/// in as argument.
@@ -55,6 +55,7 @@ public:
 
 private:
 	wxChartMultiTooltipOptions m_options;
+	wxString m_title;
 	wxVector<wxPoint2DDouble> m_tooltipPositions;
 	wxVector<wxChartTooltipProvider::ptr> m_tooltipProviders;
 };
