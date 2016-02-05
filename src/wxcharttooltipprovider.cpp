@@ -26,9 +26,15 @@ wxChartTooltipProvider::wxChartTooltipProvider()
 {
 }
 
-wxChartTooltipProviderStatic::wxChartTooltipProviderStatic(const wxString &text)
-	: m_text(text)
+wxChartTooltipProviderStatic::wxChartTooltipProviderStatic(const wxString &title, 
+														   const wxString &text)
+	: m_title(title), m_text(text)
 {
+}
+
+wxString wxChartTooltipProviderStatic::GetTooltipTitle() const
+{
+	return m_title;
 }
 
 wxString wxChartTooltipProviderStatic::GetTooltipText() const

@@ -38,6 +38,9 @@ public:
 	/// Constructs a wxChartTooltipProvider instance.
 	wxChartTooltipProvider();
 
+	// Gets the title of the tooltip.
+	/// @return A wxString containing the title of the tooltip.
+	virtual wxString GetTooltipTitle() const = 0;
 	/// Gets the text to display in the tooltip.
 	/// @return A wxString containing the text of the tooltip.
 	virtual wxString GetTooltipText() const = 0;
@@ -52,13 +55,17 @@ class wxChartTooltipProviderStatic : public wxChartTooltipProvider
 {
 public:
 	/// Constructs a wxChartTooltipProviderStatic instance.
+	/// @param title The title of the tooltip which will be returned
+	/// by the GetTooltipTitle() function.
 	/// @param text The text of the tooltip which will be returned by
 	/// the GetTooltipText() function.
-	wxChartTooltipProviderStatic(const wxString &text);
+	wxChartTooltipProviderStatic(const wxString &title, const wxString &text);
 
+	virtual wxString GetTooltipTitle() const;
 	virtual wxString GetTooltipText() const;
 
 private:
+	wxString m_title;
 	wxString m_text;
 };
 
