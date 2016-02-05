@@ -41,8 +41,8 @@ wxChartPoint::wxChartPoint(wxDouble x,
 						   unsigned int strokeWidth, 
 						   const wxColor &strokeColor,
 						   const wxColor &fillColor,
-						   const wxString &tooltip)
-	: wxChartElement(tooltip), m_position(x, y), m_radius(radius), 
+						   const wxChartTooltipProvider::ptr tooltipProvider)
+	: wxChartElement(tooltipProvider), m_position(x, y), m_radius(radius),
 	m_strokeWidth(strokeWidth), m_strokeColor(strokeColor),
 	m_fillColor(fillColor)
 {

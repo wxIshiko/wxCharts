@@ -42,10 +42,10 @@ public:
 	/// @param strokeColor The color of the pen used to draw the
 	/// outline of the circle.
 	/// @param fillColor The color of the point.
-	/// @param tooltip The tooltip.
+	/// @param tooltipProvider The tooltip provider.
 	wxChartPoint(wxDouble x, wxDouble y, wxDouble radius,
 		unsigned int strokeWidth, const wxColor &strokeColor, 
-		const wxColor &fillColor, const wxString &tooltip);
+		const wxColor &fillColor, const wxChartTooltipProvider::ptr tooltipProvider);
 
 	virtual bool HitTest(const wxPoint &point) const;
 
