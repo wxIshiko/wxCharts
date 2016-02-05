@@ -27,6 +27,24 @@
 
 #include "wxchartctrl.h"
 #include "wxstackedbarchartoptions.h"
+#include "wxchartgrid.h"
+
+/// Data for the wxStackedBarChartCtrl control.
+class wxStackedBarChartData
+{
+public:
+	/// Constructs a wxStackedBarChartData instance.
+	/// @param labels The labels of the X axis.
+	wxStackedBarChartData(const wxVector<wxString> &labels);
+
+	/// Gets the labels of the X axis.
+	/// @return A vector containing the labels of the
+	/// X axis.
+	const wxVector<wxString>& GetLabels() const;
+	
+private:
+	wxVector<wxString> m_labels;
+};
 
 /// A control that displays a stacked bar chart.
 class wxStackedBarChartCtrl : public wxChartCtrl
@@ -36,6 +54,7 @@ public:
 	/// @param parent Pointer to a parent window.
 	/// @param id Control identifier. If wxID_ANY, will automatically
 	/// create an identifier.
+	/// @param data The data that will be used to initialize the chart.
 	/// @param pos Control position. wxDefaultPosition indicates that 
 	/// wxWidgets should generate a default position for the control.
 	/// @param size Control size. wxDefaultSize indicates that wxWidgets
@@ -44,7 +63,7 @@ public:
 	/// so that the window is visible but obviously not correctly sized.
 	/// @param style Control style. For generic window styles, please 
 	/// see wxWindow.
-	wxStackedBarChartCtrl(wxWindow *parent, wxWindowID id,
+	wxStackedBarChartCtrl(wxWindow *parent, wxWindowID id, const wxStackedBarChartData &data,
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
 
@@ -58,6 +77,7 @@ private:
 
 private:
 	wxStackedBarChartOptions m_options;
+	wxChartGrid m_grid;
 
 	DECLARE_EVENT_TABLE();
 };

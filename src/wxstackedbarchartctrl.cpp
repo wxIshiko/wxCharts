@@ -23,12 +23,24 @@
 #include "wxstackedbarchartctrl.h"
 #include <wx/dcbuffer.h>
 
+wxStackedBarChartData::wxStackedBarChartData(const wxVector<wxString> &labels)
+	: m_labels(labels)
+{
+}
+
+const wxVector<wxString>& wxStackedBarChartData::GetLabels() const
+{
+	return m_labels;
+}
+
 wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
 											 wxWindowID id,
+											 const wxStackedBarChartData &data,
 											 const wxPoint &pos,
 											 const wxSize &size,
 											 long style)
-	: wxChartCtrl(parent, id, pos, size, style)
+	: wxChartCtrl(parent, id, pos, size, style), 
+	m_grid(size, data.GetLabels(), 0, 10, m_options.GetGridOptions())
 {
 }
 
@@ -39,6 +51,7 @@ const wxStackedBarChartOptions& wxStackedBarChartCtrl::GetOptions() const
 
 void wxStackedBarChartCtrl::Resize(const wxSize &size)
 {
+	m_grid.Resize(size);
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxStackedBarChartCtrl::GetActiveElements(const wxPoint &point)
@@ -56,6 +69,8 @@ void wxStackedBarChartCtrl::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{
+		m_grid.Draw(*gc);
+
 		DrawTooltips(*gc);
 
 		delete gc;

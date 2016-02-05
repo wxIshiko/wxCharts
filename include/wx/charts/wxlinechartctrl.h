@@ -115,6 +115,9 @@ public:
 	/// @param dataset The dataset to add.
 	void AddDataset(wxLineChartDataset::ptr dataset);
 
+	/// Gets the labels of the X axis.
+	/// @return A vector containing the labels of the
+	/// X axis.
 	const wxVector<wxString>& GetLabels() const;
 	const wxVector<wxLineChartDataset::ptr>& GetDatasets() const;
 

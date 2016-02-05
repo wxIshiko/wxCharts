@@ -31,8 +31,19 @@ WxStackedBarFrame::WxStackedBarFrame(const wxString& title)
 	// Create a top-level panel to hold all the contents of the frame
 	wxPanel* panel = new wxPanel(this, wxID_ANY);
 
+	// Create the data for the stacked bar chart widget
+	wxVector<wxString> labels;
+	labels.push_back("January");
+	labels.push_back("February");
+	labels.push_back("March");
+	labels.push_back("April");
+	labels.push_back("May");
+	labels.push_back("June");
+	labels.push_back("July");
+	wxStackedBarChartData data(labels);
+
 	// Create the stacked bar chart widget
-	wxStackedBarChartCtrl* stackedBarChartCtrl = new wxStackedBarChartCtrl(panel, wxID_ANY);
+	wxStackedBarChartCtrl* stackedBarChartCtrl = new wxStackedBarChartCtrl(panel, wxID_ANY, data);
 
 	// Set up the sizer for the panel
 	wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
