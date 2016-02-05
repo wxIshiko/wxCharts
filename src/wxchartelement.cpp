@@ -27,11 +27,16 @@ wxChartElement::wxChartElement()
 }
 
 wxChartElement::wxChartElement(const wxString &tooltip)
-	: m_tooltip(tooltip)
+	: m_tooltipProvider(wxChartTooltipProviderStatic::ptr(new wxChartTooltipProviderStatic("", tooltip)))
 {
 }
 
-const wxString& wxChartElement::GetTooltip() const
+wxChartElement::wxChartElement(const wxChartTooltipProvider::ptr tooltipProvider)
+	: m_tooltipProvider(tooltipProvider)
 {
-	return m_tooltip;
+}
+
+const wxChartTooltipProvider& wxChartElement::GetTooltipProvider() const
+{
+	return *m_tooltipProvider;
 }

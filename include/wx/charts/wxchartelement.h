@@ -25,6 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTELEMENT_H_
 #define _WX_CHARTS_WXCHARTELEMENT_H_
 
+#include "wxcharttooltipprovider.h"
 #include <wx/sharedptr.h>
 #include <wx/graphics.h>
 
@@ -43,9 +44,13 @@ public:
 	/// Constructs a wxChartElement instance with no
 	/// tooltip.
 	wxChartElement();
-	/// Constructs a wxChartElement instance.
-	/// @param tooltip The tooltip.
+	/// Constructs a wxChartElement instance with a static
+	/// tooltip.
+	/// @param tooltip The tooltip text.
 	wxChartElement(const wxString &tooltip);
+	/// Constructs a wxChartElement instance.
+	/// @param tooltipProvider The tooltip provider.
+	wxChartElement(const wxChartTooltipProvider::ptr tooltipProvider);
 
 	/// Elements can be activated with the mouse. This function
 	/// checks whether the mouse is in the activation zone for 
@@ -54,13 +59,15 @@ public:
 	/// @return Whether the mouse is in the activation zone.
 	virtual bool HitTest(const wxPoint &point) const = 0;
 
-	const wxString& GetTooltip() const;
+	/// Gets the tooltip provider.
+	/// @return The tooltip provider.
+	const wxChartTooltipProvider& GetTooltipProvider() const;
 	/// Gets the position of the tooltip.
 	/// @return The position of the tooltip.
 	virtual wxPoint2DDouble GetTooltipPosition() const = 0;
 
 private:
-	wxString m_tooltip;
+	const wxChartTooltipProvider::ptr m_tooltipProvider;
 };
 
 #endif
