@@ -183,9 +183,10 @@ private:
 	public:
 		typedef wxSharedPtr<PointClass> ptr;
 
-		PointClass(wxDouble value, const wxString &tooltip,
-			wxDouble x, wxDouble y, wxDouble radius,
-			unsigned int strokeWidth, const wxColor &strokeColor,
+		PointClass(wxDouble value, 
+			const wxChartTooltipProvider::ptr tooltipProvider, 
+			wxDouble x, wxDouble y, wxDouble radius, 
+			unsigned int strokeWidth, const wxColor &strokeColor, 
 			const wxColor &fillColor, wxDouble hitDetectionRange);
 
 		virtual bool HitTest(const wxPoint &point) const;

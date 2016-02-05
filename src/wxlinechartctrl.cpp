@@ -114,7 +114,7 @@ const wxVector<wxLineChartDataset::ptr>& wxLineChartData::GetDatasets() const
 }
 
 wxLineChartCtrl::PointClass::PointClass(wxDouble value, 
-										const wxString &tooltip,
+										const wxChartTooltipProvider::ptr tooltipProvider,
 										wxDouble x,
 										wxDouble y, 
 										wxDouble radius,
@@ -122,7 +122,7 @@ wxLineChartCtrl::PointClass::PointClass(wxDouble value,
 										const wxColor &strokeColor,
 										const wxColor &fillColor,
 										wxDouble hitDetectionRange)
-	: wxChartPoint(x, y, radius, strokeWidth, strokeColor, fillColor, tooltip),
+	: wxChartPoint(x, y, radius, strokeWidth, strokeColor, fillColor, tooltipProvider),
 	m_value(value), m_hitDetectionRange(hitDetectionRange)
 {
 }
@@ -232,11 +232,19 @@ void wxLineChartCtrl::Initialize(const wxLineChartData &data)
 		for (size_t j = 0; j < datasetData.size(); ++j)
 		{
 			std::stringstream tooltip;
-			tooltip << data.GetLabels()[j] << ": " << datasetData[j];
-			newDataset->AppendPoint(PointClass::ptr(new PointClass(datasetData[j], tooltip.str(),
-				20 + j * 10, 0, m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
-				datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor(),
-				m_options.GetHitDetectionRange())));
+			tooltip << datasetData[j];
+			wxChartTooltipProvider::ptr tooltipProvider(
+				new wxChartTooltipProviderStatic(data.GetLabels()[j], tooltip.str())
+				);
+
+			PointClass::ptr point(
+				new PointClass(datasetData[j], tooltipProvider, 20 + j * 10, 0,
+					m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
+					datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor(),
+					m_options.GetHitDetectionRange())
+				);
+
+			newDataset->AppendPoint(point);
 		}
 
 		m_datasets.push_back(newDataset);
