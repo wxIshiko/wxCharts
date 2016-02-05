@@ -25,4 +25,39 @@
 #ifndef _WX_CHARTS_WXCHARTFONTOPTIONS_H_
 #define _WX_CHARTS_WXCHARTFONTOPTIONS_H_
 
+#include <wx/colour.h>
+#include <wx/font.h>
+
+/// Font settings.
+
+/// Many elements display text and require
+/// font settings. This class groups all
+/// settings related to the choice of a font.
+class wxChartFontOptions
+{
+public:
+	/// Constructs a wxChartFontOptions instance.
+	wxChartFontOptions(wxFontFamily family, int size,
+		wxFontStyle style, const wxColor &color);
+
+	/// Gets the font family.
+	/// @return The font family.
+	wxFontFamily GetFamily() const;
+	/// Gets the font size.
+	/// @return The font size in pixels.
+	int GetSize() const;
+	/// Gets the font style.
+	/// @return The font style.
+	wxFontStyle GetStyle() const;
+	/// Gets the font color.
+	/// @return The font color.
+	const wxColor& GetColor() const;
+
+private:
+	wxFontFamily m_family;
+	int m_size;
+	wxFontStyle m_style;
+	wxColor m_color;
+};
+
 #endif

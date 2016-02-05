@@ -23,3 +23,32 @@
 /// @file
 
 #include "wxchartfontoptions.h"
+
+wxChartFontOptions::wxChartFontOptions(wxFontFamily family,
+									   int size,
+									   wxFontStyle style, 
+									   const wxColor &color)
+	: m_family(family), m_size(size), m_style(style),
+	m_color(color)
+{
+}
+
+wxFontFamily wxChartFontOptions::GetFamily() const
+{
+	return m_family;
+}
+
+int wxChartFontOptions::GetSize() const
+{
+	return m_size;
+}
+
+wxFontStyle wxChartFontOptions::GetStyle() const
+{
+	return m_style;
+}
+
+const wxColor& wxChartFontOptions::GetColor() const
+{
+	return m_color;
+}
