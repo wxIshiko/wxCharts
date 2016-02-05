@@ -38,7 +38,10 @@ class wxChartFontOptions
 public:
 	/// Constructs a wxChartFontOptions instance.
 	wxChartFontOptions(wxFontFamily family, int size,
-		wxFontStyle style, const wxColor &color);
+		wxFontStyle style, wxFontWeight weight,
+		const wxColor &color);
+
+	wxFont GetFont() const;
 
 	/// Gets the font family.
 	/// @return The font family.
@@ -49,6 +52,9 @@ public:
 	/// Gets the font style.
 	/// @return The font style.
 	wxFontStyle GetStyle() const;
+	/// Gets the font weight.
+	/// @return The font weight.
+	wxFontWeight GetWeight() const;
 	/// Gets the font color.
 	/// @return The font color.
 	const wxColor& GetColor() const;
@@ -57,6 +63,7 @@ private:
 	wxFontFamily m_family;
 	int m_size;
 	wxFontStyle m_style;
+	wxFontWeight m_weight;
 	wxColor m_color;
 };
 

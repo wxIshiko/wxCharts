@@ -27,10 +27,16 @@
 wxChartFontOptions::wxChartFontOptions(wxFontFamily family,
 									   int size,
 									   wxFontStyle style, 
+									   wxFontWeight weight,
 									   const wxColor &color)
 	: m_family(family), m_size(size), m_style(style),
-	m_color(color)
+	m_weight(weight), m_color(color)
 {
+}
+
+wxFont wxChartFontOptions::GetFont() const
+{
+	return wxFont(wxSize(0, m_size), m_family, m_style, m_weight);
 }
 
 wxFontFamily wxChartFontOptions::GetFamily() const
@@ -46,6 +52,11 @@ int wxChartFontOptions::GetSize() const
 wxFontStyle wxChartFontOptions::GetStyle() const
 {
 	return m_style;
+}
+
+wxFontWeight wxChartFontOptions::GetWeight() const
+{
+	return m_weight;
 }
 
 const wxColor& wxChartFontOptions::GetColor() const
