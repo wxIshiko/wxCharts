@@ -21,6 +21,7 @@
 */
 
 #include "wxstackedbarchartctrl.h"
+#include <wx/dcbuffer.h>
 
 wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
 											 wxWindowID id,
@@ -45,3 +46,22 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxStackedBarChartCtrl::GetActiveEl
 	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
 	return activeElements;
 }
+
+void wxStackedBarChartCtrl::OnPaint(wxPaintEvent &evt)
+{
+	wxAutoBufferedPaintDC dc(this);
+
+	dc.Clear();
+
+	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+	if (gc)
+	{
+		DrawTooltips(*gc);
+
+		delete gc;
+	}
+}
+
+BEGIN_EVENT_TABLE(wxStackedBarChartCtrl, wxChartCtrl)
+	EVT_PAINT(wxStackedBarChartCtrl::OnPaint)
+END_EVENT_TABLE()
