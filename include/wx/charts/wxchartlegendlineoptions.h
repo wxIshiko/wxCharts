@@ -25,4 +25,12 @@
 #ifndef _WX_CHARTS_WXCHARTLEGENDLINEOPTIONS_H_
 #define _WX_CHARTS_WXCHARTLEGENDLINEOPTIONS_H_
 
+/// Options for the wxChartLegendLine element.
+class wxChartLegendLineOptions
+{
+public:
+	/// Constructs a wxChartLegendLineOptions instance.
+	wxChartLegendLineOptions();
+};
+
 #endif

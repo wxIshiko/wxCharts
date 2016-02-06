@@ -25,4 +25,21 @@
 #ifndef _WX_CHARTS_WXCHARTLEGENDLINE_H_
 #define _WX_CHARTS_WXCHARTLEGENDLINE_H_
 
+#include "wxchartelement.h"
+#include "wxchartlegendlineoptions.h"
+
+/// This class is used to draw a line in a legend.
+
+/// It can be used wherever a single line of text is needed
+/// with a single colored square at the start of the line.
+class wxChartLegendLine : public wxChartElement
+{
+public:
+	/// Constructs a wxChartLegendLine element.
+	wxChartLegendLine();
+
+private:
+	wxChartLegendLineOptions m_options;
+};
+
 #endif

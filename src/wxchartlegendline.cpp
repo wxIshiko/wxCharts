@@ -23,3 +23,7 @@
 /// @file
 
 #include "wxchartlegendline.h"
+
+wxChartLegendLine::wxChartLegendLine()
+{
+}
