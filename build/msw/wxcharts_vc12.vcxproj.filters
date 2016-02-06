@@ -83,7 +83,10 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartmultitooltip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxchartlegendlineelement.h">
+    <ClInclude Include="..\..\include\wx\charts\wxchartlegendlineoptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx\charts\wxchartlegendline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxchartlegendoptions.h">
@@ -214,7 +217,10 @@
     <ClCompile Include="..\..\src\wxchartmultitooltip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartlegendlineelement.cpp">
+    <ClCompile Include="..\..\src\wxchartlegendlineoptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wxchartlegendline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchartlegendoptions.cpp">

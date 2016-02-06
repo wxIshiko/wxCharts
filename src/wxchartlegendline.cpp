@@ -22,4 +22,4 @@
 
 /// @file
 
-#include "wxchartlegendlineelement.h"
+#include "wxchartlegendline.h"

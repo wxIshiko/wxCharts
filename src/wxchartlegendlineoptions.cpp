@@ -22,7 +22,4 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTLEGENDLINEELEMENT_H_
-#define _WX_CHARTS_WXCHARTLEGENDLINEELEMENT_H_
-
-#endif
+#include "wxchartlegendlineoptions.h"
