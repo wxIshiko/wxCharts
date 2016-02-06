@@ -37,9 +37,32 @@ public:
 	const wxChartFontOptions& GetTitleFontOptions() const;
 	const wxChartFontOptions& GetTextFontOptions() const;
 
+	/// Gets the horizontal padding. The padding will
+	/// be added on the left and on the right of the text 
+	/// and will be painted using the background color.
+	/// @return The horizontal padding.
+	wxDouble GetHorizontalPadding() const;
+	/// Gets the vertical padding. The padding will
+	/// be added above and below the text and will be
+	/// painted using the background color.
+	/// @return The vertical padding.
+	wxDouble GetVerticalPadding() const;
+	/// Gets the background color.
+	/// @return The background color.
+	const wxColor& GetBackgroundColor() const;
+	/// Gets the corner radius. The tooltip backround
+	/// is a rounded rectangle. This gets the radius
+	/// used for the rounded corners.
+	/// @return The corner radius.
+	wxDouble GetCornerRadius() const;
+
 private:
 	wxChartFontOptions m_titleFontOptions;
 	wxChartFontOptions m_textFontOptions;
+	wxDouble m_horizontalPadding;
+	wxDouble m_verticalPadding;
+	wxColor m_backgroundColor;
+	wxDouble m_cornerRadius;
 };
 
 #endif

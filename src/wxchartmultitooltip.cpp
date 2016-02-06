@@ -32,6 +32,7 @@
 */
 
 #include "wxchartmultitooltip.h"
+#include "wxchartutilities.h"
 
 wxChartMultiTooltip::wxChartMultiTooltip(const wxString &title)
 	: m_title(title)
@@ -40,23 +41,42 @@ wxChartMultiTooltip::wxChartMultiTooltip(const wxString &title)
 
 void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 {
+	wxFont font(m_options.GetTitleFontOptions().GetFont());
+
 	wxPoint2DDouble position(0, 0);
+	wxVector<wxString> textItems;
+	wxDouble maxWidth = 0;
 	if (m_tooltipPositions.size() > 0)
 	{
 		for (size_t i = 0; i < m_tooltipPositions.size(); ++i)
 		{
 			position.m_x += m_tooltipPositions[i].m_x;
 			position.m_y += m_tooltipPositions[i].m_y;
+
+			wxString text = m_tooltipProviders[i]->GetTooltipText();
+			textItems.push_back(text);
+
+			wxDouble width;
+			wxDouble height;
+			wxChartUtilities::GetTextSize(gc, font, text, width, height);
+			if (width > maxWidth)
+			{
+				maxWidth = width;
+			}
 		}
 
 		position.m_x /= m_tooltipPositions.size();
 		position.m_y /= m_tooltipPositions.size();
 	}
 
-	wxFont font(m_options.GetTitleFontOptions().GetFont());
 	gc.SetFont(font, m_options.GetTitleFontOptions().GetColor());
 
 	gc.DrawText(m_title, position.m_x, position.m_y);
+
+	for (size_t i = 0; i < textItems.size(); ++i)
+	{
+		gc.DrawText(textItems[i], position.m_x, position.m_y + (i + 1) * 20);
+	}
 }
 
 void wxChartMultiTooltip::AddTooltip(const wxChartTooltip &tooltip)
