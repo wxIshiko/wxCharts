@@ -36,10 +36,26 @@ class wxChartLegendLine : public wxChartElement
 {
 public:
 	/// Constructs a wxChartLegendLine element.
-	wxChartLegendLine();
+	/// @param text The text of the legend.
+	/// @param options The settings to be used for the
+	/// legend line.
+	wxChartLegendLine(const wxString &text, const wxChartLegendLineOptions& options);
+
+	virtual bool HitTest(const wxPoint &point) const;
+
+	virtual wxPoint2DDouble GetTooltipPosition() const;
+
+	/// Draws the legend line.
+	/// @param gc The graphics context.
+	void Draw(wxGraphicsContext &gc);
+
+	const wxPoint2DDouble& GetPosition() const;
+	void SetPosition(wxDouble x, wxDouble y);
 
 private:
 	wxChartLegendLineOptions m_options;
+	wxPoint2DDouble m_position;
+	wxString m_text;
 };
 
 #endif

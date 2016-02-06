@@ -37,6 +37,11 @@ class wxChartFontOptions
 {
 public:
 	/// Constructs a wxChartFontOptions instance.
+	/// @param family The font family.
+	/// @param size The font size in pixels.
+	/// @param style The font style.
+	/// @param weight The font weight.
+	/// @param color The color of the text.
 	wxChartFontOptions(wxFontFamily family, int size,
 		wxFontStyle style, wxFontWeight weight,
 		const wxColor &color);

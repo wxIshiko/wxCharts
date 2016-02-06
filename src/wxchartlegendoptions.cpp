@@ -23,8 +23,7 @@
 #include "wxchartlegendoptions.h"
 
 wxChartLegendOptions::wxChartLegendOptions()
-	: m_orientation(wxVERTICAL), 
-	m_fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666)
+	: m_orientation(wxVERTICAL)
 {
 }
 
@@ -33,7 +32,7 @@ wxOrientation wxChartLegendOptions::GetOrientation() const
 	return m_orientation;
 }
 
-const wxChartFontOptions& wxChartLegendOptions::GetFontOptions() const
+const wxChartLegendLineOptions& wxChartLegendOptions::GetLegendLineOptions() const
 {
-	return m_fontOptions;
+	return m_legendLineOptions;
 }

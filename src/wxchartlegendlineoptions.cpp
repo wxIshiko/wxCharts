@@ -25,5 +25,11 @@
 #include "wxchartlegendlineoptions.h"
 
 wxChartLegendLineOptions::wxChartLegendLineOptions()
+	: m_fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666)
 {
+}
+
+const wxChartFontOptions& wxChartLegendLineOptions::GetFontOptions() const
+{
+	return m_fontOptions;
 }

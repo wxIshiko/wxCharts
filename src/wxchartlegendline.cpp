@@ -24,6 +24,33 @@
 
 #include "wxchartlegendline.h"
 
-wxChartLegendLine::wxChartLegendLine()
+wxChartLegendLine::wxChartLegendLine(const wxString &text, 
+									 const wxChartLegendLineOptions& options)
+	: m_options(options), m_position(0, 0), m_text(text)
 {
+}
+
+bool wxChartLegendLine::HitTest(const wxPoint &point) const
+{
+	return false;
+}
+
+wxPoint2DDouble wxChartLegendLine::GetTooltipPosition() const
+{
+	return wxPoint2DDouble(0, 0);
+}
+
+void wxChartLegendLine::Draw(wxGraphicsContext &gc)
+{
+}
+
+const wxPoint2DDouble& wxChartLegendLine::GetPosition() const
+{
+	return m_position;
+}
+
+void wxChartLegendLine::SetPosition(wxDouble x, wxDouble y)
+{
+	m_position.m_x = x;
+	m_position.m_y = y;
 }

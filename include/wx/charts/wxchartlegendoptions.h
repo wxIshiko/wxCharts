@@ -25,7 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTLEGENDOPTIONS_H_
 #define _WX_CHARTS_WXCHARTLEGENDOPTIONS_H_
 
-#include "wxchartfontoptions.h"
+#include "wxchartlegendlineoptions.h"
 
 /// Options for the wxChartLegendCtrl control.
 class wxChartLegendOptions
@@ -41,11 +41,11 @@ public:
 	/// are organized vertically.
 	wxOrientation GetOrientation() const;
 
-	const wxChartFontOptions& GetFontOptions() const;
+	const wxChartLegendLineOptions& GetLegendLineOptions() const;
 
 private:
 	wxOrientation m_orientation;
-	wxChartFontOptions m_fontOptions;
+	wxChartLegendLineOptions m_legendLineOptions;
 };
 
 #endif

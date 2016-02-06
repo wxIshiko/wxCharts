@@ -102,6 +102,12 @@ wxChartLegendCtrl::wxChartLegendCtrl(wxWindow *parent,
 {
 	SetBackgroundStyle(wxBG_STYLE_PAINT);
 	SetBackgroundColour(*wxWHITE);
+
+	const wxVector<wxChartLegendItem>& items = data.GetItems();
+	for (size_t i = 0; i < items.size(); ++i)
+	{
+		m_lines.push_back(wxChartLegendLine(items[i].GetLabel()));
+	}
 }
 
 void wxChartLegendCtrl::OnPaint(wxPaintEvent &evt)
@@ -131,6 +137,11 @@ void wxChartLegendCtrl::OnPaint(wxPaintEvent &evt)
 			
 			gc->DrawText(m_items[i].GetLabel(), 20, y);
 			y += fontSize + 5;
+		}
+
+		for (size_t i = 0; i < m_lines.size(); ++i)
+		{
+			m_lines[i].Draw(*gc);
 		}
 
 		delete gc;

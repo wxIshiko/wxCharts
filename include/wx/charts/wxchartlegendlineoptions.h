@@ -25,12 +25,19 @@
 #ifndef _WX_CHARTS_WXCHARTLEGENDLINEOPTIONS_H_
 #define _WX_CHARTS_WXCHARTLEGENDLINEOPTIONS_H_
 
+#include "wxchartfontoptions.h"
+
 /// Options for the wxChartLegendLine element.
 class wxChartLegendLineOptions
 {
 public:
 	/// Constructs a wxChartLegendLineOptions instance.
 	wxChartLegendLineOptions();
+
+	const wxChartFontOptions& GetFontOptions() const;
+
+private:
+	wxChartFontOptions m_fontOptions;
 };
 
 #endif

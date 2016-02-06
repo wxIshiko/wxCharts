@@ -28,6 +28,7 @@
 #include "wxchartslicedata.h"
 #include "wxlinechartctrl.h"
 #include "wxchartlegendoptions.h"
+#include "wxchartlegendline.h"
 #include <wx/control.h>
 
 /// Class that represents items of the wxChartLegendData class.
@@ -127,6 +128,7 @@ private:
 private:
 	wxChartLegendOptions m_options;
 	wxVector<wxChartLegendItem> m_items;
+	wxVector<wxChartLegendLine> m_lines;
 
 	DECLARE_EVENT_TABLE();
 };
