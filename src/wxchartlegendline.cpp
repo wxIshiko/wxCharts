@@ -81,7 +81,7 @@ void wxChartLegendLine::UpdateSize(wxGraphicsContext &gc)
 	wxDouble width;
 	wxDouble height;
 	wxChartUtilities::GetTextSize(gc, m_options.GetFontOptions().GetFont(), m_text, width, height);
-	m_size.x = width;
+	m_size.x = width + 20;
 	m_size.y = height;
 }
 

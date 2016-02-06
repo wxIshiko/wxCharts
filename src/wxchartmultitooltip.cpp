@@ -69,7 +69,7 @@ void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 	{
 		wxSize size = m_lines[i].GetSize();
 
-		totalInnerHeight += size.GetHeight();
+		totalInnerHeight += size.GetHeight() + m_options.GetLineSpacing();
 
 		if (size.GetWidth() > totalInnerWidth)
 		{
@@ -80,53 +80,61 @@ void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 	wxDouble totalOuterWidth = totalInnerWidth + (2 * m_options.GetHorizontalPadding());
 	wxDouble totalOuterHeight = totalInnerHeight + (2 * m_options.GetVerticalPadding());
 
+
 	
 	// Now that we have the size of all the lines we
-	// can calculate their positions
-	wxPoint2DDouble position(0, 0);
-	wxVector<wxString> textItems;
-	
+	// can calculate their positions.
+	/////
+
+	// First calculate the position of the center of
+	// the tooltip
+	wxPoint2DDouble tooltipCenter(0, 0);
 	if (m_tooltipPositions.size() > 0)
 	{
 		for (size_t i = 0; i < m_tooltipPositions.size(); ++i)
 		{
-			position.m_x += m_tooltipPositions[i].m_x;
-			position.m_y += m_tooltipPositions[i].m_y;
-
-			wxString text = m_tooltipProviders[i]->GetTooltipText();
-			textItems.push_back(text);
+			tooltipCenter.m_x += m_tooltipPositions[i].m_x;
+			tooltipCenter.m_y += m_tooltipPositions[i].m_y;
 		}
 
-		position.m_x /= m_tooltipPositions.size();
-		position.m_y /= m_tooltipPositions.size();
+		tooltipCenter.m_x /= m_tooltipPositions.size();
+		tooltipCenter.m_y /= m_tooltipPositions.size();
 	}
 
-	wxDouble outerX = (position.m_x - (totalOuterWidth / 2));
-	wxDouble outerY = (position.m_y - (totalOuterHeight / 2));
-	
-	wxDouble x = position.m_x - (titleWidth / 2);
+	// Calculate the coordinates of the upper left corner of
+	// the multi-tooltip both with and without the margins
+	wxDouble outerX = (tooltipCenter.m_x - (totalOuterWidth / 2));
+	wxDouble outerY = (tooltipCenter.m_y - (totalOuterHeight / 2));
+	wxDouble innerX = (tooltipCenter.m_x - (totalInnerWidth / 2));
+	wxDouble innerY = (tooltipCenter.m_y - (totalInnerHeight / 2));
 
+	// Set the position of each line based on the size of
+	// the lines that precede it.
+	wxDouble y = innerY + titleHeight + m_options.GetLineSpacing();
+	for (size_t i = 0; i < m_lines.size(); ++i)
+	{
+		m_lines[i].SetPosition(innerX, y);
+		y += (m_lines[i].GetSize().GetHeight() + m_options.GetLineSpacing());
+	}
+
+
+
+	// And finally draw everything
+	/////
+
+	// Draw the background
 	wxGraphicsPath path = gc.CreatePath();
-	path.AddRoundedRectangle(outerX, outerY, totalOuterWidth, totalOuterHeight, 
+	path.AddRoundedRectangle(outerX, outerY, totalOuterWidth, totalOuterHeight,
 		m_options.GetCornerRadius());
 	wxBrush brush(m_options.GetBackgroundColor());
 	gc.SetBrush(brush);
 	gc.FillPath(path);
 
+	// Draw the title
 	gc.SetFont(titleFont, m_options.GetTitleFontOptions().GetColor());
-	gc.DrawText(m_title, x, position.m_y);
+	gc.DrawText(m_title, innerX, innerY);
 
-	gc.SetFont(textFont, m_options.GetTextFontOptions().GetColor());
-	
-	// Set the position of each line based on
-	// the size of the lines that precede it.
-	wxDouble y = position.m_y + 1 + titleHeight;
-	for (size_t i = 0; i < m_lines.size(); ++i)
-	{
-		m_lines[i].SetPosition(x, y);
-		y += (m_lines[i].GetSize().GetHeight() + 5);
-	}
-
+	// Draw the lines
 	for (size_t i = 0; i < m_lines.size(); ++i)
 	{
 		m_lines[i].Draw(gc);

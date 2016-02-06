@@ -55,6 +55,7 @@ public:
 	/// used for the rounded corners.
 	/// @return The corner radius.
 	wxDouble GetCornerRadius() const;
+	wxDouble GetLineSpacing() const;
 
 private:
 	wxChartFontOptions m_titleFontOptions;
@@ -63,6 +64,7 @@ private:
 	wxDouble m_verticalPadding;
 	wxColor m_backgroundColor;
 	wxDouble m_cornerRadius;
+	wxDouble m_lineSpacing;
 };
 
 #endif
