@@ -104,6 +104,7 @@
     <ClCompile Include="..\..\src\wxcharttooltip.cpp" />
     <ClCompile Include="..\..\src\wxchartmultitooltipoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartmultitooltip.cpp" />
+    <ClCompile Include="..\..\src\wxchartlegendlineelement.cpp" />
     <ClCompile Include="..\..\src\wxchartlegendoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartlegendctrl.cpp" />
     <ClCompile Include="..\..\src\wxchartoptions.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltip.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartmultitooltipoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartmultitooltip.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartlegendlineelement.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartlegendoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartlegendctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartoptions.h" />

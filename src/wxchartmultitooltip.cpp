@@ -78,6 +78,8 @@ void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 	tooltipWidth += (2 * m_options.GetHorizontalPadding());
 	tooltipHeight += (m_tooltipPositions.size() * m_options.GetTextFontOptions().GetSize());
 
+	wxDouble x = position.m_x - (titleWidth / 2);
+
 	wxGraphicsPath path = gc.CreatePath();
 	path.AddRoundedRectangle(position.m_x - (tooltipWidth / 2), position.m_y - (tooltipHeight / 2),
 		tooltipWidth, tooltipHeight, m_options.GetCornerRadius());
@@ -86,13 +88,30 @@ void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 	gc.FillPath(path);
 
 	gc.SetFont(titleFont, m_options.GetTitleFontOptions().GetColor());
-	gc.DrawText(m_title, position.m_x - (titleWidth / 2), position.m_y);
+	gc.DrawText(m_title, x, position.m_y);
 
 	gc.SetFont(textFont, m_options.GetTextFontOptions().GetColor());
+	
+	wxDouble textFontSize = m_options.GetTextFontOptions().GetSize();
+	wxDouble y = position.m_y + 1 + titleHeight;
 	for (size_t i = 0; i < textItems.size(); ++i)
 	{
-		gc.DrawText(textItems[i], position.m_x, position.m_y + (i + 1) * 20);
+		wxGraphicsPath path = gc.CreatePath();
+
+		path.AddRoundedRectangle(x, y, textFontSize + 2, textFontSize + 2, 3);
+
+		wxBrush brush(*wxGREEN);
+		gc.SetBrush(brush);
+		gc.FillPath(path);
+
+		gc.DrawText(textItems[i], x + 20, y);
+		y += textFontSize + 5;
 	}
+
+
+
+		
+	
 }
 
 void wxChartMultiTooltip::AddTooltip(const wxChartTooltip &tooltip)

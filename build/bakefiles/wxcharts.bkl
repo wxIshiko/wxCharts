@@ -51,6 +51,7 @@ library wxcharts
         ../../include/wx/charts/wxcharttooltip.h
         ../../include/wx/charts/wxchartmultitooltipoptions.h
         ../../include/wx/charts/wxchartmultitooltip.h
+        ../../include/wx/charts/wxchartlegendlineelement.h
         ../../include/wx/charts/wxchartlegendoptions.h
         ../../include/wx/charts/wxchartlegendctrl.h
         ../../include/wx/charts/wxchartoptions.h
@@ -97,6 +98,7 @@ library wxcharts
         ../../src/wxcharttooltip.cpp
         ../../src/wxchartmultitooltipoptions.cpp
         ../../src/wxchartmultitooltip.cpp
+        ../../src/wxchartlegendlineelement.cpp
         ../../src/wxchartlegendoptions.cpp
         ../../src/wxchartlegendctrl.cpp
         ../../src/wxchartoptions.cpp
