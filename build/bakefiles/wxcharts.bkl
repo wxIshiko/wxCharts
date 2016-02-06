@@ -17,14 +17,17 @@ library wxcharts
 
     includedirs += ../../include/wx/charts;
 
-    includedirs += $(WXWIDGETS_ROOT)/include;
-
     if (($(toolset) == vs2015) || ($(toolset) == vs2013))
     {
+        includedirs += $(WXWIDGETS_ROOT)/include;
         includedirs += $(WXWIDGETS_ROOT)/include/msvc;
         libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
 
         outputdir = ../../lib/vc_lib;
+    }
+    if ($(toolset) == gnu)
+    {
+        includedirs += $(WXWIDGETS_ROOT)/include/wx-3.1;
     }
 
     if ($(config) == Debug)

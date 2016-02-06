@@ -76,136 +76,136 @@ $(_builddir)build/bakefiles/../../lib$(if $(call _equal,$(config),Debug),wxchart
 	$(RANLIB) $@
 
 $(_builddir)wxcharts_wxchartutilities.o: src/wxchartutilities.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartutilities.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartutilities.cpp
 
 $(_builddir)wxcharts_wxchartelement.o: src/wxchartelement.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartelement.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartelement.cpp
 
 $(_builddir)wxcharts_wxchartfontoptions.o: src/wxchartfontoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartfontoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartfontoptions.cpp
 
 $(_builddir)wxcharts_wxchartlabel.o: src/wxchartlabel.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartlabel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartlabel.cpp
 
 $(_builddir)wxcharts_wxchartaxis.o: src/wxchartaxis.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartaxis.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartaxis.cpp
 
 $(_builddir)wxcharts_wxchartaxisoptions.o: src/wxchartaxisoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartaxisoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartaxisoptions.cpp
 
 $(_builddir)wxcharts_wxchartgridmapping.o: src/wxchartgridmapping.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartgridmapping.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartgridmapping.cpp
 
 $(_builddir)wxcharts_wxchartgridoptions.o: src/wxchartgridoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartgridoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartgridoptions.cpp
 
 $(_builddir)wxcharts_wxchartgrid.o: src/wxchartgrid.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartgrid.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartgrid.cpp
 
 $(_builddir)wxcharts_wxchartradialgridoptions.o: src/wxchartradialgridoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartradialgridoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartradialgridoptions.cpp
 
 $(_builddir)wxcharts_wxchartradialgrid.o: src/wxchartradialgrid.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartradialgrid.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartradialgrid.cpp
 
 $(_builddir)wxcharts_wxchartpoint.o: src/wxchartpoint.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartpoint.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartpoint.cpp
 
 $(_builddir)wxcharts_wxchartrectangleoptions.o: src/wxchartrectangleoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartrectangleoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartrectangleoptions.cpp
 
 $(_builddir)wxcharts_wxchartrectangle.o: src/wxchartrectangle.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartrectangle.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartrectangle.cpp
 
 $(_builddir)wxcharts_wxchartarc.o: src/wxchartarc.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartarc.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartarc.cpp
 
 $(_builddir)wxcharts_wxchartarcoptions.o: src/wxchartarcoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartarcoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartarcoptions.cpp
 
 $(_builddir)wxcharts_wxcharttooltipoptions.o: src/wxcharttooltipoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxcharttooltipoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxcharttooltipoptions.cpp
 
 $(_builddir)wxcharts_wxcharttooltipprovider.o: src/wxcharttooltipprovider.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxcharttooltipprovider.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxcharttooltipprovider.cpp
 
 $(_builddir)wxcharts_wxcharttooltip.o: src/wxcharttooltip.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxcharttooltip.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxcharttooltip.cpp
 
 $(_builddir)wxcharts_wxchartmultitooltipoptions.o: src/wxchartmultitooltipoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartmultitooltipoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartmultitooltipoptions.cpp
 
 $(_builddir)wxcharts_wxchartmultitooltip.o: src/wxchartmultitooltip.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartmultitooltip.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartmultitooltip.cpp
 
 $(_builddir)wxcharts_wxchartlegendlineoptions.o: src/wxchartlegendlineoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartlegendlineoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartlegendlineoptions.cpp
 
 $(_builddir)wxcharts_wxchartlegendline.o: src/wxchartlegendline.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartlegendline.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartlegendline.cpp
 
 $(_builddir)wxcharts_wxchartlegendoptions.o: src/wxchartlegendoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartlegendoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartlegendoptions.cpp
 
 $(_builddir)wxcharts_wxchartlegendctrl.o: src/wxchartlegendctrl.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartlegendctrl.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartlegendctrl.cpp
 
 $(_builddir)wxcharts_wxchartoptions.o: src/wxchartoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartoptions.cpp
 
 $(_builddir)wxcharts_wxchartctrl.o: src/wxchartctrl.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartctrl.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartctrl.cpp
 
 $(_builddir)wxcharts_wxbarchartoptions.o: src/wxbarchartoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxbarchartoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxbarchartoptions.cpp
 
 $(_builddir)wxcharts_wxchartslicedata.o: src/wxchartslicedata.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxchartslicedata.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxchartslicedata.cpp
 
 $(_builddir)wxcharts_wxbarchartctrl.o: src/wxbarchartctrl.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxbarchartctrl.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxbarchartctrl.cpp
 
 $(_builddir)wxcharts_wxstackedbarchartoptions.o: src/wxstackedbarchartoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxstackedbarchartoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxstackedbarchartoptions.cpp
 
 $(_builddir)wxcharts_wxstackedbarchartctrl.o: src/wxstackedbarchartctrl.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxstackedbarchartctrl.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxstackedbarchartctrl.cpp
 
 $(_builddir)wxcharts_wxlinechartoptions.o: src/wxlinechartoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxlinechartoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxlinechartoptions.cpp
 
 $(_builddir)wxcharts_wxlinechartctrl.o: src/wxlinechartctrl.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxlinechartctrl.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxlinechartctrl.cpp
 
 $(_builddir)wxcharts_wxdoughnutandpiechartoptionsbase.o: src/wxdoughnutandpiechartoptionsbase.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxdoughnutandpiechartoptionsbase.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxdoughnutandpiechartoptionsbase.cpp
 
 $(_builddir)wxcharts_wxdoughnutandpiechartbase.o: src/wxdoughnutandpiechartbase.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxdoughnutandpiechartbase.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxdoughnutandpiechartbase.cpp
 
 $(_builddir)wxcharts_wxdoughnutchartoptions.o: src/wxdoughnutchartoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxdoughnutchartoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxdoughnutchartoptions.cpp
 
 $(_builddir)wxcharts_wxdoughnutchartctrl.o: src/wxdoughnutchartctrl.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxdoughnutchartctrl.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxdoughnutchartctrl.cpp
 
 $(_builddir)wxcharts_wxpiechartoptions.o: src/wxpiechartoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxpiechartoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxpiechartoptions.cpp
 
 $(_builddir)wxcharts_wxpiechartctrl.o: src/wxpiechartctrl.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxpiechartctrl.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxpiechartctrl.cpp
 
 $(_builddir)wxcharts_wxpolarareachartoptions.o: src/wxpolarareachartoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxpolarareachartoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxpolarareachartoptions.cpp
 
 $(_builddir)wxcharts_wxpolarareachartctrl.o: src/wxpolarareachartctrl.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxpolarareachartctrl.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxpolarareachartctrl.cpp
 
 $(_builddir)wxcharts_wxradarchartoptions.o: src/wxradarchartoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxradarchartoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxradarchartoptions.cpp
 
 $(_builddir)wxcharts_wxradarchartctrl.o: src/wxradarchartctrl.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include src/wxradarchartctrl.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -I$(WXWIDGETS_ROOT)/include/wx-3.1 src/wxradarchartctrl.cpp
 
 clean:
 	rm -f $(_builddir)*.o
