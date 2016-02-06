@@ -25,8 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTAXISOPTIONS_H_
 #define _WX_CHARTS_WXCHARTAXISOPTIONS_H_
 
-#include <wx/colour.h>
-#include <wx/font.h>
+#include "wxchartfontoptions.h"
 
 /// Label types for the wxChartAxis class.
 
@@ -77,31 +76,14 @@ public:
 	/// @return The color of the line.
 	const wxColor& GetLineColor() const;
 
-	/// Gets the font family to be used for 
-	/// the labels.
-	/// @return The font family.
-	wxFontFamily GetFontFamily() const;
-	/// Gets the font size to be used for 
-	/// the labels.
-	/// @return The font size in pixels.
-	int GetFontSize() const;
-	/// Gets the font style to be used for 
-	/// the labels.
-	/// @return The font style.
-	wxFontStyle GetFontStyle() const;
-	/// Gets the font color to be used for 
-	/// the labels.
-	/// @return The font color.
-	const wxColor& GetFontColor() const;
+	const wxChartFontOptions& GetFontOptions() const;
 
 private:
 	wxChartLabelType m_labelType;
 	unsigned int m_lineWidth;
 	wxColor m_lineColor;
-	wxFontFamily m_fontFamily;
-	int m_fontSize;
-	wxFontStyle m_fontStyle;
-	wxColor m_fontColor;
+	wxChartFontOptions m_fontOptions;
+	
 };
 
 #endif

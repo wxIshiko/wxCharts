@@ -132,8 +132,8 @@ void wxChartGrid::Fit(size_t steps,
 		return;
 	}
 
-	wxDouble startPoint = m_options.GetYAxisOptions().GetFontSize();
-	wxDouble endPoint = m_mapping.GetSize().GetHeight() - (m_options.GetYAxisOptions().GetFontSize() + 15) - 5; // -5 to pad labels
+	wxDouble startPoint = m_options.GetYAxisOptions().GetFontOptions().GetSize();
+	wxDouble endPoint = m_mapping.GetSize().GetHeight() - (m_options.GetYAxisOptions().GetFontOptions().GetSize() + 15) - 5; // -5 to pad labels
 
 	// Apply padding settings to the start and end point.
 	//this.startPoint += this.padding;

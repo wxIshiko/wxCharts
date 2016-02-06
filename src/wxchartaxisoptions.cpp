@@ -25,16 +25,14 @@
 wxChartAxisOptions::wxChartAxisOptions()
 	: m_labelType(wxCHARTLABELTYPE_POINT),
 	m_lineWidth(1), m_lineColor(0, 0, 0, 0x19),
-	m_fontFamily(wxFONTFAMILY_SWISS), m_fontSize(12),
-	m_fontStyle(wxFONTSTYLE_NORMAL), m_fontColor(0x666666)
+	m_fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666)
 {
 }
 
 wxChartAxisOptions::wxChartAxisOptions(wxChartLabelType labelType)
 	: m_labelType(labelType),
 	m_lineWidth(1), m_lineColor(0, 0, 0, 0x19),
-	m_fontFamily(wxFONTFAMILY_SWISS), m_fontSize(12),
-	m_fontStyle(wxFONTSTYLE_NORMAL), m_fontColor(0x666666)
+	m_fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666)
 {
 }
 
@@ -53,22 +51,7 @@ const wxColor& wxChartAxisOptions::GetLineColor() const
 	return m_lineColor;
 }
 
-wxFontFamily wxChartAxisOptions::GetFontFamily() const
+const wxChartFontOptions& wxChartAxisOptions::GetFontOptions() const
 {
-	return m_fontFamily;
-}
-
-int wxChartAxisOptions::GetFontSize() const
-{
-	return m_fontSize;
-}
-
-wxFontStyle wxChartAxisOptions::GetFontStyle() const
-{
-	return m_fontStyle;
-}
-
-const wxColor& wxChartAxisOptions::GetFontColor() const
-{
-	return m_fontColor;
+	return m_fontOptions;
 }

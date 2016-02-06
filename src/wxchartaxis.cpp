@@ -92,9 +92,8 @@ void wxChartAxis::Draw1(wxGraphicsContext &gc)
 	}
 	
 	// Draw the labels
-	wxFont font(wxSize(0, m_options.GetFontSize()), m_options.GetFontFamily(),
-		m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
-	gc.SetFont(font, m_options.GetFontColor());
+	wxFont font = m_options.GetFontOptions().GetFont();
+	gc.SetFont(font, m_options.GetFontOptions().GetColor());
 	for (size_t i = 0; i < m_labels.size(); ++i)
 	{
 		m_labels[i].Draw(gc);
@@ -131,9 +130,8 @@ void wxChartAxis::Draw2(wxGraphicsContext &gc)
 	}
 
 	// Draw the labels
-	wxFont font(wxSize(0, m_options.GetFontSize()), m_options.GetFontFamily(),
-		m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
-	gc.SetFont(font, m_options.GetFontColor());
+	wxFont font = m_options.GetFontOptions().GetFont();
+	gc.SetFont(font, m_options.GetFontOptions().GetColor());
 	for (size_t i = 0; i < m_labels.size(); ++i)
 	{
 		m_labels[i].Draw(gc);
@@ -155,8 +153,7 @@ void wxChartAxis::UpdateLabelSizes(wxGraphicsContext &gc)
 {
 	m_labelMaxWidth = 0;
 
-	wxFont font(wxSize(0, m_options.GetFontSize()), m_options.GetFontFamily(),
-		m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
+	wxFont font = m_options.GetFontOptions().GetFont();
 
 	for (size_t i = 0; i < m_labels.size(); ++i)
 	{
@@ -182,8 +179,7 @@ void wxChartAxis::BuildYLabels(wxDouble minValue,
 
 	size_t stepDecimalPlaces = wxChartUtilities::GetDecimalPlaces();
 
-	wxFont font(wxSize(0, m_options.GetFontSize()), m_options.GetFontFamily(),
-		m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
+	wxFont font = m_options.GetFontOptions().GetFont();
 
 	for (size_t i = 0; i <= steps; ++i)
 	{
