@@ -23,9 +23,8 @@
 #include "wxchartlegendoptions.h"
 
 wxChartLegendOptions::wxChartLegendOptions()
-	: m_orientation(wxVERTICAL), m_fontFamily(wxFONTFAMILY_SWISS),
-	m_fontSize(12), m_fontStyle(wxFONTSTYLE_NORMAL), 
-	m_fontColor(0x666666)
+	: m_orientation(wxVERTICAL), 
+	m_fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666)
 {
 }
 
@@ -34,22 +33,7 @@ wxOrientation wxChartLegendOptions::GetOrientation() const
 	return m_orientation;
 }
 
-wxFontFamily wxChartLegendOptions::GetFontFamily() const
+const wxChartFontOptions& wxChartLegendOptions::GetFontOptions() const
 {
-	return m_fontFamily;
-}
-
-int wxChartLegendOptions::GetFontSize() const
-{
-	return m_fontSize;
-}
-
-wxFontStyle wxChartLegendOptions::GetFontStyle() const
-{
-	return m_fontStyle;
-}
-
-const wxColor& wxChartLegendOptions::GetFontColor() const
-{
-	return m_fontColor;
+	return m_fontOptions;
 }

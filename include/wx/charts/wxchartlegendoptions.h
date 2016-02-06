@@ -25,8 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTLEGENDOPTIONS_H_
 #define _WX_CHARTS_WXCHARTLEGENDOPTIONS_H_
 
-#include <wx/colour.h>
-#include <wx/font.h>
+#include "wxchartfontoptions.h"
 
 /// Options for the wxChartLegendCtrl control.
 class wxChartLegendOptions
@@ -42,29 +41,11 @@ public:
 	/// are organized vertically.
 	wxOrientation GetOrientation() const;
 
-	/// Gets the font family to be used for 
-	/// the text.
-	/// @return The font family.
-	wxFontFamily GetFontFamily() const;
-	/// Gets the font size to be used for 
-	/// the text.
-	/// @return The font size in pixels.
-	int GetFontSize() const;
-	/// Gets the font style to be used for 
-	/// the text.
-	/// @return The font style.
-	wxFontStyle GetFontStyle() const;
-	/// Gets the font color to be used for 
-	/// the text.
-	/// @return The font color.
-	const wxColor& GetFontColor() const;
+	const wxChartFontOptions& GetFontOptions() const;
 
 private:
 	wxOrientation m_orientation;
-	wxFontFamily m_fontFamily;
-	int m_fontSize;
-	wxFontStyle m_fontStyle;
-	wxColor m_fontColor;
+	wxChartFontOptions m_fontOptions;
 };
 
 #endif

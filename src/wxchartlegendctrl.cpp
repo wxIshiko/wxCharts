@@ -113,11 +113,10 @@ void wxChartLegendCtrl::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{
-		wxFont font(wxSize(0, m_options.GetFontSize()),
-			m_options.GetFontFamily(), m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
-		gc->SetFont(font, m_options.GetFontColor());
+		wxFont font = m_options.GetFontOptions().GetFont();
+		gc->SetFont(font, m_options.GetFontOptions().GetColor());
 
-		wxDouble fontSize = m_options.GetFontSize();
+		wxDouble fontSize = m_options.GetFontOptions().GetSize();
 
 		wxDouble y = 1;
 		for (size_t i = 0; i < m_items.size(); ++i)
