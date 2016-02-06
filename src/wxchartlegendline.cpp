@@ -23,10 +23,14 @@
 /// @file
 
 #include "wxchartlegendline.h"
+#include "wxchartutilities.h"
+#include <wx/brush.h>
 
-wxChartLegendLine::wxChartLegendLine(const wxString &text, 
+wxChartLegendLine::wxChartLegendLine(const wxColor &color,
+									 const wxString &text,
 									 const wxChartLegendLineOptions& options)
-	: m_options(options), m_position(0, 0), m_text(text)
+	: m_options(options), m_position(0, 0), m_size(0, 0),
+	m_color(color), m_text(text)
 {
 }
 
@@ -42,6 +46,18 @@ wxPoint2DDouble wxChartLegendLine::GetTooltipPosition() const
 
 void wxChartLegendLine::Draw(wxGraphicsContext &gc)
 {
+	wxFont font = m_options.GetFontOptions().GetFont();
+	gc.SetFont(font, m_options.GetFontOptions().GetColor());
+
+	wxDouble fontSize = m_options.GetFontOptions().GetSize();
+
+	wxGraphicsPath path = gc.CreatePath();
+	path.AddRoundedRectangle(m_position.m_x, m_position.m_y, fontSize + 2, fontSize + 2, 3);
+	wxBrush brush(m_color);
+	gc.SetBrush(brush);
+	gc.FillPath(path);
+
+	gc.DrawText(m_text, m_position.m_x + 20, m_position.m_y);
 }
 
 const wxPoint2DDouble& wxChartLegendLine::GetPosition() const
@@ -53,4 +69,18 @@ void wxChartLegendLine::SetPosition(wxDouble x, wxDouble y)
 {
 	m_position.m_x = x;
 	m_position.m_y = y;
+}
+
+const wxSize& wxChartLegendLine::GetSize() const
+{
+	return m_size;
+}
+
+void wxChartLegendLine::UpdateSize(wxGraphicsContext &gc)
+{
+	wxDouble width;
+	wxDouble height;
+	wxChartUtilities::GetTextSize(gc, m_options.GetFontOptions().GetFont(), m_text, width, height);
+	m_size.x = width;
+	m_size.y = height;
 }

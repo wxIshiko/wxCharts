@@ -98,7 +98,7 @@ wxChartLegendCtrl::wxChartLegendCtrl(wxWindow *parent,
 									 const wxPoint &pos,
 									 const wxSize &size,
 									 long style)
-	: wxControl(parent, id, pos, size, style), m_items(data.GetItems())
+	: wxControl(parent, id, pos, size, style)
 {
 	SetBackgroundStyle(wxBG_STYLE_PAINT);
 	SetBackgroundColour(*wxWHITE);
@@ -106,7 +106,10 @@ wxChartLegendCtrl::wxChartLegendCtrl(wxWindow *parent,
 	const wxVector<wxChartLegendItem>& items = data.GetItems();
 	for (size_t i = 0; i < items.size(); ++i)
 	{
-		m_lines.push_back(wxChartLegendLine(items[i].GetLabel()));
+		m_lines.push_back(
+			wxChartLegendLine(items[i].GetColor(), items[i].GetLabel(), 
+				m_options.GetLegendLineOptions())
+			);
 	}
 }
 
@@ -119,26 +122,24 @@ void wxChartLegendCtrl::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{
-		wxFont font = m_options.GetFontOptions().GetFont();
-		gc->SetFont(font, m_options.GetFontOptions().GetColor());
-
-		wxDouble fontSize = m_options.GetFontOptions().GetSize();
-
-		wxDouble y = 1;
-		for (size_t i = 0; i < m_items.size(); ++i)
+		// Update the size of each line to reflect
+		// the currently selected options and the
+		// contents of each line.
+		for (size_t i = 0; i < m_lines.size(); ++i)
 		{
-			wxGraphicsPath path = gc->CreatePath();
-
-			path.AddRoundedRectangle(0, y, fontSize + 2, fontSize + 2, 3);
-
-			wxBrush brush(m_items[i].GetColor());
-			gc->SetBrush(brush);
-			gc->FillPath(path);
-			
-			gc->DrawText(m_items[i].GetLabel(), 20, y);
-			y += fontSize + 5;
+			m_lines[i].UpdateSize(*gc);
 		}
 
+		// Set the position of each line based on
+		// the size of the lines that precede it.
+		wxDouble y = 1;
+		for (size_t i = 0; i < m_lines.size(); ++i)
+		{
+			m_lines[i].SetPosition(0, y);
+			y += (m_lines[i].GetSize().GetHeight() + 5);
+		}
+
+		// Draw the lines
 		for (size_t i = 0; i < m_lines.size(); ++i)
 		{
 			m_lines[i].Draw(*gc);

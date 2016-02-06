@@ -36,10 +36,13 @@ class wxChartLegendLine : public wxChartElement
 {
 public:
 	/// Constructs a wxChartLegendLine element.
+	/// @param color The color associated with this
+	/// item on the chart.
 	/// @param text The text of the legend.
 	/// @param options The settings to be used for the
 	/// legend line.
-	wxChartLegendLine(const wxString &text, const wxChartLegendLineOptions& options);
+	wxChartLegendLine(const wxColor &color, const wxString &text, 
+		const wxChartLegendLineOptions& options);
 
 	virtual bool HitTest(const wxPoint &point) const;
 
@@ -51,10 +54,21 @@ public:
 
 	const wxPoint2DDouble& GetPosition() const;
 	void SetPosition(wxDouble x, wxDouble y);
+	/// Gets the size of the line. The size must
+	/// have been previously computed by calling
+	/// the UpdateSize(wxGraphicsContext &gc) function.
+	/// @return The size of the line.
+	const wxSize& GetSize() const;
+	/// Computes the size of the line based on the 
+	/// contents and options.
+	/// @param gc The graphics context.
+	void UpdateSize(wxGraphicsContext &gc);
 
 private:
 	wxChartLegendLineOptions m_options;
 	wxPoint2DDouble m_position;
+	wxSize m_size;
+	wxColor m_color;
 	wxString m_text;
 };
 

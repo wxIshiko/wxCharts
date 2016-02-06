@@ -127,7 +127,6 @@ private:
 
 private:
 	wxChartLegendOptions m_options;
-	wxVector<wxChartLegendItem> m_items;
 	wxVector<wxChartLegendLine> m_lines;
 
 	DECLARE_EVENT_TABLE();
