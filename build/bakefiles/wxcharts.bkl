@@ -1,5 +1,6 @@
-toolsets = vs2015 vs2013;
+toolsets = gnu vs2015 vs2013;
 
+gnu.makefile = ../../GNUmakefile;
 vs2015.solutionfile = ../msw/wxcharts_vc14.sln;
 vs2013.solutionfile = ../msw/wxcharts_vc12.sln;
 
