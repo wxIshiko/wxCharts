@@ -27,6 +27,7 @@
 
 #include "wxchartmultitooltipoptions.h"
 #include "wxcharttooltip.h"
+#include "wxchartlegendline.h"
 #include <wx/graphics.h>
 
 /// This class is used to display a tooltip.
@@ -58,6 +59,7 @@ private:
 	wxString m_title;
 	wxVector<wxPoint2DDouble> m_tooltipPositions;
 	wxVector<wxChartTooltipProvider::ptr> m_tooltipProviders;
+	wxVector<wxChartLegendLine> m_lines;
 };
 
 #endif

@@ -42,16 +42,50 @@ wxChartMultiTooltip::wxChartMultiTooltip(const wxString &title)
 
 void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 {
+	// First we will compute the size of each of the lines
+	// of the multi-tooltip and its total size.
+	/////
+
 	wxFont titleFont(m_options.GetTitleFontOptions().GetFont());
 	wxFont textFont(m_options.GetTextFontOptions().GetFont());
 
-	wxPoint2DDouble position(0, 0);
-	wxVector<wxString> textItems;
+	// Get the size of the title
 	wxDouble titleWidth = 0;
 	wxDouble titleHeight = 0;
 	wxChartUtilities::GetTextSize(gc, titleFont, m_title, titleWidth, titleHeight);
-	wxDouble tooltipWidth = titleWidth;
-	wxDouble tooltipHeight = titleHeight;
+
+	// Update the size of each line to reflect the currently
+	// selected options and the contents of each line.
+	for (size_t i = 0; i < m_lines.size(); ++i)
+	{
+		m_lines[i].UpdateSize(gc);
+	}
+
+	// Compute the total outer and inner size of the
+	// multi-tooltip.
+	wxDouble totalInnerWidth = titleWidth;
+	wxDouble totalInnerHeight = titleHeight;
+	for (size_t i = 0; i < m_lines.size(); ++i)
+	{
+		wxSize size = m_lines[i].GetSize();
+
+		totalInnerHeight += size.GetHeight();
+
+		if (size.GetWidth() > totalInnerWidth)
+		{
+			totalInnerWidth = size.GetWidth();
+		}
+	}
+
+	wxDouble totalOuterWidth = totalInnerWidth + (2 * m_options.GetHorizontalPadding());
+	wxDouble totalOuterHeight = totalInnerHeight + (2 * m_options.GetVerticalPadding());
+
+	
+	// Now that we have the size of all the lines we
+	// can calculate their positions
+	wxPoint2DDouble position(0, 0);
+	wxVector<wxString> textItems;
+	
 	if (m_tooltipPositions.size() > 0)
 	{
 		for (size_t i = 0; i < m_tooltipPositions.size(); ++i)
@@ -61,28 +95,20 @@ void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 
 			wxString text = m_tooltipProviders[i]->GetTooltipText();
 			textItems.push_back(text);
-
-			wxDouble width = 0;
-			wxDouble height = 0;
-			wxChartUtilities::GetTextSize(gc, textFont, text, width, height);
-			if (width > tooltipWidth)
-			{
-				tooltipWidth = width;
-			}
 		}
 
 		position.m_x /= m_tooltipPositions.size();
 		position.m_y /= m_tooltipPositions.size();
 	}
 
-	tooltipWidth += (2 * m_options.GetHorizontalPadding());
-	tooltipHeight += (m_tooltipPositions.size() * m_options.GetTextFontOptions().GetSize());
-
+	wxDouble outerX = (position.m_x - (totalOuterWidth / 2));
+	wxDouble outerY = (position.m_y - (totalOuterHeight / 2));
+	
 	wxDouble x = position.m_x - (titleWidth / 2);
 
 	wxGraphicsPath path = gc.CreatePath();
-	path.AddRoundedRectangle(position.m_x - (tooltipWidth / 2), position.m_y - (tooltipHeight / 2),
-		tooltipWidth, tooltipHeight, m_options.GetCornerRadius());
+	path.AddRoundedRectangle(outerX, outerY, totalOuterWidth, totalOuterHeight, 
+		m_options.GetCornerRadius());
 	wxBrush brush(m_options.GetBackgroundColor());
 	gc.SetBrush(brush);
 	gc.FillPath(path);
@@ -92,30 +118,24 @@ void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 
 	gc.SetFont(textFont, m_options.GetTextFontOptions().GetColor());
 	
-	wxDouble textFontSize = m_options.GetTextFontOptions().GetSize();
+	// Set the position of each line based on
+	// the size of the lines that precede it.
 	wxDouble y = position.m_y + 1 + titleHeight;
-	for (size_t i = 0; i < textItems.size(); ++i)
+	for (size_t i = 0; i < m_lines.size(); ++i)
 	{
-		wxGraphicsPath path = gc.CreatePath();
-
-		path.AddRoundedRectangle(x, y, textFontSize + 2, textFontSize + 2, 3);
-
-		wxBrush brush(*wxGREEN);
-		gc.SetBrush(brush);
-		gc.FillPath(path);
-
-		gc.DrawText(textItems[i], x + 20, y);
-		y += textFontSize + 5;
+		m_lines[i].SetPosition(x, y);
+		y += (m_lines[i].GetSize().GetHeight() + 5);
 	}
 
-
-
-		
-	
+	for (size_t i = 0; i < m_lines.size(); ++i)
+	{
+		m_lines[i].Draw(gc);
+	}
 }
 
 void wxChartMultiTooltip::AddTooltip(const wxChartTooltip &tooltip)
 {
 	m_tooltipPositions.push_back(tooltip.GetPosition());
 	m_tooltipProviders.push_back(tooltip.GetProvider());
+	m_lines.push_back(wxChartLegendLine(*wxGREEN, tooltip.GetProvider()->GetTooltipText(), wxChartLegendLineOptions()));
 }

@@ -63,6 +63,8 @@ public:
 	/// contents and options.
 	/// @param gc The graphics context.
 	void UpdateSize(wxGraphicsContext &gc);
+	const wxString& GetText() const;
+	void SetText(const wxString &text);
 
 private:
 	wxChartLegendLineOptions m_options;

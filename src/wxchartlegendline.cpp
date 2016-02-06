@@ -84,3 +84,13 @@ void wxChartLegendLine::UpdateSize(wxGraphicsContext &gc)
 	m_size.x = width;
 	m_size.y = height;
 }
+
+const wxString& wxChartLegendLine::GetText() const
+{
+	return m_text;
+}
+
+void wxChartLegendLine::SetText(const wxString &text)
+{
+	m_text = text;
+}
