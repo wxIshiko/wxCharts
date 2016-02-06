@@ -145,5 +145,9 @@ void wxChartMultiTooltip::AddTooltip(const wxChartTooltip &tooltip)
 {
 	m_tooltipPositions.push_back(tooltip.GetPosition());
 	m_tooltipProviders.push_back(tooltip.GetProvider());
-	m_lines.push_back(wxChartLegendLine(*wxGREEN, tooltip.GetProvider()->GetTooltipText(), wxChartLegendLineOptions()));
+	m_lines.push_back(wxChartLegendLine(
+		tooltip.GetProvider()->GetAssociatedColor(), 
+		tooltip.GetProvider()->GetTooltipText(), 
+		wxChartLegendLineOptions(m_options.GetTextFontOptions())
+		));
 }

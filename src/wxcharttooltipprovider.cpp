@@ -27,8 +27,9 @@ wxChartTooltipProvider::wxChartTooltipProvider()
 }
 
 wxChartTooltipProviderStatic::wxChartTooltipProviderStatic(const wxString &title, 
-														   const wxString &text)
-	: m_title(title), m_text(text)
+														   const wxString &text,
+														   const wxColor &color)
+	: m_title(title), m_text(text), m_color(color)
 {
 }
 
@@ -40,4 +41,9 @@ wxString wxChartTooltipProviderStatic::GetTooltipTitle() const
 wxString wxChartTooltipProviderStatic::GetTooltipText() const
 {
 	return m_text;
+}
+
+wxColor wxChartTooltipProviderStatic::GetAssociatedColor() const
+{
+	return m_color;
 }

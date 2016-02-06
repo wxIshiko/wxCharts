@@ -33,6 +33,7 @@ class wxChartLegendLineOptions
 public:
 	/// Constructs a wxChartLegendLineOptions instance.
 	wxChartLegendLineOptions();
+	wxChartLegendLineOptions(const wxChartFontOptions& fontOptions);
 
 	const wxChartFontOptions& GetFontOptions() const;
 

@@ -43,6 +43,8 @@ public:
 	/// @param text The text to display in the tooltip.
 	wxChartTooltip(const wxPoint2DDouble &position,
 		const wxString &text);
+	wxChartTooltip(const wxPoint2DDouble &position,
+		const wxChartTooltipProvider::ptr provider);
 
 	/// Draws the tooltip using the graphics context passed
 	/// in as argument.

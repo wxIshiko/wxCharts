@@ -234,7 +234,7 @@ void wxLineChartCtrl::Initialize(const wxLineChartData &data)
 			std::stringstream tooltip;
 			tooltip << datasetData[j];
 			wxChartTooltipProvider::ptr tooltipProvider(
-				new wxChartTooltipProviderStatic(data.GetLabels()[j], tooltip.str())
+				new wxChartTooltipProviderStatic(data.GetLabels()[j], tooltip.str(), datasets[i]->GetLineColor())
 				);
 
 			PointClass::ptr point(

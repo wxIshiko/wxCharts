@@ -29,6 +29,11 @@ wxChartLegendLineOptions::wxChartLegendLineOptions()
 {
 }
 
+wxChartLegendLineOptions::wxChartLegendLineOptions(const wxChartFontOptions& fontOptions)
+	: m_fontOptions(fontOptions)
+{
+}
+
 const wxChartFontOptions& wxChartLegendLineOptions::GetFontOptions() const
 {
 	return m_fontOptions;

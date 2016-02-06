@@ -25,6 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTTOOLTIPPROVIDER_H_
 #define _WX_CHARTS_WXCHARTTOOLTIPPROVIDER_H_
 
+#include <wx/colour.h>
 #include <wx/string.h>
 #include <wx/sharedptr.h>
 
@@ -44,6 +45,13 @@ public:
 	/// Gets the text to display in the tooltip.
 	/// @return A wxString containing the text of the tooltip.
 	virtual wxString GetTooltipText() const = 0;
+	/// Gets the color that can be used to identify which
+	/// element of the chart this tooltip corresponds to.
+	/// This is used when the tooltip is part of a wxChartMultiTooltip
+	/// because in that case multiple tooltips will be shown at the
+	/// same time.
+	/// @return The color.
+	virtual wxColor GetAssociatedColor() const = 0;
 };
 
 /// Implementation of the wxChartTooltipProvider interface that simply returns a static string.
@@ -59,14 +67,17 @@ public:
 	/// by the GetTooltipTitle() function.
 	/// @param text The text of the tooltip which will be returned by
 	/// the GetTooltipText() function.
-	wxChartTooltipProviderStatic(const wxString &title, const wxString &text);
+	wxChartTooltipProviderStatic(const wxString &title, const wxString &text,
+		const wxColor &color);
 
 	virtual wxString GetTooltipTitle() const;
 	virtual wxString GetTooltipText() const;
+	virtual wxColor GetAssociatedColor() const;
 
 private:
 	wxString m_title;
 	wxString m_text;
+	wxColor m_color;
 };
 
 #endif

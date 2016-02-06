@@ -61,7 +61,7 @@ public:
 
 	/// Gets the tooltip provider.
 	/// @return The tooltip provider.
-	const wxChartTooltipProvider& GetTooltipProvider() const;
+	const wxChartTooltipProvider::ptr GetTooltipProvider() const;
 	/// Gets the position of the tooltip.
 	/// @return The position of the tooltip.
 	virtual wxPoint2DDouble GetTooltipPosition() const = 0;
