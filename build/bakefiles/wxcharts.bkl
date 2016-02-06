@@ -28,6 +28,7 @@ library wxcharts
     if ($(toolset) == gnu)
     {
         includedirs += $(WXWIDGETS_ROOT)/include/wx-3.1;
+        includedirs += $(WXWIDGETS_ROOT)/lib/wx/include/gtk3-unicode-3.1;
     }
 
     if ($(config) == Debug)
