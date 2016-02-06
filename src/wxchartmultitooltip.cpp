@@ -33,6 +33,7 @@
 
 #include "wxchartmultitooltip.h"
 #include "wxchartutilities.h"
+#include <wx/brush.h>
 
 wxChartMultiTooltip::wxChartMultiTooltip(const wxString &title)
 	: m_title(title)
@@ -41,11 +42,16 @@ wxChartMultiTooltip::wxChartMultiTooltip(const wxString &title)
 
 void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 {
-	wxFont font(m_options.GetTitleFontOptions().GetFont());
+	wxFont titleFont(m_options.GetTitleFontOptions().GetFont());
+	wxFont textFont(m_options.GetTextFontOptions().GetFont());
 
 	wxPoint2DDouble position(0, 0);
 	wxVector<wxString> textItems;
-	wxDouble maxWidth = 0;
+	wxDouble titleWidth = 0;
+	wxDouble titleHeight = 0;
+	wxChartUtilities::GetTextSize(gc, titleFont, m_title, titleWidth, titleHeight);
+	wxDouble tooltipWidth = titleWidth;
+	wxDouble tooltipHeight = titleHeight;
 	if (m_tooltipPositions.size() > 0)
 	{
 		for (size_t i = 0; i < m_tooltipPositions.size(); ++i)
@@ -56,12 +62,12 @@ void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 			wxString text = m_tooltipProviders[i]->GetTooltipText();
 			textItems.push_back(text);
 
-			wxDouble width;
-			wxDouble height;
-			wxChartUtilities::GetTextSize(gc, font, text, width, height);
-			if (width > maxWidth)
+			wxDouble width = 0;
+			wxDouble height = 0;
+			wxChartUtilities::GetTextSize(gc, textFont, text, width, height);
+			if (width > tooltipWidth)
 			{
-				maxWidth = width;
+				tooltipWidth = width;
 			}
 		}
 
@@ -69,10 +75,20 @@ void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 		position.m_y /= m_tooltipPositions.size();
 	}
 
-	gc.SetFont(font, m_options.GetTitleFontOptions().GetColor());
+	tooltipWidth += (2 * m_options.GetHorizontalPadding());
+	tooltipHeight += (m_tooltipPositions.size() * m_options.GetTextFontOptions().GetSize());
 
-	gc.DrawText(m_title, position.m_x, position.m_y);
+	wxGraphicsPath path = gc.CreatePath();
+	path.AddRoundedRectangle(position.m_x - (tooltipWidth / 2), position.m_y - (tooltipHeight / 2),
+		tooltipWidth, tooltipHeight, m_options.GetCornerRadius());
+	wxBrush brush(m_options.GetBackgroundColor());
+	gc.SetBrush(brush);
+	gc.FillPath(path);
 
+	gc.SetFont(titleFont, m_options.GetTitleFontOptions().GetColor());
+	gc.DrawText(m_title, position.m_x - (titleWidth / 2), position.m_y);
+
+	gc.SetFont(textFont, m_options.GetTextFontOptions().GetColor());
 	for (size_t i = 0; i < textItems.size(); ++i)
 	{
 		gc.DrawText(textItems[i], position.m_x, position.m_y + (i + 1) * 20);
