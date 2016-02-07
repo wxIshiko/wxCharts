@@ -27,7 +27,7 @@ library wxcharts
     }
     if ($(toolset) == gnu)
     {
-        cxx-compiler-options = "`wx-config --cxxflags";
+        cxx-compiler-options = "`wx-config --cxxflags --libs`";
     }
 
     if ($(config) == Debug)
