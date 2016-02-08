@@ -28,6 +28,7 @@
 #include "wxchartctrl.h"
 #include "wxstackedbarchartoptions.h"
 #include "wxchartgrid.h"
+#include "wxchartrectangle.h"
 
 /// Stores the information about a dataset to be shown on a wxStackedBarChartCtrl.
 class wxStackedBarChartDataset
@@ -102,8 +103,23 @@ private:
 	void OnPaint(wxPaintEvent &evt);
 
 private:
+	class Dataset
+	{
+	public:
+		typedef wxSharedPtr<Dataset> ptr;
+
+		Dataset();
+
+		const wxVector<wxChartRectangle>& GetBars() const;
+
+	private:
+		wxVector<wxChartRectangle> m_bars;
+	};
+
+private:
 	wxStackedBarChartOptions m_options;
 	wxChartGrid m_grid;
+	wxVector<Dataset::ptr> m_datasets;
 
 	DECLARE_EVENT_TABLE();
 };

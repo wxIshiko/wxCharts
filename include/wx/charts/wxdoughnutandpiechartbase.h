@@ -78,8 +78,6 @@ private:
 	wxDouble CalculateCircumference(double value);
 	
 	void OnPaint(wxPaintEvent &evt);
-	void OnMouseEnter(wxMouseEvent& evt);
-	void OnMouseExit(wxMouseEvent& evt);
 
 private:
 	virtual const wxDoughnutAndPieChartOptionsBase& GetOptions() const = 0;
@@ -104,8 +102,7 @@ private:
 
 private:
 	wxVector<SliceArc::ptr> m_slices;
-	double m_total;
-	bool m_mouseInWindow;
+	wxDouble m_total;
 	
 	DECLARE_EVENT_TABLE();
 };

@@ -53,6 +53,15 @@ const wxVector<wxStackedBarChartDataset::ptr>& wxStackedBarChartData::GetDataset
 	return m_datasets;
 }
 
+wxStackedBarChartCtrl::Dataset::Dataset()
+{
+}
+
+const wxVector<wxChartRectangle>& wxStackedBarChartCtrl::Dataset::GetBars() const
+{
+	return m_bars;
+}
+
 wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
 											 wxWindowID id,
 											 const wxStackedBarChartData &data,
@@ -141,6 +150,15 @@ void wxStackedBarChartCtrl::OnPaint(wxPaintEvent &evt)
 	if (gc)
 	{
 		m_grid.Draw(*gc);
+
+		for (size_t i = 0; i < m_datasets.size(); ++i)
+		{
+			Dataset& currentDataset = *m_datasets[i];
+			for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
+			{
+				currentDataset.GetBars()[j].Draw(*gc);
+			}
+		}
 
 		DrawTooltips(*gc);
 

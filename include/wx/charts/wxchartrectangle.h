@@ -49,7 +49,7 @@ public:
 
 	/// Draws the rectangle.
 	/// @param gc The graphics context.
-	void Draw(wxGraphicsContext &gc);
+	void Draw(wxGraphicsContext &gc) const;
 
 private:
 	wxChartRectangleOptions m_options;

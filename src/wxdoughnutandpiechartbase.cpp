@@ -71,8 +71,7 @@ wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(wxWindow *parent,
 													 const wxPoint &pos,
 													 const wxSize &size,
 													 long style)
-	: wxChartCtrl(parent, id, pos, size, style), m_total(0),
-	m_mouseInWindow(false)
+	: wxChartCtrl(parent, id, pos, size, style), m_total(0)
 {
 }
 
@@ -137,12 +136,12 @@ void wxDoughnutAndPieChartBase::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{
-		double startAngle = 0.0;
+		wxDouble startAngle = 0.0;
 		for (size_t i = 0; i < m_slices.size(); ++i)
 		{
 			SliceArc& currentSlice = *m_slices[i];
 
-			double endAngle = startAngle + CalculateCircumference(currentSlice.GetValue());
+			wxDouble endAngle = startAngle + CalculateCircumference(currentSlice.GetValue());
 			currentSlice.SetAngles(startAngle, endAngle);
 			startAngle = endAngle;
 
@@ -155,26 +154,6 @@ void wxDoughnutAndPieChartBase::OnPaint(wxPaintEvent &evt)
 	}
 }
 
-void wxDoughnutAndPieChartBase::OnMouseEnter(wxMouseEvent& evt)
-{
-	if (GetOptions().ShowTooltips())
-	{
-		m_mouseInWindow = true;
-		Refresh();
-	}
-}
-
-void wxDoughnutAndPieChartBase::OnMouseExit(wxMouseEvent& evt)
-{
-	if (GetOptions().ShowTooltips())
-	{
-		m_mouseInWindow = false;
-		Refresh();
-	}
-}
-
 BEGIN_EVENT_TABLE(wxDoughnutAndPieChartBase, wxChartCtrl)
 	EVT_PAINT(wxDoughnutAndPieChartBase::OnPaint)
-	EVT_ENTER_WINDOW(wxDoughnutAndPieChartBase::OnMouseEnter)
-	EVT_LEAVE_WINDOW(wxDoughnutAndPieChartBase::OnMouseExit)
 END_EVENT_TABLE()

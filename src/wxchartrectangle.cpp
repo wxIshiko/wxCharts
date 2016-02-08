@@ -52,7 +52,7 @@ wxPoint2DDouble wxChartRectangle::GetTooltipPosition() const
 	return wxPoint2DDouble(0, 0);
 }
 
-void wxChartRectangle::Draw(wxGraphicsContext &gc)
+void wxChartRectangle::Draw(wxGraphicsContext &gc) const
 {
 	wxGraphicsPath path = gc.CreatePath();
 	path.AddRectangle(m_x, m_y, 150, 150);
