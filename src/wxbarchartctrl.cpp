@@ -35,6 +35,16 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
+wxBarChartDataset::wxBarChartDataset(const wxVector<wxDouble> &data)
+	: m_data(data)
+{
+}
+
+const wxVector<wxDouble>& wxBarChartDataset::GetData() const
+{
+	return m_data;
+}
+
 wxBarChartData::wxBarChartData(const wxVector<wxString> &labels)
 	: m_labels(labels)
 {

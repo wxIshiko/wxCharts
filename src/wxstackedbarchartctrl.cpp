@@ -23,6 +23,16 @@
 #include "wxstackedbarchartctrl.h"
 #include <wx/dcbuffer.h>
 
+wxStackedBarChartDataset::wxStackedBarChartDataset(const wxVector<wxDouble> &data)
+	: m_data(data)
+{
+}
+
+const wxVector<wxDouble>& wxStackedBarChartDataset::GetData() const
+{
+	return m_data;
+}
+
 wxStackedBarChartData::wxStackedBarChartData(const wxVector<wxString> &labels)
 	: m_labels(labels)
 {

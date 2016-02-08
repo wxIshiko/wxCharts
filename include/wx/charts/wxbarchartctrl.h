@@ -42,6 +42,23 @@
 #include "wxchartrectangle.h"
 #include <wx/sharedptr.h>
 
+/// Stores the information about a dataset to be shown on a wxBarChartCtrl.
+class wxBarChartDataset
+{
+public:
+	/// Smart pointer typedef.
+	typedef wxSharedPtr<wxBarChartDataset> ptr;
+
+	/// Constructs a wxStackedBarChartDataset instance.
+	/// @param data The list of values.
+	wxBarChartDataset(const wxVector<wxDouble> &data);
+
+	const wxVector<wxDouble>& GetData() const;
+
+private:
+	wxVector<wxDouble> m_data;
+};
+
 /// Data for the wxBarChartCtrl control.
 class wxBarChartData
 {

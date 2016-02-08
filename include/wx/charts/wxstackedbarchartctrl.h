@@ -29,6 +29,23 @@
 #include "wxstackedbarchartoptions.h"
 #include "wxchartgrid.h"
 
+/// Stores the information about a dataset to be shown on a wxStackedBarChartCtrl.
+class wxStackedBarChartDataset
+{
+public:
+	/// Smart pointer typedef.
+	typedef wxSharedPtr<wxStackedBarChartDataset> ptr;
+
+	/// Constructs a wxStackedBarChartDataset instance.
+	/// @param data The list of values.
+	wxStackedBarChartDataset(const wxVector<wxDouble> &data);
+
+	const wxVector<wxDouble>& GetData() const;
+
+private:
+	wxVector<wxDouble> m_data;
+};
+
 /// Data for the wxStackedBarChartCtrl control.
 class wxStackedBarChartData
 {
