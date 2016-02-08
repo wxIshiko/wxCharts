@@ -23,11 +23,17 @@
 #include "wxbarchartoptions.h"
 
 wxBarChartOptions::wxBarChartOptions()
-	: m_gridOptions(wxChartAxisOptions(wxCHARTLABELTYPE_RANGE), wxChartAxisOptions())
+	: m_gridOptions(wxChartAxisOptions(wxCHARTLABELTYPE_RANGE), wxChartAxisOptions()),
+	m_barSpacing(5)
 {
 }
 
 const wxChartGridOptions& wxBarChartOptions::GetGridOptions() const
 {
 	return m_gridOptions;
+}
+
+wxDouble wxBarChartOptions::GetBarSpacing() const
+{
+	return m_barSpacing;
 }

@@ -39,8 +39,15 @@ public:
 	/// @return The options for the grid.
 	const wxChartGridOptions& GetGridOptions() const;
 
+	/// Gets the amount of space the bars are separated
+	/// by. The actual space between bars will be twice
+	/// this amount.
+	/// @return The separation between bars.
+	wxDouble GetBarSpacing() const;
+
 private:
 	wxChartGridOptions m_gridOptions;
+	wxDouble m_barSpacing;
 };
 
 #endif

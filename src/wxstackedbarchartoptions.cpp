@@ -23,11 +23,17 @@
 #include "wxstackedbarchartoptions.h"
 
 wxStackedBarChartOptions::wxStackedBarChartOptions()
-	: m_gridOptions(wxChartAxisOptions(wxCHARTLABELTYPE_RANGE), wxChartAxisOptions())
+	: m_gridOptions(wxChartAxisOptions(wxCHARTLABELTYPE_RANGE), wxChartAxisOptions()),
+	m_barSpacing(5)
 {
 }
 
 const wxChartGridOptions& wxStackedBarChartOptions::GetGridOptions() const
 {
 	return m_gridOptions;
+}
+
+wxDouble wxStackedBarChartOptions::GetBarSpacing() const
+{
+	return m_barSpacing;
 }
