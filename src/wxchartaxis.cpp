@@ -42,8 +42,9 @@ wxChartAxis::wxChartAxis()
 {
 }
 
-wxChartAxis::wxChartAxis(const wxVector<wxString> &labels)
-	: m_leftPadding(0), m_startPoint(0),
+wxChartAxis::wxChartAxis(const wxVector<wxString> &labels,
+						 const wxChartAxisOptions &options)
+	: m_options(options), m_leftPadding(0), m_startPoint(0),
 	m_endPoint(0), m_length(0), m_labelMaxWidth(0)
 {
 	for (size_t i = 0; i < labels.size(); ++i)

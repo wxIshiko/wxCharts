@@ -50,7 +50,8 @@ public:
 	wxChartAxis();
 	/// Constructs a wxChartAxis element.
 	/// @param labels The labels to display along the axis.
-	wxChartAxis(const wxVector<wxString> &labels);
+	/// @param options The settings to be used for the axis.
+	wxChartAxis(const wxVector<wxString> &labels, const wxChartAxisOptions &options);
 
 	virtual bool HitTest(const wxPoint &point) const;
 

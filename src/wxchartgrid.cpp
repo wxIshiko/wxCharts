@@ -41,7 +41,7 @@ wxChartGrid::wxChartGrid(const wxSize &size,
 						 wxDouble maxValue,
 						 const wxChartGridOptions& options)
 	: m_options(options), m_mapping(size, labels.size()), 
-	m_XAxis(labels), m_needsFit(true)
+	m_XAxis(labels, options.GetXAxisOptions()), m_needsFit(true)
 {
 	wxDouble graphMinValue;
 	wxDouble graphMaxValue;
