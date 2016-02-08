@@ -60,13 +60,64 @@ wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
 											 const wxSize &size,
 											 long style)
 	: wxChartCtrl(parent, id, pos, size, style), 
-	m_grid(size, data.GetLabels(), 0, 10, m_options.GetGridOptions())
+	m_grid(size, data.GetLabels(), GetCumulativeMinValue(data.GetDatasets()),
+		GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions())
 {
 }
 
 const wxStackedBarChartOptions& wxStackedBarChartCtrl::GetOptions() const
 {
 	return m_options;
+}
+
+wxDouble wxStackedBarChartCtrl::GetCumulativeMinValue(const wxVector<wxStackedBarChartDataset::ptr>& datasets)
+{
+	wxDouble result = 0;
+	bool foundValue = false;
+
+	for (size_t i = 0; i < datasets.size(); ++i)
+	{
+		const wxVector<wxDouble>& values = datasets[i]->GetData();
+		for (size_t j = 0; j < values.size(); ++j)
+		{
+			if (!foundValue)
+			{
+				result = values[j];
+				foundValue = true;
+			}
+			else if (result > values[j])
+			{
+				result = values[j];
+			}
+		}
+	}
+
+	return result;
+}
+
+wxDouble wxStackedBarChartCtrl::GetCumulativeMaxValue(const wxVector<wxStackedBarChartDataset::ptr>& datasets)
+{
+	wxDouble result = 0;
+	bool foundValue = false;
+
+	for (size_t i = 0; i < datasets.size(); ++i)
+	{
+		const wxVector<wxDouble>& values = datasets[i]->GetData();
+		for (size_t j = 0; j < values.size(); ++j)
+		{
+			if (!foundValue)
+			{
+				result = values[j];
+				foundValue = true;
+			}
+			else if (result < values[j])
+			{
+				result = values[j];
+			}
+		}
+	}
+
+	return result;
 }
 
 void wxStackedBarChartCtrl::Resize(const wxSize &size)

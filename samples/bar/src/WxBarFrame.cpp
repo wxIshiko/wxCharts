@@ -40,10 +40,23 @@ WxBarFrame::WxBarFrame(const wxString& title)
 	labels.push_back("May");
 	labels.push_back("June");
 	labels.push_back("July");
-	wxBarChartData data(labels);
+	wxBarChartData chartData(labels);
+
+	// Add the first dataset
+	wxVector<wxDouble> points1;
+	points1.push_back(3);
+	points1.push_back(2.5);
+	points1.push_back(1.2);
+	points1.push_back(3);
+	points1.push_back(6);
+	points1.push_back(5);
+	points1.push_back(1);
+	wxBarChartDataset::ptr dataset1(new wxBarChartDataset(
+		points1));
+	chartData.AddDataset(dataset1);
 
 	// Create the bar chart widget
-	wxBarChartCtrl* barChartCtrl = new wxBarChartCtrl(panel, wxID_ANY, data);
+	wxBarChartCtrl* barChartCtrl = new wxBarChartCtrl(panel, wxID_ANY, chartData);
 	wxVector<wxDouble> data1;
 	data1.push_back(5.0);
 	data1.push_back(3.0);

@@ -40,10 +40,23 @@ WxStackedBarFrame::WxStackedBarFrame(const wxString& title)
 	labels.push_back("May");
 	labels.push_back("June");
 	labels.push_back("July");
-	wxStackedBarChartData data(labels);
+	wxStackedBarChartData chartData(labels);
+
+	// Add the first dataset
+	wxVector<wxDouble> points1;
+	points1.push_back(3);
+	points1.push_back(2.5);
+	points1.push_back(1.2);
+	points1.push_back(3);
+	points1.push_back(6);
+	points1.push_back(5);
+	points1.push_back(1);
+	wxStackedBarChartDataset::ptr dataset1(new wxStackedBarChartDataset(
+		points1));
+	chartData.AddDataset(dataset1);
 
 	// Create the stacked bar chart widget
-	wxStackedBarChartCtrl* stackedBarChartCtrl = new wxStackedBarChartCtrl(panel, wxID_ANY, data);
+	wxStackedBarChartCtrl* stackedBarChartCtrl = new wxStackedBarChartCtrl(panel, wxID_ANY, chartData);
 
 	// Set up the sizer for the panel
 	wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
