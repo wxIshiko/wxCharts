@@ -54,13 +54,19 @@ public:
 	/// @param labels The labels of the X axis.
 	wxStackedBarChartData(const wxVector<wxString> &labels);
 
+	/// Adds a dataset.
+	/// @param dataset The dataset to add.
+	void AddDataset(wxStackedBarChartDataset::ptr dataset);
+
 	/// Gets the labels of the X axis.
 	/// @return A vector containing the labels of the
 	/// X axis.
 	const wxVector<wxString>& GetLabels() const;
+	const wxVector<wxStackedBarChartDataset::ptr>& GetDatasets() const;
 	
 private:
 	wxVector<wxString> m_labels;
+	wxVector<wxStackedBarChartDataset::ptr> m_datasets;
 };
 
 /// A control that displays a stacked bar chart.

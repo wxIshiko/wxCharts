@@ -67,13 +67,19 @@ public:
 	/// @param labels The labels of the X axis.
 	wxBarChartData(const wxVector<wxString> &labels);
 
+	/// Adds a dataset.
+	/// @param dataset The dataset to add.
+	void AddDataset(wxBarChartDataset::ptr dataset);
+
 	/// Gets the labels of the X axis.
 	/// @return A vector containing the labels of the
 	/// X axis.
 	const wxVector<wxString>& GetLabels() const;
+	const wxVector<wxBarChartDataset::ptr>& GetDatasets() const;
 
 private:
 	wxVector<wxString> m_labels;
+	wxVector<wxBarChartDataset::ptr> m_datasets;
 };
 
 /// A control that displays a bar chart.

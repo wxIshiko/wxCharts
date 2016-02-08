@@ -50,9 +50,19 @@ wxBarChartData::wxBarChartData(const wxVector<wxString> &labels)
 {
 }
 
+void wxBarChartData::AddDataset(wxBarChartDataset::ptr dataset)
+{
+	m_datasets.push_back(dataset);
+}
+
 const wxVector<wxString>& wxBarChartData::GetLabels() const
 {
 	return m_labels;
+}
+
+const wxVector<wxBarChartDataset::ptr>& wxBarChartData::GetDatasets() const
+{
+	return m_datasets;
 }
 
 wxBarChartCtrl::ScaleClass::ScaleClass(const wxSize &size,

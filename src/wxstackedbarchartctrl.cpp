@@ -38,9 +38,19 @@ wxStackedBarChartData::wxStackedBarChartData(const wxVector<wxString> &labels)
 {
 }
 
+void wxStackedBarChartData::AddDataset(wxStackedBarChartDataset::ptr dataset)
+{
+	m_datasets.push_back(dataset);
+}
+
 const wxVector<wxString>& wxStackedBarChartData::GetLabels() const
 {
 	return m_labels;
+}
+
+const wxVector<wxStackedBarChartDataset::ptr>& wxStackedBarChartData::GetDatasets() const
+{
+	return m_datasets;
 }
 
 wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
