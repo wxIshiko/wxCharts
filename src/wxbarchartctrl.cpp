@@ -92,6 +92,20 @@ wxDouble wxBarChartCtrl::Bar::GetValue() const
 	return m_value;
 }
 
+wxBarChartCtrl::Dataset::Dataset()
+{
+}
+
+const wxVector<wxBarChartCtrl::Bar::ptr>& wxBarChartCtrl::Dataset::GetBars() const
+{
+	return m_bars;
+}
+
+void wxBarChartCtrl::Dataset::AppendBar(Bar::ptr bar)
+{
+	m_bars.push_back(bar);
+}
+
 wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 							   wxWindowID id,
 							   const wxBarChartData &data,
@@ -107,7 +121,7 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 	{
 		const wxBarChartDataset& dataset = *datasets[i];
 		Dataset::ptr newDataset(new Dataset());
-		newDataset->bars.push_back(Bar(2, 25, 50, dataset.GetFillColor(), dataset.GetStrokeColor()));
+		newDataset->AppendBar(Bar::ptr(new Bar(2, 25, 50, dataset.GetFillColor(), dataset.GetStrokeColor())));
 		m_datasets.push_back(newDataset);
 	}
 }
@@ -192,9 +206,9 @@ void wxBarChartCtrl::OnPaint(wxPaintEvent &evt)
 		for (size_t i = 0; i < m_datasets.size(); ++i)
 		{
 			Dataset& currentDataset = *m_datasets[i];
-			for (size_t j = 0; j < currentDataset.bars.size(); ++j)
+			for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
 			{
-				Bar& bar = currentDataset.bars[j];
+				Bar& bar = *(currentDataset.GetBars()[j]);
 				wxPoint2DDouble position = m_grid.GetMapping().GetPointPosition(j, bar.GetValue());
 				bar.SetPosition(position);
 				bar.SetSize(20, m_grid.GetMapping().GetEndPoint() - position.m_y);
@@ -204,9 +218,9 @@ void wxBarChartCtrl::OnPaint(wxPaintEvent &evt)
 		for (size_t i = 0; i < m_datasets.size(); ++i)
 		{
 			Dataset& currentDataset = *m_datasets[i];
-			for (size_t j = 0; j < currentDataset.bars.size(); ++j)
+			for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
 			{	
-				currentDataset.bars[j].Draw(*gc);
+				currentDataset.GetBars()[j]->Draw(*gc);
 			}
 		}
 
