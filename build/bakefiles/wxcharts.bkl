@@ -82,6 +82,10 @@ library wxcharts
         ../../include/wx/charts/wxpolarareachartctrl.h
         ../../include/wx/charts/wxradarchartoptions.h
         ../../include/wx/charts/wxradarchartctrl.h
+        ../../include/wx/charts/wxscatterplotoptions.h
+        ../../include/wx/charts/wxscatterplotctrl.h
+        ../../include/wx/charts/wxbubblechartoptions.h
+        ../../include/wx/charts/wxbubblechartctrl.h
     }
 
     sources
@@ -130,5 +134,9 @@ library wxcharts
         ../../src/wxpolarareachartctrl.cpp
         ../../src/wxradarchartoptions.cpp
         ../../src/wxradarchartctrl.cpp
+        ../../src/wxscatterplotoptions.cpp
+        ../../src/wxscatterplotctrl.cpp
+        ../../src/wxbubblechartoptions.cpp
+        ../../src/wxbubblechartctrl.cpp
     }
 }
