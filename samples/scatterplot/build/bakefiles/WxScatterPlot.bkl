@@ -1,7 +1,7 @@
 toolsets = vs2015 vs2013;
 
-vs2015.solutionfile = ../msw/WxBubble_vc14.sln;
-vs2013.solutionfile = ../msw/WxBubble_vc12.sln;
+vs2015.solutionfile = ../msw/WxScatterPlot_vc14.sln;
+vs2013.solutionfile = ../msw/WxScatterPlot_vc12.sln;
 
 setting WXWIDGETS_ROOT
 {
@@ -15,10 +15,10 @@ setting WXCHARTS_ROOT
     default = '$(WXCHARTS)';
 }
 
-program WxBubble
+program WxScatterPlot
 {
-    vs2015.projectfile = ../msw/WxBubble_vc14.vcxproj;
-    vs2013.projectfile = ../msw/WxBubble_vc12.vcxproj;
+    vs2015.projectfile = ../msw/WxScatterPlot_vc14.vcxproj;
+    vs2013.projectfile = ../msw/WxScatterPlot_vc12.vcxproj;
 
     win32-subsystem = windows;
 
@@ -31,13 +31,13 @@ program WxBubble
 
     headers
     {
-        ../../src/WxBubbleApp.h
-        ../../src/WxBubbleFrame.h
+        ../../src/WxScatterPlotApp.h
+        ../../src/WxScatterPlotFrame.h
     }
 
     sources
     {
-        ../../src/WxBubbleApp.cpp
-        ../../src/WxBubbleFrame.cpp
+        ../../src/WxScatterPlotApp.cpp
+        ../../src/WxScatterPlotFrame.cpp
     }
 }
