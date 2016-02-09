@@ -77,40 +77,6 @@ const wxVector<wxBarChartDataset::ptr>& wxBarChartData::GetDatasets() const
 	return m_datasets;
 }
 
-wxBarChartCtrl::ScaleClass::ScaleClass(const wxSize &size,
-									   const wxVector<wxString> &labels,
-									   wxDouble minValue, 
-									   wxDouble maxValue,
-									   const wxChartGridOptions& options)
-	: wxChartGrid(size, labels, minValue, maxValue, options)
-{
-}
-
-wxDouble wxBarChartCtrl::ScaleClass::CalculateBarX(size_t datasetCount,
-												   size_t datasetIndex,
-												   size_t barIndex)
-{
-	/*
-	wxDouble xWidth = CalculateBaseWidth();
-	wxDouble xAbsolute = CalculateX(barIndex) - (xWidth / 2);
-	wxDouble barWidth = CalculateBarWidth(datasetCount);
-
-	return xAbsolute + (barWidth * datasetIndex) + (datasetIndex * 1) + barWidth / 2;*/
-	return 0;
-}
-
-double wxBarChartCtrl::ScaleClass::CalculateBaseWidth()
-{
-	return 0;// (CalculateX(1) - CalculateX(0)) - (2 * 5);
-}
-
-double wxBarChartCtrl::ScaleClass::CalculateBarWidth(size_t datasetCount)
-{
-	double baseWidth = CalculateBaseWidth() - ((datasetCount - 1) * 1);
-
-	return (baseWidth / datasetCount);
-}
-
 wxBarChartCtrl::BarClass::BarClass(wxDouble x, 
 								   wxDouble y,
 								   const wxColor &fillColor,
@@ -129,18 +95,19 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 	m_grid(size, data.GetLabels(), GetMinValue(data.GetDatasets()),
 		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions())
 {
+	const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
+	for (size_t i = 0; i < datasets.size(); ++i)
+	{
+		const wxBarChartDataset& dataset = *datasets[i];
+		Dataset::ptr newDataset(new Dataset());
+		newDataset->bars.push_back(BarClass(25, 50, dataset.GetFillColor(), dataset.GetStrokeColor()));
+		m_datasets.push_back(newDataset);
+	}
 }
 
 const wxBarChartOptions& wxBarChartCtrl::GetOptions() const
 {
 	return m_options;
-}
-
-void wxBarChartCtrl::AddData(const wxVector<wxDouble>& data)
-{
-	Dataset::ptr newDataset(new Dataset());
-	newDataset->bars.insert(newDataset->bars.begin(), BarClass(25, 50, wxColor(220, 220, 220), wxColor(220, 220, 220)));
-	m_datasets.insert(m_datasets.end(), newDataset);
 }
 
 wxDouble wxBarChartCtrl::GetMinValue(const wxVector<wxBarChartDataset::ptr>& datasets)
@@ -220,8 +187,16 @@ void wxBarChartCtrl::OnPaint(wxPaintEvent &evt)
 			Dataset& currentDataset = *m_datasets[i];
 			for (size_t j = 0; j < currentDataset.bars.size(); ++j)
 			{
-				//currentDataset.bars[j].x = m_grid.CalculateBarX(m_datasets.size(), i, j);
-				//currentDataset.bars[j].base = 50;
+				BarClass& bar = currentDataset.bars[j];
+				bar.SetPosition(m_grid.GetMapping().GetPointPosition(j, bar.GetValue()));
+			}
+		}
+
+		for (size_t i = 0; i < m_datasets.size(); ++i)
+		{
+			Dataset& currentDataset = *m_datasets[i];
+			for (size_t j = 0; j < currentDataset.bars.size(); ++j)
+			{	
 				currentDataset.bars[j].Draw(*gc);
 			}
 		}

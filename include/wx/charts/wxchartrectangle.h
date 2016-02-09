@@ -51,10 +51,23 @@ public:
 	/// @param gc The graphics context.
 	void Draw(wxGraphicsContext &gc) const;
 
+	/// Gets the position of the upper left
+	/// corner of the rectangle.
+	/// @return The position of the upper left corner.
+	const wxPoint2DDouble& GetPosition() const;
+	/// Sets the position of the rectangle.
+	/// @param x The new X coordinate of the upper left
+	/// corner.
+	/// @param y The new Y coordinate of the upper left
+	/// corner.
+	void SetPosition(wxDouble x, wxDouble y);
+	void SetSize(wxDouble width, wxDouble height);
+
 private:
 	wxChartRectangleOptions m_options;
-	wxDouble m_x;
-	wxDouble m_y;
+	wxPoint2DDouble m_position;
+	wxDouble m_width;
+	wxDouble m_height;
 };
 
 #endif

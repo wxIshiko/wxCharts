@@ -51,20 +51,16 @@ WxBarFrame::WxBarFrame(const wxString& title)
 	points1.push_back(6);
 	points1.push_back(5);
 	points1.push_back(1);
-	wxBarChartDataset::ptr dataset1(new wxBarChartDataset(
-		points1));
+	wxBarChartDataset::ptr dataset1(
+		new wxBarChartDataset(
+			wxColor(220, 220, 220, 0x7F),
+			wxColor(220, 220, 220, 0xCC),
+			points1)
+		);
 	chartData.AddDataset(dataset1);
 
 	// Create the bar chart widget
 	wxBarChartCtrl* barChartCtrl = new wxBarChartCtrl(panel, wxID_ANY, chartData);
-	wxVector<wxDouble> data1;
-	data1.push_back(5.0);
-	data1.push_back(3.0);
-	barChartCtrl->AddData(data1);
-	wxVector<wxDouble> data2;
-	data2.push_back(7.5);
-	data2.push_back(1.5);
-	barChartCtrl->AddData(data2);
 
 	// Set up the sizer for the panel
 	wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);

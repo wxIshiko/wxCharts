@@ -122,8 +122,6 @@ public:
 
 	virtual const wxBarChartOptions& GetOptions() const;
 
-	void AddData(const wxVector<wxDouble>& data);
-
 private:
 	static wxDouble GetMinValue(const wxVector<wxBarChartDataset::ptr>& datasets);
 	static wxDouble GetMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets);
@@ -134,18 +132,6 @@ private:
 	void OnPaint(wxPaintEvent &evt);
 
 private:
-	struct ScaleClass : public wxChartGrid
-	{
-		ScaleClass(const wxSize &size,
-			const wxVector<wxString> &labels,
-			wxDouble minValue, wxDouble maxValue,
-			const wxChartGridOptions& options);
-
-		wxDouble CalculateBarX(size_t datasetCount, size_t datasetIndex, size_t barIndex);
-		wxDouble CalculateBaseWidth();
-		wxDouble CalculateBarWidth(size_t datasetCount);
-	};
-
 	struct BarClass : public wxChartRectangle
 	{
 		BarClass(wxDouble x, wxDouble y, const wxColor &fillColor,
@@ -161,7 +147,7 @@ private:
 
 private:
 	wxBarChartOptions m_options;
-	ScaleClass m_grid;
+	wxChartGrid m_grid;
 	wxVector<Dataset::ptr> m_datasets;
 
 	DECLARE_EVENT_TABLE();

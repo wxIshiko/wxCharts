@@ -38,7 +38,8 @@
 wxChartRectangle::wxChartRectangle(wxDouble x,
 								   wxDouble y,
 								   const wxChartRectangleOptions &options)
-	: m_x(x), m_y(y), m_options(options)
+	: m_position(x, y), m_width(0), m_height(0), 
+	m_options(options)
 {
 }
 
@@ -55,7 +56,7 @@ wxPoint2DDouble wxChartRectangle::GetTooltipPosition() const
 void wxChartRectangle::Draw(wxGraphicsContext &gc) const
 {
 	wxGraphicsPath path = gc.CreatePath();
-	path.AddRectangle(m_x, m_y, 150, 150);
+	path.AddRectangle(m_position.m_x, m_position.m_y, m_width, m_height);
 	path.CloseSubpath();
 
 	wxBrush brush(m_options.GetFillColor());
@@ -65,4 +66,21 @@ void wxChartRectangle::Draw(wxGraphicsContext &gc) const
 	wxPen pen(m_options.GetStrokeColor(), 2);
 	gc.SetPen(pen);
 	gc.StrokePath(path);
+}
+
+const wxPoint2DDouble& wxChartRectangle::GetPosition() const
+{
+	return m_position;
+}
+
+void wxChartRectangle::SetPosition(wxDouble x, wxDouble y)
+{
+	m_position.m_x = x;
+	m_position.m_y = y;
+}
+
+void wxChartRectangle::SetSize(wxDouble width, wxDouble height)
+{
+	m_width = width;
+	m_height = height;
 }
