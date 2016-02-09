@@ -35,9 +35,21 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
-wxBarChartDataset::wxBarChartDataset(const wxVector<wxDouble> &data)
-	: m_data(data)
+wxBarChartDataset::wxBarChartDataset(const wxColor &fillColor,
+									 const wxColor &strokeColor,
+									 const wxVector<wxDouble> &data)
+	: m_fillColor(fillColor), m_strokeColor(strokeColor), m_data(data)
 {
+}
+
+const wxColor& wxBarChartDataset::GetFillColor() const
+{
+	return m_fillColor;
+}
+
+const wxColor& wxBarChartDataset::GetStrokeColor() const
+{
+	return m_strokeColor;
 }
 
 const wxVector<wxDouble>& wxBarChartDataset::GetData() const

@@ -50,12 +50,29 @@ public:
 	typedef wxSharedPtr<wxBarChartDataset> ptr;
 
 	/// Constructs a wxStackedBarChartDataset instance.
+	/// @param fillColor The color of the brush used to 
+	/// fill the bar.
+	/// @param strokeColor The color of the pen used to
+	/// draw the outline of the bar.
 	/// @param data The list of values.
-	wxBarChartDataset(const wxVector<wxDouble> &data);
+	wxBarChartDataset(const wxColor &fillColor, const wxColor &strokeColor,
+		const wxVector<wxDouble> &data);
 
+	/// Gets the color of the brush used to fill the
+	/// bar.
+	/// @return The color of the brush used to fill the
+	/// bar.
+	const wxColor& GetFillColor() const;
+	/// Gets the color of the pen used to draw the outline
+	/// of the bar.
+	/// @return The color of the pen used to draw the 
+	/// outline of the bar.
+	const wxColor& GetStrokeColor() const;
 	const wxVector<wxDouble>& GetData() const;
 
 private:
+	wxColor m_fillColor;
+	wxColor m_strokeColor;
 	wxVector<wxDouble> m_data;
 };
 
