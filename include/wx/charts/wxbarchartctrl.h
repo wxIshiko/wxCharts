@@ -132,10 +132,10 @@ private:
 	void OnPaint(wxPaintEvent &evt);
 
 private:
-	class BarClass : public wxChartRectangle
+	class Bar : public wxChartRectangle
 	{
 	public:
-		BarClass(wxDouble value, wxDouble x, wxDouble y, 
+		Bar(wxDouble value, wxDouble x, wxDouble y,
 			const wxColor &fillColor, const wxColor &strokeColor);
 
 		wxDouble GetValue() const;
@@ -148,7 +148,7 @@ private:
 	{
 		typedef wxSharedPtr<Dataset> ptr;
 
-		wxVector<BarClass> bars;
+		wxVector<Bar> bars;
 	};
 
 private:

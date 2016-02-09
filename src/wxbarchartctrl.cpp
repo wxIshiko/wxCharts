@@ -77,17 +77,17 @@ const wxVector<wxBarChartDataset::ptr>& wxBarChartData::GetDatasets() const
 	return m_datasets;
 }
 
-wxBarChartCtrl::BarClass::BarClass(wxDouble value, 
-								   wxDouble x,
-								   wxDouble y,
-								   const wxColor &fillColor,
-								   const wxColor &strokeColor)
+wxBarChartCtrl::Bar::Bar(wxDouble value,
+						 wxDouble x,
+						 wxDouble y,
+						 const wxColor &fillColor,
+						 const wxColor &strokeColor)
 	: wxChartRectangle(x, y, wxChartRectangleOptions(fillColor, strokeColor)),
 	m_value(value)
 {
 }
 
-wxDouble wxBarChartCtrl::BarClass::GetValue() const
+wxDouble wxBarChartCtrl::Bar::GetValue() const
 {
 	return m_value;
 }
@@ -107,7 +107,7 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 	{
 		const wxBarChartDataset& dataset = *datasets[i];
 		Dataset::ptr newDataset(new Dataset());
-		newDataset->bars.push_back(BarClass(2, 25, 50, dataset.GetFillColor(), dataset.GetStrokeColor()));
+		newDataset->bars.push_back(Bar(2, 25, 50, dataset.GetFillColor(), dataset.GetStrokeColor()));
 		m_datasets.push_back(newDataset);
 	}
 }
@@ -194,7 +194,7 @@ void wxBarChartCtrl::OnPaint(wxPaintEvent &evt)
 			Dataset& currentDataset = *m_datasets[i];
 			for (size_t j = 0; j < currentDataset.bars.size(); ++j)
 			{
-				BarClass& bar = currentDataset.bars[j];
+				Bar& bar = currentDataset.bars[j];
 				wxPoint2DDouble position = m_grid.GetMapping().GetPointPosition(j, bar.GetValue());
 				bar.SetPosition(position);
 				bar.SetSize(20, m_grid.GetMapping().GetEndPoint() - position.m_y);

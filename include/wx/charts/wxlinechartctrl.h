@@ -178,12 +178,12 @@ private:
 	void OnPaint(wxPaintEvent &evt);
 
 private:
-	class PointClass : public wxChartPoint
+	class Point : public wxChartPoint
 	{
 	public:
-		typedef wxSharedPtr<PointClass> ptr;
+		typedef wxSharedPtr<Point> ptr;
 
-		PointClass(wxDouble value, 
+		Point(wxDouble value, 
 			const wxChartTooltipProvider::ptr tooltipProvider, 
 			wxDouble x, wxDouble y, wxDouble radius, 
 			unsigned int strokeWidth, const wxColor &strokeColor, 
@@ -212,8 +212,8 @@ private:
 		bool Fill() const;
 		const wxColor& GetFillColor() const;
 
-		const wxVector<PointClass::ptr>& GetPoints() const;
-		void AppendPoint(PointClass::ptr point);
+		const wxVector<Point::ptr>& GetPoints() const;
+		void AppendPoint(Point::ptr point);
 
 	private:
 		bool m_showDots;
@@ -221,7 +221,7 @@ private:
 		wxColor m_lineColor;
 		bool m_fill;
 		wxColor m_fillColor;
-		wxVector<PointClass::ptr> m_points;
+		wxVector<Point::ptr> m_points;
 	};
 
 private:

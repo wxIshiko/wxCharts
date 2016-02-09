@@ -113,21 +113,21 @@ const wxVector<wxLineChartDataset::ptr>& wxLineChartData::GetDatasets() const
 	return m_datasets;
 }
 
-wxLineChartCtrl::PointClass::PointClass(wxDouble value, 
-										const wxChartTooltipProvider::ptr tooltipProvider,
-										wxDouble x,
-										wxDouble y, 
-										wxDouble radius,
-										unsigned int strokeWidth,
-										const wxColor &strokeColor,
-										const wxColor &fillColor,
-										wxDouble hitDetectionRange)
+wxLineChartCtrl::Point::Point(wxDouble value,
+							  const wxChartTooltipProvider::ptr tooltipProvider,
+							  wxDouble x,
+							  wxDouble y, 
+							  wxDouble radius,
+							  unsigned int strokeWidth,
+							  const wxColor &strokeColor,
+							  const wxColor &fillColor,
+							  wxDouble hitDetectionRange)
 	: wxChartPoint(x, y, radius, strokeWidth, strokeColor, fillColor, tooltipProvider),
 	m_value(value), m_hitDetectionRange(hitDetectionRange)
 {
 }
 
-bool wxLineChartCtrl::PointClass::HitTest(const wxPoint &point) const
+bool wxLineChartCtrl::Point::HitTest(const wxPoint &point) const
 {
 	wxDouble distance = (point.x - GetPosition().m_x);
 	if (distance < 0)
@@ -137,7 +137,7 @@ bool wxLineChartCtrl::PointClass::HitTest(const wxPoint &point) const
 	return (distance < m_hitDetectionRange);
 }
 
-wxDouble wxLineChartCtrl::PointClass::GetValue() const
+wxDouble wxLineChartCtrl::Point::GetValue() const
 {
 	return m_value;
 }
@@ -177,12 +177,12 @@ const wxColor& wxLineChartCtrl::Dataset::GetFillColor() const
 	return m_fillColor;
 }
 
-const wxVector<wxLineChartCtrl::PointClass::ptr>& wxLineChartCtrl::Dataset::GetPoints() const
+const wxVector<wxLineChartCtrl::Point::ptr>& wxLineChartCtrl::Dataset::GetPoints() const
 {
 	return m_points;
 }
 
-void wxLineChartCtrl::Dataset::AppendPoint(PointClass::ptr point)
+void wxLineChartCtrl::Dataset::AppendPoint(Point::ptr point)
 {
 	m_points.push_back(point);
 }
@@ -237,8 +237,8 @@ void wxLineChartCtrl::Initialize(const wxLineChartData &data)
 				new wxChartTooltipProviderStatic(data.GetLabels()[j], tooltip.str(), datasets[i]->GetLineColor())
 				);
 
-			PointClass::ptr point(
-				new PointClass(datasetData[j], tooltipProvider, 20 + j * 10, 0,
+			Point::ptr point(
+				new Point(datasetData[j], tooltipProvider, 20 + j * 10, 0,
 					m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
 					datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor(),
 					m_options.GetHitDetectionRange())
@@ -311,7 +311,7 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxLineChartCtrl::GetActiveElements
 	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
 	for (size_t i = 0; i < m_datasets.size(); ++i)
 	{
-		const wxVector<PointClass::ptr>& points = m_datasets[i]->GetPoints();
+		const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();
 		for (size_t j = 0; j < points.size(); ++j)
 		{
 			if (points[j]->HitTest(point))
@@ -336,20 +336,20 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 
 		for (size_t i = 0; i < m_datasets.size(); ++i)
 		{
-			const wxVector<PointClass::ptr>& points = m_datasets[i]->GetPoints();
+			const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();
 
 			wxGraphicsPath path = gc->CreatePath();
 
 			if (points.size() > 0)
 			{
-				const PointClass::ptr& point = points[0];
+				const Point::ptr& point = points[0];
 				wxPoint2DDouble firstPosition = m_grid.GetMapping().GetPointPosition(0, point->GetValue());
 				path.MoveToPoint(firstPosition);
 
 				wxPoint2DDouble lastPosition;
 				for (size_t j = 1; j < points.size(); ++j)
 				{
-					const PointClass::ptr& point = points[j];
+					const Point::ptr& point = points[j];
 					lastPosition = m_grid.GetMapping().GetPointPosition(j, point->GetValue());
 					path.AddLineToPoint(lastPosition);
 				}
@@ -379,7 +379,7 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 			{
 				for (size_t j = 0; j < points.size(); ++j)
 				{
-					const PointClass::ptr& point = points[j];
+					const Point::ptr& point = points[j];
 					point->SetPosition(m_grid.GetMapping().GetPointPosition(j, point->GetValue()));
 					point->Draw(*gc);
 				}
