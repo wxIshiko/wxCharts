@@ -61,6 +61,10 @@ public:
 	/// @param y The new Y coordinate of the upper left
 	/// corner.
 	void SetPosition(wxDouble x, wxDouble y);
+	/// Sets the position of the rectangle.
+	/// @param position The new position of the upper
+	/// left corner.
+	void SetPosition(wxPoint2DDouble position);
 	void SetSize(wxDouble width, wxDouble height);
 
 private:

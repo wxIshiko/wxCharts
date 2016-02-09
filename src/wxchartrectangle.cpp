@@ -79,6 +79,11 @@ void wxChartRectangle::SetPosition(wxDouble x, wxDouble y)
 	m_position.m_y = y;
 }
 
+void wxChartRectangle::SetPosition(wxPoint2DDouble position)
+{
+	m_position = position;
+}
+
 void wxChartRectangle::SetSize(wxDouble width, wxDouble height)
 {
 	m_width = width;

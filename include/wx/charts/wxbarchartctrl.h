@@ -132,10 +132,16 @@ private:
 	void OnPaint(wxPaintEvent &evt);
 
 private:
-	struct BarClass : public wxChartRectangle
+	class BarClass : public wxChartRectangle
 	{
-		BarClass(wxDouble x, wxDouble y, const wxColor &fillColor,
-			const wxColor &strokeColor);
+	public:
+		BarClass(wxDouble value, wxDouble x, wxDouble y, 
+			const wxColor &fillColor, const wxColor &strokeColor);
+
+		wxDouble GetValue() const;
+
+	private:
+		wxDouble m_value;
 	};
 
 	struct Dataset
