@@ -23,3 +23,27 @@
 /// @file
 
 #include "wxbubblechartctrl.h"
+
+wxBubbleChartCtrl::wxBubbleChartCtrl(wxWindow *parent,
+									 wxWindowID id,
+									 const wxPoint &pos,
+									 const wxSize &size,
+									 long style)
+	: wxChartCtrl(parent, id, pos, size, style)
+{
+}
+
+const wxBubbleChartOptions& wxBubbleChartCtrl::GetOptions() const
+{
+	return m_options;
+}
+
+void wxBubbleChartCtrl::Resize(const wxSize &size)
+{
+}
+
+wxSharedPtr<wxVector<const wxChartElement*> > wxBubbleChartCtrl::GetActiveElements(const wxPoint &point)
+{
+	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+	return activeElements;
+}

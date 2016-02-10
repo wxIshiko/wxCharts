@@ -25,4 +25,37 @@
 #ifndef _WX_CHARTS_WXSCATTERPLOTCTRL_H_
 #define _WX_CHARTS_WXSCATTERPLOTCTRL_H_
 
+#include "wxchartctrl.h"
+#include "wxscatterplotoptions.h"
+
+/// A control that displays a scatter plot.
+class wxScatterPlotCtrl : public wxChartCtrl
+{
+public:
+	/// Constructs a wxScatterPlotCtrl control.
+	/// @param parent Pointer to a parent window.
+	/// @param id Control identifier. If wxID_ANY, will automatically
+	/// create an identifier.
+	/// @param pos Control position. wxDefaultPosition indicates that 
+	/// wxWidgets should generate a default position for the control.
+	/// @param size Control size. wxDefaultSize indicates that wxWidgets
+	/// should generate a default size for the window. If no suitable 
+	/// size can  be found, the window will be sized to 20x20 pixels 
+	/// so that the window is visible but obviously not correctly sized.
+	/// @param style Control style. For generic window styles, please 
+	/// see wxWindow.
+	wxScatterPlotCtrl(wxWindow *parent, wxWindowID id,
+		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
+		long style = 0);
+
+	virtual const wxScatterPlotOptions& GetOptions() const;
+
+private:
+	virtual void Resize(const wxSize &size);
+	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
+
+private:
+	wxScatterPlotOptions m_options;
+};
+
 #endif

@@ -23,3 +23,27 @@
 /// @file
 
 #include "wxscatterplotctrl.h"
+
+wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
+									 wxWindowID id,
+									 const wxPoint &pos,
+									 const wxSize &size,
+									 long style)
+	: wxChartCtrl(parent, id, pos, size, style)
+{
+}
+
+const wxScatterPlotOptions& wxScatterPlotCtrl::GetOptions() const
+{
+	return m_options;
+}
+
+void wxScatterPlotCtrl::Resize(const wxSize &size)
+{
+}
+
+wxSharedPtr<wxVector<const wxChartElement*> > wxScatterPlotCtrl::GetActiveElements(const wxPoint &point)
+{
+	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+	return activeElements;
+}

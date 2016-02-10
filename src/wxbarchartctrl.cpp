@@ -121,8 +121,13 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 	{
 		const wxBarChartDataset& dataset = *datasets[i];
 		Dataset::ptr newDataset(new Dataset());
-		newDataset->AppendBar(Bar::ptr(new Bar(2, 25, 50, dataset.GetFillColor(), dataset.GetStrokeColor())));
-		m_datasets.push_back(newDataset);
+
+		const wxVector<wxDouble>& data = dataset.GetData();
+		for (size_t j = 0; j < data.size(); ++j)
+		{
+			newDataset->AppendBar(Bar::ptr(new Bar(data[j], 25, 50, dataset.GetFillColor(), dataset.GetStrokeColor())));
+			m_datasets.push_back(newDataset);
+		}
 	}
 }
 
