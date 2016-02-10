@@ -223,7 +223,7 @@ void wxBarChartCtrl::OnPaint(wxPaintEvent &evt)
 
 		for (size_t i = 0; i < m_datasets.size(); ++i)
 		{
-			Dataset& currentDataset = *m_datasets[0];
+			Dataset& currentDataset = *m_datasets[i];
 			for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
 			{	
 				currentDataset.GetBars()[j]->Draw(*gc);
