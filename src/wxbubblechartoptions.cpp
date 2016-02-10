@@ -27,3 +27,8 @@
 wxBubbleChartOptions::wxBubbleChartOptions()
 {
 }
+
+const wxChartGridOptions& wxBubbleChartOptions::GetGridOptions() const
+{
+	return m_gridOptions;
+}

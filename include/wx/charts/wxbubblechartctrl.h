@@ -27,6 +27,24 @@
 
 #include "wxchartctrl.h"
 #include "wxbubblechartoptions.h"
+#include "wxchartgrid.h"
+
+/// Data for the wxBubbleChartCtrl control.
+class wxBubbleChartData
+{
+public:
+	/// Constructs a wxBubbleChartData instance.
+	/// @param labels The labels of the X axis.
+	wxBubbleChartData(const wxVector<wxString> &labels);
+
+	/// Gets the labels of the X axis.
+	/// @return A vector containing the labels of the
+	/// X axis.
+	const wxVector<wxString>& GetLabels() const;
+
+private:
+	wxVector<wxString> m_labels;
+};
 
 /// A control that displays a bubble chart.
 class wxBubbleChartCtrl : public wxChartCtrl
@@ -36,6 +54,7 @@ public:
 	/// @param parent Pointer to a parent window.
 	/// @param id Control identifier. If wxID_ANY, will automatically
 	/// create an identifier.
+	/// @param data The data that will be used to initialize the chart.
 	/// @param pos Control position. wxDefaultPosition indicates that 
 	/// wxWidgets should generate a default position for the control.
 	/// @param size Control size. wxDefaultSize indicates that wxWidgets
@@ -44,7 +63,7 @@ public:
 	/// so that the window is visible but obviously not correctly sized.
 	/// @param style Control style. For generic window styles, please 
 	/// see wxWindow.
-	wxBubbleChartCtrl(wxWindow *parent, wxWindowID id,
+	wxBubbleChartCtrl(wxWindow *parent, wxWindowID id, const wxBubbleChartData &data,
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
 
@@ -54,8 +73,13 @@ private:
 	virtual void Resize(const wxSize &size);
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
+	void OnPaint(wxPaintEvent &evt);
+
 private:
 	wxBubbleChartOptions m_options;
+	wxChartGrid m_grid;
+
+	DECLARE_EVENT_TABLE();
 };
 
 #endif

@@ -31,8 +31,19 @@ WxBubbleFrame::WxBubbleFrame(const wxString& title)
 	// Create a top-level panel to hold all the contents of the frame
 	wxPanel* panel = new wxPanel(this, wxID_ANY);
 
+	// Create the data for the bubble chart widget
+	wxVector<wxString> labels;
+	labels.push_back("January");
+	labels.push_back("February");
+	labels.push_back("March");
+	labels.push_back("April");
+	labels.push_back("May");
+	labels.push_back("June");
+	labels.push_back("July");
+	wxBubbleChartData chartData(labels);
+
 	// Create the bubble chart widget
-	wxBubbleChartCtrl* bubbleChartCtrl = new wxBubbleChartCtrl(panel, wxID_ANY);
+	wxBubbleChartCtrl* bubbleChartCtrl = new wxBubbleChartCtrl(panel, wxID_ANY, chartData);
 
 	// Set up the sizer for the panel
 	wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
