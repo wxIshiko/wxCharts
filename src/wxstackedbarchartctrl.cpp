@@ -23,9 +23,21 @@
 #include "wxstackedbarchartctrl.h"
 #include <wx/dcbuffer.h>
 
-wxStackedBarChartDataset::wxStackedBarChartDataset(const wxVector<wxDouble> &data)
-	: m_data(data)
+wxStackedBarChartDataset::wxStackedBarChartDataset(const wxColor &fillColor, 
+												   const wxColor &strokeColor,
+												   const wxVector<wxDouble> &data)
+	: m_fillColor(fillColor), m_strokeColor(strokeColor), m_data(data)
 {
+}
+
+const wxColor& wxStackedBarChartDataset::GetFillColor() const
+{
+	return m_fillColor;
+}
+
+const wxColor& wxStackedBarChartDataset::GetStrokeColor() const
+{
+	return m_strokeColor;
 }
 
 const wxVector<wxDouble>& wxStackedBarChartDataset::GetData() const
@@ -53,13 +65,33 @@ const wxVector<wxStackedBarChartDataset::ptr>& wxStackedBarChartData::GetDataset
 	return m_datasets;
 }
 
+wxStackedBarChartCtrl::Bar::Bar(wxDouble value,
+								wxDouble x,
+								wxDouble y,
+								const wxColor &fillColor,
+								const wxColor &strokeColor)
+	: wxChartRectangle(x, y, wxChartRectangleOptions(fillColor, strokeColor)),
+	m_value(value)
+{
+}
+
+wxDouble wxStackedBarChartCtrl::Bar::GetValue() const
+{
+	return m_value;
+}
+
 wxStackedBarChartCtrl::Dataset::Dataset()
 {
 }
 
-const wxVector<wxChartRectangle>& wxStackedBarChartCtrl::Dataset::GetBars() const
+const wxVector<wxStackedBarChartCtrl::Bar::ptr>& wxStackedBarChartCtrl::Dataset::GetBars() const
 {
 	return m_bars;
+}
+
+void wxStackedBarChartCtrl::Dataset::AppendBar(Bar::ptr bar)
+{
+	m_bars.push_back(bar);
 }
 
 wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
@@ -72,6 +104,20 @@ wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
 	m_grid(size, data.GetLabels(), GetCumulativeMinValue(data.GetDatasets()),
 		GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions())
 {
+	const wxVector<wxStackedBarChartDataset::ptr>& datasets = data.GetDatasets();
+	for (size_t i = 0; i < datasets.size(); ++i)
+	{
+		const wxStackedBarChartDataset& dataset = *datasets[i];
+		Dataset::ptr newDataset(new Dataset());
+
+		const wxVector<wxDouble>& data = dataset.GetData();
+		for (size_t j = 0; j < data.size(); ++j)
+		{
+			newDataset->AppendBar(Bar::ptr(new Bar(data[j], 25, 50, dataset.GetFillColor(), dataset.GetStrokeColor())));
+		}
+
+		m_datasets.push_back(newDataset);
+	}
 }
 
 const wxStackedBarChartOptions& wxStackedBarChartCtrl::GetOptions() const
@@ -153,10 +199,27 @@ void wxStackedBarChartCtrl::OnPaint(wxPaintEvent &evt)
 
 		for (size_t i = 0; i < m_datasets.size(); ++i)
 		{
-			Dataset& currentDataset = *m_datasets[i];
-			for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
+			for (size_t i = 0; i < m_datasets.size(); ++i)
 			{
-				currentDataset.GetBars()[j].Draw(*gc);
+				Dataset& currentDataset = *m_datasets[i];
+				for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
+				{
+					Bar& bar = *(currentDataset.GetBars()[j]);
+					wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetPointPosition(j, bar.GetValue());
+					wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetPointPosition(j + 1, bar.GetValue());
+					bar.SetPosition(upperLeftCornerPosition.m_x + m_options.GetBarSpacing(), upperLeftCornerPosition.m_y);
+					bar.SetSize(upperRightCornerPosition.m_x - upperLeftCornerPosition.m_x - 2 * m_options.GetBarSpacing(), 
+						m_grid.GetMapping().GetEndPoint() - upperLeftCornerPosition.m_y);
+				}
+			}
+
+			for (size_t i = 0; i < m_datasets.size(); ++i)
+			{
+				Dataset& currentDataset = *m_datasets[i];
+				for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
+				{
+					currentDataset.GetBars()[j]->Draw(*gc);
+				}
 			}
 		}
 

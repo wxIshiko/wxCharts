@@ -126,8 +126,9 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 		for (size_t j = 0; j < data.size(); ++j)
 		{
 			newDataset->AppendBar(Bar::ptr(new Bar(data[j], 25, 50, dataset.GetFillColor(), dataset.GetStrokeColor())));
-			m_datasets.push_back(newDataset);
 		}
+
+		m_datasets.push_back(newDataset);
 	}
 }
 
@@ -222,7 +223,7 @@ void wxBarChartCtrl::OnPaint(wxPaintEvent &evt)
 
 		for (size_t i = 0; i < m_datasets.size(); ++i)
 		{
-			Dataset& currentDataset = *m_datasets[i];
+			Dataset& currentDataset = *m_datasets[0];
 			for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
 			{	
 				currentDataset.GetBars()[j]->Draw(*gc);

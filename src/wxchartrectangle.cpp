@@ -57,8 +57,7 @@ void wxChartRectangle::Draw(wxGraphicsContext &gc) const
 {
 	wxGraphicsPath path = gc.CreatePath();
 	path.AddRectangle(m_position.m_x, m_position.m_y, m_width, m_height);
-	path.CloseSubpath();
-
+	
 	wxBrush brush(m_options.GetFillColor());
 	gc.SetBrush(brush);
 	gc.FillPath(path);

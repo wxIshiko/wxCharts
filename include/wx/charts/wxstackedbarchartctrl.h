@@ -38,12 +38,29 @@ public:
 	typedef wxSharedPtr<wxStackedBarChartDataset> ptr;
 
 	/// Constructs a wxStackedBarChartDataset instance.
+	/// @param fillColor The color of the brush used to 
+	/// fill the bar.
+	/// @param strokeColor The color of the pen used to
+	/// draw the outline of the bar.
 	/// @param data The list of values.
-	wxStackedBarChartDataset(const wxVector<wxDouble> &data);
+	wxStackedBarChartDataset(const wxColor &fillColor, const wxColor &strokeColor, 
+		const wxVector<wxDouble> &data);
 
+	/// Gets the color of the brush used to fill the
+	/// bar.
+	/// @return The color of the brush used to fill the
+	/// bar.
+	const wxColor& GetFillColor() const;
+	/// Gets the color of the pen used to draw the outline
+	/// of the bar.
+	/// @return The color of the pen used to draw the 
+	/// outline of the bar.
+	const wxColor& GetStrokeColor() const;
 	const wxVector<wxDouble>& GetData() const;
 
 private:
+	wxColor m_fillColor;
+	wxColor m_strokeColor;
 	wxVector<wxDouble> m_data;
 };
 
@@ -103,6 +120,20 @@ private:
 	void OnPaint(wxPaintEvent &evt);
 
 private:
+	class Bar : public wxChartRectangle
+	{
+	public:
+		typedef wxSharedPtr<Bar> ptr;
+
+		Bar(wxDouble value, wxDouble x, wxDouble y,
+			const wxColor &fillColor, const wxColor &strokeColor);
+
+		wxDouble GetValue() const;
+
+	private:
+		wxDouble m_value;
+	};
+
 	class Dataset
 	{
 	public:
@@ -110,10 +141,11 @@ private:
 
 		Dataset();
 
-		const wxVector<wxChartRectangle>& GetBars() const;
+		const wxVector<Bar::ptr>& GetBars() const;
+		void AppendBar(Bar::ptr bar);
 
 	private:
-		wxVector<wxChartRectangle> m_bars;
+		wxVector<Bar::ptr> m_bars;
 	};
 
 private:
