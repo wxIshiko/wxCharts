@@ -23,6 +23,8 @@
 /// @file
 
 #include "wxscatterplotctrl.h"
+#include <wx/dcbuffer.h>
+#include <wx/graphics.h>
 
 wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
 									 wxWindowID id,
@@ -47,3 +49,20 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxScatterPlotCtrl::GetActiveElemen
 	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
 	return activeElements;
 }
+
+void wxScatterPlotCtrl::OnPaint(wxPaintEvent &evt)
+{
+	wxAutoBufferedPaintDC dc(this);
+
+	dc.Clear();
+
+	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+	if (gc)
+	{
+		delete gc;
+	}
+}
+
+BEGIN_EVENT_TABLE(wxScatterPlotCtrl, wxChartCtrl)
+	EVT_PAINT(wxScatterPlotCtrl::OnPaint)
+END_EVENT_TABLE()
