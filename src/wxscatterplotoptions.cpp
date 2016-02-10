@@ -23,3 +23,7 @@
 /// @file
 
 #include "wxscatterplotoptions.h"
+
+wxScatterPlotOptions::wxScatterPlotOptions()
+{
+}

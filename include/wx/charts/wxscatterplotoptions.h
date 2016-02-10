@@ -25,4 +25,14 @@
 #ifndef _WX_CHARTS_WXSCATTERPLOTOPTIONS_H_
 #define _WX_CHARTS_WXSCATTERPLOTOPTIONS_H_
 
+#include "wxchartoptions.h"
+
+/// The options for the wxScatterPlotCtrl control.
+class wxScatterPlotOptions : public wxChartOptions
+{
+public:
+	/// Constructs a wxScatterPlotOptions instance.
+	wxScatterPlotOptions();
+};
+
 #endif

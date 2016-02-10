@@ -25,4 +25,14 @@
 #ifndef _WX_CHARTS_WXBUBBLECHARTOPTIONS_H_
 #define _WX_CHARTS_WXBUBBLECHARTOPTIONS_H_
 
+#include "wxchartoptions.h"
+
+/// The options for the wxBubbleChartCtrl control.
+class wxBubbleChartOptions : public wxChartOptions
+{
+public:
+	/// Constructs a wxBubbleChartOptions instance.
+	wxBubbleChartOptions();
+};
+
 #endif
