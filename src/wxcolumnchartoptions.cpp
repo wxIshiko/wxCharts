@@ -21,3 +21,20 @@
 */
 
 #include "wxcolumnchartoptions.h"
+
+wxColumnChartOptions::wxColumnChartOptions()
+	: m_gridOptions(wxChartAxisOptions(wxCHARTAXISLABELTYPE_RANGE), wxChartAxisOptions()),
+	m_columnSpacing(5)
+{
+	m_gridOptions.GetYAxisOptions().SetExplicitStartValue(0);
+}
+
+const wxChartGridOptions& wxColumnChartOptions::GetGridOptions() const
+{
+	return m_gridOptions;
+}
+
+wxDouble wxColumnChartOptions::GetColumnSpacing() const
+{
+	return m_columnSpacing;
+}

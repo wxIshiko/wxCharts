@@ -21,20 +21,3 @@
 */
 
 #include "wxbarchartoptions.h"
-
-wxBarChartOptions::wxBarChartOptions()
-	: m_gridOptions(wxChartAxisOptions(wxCHARTAXISLABELTYPE_RANGE), wxChartAxisOptions()),
-	m_barSpacing(5)
-{
-	m_gridOptions.GetYAxisOptions().SetExplicitStartValue(0);
-}
-
-const wxChartGridOptions& wxBarChartOptions::GetGridOptions() const
-{
-	return m_gridOptions;
-}
-
-wxDouble wxBarChartOptions::GetBarSpacing() const
-{
-	return m_barSpacing;
-}

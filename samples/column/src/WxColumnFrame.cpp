@@ -52,7 +52,7 @@ WxColumnFrame::WxColumnFrame(const wxString& title)
 	points1.push_back(5);
 	points1.push_back(1);
 	wxColumnChartDataset::ptr dataset1(
-		new wxBarChartDataset(
+		new wxColumnChartDataset(
 			wxColor(220, 220, 220, 0x7F),
 			wxColor(220, 220, 220, 0xCC),
 			points1)

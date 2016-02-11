@@ -27,6 +27,8 @@
 
 #include "wxbarchartctrl.h"
 #include "wxstackedbarchartctrl.h"
+#include "wxcolumnchartctrl.h"
+#include "wxstackedcolumnchartctrl.h"
 #include "wxlinechartctrl.h"
 #include "wxdoughnutchartctrl.h"
 #include "wxpiechartctrl.h"
