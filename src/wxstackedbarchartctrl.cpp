@@ -128,23 +128,30 @@ const wxStackedBarChartOptions& wxStackedBarChartCtrl::GetOptions() const
 wxDouble wxStackedBarChartCtrl::GetCumulativeMinValue(const wxVector<wxStackedBarChartDataset::ptr>& datasets)
 {
 	wxDouble result = 0;
-	bool foundValue = false;
-
-	for (size_t i = 0; i < datasets.size(); ++i)
+	
+	size_t i = 0;
+	while (true)
 	{
-		const wxVector<wxDouble>& values = datasets[i]->GetData();
-		for (size_t j = 0; j < values.size(); ++j)
+		wxDouble sum = 0;
+		bool stop = true;
+		for (size_t j = 0; j < datasets.size(); ++j)
 		{
-			if (!foundValue)
+			const wxStackedBarChartDataset& dataset = *datasets[j];
+			if (i < dataset.GetData().size())
 			{
-				result = values[j];
-				foundValue = true;
-			}
-			else if (result > values[j])
-			{
-				result = values[j];
+				sum += dataset.GetData()[i];
+				stop = false;
 			}
 		}
+		if (sum < result)
+		{
+			result = sum;
+		}
+		if (stop)
+		{
+			break;
+		}
+		++i;
 	}
 
 	return result;
@@ -153,23 +160,30 @@ wxDouble wxStackedBarChartCtrl::GetCumulativeMinValue(const wxVector<wxStackedBa
 wxDouble wxStackedBarChartCtrl::GetCumulativeMaxValue(const wxVector<wxStackedBarChartDataset::ptr>& datasets)
 {
 	wxDouble result = 0;
-	bool foundValue = false;
-
-	for (size_t i = 0; i < datasets.size(); ++i)
+	
+	size_t i = 0;
+	while (true)
 	{
-		const wxVector<wxDouble>& values = datasets[i]->GetData();
-		for (size_t j = 0; j < values.size(); ++j)
+		wxDouble sum = 0;
+		bool stop = true;
+		for (size_t j = 0; j < datasets.size(); ++j)
 		{
-			if (!foundValue)
+			const wxStackedBarChartDataset& dataset = *datasets[j];
+			if (i < dataset.GetData().size())
 			{
-				result = values[j];
-				foundValue = true;
-			}
-			else if (result < values[j])
-			{
-				result = values[j];
+				sum += dataset.GetData()[i];
+				stop = false;
 			}
 		}
+		if (sum > result)
+		{
+			result = sum;
+		}
+		if (stop)
+		{
+			break;
+		}
+		++i;
 	}
 
 	return result;
