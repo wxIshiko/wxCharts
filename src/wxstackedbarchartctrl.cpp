@@ -211,33 +211,40 @@ void wxStackedBarChartCtrl::OnPaint(wxPaintEvent &evt)
 	{
 		m_grid.Draw(*gc);
 
+		wxVector<wxDouble> heightOfPreviousDatasets;
+		for (size_t i = 0; i < m_datasets[0]->GetBars().size(); ++i)
+		{
+			heightOfPreviousDatasets.push_back(0);
+		}
+
 		for (size_t i = 0; i < m_datasets.size(); ++i)
 		{
-			for (size_t i = 0; i < m_datasets.size(); ++i)
+			Dataset& currentDataset = *m_datasets[i];
+			for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
 			{
-				Dataset& currentDataset = *m_datasets[i];
-				for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
-				{
-					Bar& bar = *(currentDataset.GetBars()[j]);
+				Bar& bar = *(currentDataset.GetBars()[j]);
 
-					wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetWindowPosition(j, bar.GetValue());
-					upperLeftCornerPosition.m_x += m_options.GetBarSpacing();
-					wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPosition(j + 1, bar.GetValue());
-					upperRightCornerPosition.m_x -= m_options.GetBarSpacing();
+				wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetWindowPosition(j, bar.GetValue());
+				upperLeftCornerPosition.m_x += m_options.GetBarSpacing();
+				upperLeftCornerPosition.m_y -= heightOfPreviousDatasets[j];
+				wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPosition(j + 1, bar.GetValue());
+				upperRightCornerPosition.m_x -= m_options.GetBarSpacing();
+				upperRightCornerPosition.m_y -= heightOfPreviousDatasets[j];
 
-					bar.SetPosition(upperLeftCornerPosition);
-					bar.SetSize(upperRightCornerPosition.m_x - upperLeftCornerPosition.m_x, 
-						m_grid.GetMapping().GetEndPoint() - upperLeftCornerPosition.m_y);
-				}
+				bar.SetPosition(upperLeftCornerPosition);
+				bar.SetSize(upperRightCornerPosition.m_x - upperLeftCornerPosition.m_x,
+					(m_grid.GetMapping().GetEndPoint() - heightOfPreviousDatasets[j]) - upperLeftCornerPosition.m_y);
+
+				heightOfPreviousDatasets[j] = m_grid.GetMapping().GetEndPoint() - upperLeftCornerPosition.m_y;
 			}
+		}
 
-			for (size_t i = 0; i < m_datasets.size(); ++i)
+		for (size_t i = 0; i < m_datasets.size(); ++i)
+		{
+			Dataset& currentDataset = *m_datasets[i];
+			for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
 			{
-				Dataset& currentDataset = *m_datasets[i];
-				for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
-				{
-					currentDataset.GetBars()[j]->Draw(*gc);
-				}
+				currentDataset.GetBars()[j]->Draw(*gc);
 			}
 		}
 
