@@ -25,4 +25,29 @@
 #ifndef _WX_CHARTS_WXSTACKEDCOLUMNCHARTOPTIONS_H_
 #define _WX_CHARTS_WXSTACKEDCOLUMNCHARTOPTIONS_H_
 
+#include "wxchartoptions.h"
+#include "wxchartgridoptions.h"
+
+/// The options for the wxStackedColumnChartCtrl control.
+class wxStackedColumnChartOptions : public wxChartOptions
+{
+public:
+	/// Constructs a wxStackedColumnChartOptions instance.
+	wxStackedColumnChartOptions();
+
+	/// Gets the options for the grid.
+	/// @return The options for the grid.
+	const wxChartGridOptions& GetGridOptions() const;
+
+	/// Gets the amount of space the columns are separated
+	/// by. The actual space between columns will be twice
+	/// this amount.
+	/// @return The separation between columns.
+	wxDouble GetColumnSpacing() const;
+
+private:
+	wxChartGridOptions m_gridOptions;
+	wxDouble m_columnSpacing;
+};
+
 #endif

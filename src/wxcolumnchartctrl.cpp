@@ -214,10 +214,10 @@ void wxColumnChartCtrl::OnPaint(wxPaintEvent &evt)
 			Dataset& currentDataset = *m_datasets[i];
 			for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
 			{
-				Column& bar = *(currentDataset.GetColumns()[j]);
-				wxPoint2DDouble position = m_grid.GetMapping().GetWindowPosition(j, bar.GetValue());
-				bar.SetPosition(position);
-				bar.SetSize(20, m_grid.GetMapping().GetEndPoint() - position.m_y);
+				Column& column = *(currentDataset.GetColumns()[j]);
+				wxPoint2DDouble position = m_grid.GetMapping().GetWindowPosition(j, column.GetValue());
+				column.SetPosition(position);
+				column.SetSize(20, m_grid.GetMapping().GetEndPoint() - position.m_y);
 			}
 		}
 
