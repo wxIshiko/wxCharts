@@ -27,7 +27,7 @@ wxIMPLEMENT_APP(WxStackedBarApp);
 
 bool WxStackedBarApp::OnInit()
 {
-	WxStackedBarFrame* frame = new WxStackedBarFrame("wxCharts Stacked Bar Sample");
+	WxStackedBarFrame* frame = new WxStackedBarFrame("wxCharts Stacked Bar Chart Sample");
 	frame->Show(true);
 	return true;
 }

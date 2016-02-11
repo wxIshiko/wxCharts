@@ -27,7 +27,7 @@ wxIMPLEMENT_APP(WxLineApp);
 
 bool WxLineApp::OnInit()
 {
-	WxLineFrame* frame = new WxLineFrame("wxCharts Line Sample");
+	WxLineFrame* frame = new WxLineFrame("wxCharts Line Chart Sample");
 	frame->Show(true);
 	return true;
 }

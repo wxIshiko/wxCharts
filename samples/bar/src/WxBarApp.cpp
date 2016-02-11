@@ -27,7 +27,7 @@ wxIMPLEMENT_APP(WxBarApp);
 
 bool WxBarApp::OnInit()
 {
-	WxBarFrame* frame = new WxBarFrame("wxCharts Bar Sample");
+	WxBarFrame* frame = new WxBarFrame("wxCharts Bar Chart Sample");
 	frame->Show(true);
 	return true;
 }
