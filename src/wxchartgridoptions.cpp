@@ -41,7 +41,17 @@ const wxChartAxisOptions& wxChartGridOptions::GetXAxisOptions() const
 	return m_XAxisOptions;
 }
 
+wxChartAxisOptions& wxChartGridOptions::GetXAxisOptions()
+{
+	return m_XAxisOptions;
+}
+
 const wxChartAxisOptions& wxChartGridOptions::GetYAxisOptions() const
+{
+	return m_YAxisOptions;
+}
+
+wxChartAxisOptions& wxChartGridOptions::GetYAxisOptions()
 {
 	return m_YAxisOptions;
 }

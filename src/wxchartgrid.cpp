@@ -43,10 +43,21 @@ wxChartGrid::wxChartGrid(const wxSize &size,
 	: m_options(options), m_mapping(size, labels.size()), 
 	m_XAxis(labels, options.GetXAxisOptions()), m_needsFit(true)
 {
+	wxDouble effectiveMinValue = minValue;
+	if (options.GetYAxisOptions().GetStartValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
+	{
+		effectiveMinValue = options.GetYAxisOptions().GetStartValue();
+	}
+	wxDouble effectiveMaxValue = maxValue;
+	if (options.GetYAxisOptions().GetEndValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
+	{
+		effectiveMaxValue = options.GetYAxisOptions().GetEndValue();
+	}
+
 	wxDouble graphMinValue;
 	wxDouble graphMaxValue;
 	wxDouble valueRange = 0;
-	wxChartUtilities::CalculateGridRange(minValue, maxValue, 
+	wxChartUtilities::CalculateGridRange(effectiveMinValue, effectiveMaxValue,
 		graphMinValue, graphMaxValue, valueRange, m_steps, m_stepValue);
 	m_mapping.SetMinValue(graphMinValue);
 	m_mapping.SetMaxValue(graphMaxValue);

@@ -46,9 +46,13 @@ public:
 	/// Gets the options for the X axis.
 	/// @return The options for the X axis.
 	const wxChartAxisOptions& GetXAxisOptions() const;
+	/// Gets the options for the X axis.
+	/// @return The options for the X axis.
+	wxChartAxisOptions& GetXAxisOptions();
 	/// Gets the options for the Y axis.
 	/// @return The options for the Y axis.
 	const wxChartAxisOptions& GetYAxisOptions() const;
+	wxChartAxisOptions& GetYAxisOptions();
 
 	/// Whether to show horizontal grid lines. This doesn't affect
 	/// the visibility of the X axis.

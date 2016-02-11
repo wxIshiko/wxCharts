@@ -26,6 +26,7 @@ wxStackedBarChartOptions::wxStackedBarChartOptions()
 	: m_gridOptions(wxChartAxisOptions(wxCHARTAXISLABELTYPE_RANGE), wxChartAxisOptions()),
 	m_barSpacing(5)
 {
+	m_gridOptions.GetYAxisOptions().SetExplicitStartValue(0);
 }
 
 const wxChartGridOptions& wxStackedBarChartOptions::GetGridOptions() const
