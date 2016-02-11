@@ -59,7 +59,8 @@ public:
 	wxDouble GetStartPoint() const;
 	wxDouble GetEndPoint() const;
 
-	wxPoint2DDouble GetPointPosition(size_t index, wxDouble value) const;
+	wxPoint2DDouble GetWindowPosition(size_t index, wxDouble value) const;
+	wxPoint2DDouble GetWindowPositionOfPointOnXAxis(size_t index) const;
 
 private:
 	wxSize m_size;

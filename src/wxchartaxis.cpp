@@ -237,7 +237,7 @@ wxDouble wxChartAxis::CalculateLabelPosition(size_t index)
 	valueOffset = (valueWidth * index) + this.xScalePaddingLeft;
 	*/
 
-	if (m_options.GetLabelType() == wxCHARTLABELTYPE_RANGE)
+	if (m_options.GetLabelType() == wxCHARTAXISLABELTYPE_RANGE)
 	{
 		valueOffset += (valueWidth / 2);
 	}

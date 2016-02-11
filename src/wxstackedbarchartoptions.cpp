@@ -23,7 +23,7 @@
 #include "wxstackedbarchartoptions.h"
 
 wxStackedBarChartOptions::wxStackedBarChartOptions()
-	: m_gridOptions(wxChartAxisOptions(wxCHARTLABELTYPE_RANGE), wxChartAxisOptions()),
+	: m_gridOptions(wxChartAxisOptions(wxCHARTAXISLABELTYPE_RANGE), wxChartAxisOptions()),
 	m_barSpacing(5)
 {
 }

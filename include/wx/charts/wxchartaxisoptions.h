@@ -45,15 +45,21 @@
 /// label may affect more than just where they are
 /// positioned so something like 'centered' would
 /// have its own issues.
-enum wxChartLabelType
+enum wxChartAxisLabelType
 {
 	/// The labels represent specific points on the 
 	/// axis. Grid lines are drawn at these points.
-	wxCHARTLABELTYPE_POINT = 0,
+	wxCHARTAXISLABELTYPE_POINT = 0,
 	/// The labels represent portions of the axis.
 	/// The start and end of each portion are marked
 	/// by the grid lines.
-	wxCHARTLABELTYPE_RANGE = 1
+	wxCHARTAXISLABELTYPE_RANGE = 1
+};
+
+enum wxChartAxisValueMode
+{
+	wxCHARTAXISVALUEMODE_AUTO = 0,
+	wxCHARTAXISVALUEMODE_EXPLICIT = 1
 };
 
 /// The options for the wxChartAxis element.
@@ -63,11 +69,18 @@ public:
 	/// Constructs a new wxChartAxisOptions
 	/// instance.
 	wxChartAxisOptions();
-	wxChartAxisOptions(wxChartLabelType labelType);
+	wxChartAxisOptions(wxChartAxisLabelType labelType);
 
 	/// Gets the label type.
 	/// @return The label type.
-	wxChartLabelType GetLabelType() const;
+	wxChartAxisLabelType GetLabelType() const;
+
+	wxChartAxisValueMode GetStartValueMode() const;
+	wxDouble GetStartValue() const;
+	void SetExplicitStartValue(wxDouble startValue);
+	wxChartAxisValueMode GetEndValueMode() const;
+	wxDouble GetEndValue() const;
+	void SetExplicitEndValue(wxDouble endValue);
 
 	/// Gets the width of the line.
 	/// @return The width of the line.
@@ -79,7 +92,11 @@ public:
 	const wxChartFontOptions& GetFontOptions() const;
 
 private:
-	wxChartLabelType m_labelType;
+	wxChartAxisLabelType m_labelType;
+	wxChartAxisValueMode m_startValueMode;
+	wxDouble m_startValue;
+	wxChartAxisValueMode m_endValueMode;
+	wxDouble m_endValue;
 	unsigned int m_lineWidth;
 	wxColor m_lineColor;
 	wxChartFontOptions m_fontOptions;

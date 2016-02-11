@@ -101,8 +101,8 @@ wxDouble wxChartGridMapping::GetEndPoint() const
 	return m_endPoint;
 }
 
-wxPoint2DDouble wxChartGridMapping::GetPointPosition(size_t index,
-													 wxDouble value) const
+wxPoint2DDouble wxChartGridMapping::GetWindowPosition(size_t index,
+													  wxDouble value) const
 {
 	wxDouble innerWidth = m_size.GetWidth() - m_leftPadding;
 	wxDouble valueWidth = innerWidth / m_numberOfVerticalLines;
@@ -112,4 +112,15 @@ wxPoint2DDouble wxChartGridMapping::GetPointPosition(size_t index,
 	wxDouble y  = m_endPoint - (scalingFactor * (value - m_minValue));
 
 	return wxPoint2DDouble(x, y);
+}
+
+wxPoint2DDouble wxChartGridMapping::GetWindowPositionOfPointOnXAxis(size_t index) const
+{
+	wxDouble innerWidth = m_size.GetWidth() - m_leftPadding;
+	wxDouble valueWidth = innerWidth / m_numberOfVerticalLines;
+	wxDouble x = m_leftPadding + (valueWidth * index);
+
+	wxDouble scalingFactor = ((m_endPoint - m_startPoint) / (m_maxValue - m_minValue));
+
+	return wxPoint2DDouble(x, m_endPoint);
 }

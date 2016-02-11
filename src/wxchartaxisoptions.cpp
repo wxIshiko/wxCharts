@@ -23,22 +23,58 @@
 #include "wxchartaxisoptions.h"
 
 wxChartAxisOptions::wxChartAxisOptions()
-	: m_labelType(wxCHARTLABELTYPE_POINT),
+	: m_labelType(wxCHARTAXISLABELTYPE_POINT),
+	m_startValueMode(wxCHARTAXISVALUEMODE_AUTO), m_startValue(0),
+	m_endValueMode(wxCHARTAXISVALUEMODE_AUTO), m_endValue(0),
 	m_lineWidth(1), m_lineColor(0, 0, 0, 0x19),
 	m_fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666)
 {
 }
 
-wxChartAxisOptions::wxChartAxisOptions(wxChartLabelType labelType)
+wxChartAxisOptions::wxChartAxisOptions(wxChartAxisLabelType labelType)
 	: m_labelType(labelType),
+	m_startValueMode(wxCHARTAXISVALUEMODE_AUTO), m_startValue(0),
+	m_endValueMode(wxCHARTAXISVALUEMODE_AUTO), m_endValue(0),
 	m_lineWidth(1), m_lineColor(0, 0, 0, 0x19),
 	m_fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666)
 {
 }
 
-wxChartLabelType wxChartAxisOptions::GetLabelType() const
+wxChartAxisLabelType wxChartAxisOptions::GetLabelType() const
 {
 	return m_labelType;
+}
+
+wxChartAxisValueMode wxChartAxisOptions::GetStartValueMode() const
+{
+	return m_startValueMode;
+}
+
+wxDouble wxChartAxisOptions::GetStartValue() const
+{
+	return m_startValue;
+}
+
+void wxChartAxisOptions::SetExplicitStartValue(wxDouble startValue)
+{
+	m_startValueMode = wxCHARTAXISVALUEMODE_EXPLICIT;
+	m_startValue = startValue;
+}
+
+wxChartAxisValueMode wxChartAxisOptions::GetEndValueMode() const
+{
+	return m_endValueMode;
+}
+
+wxDouble wxChartAxisOptions::GetEndValue() const
+{
+	return m_endValue;
+}
+
+void wxChartAxisOptions::SetExplicitEndValue(wxDouble endValue)
+{
+	m_endValueMode = wxCHARTAXISVALUEMODE_EXPLICIT;
+	m_endValue = endValue;
 }
 
 unsigned int wxChartAxisOptions::GetLineWidth() const

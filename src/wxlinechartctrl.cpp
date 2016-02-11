@@ -343,14 +343,14 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 			if (points.size() > 0)
 			{
 				const Point::ptr& point = points[0];
-				wxPoint2DDouble firstPosition = m_grid.GetMapping().GetPointPosition(0, point->GetValue());
+				wxPoint2DDouble firstPosition = m_grid.GetMapping().GetWindowPosition(0, point->GetValue());
 				path.MoveToPoint(firstPosition);
 
 				wxPoint2DDouble lastPosition;
 				for (size_t j = 1; j < points.size(); ++j)
 				{
 					const Point::ptr& point = points[j];
-					lastPosition = m_grid.GetMapping().GetPointPosition(j, point->GetValue());
+					lastPosition = m_grid.GetMapping().GetWindowPosition(j, point->GetValue());
 					path.AddLineToPoint(lastPosition);
 				}
 
@@ -380,7 +380,7 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 				for (size_t j = 0; j < points.size(); ++j)
 				{
 					const Point::ptr& point = points[j];
-					point->SetPosition(m_grid.GetMapping().GetPointPosition(j, point->GetValue()));
+					point->SetPosition(m_grid.GetMapping().GetWindowPosition(j, point->GetValue()));
 					point->Draw(*gc);
 				}
 			}

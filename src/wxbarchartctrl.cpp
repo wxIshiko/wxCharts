@@ -215,7 +215,7 @@ void wxBarChartCtrl::OnPaint(wxPaintEvent &evt)
 			for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
 			{
 				Bar& bar = *(currentDataset.GetBars()[j]);
-				wxPoint2DDouble position = m_grid.GetMapping().GetPointPosition(j, bar.GetValue());
+				wxPoint2DDouble position = m_grid.GetMapping().GetWindowPosition(j, bar.GetValue());
 				bar.SetPosition(position);
 				bar.SetSize(20, m_grid.GetMapping().GetEndPoint() - position.m_y);
 			}

@@ -205,10 +205,14 @@ void wxStackedBarChartCtrl::OnPaint(wxPaintEvent &evt)
 				for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
 				{
 					Bar& bar = *(currentDataset.GetBars()[j]);
-					wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetPointPosition(j, bar.GetValue());
-					wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetPointPosition(j + 1, bar.GetValue());
-					bar.SetPosition(upperLeftCornerPosition.m_x + m_options.GetBarSpacing(), upperLeftCornerPosition.m_y);
-					bar.SetSize(upperRightCornerPosition.m_x - upperLeftCornerPosition.m_x - 2 * m_options.GetBarSpacing(), 
+
+					wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetWindowPosition(j, bar.GetValue());
+					upperLeftCornerPosition.m_x += m_options.GetBarSpacing();
+					wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPosition(j + 1, bar.GetValue());
+					upperRightCornerPosition.m_x -= m_options.GetBarSpacing();
+
+					bar.SetPosition(upperLeftCornerPosition);
+					bar.SetSize(upperRightCornerPosition.m_x - upperLeftCornerPosition.m_x, 
 						m_grid.GetMapping().GetEndPoint() - upperLeftCornerPosition.m_y);
 				}
 			}
