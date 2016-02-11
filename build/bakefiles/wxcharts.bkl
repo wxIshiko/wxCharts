@@ -68,6 +68,8 @@ library wxcharts
         ../../include/wx/charts/wxbarchartoptions.h
         ../../include/wx/charts/wxchartslicedata.h
         ../../include/wx/charts/wxbarchartctrl.h
+        ../../include/wx/charts/wxcolumnchartoptions.h
+        ../../include/wx/charts/wxcolumnchartctrl.h
         ../../include/wx/charts/wxstackedbarchartoptions.h
         ../../include/wx/charts/wxstackedbarchartctrl.h
         ../../include/wx/charts/wxlinechartoptions.h
@@ -120,6 +122,8 @@ library wxcharts
         ../../src/wxbarchartoptions.cpp
         ../../src/wxchartslicedata.cpp
         ../../src/wxbarchartctrl.cpp
+        ../../src/wxcolumnchartoptions.cpp
+        ../../src/wxcolumnchartctrl.cpp
         ../../src/wxstackedbarchartoptions.cpp
         ../../src/wxstackedbarchartctrl.cpp
         ../../src/wxlinechartoptions.cpp
