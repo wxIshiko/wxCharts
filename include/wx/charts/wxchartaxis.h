@@ -88,6 +88,7 @@ public:
 
 private:
 	void DrawMarkers(wxGraphicsContext &gc);
+	void DrawLabels(wxGraphicsContext &gc);
 
 private:
 	wxChartAxisOptions m_options;

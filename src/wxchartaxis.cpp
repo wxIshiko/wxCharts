@@ -64,40 +64,19 @@ wxPoint2DDouble wxChartAxis::GetTooltipPosition() const
 
 void wxChartAxis::Draw1(wxGraphicsContext &gc)
 {
+	wxPen pen(m_options.GetLineColor(), m_options.GetLineWidth());
+	gc.SetPen(pen);
+
 	// Draw the axis
 	wxGraphicsPath path = gc.CreatePath();
 	path.MoveToPoint(m_leftPadding, m_endPoint);
 	path.AddLineToPoint(m_leftPadding, m_startPoint - 3);
 	path.CloseSubpath();
-
-	wxPen pen(m_options.GetLineColor(), m_options.GetLineWidth());
-	gc.SetPen(pen);
 	gc.StrokePath(path);
 
-	// Draw the little lines corresponding to the labels
-	wxDouble yLabelGap = (m_endPoint - m_startPoint) / (m_labels.size() - 1);
-	for (size_t i = 0; i < m_labels.size(); ++i)
-	{
-		wxDouble yLabelCenter = m_endPoint - (yLabelGap * i);
-		wxDouble linePositionY = yLabelCenter;
-
-		wxGraphicsPath path2 = gc.CreatePath();
-		path2.MoveToPoint(m_leftPadding - 5, linePositionY);
-		path2.AddLineToPoint(m_leftPadding, linePositionY);
-		path2.CloseSubpath();
-
-		wxPen pen(m_options.GetLineColor(), m_options.GetLineWidth());
-		gc.SetPen(pen);
-		gc.StrokePath(path2);
-	}
 	
-	// Draw the labels
-	wxFont font = m_options.GetFontOptions().GetFont();
-	gc.SetFont(font, m_options.GetFontOptions().GetColor());
-	for (size_t i = 0; i < m_labels.size(); ++i)
-	{
-		m_labels[i].Draw(gc);
-	}
+	DrawMarkers(gc);	// Draw the little lines corresponding to the labels
+	DrawLabels(gc);
 }
 
 void wxChartAxis::Draw2(wxGraphicsContext &gc)
@@ -110,19 +89,10 @@ void wxChartAxis::Draw2(wxGraphicsContext &gc)
 	path.MoveToPoint(m_leftPadding, m_endPoint);
 	path.AddLineToPoint(m_leftPadding + m_length, m_endPoint);
 	path.CloseSubpath();
-
 	gc.StrokePath(path);
 
-	// Draw the little lines corresponding to the labels
-	DrawMarkers(gc);
-
-	// Draw the labels
-	wxFont font = m_options.GetFontOptions().GetFont();
-	gc.SetFont(font, m_options.GetFontOptions().GetColor());
-	for (size_t i = 0; i < m_labels.size(); ++i)
-	{
-		m_labels[i].Draw(gc);
-	}
+	DrawMarkers(gc);	// Draw the little lines corresponding to the labels
+	DrawLabels(gc);
 }
 
 void wxChartAxis::Fit(wxDouble leftPadding,
@@ -231,7 +201,21 @@ wxPoint2DDouble wxChartAxis::GetMarkerPosition(size_t index) const
 
 void wxChartAxis::DrawMarkers(wxGraphicsContext &gc)
 {
-	if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
+	{
+		wxDouble yLabelGap = (m_endPoint - m_startPoint) / (m_labels.size() - 1);
+		for (size_t i = 0; i < m_labels.size(); ++i)
+		{
+			wxDouble yLabelCenter = m_endPoint - (yLabelGap * i);
+			wxDouble linePositionY = yLabelCenter;
+
+			wxGraphicsPath path = gc.CreatePath();
+			path.MoveToPoint(m_leftPadding - 5, linePositionY);
+			path.AddLineToPoint(m_leftPadding, linePositionY);
+			gc.StrokePath(path);
+		}
+	}
+	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
 	{
 		for (size_t i = 0; i < m_labels.size(); ++i)
 		{
@@ -240,9 +224,17 @@ void wxChartAxis::DrawMarkers(wxGraphicsContext &gc)
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(linePosition, m_endPoint);
 			path.AddLineToPoint(linePosition, m_endPoint + 5);
-			path.CloseSubpath();
-
 			gc.StrokePath(path);
 		}
+	}
+}
+
+void wxChartAxis::DrawLabels(wxGraphicsContext &gc)
+{
+	wxFont font = m_options.GetFontOptions().GetFont();
+	gc.SetFont(font, m_options.GetFontOptions().GetColor());
+	for (size_t i = 0; i < m_labels.size(); ++i)
+	{
+		m_labels[i].Draw(gc);
 	}
 }
