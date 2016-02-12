@@ -69,14 +69,13 @@ public:
 	void UpdateLabelSizes(wxGraphicsContext &gc);
 	void Fit(wxDouble leftPadding, wxDouble startPoint,
 		wxDouble endPoint, wxDouble length);
-	void BuildYLabels(wxDouble minValue, size_t steps,
-		wxDouble stepValue);
 	void UpdateLabelPositions1();
 	void UpdateLabelPositions2();
 
 	/// Gets the labels.
 	/// @return The list of labels.
 	const wxVector<wxChartLabel>& GetLabels();
+	void SetLabels(const wxVector<wxChartLabel> &labels);
 	/// Gets the width of the widest label. Note that
 	/// this assumes the size of the labels has been
 	/// correctly set for instance using the 

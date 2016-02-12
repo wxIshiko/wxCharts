@@ -34,7 +34,6 @@
 #include "wxchartaxis.h"
 #include "wxchartutilities.h"
 #include <wx/pen.h>
-#include <sstream>
 
 wxChartAxis::wxChartAxis()
 	: m_leftPadding(0), m_startPoint(0),
@@ -172,26 +171,6 @@ void wxChartAxis::UpdateLabelSizes(wxGraphicsContext &gc)
 	m_labelMaxWidth += 10;
 }
 
-void wxChartAxis::BuildYLabels(wxDouble minValue,
-							   size_t steps,
-							   wxDouble stepValue)
-{
-	m_labels.clear();
-
-	size_t stepDecimalPlaces = wxChartUtilities::GetDecimalPlaces();
-
-	wxFont font = m_options.GetFontOptions().GetFont();
-
-	for (size_t i = 0; i <= steps; ++i)
-	{
-		wxDouble value = minValue + (i * stepValue);//.toFixed(stepDecimalPlaces);
-		std::stringstream valueStr;
-		valueStr << value;
-
-		m_labels.push_back(wxChartLabel(valueStr.str()));
-	}
-}
-
 void wxChartAxis::UpdateLabelPositions1()
 {
 	wxDouble yLabelGap = (m_endPoint - m_startPoint) / (m_labels.size() - 1);
@@ -217,6 +196,11 @@ void wxChartAxis::UpdateLabelPositions2()
 const wxVector<wxChartLabel>& wxChartAxis::GetLabels()
 {
 	return m_labels;
+}
+
+void wxChartAxis::SetLabels(const wxVector<wxChartLabel> &labels)
+{
+	m_labels = labels;
 }
 
 wxDouble wxChartAxis::GetLabelMaxWidth() const

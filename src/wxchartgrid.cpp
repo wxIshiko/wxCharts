@@ -34,6 +34,7 @@
 #include "wxchartgrid.h"
 #include "wxchartutilities.h"
 #include <wx/pen.h>
+#include <sstream>
 
 wxChartGrid::wxChartGrid(const wxSize &size,
 						 const wxVector<wxString> &labels,
@@ -62,7 +63,9 @@ wxChartGrid::wxChartGrid(const wxSize &size,
 	m_mapping.SetMinValue(graphMinValue);
 	m_mapping.SetMaxValue(graphMaxValue);
 
-	m_YAxis.BuildYLabels(m_mapping.GetMinValue(), m_steps, m_stepValue);
+	wxVector<wxChartLabel> yLabels;
+	BuildYLabels(m_mapping.GetMinValue(), m_steps, m_stepValue, yLabels);
+	m_YAxis.SetLabels(yLabels);
 }
 
 bool wxChartGrid::HitTest(const wxPoint &point) const
@@ -164,6 +167,23 @@ void wxChartGrid::Fit(size_t steps,
 	m_mapping.Fit(leftPadding, startPoint, endPoint);
 
 	m_needsFit = false;
+}
+
+void wxChartGrid::BuildYLabels(wxDouble minValue,
+							   size_t steps,
+							   wxDouble stepValue,
+							   wxVector<wxChartLabel> &labels)
+{
+	size_t stepDecimalPlaces = wxChartUtilities::GetDecimalPlaces();
+
+	for (size_t i = 0; i <= steps; ++i)
+	{
+		wxDouble value = minValue + (i * stepValue);//.toFixed(stepDecimalPlaces);
+		std::stringstream valueStr;
+		valueStr << value;
+
+		labels.push_back(wxChartLabel(valueStr.str()));
+	}
 }
 
 wxDouble wxChartGrid::CalculateLeftPadding(const wxVector<wxChartLabel> &xLabels,
