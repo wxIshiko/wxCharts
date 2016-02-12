@@ -41,6 +41,11 @@ wxChartAxisOptions::wxChartAxisOptions(wxChartAxisPosition position,
 {
 }
 
+wxChartAxisPosition wxChartAxisOptions::GetPosition() const
+{
+	return m_position;
+}
+
 wxChartAxisLabelType wxChartAxisOptions::GetLabelType() const
 {
 	return m_labelType;

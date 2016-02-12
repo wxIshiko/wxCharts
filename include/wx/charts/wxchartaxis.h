@@ -87,6 +87,9 @@ public:
 	wxPoint2DDouble GetMarkerPosition(size_t index) const;
 
 private:
+	void DrawMarkers(wxGraphicsContext &gc);
+
+private:
 	wxChartAxisOptions m_options;
 	wxDouble m_leftPadding;
 	wxDouble m_startPoint;

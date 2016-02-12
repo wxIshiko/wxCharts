@@ -114,17 +114,7 @@ void wxChartAxis::Draw2(wxGraphicsContext &gc)
 	gc.StrokePath(path);
 
 	// Draw the little lines corresponding to the labels
-	for (size_t i = 0; i < m_labels.size(); ++i)
-	{
-		wxDouble linePosition = GetMarkerPosition(i).m_x;
-
-		wxGraphicsPath path2 = gc.CreatePath();
-		path2.MoveToPoint(linePosition, m_endPoint);
-		path2.AddLineToPoint(linePosition, m_endPoint + 5);
-		path2.CloseSubpath();
-
-		gc.StrokePath(path2);
-	}
+	DrawMarkers(gc);
 
 	// Draw the labels
 	wxFont font = m_options.GetFontOptions().GetFont();
@@ -237,4 +227,22 @@ wxPoint2DDouble wxChartAxis::GetMarkerPosition(size_t index) const
 	wxDouble valueOffset = m_leftPadding + (valueWidth * index);
 
 	return wxPoint2DDouble(valueOffset, m_endPoint);
+}
+
+void wxChartAxis::DrawMarkers(wxGraphicsContext &gc)
+{
+	if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+	{
+		for (size_t i = 0; i < m_labels.size(); ++i)
+		{
+			wxDouble linePosition = GetMarkerPosition(i).m_x;
+
+			wxGraphicsPath path = gc.CreatePath();
+			path.MoveToPoint(linePosition, m_endPoint);
+			path.AddLineToPoint(linePosition, m_endPoint + 5);
+			path.CloseSubpath();
+
+			gc.StrokePath(path);
+		}
+	}
 }

@@ -91,6 +91,8 @@ public:
 	wxChartAxisOptions(wxChartAxisPosition position);
 	wxChartAxisOptions(wxChartAxisPosition position, wxChartAxisLabelType labelType);
 
+	wxChartAxisPosition GetPosition() const;
+
 	/// Gets the label type.
 	/// @return The label type.
 	wxChartAxisLabelType GetLabelType() const;
