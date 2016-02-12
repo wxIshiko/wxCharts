@@ -159,8 +159,8 @@ void wxChartGrid::Fit(size_t steps,
 	m_XAxis.Fit(leftPadding, 0, endPoint, m_mapping.GetSize().GetWidth() - leftPadding);
 	m_YAxis.Fit(leftPadding, startPoint, endPoint, 0);
 
-	m_XAxis.UpdateLabelPositions2();
-	m_YAxis.UpdateLabelPositions1();
+	m_XAxis.UpdateLabelPositions();
+	m_YAxis.UpdateLabelPositions();
 
 	m_mapping.Fit(leftPadding, startPoint, endPoint);
 

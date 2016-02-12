@@ -118,25 +118,27 @@ void wxChartAxis::UpdateLabelSizes(wxGraphicsContext &gc)
 	m_labelMaxWidth += 10;
 }
 
-void wxChartAxis::UpdateLabelPositions1()
+void wxChartAxis::UpdateLabelPositions()
 {
-	wxDouble yLabelGap = (m_endPoint - m_startPoint) / (m_labels.size() - 1);
-
-	for (size_t i = 0; i < m_labels.size(); ++i)
-	{		
-		wxDouble yLabelCenter = m_endPoint - (yLabelGap * i);
-		m_labels[i].SetPosition(m_leftPadding - 10 - m_labels[i].GetSize().GetWidth(), 
-			yLabelCenter - (m_labels[i].GetSize().GetHeight() / 2));
-	}
-}
-
-void wxChartAxis::UpdateLabelPositions2()
-{
-	for (size_t i = 0; i < m_labels.size(); ++i)
+	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
 	{
-		wxDouble labelPosition = CalculateLabelPosition(i);
-		m_labels[i].SetPosition(labelPosition - (m_labels[i].GetSize().GetWidth() / 2),
-			m_endPoint + 8);
+		wxDouble yLabelGap = (m_endPoint - m_startPoint) / (m_labels.size() - 1);
+
+		for (size_t i = 0; i < m_labels.size(); ++i)
+		{
+			wxDouble yLabelCenter = m_endPoint - (yLabelGap * i);
+			m_labels[i].SetPosition(m_leftPadding - 10 - m_labels[i].GetSize().GetWidth(),
+				yLabelCenter - (m_labels[i].GetSize().GetHeight() / 2));
+		}
+	}
+	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+	{
+		for (size_t i = 0; i < m_labels.size(); ++i)
+		{
+			wxDouble labelPosition = CalculateLabelPosition(i);
+			m_labels[i].SetPosition(labelPosition - (m_labels[i].GetSize().GetWidth() / 2),
+				m_endPoint + 8);
+		}
 	}
 }
 

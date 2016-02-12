@@ -68,8 +68,7 @@ public:
 	void UpdateLabelSizes(wxGraphicsContext &gc);
 	void Fit(wxDouble leftPadding, wxDouble startPoint,
 		wxDouble endPoint, wxDouble length);
-	void UpdateLabelPositions1();
-	void UpdateLabelPositions2();
+	void UpdateLabelPositions();
 
 	/// Gets the labels.
 	/// @return The list of labels.
