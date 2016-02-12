@@ -21,3 +21,45 @@
 */
 
 #include "wxstackedbarchartctrl.h"
+
+wxStackedBarChartDataset::wxStackedBarChartDataset(const wxColor &fillColor,
+												   const wxColor &strokeColor,
+												   const wxVector<wxDouble> &data)
+	: m_fillColor(fillColor), m_strokeColor(strokeColor), m_data(data)
+{
+}
+
+const wxColor& wxStackedBarChartDataset::GetFillColor() const
+{
+	return m_fillColor;
+}
+
+const wxColor& wxStackedBarChartDataset::GetStrokeColor() const
+{
+	return m_strokeColor;
+}
+
+const wxVector<wxDouble>& wxStackedBarChartDataset::GetData() const
+{
+	return m_data;
+}
+
+wxStackedBarChartData::wxStackedBarChartData(const wxVector<wxString> &labels)
+	: m_labels(labels)
+{
+}
+
+void wxStackedBarChartData::AddDataset(wxStackedBarChartDataset::ptr dataset)
+{
+	m_datasets.push_back(dataset);
+}
+
+const wxVector<wxString>& wxStackedBarChartData::GetLabels() const
+{
+	return m_labels;
+}
+
+const wxVector<wxStackedBarChartDataset::ptr>& wxStackedBarChartData::GetDatasets() const
+{
+	return m_datasets;
+}
