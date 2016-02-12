@@ -40,7 +40,7 @@ WxColumnFrame::WxColumnFrame(const wxString& title)
 	labels.push_back("May");
 	labels.push_back("June");
 	labels.push_back("July");
-	wxColumnChartData chartData(labels);
+	wxBarChartData chartData(labels);
 
 	// Add the first dataset
 	wxVector<wxDouble> points1;
@@ -51,8 +51,8 @@ WxColumnFrame::WxColumnFrame(const wxString& title)
 	points1.push_back(6);
 	points1.push_back(5);
 	points1.push_back(1);
-	wxColumnChartDataset::ptr dataset1(
-		new wxColumnChartDataset(
+	wxBarChartDataset::ptr dataset1(
+		new wxBarChartDataset(
 			wxColor(220, 220, 220, 0x7F),
 			wxColor(220, 220, 220, 0xCC),
 			points1)

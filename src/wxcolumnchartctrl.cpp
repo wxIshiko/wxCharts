@@ -35,48 +35,6 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
-wxColumnChartDataset::wxColumnChartDataset(const wxColor &fillColor,
-										   const wxColor &strokeColor,
-										   const wxVector<wxDouble> &data)
-	: m_fillColor(fillColor), m_strokeColor(strokeColor), m_data(data)
-{
-}
-
-const wxColor& wxColumnChartDataset::GetFillColor() const
-{
-	return m_fillColor;
-}
-
-const wxColor& wxColumnChartDataset::GetStrokeColor() const
-{
-	return m_strokeColor;
-}
-
-const wxVector<wxDouble>& wxColumnChartDataset::GetData() const
-{
-	return m_data;
-}
-
-wxColumnChartData::wxColumnChartData(const wxVector<wxString> &labels)
-	: m_labels(labels)
-{
-}
-
-void wxColumnChartData::AddDataset(wxColumnChartDataset::ptr dataset)
-{
-	m_datasets.push_back(dataset);
-}
-
-const wxVector<wxString>& wxColumnChartData::GetLabels() const
-{
-	return m_labels;
-}
-
-const wxVector<wxColumnChartDataset::ptr>& wxColumnChartData::GetDatasets() const
-{
-	return m_datasets;
-}
-
 wxColumnChartCtrl::Column::Column(wxDouble value,
 								  wxDouble x,
 								  wxDouble y,
@@ -108,7 +66,7 @@ void wxColumnChartCtrl::Dataset::AppendColumn(Column::ptr column)
 
 wxColumnChartCtrl::wxColumnChartCtrl(wxWindow *parent,
 									 wxWindowID id,
-									 const wxColumnChartData &data,
+									 const wxBarChartData &data,
 									 const wxPoint &pos,
 									 const wxSize &size,
 									 long style)
@@ -116,10 +74,10 @@ wxColumnChartCtrl::wxColumnChartCtrl(wxWindow *parent,
 	m_grid(size, data.GetLabels(), GetMinValue(data.GetDatasets()),
 		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions())
 {
-	const wxVector<wxColumnChartDataset::ptr>& datasets = data.GetDatasets();
+	const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
 	for (size_t i = 0; i < datasets.size(); ++i)
 	{
-		const wxColumnChartDataset& dataset = *datasets[i];
+		const wxBarChartDataset& dataset = *datasets[i];
 		Dataset::ptr newDataset(new Dataset());
 
 		const wxVector<wxDouble>& data = dataset.GetData();
@@ -137,7 +95,7 @@ const wxColumnChartOptions& wxColumnChartCtrl::GetOptions() const
 	return m_options;
 }
 
-wxDouble wxColumnChartCtrl::GetMinValue(const wxVector<wxColumnChartDataset::ptr>& datasets)
+wxDouble wxColumnChartCtrl::GetMinValue(const wxVector<wxBarChartDataset::ptr>& datasets)
 {
 	wxDouble result = 0;
 	bool foundValue = false;
@@ -162,7 +120,7 @@ wxDouble wxColumnChartCtrl::GetMinValue(const wxVector<wxColumnChartDataset::ptr
 	return result;
 }
 
-wxDouble wxColumnChartCtrl::GetMaxValue(const wxVector<wxColumnChartDataset::ptr>& datasets)
+wxDouble wxColumnChartCtrl::GetMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets)
 {
 	wxDouble result = 0;
 	bool foundValue = false;
