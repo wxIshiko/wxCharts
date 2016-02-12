@@ -32,6 +32,8 @@
 */
 
 #include "wxbarchartctrl.h"
+#include <wx/dcbuffer.h>
+#include <wx/graphics.h>
 
 wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 							   wxWindowID id,
@@ -39,7 +41,9 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 							   const wxPoint &pos,
 							   const wxSize &size,
 							   long style)
-	: wxChartCtrl(parent, id, pos, size, style)
+	: wxChartCtrl(parent, id, pos, size, style),
+	m_grid(size, data.GetLabels(), 0,
+		20, m_options.GetGridOptions())
 {
 }
 
@@ -50,6 +54,7 @@ const wxBarChartOptions& wxBarChartCtrl::GetOptions() const
 
 void wxBarChartCtrl::Resize(const wxSize &size)
 {
+	m_grid.Resize(size);
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxBarChartCtrl::GetActiveElements(const wxPoint &point)
@@ -57,3 +62,22 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxBarChartCtrl::GetActiveElements(
 	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
 	return activeElements;
 }
+
+void wxBarChartCtrl::OnPaint(wxPaintEvent &evt)
+{
+	wxAutoBufferedPaintDC dc(this);
+
+	dc.Clear();
+
+	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+	if (gc)
+	{
+		m_grid.Draw(*gc);
+
+		delete gc;
+	}
+}
+
+BEGIN_EVENT_TABLE(wxBarChartCtrl, wxChartCtrl)
+	EVT_PAINT(wxBarChartCtrl::OnPaint)
+END_EVENT_TABLE()

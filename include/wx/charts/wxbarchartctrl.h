@@ -69,8 +69,13 @@ private:
 	virtual void Resize(const wxSize &size);
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
+	void OnPaint(wxPaintEvent &evt);
+
 private:
 	wxBarChartOptions m_options;
+	wxChartGrid m_grid;
+
+	DECLARE_EVENT_TABLE();
 };
 
 #endif
