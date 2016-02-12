@@ -27,7 +27,7 @@ wxIMPLEMENT_APP(WxDoughnutApp);
 
 bool WxDoughnutApp::OnInit()
 {
-	WxDoughnutFrame* frame = new WxDoughnutFrame("wxCharts Doughnut Sample");
+	WxDoughnutFrame* frame = new WxDoughnutFrame("wxCharts Doughnut Chart Sample");
 	frame->Show(true);
 	return true;
 }

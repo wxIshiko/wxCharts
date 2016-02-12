@@ -27,7 +27,7 @@ wxIMPLEMENT_APP(WxPieApp);
 
 bool WxPieApp::OnInit()
 {
-	WxPieFrame* frame = new WxPieFrame("wxCharts Pie Sample");
+	WxPieFrame* frame = new WxPieFrame("wxCharts Pie Chart Sample");
 	frame->Show(true);
 	return true;
 }

@@ -27,7 +27,7 @@ wxIMPLEMENT_APP(WxPolarAreaApp);
 
 bool WxPolarAreaApp::OnInit()
 {
-	WxPolarAreaFrame* frame = new WxPolarAreaFrame("wxCharts Polar Area Sample");
+	WxPolarAreaFrame* frame = new WxPolarAreaFrame("wxCharts Polar Area Chart Sample");
 	frame->Show(true);
 	return true;
 }

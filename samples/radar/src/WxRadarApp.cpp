@@ -27,7 +27,7 @@ wxIMPLEMENT_APP(WxRadarApp);
 
 bool WxRadarApp::OnInit()
 {
-	WxRadarFrame* frame = new WxRadarFrame("wxCharts Radar Sample");
+	WxRadarFrame* frame = new WxRadarFrame("wxCharts Radar Chart Sample");
 	frame->Show(true);
 	return true;
 }
