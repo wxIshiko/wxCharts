@@ -59,8 +59,7 @@ public:
 
 	/// Draws the axis.
 	/// @param gc The graphics context.
-	void Draw1(wxGraphicsContext &gc);
-	void Draw2(wxGraphicsContext &gc);
+	void Draw(wxGraphicsContext &gc);
 
 	/// Updates the size of each label using the 
 	/// font details specified in the axis options

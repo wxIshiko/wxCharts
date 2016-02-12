@@ -121,8 +121,8 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		}
 	}
 
-	m_XAxis.Draw2(gc);
-	m_YAxis.Draw1(gc);
+	m_XAxis.Draw(gc);
+	m_YAxis.Draw(gc);
 }
 
 void wxChartGrid::Resize(const wxSize &size)

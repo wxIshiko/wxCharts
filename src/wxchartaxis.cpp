@@ -62,33 +62,23 @@ wxPoint2DDouble wxChartAxis::GetTooltipPosition() const
 	return wxPoint2DDouble(0, 0);
 }
 
-void wxChartAxis::Draw1(wxGraphicsContext &gc)
+void wxChartAxis::Draw(wxGraphicsContext &gc)
 {
 	wxPen pen(m_options.GetLineColor(), m_options.GetLineWidth());
 	gc.SetPen(pen);
 
 	// Draw the axis
 	wxGraphicsPath path = gc.CreatePath();
-	path.MoveToPoint(m_leftPadding, m_endPoint);
-	path.AddLineToPoint(m_leftPadding, m_startPoint - 3);
-	path.CloseSubpath();
-	gc.StrokePath(path);
-
-	
-	DrawMarkers(gc);	// Draw the little lines corresponding to the labels
-	DrawLabels(gc);
-}
-
-void wxChartAxis::Draw2(wxGraphicsContext &gc)
-{
-	wxPen pen(m_options.GetLineColor(), m_options.GetLineWidth());
-	gc.SetPen(pen);
-
-	// Draw the axis
-	wxGraphicsPath path = gc.CreatePath();
-	path.MoveToPoint(m_leftPadding, m_endPoint);
-	path.AddLineToPoint(m_leftPadding + m_length, m_endPoint);
-	path.CloseSubpath();
+	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
+	{
+		path.MoveToPoint(m_leftPadding, m_endPoint);
+		path.AddLineToPoint(m_leftPadding, m_startPoint - 3);
+	}
+	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+	{
+		path.MoveToPoint(m_leftPadding, m_endPoint);
+		path.AddLineToPoint(m_leftPadding + m_length, m_endPoint);
+	}
 	gc.StrokePath(path);
 
 	DrawMarkers(gc);	// Draw the little lines corresponding to the labels
