@@ -23,3 +23,45 @@
 /// @file
 
 #include "wxbarchartdata.h"
+
+wxBarChartDataset::wxBarChartDataset(const wxColor &fillColor,
+									 const wxColor &strokeColor,
+									 const wxVector<wxDouble> &data)
+	: m_fillColor(fillColor), m_strokeColor(strokeColor), m_data(data)
+{
+}
+
+const wxColor& wxBarChartDataset::GetFillColor() const
+{
+	return m_fillColor;
+}
+
+const wxColor& wxBarChartDataset::GetStrokeColor() const
+{
+	return m_strokeColor;
+}
+
+const wxVector<wxDouble>& wxBarChartDataset::GetData() const
+{
+	return m_data;
+}
+
+wxBarChartData::wxBarChartData(const wxVector<wxString> &labels)
+	: m_labels(labels)
+{
+}
+
+void wxBarChartData::AddDataset(wxBarChartDataset::ptr dataset)
+{
+	m_datasets.push_back(dataset);
+}
+
+const wxVector<wxString>& wxBarChartData::GetLabels() const
+{
+	return m_labels;
+}
+
+const wxVector<wxBarChartDataset::ptr>& wxBarChartData::GetDatasets() const
+{
+	return m_datasets;
+}

@@ -37,67 +37,10 @@
 #define _WX_CHARTS_WXBARCHARTCTRL_H_
 
 #include "wxchartctrl.h"
+#include "wxbarchartdata.h"
 #include "wxbarchartoptions.h"
 #include "wxchartgrid.h"
 #include "wxchartrectangle.h"
-#include <wx/sharedptr.h>
-
-/// Stores the information about a dataset to be shown on a wxBarChartCtrl.
-class wxBarChartDataset
-{
-public:
-	/// Smart pointer typedef.
-	typedef wxSharedPtr<wxBarChartDataset> ptr;
-
-	/// Constructs a wxBarChartDataset instance.
-	/// @param fillColor The color of the brush used to 
-	/// fill the bar.
-	/// @param strokeColor The color of the pen used to
-	/// draw the outline of the bar.
-	/// @param data The list of values.
-	wxBarChartDataset(const wxColor &fillColor, const wxColor &strokeColor,
-		const wxVector<wxDouble> &data);
-
-	/// Gets the color of the brush used to fill the
-	/// bar.
-	/// @return The color of the brush used to fill the
-	/// bar.
-	const wxColor& GetFillColor() const;
-	/// Gets the color of the pen used to draw the outline
-	/// of the bar.
-	/// @return The color of the pen used to draw the 
-	/// outline of the bar.
-	const wxColor& GetStrokeColor() const;
-	const wxVector<wxDouble>& GetData() const;
-
-private:
-	wxColor m_fillColor;
-	wxColor m_strokeColor;
-	wxVector<wxDouble> m_data;
-};
-
-/// Data for the wxBarChartCtrl control.
-class wxBarChartData
-{
-public:
-	/// Constructs a wxBarChartData instance.
-	/// @param labels The labels of the X axis.
-	wxBarChartData(const wxVector<wxString> &labels);
-
-	/// Adds a dataset.
-	/// @param dataset The dataset to add.
-	void AddDataset(wxBarChartDataset::ptr dataset);
-
-	/// Gets the labels of the X axis.
-	/// @return A vector containing the labels of the
-	/// X axis.
-	const wxVector<wxString>& GetLabels() const;
-	const wxVector<wxBarChartDataset::ptr>& GetDatasets() const;
-
-private:
-	wxVector<wxString> m_labels;
-	wxVector<wxBarChartDataset::ptr> m_datasets;
-};
 
 /// A control that displays a bar chart.
 class wxBarChartCtrl : public wxChartCtrl
