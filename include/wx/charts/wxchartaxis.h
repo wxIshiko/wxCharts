@@ -84,8 +84,7 @@ public:
 	wxDouble GetLabelMaxWidth() const;
 
 	wxDouble CalculateLabelPosition(size_t index);
-	void GetVerticalLinePositions(size_t index,
-		wxPoint2DDouble &top, wxPoint2DDouble &bottom) const;
+	wxPoint2DDouble GetMarkerPosition(size_t index) const;
 
 private:
 	wxChartAxisOptions m_options;

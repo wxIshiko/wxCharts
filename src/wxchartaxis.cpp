@@ -116,10 +116,7 @@ void wxChartAxis::Draw2(wxGraphicsContext &gc)
 	// Draw the little lines corresponding to the labels
 	for (size_t i = 0; i < m_labels.size(); ++i)
 	{
-		wxPoint2DDouble s;
-		wxPoint2DDouble t;
-		GetVerticalLinePositions(i, s, t);
-		wxDouble linePosition = s.m_x;
+		wxDouble linePosition = GetMarkerPosition(i).m_x;
 
 		wxGraphicsPath path2 = gc.CreatePath();
 		path2.MoveToPoint(linePosition, m_endPoint);
@@ -233,13 +230,11 @@ wxDouble wxChartAxis::CalculateLabelPosition(size_t index)
 	return valueOffset;
 }
 
-void wxChartAxis::GetVerticalLinePositions(size_t index,
-										   wxPoint2DDouble &top,
-										   wxPoint2DDouble &bottom) const
+wxPoint2DDouble wxChartAxis::GetMarkerPosition(size_t index) const
 {
 	wxDouble innerWidth = m_length;
 	wxDouble valueWidth = innerWidth / m_labels.size();
 	wxDouble valueOffset = m_leftPadding + (valueWidth * index);
 
-	top.m_x = bottom.m_x = valueOffset;
+	return wxPoint2DDouble(valueOffset, m_endPoint);
 }

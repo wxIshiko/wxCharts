@@ -107,10 +107,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 	{
 		for (size_t i = 1; i < m_XAxis.GetLabels().size(); ++i)
 		{
-			wxPoint2DDouble s;
-			wxPoint2DDouble t;
-			m_XAxis.GetVerticalLinePositions(i, s, t);
-			wxDouble linePosition = s.m_x;
+			wxDouble linePosition = m_XAxis.GetMarkerPosition(i).m_x;
 
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(linePosition, m_mapping.GetEndPoint());
