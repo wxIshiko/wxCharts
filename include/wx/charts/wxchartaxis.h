@@ -45,9 +45,9 @@
 class wxChartAxis : public wxChartElement
 {
 public:
-	/// Construcs a wxChartAxis
-	/// element.
-	wxChartAxis();
+	/// Construcs a wxChartAxis element.
+	/// @param options The settings to be used for the axis.
+	wxChartAxis(const wxChartAxisOptions &options);
 	/// Constructs a wxChartAxis element.
 	/// @param labels The labels to display along the axis.
 	/// @param options The settings to be used for the axis.

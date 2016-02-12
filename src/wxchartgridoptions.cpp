@@ -23,7 +23,8 @@
 #include "wxchartgridoptions.h"
 
 wxChartGridOptions::wxChartGridOptions()
-	: m_showHorizontalLines(true), m_showVerticalLines(true),
+	: m_XAxisOptions(wxCHARTAXISPOSITION_BOTTOM), m_YAxisOptions(wxCHARTAXISPOSITION_LEFT),
+	m_showHorizontalLines(true), m_showVerticalLines(true),
 	m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x0C)
 {
 }

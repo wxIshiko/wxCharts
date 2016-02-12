@@ -27,6 +27,26 @@
 
 #include "wxchartfontoptions.h"
 
+/// The position of the axis in relation to the chart.
+
+/// The position is used to know where to draw the labels
+/// and markers.
+enum wxChartAxisPosition
+{
+	/// The axis is on the left of the chart. Markers
+	/// and labels should be drawn on the left of the axis.
+	wxCHARTAXISPOSITION_LEFT = 0,
+	/// The axis is on the right of the chart. Markers
+	/// and labels should be drawn on the right of the axis.
+	wxCHARTAXISPOSITION_RIGHT = 1,
+	/// The axis is at the top of the chart. Markers
+	/// and labels should be drawn above the axis.
+	wxCHARTAXISPOSITION_BOTTOM = 2,
+	/// The axis is at the bottom of the chart. Markers
+	/// and labels should be drawn below the axis.
+	wxCHARTAXISPOSITION_TOP = 3
+};
+
 /// Label types for the wxChartAxis class.
 
 /// Labels on an axis can represent 2 things. 
@@ -68,8 +88,8 @@ class wxChartAxisOptions
 public:
 	/// Constructs a new wxChartAxisOptions
 	/// instance.
-	wxChartAxisOptions();
-	wxChartAxisOptions(wxChartAxisLabelType labelType);
+	wxChartAxisOptions(wxChartAxisPosition position);
+	wxChartAxisOptions(wxChartAxisPosition position, wxChartAxisLabelType labelType);
 
 	/// Gets the label type.
 	/// @return The label type.
@@ -92,6 +112,7 @@ public:
 	const wxChartFontOptions& GetFontOptions() const;
 
 private:
+	wxChartAxisPosition m_position;
 	wxChartAxisLabelType m_labelType;
 	wxChartAxisValueMode m_startValueMode;
 	wxDouble m_startValue;

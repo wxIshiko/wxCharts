@@ -23,7 +23,10 @@
 #include "wxbarchartoptions.h"
 
 wxBarChartOptions::wxBarChartOptions()
-	: m_gridOptions(wxChartAxisOptions(wxCHARTAXISLABELTYPE_RANGE), wxChartAxisOptions()),
+	: m_gridOptions(
+		wxChartAxisOptions(wxCHARTAXISPOSITION_BOTTOM, wxCHARTAXISLABELTYPE_RANGE), 
+		wxChartAxisOptions(wxCHARTAXISPOSITION_LEFT)
+		),
 	m_barSpacing(5)
 {
 	m_gridOptions.GetYAxisOptions().SetExplicitStartValue(0);

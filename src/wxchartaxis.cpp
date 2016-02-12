@@ -35,8 +35,8 @@
 #include "wxchartutilities.h"
 #include <wx/pen.h>
 
-wxChartAxis::wxChartAxis()
-	: m_leftPadding(0), m_startPoint(0),
+wxChartAxis::wxChartAxis(const wxChartAxisOptions &options)
+	: m_options(options), m_leftPadding(0), m_startPoint(0),
 	m_endPoint(0), m_length(0), m_labelMaxWidth(0)
 {
 }

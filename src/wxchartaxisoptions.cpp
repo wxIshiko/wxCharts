@@ -22,8 +22,8 @@
 
 #include "wxchartaxisoptions.h"
 
-wxChartAxisOptions::wxChartAxisOptions()
-	: m_labelType(wxCHARTAXISLABELTYPE_POINT),
+wxChartAxisOptions::wxChartAxisOptions(wxChartAxisPosition position)
+	: m_position(position), m_labelType(wxCHARTAXISLABELTYPE_POINT),
 	m_startValueMode(wxCHARTAXISVALUEMODE_AUTO), m_startValue(0),
 	m_endValueMode(wxCHARTAXISVALUEMODE_AUTO), m_endValue(0),
 	m_lineWidth(1), m_lineColor(0, 0, 0, 0x19),
@@ -31,8 +31,9 @@ wxChartAxisOptions::wxChartAxisOptions()
 {
 }
 
-wxChartAxisOptions::wxChartAxisOptions(wxChartAxisLabelType labelType)
-	: m_labelType(labelType),
+wxChartAxisOptions::wxChartAxisOptions(wxChartAxisPosition position,
+									   wxChartAxisLabelType labelType)
+	: m_position(position), m_labelType(labelType),
 	m_startValueMode(wxCHARTAXISVALUEMODE_AUTO), m_startValue(0),
 	m_endValueMode(wxCHARTAXISVALUEMODE_AUTO), m_endValue(0),
 	m_lineWidth(1), m_lineColor(0, 0, 0, 0x19),
