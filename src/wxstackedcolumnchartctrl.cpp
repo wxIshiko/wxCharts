@@ -34,48 +34,6 @@
 #include "wxstackedcolumnchartctrl.h"
 #include <wx/dcbuffer.h>
 
-wxStackedColumnChartDataset::wxStackedColumnChartDataset(const wxColor &fillColor,
-														 const wxColor &strokeColor,
-														 const wxVector<wxDouble> &data)
-	: m_fillColor(fillColor), m_strokeColor(strokeColor), m_data(data)
-{
-}
-
-const wxColor& wxStackedColumnChartDataset::GetFillColor() const
-{
-	return m_fillColor;
-}
-
-const wxColor& wxStackedColumnChartDataset::GetStrokeColor() const
-{
-	return m_strokeColor;
-}
-
-const wxVector<wxDouble>& wxStackedColumnChartDataset::GetData() const
-{
-	return m_data;
-}
-
-wxStackedColumnChartData::wxStackedColumnChartData(const wxVector<wxString> &labels)
-	: m_labels(labels)
-{
-}
-
-void wxStackedColumnChartData::AddDataset(wxStackedColumnChartDataset::ptr dataset)
-{
-	m_datasets.push_back(dataset);
-}
-
-const wxVector<wxString>& wxStackedColumnChartData::GetLabels() const
-{
-	return m_labels;
-}
-
-const wxVector<wxStackedColumnChartDataset::ptr>& wxStackedColumnChartData::GetDatasets() const
-{
-	return m_datasets;
-}
-
 wxStackedColumnChartCtrl::Column::Column(wxDouble value,
 										 wxDouble x,
 										 wxDouble y,
@@ -107,7 +65,7 @@ void wxStackedColumnChartCtrl::Dataset::AppendColumn(Column::ptr column)
 
 wxStackedColumnChartCtrl::wxStackedColumnChartCtrl(wxWindow *parent,
 												   wxWindowID id,
-												   const wxStackedColumnChartData &data,
+												   const wxBarChartData &data,
 												   const wxPoint &pos,
 												   const wxSize &size,
 												   long style)
@@ -115,10 +73,10 @@ wxStackedColumnChartCtrl::wxStackedColumnChartCtrl(wxWindow *parent,
 	m_grid(size, data.GetLabels(), GetCumulativeMinValue(data.GetDatasets()),
 		GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions())
 {
-	const wxVector<wxStackedColumnChartDataset::ptr>& datasets = data.GetDatasets();
+	const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
 	for (size_t i = 0; i < datasets.size(); ++i)
 	{
-		const wxStackedColumnChartDataset& dataset = *datasets[i];
+		const wxBarChartDataset& dataset = *datasets[i];
 		Dataset::ptr newDataset(new Dataset());
 
 		const wxVector<wxDouble>& data = dataset.GetData();
@@ -136,7 +94,7 @@ const wxStackedColumnChartOptions& wxStackedColumnChartCtrl::GetOptions() const
 	return m_options;
 }
 
-wxDouble wxStackedColumnChartCtrl::GetCumulativeMinValue(const wxVector<wxStackedColumnChartDataset::ptr>& datasets)
+wxDouble wxStackedColumnChartCtrl::GetCumulativeMinValue(const wxVector<wxBarChartDataset::ptr>& datasets)
 {
 	wxDouble result = 0;
 	
@@ -147,7 +105,7 @@ wxDouble wxStackedColumnChartCtrl::GetCumulativeMinValue(const wxVector<wxStacke
 		bool stop = true;
 		for (size_t j = 0; j < datasets.size(); ++j)
 		{
-			const wxStackedColumnChartDataset& dataset = *datasets[j];
+			const wxBarChartDataset& dataset = *datasets[j];
 			if (i < dataset.GetData().size())
 			{
 				sum += dataset.GetData()[i];
@@ -168,7 +126,7 @@ wxDouble wxStackedColumnChartCtrl::GetCumulativeMinValue(const wxVector<wxStacke
 	return result;
 }
 
-wxDouble wxStackedColumnChartCtrl::GetCumulativeMaxValue(const wxVector<wxStackedColumnChartDataset::ptr>& datasets)
+wxDouble wxStackedColumnChartCtrl::GetCumulativeMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets)
 {
 	wxDouble result = 0;
 	
@@ -179,7 +137,7 @@ wxDouble wxStackedColumnChartCtrl::GetCumulativeMaxValue(const wxVector<wxStacke
 		bool stop = true;
 		for (size_t j = 0; j < datasets.size(); ++j)
 		{
-			const wxStackedColumnChartDataset& dataset = *datasets[j];
+			const wxBarChartDataset& dataset = *datasets[j];
 			if (i < dataset.GetData().size())
 			{
 				sum += dataset.GetData()[i];

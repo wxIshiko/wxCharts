@@ -37,66 +37,10 @@
 #define _WX_CHARTS_WXSTACKEDCOLUMNCHARTCTRL_H_
 
 #include "wxchartctrl.h"
+#include "wxbarchartdata.h"
 #include "wxstackedcolumnchartoptions.h"
 #include "wxchartgrid.h"
 #include "wxchartrectangle.h"
-
-/// Stores the information about a dataset to be shown on a wxStackedColumnChartCtrl.
-class wxStackedColumnChartDataset
-{
-public:
-	/// Smart pointer typedef.
-	typedef wxSharedPtr<wxStackedColumnChartDataset> ptr;
-
-	/// Constructs a wxStackedColumnChartDataset instance.
-	/// @param fillColor The color of the brush used to 
-	/// fill the column.
-	/// @param strokeColor The color of the pen used to
-	/// draw the outline of the column.
-	/// @param data The list of values.
-	wxStackedColumnChartDataset(const wxColor &fillColor, const wxColor &strokeColor,
-		const wxVector<wxDouble> &data);
-
-	/// Gets the color of the brush used to fill the
-	/// column.
-	/// @return The color of the brush used to fill the
-	/// column.
-	const wxColor& GetFillColor() const;
-	/// Gets the color of the pen used to draw the outline
-	/// of the column.
-	/// @return The color of the pen used to draw the 
-	/// outline of the column.
-	const wxColor& GetStrokeColor() const;
-	const wxVector<wxDouble>& GetData() const;
-
-private:
-	wxColor m_fillColor;
-	wxColor m_strokeColor;
-	wxVector<wxDouble> m_data;
-};
-
-/// Data for the wxStackedColumnChartCtrl control.
-class wxStackedColumnChartData
-{
-public:
-	/// Constructs a wxStackedColumnChartData instance.
-	/// @param labels The labels of the X axis.
-	wxStackedColumnChartData(const wxVector<wxString> &labels);
-
-	/// Adds a dataset.
-	/// @param dataset The dataset to add.
-	void AddDataset(wxStackedColumnChartDataset::ptr dataset);
-
-	/// Gets the labels of the X axis.
-	/// @return A vector containing the labels of the
-	/// X axis.
-	const wxVector<wxString>& GetLabels() const;
-	const wxVector<wxStackedColumnChartDataset::ptr>& GetDatasets() const;
-
-private:
-	wxVector<wxString> m_labels;
-	wxVector<wxStackedColumnChartDataset::ptr> m_datasets;
-};
 
 /// A control that displays a stacked column chart.
 class wxStackedColumnChartCtrl : public wxChartCtrl
@@ -115,15 +59,15 @@ public:
 	/// so that the window is visible but obviously not correctly sized.
 	/// @param style Control style. For generic window styles, please 
 	/// see wxWindow.
-	wxStackedColumnChartCtrl(wxWindow *parent, wxWindowID id, const wxStackedColumnChartData &data,
+	wxStackedColumnChartCtrl(wxWindow *parent, wxWindowID id, const wxBarChartData &data,
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
 
 	virtual const wxStackedColumnChartOptions& GetOptions() const;
 
 private:
-	static wxDouble GetCumulativeMinValue(const wxVector<wxStackedColumnChartDataset::ptr>& datasets);
-	static wxDouble GetCumulativeMaxValue(const wxVector<wxStackedColumnChartDataset::ptr>& datasets);
+	static wxDouble GetCumulativeMinValue(const wxVector<wxBarChartDataset::ptr>& datasets);
+	static wxDouble GetCumulativeMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets);
 
 	virtual void Resize(const wxSize &size);
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
