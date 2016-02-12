@@ -28,7 +28,9 @@
 #include <wx/colour.h>
 #include <wx/sharedptr.h>
 
-/// Stores the information about a dataset to be shown on a wxBarChartCtrl.
+/// Stores the information about a dataset to be shown on one of the bar chart controls.
+
+/// The wxBarChartCtrl, wxColumnChartCtrl, wxStackedBarChartCtrl and wxStackedColumnChartCtrl use this class.
 class wxBarChartDataset
 {
 public:
@@ -62,7 +64,9 @@ private:
 	wxVector<wxDouble> m_data;
 };
 
-/// Data for the wxBarChartCtrl control.
+/// Data for one of the bar chart controls.
+
+/// The wxBarChartCtrl, wxColumnChartCtrl, wxStackedBarChartCtrl and wxStackedColumnChartCtrl use this class.
 class wxBarChartData
 {
 public:

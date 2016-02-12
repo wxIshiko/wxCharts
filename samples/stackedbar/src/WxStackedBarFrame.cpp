@@ -40,7 +40,7 @@ WxStackedBarFrame::WxStackedBarFrame(const wxString& title)
 	labels.push_back("May");
 	labels.push_back("June");
 	labels.push_back("July");
-	wxStackedBarChartData chartData(labels);
+	wxBarChartData chartData(labels);
 
 	// Add the first dataset
 	wxVector<wxDouble> points1;
@@ -51,7 +51,7 @@ WxStackedBarFrame::WxStackedBarFrame(const wxString& title)
 	points1.push_back(4);
 	points1.push_back(5);
 	points1.push_back(1);
-	wxStackedBarChartDataset::ptr dataset1(new wxStackedBarChartDataset(
+	wxBarChartDataset::ptr dataset1(new wxBarChartDataset(
 		wxColor(220, 220, 220, 0x7F),
 		wxColor(220, 220, 220, 0xCC),
 		points1));
@@ -66,7 +66,7 @@ WxStackedBarFrame::WxStackedBarFrame(const wxString& title)
 	points2.push_back(3);
 	points2.push_back(1.8);
 	points2.push_back(0.4);
-	wxStackedBarChartDataset::ptr dataset2(new wxStackedBarChartDataset(
+	wxBarChartDataset::ptr dataset2(new wxBarChartDataset(
 		wxColor(151, 187, 205, 0x7F),
 		wxColor(151, 187, 205, 0xCC),
 		points2));
