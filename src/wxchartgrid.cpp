@@ -158,14 +158,14 @@ void wxChartGrid::Fit(size_t steps,
 	if (m_options.GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
 	{
 		leftPadding = CalculateLeftPadding(m_XAxis.GetLabels(), m_YAxis.GetLabelMaxWidth());
-		m_XAxis.Fit(leftPadding, wxPoint2DDouble(0, startPoint), wxPoint2DDouble(0, 0), m_mapping.GetSize().GetWidth() - leftPadding);
-		m_YAxis.Fit(leftPadding, wxPoint2DDouble(0, startPoint), wxPoint2DDouble(0, endPoint), 0);
+		m_XAxis.Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(0, 0), m_mapping.GetSize().GetWidth() - leftPadding);
+		m_YAxis.Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(leftPadding, endPoint), 0);
 	}
 	else if (m_options.GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
 	{
 		leftPadding = CalculateLeftPadding(m_YAxis.GetLabels(), m_XAxis.GetLabelMaxWidth());
-		m_XAxis.Fit(leftPadding, wxPoint2DDouble(0, startPoint), wxPoint2DDouble(0, endPoint), 0);
-		m_YAxis.Fit(leftPadding, wxPoint2DDouble(0, startPoint), wxPoint2DDouble(0, 0), m_mapping.GetSize().GetWidth() - leftPadding);
+		m_XAxis.Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(leftPadding, endPoint), 0);
+		m_YAxis.Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(0, 0), m_mapping.GetSize().GetWidth() - leftPadding);
 	}
 
 	
