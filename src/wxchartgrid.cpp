@@ -95,7 +95,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(xStart, linePositionY);
-			path.AddLineToPoint(m_mapping.GetSize().GetWidth(), linePositionY);
+			path.AddLineToPoint(m_mapping.GetSize().GetWidth() + m_options.GetXAxisOptions().GetOverhang(), linePositionY);
 			
 			wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
 			gc.SetPen(pen1);
@@ -111,7 +111,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(linePosition, m_mapping.GetStartPoint().m_y);
-			path.AddLineToPoint(linePosition, m_mapping.GetEndPoint().m_y - 3);
+			path.AddLineToPoint(linePosition, m_mapping.GetEndPoint().m_y - m_options.GetYAxisOptions().GetOverhang());
 			
 			wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
 			gc.SetPen(pen1);

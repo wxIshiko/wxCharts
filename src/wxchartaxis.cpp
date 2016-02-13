@@ -72,12 +72,12 @@ void wxChartAxis::Draw(wxGraphicsContext &gc)
 	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
 	{
 		path.MoveToPoint(m_startPoint);
-		path.AddLineToPoint(m_endPoint.m_x, m_endPoint.m_y - 3);
+		path.AddLineToPoint(m_endPoint.m_x, m_endPoint.m_y - m_options.GetOverhang());
 	}
 	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
 	{
 		path.MoveToPoint(m_startPoint);
-		path.AddLineToPoint(m_endPoint);
+		path.AddLineToPoint(m_endPoint.m_x + m_options.GetOverhang(), m_endPoint.m_y);
 	}
 	gc.StrokePath(path);
 

@@ -111,6 +111,11 @@ public:
 	/// @return The color of the line.
 	const wxColor& GetLineColor() const;
 
+	/// Gets the amount by which the axis is drawn
+	/// past the last tick mark.
+	/// @return The overhang.
+	wxDouble GetOverhang() const;
+
 	const wxChartFontOptions& GetFontOptions() const;
 
 private:
@@ -122,8 +127,8 @@ private:
 	wxDouble m_endValue;
 	unsigned int m_lineWidth;
 	wxColor m_lineColor;
+	wxDouble m_overhang;
 	wxChartFontOptions m_fontOptions;
-	
 };
 
 #endif
