@@ -81,7 +81,7 @@ void wxChartAxis::Draw(wxGraphicsContext &gc)
 	}
 	gc.StrokePath(path);
 
-	DrawMarkers(gc);	// Draw the little lines corresponding to the labels
+	DrawTickMarks(gc);	// Draw the little lines corresponding to the labels
 	DrawLabels(gc);
 }
 
@@ -182,7 +182,7 @@ wxDouble wxChartAxis::CalculateLabelPosition(size_t index)
 	return valueOffset;
 }
 
-wxPoint2DDouble wxChartAxis::GetMarkerPosition(size_t index) const
+wxPoint2DDouble wxChartAxis::GetTickMarkPosition(size_t index) const
 {
 	wxDouble innerWidth = m_length;
 	wxDouble valueWidth = innerWidth / m_labels.size();
@@ -191,7 +191,7 @@ wxPoint2DDouble wxChartAxis::GetMarkerPosition(size_t index) const
 	return wxPoint2DDouble(valueOffset, m_endPoint);
 }
 
-void wxChartAxis::DrawMarkers(wxGraphicsContext &gc)
+void wxChartAxis::DrawTickMarks(wxGraphicsContext &gc)
 {
 	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
 	{
@@ -211,7 +211,7 @@ void wxChartAxis::DrawMarkers(wxGraphicsContext &gc)
 	{
 		for (size_t i = 0; i < m_labels.size(); ++i)
 		{
-			wxDouble linePosition = GetMarkerPosition(i).m_x;
+			wxDouble linePosition = GetTickMarkPosition(i).m_x;
 
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(linePosition, m_endPoint);

@@ -96,8 +96,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(xStart, linePositionY);
 			path.AddLineToPoint(m_mapping.GetSize().GetWidth(), linePositionY);
-			path.CloseSubpath();
-
+			
 			wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
 			gc.SetPen(pen1);
 			gc.StrokePath(path);
@@ -108,13 +107,12 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 	{
 		for (size_t i = 1; i < m_XAxis.GetLabels().size(); ++i)
 		{
-			wxDouble linePosition = m_XAxis.GetMarkerPosition(i).m_x;
+			wxDouble linePosition = m_XAxis.GetTickMarkPosition(i).m_x;
 
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(linePosition, m_mapping.GetEndPoint());
 			path.AddLineToPoint(linePosition, m_mapping.GetStartPoint() - 3);
-			path.CloseSubpath();
-
+			
 			wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
 			gc.SetPen(pen1);
 			gc.StrokePath(path);
@@ -155,9 +153,22 @@ void wxChartGrid::Fit(size_t steps,
 	
 
 	m_XAxis.UpdateLabelSizes(gc);
-	wxDouble leftPadding = CalculateLeftPadding(m_XAxis.GetLabels(), m_YAxis.GetLabelMaxWidth());
-	m_XAxis.Fit(leftPadding, 0, endPoint, m_mapping.GetSize().GetWidth() - leftPadding);
-	m_YAxis.Fit(leftPadding, startPoint, endPoint, 0);
+
+	wxDouble leftPadding = 0;
+	if (m_options.GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+	{
+		leftPadding = CalculateLeftPadding(m_XAxis.GetLabels(), m_YAxis.GetLabelMaxWidth());
+		m_XAxis.Fit(leftPadding, 0, endPoint, m_mapping.GetSize().GetWidth() - leftPadding);
+		m_YAxis.Fit(leftPadding, startPoint, endPoint, 0);
+	}
+	else if (m_options.GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
+	{
+		leftPadding = CalculateLeftPadding(m_YAxis.GetLabels(), m_XAxis.GetLabelMaxWidth());
+		m_XAxis.Fit(leftPadding, startPoint, endPoint, 0);
+		m_YAxis.Fit(leftPadding, 0, endPoint, m_mapping.GetSize().GetWidth() - leftPadding);
+	}
+
+	
 
 	m_XAxis.UpdateLabelPositions();
 	m_YAxis.UpdateLabelPositions();

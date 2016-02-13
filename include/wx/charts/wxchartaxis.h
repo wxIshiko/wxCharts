@@ -82,10 +82,10 @@ public:
 	wxDouble GetLabelMaxWidth() const;
 
 	wxDouble CalculateLabelPosition(size_t index);
-	wxPoint2DDouble GetMarkerPosition(size_t index) const;
+	wxPoint2DDouble GetTickMarkPosition(size_t index) const;
 
 private:
-	void DrawMarkers(wxGraphicsContext &gc);
+	void DrawTickMarks(wxGraphicsContext &gc);
 	void DrawLabels(wxGraphicsContext &gc);
 
 private:
