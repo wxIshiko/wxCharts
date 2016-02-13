@@ -366,8 +366,8 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 
 				gc->StrokePath(path);
 
-				path.AddLineToPoint(lastPosition.m_x, m_grid.GetMapping().GetEndPoint());
-				path.AddLineToPoint(firstPosition.m_x, m_grid.GetMapping().GetEndPoint());
+				path.AddLineToPoint(lastPosition.m_x, m_grid.GetMapping().GetStartPoint().m_y);
+				path.AddLineToPoint(firstPosition.m_x, m_grid.GetMapping().GetStartPoint().m_y);
 				path.CloseSubpath();
 
 				wxBrush brush(m_datasets[i]->GetFillColor());

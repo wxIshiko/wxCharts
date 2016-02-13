@@ -175,7 +175,7 @@ void wxColumnChartCtrl::OnPaint(wxPaintEvent &evt)
 				Column& column = *(currentDataset.GetColumns()[j]);
 				wxPoint2DDouble position = m_grid.GetMapping().GetWindowPosition(j, column.GetValue());
 				column.SetPosition(position);
-				column.SetSize(20, m_grid.GetMapping().GetEndPoint() - position.m_y);
+				column.SetSize(20, m_grid.GetMapping().GetStartPoint().m_y - position.m_y);
 			}
 		}
 

@@ -37,14 +37,14 @@ wxChartGridMapping::wxChartGridMapping(const wxSize &size,
 									   unsigned int numberOfVerticalLines)
 	: m_size(size), m_leftPadding(0),
 	m_minValue(0), m_maxValue(0),
-	m_startPoint(0), m_endPoint(0),
+	m_startPoint(0, 0), m_endPoint(0, 0),
 	m_numberOfVerticalLines(numberOfVerticalLines)
 {
 }
 
 void wxChartGridMapping::Fit(wxDouble leftPadding, 
-							 wxDouble startPoint,
-							 wxDouble endPoint)
+							 wxPoint2DDouble startPoint,
+							 wxPoint2DDouble endPoint)
 {
 	m_leftPadding = leftPadding;
 	m_startPoint = startPoint;
@@ -91,12 +91,12 @@ void wxChartGridMapping::SetMaxValue(wxDouble maxValue)
 	m_maxValue = maxValue;
 }
 
-wxDouble wxChartGridMapping::GetStartPoint() const
+wxPoint2DDouble wxChartGridMapping::GetStartPoint() const
 {
 	return m_startPoint;
 }
 
-wxDouble wxChartGridMapping::GetEndPoint() const
+wxPoint2DDouble wxChartGridMapping::GetEndPoint() const
 {
 	return m_endPoint;
 }
@@ -108,8 +108,8 @@ wxPoint2DDouble wxChartGridMapping::GetWindowPosition(size_t index,
 	wxDouble valueWidth = innerWidth / m_numberOfVerticalLines;
 	wxDouble x = m_leftPadding + (valueWidth * index);
 
-	wxDouble scalingFactor = ((m_endPoint - m_startPoint) / (m_maxValue - m_minValue));
-	wxDouble y  = m_endPoint - (scalingFactor * (value - m_minValue));
+	wxDouble scalingFactor = ((m_startPoint.m_y - m_endPoint.m_y) / (m_maxValue - m_minValue));
+	wxDouble y  = m_startPoint.m_y - (scalingFactor * (value - m_minValue));
 
 	return wxPoint2DDouble(x, y);
 }
@@ -120,7 +120,7 @@ wxPoint2DDouble wxChartGridMapping::GetWindowPositionOfPointOnXAxis(size_t index
 	wxDouble valueWidth = innerWidth / m_numberOfVerticalLines;
 	wxDouble x = m_leftPadding + (valueWidth * index);
 
-	wxDouble scalingFactor = ((m_endPoint - m_startPoint) / (m_maxValue - m_minValue));
+	wxDouble scalingFactor = ((m_startPoint.m_y - m_endPoint.m_y) / (m_maxValue - m_minValue));
 
-	return wxPoint2DDouble(x, m_endPoint);
+	return wxPoint2DDouble(x, m_startPoint.m_y);
 }

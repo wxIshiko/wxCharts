@@ -83,14 +83,14 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 {
 	Fit(m_steps, gc);
 
-	wxDouble yLabelGap = (m_mapping.GetEndPoint() - m_mapping.GetStartPoint()) / m_steps;
+	wxDouble yLabelGap = (m_mapping.GetStartPoint().m_y - m_mapping.GetEndPoint().m_y) / m_steps;
 	wxDouble xStart = m_mapping.GetLeftPadding();
 
 	if (m_options.ShowHorizontalLines())
 	{
 		for (size_t i = 1; i < m_YAxis.GetLabels().size(); ++i)
 		{
-			wxDouble yLabelCenter = m_mapping.GetEndPoint() - (yLabelGap * i);
+			wxDouble yLabelCenter = m_mapping.GetStartPoint().m_y - (yLabelGap * i);
 			wxDouble linePositionY = yLabelCenter;
 
 			wxGraphicsPath path = gc.CreatePath();
@@ -110,8 +110,8 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 			wxDouble linePosition = m_XAxis.GetTickMarkPosition(i).m_x;
 
 			wxGraphicsPath path = gc.CreatePath();
-			path.MoveToPoint(linePosition, m_mapping.GetEndPoint());
-			path.AddLineToPoint(linePosition, m_mapping.GetStartPoint() - 3);
+			path.MoveToPoint(linePosition, m_mapping.GetStartPoint().m_y);
+			path.AddLineToPoint(linePosition, m_mapping.GetEndPoint().m_y - 3);
 			
 			wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
 			gc.SetPen(pen1);
@@ -142,8 +142,8 @@ void wxChartGrid::Fit(size_t steps,
 		return;
 	}
 
-	wxDouble startPoint = m_options.GetYAxisOptions().GetFontOptions().GetSize();
-	wxDouble endPoint = m_mapping.GetSize().GetHeight() - (m_options.GetYAxisOptions().GetFontOptions().GetSize() + 15) - 5; // -5 to pad labels
+	wxDouble startPoint = m_mapping.GetSize().GetHeight() - (m_options.GetYAxisOptions().GetFontOptions().GetSize() + 15) - 5; // -5 to pad labels
+	wxDouble endPoint = m_options.GetYAxisOptions().GetFontOptions().GetSize();
 
 	// Apply padding settings to the start and end point.
 	//this.startPoint += this.padding;
@@ -158,14 +158,14 @@ void wxChartGrid::Fit(size_t steps,
 	if (m_options.GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
 	{
 		leftPadding = CalculateLeftPadding(m_XAxis.GetLabels(), m_YAxis.GetLabelMaxWidth());
-		m_XAxis.Fit(leftPadding, 0, endPoint, m_mapping.GetSize().GetWidth() - leftPadding);
-		m_YAxis.Fit(leftPadding, startPoint, endPoint, 0);
+		m_XAxis.Fit(leftPadding, 0, startPoint, m_mapping.GetSize().GetWidth() - leftPadding);
+		m_YAxis.Fit(leftPadding, endPoint, startPoint, 0);
 	}
 	else if (m_options.GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
 	{
 		leftPadding = CalculateLeftPadding(m_YAxis.GetLabels(), m_XAxis.GetLabelMaxWidth());
-		m_XAxis.Fit(leftPadding, startPoint, endPoint, 0);
-		m_YAxis.Fit(leftPadding, 0, endPoint, m_mapping.GetSize().GetWidth() - leftPadding);
+		m_XAxis.Fit(leftPadding, endPoint, startPoint, 0);
+		m_YAxis.Fit(leftPadding, 0, startPoint, m_mapping.GetSize().GetWidth() - leftPadding);
 	}
 
 	
@@ -173,7 +173,7 @@ void wxChartGrid::Fit(size_t steps,
 	m_XAxis.UpdateLabelPositions();
 	m_YAxis.UpdateLabelPositions();
 
-	m_mapping.Fit(leftPadding, startPoint, endPoint);
+	m_mapping.Fit(leftPadding, wxPoint2DDouble(0, startPoint), wxPoint2DDouble(0, endPoint));
 
 	m_needsFit = false;
 }

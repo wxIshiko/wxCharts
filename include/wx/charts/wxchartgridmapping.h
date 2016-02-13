@@ -45,8 +45,8 @@ public:
 	wxChartGridMapping(const wxSize &size,
 		unsigned int numberOfVerticalLines);
 
-	void Fit(wxDouble leftPadding, wxDouble startPoint, 
-		wxDouble endPoint);
+	void Fit(wxDouble leftPadding, wxPoint2DDouble startPoint, 
+		wxPoint2DDouble endPoint);
 	void SetLeftPadding(wxDouble padding);
 
 	const wxSize& GetSize() const;
@@ -56,8 +56,8 @@ public:
 	void SetMinValue(wxDouble minValue);
 	wxDouble GetMaxValue() const;
 	void SetMaxValue(wxDouble maxValue);
-	wxDouble GetStartPoint() const;
-	wxDouble GetEndPoint() const;
+	wxPoint2DDouble GetStartPoint() const;
+	wxPoint2DDouble GetEndPoint() const;
 
 	wxPoint2DDouble GetWindowPosition(size_t index, wxDouble value) const;
 	wxPoint2DDouble GetWindowPositionOfPointOnXAxis(size_t index) const;
@@ -65,8 +65,8 @@ public:
 private:
 	wxSize m_size;
 	wxDouble m_leftPadding;
-	wxDouble m_startPoint;
-	wxDouble m_endPoint;
+	wxPoint2DDouble m_startPoint;
+	wxPoint2DDouble m_endPoint;
 	wxDouble m_minValue;
 	wxDouble m_maxValue;
 	unsigned int m_numberOfVerticalLines;
