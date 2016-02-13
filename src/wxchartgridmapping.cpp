@@ -35,7 +35,8 @@
 
 wxChartGridMapping::wxChartGridMapping(const wxSize &size,
 									   unsigned int numberOfVerticalLines)
-	: m_size(size), m_leftPadding(0),
+	: m_size(size), 
+	m_leftPadding(0), m_rightPadding(0),
 	m_minValue(0), m_maxValue(0),
 	m_startPoint(0, 0), m_endPoint(0, 0),
 	m_numberOfVerticalLines(numberOfVerticalLines)
@@ -43,17 +44,21 @@ wxChartGridMapping::wxChartGridMapping(const wxSize &size,
 }
 
 void wxChartGridMapping::Fit(wxDouble leftPadding, 
+							 wxDouble rightPadding,
 							 wxPoint2DDouble startPoint,
 							 wxPoint2DDouble endPoint)
 {
 	m_leftPadding = leftPadding;
+	m_rightPadding = rightPadding;
 	m_startPoint = startPoint;
 	m_endPoint = endPoint;
 }
 
-void wxChartGridMapping::SetLeftPadding(wxDouble padding)
+void wxChartGridMapping::SetPadding(wxDouble leftPadding,
+									wxDouble rightPadding)
 {
-	m_leftPadding = padding;
+	m_leftPadding = leftPadding;
+	m_rightPadding = rightPadding;
 }
 
 const wxSize& wxChartGridMapping::GetSize() const
@@ -69,6 +74,11 @@ void wxChartGridMapping::SetSize(const wxSize &size)
 wxDouble wxChartGridMapping::GetLeftPadding() const
 {
 	return m_leftPadding;
+}
+
+wxDouble wxChartGridMapping::GetRightPadding() const
+{
+	return m_rightPadding;
 }
 
 wxDouble wxChartGridMapping::GetMinValue() const
@@ -104,7 +114,7 @@ wxPoint2DDouble wxChartGridMapping::GetEndPoint() const
 wxPoint2DDouble wxChartGridMapping::GetWindowPosition(size_t index,
 													  wxDouble value) const
 {
-	wxDouble innerWidth = m_size.GetWidth() - m_leftPadding;
+	wxDouble innerWidth = m_size.GetWidth() - m_leftPadding - m_rightPadding;
 	wxDouble valueWidth = innerWidth / m_numberOfVerticalLines;
 	wxDouble x = m_leftPadding + (valueWidth * index);
 
@@ -116,7 +126,7 @@ wxPoint2DDouble wxChartGridMapping::GetWindowPosition(size_t index,
 
 wxPoint2DDouble wxChartGridMapping::GetWindowPositionOfPointOnXAxis(size_t index) const
 {
-	wxDouble innerWidth = m_size.GetWidth() - m_leftPadding;
+	wxDouble innerWidth = m_size.GetWidth() - m_leftPadding - m_rightPadding;
 	wxDouble valueWidth = innerWidth / m_numberOfVerticalLines;
 	wxDouble x = m_leftPadding + (valueWidth * index);
 

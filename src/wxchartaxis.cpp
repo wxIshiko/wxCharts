@@ -138,7 +138,7 @@ void wxChartAxis::UpdateLabelPositions()
 	}
 }
 
-const wxVector<wxChartLabel>& wxChartAxis::GetLabels()
+const wxVector<wxChartLabel>& wxChartAxis::GetLabels() const
 {
 	return m_labels;
 }
@@ -155,10 +155,8 @@ wxDouble wxChartAxis::GetLabelMaxWidth() const
 
 wxDouble wxChartAxis::CalculateLabelPosition(size_t index)
 {
-	wxDouble leftPadding = m_startPoint.m_x;
-	wxDouble innerWidth = m_endPoint.m_x - m_startPoint.m_x;
-	wxDouble valueWidth = innerWidth / m_labels.size();
-	wxDouble valueOffset = leftPadding + (valueWidth * index);
+	wxDouble valueWidth = GetDistanceBetweenTickMarks();
+	wxDouble valueOffset = m_startPoint.m_x + (valueWidth * index);
 
 	/*
 	innerWidth = this.width - (this.xScalePaddingLeft + this.xScalePaddingRight),
@@ -178,13 +176,27 @@ wxDouble wxChartAxis::CalculateLabelPosition(size_t index)
 	return valueOffset;
 }
 
+size_t wxChartAxis::GetNumberOfTickMarks() const
+{
+	if (m_options.GetLabelType() == wxCHARTAXISLABELTYPE_POINT)
+	{
+		return m_labels.size();
+	}
+	else
+	{
+		return (m_labels.size() + 1);
+	}
+}
+
 wxPoint2DDouble wxChartAxis::GetTickMarkPosition(size_t index) const
 {
-	wxDouble innerWidth = m_endPoint.m_x - m_startPoint.m_x;
-	wxDouble valueWidth = innerWidth / m_labels.size();
-	wxDouble valueOffset = m_startPoint.m_x + (valueWidth * index);
-
+	wxDouble valueOffset = m_startPoint.m_x + (GetDistanceBetweenTickMarks() * index);
 	return wxPoint2DDouble(valueOffset, m_startPoint.m_y);
+}
+
+const wxChartAxisOptions& wxChartAxis::GetOptions() const
+{
+	return m_options;
 }
 
 void wxChartAxis::DrawTickMarks(wxGraphicsContext &gc)
@@ -225,4 +237,11 @@ void wxChartAxis::DrawLabels(wxGraphicsContext &gc)
 	{
 		m_labels[i].Draw(gc);
 	}
+}
+
+wxDouble wxChartAxis::GetDistanceBetweenTickMarks() const
+{
+	wxDouble innerWidth = m_endPoint.m_x - m_startPoint.m_x;
+	wxDouble valueWidth = innerWidth / (GetNumberOfTickMarks() - 1);
+	return valueWidth;
 }

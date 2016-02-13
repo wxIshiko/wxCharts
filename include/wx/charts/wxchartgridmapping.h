@@ -45,13 +45,14 @@ public:
 	wxChartGridMapping(const wxSize &size,
 		unsigned int numberOfVerticalLines);
 
-	void Fit(wxDouble leftPadding, wxPoint2DDouble startPoint, 
-		wxPoint2DDouble endPoint);
-	void SetLeftPadding(wxDouble padding);
+	void Fit(wxDouble leftPadding, wxDouble rightPadding,
+		wxPoint2DDouble startPoint, wxPoint2DDouble endPoint);
+	void SetPadding(wxDouble leftPadding, wxDouble rightPadding);
 
 	const wxSize& GetSize() const;
 	void SetSize(const wxSize &size);
 	wxDouble GetLeftPadding() const;
+	wxDouble GetRightPadding() const;
 	wxDouble GetMinValue() const;
 	void SetMinValue(wxDouble minValue);
 	wxDouble GetMaxValue() const;
@@ -65,6 +66,7 @@ public:
 private:
 	wxSize m_size;
 	wxDouble m_leftPadding;
+	wxDouble m_rightPadding;
 	wxPoint2DDouble m_startPoint;
 	wxPoint2DDouble m_endPoint;
 	wxDouble m_minValue;

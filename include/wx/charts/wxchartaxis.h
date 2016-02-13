@@ -71,7 +71,7 @@ public:
 
 	/// Gets the labels.
 	/// @return The list of labels.
-	const wxVector<wxChartLabel>& GetLabels();
+	const wxVector<wxChartLabel>& GetLabels() const;
 	void SetLabels(const wxVector<wxChartLabel> &labels);
 	/// Gets the width of the widest label. Note that
 	/// this assumes the size of the labels has been
@@ -81,11 +81,15 @@ public:
 	wxDouble GetLabelMaxWidth() const;
 
 	wxDouble CalculateLabelPosition(size_t index);
+	size_t GetNumberOfTickMarks() const;
 	wxPoint2DDouble GetTickMarkPosition(size_t index) const;
+
+	const wxChartAxisOptions& GetOptions() const;
 
 private:
 	void DrawTickMarks(wxGraphicsContext &gc);
 	void DrawLabels(wxGraphicsContext &gc);
+	wxDouble GetDistanceBetweenTickMarks() const;
 
 private:
 	wxChartAxisOptions m_options;

@@ -84,11 +84,11 @@ public:
 	const wxChartGridMapping& GetMapping() const;
 
 private:
-	void Fit(size_t steps, wxGraphicsContext &gc);
+	void Fit(wxGraphicsContext &gc);
 	static void BuildYLabels(wxDouble minValue, size_t steps,
 		wxDouble stepValue, wxVector<wxChartLabel> &labels);
-	static wxDouble CalculateLeftPadding(const wxVector<wxChartLabel> &xLabels, 
-		wxDouble yLabelMaxWidth);
+	void CalculatePadding(const wxChartAxis &xAxis,
+		const wxChartAxis &yAxis, wxDouble &left, wxDouble &right);
 
 private:
 	wxChartGridOptions m_options;
