@@ -66,8 +66,7 @@ public:
 	/// and the provided graphics context.
 	/// @param gc The graphics context.
 	void UpdateLabelSizes(wxGraphicsContext &gc);
-	void Fit(wxPoint2DDouble startPoint, wxPoint2DDouble endPoint, 
-		wxDouble length);
+	void Fit(wxPoint2DDouble startPoint, wxPoint2DDouble endPoint);
 	void UpdateLabelPositions();
 
 	/// Gets the labels.
@@ -92,7 +91,6 @@ private:
 	wxChartAxisOptions m_options;
 	wxPoint2DDouble m_startPoint;
 	wxPoint2DDouble m_endPoint;
-	wxDouble m_length;
 	wxVector<wxChartLabel> m_labels;
 	wxDouble m_labelMaxWidth;
 };

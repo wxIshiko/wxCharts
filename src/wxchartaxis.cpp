@@ -37,14 +37,14 @@
 
 wxChartAxis::wxChartAxis(const wxChartAxisOptions &options)
 	: m_options(options), m_startPoint(0, 0), m_endPoint(0, 0), 
-	m_length(0), m_labelMaxWidth(0)
+	m_labelMaxWidth(0)
 {
 }
 
 wxChartAxis::wxChartAxis(const wxVector<wxString> &labels,
 						 const wxChartAxisOptions &options)
 	: m_options(options), m_startPoint(0, 0), m_endPoint(0, 0), 
-	m_length(0), m_labelMaxWidth(0)
+	m_labelMaxWidth(0)
 {
 	for (size_t i = 0; i < labels.size(); ++i)
 	{
@@ -77,7 +77,7 @@ void wxChartAxis::Draw(wxGraphicsContext &gc)
 	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
 	{
 		path.MoveToPoint(m_startPoint);
-		path.AddLineToPoint(m_startPoint.m_x + m_length, m_startPoint.m_y);
+		path.AddLineToPoint(m_endPoint);
 	}
 	gc.StrokePath(path);
 
@@ -86,12 +86,10 @@ void wxChartAxis::Draw(wxGraphicsContext &gc)
 }
 
 void wxChartAxis::Fit(wxPoint2DDouble startPoint,
-					  wxPoint2DDouble endPoint,
-					  wxDouble length)
+					  wxPoint2DDouble endPoint)
 {
 	m_startPoint = startPoint;
 	m_endPoint = endPoint;
-	m_length = length;
 }
 
 void wxChartAxis::UpdateLabelSizes(wxGraphicsContext &gc)
@@ -158,7 +156,7 @@ wxDouble wxChartAxis::GetLabelMaxWidth() const
 wxDouble wxChartAxis::CalculateLabelPosition(size_t index)
 {
 	wxDouble leftPadding = m_startPoint.m_x;
-	wxDouble innerWidth = m_length;
+	wxDouble innerWidth = m_endPoint.m_x - m_startPoint.m_x;
 	wxDouble valueWidth = innerWidth / m_labels.size();
 	wxDouble valueOffset = leftPadding + (valueWidth * index);
 
@@ -182,7 +180,7 @@ wxDouble wxChartAxis::CalculateLabelPosition(size_t index)
 
 wxPoint2DDouble wxChartAxis::GetTickMarkPosition(size_t index) const
 {
-	wxDouble innerWidth = m_length;
+	wxDouble innerWidth = m_endPoint.m_x - m_startPoint.m_x;
 	wxDouble valueWidth = innerWidth / m_labels.size();
 	wxDouble valueOffset = m_startPoint.m_x + (valueWidth * index);
 
