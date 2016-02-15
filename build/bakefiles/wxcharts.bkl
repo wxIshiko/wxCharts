@@ -39,6 +39,7 @@ library wxcharts
     {
         ../../include/wx/charts/wxcharts.h
         ../../include/wx/charts/wxchartutilities.h
+        ../../include/wx/charts/wxchartpadding.h
         ../../include/wx/charts/wxchartelement.h
         ../../include/wx/charts/wxchartfontoptions.h
         ../../include/wx/charts/wxchartlabel.h
@@ -96,6 +97,7 @@ library wxcharts
     sources
     {
         ../../src/wxchartutilities.cpp
+        ../../src/wxchartpadding.cpp
         ../../src/wxchartelement.cpp
         ../../src/wxchartfontoptions.cpp
         ../../src/wxchartlabel.cpp
