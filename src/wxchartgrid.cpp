@@ -36,7 +36,8 @@
 #include <wx/pen.h>
 #include <sstream>
 
-wxChartGrid::wxChartGrid(const wxSize &size,
+wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
+						 const wxSize &size,
 						 const wxVector<wxString> &labels,
 						 wxDouble minValue,
 						 wxDouble maxValue,

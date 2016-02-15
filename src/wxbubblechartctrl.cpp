@@ -43,7 +43,10 @@ wxBubbleChartCtrl::wxBubbleChartCtrl(wxWindow *parent,
 									 const wxSize &size,
 									 long style)
 	: wxChartCtrl(parent, id, pos, size, style),
-	m_grid(size, data.GetLabels(), 0, 20, m_options.GetGridOptions())
+	m_grid(
+		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()), 
+		size, data.GetLabels(), 0, 20, m_options.GetGridOptions()
+		)
 {
 }
 

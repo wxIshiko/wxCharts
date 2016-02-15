@@ -31,11 +31,16 @@ class wxChartPadding
 {
 public:
 	wxChartPadding();
+	wxChartPadding(wxDouble left, wxDouble right,
+		wxDouble top, wxDouble bottom);
 
 	wxDouble GetLeft() const;
 	wxDouble GetRight() const;
 	wxDouble GetTop() const;
 	wxDouble GetBottom() const;
+
+	wxDouble GetTotalHorizontalPadding() const;
+	wxDouble GetTotalVerticalPadding() const;
 
 private:
 	wxDouble m_left;

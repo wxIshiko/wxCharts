@@ -51,6 +51,8 @@ class wxChartGrid : public wxChartElement
 {
 public:
 	/// Constructs a wxChartGrid element.
+	/// @param position The position of the top left corner
+	/// of the chart.
 	/// @param size The size of the area where the grid 
 	/// will be displayed.
 	/// @param labels The labels of the X axis.
@@ -60,7 +62,7 @@ public:
 	/// will be shown on the chart.
 	/// @param options The settings to be used for the
 	/// grid.
-	wxChartGrid(const wxSize &size,
+	wxChartGrid(const wxPoint2DDouble &position, const wxSize &size,
 		const wxVector<wxString> &labels,
 		wxDouble minValue, wxDouble maxValue,
 		const wxChartGridOptions& options);

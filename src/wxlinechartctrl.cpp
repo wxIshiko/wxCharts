@@ -194,8 +194,11 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 								 const wxSize &size,
 								 long style)
 	: wxChartCtrl(parent, id, pos, size, style), 
-	m_grid(size, data.GetLabels(), GetMinValue(data.GetDatasets()),
-	GetMaxValue(data.GetDatasets()), m_options.GetGridOptions())
+	m_grid(
+		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+		size, data.GetLabels(), GetMinValue(data.GetDatasets()),
+		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
+		)
 {
 	Initialize(data);
 }
@@ -208,8 +211,11 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 								 const wxSize &size, 
 								 long style)
 	: wxChartCtrl(parent, id, pos, size, style), m_options(options),
-	m_grid(size, data.GetLabels(), GetMinValue(data.GetDatasets()),
-	GetMaxValue(data.GetDatasets()), m_options.GetGridOptions())
+	m_grid(
+		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+		size, data.GetLabels(), GetMinValue(data.GetDatasets()),
+		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
+		)
 {
 	Initialize(data);
 }
@@ -303,7 +309,11 @@ wxDouble wxLineChartCtrl::GetMaxValue(const wxVector<wxLineChartDataset::ptr>& d
 
 void wxLineChartCtrl::Resize(const wxSize &size)
 {
-	m_grid.Resize(size);
+	wxSize newSize(
+		size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
+		size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+		);
+	m_grid.Resize(newSize);
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxLineChartCtrl::GetActiveElements(const wxPoint &point)

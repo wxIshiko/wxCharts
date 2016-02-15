@@ -70,8 +70,11 @@ wxStackedColumnChartCtrl::wxStackedColumnChartCtrl(wxWindow *parent,
 												   const wxSize &size,
 												   long style)
 	: wxChartCtrl(parent, id, pos, size, style), 
-	m_grid(size, data.GetLabels(), GetCumulativeMinValue(data.GetDatasets()),
-		GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions())
+	m_grid(
+		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()), 
+		size, data.GetLabels(), GetCumulativeMinValue(data.GetDatasets()),
+		GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions()
+		)
 {
 	const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
 	for (size_t i = 0; i < datasets.size(); ++i)

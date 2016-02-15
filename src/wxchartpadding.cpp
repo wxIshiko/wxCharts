@@ -29,6 +29,14 @@ wxChartPadding::wxChartPadding()
 {
 }
 
+wxChartPadding::wxChartPadding(wxDouble left, 
+							   wxDouble right,
+							   wxDouble top, 
+							   wxDouble bottom)
+	: m_left(left), m_right(right), m_top(top), m_bottom(bottom)
+{
+}
+
 wxDouble wxChartPadding::GetLeft() const
 {
 	return m_left;
@@ -47,4 +55,14 @@ wxDouble wxChartPadding::GetTop() const
 wxDouble wxChartPadding::GetBottom() const
 {
 	return m_bottom;
+}
+
+wxDouble wxChartPadding::GetTotalHorizontalPadding() const
+{
+	return m_left + m_right;
+}
+
+wxDouble wxChartPadding::GetTotalVerticalPadding() const
+{
+	return m_top + m_bottom;
 }
