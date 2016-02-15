@@ -25,4 +25,23 @@
 #ifndef _WX_CHARTS_WXCHARTPADDING_H_
 #define _WX_CHARTS_WXCHARTPADDING_H_
 
+#include <wx/defs.h>
+
+class wxChartPadding
+{
+public:
+	wxChartPadding();
+
+	wxDouble GetLeft() const;
+	wxDouble GetRight() const;
+	wxDouble GetTop() const;
+	wxDouble GetBottom() const;
+
+private:
+	wxDouble m_left;
+	wxDouble m_right;
+	wxDouble m_top;
+	wxDouble m_bottom;
+};
+
 #endif

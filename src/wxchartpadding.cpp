@@ -23,3 +23,28 @@
 /// @file
 
 #include "wxchartpadding.h"
+
+wxChartPadding::wxChartPadding()
+	: m_left(0), m_right(0), m_top(0), m_bottom(0)
+{
+}
+
+wxDouble wxChartPadding::GetLeft() const
+{
+	return m_left;
+}
+
+wxDouble wxChartPadding::GetRight() const
+{
+	return m_right;
+}
+
+wxDouble wxChartPadding::GetTop() const
+{
+	return m_top;
+}
+
+wxDouble wxChartPadding::GetBottom() const
+{
+	return m_bottom;
+}

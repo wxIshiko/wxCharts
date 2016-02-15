@@ -25,12 +25,17 @@
 #ifndef _WX_CHARTS_WXCHARTOPTIONS_H_
 #define _WX_CHARTS_WXCHARTOPTIONS_H_
 
+#include "wxchartpadding.h"
+
 /// Options for the wxChartCtrl control.
 class wxChartOptions
 {
 public:
 	/// Constructs a wxChartOptions instance.
 	wxChartOptions();
+
+	const wxChartPadding& GetPadding() const;
+	void SetPadding(const wxChartPadding &padding);
 
 	/// Whether the chart automatically resizes 
 	/// when the control size changes.
@@ -49,6 +54,7 @@ public:
 	void SetShowTooltips(bool show);
 
 private:
+	wxChartPadding m_padding;
 	bool m_responsive;
 	bool m_showTooltips;
 };

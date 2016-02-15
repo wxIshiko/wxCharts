@@ -27,6 +27,16 @@ wxChartOptions::wxChartOptions()
 {
 }
 
+const wxChartPadding& wxChartOptions::GetPadding() const
+{
+	return m_padding;
+}
+
+void wxChartOptions::SetPadding(const wxChartPadding &padding)
+{
+	m_padding = padding;
+}
+
 bool wxChartOptions::IsResponsive() const
 {
 	return m_responsive;
