@@ -40,7 +40,9 @@ public:
 	/// corner of the rectangle.
 	/// @param options The settings to be used for the
 	/// rectangle.
+	/// @param tooltipProvider The tooltip provider.
 	wxChartRectangle(wxDouble x, wxDouble y, 
+		const wxChartTooltipProvider::ptr tooltipProvider,
 		const wxChartRectangleOptions &options);
 
 	virtual bool HitTest(const wxPoint &point) const;
@@ -65,6 +67,8 @@ public:
 	/// @param position The new position of the upper
 	/// left corner.
 	void SetPosition(wxPoint2DDouble position);
+	wxDouble GetWidth() const;
+	wxDouble GetHeight() const;
 	void SetSize(wxDouble width, wxDouble height);
 
 private:

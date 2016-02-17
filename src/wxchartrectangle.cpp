@@ -37,9 +37,10 @@
 
 wxChartRectangle::wxChartRectangle(wxDouble x,
 								   wxDouble y,
+								   const wxChartTooltipProvider::ptr tooltipProvider,
 								   const wxChartRectangleOptions &options)
-	: m_position(x, y), m_width(0), m_height(0), 
-	m_options(options)
+	: wxChartElement(tooltipProvider), 
+	m_position(x, y), m_width(0), m_height(0), m_options(options)
 {
 }
 
@@ -50,21 +51,52 @@ bool wxChartRectangle::HitTest(const wxPoint &point) const
 
 wxPoint2DDouble wxChartRectangle::GetTooltipPosition() const
 {
-	return wxPoint2DDouble(0, 0);
+	return wxPoint2DDouble(m_position.m_x + (m_width / 2),
+		m_position.m_y + (m_height / 2));
 }
 
 void wxChartRectangle::Draw(wxGraphicsContext &gc) const
 {
 	wxGraphicsPath path = gc.CreatePath();
+
 	path.AddRectangle(m_position.m_x, m_position.m_y, m_width, m_height);
-	
+
 	wxBrush brush(m_options.GetFillColor());
 	gc.SetBrush(brush);
 	gc.FillPath(path);
 
-	wxPen pen(m_options.GetStrokeColor(), 2);
-	gc.SetPen(pen);
-	gc.StrokePath(path);
+	if (m_options.GetDirections() == wxALL)
+	{
+		wxPen pen(m_options.GetStrokeColor(), 2);
+		gc.SetPen(pen);
+		gc.StrokePath(path);
+	}
+	else
+	{
+		wxPen pen(m_options.GetStrokeColor(), 2);
+		gc.SetPen(pen);
+
+		if (m_options.GetDirections() & wxTOP)
+		{
+			gc.StrokeLine(m_position.m_x, m_position.m_y, 
+				m_position.m_x + m_width, m_position.m_y);
+		}
+		if (m_options.GetDirections() & wxRIGHT)
+		{
+			gc.StrokeLine(m_position.m_x + m_width, m_position.m_y, 
+				m_position.m_x + m_width, m_position.m_y + m_height);
+		}
+		if (m_options.GetDirections() & wxBOTTOM)
+		{
+			gc.StrokeLine(m_position.m_x, m_position.m_y + m_height,
+				m_position.m_x + m_width, m_position.m_y + m_height);
+		}
+		if (m_options.GetDirections() & wxLEFT)
+		{
+			gc.StrokeLine(m_position.m_x, m_position.m_y,
+				m_position.m_x, m_position.m_y + m_height);
+		}
+	}
 }
 
 const wxPoint2DDouble& wxChartRectangle::GetPosition() const
@@ -81,6 +113,16 @@ void wxChartRectangle::SetPosition(wxDouble x, wxDouble y)
 void wxChartRectangle::SetPosition(wxPoint2DDouble position)
 {
 	m_position = position;
+}
+
+wxDouble wxChartRectangle::GetWidth() const
+{
+	return m_width;
+}
+
+wxDouble wxChartRectangle::GetHeight() const
+{
+	return m_height;
 }
 
 void wxChartRectangle::SetSize(wxDouble width, wxDouble height)

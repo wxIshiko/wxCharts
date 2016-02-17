@@ -23,6 +23,7 @@
 #include "wxchartelement.h"
 
 wxChartElement::wxChartElement()
+	: m_tooltipProvider(wxChartTooltipProviderStatic::ptr(new wxChartTooltipProviderStatic("", "", *wxBLACK)))
 {
 }
 

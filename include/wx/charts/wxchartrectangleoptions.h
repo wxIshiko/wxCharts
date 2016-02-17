@@ -37,7 +37,7 @@ public:
 	/// @param strokeColor The color of the pen used to
 	/// draw the outline of the rectangle.
 	wxChartRectangleOptions(const wxColor &fillColor,
-		const wxColor &strokeColor);
+		const wxColor &strokeColor, int directions);
 
 	/// Gets the color of the brush used to fill the
 	/// rectangle.
@@ -49,10 +49,12 @@ public:
 	/// @return The color of the pen used to draw the 
 	/// outline of the rectangle.
 	const wxColor& GetStrokeColor() const;
+	int GetDirections() const;
 
 private:
 	wxColor m_fillColor;
 	wxColor m_strokeColor;
+	int m_directions;
 };
 
 #endif

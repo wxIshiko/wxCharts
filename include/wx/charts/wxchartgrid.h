@@ -94,6 +94,7 @@ private:
 
 private:
 	wxChartGridOptions m_options;
+	wxPoint2DDouble m_position;
 	wxChartGridMapping m_mapping;
 	wxChartAxis m_XAxis;
 	wxChartAxis m_YAxis;

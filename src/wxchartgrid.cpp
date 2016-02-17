@@ -42,7 +42,11 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 						 wxDouble minValue,
 						 wxDouble maxValue,
 						 const wxChartGridOptions& options)
-	: m_options(options), m_mapping(size, (options.GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_POINT ? labels.size() - 1: labels.size())),
+	: m_options(options), m_position(position),
+	m_mapping(
+		size, 
+		(options.GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_POINT ? labels.size() - 1: labels.size())
+		),
 	m_XAxis(labels, options.GetXAxisOptions()), m_YAxis(options.GetYAxisOptions()), 
 	m_needsFit(true)
 {
@@ -155,7 +159,7 @@ void wxChartGrid::Fit(wxGraphicsContext &gc)
 	wxDouble leftPadding = 0;
 	wxDouble rightPadding = 0;
 	CalculatePadding(m_XAxis, m_YAxis, leftPadding, rightPadding);
-
+	
 	if (m_XAxis.GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
 	{
 		m_XAxis.Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(m_mapping.GetSize().GetWidth() - rightPadding, startPoint));

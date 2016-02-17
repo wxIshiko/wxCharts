@@ -23,8 +23,9 @@
 #include "wxchartrectangleoptions.h"
 
 wxChartRectangleOptions::wxChartRectangleOptions(const wxColor &fillColor,
-												 const wxColor &strokeColor)
-	: m_fillColor(fillColor), m_strokeColor(strokeColor)
+												 const wxColor &strokeColor, 
+												 int directions)
+	: m_fillColor(fillColor), m_strokeColor(strokeColor), m_directions(directions)
 {
 }
 
@@ -36,4 +37,9 @@ const wxColor& wxChartRectangleOptions::GetFillColor() const
 const wxColor& wxChartRectangleOptions::GetStrokeColor() const
 {
 	return m_strokeColor;
+}
+
+int wxChartRectangleOptions::GetDirections() const
+{
+	return m_directions;
 }
