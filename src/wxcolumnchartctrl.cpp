@@ -34,13 +34,16 @@
 #include "wxcolumnchartctrl.h"
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
+#include <sstream>
 
 wxColumnChartCtrl::Column::Column(wxDouble value,
+								  const wxChartTooltipProvider::ptr tooltipProvider,
 								  wxDouble x,
 								  wxDouble y,
 								  const wxColor &fillColor,
-								  const wxColor &strokeColor)
-	: wxChartRectangle(x, y, wxChartRectangleOptions(fillColor, strokeColor)),
+								  const wxColor &strokeColor,
+								  int directions)
+	: wxChartRectangle(x, y, tooltipProvider, wxChartRectangleOptions(fillColor, strokeColor, directions)),
 	m_value(value)
 {
 }
@@ -83,10 +86,18 @@ wxColumnChartCtrl::wxColumnChartCtrl(wxWindow *parent,
 		const wxBarChartDataset& dataset = *datasets[i];
 		Dataset::ptr newDataset(new Dataset());
 
-		const wxVector<wxDouble>& data = dataset.GetData();
-		for (size_t j = 0; j < data.size(); ++j)
+		const wxVector<wxDouble>& datasetData = dataset.GetData();
+		for (size_t j = 0; j < datasetData.size(); ++j)
 		{
-			newDataset->AppendColumn(Column::ptr(new Column(data[j], 25, 50, dataset.GetFillColor(), dataset.GetStrokeColor())));
+			std::stringstream tooltip;
+			tooltip << datasetData[j];
+			wxChartTooltipProvider::ptr tooltipProvider(
+				new wxChartTooltipProviderStatic(data.GetLabels()[j], tooltip.str(), dataset.GetFillColor())
+				);
+
+			newDataset->AppendColumn(Column::ptr(new Column(
+				datasetData[j], tooltipProvider, 25, 50, dataset.GetFillColor(), dataset.GetStrokeColor(), wxALL
+				)));
 		}
 
 		m_datasets.push_back(newDataset);

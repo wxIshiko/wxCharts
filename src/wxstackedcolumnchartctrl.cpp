@@ -33,15 +33,24 @@
 
 #include "wxstackedcolumnchartctrl.h"
 #include <wx/dcbuffer.h>
+#include <sstream>
 
 wxStackedColumnChartCtrl::Column::Column(wxDouble value,
+										 const wxChartTooltipProvider::ptr tooltipProvider,
 										 wxDouble x,
 										 wxDouble y,
 										 const wxColor &fillColor,
-										 const wxColor &strokeColor)
-	: wxChartRectangle(x, y, wxChartRectangleOptions(fillColor, strokeColor)),
+										 const wxColor &strokeColor,
+										 int directions)
+	: wxChartRectangle(x, y, tooltipProvider, wxChartRectangleOptions(fillColor, strokeColor, directions)),
 	m_value(value)
 {
+}
+
+bool wxStackedColumnChartCtrl::Column::HitTest(const wxPoint &point) const
+{
+	return ((point.x >= GetPosition().m_x) &&
+		(point.x <= (GetPosition().m_x + GetWidth())));
 }
 
 wxDouble wxStackedColumnChartCtrl::Column::GetValue() const
@@ -82,10 +91,28 @@ wxStackedColumnChartCtrl::wxStackedColumnChartCtrl(wxWindow *parent,
 		const wxBarChartDataset& dataset = *datasets[i];
 		Dataset::ptr newDataset(new Dataset());
 
-		const wxVector<wxDouble>& data = dataset.GetData();
-		for (size_t j = 0; j < data.size(); ++j)
+		int border = wxLEFT | wxRIGHT;
+		if (i == (datasets.size() - 1))
 		{
-			newDataset->AppendColumn(Column::ptr(new Column(data[j], 25, 50, dataset.GetFillColor(), dataset.GetStrokeColor())));
+			border |= wxTOP;
+		}
+
+		const wxVector<wxDouble>& datasetData = dataset.GetData();
+		for (size_t j = 0; j < datasetData.size(); ++j)
+		{
+			std::stringstream tooltip;
+			tooltip << datasetData[j];
+			wxChartTooltipProvider::ptr tooltipProvider(
+				new wxChartTooltipProviderStatic(data.GetLabels()[j], tooltip.str(), dataset.GetFillColor())
+				);
+
+			newDataset->AppendColumn(Column::ptr(new Column(
+				datasetData[j], 
+				tooltipProvider, 
+				25, 50, 
+				dataset.GetFillColor(), dataset.GetStrokeColor(), 
+				border
+				)));
 		}
 
 		m_datasets.push_back(newDataset);
@@ -169,6 +196,20 @@ void wxStackedColumnChartCtrl::Resize(const wxSize &size)
 wxSharedPtr<wxVector<const wxChartElement*> > wxStackedColumnChartCtrl::GetActiveElements(const wxPoint &point)
 {
 	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+
+	// Dataset are iterated in reverse order so that the tooltip items
+	// are in the same order as the stacked columns
+	for (int i = m_datasets.size() - 1; i >= 0 ; --i)
+	{
+		const wxVector<Column::ptr>& columns = m_datasets[i]->GetColumns();
+		for (size_t j = 0; j < columns.size(); ++j)
+		{
+			if (columns[j]->HitTest(point))
+			{
+				activeElements->push_back(columns[j].get());
+			}
+		}
+	}
 	return activeElements;
 }
 

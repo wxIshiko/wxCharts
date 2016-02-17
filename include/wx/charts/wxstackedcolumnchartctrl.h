@@ -80,8 +80,13 @@ private:
 	public:
 		typedef wxSharedPtr<Column> ptr;
 
-		Column(wxDouble value, wxDouble x, wxDouble y,
-			const wxColor &fillColor, const wxColor &strokeColor);
+		Column(wxDouble value, 
+			const wxChartTooltipProvider::ptr tooltipProvider, 
+			wxDouble x, wxDouble y,
+			const wxColor &fillColor, const wxColor &strokeColor,
+			int directions);
+
+		virtual bool HitTest(const wxPoint &point) const;
 
 		wxDouble GetValue() const;
 

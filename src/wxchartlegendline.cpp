@@ -51,6 +51,12 @@ void wxChartLegendLine::Draw(wxGraphicsContext &gc)
 
 	wxDouble fontSize = m_options.GetFontOptions().GetSize();
 
+	wxGraphicsPath backgroundPath = gc.CreatePath();
+	backgroundPath.AddRoundedRectangle(m_position.m_x, m_position.m_y, fontSize + 2, fontSize + 2, 3);
+	wxBrush backgroundBrush(*wxWHITE);
+	gc.SetBrush(backgroundBrush);
+	gc.FillPath(backgroundPath);
+
 	wxGraphicsPath path = gc.CreatePath();
 	path.AddRoundedRectangle(m_position.m_x, m_position.m_y, fontSize + 2, fontSize + 2, 3);
 	wxBrush brush(m_color);
