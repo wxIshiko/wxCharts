@@ -21,6 +21,8 @@
 */
 
 #include "wxstackedbarchartctrl.h"
+#include <wx/dcbuffer.h>
+#include <wx/graphics.h>
 
 wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
 											 wxWindowID id,
@@ -28,7 +30,11 @@ wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
 											 const wxPoint &pos,
 											 const wxSize &size,
 											 long style)
-	: wxChartCtrl(parent, id, pos, size, style)
+	: wxChartCtrl(parent, id, pos, size, style),
+	m_grid(
+		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+		size, data.GetLabels(), 0, 20, m_options.GetGridOptions()
+		)
 {
 }
 
@@ -39,6 +45,7 @@ const wxStackedBarChartOptions& wxStackedBarChartCtrl::GetOptions() const
 
 void wxStackedBarChartCtrl::Resize(const wxSize &size)
 {
+	m_grid.Resize(size);
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxStackedBarChartCtrl::GetActiveElements(const wxPoint &point)
@@ -46,3 +53,22 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxStackedBarChartCtrl::GetActiveEl
 	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
 	return activeElements;
 }
+
+void wxStackedBarChartCtrl::OnPaint(wxPaintEvent &evt)
+{
+	wxAutoBufferedPaintDC dc(this);
+
+	dc.Clear();
+
+	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+	if (gc)
+	{
+		m_grid.Draw(*gc);
+
+		delete gc;
+	}
+}
+
+BEGIN_EVENT_TABLE(wxStackedBarChartCtrl, wxChartCtrl)
+	EVT_PAINT(wxStackedBarChartCtrl::OnPaint)
+END_EVENT_TABLE()
