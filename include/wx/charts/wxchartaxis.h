@@ -45,6 +45,9 @@
 class wxChartAxis : public wxChartElement
 {
 public:
+	/// Smart pointer typedef.
+	typedef wxSharedPtr<wxChartAxis> ptr;
+
 	/// Construcs a wxChartAxis element.
 	/// @param options The settings to be used for the axis.
 	wxChartAxis(const wxChartAxisOptions &options);

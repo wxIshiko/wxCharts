@@ -47,18 +47,19 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 		size, 
 		(options.GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_POINT ? labels.size() - 1: labels.size())
 		),
-	m_XAxis(labels, options.GetXAxisOptions()), m_YAxis(options.GetYAxisOptions()), 
+	m_XAxis(new wxChartAxis(labels, options.GetXAxisOptions())), 
+	m_YAxis(new wxChartAxis(options.GetYAxisOptions())), 
 	m_needsFit(true)
 {
 	wxDouble effectiveMinValue = minValue;
-	if (m_YAxis.GetOptions().GetStartValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
+	if (m_YAxis->GetOptions().GetStartValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
 	{
-		effectiveMinValue = m_YAxis.GetOptions().GetStartValue();
+		effectiveMinValue = m_YAxis->GetOptions().GetStartValue();
 	}
 	wxDouble effectiveMaxValue = maxValue;
-	if (m_YAxis.GetOptions().GetEndValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
+	if (m_YAxis->GetOptions().GetEndValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
 	{
-		effectiveMaxValue = m_YAxis.GetOptions().GetEndValue();
+		effectiveMaxValue = m_YAxis->GetOptions().GetEndValue();
 	}
 
 	wxDouble graphMinValue;
@@ -71,7 +72,7 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 
 	wxVector<wxChartLabel> yLabels;
 	BuildYLabels(m_mapping.GetMinValue(), m_steps, m_stepValue, yLabels);
-	m_YAxis.SetLabels(yLabels);
+	m_YAxis->SetLabels(yLabels);
 }
 
 bool wxChartGrid::HitTest(const wxPoint &point) const
@@ -93,14 +94,14 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 	if (m_options.ShowHorizontalLines())
 	{
-		for (size_t i = 1; i < m_YAxis.GetNumberOfTickMarks(); ++i)
+		for (size_t i = 1; i < m_YAxis->GetNumberOfTickMarks(); ++i)
 		{
 			wxDouble yLabelCenter = m_mapping.GetStartPoint().m_y - (yLabelGap * i);
 			wxDouble linePositionY = yLabelCenter;
 
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(xStart, linePositionY);
-			path.AddLineToPoint(m_mapping.GetSize().GetWidth() - m_mapping.GetRightPadding() + m_XAxis.GetOptions().GetOverhang(), linePositionY);
+			path.AddLineToPoint(m_mapping.GetSize().GetWidth() - m_mapping.GetRightPadding() + m_XAxis->GetOptions().GetOverhang(), linePositionY);
 			
 			wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
 			gc.SetPen(pen1);
@@ -110,13 +111,13 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 	if (m_options.ShowVerticalLines())
 	{
-		for (size_t i = 1; i < m_XAxis.GetNumberOfTickMarks(); ++i)
+		for (size_t i = 1; i < m_XAxis->GetNumberOfTickMarks(); ++i)
 		{
-			wxDouble linePosition = m_XAxis.GetTickMarkPosition(i).m_x;
+			wxDouble linePosition = m_XAxis->GetTickMarkPosition(i).m_x;
 
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(linePosition, m_mapping.GetStartPoint().m_y);
-			path.AddLineToPoint(linePosition, m_mapping.GetEndPoint().m_y - m_YAxis.GetOptions().GetOverhang());
+			path.AddLineToPoint(linePosition, m_mapping.GetEndPoint().m_y - m_YAxis->GetOptions().GetOverhang());
 			
 			wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
 			gc.SetPen(pen1);
@@ -124,8 +125,8 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		}
 	}
 
-	m_XAxis.Draw(gc);
-	m_YAxis.Draw(gc);
+	m_XAxis->Draw(gc);
+	m_YAxis->Draw(gc);
 }
 
 void wxChartGrid::Resize(const wxSize &size)
@@ -146,33 +147,33 @@ void wxChartGrid::Fit(wxGraphicsContext &gc)
 		return;
 	}
 
-	wxDouble startPoint = m_mapping.GetSize().GetHeight() - (m_YAxis.GetOptions().GetFontOptions().GetSize() + 15) - 5; // -5 to pad labels
-	wxDouble endPoint = m_YAxis.GetOptions().GetFontOptions().GetSize();
+	wxDouble startPoint = m_mapping.GetSize().GetHeight() - (m_YAxis->GetOptions().GetFontOptions().GetSize() + 15) - 5; // -5 to pad labels
+	wxDouble endPoint = m_YAxis->GetOptions().GetFontOptions().GetSize();
 
 	// Apply padding settings to the start and end point.
 	//this.startPoint += this.padding;
 	//this.endPoint -= this.padding;
 
-	m_YAxis.UpdateLabelSizes(gc);
-	m_XAxis.UpdateLabelSizes(gc);
+	m_YAxis->UpdateLabelSizes(gc);
+	m_XAxis->UpdateLabelSizes(gc);
 
 	wxDouble leftPadding = 0;
 	wxDouble rightPadding = 0;
-	CalculatePadding(m_XAxis, m_YAxis, leftPadding, rightPadding);
+	CalculatePadding(*m_XAxis, *m_YAxis, leftPadding, rightPadding);
 	
-	if (m_XAxis.GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+	if (m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
 	{
-		m_XAxis.Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(m_mapping.GetSize().GetWidth() - rightPadding, startPoint));
-		m_YAxis.Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(leftPadding, endPoint));
+		m_XAxis->Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(m_mapping.GetSize().GetWidth() - rightPadding, startPoint));
+		m_YAxis->Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(leftPadding, endPoint));
 	}
-	else if (m_XAxis.GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
+	else if (m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
 	{
-		m_XAxis.Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(leftPadding, endPoint));
-		m_YAxis.Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(m_mapping.GetSize().GetWidth() - rightPadding, startPoint));
+		m_XAxis->Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(leftPadding, endPoint));
+		m_YAxis->Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(m_mapping.GetSize().GetWidth() - rightPadding, startPoint));
 	}
 
-	m_XAxis.UpdateLabelPositions();
-	m_YAxis.UpdateLabelPositions();
+	m_XAxis->UpdateLabelPositions();
+	m_YAxis->UpdateLabelPositions();
 
 	m_mapping.Fit(leftPadding, rightPadding, wxPoint2DDouble(0, startPoint), wxPoint2DDouble(0, endPoint));
 

@@ -96,8 +96,8 @@ private:
 	wxChartGridOptions m_options;
 	wxPoint2DDouble m_position;
 	wxChartGridMapping m_mapping;
-	wxChartAxis m_XAxis;
-	wxChartAxis m_YAxis;
+	wxChartAxis::ptr m_XAxis;
+	wxChartAxis::ptr m_YAxis;
 	// The number of steps on the Y-axis
 	size_t m_steps;
 	wxDouble m_stepValue;
