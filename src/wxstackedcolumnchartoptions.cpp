@@ -27,7 +27,7 @@ wxStackedColumnChartOptions::wxStackedColumnChartOptions()
 		wxChartAxisOptions(wxCHARTAXISPOSITION_BOTTOM, wxCHARTAXISLABELTYPE_RANGE), 
 		wxChartAxisOptions(wxCHARTAXISPOSITION_LEFT)
 		),
-	m_columnSpacing(5)
+	m_columnSpacing(15)
 {
 	m_gridOptions.GetYAxisOptions().SetExplicitStartValue(0);
 }

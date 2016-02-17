@@ -195,7 +195,7 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 								 long style)
 	: wxChartCtrl(parent, id, pos, size, style), 
 	m_grid(
-		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
 		size, data.GetLabels(), GetMinValue(data.GetDatasets()),
 		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
 		)
@@ -212,7 +212,7 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 								 long style)
 	: wxChartCtrl(parent, id, pos, size, style), m_options(options),
 	m_grid(
-		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
 		size, data.GetLabels(), GetMinValue(data.GetDatasets()),
 		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
 		)
