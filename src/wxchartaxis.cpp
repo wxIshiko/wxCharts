@@ -141,14 +141,26 @@ wxPoint2DDouble wxChartAxis::CalculateLabelPosition(size_t index)
 {
 	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
 	{
-		wxDouble yLabelGap = (m_startPoint.m_y - m_endPoint.m_y) / (m_labels.size() - 1);
-		return wxPoint2DDouble(m_startPoint.m_x - 10 - m_labels[index].GetSize().GetWidth(),
-			m_startPoint.m_y - (yLabelGap * index) - (m_labels[index].GetSize().GetHeight() / 2));
+		wxDouble distance = GetDistanceBetweenTickMarks();
+		wxPoint2DDouble position(
+			m_startPoint.m_x - 10 - m_labels[index].GetSize().GetWidth(),
+			m_startPoint.m_y - (distance * index) - (m_labels[index].GetSize().GetHeight() / 2)
+			);
+
+		if (m_options.GetLabelType() == wxCHARTAXISLABELTYPE_RANGE)
+		{
+			position.m_y -= (distance / 2);
+		}
+
+		return position;
 	}
 	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
 	{
-		wxDouble valueWidth = GetDistanceBetweenTickMarks();
-		wxDouble valueOffset = m_startPoint.m_x + (valueWidth * index);
+		wxDouble distance = GetDistanceBetweenTickMarks();
+		wxPoint2DDouble position(
+			m_startPoint.m_x + (distance * index) - (m_labels[index].GetSize().GetWidth() / 2),
+			m_startPoint.m_y + 8
+			);
 
 		/*
 		innerWidth = this.width - (this.xScalePaddingLeft + this.xScalePaddingRight),
@@ -158,14 +170,14 @@ wxPoint2DDouble wxChartAxis::CalculateLabelPosition(size_t index)
 
 		if (m_options.GetLabelType() == wxCHARTAXISLABELTYPE_RANGE)
 		{
-			valueOffset += (valueWidth / 2);
+			position.m_x += (distance / 2);
 		}
 
 		/*
 		return Math.round(valueOffset);
 		*/
 
-		return wxPoint2DDouble(valueOffset - (m_labels[index].GetSize().GetWidth() / 2), m_startPoint.m_y + 8);
+		return position;
 	}
 
 	wxTrap();
