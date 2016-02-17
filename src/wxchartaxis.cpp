@@ -190,8 +190,19 @@ size_t wxChartAxis::GetNumberOfTickMarks() const
 
 wxPoint2DDouble wxChartAxis::GetTickMarkPosition(size_t index) const
 {
-	wxDouble valueOffset = m_startPoint.m_x + (GetDistanceBetweenTickMarks() * index);
-	return wxPoint2DDouble(valueOffset, m_startPoint.m_y);
+	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
+	{
+		wxDouble yLabelCenter = m_startPoint.m_y - (GetDistanceBetweenTickMarks() * index);
+		return wxPoint2DDouble(0, yLabelCenter);
+	}
+	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+	{
+		wxDouble valueOffset = m_startPoint.m_x + (GetDistanceBetweenTickMarks() * index);
+		return wxPoint2DDouble(valueOffset, m_startPoint.m_y);
+	}
+
+	wxTrap();
+	return wxPoint2DDouble(0, 0);
 }
 
 const wxChartAxisOptions& wxChartAxis::GetOptions() const
@@ -203,11 +214,10 @@ void wxChartAxis::DrawTickMarks(wxGraphicsContext &gc)
 {
 	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
 	{
-		wxDouble yLabelGap = (m_startPoint.m_y - m_endPoint.m_y) / (m_labels.size() - 1);
-		for (size_t i = 0; i < m_labels.size(); ++i)
+		size_t n = GetNumberOfTickMarks();
+		for (size_t i = 0; i < n; ++i)
 		{
-			wxDouble yLabelCenter = m_startPoint.m_y - (yLabelGap * i);
-			wxDouble linePositionY = yLabelCenter;
+			wxDouble linePositionY = GetTickMarkPosition(i).m_y;
 
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(m_startPoint.m_x - 5, linePositionY);
@@ -217,7 +227,8 @@ void wxChartAxis::DrawTickMarks(wxGraphicsContext &gc)
 	}
 	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
 	{
-		for (size_t i = 0; i < m_labels.size(); ++i)
+		size_t n = GetNumberOfTickMarks();
+		for (size_t i = 0; i < n; ++i)
 		{
 			wxDouble linePosition = GetTickMarkPosition(i).m_x;
 
@@ -241,7 +252,15 @@ void wxChartAxis::DrawLabels(wxGraphicsContext &gc)
 
 wxDouble wxChartAxis::GetDistanceBetweenTickMarks() const
 {
-	wxDouble innerWidth = m_endPoint.m_x - m_startPoint.m_x;
-	wxDouble valueWidth = innerWidth / (GetNumberOfTickMarks() - 1);
-	return valueWidth;
+	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
+	{
+		return ((m_startPoint.m_y - m_endPoint.m_y) / (GetNumberOfTickMarks() - 1));
+	}
+	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+	{
+		return ((m_endPoint.m_x - m_startPoint.m_x) / (GetNumberOfTickMarks() - 1));
+	}
+	
+	wxTrap();
+	return 0;
 }
