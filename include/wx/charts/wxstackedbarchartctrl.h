@@ -55,6 +55,9 @@ public:
 	virtual const wxStackedBarChartOptions& GetOptions() const;
 
 private:
+	static wxDouble GetCumulativeMinValue(const wxVector<wxBarChartDataset::ptr>& datasets);
+	static wxDouble GetCumulativeMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets);
+
 	virtual void Resize(const wxSize &size);
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 

@@ -44,7 +44,8 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 	: wxChartCtrl(parent, id, pos, size, style),
 	m_grid(
 		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()), 
-		size, data.GetLabels(), 0, 20, m_options.GetGridOptions()
+		size, data.GetLabels(), GetMinValue(data.GetDatasets()),
+		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
 		)
 {
 }
@@ -52,6 +53,56 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 const wxBarChartOptions& wxBarChartCtrl::GetOptions() const
 {
 	return m_options;
+}
+
+wxDouble wxBarChartCtrl::GetMinValue(const wxVector<wxBarChartDataset::ptr>& datasets)
+{
+	wxDouble result = 0;
+	bool foundValue = false;
+
+	for (size_t i = 0; i < datasets.size(); ++i)
+	{
+		const wxVector<wxDouble>& values = datasets[i]->GetData();
+		for (size_t j = 0; j < values.size(); ++j)
+		{
+			if (!foundValue)
+			{
+				result = values[j];
+				foundValue = true;
+			}
+			else if (result > values[j])
+			{
+				result = values[j];
+			}
+		}
+	}
+
+	return result;
+}
+
+wxDouble wxBarChartCtrl::GetMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets)
+{
+	wxDouble result = 0;
+	bool foundValue = false;
+
+	for (size_t i = 0; i < datasets.size(); ++i)
+	{
+		const wxVector<wxDouble>& values = datasets[i]->GetData();
+		for (size_t j = 0; j < values.size(); ++j)
+		{
+			if (!foundValue)
+			{
+				result = values[j];
+				foundValue = true;
+			}
+			else if (result < values[j])
+			{
+				result = values[j];
+			}
+		}
+	}
+
+	return result;
 }
 
 void wxBarChartCtrl::Resize(const wxSize &size)

@@ -33,7 +33,8 @@ wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
 	: wxChartCtrl(parent, id, pos, size, style),
 	m_grid(
 		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
-		size, data.GetLabels(), 0, 20, m_options.GetGridOptions()
+		size, data.GetLabels(), GetCumulativeMinValue(data.GetDatasets()),
+		GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions()
 		)
 {
 }
@@ -41,6 +42,70 @@ wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
 const wxStackedBarChartOptions& wxStackedBarChartCtrl::GetOptions() const
 {
 	return m_options;
+}
+
+wxDouble wxStackedBarChartCtrl::GetCumulativeMinValue(const wxVector<wxBarChartDataset::ptr>& datasets)
+{
+	wxDouble result = 0;
+
+	size_t i = 0;
+	while (true)
+	{
+		wxDouble sum = 0;
+		bool stop = true;
+		for (size_t j = 0; j < datasets.size(); ++j)
+		{
+			const wxBarChartDataset& dataset = *datasets[j];
+			if (i < dataset.GetData().size())
+			{
+				sum += dataset.GetData()[i];
+				stop = false;
+			}
+		}
+		if (sum < result)
+		{
+			result = sum;
+		}
+		if (stop)
+		{
+			break;
+		}
+		++i;
+	}
+
+	return result;
+}
+
+wxDouble wxStackedBarChartCtrl::GetCumulativeMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets)
+{
+	wxDouble result = 0;
+
+	size_t i = 0;
+	while (true)
+	{
+		wxDouble sum = 0;
+		bool stop = true;
+		for (size_t j = 0; j < datasets.size(); ++j)
+		{
+			const wxBarChartDataset& dataset = *datasets[j];
+			if (i < dataset.GetData().size())
+			{
+				sum += dataset.GetData()[i];
+				stop = false;
+			}
+		}
+		if (sum > result)
+		{
+			result = sum;
+		}
+		if (stop)
+		{
+			break;
+		}
+		++i;
+	}
+
+	return result;
 }
 
 void wxStackedBarChartCtrl::Resize(const wxSize &size)
