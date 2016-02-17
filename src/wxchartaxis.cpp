@@ -131,9 +131,9 @@ void wxChartAxis::UpdateLabelPositions()
 	{
 		for (size_t i = 0; i < m_labels.size(); ++i)
 		{
-			wxDouble labelPosition = CalculateLabelPosition(i);
-			m_labels[i].SetPosition(labelPosition - (m_labels[i].GetSize().GetWidth() / 2),
-				m_startPoint.m_y + 8);
+			wxPoint2DDouble labelPosition = CalculateLabelPosition(i);
+			m_labels[i].SetPosition(labelPosition.m_x - (m_labels[i].GetSize().GetWidth() / 2),
+				labelPosition.m_y);
 		}
 	}
 }
@@ -153,7 +153,7 @@ wxDouble wxChartAxis::GetLabelMaxWidth() const
 	return m_labelMaxWidth;
 }
 
-wxDouble wxChartAxis::CalculateLabelPosition(size_t index)
+wxPoint2DDouble wxChartAxis::CalculateLabelPosition(size_t index)
 {
 	wxDouble valueWidth = GetDistanceBetweenTickMarks();
 	wxDouble valueOffset = m_startPoint.m_x + (valueWidth * index);
@@ -173,7 +173,7 @@ wxDouble wxChartAxis::CalculateLabelPosition(size_t index)
 	return Math.round(valueOffset);
 	*/
 
-	return valueOffset;
+	return wxPoint2DDouble(valueOffset, m_startPoint.m_y + 8);
 }
 
 size_t wxChartAxis::GetNumberOfTickMarks() const

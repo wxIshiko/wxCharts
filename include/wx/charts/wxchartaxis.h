@@ -83,7 +83,7 @@ public:
 	/// @return The maximum width of the labels.
 	wxDouble GetLabelMaxWidth() const;
 
-	wxDouble CalculateLabelPosition(size_t index);
+	wxPoint2DDouble CalculateLabelPosition(size_t index);
 	size_t GetNumberOfTickMarks() const;
 	wxPoint2DDouble GetTickMarkPosition(size_t index) const;
 
