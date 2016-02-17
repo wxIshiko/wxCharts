@@ -67,6 +67,7 @@ public:
 	/// SetPosition(wxDouble x, wxDouble y) function.
 	/// @return The position of the label.
 	const wxPoint2DDouble& GetPosition() const;
+	void SetPosition(const wxPoint2DDouble &position);
 	/// Sets the position of the label.
 	/// @param x The X coordinate of the label.
 	/// @param y The Y coordinate of the label.

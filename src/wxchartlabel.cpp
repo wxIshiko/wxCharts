@@ -60,6 +60,11 @@ const wxPoint2DDouble& wxChartLabel::GetPosition() const
 	return m_position;
 }
 
+void wxChartLabel::SetPosition(const wxPoint2DDouble &position)
+{
+	m_position = position;
+}
+
 void wxChartLabel::SetPosition(wxDouble x,
 							   wxDouble y)
 {

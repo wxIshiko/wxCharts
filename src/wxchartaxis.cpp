@@ -116,25 +116,9 @@ void wxChartAxis::UpdateLabelSizes(wxGraphicsContext &gc)
 
 void wxChartAxis::UpdateLabelPositions()
 {
-	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
+	for (size_t i = 0; i < m_labels.size(); ++i)
 	{
-		wxDouble yLabelGap = (m_startPoint.m_y - m_endPoint.m_y) / (m_labels.size() - 1);
-
-		for (size_t i = 0; i < m_labels.size(); ++i)
-		{
-			wxDouble yLabelCenter = m_startPoint.m_y - (yLabelGap * i);
-			m_labels[i].SetPosition(m_startPoint.m_x - 10 - m_labels[i].GetSize().GetWidth(),
-				yLabelCenter - (m_labels[i].GetSize().GetHeight() / 2));
-		}
-	}
-	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
-	{
-		for (size_t i = 0; i < m_labels.size(); ++i)
-		{
-			wxPoint2DDouble labelPosition = CalculateLabelPosition(i);
-			m_labels[i].SetPosition(labelPosition.m_x - (m_labels[i].GetSize().GetWidth() / 2),
-				labelPosition.m_y);
-		}
+		m_labels[i].SetPosition(CalculateLabelPosition(i));
 	}
 }
 
@@ -155,25 +139,37 @@ wxDouble wxChartAxis::GetLabelMaxWidth() const
 
 wxPoint2DDouble wxChartAxis::CalculateLabelPosition(size_t index)
 {
-	wxDouble valueWidth = GetDistanceBetweenTickMarks();
-	wxDouble valueOffset = m_startPoint.m_x + (valueWidth * index);
-
-	/*
-	innerWidth = this.width - (this.xScalePaddingLeft + this.xScalePaddingRight),
-	valueWidth = innerWidth/Math.max((this.valuesCount - ((this.offsetGridLines) ? 0 : 1)), 1),
-	valueOffset = (valueWidth * index) + this.xScalePaddingLeft;
-	*/
-
-	if (m_options.GetLabelType() == wxCHARTAXISLABELTYPE_RANGE)
+	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
 	{
-		valueOffset += (valueWidth / 2);
+		wxDouble yLabelGap = (m_startPoint.m_y - m_endPoint.m_y) / (m_labels.size() - 1);
+		return wxPoint2DDouble(m_startPoint.m_x - 10 - m_labels[index].GetSize().GetWidth(),
+			m_startPoint.m_y - (yLabelGap * index) - (m_labels[index].GetSize().GetHeight() / 2));
+	}
+	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+	{
+		wxDouble valueWidth = GetDistanceBetweenTickMarks();
+		wxDouble valueOffset = m_startPoint.m_x + (valueWidth * index);
+
+		/*
+		innerWidth = this.width - (this.xScalePaddingLeft + this.xScalePaddingRight),
+		valueWidth = innerWidth/Math.max((this.valuesCount - ((this.offsetGridLines) ? 0 : 1)), 1),
+		valueOffset = (valueWidth * index) + this.xScalePaddingLeft;
+		*/
+
+		if (m_options.GetLabelType() == wxCHARTAXISLABELTYPE_RANGE)
+		{
+			valueOffset += (valueWidth / 2);
+		}
+
+		/*
+		return Math.round(valueOffset);
+		*/
+
+		return wxPoint2DDouble(valueOffset - (m_labels[index].GetSize().GetWidth() / 2), m_startPoint.m_y + 8);
 	}
 
-	/*
-	return Math.round(valueOffset);
-	*/
-
-	return wxPoint2DDouble(valueOffset, m_startPoint.m_y + 8);
+	wxTrap();
+	return wxPoint2DDouble(0, 0);
 }
 
 size_t wxChartAxis::GetNumberOfTickMarks() const
