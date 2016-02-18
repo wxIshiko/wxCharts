@@ -86,25 +86,36 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 {
 	Fit(gc);	
 
+	const wxChartAxis* verticalAxis = 0;
+	if (m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
+	{
+		verticalAxis = m_XAxis.get();
+	}
+	else if (m_YAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
+	{
+		verticalAxis = m_YAxis.get();
+	}
+
+	const wxChartAxis* horizontalAxis = 0;
+	if (m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+	{
+		horizontalAxis = m_XAxis.get();
+	}
+	else if (m_YAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+	{
+		horizontalAxis = m_YAxis.get();
+	}
+
 	if (m_options.ShowHorizontalLines())
 	{
-		const wxChartAxis* verticalAxis = 0;
-		if (m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
-		{
-			verticalAxis = m_XAxis.get();
-		}
-		else if (m_YAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
-		{
-			verticalAxis = m_YAxis.get();
-		}
-
 		for (size_t i = 1; i < verticalAxis->GetNumberOfTickMarks(); ++i)
 		{
 			wxPoint2DDouble lineStartPosition = verticalAxis->GetTickMarkPosition(i);
+			wxPoint2DDouble lineEndPosition = horizontalAxis->GetTickMarkPosition(horizontalAxis->GetNumberOfTickMarks() - 1);
 
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(lineStartPosition);
-			path.AddLineToPoint(m_mapping.GetSize().GetWidth() - m_mapping.GetRightPadding() + verticalAxis->GetOptions().GetOverhang(), lineStartPosition.m_y);
+			path.AddLineToPoint(lineEndPosition.m_x + horizontalAxis->GetOptions().GetOverhang(), lineStartPosition.m_y);
 			
 			wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
 			gc.SetPen(pen1);
@@ -114,16 +125,6 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 	if (m_options.ShowVerticalLines())
 	{
-		const wxChartAxis* horizontalAxis = 0;
-		if (m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
-		{
-			horizontalAxis = m_XAxis.get();
-		}
-		else if (m_YAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
-		{
-			horizontalAxis = m_YAxis.get();
-		}
-
 		for (size_t i = 1; i < horizontalAxis->GetNumberOfTickMarks(); ++i)
 		{
 			wxPoint2DDouble lineStartPosition = horizontalAxis->GetTickMarkPosition(i);
@@ -131,7 +132,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(lineStartPosition);
-			path.AddLineToPoint(lineEndPosition.m_x, lineEndPosition.m_y - horizontalAxis->GetOptions().GetOverhang());
+			path.AddLineToPoint(lineEndPosition.m_x, lineEndPosition.m_y - verticalAxis->GetOptions().GetOverhang());
 			
 			wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
 			gc.SetPen(pen1);
@@ -188,8 +189,6 @@ void wxChartGrid::Fit(wxGraphicsContext &gc)
 
 	m_XAxis->UpdateLabelPositions();
 	m_YAxis->UpdateLabelPositions();
-
-	m_mapping.Fit(rightPadding);
 
 	m_needsFit = false;
 }

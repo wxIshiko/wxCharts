@@ -36,16 +36,9 @@
 wxChartGridMapping::wxChartGridMapping(const wxSize &size,
 									   const wxChartAxis::ptr xAxis,
 									   const wxChartAxis::ptr yAxis)
-	: m_size(size), 
-	m_rightPadding(0),
-	m_minValue(0), m_maxValue(0),
+	: m_size(size), m_minValue(0), m_maxValue(0),
 	m_XAxis(xAxis), m_YAxis(yAxis)
 {
-}
-
-void wxChartGridMapping::Fit(wxDouble rightPadding)
-{
-	m_rightPadding = rightPadding;
 }
 
 const wxSize& wxChartGridMapping::GetSize() const
@@ -56,11 +49,6 @@ const wxSize& wxChartGridMapping::GetSize() const
 void wxChartGridMapping::SetSize(const wxSize &size)
 {
 	m_size = size;
-}
-
-wxDouble wxChartGridMapping::GetRightPadding() const
-{
-	return m_rightPadding;
 }
 
 wxDouble wxChartGridMapping::GetMinValue() const
