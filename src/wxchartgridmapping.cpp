@@ -101,11 +101,6 @@ void wxChartGridMapping::SetMaxValue(wxDouble maxValue)
 	m_maxValue = maxValue;
 }
 
-wxPoint2DDouble wxChartGridMapping::GetStartPoint() const
-{
-	return m_startPoint;
-}
-
 wxPoint2DDouble wxChartGridMapping::GetEndPoint() const
 {
 	return m_endPoint;

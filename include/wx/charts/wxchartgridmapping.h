@@ -57,12 +57,11 @@ public:
 	void SetMinValue(wxDouble minValue);
 	wxDouble GetMaxValue() const;
 	void SetMaxValue(wxDouble maxValue);
-	wxPoint2DDouble GetStartPoint() const;
 	wxPoint2DDouble GetEndPoint() const;
 
 	wxPoint2DDouble GetWindowPosition(size_t index, wxDouble value) const;
 	wxPoint2DDouble GetWindowPositionOfPointOnXAxis(size_t index) const;
-
+	
 private:
 	wxSize m_size;
 	wxDouble m_leftPadding;

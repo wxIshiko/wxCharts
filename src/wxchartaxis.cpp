@@ -201,7 +201,7 @@ wxPoint2DDouble wxChartAxis::GetTickMarkPosition(size_t index) const
 	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
 	{
 		wxDouble yLabelCenter = m_startPoint.m_y - (GetDistanceBetweenTickMarks() * index);
-		return wxPoint2DDouble(0, yLabelCenter);
+		return wxPoint2DDouble(m_startPoint.m_x, yLabelCenter);
 	}
 	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
 	{
