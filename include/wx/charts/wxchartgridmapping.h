@@ -44,8 +44,7 @@ class wxChartGridMapping
 {
 public:
 	wxChartGridMapping(const wxSize &size,
-		unsigned int numberOfVerticalLines,
-		const wxChartAxis::ptr xAxis);
+		const wxChartAxis::ptr xAxis, const wxChartAxis::ptr yAxis);
 
 	void Fit(wxDouble leftPadding, wxDouble rightPadding,
 		wxPoint2DDouble startPoint, wxPoint2DDouble endPoint);
@@ -72,8 +71,8 @@ private:
 	wxPoint2DDouble m_endPoint;
 	wxDouble m_minValue;
 	wxDouble m_maxValue;
-	unsigned int m_numberOfVerticalLines;
 	wxChartAxis::ptr m_XAxis;
+	wxChartAxis::ptr m_YAxis;
 };
 
 #endif

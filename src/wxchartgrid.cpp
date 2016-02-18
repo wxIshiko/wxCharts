@@ -45,11 +45,7 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 	: m_options(options), m_position(position),
 	m_XAxis(new wxChartAxis(labels, options.GetXAxisOptions())),
 	m_YAxis(new wxChartAxis(options.GetYAxisOptions())),
-	m_mapping(
-		size, 
-		(options.GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_POINT ? labels.size() - 1: labels.size()),
-		m_XAxis
-		),
+	m_mapping(size, m_XAxis, m_YAxis),
 	m_needsFit(true)
 {
 	wxDouble effectiveMinValue = minValue;

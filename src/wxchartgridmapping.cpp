@@ -34,14 +34,13 @@
 #include "wxchartgridmapping.h"
 
 wxChartGridMapping::wxChartGridMapping(const wxSize &size,
-									   unsigned int numberOfVerticalLines,
-									   const wxChartAxis::ptr xAxis)
+									   const wxChartAxis::ptr xAxis,
+									   const wxChartAxis::ptr yAxis)
 	: m_size(size), 
 	m_leftPadding(0), m_rightPadding(0),
 	m_minValue(0), m_maxValue(0),
 	m_startPoint(0, 0), m_endPoint(0, 0),
-	m_numberOfVerticalLines(numberOfVerticalLines),
-	m_XAxis(xAxis)
+	m_XAxis(xAxis), m_YAxis(yAxis)
 {
 }
 
@@ -106,9 +105,7 @@ void wxChartGridMapping::SetMaxValue(wxDouble maxValue)
 wxPoint2DDouble wxChartGridMapping::GetWindowPosition(size_t index,
 													  wxDouble value) const
 {
-	wxDouble innerWidth = m_size.GetWidth() - m_leftPadding - m_rightPadding;
-	wxDouble valueWidth = innerWidth / m_numberOfVerticalLines;
-	wxDouble x = m_leftPadding + (valueWidth * index);
+	wxDouble x = m_XAxis->GetTickMarkPosition(index).m_x;
 
 	wxDouble scalingFactor = ((m_startPoint.m_y - m_endPoint.m_y) / (m_maxValue - m_minValue));
 	wxDouble y  = m_startPoint.m_y - (scalingFactor * (value - m_minValue));
