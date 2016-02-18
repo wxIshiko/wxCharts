@@ -36,6 +36,7 @@
 #ifndef _WX_CHARTS_WXCHARTGRIDMAPPING_H_
 #define _WX_CHARTS_WXCHARTGRIDMAPPING_H_
 
+#include "wxchartaxis.h"
 #include <wx/geometry.h>
 
 /// This class maintains a mapping between points on the chart and pixels on the screen.
@@ -43,7 +44,8 @@ class wxChartGridMapping
 {
 public:
 	wxChartGridMapping(const wxSize &size,
-		unsigned int numberOfVerticalLines);
+		unsigned int numberOfVerticalLines,
+		const wxChartAxis::ptr xAxis);
 
 	void Fit(wxDouble leftPadding, wxDouble rightPadding,
 		wxPoint2DDouble startPoint, wxPoint2DDouble endPoint);
@@ -57,10 +59,10 @@ public:
 	void SetMinValue(wxDouble minValue);
 	wxDouble GetMaxValue() const;
 	void SetMaxValue(wxDouble maxValue);
-	wxPoint2DDouble GetEndPoint() const;
 
 	wxPoint2DDouble GetWindowPosition(size_t index, wxDouble value) const;
-	wxPoint2DDouble GetWindowPositionOfPointOnXAxis(size_t index) const;
+	
+	const wxChartAxis& GetXAxis() const;
 	
 private:
 	wxSize m_size;
@@ -71,6 +73,7 @@ private:
 	wxDouble m_minValue;
 	wxDouble m_maxValue;
 	unsigned int m_numberOfVerticalLines;
+	wxChartAxis::ptr m_XAxis;
 };
 
 #endif

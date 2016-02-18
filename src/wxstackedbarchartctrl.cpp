@@ -23,6 +23,44 @@
 #include "wxstackedbarchartctrl.h"
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
+#include <sstream>
+
+wxStackedBarChartCtrl::Bar::Bar(wxDouble value,
+								const wxChartTooltipProvider::ptr tooltipProvider,
+								wxDouble x,
+								wxDouble y,
+								const wxColor &fillColor,
+								const wxColor &strokeColor,
+								int directions)
+	: wxChartRectangle(x, y, tooltipProvider, wxChartRectangleOptions(fillColor, strokeColor, directions)),
+	m_value(value)
+{
+}
+
+bool wxStackedBarChartCtrl::Bar::HitTest(const wxPoint &point) const
+{
+	return ((point.x >= GetPosition().m_x) &&
+		(point.x <= (GetPosition().m_x + GetWidth())));
+}
+
+wxDouble wxStackedBarChartCtrl::Bar::GetValue() const
+{
+	return m_value;
+}
+
+wxStackedBarChartCtrl::Dataset::Dataset()
+{
+}
+
+const wxVector<wxStackedBarChartCtrl::Bar::ptr>& wxStackedBarChartCtrl::Dataset::GetBars() const
+{
+	return m_bars;
+}
+
+void wxStackedBarChartCtrl::Dataset::AppendBar(Bar::ptr column)
+{
+	m_bars.push_back(column);
+}
 
 wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
 											 wxWindowID id,
@@ -37,6 +75,38 @@ wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
 		GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions()
 		)
 {
+	const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
+	for (size_t i = 0; i < datasets.size(); ++i)
+	{
+		const wxBarChartDataset& dataset = *datasets[i];
+		Dataset::ptr newDataset(new Dataset());
+
+		int border = wxLEFT | wxRIGHT;
+		if (i == (datasets.size() - 1))
+		{
+			border |= wxTOP;
+		}
+
+		const wxVector<wxDouble>& datasetData = dataset.GetData();
+		for (size_t j = 0; j < datasetData.size(); ++j)
+		{
+			std::stringstream tooltip;
+			tooltip << datasetData[j];
+			wxChartTooltipProvider::ptr tooltipProvider(
+				new wxChartTooltipProviderStatic(data.GetLabels()[j], tooltip.str(), dataset.GetFillColor())
+				);
+
+			newDataset->AppendBar(Bar::ptr(new Bar(
+				datasetData[j],
+				tooltipProvider,
+				25, 50,
+				dataset.GetFillColor(), dataset.GetStrokeColor(),
+				border
+				)));
+		}
+
+		m_datasets.push_back(newDataset);
+	}
 }
 
 const wxStackedBarChartOptions& wxStackedBarChartCtrl::GetOptions() const
@@ -129,6 +199,47 @@ void wxStackedBarChartCtrl::OnPaint(wxPaintEvent &evt)
 	if (gc)
 	{
 		m_grid.Draw(*gc);
+
+		wxVector<wxDouble> widthOfPreviousDatasets;
+		for (size_t i = 0; i < m_datasets[0]->GetBars().size(); ++i)
+		{
+			widthOfPreviousDatasets.push_back(0);
+		}
+
+		for (size_t i = 0; i < m_datasets.size(); ++i)
+		{
+			Dataset& currentDataset = *m_datasets[i];
+			for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
+			{
+				Bar& bar = *(currentDataset.GetBars()[j]);
+
+				wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetWindowPosition(j, bar.GetValue());
+				upperLeftCornerPosition.m_x += m_options.GetBarSpacing();
+				upperLeftCornerPosition.m_y -= widthOfPreviousDatasets[j];
+				wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPosition(j + 1, bar.GetValue());
+				upperRightCornerPosition.m_x -= m_options.GetBarSpacing();
+				upperRightCornerPosition.m_y -= widthOfPreviousDatasets[j];
+
+				wxPoint2DDouble bottomLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j);
+
+				bar.SetPosition(upperLeftCornerPosition);
+				bar.SetSize(upperRightCornerPosition.m_x - upperLeftCornerPosition.m_x,
+					(bottomLeftCornerPosition.m_y - widthOfPreviousDatasets[j]) - upperLeftCornerPosition.m_y);
+
+				widthOfPreviousDatasets[j] = bottomLeftCornerPosition.m_y - upperLeftCornerPosition.m_y;
+			}
+		}
+
+		for (size_t i = 0; i < m_datasets.size(); ++i)
+		{
+			Dataset& currentDataset = *m_datasets[i];
+			for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
+			{
+				currentDataset.GetBars()[j]->Draw(*gc);
+			}
+		}
+
+		DrawTooltips(*gc);
 
 		delete gc;
 	}

@@ -34,12 +34,14 @@
 #include "wxchartgridmapping.h"
 
 wxChartGridMapping::wxChartGridMapping(const wxSize &size,
-									   unsigned int numberOfVerticalLines)
+									   unsigned int numberOfVerticalLines,
+									   const wxChartAxis::ptr xAxis)
 	: m_size(size), 
 	m_leftPadding(0), m_rightPadding(0),
 	m_minValue(0), m_maxValue(0),
 	m_startPoint(0, 0), m_endPoint(0, 0),
-	m_numberOfVerticalLines(numberOfVerticalLines)
+	m_numberOfVerticalLines(numberOfVerticalLines),
+	m_XAxis(xAxis)
 {
 }
 
@@ -101,11 +103,6 @@ void wxChartGridMapping::SetMaxValue(wxDouble maxValue)
 	m_maxValue = maxValue;
 }
 
-wxPoint2DDouble wxChartGridMapping::GetEndPoint() const
-{
-	return m_endPoint;
-}
-
 wxPoint2DDouble wxChartGridMapping::GetWindowPosition(size_t index,
 													  wxDouble value) const
 {
@@ -119,13 +116,7 @@ wxPoint2DDouble wxChartGridMapping::GetWindowPosition(size_t index,
 	return wxPoint2DDouble(x, y);
 }
 
-wxPoint2DDouble wxChartGridMapping::GetWindowPositionOfPointOnXAxis(size_t index) const
+const wxChartAxis& wxChartGridMapping::GetXAxis() const
 {
-	wxDouble innerWidth = m_size.GetWidth() - m_leftPadding - m_rightPadding;
-	wxDouble valueWidth = innerWidth / m_numberOfVerticalLines;
-	wxDouble x = m_leftPadding + (valueWidth * index);
-
-	wxDouble scalingFactor = ((m_startPoint.m_y - m_endPoint.m_y) / (m_maxValue - m_minValue));
-
-	return wxPoint2DDouble(x, m_startPoint.m_y);
+	return *m_XAxis;
 }

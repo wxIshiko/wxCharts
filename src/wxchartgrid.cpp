@@ -47,7 +47,8 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 	m_YAxis(new wxChartAxis(options.GetYAxisOptions())),
 	m_mapping(
 		size, 
-		(options.GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_POINT ? labels.size() - 1: labels.size())
+		(options.GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_POINT ? labels.size() - 1: labels.size()),
+		m_XAxis
 		),
 	m_needsFit(true)
 {
@@ -103,11 +104,11 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 		for (size_t i = 1; i < verticalAxis->GetNumberOfTickMarks(); ++i)
 		{
-			wxPoint2DDouble linePosition = verticalAxis->GetTickMarkPosition(i);
+			wxPoint2DDouble lineStartPosition = verticalAxis->GetTickMarkPosition(i);
 
 			wxGraphicsPath path = gc.CreatePath();
-			path.MoveToPoint(linePosition);
-			path.AddLineToPoint(m_mapping.GetSize().GetWidth() - m_mapping.GetRightPadding() + verticalAxis->GetOptions().GetOverhang(), linePosition.m_y);
+			path.MoveToPoint(lineStartPosition);
+			path.AddLineToPoint(m_mapping.GetSize().GetWidth() - m_mapping.GetRightPadding() + verticalAxis->GetOptions().GetOverhang(), lineStartPosition.m_y);
 			
 			wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
 			gc.SetPen(pen1);
@@ -129,11 +130,12 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
 		for (size_t i = 1; i < horizontalAxis->GetNumberOfTickMarks(); ++i)
 		{
-			wxPoint2DDouble linePosition = horizontalAxis->GetTickMarkPosition(i);
+			wxPoint2DDouble lineStartPosition = horizontalAxis->GetTickMarkPosition(i);
+			wxPoint2DDouble lineEndPosition = m_mapping.GetWindowPosition(i, m_mapping.GetMaxValue());
 
 			wxGraphicsPath path = gc.CreatePath();
-			path.MoveToPoint(linePosition);
-			path.AddLineToPoint(linePosition.m_x, m_mapping.GetEndPoint().m_y - horizontalAxis->GetOptions().GetOverhang());
+			path.MoveToPoint(lineStartPosition);
+			path.AddLineToPoint(lineEndPosition.m_x, lineEndPosition.m_y - horizontalAxis->GetOptions().GetOverhang());
 			
 			wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
 			gc.SetPen(pen1);
