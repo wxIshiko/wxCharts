@@ -81,10 +81,10 @@ wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
 		const wxBarChartDataset& dataset = *datasets[i];
 		Dataset::ptr newDataset(new Dataset());
 
-		int border = wxLEFT | wxRIGHT;
+		int border = wxTOP | wxBOTTOM;
 		if (i == (datasets.size() - 1))
 		{
-			border |= wxTOP;
+			border |= wxRIGHT;
 		}
 
 		const wxVector<wxDouble>& datasetData = dataset.GetData();
@@ -213,20 +213,21 @@ void wxStackedBarChartCtrl::OnPaint(wxPaintEvent &evt)
 			{
 				Bar& bar = *(currentDataset.GetBars()[j]);
 
-				wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetWindowPosition(j, bar.GetValue());
-				upperLeftCornerPosition.m_x += m_options.GetBarSpacing();
-				upperLeftCornerPosition.m_y -= widthOfPreviousDatasets[j];
-				wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPosition(j + 1, bar.GetValue());
-				upperRightCornerPosition.m_x -= m_options.GetBarSpacing();
-				upperRightCornerPosition.m_y -= widthOfPreviousDatasets[j];
-
+				wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j + 1);
+				upperLeftCornerPosition.m_x += widthOfPreviousDatasets[j];
+				upperLeftCornerPosition.m_y += m_options.GetBarSpacing();
 				wxPoint2DDouble bottomLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j);
+				bottomLeftCornerPosition.m_x += widthOfPreviousDatasets[j];
+				bottomLeftCornerPosition.m_y -= m_options.GetBarSpacing();
 
+				wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPosition(j + 1, bar.GetValue());
+				upperRightCornerPosition.m_x += widthOfPreviousDatasets[j];
+				
 				bar.SetPosition(upperLeftCornerPosition);
 				bar.SetSize(upperRightCornerPosition.m_x - upperLeftCornerPosition.m_x,
-					(bottomLeftCornerPosition.m_y - widthOfPreviousDatasets[j]) - upperLeftCornerPosition.m_y);
+					bottomLeftCornerPosition.m_y - upperLeftCornerPosition.m_y);
 
-				widthOfPreviousDatasets[j] = bottomLeftCornerPosition.m_y - upperLeftCornerPosition.m_y;
+				widthOfPreviousDatasets[j] += (upperRightCornerPosition.m_x - upperLeftCornerPosition.m_x);
 			}
 		}
 

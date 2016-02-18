@@ -215,10 +215,23 @@ wxPoint2DDouble wxChartAxis::GetTickMarkPosition(size_t index) const
 
 wxPoint2DDouble wxChartAxis::GetPosition(wxDouble relativeValue) const
 {
-	return wxPoint2DDouble(
-		m_startPoint.m_x,
-		m_startPoint.m_y - (relativeValue * (m_startPoint.m_y - m_endPoint.m_y))
-		);
+	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
+	{
+		return wxPoint2DDouble(
+			m_startPoint.m_x,
+			m_startPoint.m_y - (relativeValue * (m_startPoint.m_y - m_endPoint.m_y))
+			);
+	}
+	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+	{
+		return wxPoint2DDouble(
+			m_startPoint.m_x + (relativeValue * (m_endPoint.m_x - m_startPoint.m_x)),
+			m_startPoint.m_y
+			);
+	}
+
+	wxTrap();
+	return wxPoint2DDouble(0, 0);
 }
 
 const wxChartAxisOptions& wxChartAxis::GetOptions() const

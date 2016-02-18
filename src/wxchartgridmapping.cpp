@@ -74,10 +74,25 @@ void wxChartGridMapping::SetMaxValue(wxDouble maxValue)
 wxPoint2DDouble wxChartGridMapping::GetWindowPosition(size_t index,
 													  wxDouble value) const
 {
-	return wxPoint2DDouble(
-		m_XAxis->GetTickMarkPosition(index).m_x,
-		m_YAxis->GetPosition((value - m_minValue) / (m_maxValue - m_minValue)).m_y
-		);
+	if ((m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM) &&
+		(m_YAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT))
+	{
+		return wxPoint2DDouble(
+			m_XAxis->GetTickMarkPosition(index).m_x,
+			m_YAxis->GetPosition((value - m_minValue) / (m_maxValue - m_minValue)).m_y
+			);
+	}
+	else if ((m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT) &&
+		(m_YAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM))
+	{
+		return wxPoint2DDouble(
+			m_YAxis->GetPosition((value - m_minValue) / (m_maxValue - m_minValue)).m_x,
+			m_XAxis->GetTickMarkPosition(index).m_y
+			);
+	}
+
+	wxTrap();
+	return wxPoint2DDouble(0, 0);
 }
 
 const wxChartAxis& wxChartGridMapping::GetXAxis() const

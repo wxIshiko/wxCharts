@@ -128,11 +128,11 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 		for (size_t i = 1; i < horizontalAxis->GetNumberOfTickMarks(); ++i)
 		{
 			wxPoint2DDouble lineStartPosition = horizontalAxis->GetTickMarkPosition(i);
-			wxPoint2DDouble lineEndPosition = m_mapping.GetWindowPosition(i, m_mapping.GetMaxValue());
+			wxPoint2DDouble lineEndPosition = verticalAxis->GetTickMarkPosition(verticalAxis->GetNumberOfTickMarks() - 1);
 
 			wxGraphicsPath path = gc.CreatePath();
 			path.MoveToPoint(lineStartPosition);
-			path.AddLineToPoint(lineEndPosition.m_x, lineEndPosition.m_y - verticalAxis->GetOptions().GetOverhang());
+			path.AddLineToPoint(lineStartPosition.m_x, lineEndPosition.m_y - verticalAxis->GetOptions().GetOverhang());
 			
 			wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
 			gc.SetPen(pen1);
