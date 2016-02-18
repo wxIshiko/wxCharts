@@ -86,6 +86,7 @@ public:
 	wxPoint2DDouble CalculateLabelPosition(size_t index);
 	size_t GetNumberOfTickMarks() const;
 	wxPoint2DDouble GetTickMarkPosition(size_t index) const;
+	wxPoint2DDouble GetPosition(wxDouble relativeValue) const;
 
 	const wxChartAxisOptions& GetOptions() const;
 

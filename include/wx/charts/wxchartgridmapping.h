@@ -46,10 +46,8 @@ public:
 	wxChartGridMapping(const wxSize &size,
 		const wxChartAxis::ptr xAxis, const wxChartAxis::ptr yAxis);
 
-	void Fit(wxDouble leftPadding, wxDouble rightPadding,
-		wxPoint2DDouble startPoint, wxPoint2DDouble endPoint);
-	void SetPadding(wxDouble leftPadding, wxDouble rightPadding);
-
+	void Fit(wxDouble leftPadding, wxDouble rightPadding);
+	
 	const wxSize& GetSize() const;
 	void SetSize(const wxSize &size);
 	wxDouble GetLeftPadding() const;
@@ -67,8 +65,6 @@ private:
 	wxSize m_size;
 	wxDouble m_leftPadding;
 	wxDouble m_rightPadding;
-	wxPoint2DDouble m_startPoint;
-	wxPoint2DDouble m_endPoint;
 	wxDouble m_minValue;
 	wxDouble m_maxValue;
 	wxChartAxis::ptr m_XAxis;

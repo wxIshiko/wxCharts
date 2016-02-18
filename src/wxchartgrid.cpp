@@ -189,7 +189,7 @@ void wxChartGrid::Fit(wxGraphicsContext &gc)
 	m_XAxis->UpdateLabelPositions();
 	m_YAxis->UpdateLabelPositions();
 
-	m_mapping.Fit(leftPadding, rightPadding, wxPoint2DDouble(0, startPoint), wxPoint2DDouble(0, endPoint));
+	m_mapping.Fit(leftPadding, rightPadding);
 
 	m_needsFit = false;
 }

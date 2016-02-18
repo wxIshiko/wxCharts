@@ -213,6 +213,14 @@ wxPoint2DDouble wxChartAxis::GetTickMarkPosition(size_t index) const
 	return wxPoint2DDouble(0, 0);
 }
 
+wxPoint2DDouble wxChartAxis::GetPosition(wxDouble relativeValue) const
+{
+	return wxPoint2DDouble(
+		m_startPoint.m_x,
+		m_startPoint.m_y - (relativeValue * (m_startPoint.m_y - m_endPoint.m_y))
+		);
+}
+
 const wxChartAxisOptions& wxChartAxis::GetOptions() const
 {
 	return m_options;

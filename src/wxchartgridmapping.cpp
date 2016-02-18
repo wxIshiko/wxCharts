@@ -39,24 +39,12 @@ wxChartGridMapping::wxChartGridMapping(const wxSize &size,
 	: m_size(size), 
 	m_leftPadding(0), m_rightPadding(0),
 	m_minValue(0), m_maxValue(0),
-	m_startPoint(0, 0), m_endPoint(0, 0),
 	m_XAxis(xAxis), m_YAxis(yAxis)
 {
 }
 
 void wxChartGridMapping::Fit(wxDouble leftPadding, 
-							 wxDouble rightPadding,
-							 wxPoint2DDouble startPoint,
-							 wxPoint2DDouble endPoint)
-{
-	m_leftPadding = leftPadding;
-	m_rightPadding = rightPadding;
-	m_startPoint = startPoint;
-	m_endPoint = endPoint;
-}
-
-void wxChartGridMapping::SetPadding(wxDouble leftPadding,
-									wxDouble rightPadding)
+							 wxDouble rightPadding)
 {
 	m_leftPadding = leftPadding;
 	m_rightPadding = rightPadding;
@@ -105,12 +93,10 @@ void wxChartGridMapping::SetMaxValue(wxDouble maxValue)
 wxPoint2DDouble wxChartGridMapping::GetWindowPosition(size_t index,
 													  wxDouble value) const
 {
-	wxDouble x = m_XAxis->GetTickMarkPosition(index).m_x;
-
-	wxDouble scalingFactor = ((m_startPoint.m_y - m_endPoint.m_y) / (m_maxValue - m_minValue));
-	wxDouble y  = m_startPoint.m_y - (scalingFactor * (value - m_minValue));
-
-	return wxPoint2DDouble(x, y);
+	return wxPoint2DDouble(
+		m_XAxis->GetTickMarkPosition(index).m_x,
+		m_YAxis->GetPosition((value - m_minValue) / (m_maxValue - m_minValue)).m_y
+		);
 }
 
 const wxChartAxis& wxChartGridMapping::GetXAxis() const
