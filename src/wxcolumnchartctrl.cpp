@@ -96,7 +96,8 @@ wxColumnChartCtrl::wxColumnChartCtrl(wxWindow *parent,
 				);
 
 			newDataset->AppendColumn(Column::ptr(new Column(
-				datasetData[j], tooltipProvider, 25, 50, dataset.GetFillColor(), dataset.GetStrokeColor(), wxALL
+				datasetData[j], tooltipProvider, 25, 50, dataset.GetFillColor(), 
+				dataset.GetStrokeColor(), wxLEFT | wxTOP | wxRIGHT
 				)));
 		}
 
@@ -167,6 +168,22 @@ void wxColumnChartCtrl::Resize(const wxSize &size)
 wxSharedPtr<wxVector<const wxChartElement*> > wxColumnChartCtrl::GetActiveElements(const wxPoint &point)
 {
 	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+
+	for (size_t i = 0; i < m_datasets.size(); ++i)
+	{
+		const wxVector<Column::ptr>& columns = m_datasets[i]->GetColumns();
+		for (size_t j = 0; j < columns.size(); ++j)
+		{
+			if (columns[j]->HitTest(point))
+			{
+				for (size_t k = 0; k < m_datasets.size(); ++k)
+				{
+					activeElements->push_back(m_datasets[k]->GetColumns()[j].get());
+				}
+			}
+		}
+	}
+
 	return activeElements;
 }
 
@@ -181,6 +198,8 @@ void wxColumnChartCtrl::OnPaint(wxPaintEvent &evt)
 	{
 		m_grid.Draw(*gc);
 
+		wxDouble columnWidth = GetColumnWidth();
+
 		for (size_t i = 0; i < m_datasets.size(); ++i)
 		{
 			Dataset& currentDataset = *m_datasets[i];
@@ -188,11 +207,12 @@ void wxColumnChartCtrl::OnPaint(wxPaintEvent &evt)
 			{
 				Column& column = *(currentDataset.GetColumns()[j]);
 				wxPoint2DDouble position = m_grid.GetMapping().GetWindowPosition(j, column.GetValue());
+				position.m_x += m_options.GetColumnSpacing() + (i * (columnWidth + m_options.GetDatasetSpacing()));
 
 				wxPoint2DDouble bottomLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j);
 					
 				column.SetPosition(position);
-				column.SetSize(20, bottomLeftCornerPosition.m_y - position.m_y);
+				column.SetSize(columnWidth, bottomLeftCornerPosition.m_y - position.m_y);
 			}
 		}
 
@@ -205,8 +225,17 @@ void wxColumnChartCtrl::OnPaint(wxPaintEvent &evt)
 			}
 		}
 
+		DrawTooltips(*gc);
+
 		delete gc;
 	}
+}
+
+wxDouble wxColumnChartCtrl::GetColumnWidth() const
+{
+	wxDouble availableWidth = m_grid.GetMapping().GetXAxis().GetDistanceBetweenTickMarks() -
+		(2 * m_options.GetColumnSpacing()) - ((m_datasets.size() - 1) * m_options.GetDatasetSpacing());
+	return (availableWidth / m_datasets.size());
 }
 
 BEGIN_EVENT_TABLE(wxColumnChartCtrl, wxChartCtrl)

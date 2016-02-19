@@ -85,6 +85,7 @@ public:
 
 	wxPoint2DDouble CalculateLabelPosition(size_t index);
 	size_t GetNumberOfTickMarks() const;
+	wxDouble GetDistanceBetweenTickMarks() const;
 	wxPoint2DDouble GetTickMarkPosition(size_t index) const;
 	wxPoint2DDouble GetPosition(wxDouble relativeValue) const;
 
@@ -93,7 +94,6 @@ public:
 private:
 	void DrawTickMarks(wxGraphicsContext &gc);
 	void DrawLabels(wxGraphicsContext &gc);
-	wxDouble GetDistanceBetweenTickMarks() const;
 
 private:
 	wxChartAxisOptions m_options;

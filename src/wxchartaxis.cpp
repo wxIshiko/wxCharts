@@ -196,6 +196,21 @@ size_t wxChartAxis::GetNumberOfTickMarks() const
 	}
 }
 
+wxDouble wxChartAxis::GetDistanceBetweenTickMarks() const
+{
+	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
+	{
+		return ((m_startPoint.m_y - m_endPoint.m_y) / (GetNumberOfTickMarks() - 1));
+	}
+	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+	{
+		return ((m_endPoint.m_x - m_startPoint.m_x) / (GetNumberOfTickMarks() - 1));
+	}
+
+	wxTrap();
+	return 0;
+}
+
 wxPoint2DDouble wxChartAxis::GetTickMarkPosition(size_t index) const
 {
 	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
@@ -277,19 +292,4 @@ void wxChartAxis::DrawLabels(wxGraphicsContext &gc)
 	{
 		m_labels[i].Draw(gc);
 	}
-}
-
-wxDouble wxChartAxis::GetDistanceBetweenTickMarks() const
-{
-	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
-	{
-		return ((m_startPoint.m_y - m_endPoint.m_y) / (GetNumberOfTickMarks() - 1));
-	}
-	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
-	{
-		return ((m_endPoint.m_x - m_startPoint.m_x) / (GetNumberOfTickMarks() - 1));
-	}
-	
-	wxTrap();
-	return 0;
 }

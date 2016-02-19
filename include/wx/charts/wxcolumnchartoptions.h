@@ -45,9 +45,12 @@ public:
 	/// @return The separation between columns.
 	wxDouble GetColumnSpacing() const;
 
+	wxDouble GetDatasetSpacing() const;
+
 private:
 	wxChartGridOptions m_gridOptions;
 	wxDouble m_columnSpacing;
+	wxDouble m_datasetSpacing;
 };
 
 #endif

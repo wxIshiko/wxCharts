@@ -46,7 +46,9 @@ wxChartRectangle::wxChartRectangle(wxDouble x,
 
 bool wxChartRectangle::HitTest(const wxPoint &point) const
 {
-	return false;
+	bool x = ((m_position.m_x <= point.x) && (point.x <= (m_position.m_x + m_width)));
+	bool y = ((m_position.m_y <= point.y) && (point.y <= (m_position.m_y + m_height)));
+	return (x && y);
 }
 
 wxPoint2DDouble wxChartRectangle::GetTooltipPosition() const

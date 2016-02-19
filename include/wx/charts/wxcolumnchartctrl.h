@@ -75,6 +75,8 @@ private:
 
 	void OnPaint(wxPaintEvent &evt);
 
+	wxDouble GetColumnWidth() const;
+
 private:
 	class Column : public wxChartRectangle
 	{
