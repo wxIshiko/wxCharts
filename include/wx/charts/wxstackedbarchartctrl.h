@@ -51,6 +51,9 @@ public:
 	wxStackedBarChartCtrl(wxWindow *parent, wxWindowID id, const wxBarChartData &data,
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
+	wxStackedBarChartCtrl(wxWindow *parent, wxWindowID id, const wxBarChartData &data,
+		const wxStackedBarChartOptions &options, const wxPoint &pos = wxDefaultPosition,
+		const wxSize &size = wxDefaultSize, long style = 0);
 
 	virtual const wxStackedBarChartOptions& GetOptions() const;
 
