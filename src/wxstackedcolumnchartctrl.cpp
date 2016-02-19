@@ -210,6 +210,7 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxStackedColumnChartCtrl::GetActiv
 			}
 		}
 	}
+
 	return activeElements;
 }
 

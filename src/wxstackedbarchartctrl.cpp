@@ -39,8 +39,8 @@ wxStackedBarChartCtrl::Bar::Bar(wxDouble value,
 
 bool wxStackedBarChartCtrl::Bar::HitTest(const wxPoint &point) const
 {
-	return ((point.x >= GetPosition().m_x) &&
-		(point.x <= (GetPosition().m_x + GetWidth())));
+	return ((point.y >= GetPosition().m_y) &&
+		(point.y <= (GetPosition().m_y + GetHeight())));
 }
 
 wxDouble wxStackedBarChartCtrl::Bar::GetValue() const
@@ -186,6 +186,19 @@ void wxStackedBarChartCtrl::Resize(const wxSize &size)
 wxSharedPtr<wxVector<const wxChartElement*> > wxStackedBarChartCtrl::GetActiveElements(const wxPoint &point)
 {
 	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+	
+	for (size_t i = 0; i < m_datasets.size(); ++i)
+	{
+		const wxVector<Bar::ptr>& bars = m_datasets[i]->GetBars();
+		for (size_t j = 0; j < bars.size(); ++j)
+		{
+			if (bars[j]->HitTest(point))
+			{
+				activeElements->push_back(bars[j].get());
+			}
+		}
+	}
+
 	return activeElements;
 }
 
