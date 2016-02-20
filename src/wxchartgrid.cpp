@@ -72,6 +72,67 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 	m_YAxis->SetLabels(yLabels);
 }
 
+wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
+						 const wxSize &size,
+						 wxDouble minXValue,
+						 wxDouble maxXValue,
+						 wxDouble minYValue,
+						 wxDouble maxYValue,
+						 const wxChartGridOptions& options)
+	: m_options(options), m_position(position),
+	m_XAxis(new wxChartAxis(options.GetXAxisOptions())),
+	m_YAxis(new wxChartAxis(options.GetYAxisOptions())),
+	m_mapping(size, m_XAxis, m_YAxis),
+	m_needsFit(true)
+{
+	wxDouble effectiveMinXValue = minXValue;
+	if (m_XAxis->GetOptions().GetStartValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
+	{
+		effectiveMinXValue = m_XAxis->GetOptions().GetStartValue();
+	}
+	wxDouble effectiveMaxXValue = maxXValue;
+	if (m_XAxis->GetOptions().GetEndValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
+	{
+		effectiveMaxXValue = m_XAxis->GetOptions().GetEndValue();
+	}
+
+	wxDouble graphMinXValue;
+	wxDouble graphMaxXValue;
+	wxDouble xValueRange = 0;
+	wxChartUtilities::CalculateGridRange(effectiveMinXValue, effectiveMaxXValue,
+		graphMinXValue, graphMaxXValue, xValueRange, m_steps, m_stepValue);
+	m_mapping.SetMinValue(graphMinXValue);
+	m_mapping.SetMaxValue(graphMaxXValue);
+
+	wxVector<wxChartLabel> xLabels;
+	BuildYLabels(m_mapping.GetMinValue(), m_steps, m_stepValue, xLabels);
+	m_XAxis->SetLabels(xLabels);
+
+
+	wxDouble effectiveMinYValue = minYValue;
+	if (m_YAxis->GetOptions().GetStartValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
+	{
+		effectiveMinYValue = m_YAxis->GetOptions().GetStartValue();
+	}
+	wxDouble effectiveMaxYValue = maxYValue;
+	if (m_YAxis->GetOptions().GetEndValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
+	{
+		effectiveMaxYValue = m_YAxis->GetOptions().GetEndValue();
+	}
+
+	wxDouble graphMinYValue;
+	wxDouble graphMaxYValue;
+	wxDouble yValueRange = 0;
+	wxChartUtilities::CalculateGridRange(effectiveMinYValue, effectiveMaxYValue,
+		graphMinYValue, graphMaxYValue, yValueRange, m_steps, m_stepValue);
+	m_mapping.SetMinValue(graphMinYValue);
+	m_mapping.SetMaxValue(graphMaxYValue);
+
+	wxVector<wxChartLabel> yLabels;
+	BuildYLabels(m_mapping.GetMinValue(), m_steps, m_stepValue, yLabels);
+	m_YAxis->SetLabels(yLabels);
+}
+
 bool wxChartGrid::HitTest(const wxPoint &point) const
 {
 	return false;

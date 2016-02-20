@@ -105,6 +105,45 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 	}
 }
 
+wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent, 
+							   wxWindowID id,
+							   const wxBarChartData &data,
+							   const wxBarChartOptions &options, 
+							   const wxPoint &pos,
+							   const wxSize &size, 
+							   long style)
+	: wxChartCtrl(parent, id, pos, size, style), m_options(options),
+	m_grid(
+		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+		size, data.GetLabels(), GetMinValue(data.GetDatasets()),
+		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
+		)
+{
+	const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
+	for (size_t i = 0; i < datasets.size(); ++i)
+	{
+		const wxBarChartDataset& dataset = *datasets[i];
+		Dataset::ptr newDataset(new Dataset());
+
+		const wxVector<wxDouble>& datasetData = dataset.GetData();
+		for (size_t j = 0; j < datasetData.size(); ++j)
+		{
+			std::stringstream tooltip;
+			tooltip << datasetData[j];
+			wxChartTooltipProvider::ptr tooltipProvider(
+				new wxChartTooltipProviderStatic(data.GetLabels()[j], tooltip.str(), dataset.GetFillColor())
+				);
+
+			newDataset->AppendBar(Bar::ptr(new Bar(
+				datasetData[j], tooltipProvider, 25, 50, dataset.GetFillColor(),
+				dataset.GetStrokeColor(), wxTOP | wxRIGHT | wxBOTTOM
+				)));
+		}
+
+		m_datasets.push_back(newDataset);
+	}
+}
+
 const wxBarChartOptions& wxBarChartCtrl::GetOptions() const
 {
 	return m_options;
@@ -162,7 +201,11 @@ wxDouble wxBarChartCtrl::GetMaxValue(const wxVector<wxBarChartDataset::ptr>& dat
 
 void wxBarChartCtrl::Resize(const wxSize &size)
 {
-	m_grid.Resize(size);
+	wxSize newSize(
+		size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
+		size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+		);
+	m_grid.Resize(newSize);
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxBarChartCtrl::GetActiveElements(const wxPoint &point)

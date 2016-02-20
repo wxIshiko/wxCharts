@@ -31,7 +31,12 @@ wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
 									 const wxPoint &pos,
 									 const wxSize &size,
 									 long style)
-	: wxChartCtrl(parent, id, pos, size, style)
+	: wxChartCtrl(parent, id, pos, size, style),
+	m_grid(
+		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+		size, -10, 30, 0,
+		20, m_options.GetGridOptions()
+		)
 {
 }
 
@@ -42,6 +47,11 @@ const wxScatterPlotOptions& wxScatterPlotCtrl::GetOptions() const
 
 void wxScatterPlotCtrl::Resize(const wxSize &size)
 {
+	wxSize newSize(
+		size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
+		size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+		);
+	m_grid.Resize(newSize);
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxScatterPlotCtrl::GetActiveElements(const wxPoint &point)
@@ -59,6 +69,8 @@ void wxScatterPlotCtrl::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{
+		m_grid.Draw(*gc);
+
 		delete gc;
 	}
 }

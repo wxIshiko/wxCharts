@@ -26,6 +26,7 @@
 #define _WX_CHARTS_WXSCATTERPLOTOPTIONS_H_
 
 #include "wxchartoptions.h"
+#include "wxchartgridoptions.h"
 
 /// The options for the wxScatterPlotCtrl control.
 class wxScatterPlotOptions : public wxChartOptions
@@ -33,6 +34,13 @@ class wxScatterPlotOptions : public wxChartOptions
 public:
 	/// Constructs a wxScatterPlotOptions instance.
 	wxScatterPlotOptions();
+
+	/// Gets the options for the grid.
+	/// @return The options for the grid.
+	const wxChartGridOptions& GetGridOptions() const;
+
+private:
+	wxChartGridOptions m_gridOptions;
 };
 
 #endif

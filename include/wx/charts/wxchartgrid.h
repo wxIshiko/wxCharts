@@ -66,6 +66,10 @@ public:
 		const wxVector<wxString> &labels,
 		wxDouble minValue, wxDouble maxValue,
 		const wxChartGridOptions& options);
+	wxChartGrid(const wxPoint2DDouble &position, const wxSize &size,
+		wxDouble minXValue, wxDouble maxXValue,
+		wxDouble minYValue, wxDouble maxYValue,
+		const wxChartGridOptions& options);
 
 	virtual bool HitTest(const wxPoint &point) const;
 

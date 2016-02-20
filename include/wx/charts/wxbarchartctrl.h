@@ -62,6 +62,9 @@ public:
 	wxBarChartCtrl(wxWindow *parent, wxWindowID id, const wxBarChartData &data,
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
+	wxBarChartCtrl(wxWindow *parent, wxWindowID id, const wxBarChartData &data,
+		const wxBarChartOptions &options, const wxPoint &pos = wxDefaultPosition, 
+		const wxSize &size = wxDefaultSize, long style = 0);
 
 	virtual const wxBarChartOptions& GetOptions() const;
 

@@ -27,6 +27,7 @@
 
 #include "wxchartctrl.h"
 #include "wxscatterplotoptions.h"
+#include "wxchartgrid.h"
 
 /// A control that displays a scatter plot.
 class wxScatterPlotCtrl : public wxChartCtrl
@@ -58,6 +59,7 @@ private:
 
 private:
 	wxScatterPlotOptions m_options;
+	wxChartGrid m_grid;
 
 	DECLARE_EVENT_TABLE();
 };
