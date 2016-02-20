@@ -75,6 +75,38 @@ private:
 	void OnPaint(wxPaintEvent &evt);
 
 private:
+	class Bar : public wxChartRectangle
+	{
+	public:
+		typedef wxSharedPtr<Bar> ptr;
+
+		Bar(wxDouble value,
+			const wxChartTooltipProvider::ptr tooltipProvider,
+			wxDouble x, wxDouble y,
+			const wxColor &fillColor, const wxColor &strokeColor,
+			int directions);
+
+		wxDouble GetValue() const;
+
+	private:
+		wxDouble m_value;
+	};
+
+	struct Dataset
+	{
+	public:
+		typedef wxSharedPtr<Dataset> ptr;
+
+		Dataset();
+
+		const wxVector<Bar::ptr>& GetBars() const;
+		void AppendBar(Bar::ptr bar);
+
+	private:
+		wxVector<Bar::ptr> m_bars;
+	};
+
+private:
 	wxBarChartOptions m_options;
 	wxChartGrid m_grid;
 

@@ -35,6 +35,37 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
+wxBarChartCtrl::Bar::Bar(wxDouble value,
+						 const wxChartTooltipProvider::ptr tooltipProvider,
+						 wxDouble x,
+						 wxDouble y,
+						 const wxColor &fillColor,
+						 const wxColor &strokeColor,
+						 int directions)
+	: wxChartRectangle(x, y, tooltipProvider, wxChartRectangleOptions(fillColor, strokeColor, directions)),
+	m_value(value)
+{
+}
+
+wxDouble wxBarChartCtrl::Bar::GetValue() const
+{
+	return m_value;
+}
+
+wxBarChartCtrl::Dataset::Dataset()
+{
+}
+
+const wxVector<wxBarChartCtrl::Bar::ptr>& wxBarChartCtrl::Dataset::GetBars() const
+{
+	return m_bars;
+}
+
+void wxBarChartCtrl::Dataset::AppendBar(Bar::ptr bar)
+{
+	m_bars.push_back(bar);
+}
+
 wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 							   wxWindowID id,
 							   const wxBarChartData &data,
