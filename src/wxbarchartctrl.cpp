@@ -168,6 +168,22 @@ void wxBarChartCtrl::Resize(const wxSize &size)
 wxSharedPtr<wxVector<const wxChartElement*> > wxBarChartCtrl::GetActiveElements(const wxPoint &point)
 {
 	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+
+	for (size_t i = 0; i < m_datasets.size(); ++i)
+	{
+		const wxVector<Bar::ptr>& bars = m_datasets[i]->GetBars();
+		for (size_t j = 0; j < bars.size(); ++j)
+		{
+			if (bars[j]->HitTest(point))
+			{
+				for (size_t k = 0; k < m_datasets.size(); ++k)
+				{
+					activeElements->push_back(m_datasets[k]->GetBars()[j].get());
+				}
+			}
+		}
+	}
+
 	return activeElements;
 }
 
