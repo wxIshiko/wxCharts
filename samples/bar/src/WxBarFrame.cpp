@@ -59,6 +59,21 @@ WxBarFrame::WxBarFrame(const wxString& title)
 		);
 	chartData.AddDataset(dataset1);
 
+	// Add the second dataset
+	wxVector<wxDouble> points2;
+	points2.push_back(1);
+	points2.push_back(1.33);
+	points2.push_back(2.5);
+	points2.push_back(2);
+	points2.push_back(3);
+	points2.push_back(1.8);
+	points2.push_back(0.4);
+	wxBarChartDataset::ptr dataset2(new wxBarChartDataset(
+		wxColor(151, 187, 205, 0x7F),
+		wxColor(151, 187, 205, 0xFF),
+		points2));
+	chartData.AddDataset(dataset2);
+
 	// Create the bar chart widget
 	wxBarChartCtrl* barChartCtrl = new wxBarChartCtrl(panel, wxID_ANY, chartData);
 

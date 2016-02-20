@@ -74,6 +74,8 @@ private:
 
 	void OnPaint(wxPaintEvent &evt);
 
+	wxDouble GetBarHeight() const;
+
 private:
 	class Bar : public wxChartRectangle
 	{
@@ -109,6 +111,7 @@ private:
 private:
 	wxBarChartOptions m_options;
 	wxChartGrid m_grid;
+	wxVector<Dataset::ptr> m_datasets;
 
 	DECLARE_EVENT_TABLE();
 };

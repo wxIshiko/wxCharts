@@ -27,7 +27,7 @@ wxBarChartOptions::wxBarChartOptions()
 		wxChartAxisOptions(wxCHARTAXISPOSITION_LEFT, wxCHARTAXISLABELTYPE_RANGE), 
 		wxChartAxisOptions(wxCHARTAXISPOSITION_BOTTOM)
 		),
-	m_barSpacing(5)
+	m_barSpacing(15), m_datasetSpacing(6)
 {
 	m_gridOptions.GetYAxisOptions().SetExplicitStartValue(0);
 }
@@ -40,4 +40,9 @@ const wxChartGridOptions& wxBarChartOptions::GetGridOptions() const
 wxDouble wxBarChartOptions::GetBarSpacing() const
 {
 	return m_barSpacing;
+}
+
+wxDouble wxBarChartOptions::GetDatasetSpacing() const
+{
+	return m_datasetSpacing;
 }

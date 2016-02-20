@@ -45,9 +45,12 @@ public:
 	/// @return The separation between bars.
 	wxDouble GetBarSpacing() const;
 
+	wxDouble GetDatasetSpacing() const;
+
 private:
 	wxChartGridOptions m_gridOptions;
 	wxDouble m_barSpacing;
+	wxDouble m_datasetSpacing;
 };
 
 #endif

@@ -34,6 +34,7 @@
 #include "wxbarchartctrl.h"
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
+#include <sstream>
 
 wxBarChartCtrl::Bar::Bar(wxDouble value,
 						 const wxChartTooltipProvider::ptr tooltipProvider,
@@ -79,6 +80,29 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
 		)
 {
+	const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
+	for (size_t i = 0; i < datasets.size(); ++i)
+	{
+		const wxBarChartDataset& dataset = *datasets[i];
+		Dataset::ptr newDataset(new Dataset());
+
+		const wxVector<wxDouble>& datasetData = dataset.GetData();
+		for (size_t j = 0; j < datasetData.size(); ++j)
+		{
+			std::stringstream tooltip;
+			tooltip << datasetData[j];
+			wxChartTooltipProvider::ptr tooltipProvider(
+				new wxChartTooltipProviderStatic(data.GetLabels()[j], tooltip.str(), dataset.GetFillColor())
+				);
+
+			newDataset->AppendBar(Bar::ptr(new Bar(
+				datasetData[j], tooltipProvider, 25, 50, dataset.GetFillColor(),
+				dataset.GetStrokeColor(), wxTOP | wxRIGHT | wxBOTTOM
+				)));
+		}
+
+		m_datasets.push_back(newDataset);
+	}
 }
 
 const wxBarChartOptions& wxBarChartCtrl::GetOptions() const
@@ -158,8 +182,49 @@ void wxBarChartCtrl::OnPaint(wxPaintEvent &evt)
 	{
 		m_grid.Draw(*gc);
 
+		wxDouble barHeight = GetBarHeight();
+
+		for (size_t i = 0; i < m_datasets.size(); ++i)
+		{
+			Dataset& currentDataset = *m_datasets[i];
+			for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
+			{
+				Bar& bar = *(currentDataset.GetBars()[j]);
+
+				wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j + 1);
+				upperLeftCornerPosition.m_y += m_options.GetBarSpacing() + (i * (barHeight + m_options.GetDatasetSpacing()));
+
+				wxPoint2DDouble bottomLeftCornerPosition = upperLeftCornerPosition;
+				bottomLeftCornerPosition.m_y += barHeight;
+
+				wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPosition(j + 1, bar.GetValue());
+				
+				bar.SetPosition(upperLeftCornerPosition);
+				bar.SetSize(upperRightCornerPosition.m_x - upperLeftCornerPosition.m_x,
+					bottomLeftCornerPosition.m_y - upperLeftCornerPosition.m_y);
+			}
+		}
+
+		for (size_t i = 0; i < m_datasets.size(); ++i)
+		{
+			Dataset& currentDataset = *m_datasets[i];
+			for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
+			{
+				currentDataset.GetBars()[j]->Draw(*gc);
+			}
+		}
+
+		DrawTooltips(*gc);
+
 		delete gc;
 	}
+}
+
+wxDouble wxBarChartCtrl::GetBarHeight() const
+{
+	wxDouble availableHeight = m_grid.GetMapping().GetXAxis().GetDistanceBetweenTickMarks() -
+		(2 * m_options.GetBarSpacing()) - ((m_datasets.size() - 1) * m_options.GetDatasetSpacing());
+	return (availableHeight / m_datasets.size());
 }
 
 BEGIN_EVENT_TABLE(wxBarChartCtrl, wxChartCtrl)
