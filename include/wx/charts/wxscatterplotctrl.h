@@ -29,6 +29,14 @@
 #include "wxscatterplotoptions.h"
 #include "wxchartgrid.h"
 
+/// Data for the wxScatterPlotCtrl control.
+class wxScatterPlotData
+{
+public:
+    /// Constructs a wxScatterPlotData instance.
+    wxScatterPlotData();
+};
+
 /// A control that displays a scatter plot.
 class wxScatterPlotCtrl : public wxChartCtrl
 {
@@ -37,6 +45,7 @@ public:
 	/// @param parent Pointer to a parent window.
 	/// @param id Control identifier. If wxID_ANY, will automatically
 	/// create an identifier.
+    /// @param data The data that will be used to initialize the chart.
 	/// @param pos Control position. wxDefaultPosition indicates that 
 	/// wxWidgets should generate a default position for the control.
 	/// @param size Control size. wxDefaultSize indicates that wxWidgets
@@ -45,7 +54,7 @@ public:
 	/// so that the window is visible but obviously not correctly sized.
 	/// @param style Control style. For generic window styles, please 
 	/// see wxWindow.
-	wxScatterPlotCtrl(wxWindow *parent, wxWindowID id,
+	wxScatterPlotCtrl(wxWindow *parent, wxWindowID id, const wxScatterPlotData &data,
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
 

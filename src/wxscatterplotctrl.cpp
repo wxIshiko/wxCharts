@@ -26,8 +26,13 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
+wxScatterPlotData::wxScatterPlotData()
+{
+}
+
 wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
 									 wxWindowID id,
+                                     const wxScatterPlotData &data,
 									 const wxPoint &pos,
 									 const wxSize &size,
 									 long style)

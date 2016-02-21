@@ -31,8 +31,11 @@ WxScatterPlotFrame::WxScatterPlotFrame(const wxString& title)
 	// Create a top-level panel to hold all the contents of the frame
 	wxPanel* panel = new wxPanel(this, wxID_ANY);
 
+    // Create the data for the scatter plot widget
+    wxScatterPlotData chartData;
+
 	// Create the scatter plot widget
-	wxScatterPlotCtrl* scatterPlotCtrl = new wxScatterPlotCtrl(panel, wxID_ANY);
+	wxScatterPlotCtrl* scatterPlotCtrl = new wxScatterPlotCtrl(panel, wxID_ANY, chartData);
 
 	// Set up the sizer for the panel
 	wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
