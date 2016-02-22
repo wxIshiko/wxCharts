@@ -29,12 +29,33 @@
 #include "wxscatterplotoptions.h"
 #include "wxchartgrid.h"
 
+class wxScatterPlotDataset
+{
+public:
+    /// Smart pointer typedef.
+    typedef wxSharedPtr<wxScatterPlotDataset> ptr;
+
+    /// Constructs a wxScatterPlotDataset instance.
+    /// @param data The list of values.
+    wxScatterPlotDataset(wxVector<wxPoint2DDouble> &data);
+
+private:
+    wxVector<wxPoint2DDouble> m_data;
+};
+
 /// Data for the wxScatterPlotCtrl control.
 class wxScatterPlotData
 {
 public:
     /// Constructs a wxScatterPlotData instance.
     wxScatterPlotData();
+
+    /// Adds a dataset.
+    /// @param dataset The dataset to add.
+    void AddDataset(wxScatterPlotDataset::ptr dataset);
+
+private:
+    wxVector<wxScatterPlotDataset::ptr> m_datasets;
 };
 
 /// A control that displays a scatter plot.

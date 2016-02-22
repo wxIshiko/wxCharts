@@ -26,8 +26,18 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
+wxScatterPlotDataset::wxScatterPlotDataset(wxVector<wxPoint2DDouble> &data)
+    : m_data(data)
+{
+}
+
 wxScatterPlotData::wxScatterPlotData()
 {
+}
+
+void wxScatterPlotData::AddDataset(wxScatterPlotDataset::ptr dataset)
+{
+    m_datasets.push_back(dataset);
 }
 
 wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
