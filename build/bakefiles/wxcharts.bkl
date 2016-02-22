@@ -50,6 +50,7 @@ library wxcharts
         ../../include/wx/charts/wxchartgrid.h
         ../../include/wx/charts/wxchartradialgridoptions.h
         ../../include/wx/charts/wxchartradialgrid.h
+        ../../include/wx/charts/wxchartpointoptions.h
         ../../include/wx/charts/wxchartpoint.h
         ../../include/wx/charts/wxchartrectangleoptions.h
         ../../include/wx/charts/wxchartrectangle.h
@@ -108,6 +109,7 @@ library wxcharts
         ../../src/wxchartgrid.cpp
         ../../src/wxchartradialgridoptions.cpp
         ../../src/wxchartradialgrid.cpp
+        ../../src/wxchartpointoptions.cpp
         ../../src/wxchartpoint.cpp
         ../../src/wxchartrectangleoptions.cpp
         ../../src/wxchartrectangle.cpp

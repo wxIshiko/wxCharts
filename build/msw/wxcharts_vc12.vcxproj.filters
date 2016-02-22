@@ -56,6 +56,9 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartradialgrid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\charts\wxchartpointoptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxchartpoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -218,6 +221,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchartradialgrid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wxchartpointoptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchartpoint.cpp">

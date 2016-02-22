@@ -95,6 +95,7 @@
     <ClCompile Include="..\..\src\wxchartgrid.cpp" />
     <ClCompile Include="..\..\src\wxchartradialgridoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartradialgrid.cpp" />
+    <ClCompile Include="..\..\src\wxchartpointoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartpoint.cpp" />
     <ClCompile Include="..\..\src\wxchartrectangleoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartrectangle.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartgrid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartradialgridoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartradialgrid.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartpointoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartpoint.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartrectangleoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartrectangle.h" />
