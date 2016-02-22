@@ -38,9 +38,9 @@ public:
 	/// corner of the rectangle.
 	/// @param y The Y coordinate of the top left
 	/// corner of the rectangle.
+    /// @param tooltipProvider The tooltip provider.
 	/// @param options The settings to be used for the
 	/// rectangle.
-	/// @param tooltipProvider The tooltip provider.
 	wxChartRectangle(wxDouble x, wxDouble y, 
 		const wxChartTooltipProvider::ptr tooltipProvider,
 		const wxChartRectangleOptions &options);

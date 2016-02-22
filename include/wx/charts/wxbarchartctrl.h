@@ -97,7 +97,7 @@ private:
 		wxDouble m_value;
 	};
 
-	struct Dataset
+	class Dataset
 	{
 	public:
 		typedef wxSharedPtr<Dataset> ptr;
