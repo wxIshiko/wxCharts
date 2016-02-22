@@ -21,3 +21,26 @@
 */
 
 #include "wxchartpointoptions.h"
+
+wxChartPointOptions::wxChartPointOptions(unsigned int strokeWidth,
+                                         const wxColor &strokeColor,
+                                         const wxColor &fillColor)
+    : m_strokeWidth(strokeWidth), m_strokeColor(strokeColor),
+    m_fillColor(fillColor)
+{
+}
+
+unsigned int wxChartPointOptions::GetStrokeWidth() const
+{
+    return m_strokeWidth;
+}
+
+const wxColor& wxChartPointOptions::GetStrokeColor() const
+{
+    return m_strokeColor;
+}
+
+const wxColor& wxChartPointOptions::GetFillColor() const
+{
+    return m_fillColor;
+}

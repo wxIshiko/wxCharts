@@ -25,4 +25,29 @@
 #ifndef _WX_CHARTS_WXCHARTPOINTOPTIONS_H_
 #define _WX_CHARTS_WXCHARTPOINTOPTIONS_H_
 
+#include <wx/colour.h>
+
+/// The options for the wxChartPoint element.
+class wxChartPointOptions
+{
+public:
+    /// Constructs a wxChartPointOptions instance.
+    /// @param strokeWidth The size of the pen used to draw the 
+    /// outline of the circle.
+    /// @param strokeColor The color of the pen used to draw the
+    /// outline of the circle.
+    /// @param fillColor The color of the point.
+    wxChartPointOptions(unsigned int strokeWidth, const wxColor &strokeColor,
+        const wxColor &fillColor);
+
+    unsigned int GetStrokeWidth() const;
+    const wxColor& GetStrokeColor() const;
+    const wxColor& GetFillColor() const;
+
+private:
+    unsigned int m_strokeWidth;
+    wxColor m_strokeColor;
+    wxColor m_fillColor;
+};
+
 #endif

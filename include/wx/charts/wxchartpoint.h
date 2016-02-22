@@ -26,6 +26,7 @@
 #define _WX_CHARTS_WXCHARTPOINT_H_
 
 #include "wxchartelement.h"
+#include "wxchartpointoptions.h"
 #include <wx/graphics.h>
 
 /// This class is used to display a point on a chart.
@@ -37,15 +38,12 @@ public:
 	/// @param y The Y coordinate of the center of the point.
 	/// @param radius The radius of the circle used to represent
 	/// the point.
-	/// @param strokeWidth The size of the pen used to draw the 
-	/// outline of the circle.
-	/// @param strokeColor The color of the pen used to draw the
-	/// outline of the circle.
-	/// @param fillColor The color of the point.
 	/// @param tooltipProvider The tooltip provider.
+    /// @param options The settings to be used for the
+    /// point.
 	wxChartPoint(wxDouble x, wxDouble y, wxDouble radius,
-		unsigned int strokeWidth, const wxColor &strokeColor, 
-		const wxColor &fillColor, const wxChartTooltipProvider::ptr tooltipProvider);
+		const wxChartTooltipProvider::ptr tooltipProvider,
+        const wxChartPointOptions &options);
 
 	virtual bool HitTest(const wxPoint &point) const;
 
@@ -67,11 +65,9 @@ public:
 	void SetPosition(wxPoint2DDouble position);
 
 private:
+    wxChartPointOptions m_options;
 	wxPoint2DDouble m_position;
 	wxDouble m_radius;
-	unsigned int m_strokeWidth;
-	wxColor m_strokeColor;
-	wxColor m_fillColor;
 };
 
 #endif

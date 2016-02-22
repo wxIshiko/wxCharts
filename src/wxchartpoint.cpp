@@ -38,13 +38,10 @@
 wxChartPoint::wxChartPoint(wxDouble x,
 						   wxDouble y, 
 						   wxDouble radius,
-						   unsigned int strokeWidth, 
-						   const wxColor &strokeColor,
-						   const wxColor &fillColor,
-						   const wxChartTooltipProvider::ptr tooltipProvider)
-	: wxChartElement(tooltipProvider), m_position(x, y), m_radius(radius),
-	m_strokeWidth(strokeWidth), m_strokeColor(strokeColor),
-	m_fillColor(fillColor)
+						   const wxChartTooltipProvider::ptr tooltipProvider,
+                           const wxChartPointOptions &options)
+	: wxChartElement(tooltipProvider), m_options(options),
+    m_position(x, y), m_radius(radius)
 {
 }
 
@@ -64,11 +61,11 @@ void wxChartPoint::Draw(wxGraphicsContext &gc)
 	path.AddArc(m_position.m_x, m_position.m_y, m_radius, 0, 2 * M_PI, false);
 	path.CloseSubpath();
 
-	wxBrush brush(m_fillColor);
+	wxBrush brush(m_options.GetFillColor());
 	gc.SetBrush(brush);
 	gc.FillPath(path);
 
-	wxPen pen(m_strokeColor, m_strokeWidth);
+	wxPen pen(m_options.GetStrokeColor(), m_options.GetStrokeWidth());
 	gc.SetPen(pen);
 	gc.StrokePath(path);
 }
