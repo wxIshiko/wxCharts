@@ -25,10 +25,16 @@
 #include "wxscatterplotctrl.h"
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
+#include <sstream>
 
 wxScatterPlotDataset::wxScatterPlotDataset(wxVector<wxPoint2DDouble> &data)
     : m_data(data)
 {
+}
+
+const wxVector<wxPoint2DDouble>& wxScatterPlotDataset::GetData() const
+{
+    return m_data;
 }
 
 wxScatterPlotData::wxScatterPlotData()
@@ -38,6 +44,39 @@ wxScatterPlotData::wxScatterPlotData()
 void wxScatterPlotData::AddDataset(wxScatterPlotDataset::ptr dataset)
 {
     m_datasets.push_back(dataset);
+}
+
+const wxVector<wxScatterPlotDataset::ptr>& wxScatterPlotData::GetDatasets() const
+{
+    return m_datasets;
+}
+
+wxScatterPlotCtrl::Point::Point(wxPoint2DDouble value,
+                                const wxChartTooltipProvider::ptr tooltipProvider,
+                                wxDouble x,
+                                wxDouble y,
+                                const wxChartPointOptions &options)
+    : wxChartPoint(x, y, 4, tooltipProvider, options), m_value(value)
+{
+}
+
+wxPoint2DDouble wxScatterPlotCtrl::Point::GetValue() const
+{
+    return m_value;
+}
+
+wxScatterPlotCtrl::Dataset::Dataset()
+{
+}
+
+const wxVector<wxScatterPlotCtrl::Point::ptr>& wxScatterPlotCtrl::Dataset::GetPoints() const
+{
+    return m_points;
+}
+
+void wxScatterPlotCtrl::Dataset::AppendPoint(Point::ptr point)
+{
+    m_points.push_back(point);
 }
 
 wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
@@ -53,6 +92,30 @@ wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
 		20, m_options.GetGridOptions()
 		)
 {
+    const wxVector<wxScatterPlotDataset::ptr>& datasets = data.GetDatasets();
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        Dataset::ptr newDataset(new Dataset());
+
+        const wxVector<wxPoint2DDouble>& datasetData = datasets[i]->GetData();
+        for (size_t j = 0; j < datasetData.size(); ++j)
+        {
+            std::stringstream tooltip;
+            tooltip << datasetData[j].m_x;
+            wxChartTooltipProvider::ptr tooltipProvider(
+                new wxChartTooltipProviderStatic("dummy", tooltip.str(), *wxWHITE)
+                );
+
+            Point::ptr point(
+                new Point(datasetData[j], tooltipProvider, 20 + j * 10, 0,
+                    wxChartPointOptions(2, *wxBLUE, *wxGREEN))
+                );
+
+            newDataset->AppendPoint(point);
+        }
+ 
+        m_datasets.push_back(newDataset);
+    }
 }
 
 const wxScatterPlotOptions& wxScatterPlotCtrl::GetOptions() const
@@ -85,6 +148,19 @@ void wxScatterPlotCtrl::OnPaint(wxPaintEvent &evt)
 	if (gc)
 	{
 		m_grid.Draw(*gc);
+
+        for (size_t i = 0; i < m_datasets.size(); ++i)
+        {
+            const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();
+            for (size_t j = 0; j < points.size(); ++j)
+            {
+                const Point::ptr& point = points[j];
+                point->SetPosition(m_grid.GetMapping().GetWindowPosition(point->GetValue().m_x, point->GetValue().m_y));
+                point->Draw(*gc);
+            }
+        }
+
+        DrawTooltips(*gc);
 
 		delete gc;
 	}

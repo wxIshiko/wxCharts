@@ -28,6 +28,7 @@
 #include "wxchartctrl.h"
 #include "wxscatterplotoptions.h"
 #include "wxchartgrid.h"
+#include "wxchartpoint.h"
 
 class wxScatterPlotDataset
 {
@@ -38,6 +39,8 @@ public:
     /// Constructs a wxScatterPlotDataset instance.
     /// @param data The list of values.
     wxScatterPlotDataset(wxVector<wxPoint2DDouble> &data);
+
+    const wxVector<wxPoint2DDouble>& GetData() const;
 
 private:
     wxVector<wxPoint2DDouble> m_data;
@@ -53,6 +56,8 @@ public:
     /// Adds a dataset.
     /// @param dataset The dataset to add.
     void AddDataset(wxScatterPlotDataset::ptr dataset);
+
+    const wxVector<wxScatterPlotDataset::ptr>& GetDatasets() const;
 
 private:
     wxVector<wxScatterPlotDataset::ptr> m_datasets;
@@ -88,8 +93,40 @@ private:
 	void OnPaint(wxPaintEvent &evt);
 
 private:
+    class Point : public wxChartPoint
+    {
+    public:
+        typedef wxSharedPtr<Point> ptr;
+
+        Point(wxPoint2DDouble value,
+            const wxChartTooltipProvider::ptr tooltipProvider,
+            wxDouble x, wxDouble y, 
+            const wxChartPointOptions &options);
+
+        wxPoint2DDouble GetValue() const;
+
+    private:
+        wxPoint2DDouble m_value;
+    };
+
+    class Dataset
+    {
+    public:
+        typedef wxSharedPtr<Dataset> ptr;
+
+        Dataset();
+
+        const wxVector<Point::ptr>& GetPoints() const;
+        void AppendPoint(Point::ptr point);
+
+    private:
+        wxVector<Point::ptr> m_points;
+    };
+
+private:
 	wxScatterPlotOptions m_options;
 	wxChartGrid m_grid;
+    wxVector<Dataset::ptr> m_datasets;
 
 	DECLARE_EVENT_TABLE();
 };
