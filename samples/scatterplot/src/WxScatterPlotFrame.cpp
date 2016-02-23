@@ -34,6 +34,21 @@ WxScatterPlotFrame::WxScatterPlotFrame(const wxString& title)
     // Create the data for the scatter plot widget
     wxScatterPlotData chartData;
 
+    // Add the first dataset
+    wxVector<wxPoint2DDouble> points1;
+    points1.push_back(wxPoint2DDouble(-0.2, 3.5));
+    points1.push_back(wxPoint2DDouble(0.5, 2.5));
+    points1.push_back(wxPoint2DDouble(1.2, 0.1));
+    points1.push_back(wxPoint2DDouble(1.5, 1.6));
+    points1.push_back(wxPoint2DDouble(2.7, 2));
+    points1.push_back(wxPoint2DDouble(3, -0.7));
+    points1.push_back(wxPoint2DDouble(3.2, -0.4));
+    wxScatterPlotDataset::ptr dataset1(
+        new wxScatterPlotDataset(
+            points1)
+        );
+    chartData.AddDataset(dataset1);
+
 	// Create the scatter plot widget
 	wxScatterPlotCtrl* scatterPlotCtrl = new wxScatterPlotCtrl(panel, wxID_ANY, chartData);
 
