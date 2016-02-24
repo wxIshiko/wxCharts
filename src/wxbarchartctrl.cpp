@@ -256,7 +256,7 @@ void wxBarChartCtrl::OnPaint(wxPaintEvent &evt)
 				wxPoint2DDouble bottomLeftCornerPosition = upperLeftCornerPosition;
 				bottomLeftCornerPosition.m_y += barHeight;
 
-				wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPosition(j + 1, bar.GetValue());
+				wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j + 1, bar.GetValue());
 				
 				bar.SetPosition(upperLeftCornerPosition);
 				bar.SetSize(upperRightCornerPosition.m_x - upperLeftCornerPosition.m_x,

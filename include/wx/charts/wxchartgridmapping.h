@@ -53,7 +53,7 @@ public:
 	wxDouble GetMaxValue() const;
 	void SetMaxValue(wxDouble maxValue);
 
-	wxPoint2DDouble GetWindowPosition(size_t index, wxDouble value) const;
+	wxPoint2DDouble GetWindowPositionAtTickMark(size_t index, wxDouble value) const;
 	
 	const wxChartAxis& GetXAxis() const;
 	

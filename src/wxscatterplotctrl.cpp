@@ -155,7 +155,7 @@ void wxScatterPlotCtrl::OnPaint(wxPaintEvent &evt)
             for (size_t j = 0; j < points.size(); ++j)
             {
                 const Point::ptr& point = points[j];
-                point->SetPosition(m_grid.GetMapping().GetWindowPosition(point->GetValue().m_x, point->GetValue().m_y));
+                point->SetPosition(m_grid.GetMapping().GetWindowPositionAtTickMark(point->GetValue().m_x, point->GetValue().m_y));
                 point->Draw(*gc);
             }
         }

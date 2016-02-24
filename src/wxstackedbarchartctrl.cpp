@@ -285,7 +285,7 @@ void wxStackedBarChartCtrl::OnPaint(wxPaintEvent &evt)
 				bottomLeftCornerPosition.m_x += widthOfPreviousDatasets[j];
 				bottomLeftCornerPosition.m_y -= m_options.GetBarSpacing();
 
-				wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPosition(j + 1, bar.GetValue());
+				wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j + 1, bar.GetValue());
 				upperRightCornerPosition.m_x += widthOfPreviousDatasets[j];
 				
 				bar.SetPosition(upperLeftCornerPosition);

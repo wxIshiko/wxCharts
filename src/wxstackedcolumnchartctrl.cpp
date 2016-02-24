@@ -238,10 +238,10 @@ void wxStackedColumnChartCtrl::OnPaint(wxPaintEvent &evt)
 			{
 				Column& column = *(currentDataset.GetColumns()[j]);
 
-				wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetWindowPosition(j, column.GetValue());
+				wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j, column.GetValue());
 				upperLeftCornerPosition.m_x += m_options.GetColumnSpacing();
 				upperLeftCornerPosition.m_y -= heightOfPreviousDatasets[j];
-				wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPosition(j + 1, column.GetValue());
+				wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j + 1, column.GetValue());
 				upperRightCornerPosition.m_x -= m_options.GetColumnSpacing();
 				upperRightCornerPosition.m_y -= heightOfPreviousDatasets[j];
 

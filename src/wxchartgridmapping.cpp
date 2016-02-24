@@ -71,8 +71,8 @@ void wxChartGridMapping::SetMaxValue(wxDouble maxValue)
 	m_maxValue = maxValue;
 }
 
-wxPoint2DDouble wxChartGridMapping::GetWindowPosition(size_t index,
-													  wxDouble value) const
+wxPoint2DDouble wxChartGridMapping::GetWindowPositionAtTickMark(size_t index,
+                                                                wxDouble value) const
 {
 	if ((m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM) &&
 		(m_YAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT))

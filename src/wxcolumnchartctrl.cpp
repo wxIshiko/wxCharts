@@ -206,7 +206,7 @@ void wxColumnChartCtrl::OnPaint(wxPaintEvent &evt)
 			for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
 			{
 				Column& column = *(currentDataset.GetColumns()[j]);
-				wxPoint2DDouble position = m_grid.GetMapping().GetWindowPosition(j, column.GetValue());
+				wxPoint2DDouble position = m_grid.GetMapping().GetWindowPositionAtTickMark(j, column.GetValue());
 				position.m_x += m_options.GetColumnSpacing() + (i * (columnWidth + m_options.GetDatasetSpacing()));
 
 				wxPoint2DDouble bottomLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j);
