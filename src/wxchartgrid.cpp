@@ -96,19 +96,16 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 		effectiveMaxXValue = m_XAxis->GetOptions().GetEndValue();
 	}
 
-    m_mapping.SetMinXValue(-1);
-    m_mapping.SetMaxXValue(4);
-
 	wxDouble graphMinXValue;
 	wxDouble graphMaxXValue;
 	wxDouble xValueRange = 0;
 	wxChartUtilities::CalculateGridRange(effectiveMinXValue, effectiveMaxXValue,
 		graphMinXValue, graphMaxXValue, xValueRange, m_steps, m_stepValue);
-	m_mapping.SetMinYValue(graphMinXValue);
-	m_mapping.SetMaxYValue(graphMaxXValue);
+	m_mapping.SetMinXValue(graphMinXValue);
+	m_mapping.SetMaxXValue(graphMaxXValue);
 
 	wxVector<wxChartLabel> xLabels;
-	BuildYLabels(m_mapping.GetMinYValue(), m_steps, m_stepValue, xLabels);
+	BuildYLabels(m_mapping.GetMinXValue(), m_steps, m_stepValue, xLabels);
 	m_XAxis->SetLabels(xLabels);
 
 	wxDouble effectiveMinYValue = minYValue;
