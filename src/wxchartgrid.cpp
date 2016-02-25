@@ -64,11 +64,11 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 	wxDouble valueRange = 0;
 	wxChartUtilities::CalculateGridRange(effectiveMinValue, effectiveMaxValue,
 		graphMinValue, graphMaxValue, valueRange, m_steps, m_stepValue);
-	m_mapping.SetMinValue(graphMinValue);
-	m_mapping.SetMaxValue(graphMaxValue);
+	m_mapping.SetMinYValue(graphMinValue);
+	m_mapping.SetMaxYValue(graphMaxValue);
 
 	wxVector<wxChartLabel> yLabels;
-	BuildYLabels(m_mapping.GetMinValue(), m_steps, m_stepValue, yLabels);
+	BuildYLabels(m_mapping.GetMinYValue(), m_steps, m_stepValue, yLabels);
 	m_YAxis->SetLabels(yLabels);
 }
 
@@ -96,18 +96,20 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 		effectiveMaxXValue = m_XAxis->GetOptions().GetEndValue();
 	}
 
+    m_mapping.SetMinXValue(-1);
+    m_mapping.SetMaxXValue(4);
+
 	wxDouble graphMinXValue;
 	wxDouble graphMaxXValue;
 	wxDouble xValueRange = 0;
 	wxChartUtilities::CalculateGridRange(effectiveMinXValue, effectiveMaxXValue,
 		graphMinXValue, graphMaxXValue, xValueRange, m_steps, m_stepValue);
-	m_mapping.SetMinValue(graphMinXValue);
-	m_mapping.SetMaxValue(graphMaxXValue);
+	m_mapping.SetMinYValue(graphMinXValue);
+	m_mapping.SetMaxYValue(graphMaxXValue);
 
 	wxVector<wxChartLabel> xLabels;
-	BuildYLabels(m_mapping.GetMinValue(), m_steps, m_stepValue, xLabels);
+	BuildYLabels(m_mapping.GetMinYValue(), m_steps, m_stepValue, xLabels);
 	m_XAxis->SetLabels(xLabels);
-
 
 	wxDouble effectiveMinYValue = minYValue;
 	if (m_YAxis->GetOptions().GetStartValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
@@ -125,11 +127,11 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 	wxDouble yValueRange = 0;
 	wxChartUtilities::CalculateGridRange(effectiveMinYValue, effectiveMaxYValue,
 		graphMinYValue, graphMaxYValue, yValueRange, m_steps, m_stepValue);
-	m_mapping.SetMinValue(graphMinYValue);
-	m_mapping.SetMaxValue(graphMaxYValue);
+	m_mapping.SetMinYValue(graphMinYValue);
+	m_mapping.SetMaxYValue(graphMaxYValue);
 
 	wxVector<wxChartLabel> yLabels;
-	BuildYLabels(m_mapping.GetMinValue(), m_steps, m_stepValue, yLabels);
+	BuildYLabels(m_mapping.GetMinYValue(), m_steps, m_stepValue, yLabels);
 	m_YAxis->SetLabels(yLabels);
 }
 

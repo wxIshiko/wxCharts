@@ -25,10 +25,6 @@
 #include "wxscatterplotoptions.h"
 
 wxScatterPlotOptions::wxScatterPlotOptions()
-	: m_gridOptions(
-		wxChartAxisOptions(wxCHARTAXISPOSITION_LEFT),
-		wxChartAxisOptions(wxCHARTAXISPOSITION_BOTTOM)
-		)
 {
 }
 

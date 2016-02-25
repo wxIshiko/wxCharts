@@ -87,6 +87,11 @@ public:
 	virtual const wxScatterPlotOptions& GetOptions() const;
 
 private:
+    static wxDouble GetMinXValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
+    static wxDouble GetMaxXValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
+    static wxDouble GetMinYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
+    static wxDouble GetMaxYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
+
 	virtual void Resize(const wxSize &size);
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 

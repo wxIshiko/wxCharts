@@ -88,8 +88,10 @@ wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
 	: wxChartCtrl(parent, id, pos, size, style),
 	m_grid(
 		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
-		size, -10, 30, 0,
-		20, m_options.GetGridOptions()
+		size, 
+        GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
+        GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
+		m_options.GetGridOptions()
 		)
 {
     const wxVector<wxScatterPlotDataset::ptr>& datasets = data.GetDatasets();
@@ -121,6 +123,106 @@ wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
 const wxScatterPlotOptions& wxScatterPlotCtrl::GetOptions() const
 {
 	return m_options;
+}
+
+wxDouble wxScatterPlotCtrl::GetMinXValue(const wxVector<wxScatterPlotDataset::ptr>& datasets)
+{
+    wxDouble result = 0;
+    bool foundValue = false;
+
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
+        for (size_t j = 0; j < values.size(); ++j)
+        {
+            if (!foundValue)
+            {
+                result = values[j].m_x;
+                foundValue = true;
+            }
+            else if (result > values[j].m_x)
+            {
+                result = values[j].m_x;
+            }
+        }
+    }
+
+    return result;
+}
+
+wxDouble wxScatterPlotCtrl::GetMaxXValue(const wxVector<wxScatterPlotDataset::ptr>& datasets)
+{
+    wxDouble result = 0;
+    bool foundValue = false;
+
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
+        for (size_t j = 0; j < values.size(); ++j)
+        {
+            if (!foundValue)
+            {
+                result = values[j].m_x;
+                foundValue = true;
+            }
+            else if (result < values[j].m_x)
+            {
+                result = values[j].m_x;
+            }
+        }
+    }
+
+    return result;
+}
+
+wxDouble wxScatterPlotCtrl::GetMinYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets)
+{
+    wxDouble result = 0;
+    bool foundValue = false;
+
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
+        for (size_t j = 0; j < values.size(); ++j)
+        {
+            if (!foundValue)
+            {
+                result = values[j].m_y;
+                foundValue = true;
+            }
+            else if (result > values[j].m_y)
+            {
+                result = values[j].m_y;
+            }
+        }
+    }
+
+    return result;
+}
+
+wxDouble wxScatterPlotCtrl::GetMaxYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets)
+{
+    wxDouble result = 0;
+    bool foundValue = false;
+
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
+        for (size_t j = 0; j < values.size(); ++j)
+        {
+            if (!foundValue)
+            {
+                result = values[j].m_y;
+                foundValue = true;
+            }
+            else if (result < values[j].m_y)
+            {
+                result = values[j].m_y;
+            }
+        }
+    }
+
+    return result;
 }
 
 void wxScatterPlotCtrl::Resize(const wxSize &size)
@@ -155,7 +257,7 @@ void wxScatterPlotCtrl::OnPaint(wxPaintEvent &evt)
             for (size_t j = 0; j < points.size(); ++j)
             {
                 const Point::ptr& point = points[j];
-                point->SetPosition(m_grid.GetMapping().GetWindowPositionAtTickMark(point->GetValue().m_x, point->GetValue().m_y));
+                point->SetPosition(m_grid.GetMapping().GetWindowPosition(point->GetValue().m_x, point->GetValue().m_y));
                 point->Draw(*gc);
             }
         }
