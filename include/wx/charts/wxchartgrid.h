@@ -102,7 +102,6 @@ private:
 	wxChartAxis::ptr m_XAxis;
 	wxChartAxis::ptr m_YAxis;
 	wxChartGridMapping m_mapping;
-	wxDouble m_stepValue;
 	// Whether something has changed and we
 	// need to rearrange the chart
 	bool m_needsFit;

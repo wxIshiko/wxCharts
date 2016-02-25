@@ -63,13 +63,14 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 	wxDouble graphMaxValue;
 	wxDouble valueRange = 0;
     size_t steps = 0;
+    wxDouble stepValue = 0;
 	wxChartUtilities::CalculateGridRange(effectiveMinValue, effectiveMaxValue,
-		graphMinValue, graphMaxValue, valueRange, steps, m_stepValue);
+		graphMinValue, graphMaxValue, valueRange, steps, stepValue);
 	m_mapping.SetMinYValue(graphMinValue);
 	m_mapping.SetMaxYValue(graphMaxValue);
 
 	wxVector<wxChartLabel> yLabels;
-	BuildYLabels(m_mapping.GetMinYValue(), steps, m_stepValue, yLabels);
+	BuildYLabels(m_mapping.GetMinYValue(), steps, stepValue, yLabels);
 	m_YAxis->SetLabels(yLabels);
 }
 
@@ -101,13 +102,14 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 	wxDouble graphMaxXValue;
 	wxDouble xValueRange = 0;
     size_t steps = 0;
+    wxDouble stepValue = 0;
 	wxChartUtilities::CalculateGridRange(effectiveMinXValue, effectiveMaxXValue,
-		graphMinXValue, graphMaxXValue, xValueRange, steps, m_stepValue);
+		graphMinXValue, graphMaxXValue, xValueRange, steps, stepValue);
 	m_mapping.SetMinXValue(graphMinXValue);
 	m_mapping.SetMaxXValue(graphMaxXValue);
 
 	wxVector<wxChartLabel> xLabels;
-	BuildYLabels(m_mapping.GetMinXValue(), steps, m_stepValue, xLabels);
+	BuildYLabels(m_mapping.GetMinXValue(), steps, stepValue, xLabels);
 	m_XAxis->SetLabels(xLabels);
 
 	wxDouble effectiveMinYValue = minYValue;
@@ -125,12 +127,12 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 	wxDouble graphMaxYValue;
 	wxDouble yValueRange = 0;
 	wxChartUtilities::CalculateGridRange(effectiveMinYValue, effectiveMaxYValue,
-		graphMinYValue, graphMaxYValue, yValueRange, steps, m_stepValue);
+		graphMinYValue, graphMaxYValue, yValueRange, steps, stepValue);
 	m_mapping.SetMinYValue(graphMinYValue);
 	m_mapping.SetMaxYValue(graphMaxYValue);
 
 	wxVector<wxChartLabel> yLabels;
-	BuildYLabels(m_mapping.GetMinYValue(), steps, m_stepValue, yLabels);
+	BuildYLabels(m_mapping.GetMinYValue(), steps, stepValue, yLabels);
 	m_YAxis->SetLabels(yLabels);
 }
 
