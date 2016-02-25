@@ -102,8 +102,6 @@ private:
 	wxChartAxis::ptr m_XAxis;
 	wxChartAxis::ptr m_YAxis;
 	wxChartGridMapping m_mapping;
-	// The number of steps on the Y-axis
-	size_t m_steps;
 	wxDouble m_stepValue;
 	// Whether something has changed and we
 	// need to rearrange the chart
