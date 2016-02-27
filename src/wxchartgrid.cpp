@@ -70,7 +70,7 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 	m_mapping.SetMaxYValue(graphMaxValue);
 
 	wxVector<wxChartLabel> yLabels;
-	BuildYLabels(m_mapping.GetMinYValue(), steps, stepValue, yLabels);
+    BuildNumericalLabels(m_mapping.GetMinYValue(), steps, stepValue, yLabels);
 	m_YAxis->SetLabels(yLabels);
 }
 
@@ -109,7 +109,7 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 	m_mapping.SetMaxXValue(graphMaxXValue);
 
 	wxVector<wxChartLabel> xLabels;
-	BuildYLabels(m_mapping.GetMinXValue(), steps, stepValue, xLabels);
+    BuildNumericalLabels(m_mapping.GetMinXValue(), steps, stepValue, xLabels);
 	m_XAxis->SetLabels(xLabels);
 
 	wxDouble effectiveMinYValue = minYValue;
@@ -132,7 +132,7 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 	m_mapping.SetMaxYValue(graphMaxYValue);
 
 	wxVector<wxChartLabel> yLabels;
-	BuildYLabels(m_mapping.GetMinYValue(), steps, stepValue, yLabels);
+    BuildNumericalLabels(m_mapping.GetMinYValue(), steps, stepValue, yLabels);
 	m_YAxis->SetLabels(yLabels);
 }
 
@@ -257,10 +257,10 @@ void wxChartGrid::Fit(wxGraphicsContext &gc)
 	m_needsFit = false;
 }
 
-void wxChartGrid::BuildYLabels(wxDouble minValue,
-							   size_t steps,
-							   wxDouble stepValue,
-							   wxVector<wxChartLabel> &labels)
+void wxChartGrid::BuildNumericalLabels(wxDouble minValue,
+                                       size_t steps,
+							           wxDouble stepValue,
+							           wxVector<wxChartLabel> &labels)
 {
 	size_t stepDecimalPlaces = wxChartUtilities::GetDecimalPlaces();
 

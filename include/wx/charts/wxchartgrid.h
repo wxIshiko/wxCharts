@@ -91,7 +91,7 @@ public:
 
 private:
 	void Fit(wxGraphicsContext &gc);
-	static void BuildYLabels(wxDouble minValue, size_t steps,
+	static void BuildNumericalLabels(wxDouble minValue, size_t steps,
 		wxDouble stepValue, wxVector<wxChartLabel> &labels);
 	void CalculatePadding(const wxChartAxis &xAxis,
 		const wxChartAxis &yAxis, wxDouble &left, wxDouble &right);

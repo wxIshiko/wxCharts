@@ -41,6 +41,12 @@
 #include "wxchartlabel.h"
 #include <wx/graphics.h>
 
+enum wxChartAxisType
+{
+    wxCHARTAXISTYPE_GENERIC = 0,
+    wxCHARTAXISTYPE_NUMERICAL = 1
+};
+
 /// This class represents an axis.
 class wxChartAxis : public wxChartElement
 {
