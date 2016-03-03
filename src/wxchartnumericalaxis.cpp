@@ -34,6 +34,27 @@
 #include "wxchartnumericalaxis.h"
 
 wxChartNumericalAxis::wxChartNumericalAxis(const wxChartAxisOptions &options)
-    : wxChartAxis(wxCHARTAXISTYPE_NUMERICAL, options)
+    : wxChartAxis(wxCHARTAXISTYPE_NUMERICAL, options),
+    m_minValue(0), m_maxValue(1)
 {
+}
+
+wxDouble wxChartNumericalAxis::GetMinValue() const
+{
+    return m_minValue;
+}
+
+void wxChartNumericalAxis::SetMinValue(wxDouble minValue)
+{
+    m_minValue = minValue;
+}
+
+wxDouble wxChartNumericalAxis::GetMaxValue() const
+{
+    return m_maxValue;
+}
+
+void wxChartNumericalAxis::SetMaxValue(wxDouble maxValue)
+{
+    m_maxValue = maxValue;
 }

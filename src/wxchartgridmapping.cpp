@@ -32,12 +32,13 @@
 */
 
 #include "wxchartgridmapping.h"
+#include "wxchartnumericalaxis.h"
 
 wxChartGridMapping::wxChartGridMapping(const wxSize &size,
 									   const wxChartAxis::ptr xAxis,
 									   const wxChartAxis::ptr yAxis)
 	: m_size(size), 
-    m_minXValue(0), m_maxXValue(1), m_minYValue(0), m_maxYValue(1),
+    m_minYValue(0), m_maxYValue(1),
 	m_XAxis(xAxis), m_YAxis(yAxis)
 {
 }
@@ -50,26 +51,6 @@ const wxSize& wxChartGridMapping::GetSize() const
 void wxChartGridMapping::SetSize(const wxSize &size)
 {
 	m_size = size;
-}
-
-wxDouble wxChartGridMapping::GetMinXValue() const
-{
-    return m_minXValue;
-}
-
-void wxChartGridMapping::SetMinXValue(wxDouble minValue)
-{
-    m_minXValue = minValue;
-}
-
-wxDouble wxChartGridMapping::GetMaxXValue() const
-{
-    return m_maxXValue;
-}
-
-void wxChartGridMapping::SetMaxXValue(wxDouble maxValue)
-{
-    m_maxXValue = maxValue;
 }
 
 wxDouble wxChartGridMapping::GetMinYValue() const
@@ -95,20 +76,22 @@ void wxChartGridMapping::SetMaxYValue(wxDouble maxValue)
 wxPoint2DDouble wxChartGridMapping::GetWindowPosition(wxDouble x, 
                                                       wxDouble y) const
 {
-    if ((m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM) &&
+    const wxChartNumericalAxis& numericalXAxis = static_cast<const wxChartNumericalAxis&>(*m_XAxis);
+
+    if ((numericalXAxis.GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM) &&
         (m_YAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT))
     {
         return wxPoint2DDouble(
-            m_XAxis->GetPosition((x - m_minXValue) / (m_maxXValue - m_minXValue)).m_x,
+            m_XAxis->GetPosition((x - numericalXAxis.GetMinValue()) / (numericalXAxis.GetMaxValue() - numericalXAxis.GetMinValue())).m_x,
             m_YAxis->GetPosition((y - m_minYValue) / (m_maxYValue - m_minYValue)).m_y
             );
     }
-    else if ((m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT) &&
+    else if ((numericalXAxis.GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT) &&
         (m_YAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM))
     {
         return wxPoint2DDouble(
             m_YAxis->GetPosition((y - m_minYValue) / (m_maxYValue - m_minYValue)).m_x,
-            m_XAxis->GetPosition((x - m_minXValue) / (m_maxXValue - m_minXValue)).m_y
+            m_XAxis->GetPosition((x - numericalXAxis.GetMinValue()) / (numericalXAxis.GetMaxValue() - numericalXAxis.GetMinValue())).m_y
             );
     }
 

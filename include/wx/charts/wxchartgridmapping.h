@@ -48,10 +48,7 @@ public:
 
 	const wxSize& GetSize() const;
 	void SetSize(const wxSize &size);
-    wxDouble GetMinXValue() const;
-    void SetMinXValue(wxDouble minValue);
-    wxDouble GetMaxXValue() const;
-    void SetMaxXValue(wxDouble maxValue);
+    
 	wxDouble GetMinYValue() const;
 	void SetMinYValue(wxDouble minValue);
 	wxDouble GetMaxYValue() const;
@@ -64,9 +61,7 @@ public:
 	
 private:
 	wxSize m_size;
-    wxDouble m_minXValue;
-    wxDouble m_maxXValue;
-	wxDouble m_minYValue;
+    wxDouble m_minYValue;
 	wxDouble m_maxYValue;
 	wxChartAxis::ptr m_XAxis;
 	wxChartAxis::ptr m_YAxis;

@@ -48,6 +48,15 @@ class wxChartNumericalAxis : public wxChartAxis
 {
 public:
     wxChartNumericalAxis(const wxChartAxisOptions &options);
+
+    wxDouble GetMinValue() const;
+    void SetMinValue(wxDouble minValue);
+    wxDouble GetMaxValue() const;
+    void SetMaxValue(wxDouble maxValue);
+
+private:
+    wxDouble m_minValue;
+    wxDouble m_maxValue;
 };
 
 #endif
