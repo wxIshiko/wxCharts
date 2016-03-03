@@ -32,3 +32,8 @@
 */
 
 #include "wxchartnumericalaxis.h"
+
+wxChartNumericalAxis::wxChartNumericalAxis(const wxChartAxisOptions &options)
+    : wxChartAxis(wxCHARTAXISTYPE_NUMERICAL, options)
+{
+}

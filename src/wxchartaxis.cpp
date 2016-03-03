@@ -35,16 +35,17 @@
 #include "wxchartutilities.h"
 #include <wx/pen.h>
 
-wxChartAxis::wxChartAxis(const wxChartAxisOptions &options)
-	: m_options(options), m_startPoint(0, 0), m_endPoint(0, 0), 
-	m_labelMaxWidth(0)
+wxChartAxis::wxChartAxis(wxChartAxisType type, 
+                         const wxChartAxisOptions &options)
+	: m_type(type), m_options(options),
+    m_startPoint(0, 0), m_endPoint(0, 0), m_labelMaxWidth(0)
 {
 }
 
 wxChartAxis::wxChartAxis(const wxVector<wxString> &labels,
 						 const wxChartAxisOptions &options)
-	: m_options(options), m_startPoint(0, 0), m_endPoint(0, 0), 
-	m_labelMaxWidth(0)
+	: m_type(wxCHARTAXISTYPE_GENERIC), m_options(options),
+    m_startPoint(0, 0), m_endPoint(0, 0), m_labelMaxWidth(0)
 {
 	for (size_t i = 0; i < labels.size(); ++i)
 	{
@@ -120,6 +121,11 @@ void wxChartAxis::UpdateLabelPositions()
 	{
 		m_labels[i].SetPosition(CalculateLabelPosition(i));
 	}
+}
+
+wxChartAxisType wxChartAxis::GetType() const
+{
+    return m_type;
 }
 
 const wxVector<wxChartLabel>& wxChartAxis::GetLabels() const

@@ -32,6 +32,7 @@
 */
 
 #include "wxchartgrid.h"
+#include "wxchartnumericalaxis.h"
 #include "wxchartutilities.h"
 #include <wx/pen.h>
 #include <sstream>
@@ -44,7 +45,7 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 						 const wxChartGridOptions& options)
 	: m_options(options), m_position(position),
 	m_XAxis(new wxChartAxis(labels, options.GetXAxisOptions())),
-	m_YAxis(new wxChartAxis(options.GetYAxisOptions())),
+	m_YAxis(new wxChartNumericalAxis(options.GetYAxisOptions())),
 	m_mapping(size, m_XAxis, m_YAxis),
 	m_needsFit(true)
 {
@@ -82,8 +83,8 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 						 wxDouble maxYValue,
 						 const wxChartGridOptions& options)
 	: m_options(options), m_position(position),
-	m_XAxis(new wxChartAxis(options.GetXAxisOptions())),
-	m_YAxis(new wxChartAxis(options.GetYAxisOptions())),
+	m_XAxis(new wxChartNumericalAxis(options.GetXAxisOptions())),
+	m_YAxis(new wxChartNumericalAxis(options.GetYAxisOptions())),
 	m_mapping(size, m_XAxis, m_YAxis),
 	m_needsFit(true)
 {

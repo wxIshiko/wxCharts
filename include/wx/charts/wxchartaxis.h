@@ -55,8 +55,9 @@ public:
 	typedef wxSharedPtr<wxChartAxis> ptr;
 
 	/// Construcs a wxChartAxis element.
+    /// @param type The type of axis.
 	/// @param options The settings to be used for the axis.
-	wxChartAxis(const wxChartAxisOptions &options);
+	wxChartAxis(wxChartAxisType type, const wxChartAxisOptions &options);
 	/// Constructs a wxChartAxis element.
 	/// @param labels The labels to display along the axis.
 	/// @param options The settings to be used for the axis.
@@ -78,6 +79,7 @@ public:
 	void Fit(wxPoint2DDouble startPoint, wxPoint2DDouble endPoint);
 	void UpdateLabelPositions();
 
+    wxChartAxisType GetType() const;
 	/// Gets the labels.
 	/// @return The list of labels.
 	const wxVector<wxChartLabel>& GetLabels() const;
@@ -102,6 +104,7 @@ private:
 	void DrawLabels(wxGraphicsContext &gc);
 
 private:
+    wxChartAxisType m_type;
 	wxChartAxisOptions m_options;
 	wxPoint2DDouble m_startPoint;
 	wxPoint2DDouble m_endPoint;

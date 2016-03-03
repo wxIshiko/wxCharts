@@ -36,10 +36,18 @@
 #ifndef _WX_CHARTS_WXCHARTNUMERICALAXIS_H_
 #define _WX_CHARTS_WXCHARTNUMERICALAXIS_H_
 
+#include "wxchartaxis.h"
+
 enum wxChartAxisScale
 {
     wxCHARTAXISSCALE_LINEAR = 0,
     wxCHARTAXISSCALE_LOGARITHMIC = 1
+};
+
+class wxChartNumericalAxis : public wxChartAxis
+{
+public:
+    wxChartNumericalAxis(const wxChartAxisOptions &options);
 };
 
 #endif
