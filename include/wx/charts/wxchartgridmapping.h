@@ -48,11 +48,6 @@ public:
 
 	const wxSize& GetSize() const;
 	void SetSize(const wxSize &size);
-    
-	wxDouble GetMinYValue() const;
-	void SetMinYValue(wxDouble minValue);
-	wxDouble GetMaxYValue() const;
-	void SetMaxYValue(wxDouble maxValue);
 
     wxPoint2DDouble GetWindowPosition(wxDouble x, wxDouble y) const;
 	wxPoint2DDouble GetWindowPositionAtTickMark(size_t index, wxDouble value) const;
@@ -61,8 +56,6 @@ public:
 	
 private:
 	wxSize m_size;
-    wxDouble m_minYValue;
-	wxDouble m_maxYValue;
 	wxChartAxis::ptr m_XAxis;
 	wxChartAxis::ptr m_YAxis;
 };

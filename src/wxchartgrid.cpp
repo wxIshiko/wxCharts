@@ -45,34 +45,10 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 						 const wxChartGridOptions& options)
 	: m_options(options), m_position(position),
 	m_XAxis(new wxChartAxis(labels, options.GetXAxisOptions())),
-	m_YAxis(new wxChartNumericalAxis(options.GetYAxisOptions())),
+	m_YAxis(CreateNumericalAxis(minValue, maxValue, options.GetYAxisOptions())),
 	m_mapping(size, m_XAxis, m_YAxis),
 	m_needsFit(true)
 {
-	wxDouble effectiveMinValue = minValue;
-	if (m_YAxis->GetOptions().GetStartValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
-	{
-		effectiveMinValue = m_YAxis->GetOptions().GetStartValue();
-	}
-	wxDouble effectiveMaxValue = maxValue;
-	if (m_YAxis->GetOptions().GetEndValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
-	{
-		effectiveMaxValue = m_YAxis->GetOptions().GetEndValue();
-	}
-
-	wxDouble graphMinValue;
-	wxDouble graphMaxValue;
-	wxDouble valueRange = 0;
-    size_t steps = 0;
-    wxDouble stepValue = 0;
-	wxChartUtilities::CalculateGridRange(effectiveMinValue, effectiveMaxValue,
-		graphMinValue, graphMaxValue, valueRange, steps, stepValue);
-	m_mapping.SetMinYValue(graphMinValue);
-	m_mapping.SetMaxYValue(graphMaxValue);
-
-	wxVector<wxChartLabel> yLabels;
-    BuildNumericalLabels(m_mapping.GetMinYValue(), steps, stepValue, yLabels);
-	m_YAxis->SetLabels(yLabels);
 }
 
 wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
@@ -84,34 +60,10 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 						 const wxChartGridOptions& options)
 	: m_options(options), m_position(position),
 	m_XAxis(CreateNumericalAxis(minXValue, maxXValue, options.GetXAxisOptions())),
-	m_YAxis(new wxChartNumericalAxis(options.GetYAxisOptions())),
+	m_YAxis(CreateNumericalAxis(minYValue, maxYValue, options.GetYAxisOptions())),
 	m_mapping(size, m_XAxis, m_YAxis),
 	m_needsFit(true)
 {
-	wxDouble effectiveMinYValue = minYValue;
-	if (m_YAxis->GetOptions().GetStartValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
-	{
-		effectiveMinYValue = m_YAxis->GetOptions().GetStartValue();
-	}
-	wxDouble effectiveMaxYValue = maxYValue;
-	if (m_YAxis->GetOptions().GetEndValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
-	{
-		effectiveMaxYValue = m_YAxis->GetOptions().GetEndValue();
-	}
-
-	wxDouble graphMinYValue;
-	wxDouble graphMaxYValue;
-	wxDouble yValueRange = 0;
-    size_t steps = 0;
-    wxDouble stepValue = 0;
-	wxChartUtilities::CalculateGridRange(effectiveMinYValue, effectiveMaxYValue,
-		graphMinYValue, graphMaxYValue, yValueRange, steps, stepValue);
-	m_mapping.SetMinYValue(graphMinYValue);
-	m_mapping.SetMaxYValue(graphMaxYValue);
-
-	wxVector<wxChartLabel> yLabels;
-    BuildNumericalLabels(m_mapping.GetMinYValue(), steps, stepValue, yLabels);
-	m_YAxis->SetLabels(yLabels);
 }
 
 bool wxChartGrid::HitTest(const wxPoint &point) const
