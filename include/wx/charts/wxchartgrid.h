@@ -90,6 +90,8 @@ public:
 	const wxChartGridMapping& GetMapping() const;
 
 private:
+    static wxChartAxis::ptr CreateNumericalAxis(wxDouble minValue, wxDouble maxValue, 
+        const wxChartAxisOptions &options);
 	void Fit(wxGraphicsContext &gc);
 	static void BuildNumericalLabels(wxDouble minValue, size_t steps,
 		wxDouble stepValue, wxVector<wxChartLabel> &labels);
