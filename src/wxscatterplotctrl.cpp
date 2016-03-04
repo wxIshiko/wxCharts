@@ -27,9 +27,21 @@
 #include <wx/graphics.h>
 #include <sstream>
 
-wxScatterPlotDataset::wxScatterPlotDataset(wxVector<wxPoint2DDouble> &data)
-    : m_data(data)
+wxScatterPlotDataset::wxScatterPlotDataset(const wxColor& fillColor, 
+                                           const wxColor& strokeColor,
+                                           wxVector<wxPoint2DDouble> &data)
+    : m_fillColor(fillColor), m_strokeColor(strokeColor), m_data(data)
 {
+}
+
+const wxColor& wxScatterPlotDataset::GetFillColor() const
+{
+    return m_fillColor;
+}
+
+const wxColor& wxScatterPlotDataset::GetStrokeColor() const
+{
+    return m_strokeColor;
 }
 
 const wxVector<wxPoint2DDouble>& wxScatterPlotDataset::GetData() const

@@ -38,11 +38,17 @@ public:
 
     /// Constructs a wxScatterPlotDataset instance.
     /// @param data The list of values.
-    wxScatterPlotDataset(wxVector<wxPoint2DDouble> &data);
+    wxScatterPlotDataset(const wxColor& fillColor, const wxColor& strokeColor,
+        wxVector<wxPoint2DDouble> &data);
+
+    const wxColor& GetFillColor() const;
+    const wxColor& GetStrokeColor() const;
 
     const wxVector<wxPoint2DDouble>& GetData() const;
 
 private:
+    wxColor m_fillColor;
+    wxColor m_strokeColor;
     wxVector<wxPoint2DDouble> m_data;
 };
 
