@@ -40,14 +40,33 @@ WxScatterPlotFrame::WxScatterPlotFrame(const wxString& title)
     points1.push_back(wxPoint2DDouble(0.5, 2.5));
     points1.push_back(wxPoint2DDouble(1.2, 0.1));
     points1.push_back(wxPoint2DDouble(1.5, 1.6));
+    points1.push_back(wxPoint2DDouble(2, 1.8));
+    points1.push_back(wxPoint2DDouble(2.2, 2.1));
     points1.push_back(wxPoint2DDouble(2.7, 2));
-    points1.push_back(wxPoint2DDouble(3, -0.7));
-    points1.push_back(wxPoint2DDouble(3.2, -0.4));
     wxScatterPlotDataset::ptr dataset1(
         new wxScatterPlotDataset(
+            wxColor(250, 20, 20, 0x78),
+            wxColor(250, 20, 20, 0xB8),
             points1)
         );
     chartData.AddDataset(dataset1);
+
+    // Add the second dataset
+    wxVector<wxPoint2DDouble> points2;
+    points2.push_back(wxPoint2DDouble(-0.3, 6.5));
+    points2.push_back(wxPoint2DDouble(0.2, -1.5));
+    points2.push_back(wxPoint2DDouble(1.6, 0.7));
+    points2.push_back(wxPoint2DDouble(1.5, 4.1));
+    points2.push_back(wxPoint2DDouble(1.8, 2.7));
+    points2.push_back(wxPoint2DDouble(2.1, 2));
+    points2.push_back(wxPoint2DDouble(2.3, 6));
+    wxScatterPlotDataset::ptr dataset2(
+        new wxScatterPlotDataset(
+            wxColor(20, 20, 20, 0x78),
+            wxColor(20, 20, 20, 0xB8),
+            points2)
+        );
+    chartData.AddDataset(dataset2);
 
 	// Create the scatter plot widget
 	wxScatterPlotCtrl* scatterPlotCtrl = new wxScatterPlotCtrl(panel, wxID_ANY, chartData);

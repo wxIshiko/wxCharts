@@ -68,7 +68,7 @@ wxScatterPlotCtrl::Point::Point(wxPoint2DDouble value,
                                 wxDouble x,
                                 wxDouble y,
                                 const wxChartPointOptions &options)
-    : wxChartPoint(x, y, 4, tooltipProvider, options), m_value(value)
+    : wxChartPoint(x, y, 5, tooltipProvider, options), m_value(value)
 {
 }
 
@@ -122,7 +122,7 @@ wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
 
             Point::ptr point(
                 new Point(datasetData[j], tooltipProvider, 20 + j * 10, 0,
-                    wxChartPointOptions(2, *wxBLUE, *wxGREEN))
+                    wxChartPointOptions(2, datasets[i]->GetStrokeColor(), datasets[i]->GetFillColor()))
                 );
 
             newDataset->AppendPoint(point);
