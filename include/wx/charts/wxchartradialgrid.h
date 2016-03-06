@@ -38,6 +38,7 @@
 
 #include "wxchartelement.h"
 #include "wxchartradialgridoptions.h"
+#include "wxchartlabel.h"
 #include <wx/graphics.h>
 
 /// This class is used to display a radial grid.
@@ -77,14 +78,13 @@ private:
 	static wxDouble CalculateCenterOffset(wxDouble value, 
 		wxDouble drawingArea, wxDouble minValue,
 		wxDouble maxValue);
-	void BuildYLabels(size_t steps);
-
+	
 private:
 	wxChartRadialGridOptions m_options;
 	wxSize m_size;
 	wxDouble m_drawingArea;
 	wxPoint2DDouble m_center;
-	wxVector<wxString> m_yLabels;
+	wxVector<wxChartLabel> m_yLabels;
 	size_t m_steps;
 };
 

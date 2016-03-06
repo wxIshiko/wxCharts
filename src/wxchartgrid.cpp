@@ -35,7 +35,6 @@
 #include "wxchartnumericalaxis.h"
 #include "wxchartutilities.h"
 #include <wx/pen.h>
-#include <sstream>
 
 wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 						 const wxSize &size,
@@ -179,7 +178,7 @@ wxChartAxis::ptr wxChartGrid::CreateNumericalAxis(wxDouble minValue,
     numericalAxis->SetMaxValue(graphMaxXValue);
 
     wxVector<wxChartLabel> xLabels;
-    BuildNumericalLabels(numericalAxis->GetMinValue(), steps, stepValue, xLabels);
+    wxChartUtilities::BuildNumericalLabels(numericalAxis->GetMinValue(), steps, stepValue, xLabels);
     numericalAxis->SetLabels(xLabels);
 
     return axis;
@@ -221,23 +220,6 @@ void wxChartGrid::Fit(wxGraphicsContext &gc)
 	m_YAxis->UpdateLabelPositions();
 
 	m_needsFit = false;
-}
-
-void wxChartGrid::BuildNumericalLabels(wxDouble minValue,
-                                       size_t steps,
-							           wxDouble stepValue,
-							           wxVector<wxChartLabel> &labels)
-{
-	size_t stepDecimalPlaces = wxChartUtilities::GetDecimalPlaces();
-
-	for (size_t i = 0; i <= steps; ++i)
-	{
-		wxDouble value = minValue + (i * stepValue);//.toFixed(stepDecimalPlaces);
-		std::stringstream valueStr;
-		valueStr << value;
-
-		labels.push_back(wxChartLabel(valueStr.str()));
-	}
 }
 
 void wxChartGrid::CalculatePadding(const wxChartAxis &xAxis,

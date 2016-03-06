@@ -40,6 +40,7 @@
 #include "wxchartslicedata.h"
 #include "wxpolarareachartoptions.h"
 #include "wxchartradialgrid.h"
+#include "wxchartarc.h"
 
 /// Data for the wxPolarAreaChartCtrl control.
 class wxPolarAreaChartData
@@ -81,8 +82,7 @@ public:
 private:
 	void Add(const wxChartSliceData &slice);
 	void Add(const wxChartSliceData &slice, size_t index);
-	void Add(const wxChartSliceData &slice, size_t index, bool silent);
-
+	
 	static wxDouble GetMinValue(const wxVector<wxChartSliceData> &slices);
 	static wxDouble GetMaxValue(const wxVector<wxChartSliceData> &slices);
 
@@ -92,9 +92,21 @@ private:
 	void OnPaint(wxPaintEvent &evt);
 
 private:
+    class SliceArc : public wxChartArc
+    {
+    public:
+        typedef wxSharedPtr<SliceArc> ptr;
+
+        SliceArc(const wxChartSliceData &slice, wxDouble x, wxDouble y,
+            wxDouble startAngle, wxDouble endAngle, wxDouble radius);
+
+        void Resize(const wxSize &size);
+    };
+
+private:
 	wxPolarAreaChartOptions m_options;
 	wxChartRadialGrid m_grid;
-	wxVector<wxChartSliceData> m_slices;
+	wxVector<SliceArc::ptr> m_slices;
 
 	DECLARE_EVENT_TABLE();
 };

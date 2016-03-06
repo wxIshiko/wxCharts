@@ -32,6 +32,7 @@
 */
 
 #include "wxchartutilities.h"
+#include <sstream>
 
 size_t wxChartUtilities::GetDecimalPlaces()
 {
@@ -73,6 +74,23 @@ void wxChartUtilities::CalculateGridRange(wxDouble minValue,
 wxDouble wxChartUtilities::CalculateOrderOfMagnitude(wxDouble value)
 {
 	return floor(log10(value));
+}
+
+void wxChartUtilities::BuildNumericalLabels(wxDouble minValue,
+                                            size_t steps,
+                                            wxDouble stepValue,
+                                            wxVector<wxChartLabel> &labels)
+{
+    size_t stepDecimalPlaces = wxChartUtilities::GetDecimalPlaces();
+
+    for (size_t i = 0; i <= steps; ++i)
+    {
+        wxDouble value = minValue + (i * stepValue);//.toFixed(stepDecimalPlaces);
+        std::stringstream valueStr;
+        valueStr << value;
+
+        labels.push_back(wxChartLabel(valueStr.str()));
+    }
 }
 
 void wxChartUtilities::GetTextSize(wxGraphicsContext &gc,

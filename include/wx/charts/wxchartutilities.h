@@ -36,6 +36,7 @@
 #ifndef _WX_CHARTS_WXCHARTUTILITIES_H_
 #define _WX_CHARTS_WXCHARTUTILITIES_H_
 
+#include "wxchartlabel.h"
 #include <wx/graphics.h>
 
 /// This class contains a set of static utility functions.
@@ -48,6 +49,8 @@ public:
 		wxDouble &graphMaxValue, wxDouble &valueRange, 
 		size_t &steps, wxDouble &stepValue);
 	static wxDouble CalculateOrderOfMagnitude(wxDouble value);
+    static void BuildNumericalLabels(wxDouble minValue, size_t steps,
+        wxDouble stepValue, wxVector<wxChartLabel> &labels);
 	/// Gets the size of the text for the given font.
 	/// @param gc The graphics context.
 	/// @param font The font.

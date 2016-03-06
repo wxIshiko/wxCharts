@@ -48,7 +48,7 @@ wxChartRadialGrid::wxChartRadialGrid(const wxSize &size,
 	wxDouble stepValue;
 	wxChartUtilities::CalculateGridRange(minValue, maxValue, 
 		graphMinValue, graphMaxValue, valueRange, m_steps, stepValue);
-	BuildYLabels(m_steps);
+    wxChartUtilities::BuildNumericalLabels(graphMinValue, m_steps, stepValue, m_yLabels);
 }
 
 bool wxChartRadialGrid::HitTest(const wxPoint &point) const
@@ -96,7 +96,8 @@ void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc)
 			wxFont font(wxSize(0, m_options.GetFontSize()),
 				m_options.GetFontFamily(), m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
 			gc.SetFont(font, m_options.GetFontColor());
-			gc.DrawText(m_yLabels[i], m_center.m_x, yHeight);
+            m_yLabels[i].SetPosition(m_center.m_x, yHeight);
+            m_yLabels[i].Draw(gc);
 		}
 	}
 }
@@ -143,14 +144,4 @@ wxDouble wxChartRadialGrid::CalculateCenterOffset(wxDouble value,
 	wxDouble scalingFactor = drawingArea / (maxValue - minValue);
 
 	return ((value - minValue) * scalingFactor);
-}
-
-void wxChartRadialGrid::BuildYLabels(size_t steps)
-{
-	m_yLabels.clear();
-
-	for (size_t i = 0; i <= steps; ++i)
-	{
-		m_yLabels.push_back("10");
-	}
 }

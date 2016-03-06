@@ -93,8 +93,6 @@ private:
     static wxChartAxis::ptr CreateNumericalAxis(wxDouble minValue, wxDouble maxValue, 
         const wxChartAxisOptions &options);
 	void Fit(wxGraphicsContext &gc);
-	static void BuildNumericalLabels(wxDouble minValue, size_t steps,
-		wxDouble stepValue, wxVector<wxChartLabel> &labels);
 	void CalculatePadding(const wxChartAxis &xAxis,
 		const wxChartAxis &yAxis, wxDouble &left, wxDouble &right);
 
