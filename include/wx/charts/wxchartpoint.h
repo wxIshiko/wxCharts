@@ -68,6 +68,7 @@ private:
     wxChartPointOptions m_options;
 	wxPoint2DDouble m_position;
 	wxDouble m_radius;
+    wxDouble m_hitDetectionRange;
 };
 
 #endif

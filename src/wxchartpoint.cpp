@@ -41,13 +41,18 @@ wxChartPoint::wxChartPoint(wxDouble x,
 						   const wxChartTooltipProvider::ptr tooltipProvider,
                            const wxChartPointOptions &options)
 	: wxChartElement(tooltipProvider), m_options(options),
-    m_position(x, y), m_radius(radius)
+    m_position(x, y), m_radius(radius), m_hitDetectionRange(radius)
 {
 }
 
 bool wxChartPoint::HitTest(const wxPoint &point) const
 {
-	return false;
+    wxDouble distanceFromXCenterSquared = point.x - m_position.m_x;
+    distanceFromXCenterSquared *= distanceFromXCenterSquared;
+    wxDouble distanceFromYCenterSquared = point.y - m_position.m_y;
+    distanceFromYCenterSquared *= distanceFromYCenterSquared;
+    
+    return ((distanceFromXCenterSquared + distanceFromYCenterSquared) <= (m_hitDetectionRange * m_hitDetectionRange));
 }
 
 wxPoint2DDouble wxChartPoint::GetTooltipPosition() const

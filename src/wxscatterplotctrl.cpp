@@ -106,30 +106,7 @@ wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
 		m_options.GetGridOptions()
 		)
 {
-    const wxVector<wxScatterPlotDataset::ptr>& datasets = data.GetDatasets();
-    for (size_t i = 0; i < datasets.size(); ++i)
-    {
-        Dataset::ptr newDataset(new Dataset());
-
-        const wxVector<wxPoint2DDouble>& datasetData = datasets[i]->GetData();
-        for (size_t j = 0; j < datasetData.size(); ++j)
-        {
-            std::stringstream tooltip;
-            tooltip << datasetData[j].m_x;
-            wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic("dummy", tooltip.str(), *wxWHITE)
-                );
-
-            Point::ptr point(
-                new Point(datasetData[j], tooltipProvider, 20 + j * 10, 0,
-                    wxChartPointOptions(2, datasets[i]->GetStrokeColor(), datasets[i]->GetFillColor()))
-                );
-
-            newDataset->AppendPoint(point);
-        }
- 
-        m_datasets.push_back(newDataset);
-    }
+    Initialize(data);
 }
 
 wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
@@ -148,6 +125,16 @@ wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
         m_options.GetGridOptions()
         )
 {
+    Initialize(data);
+}
+
+const wxScatterPlotOptions& wxScatterPlotCtrl::GetOptions() const
+{
+	return m_options;
+}
+
+void wxScatterPlotCtrl::Initialize(const wxScatterPlotData &data)
+{
     const wxVector<wxScatterPlotDataset::ptr>& datasets = data.GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
@@ -157,7 +144,7 @@ wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
         for (size_t j = 0; j < datasetData.size(); ++j)
         {
             std::stringstream tooltip;
-            tooltip << datasetData[j].m_x;
+            tooltip << "(" << datasetData[j].m_x << "," << datasetData[j].m_y << ")";
             wxChartTooltipProvider::ptr tooltipProvider(
                 new wxChartTooltipProviderStatic("dummy", tooltip.str(), *wxWHITE)
                 );
@@ -172,11 +159,6 @@ wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
 
         m_datasets.push_back(newDataset);
     }
-}
-
-const wxScatterPlotOptions& wxScatterPlotCtrl::GetOptions() const
-{
-	return m_options;
 }
 
 wxDouble wxScatterPlotCtrl::GetMinXValue(const wxVector<wxScatterPlotDataset::ptr>& datasets)
@@ -291,6 +273,17 @@ void wxScatterPlotCtrl::Resize(const wxSize &size)
 wxSharedPtr<wxVector<const wxChartElement*> > wxScatterPlotCtrl::GetActiveElements(const wxPoint &point)
 {
 	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();
+        for (size_t j = 0; j < points.size(); ++j)
+        {
+            if (points[j]->HitTest(point))
+            {
+                activeElements->push_back(points[j].get());
+            }
+        }
+    }
 	return activeElements;
 }
 

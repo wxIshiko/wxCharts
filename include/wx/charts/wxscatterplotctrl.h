@@ -96,6 +96,8 @@ public:
 	virtual const wxScatterPlotOptions& GetOptions() const;
 
 private:
+    void Initialize(const wxScatterPlotData &data);
+
     static wxDouble GetMinXValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
     static wxDouble GetMaxXValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
     static wxDouble GetMinYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
