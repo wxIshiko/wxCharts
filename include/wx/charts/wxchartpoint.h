@@ -44,6 +44,10 @@ public:
 	wxChartPoint(wxDouble x, wxDouble y, wxDouble radius,
 		const wxChartTooltipProvider::ptr tooltipProvider,
         const wxChartPointOptions &options);
+    wxChartPoint(wxDouble x, wxDouble y, wxDouble radius,
+        wxDouble hitDetectionRange,
+        const wxChartTooltipProvider::ptr tooltipProvider,
+        const wxChartPointOptions &options);
 
 	virtual bool HitTest(const wxPoint &point) const;
 

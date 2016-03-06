@@ -34,6 +34,8 @@ public:
 	/// Constructs a wxChartMultiTooltipOptions instance.
 	wxChartMultiTooltipOptions();
 
+    bool ShowTitle() const;
+    void SetShowTitle(bool show);
 	const wxChartFontOptions& GetTitleFontOptions() const;
 	const wxChartFontOptions& GetTextFontOptions() const;
 
@@ -58,6 +60,7 @@ public:
 	wxDouble GetLineSpacing() const;
 
 private:
+    bool m_showTitle;
 	wxChartFontOptions m_titleFontOptions;
 	wxChartFontOptions m_textFontOptions;
 	wxDouble m_horizontalPadding;

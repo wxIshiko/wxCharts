@@ -23,11 +23,22 @@
 #include "wxchartmultitooltipoptions.h"
 
 wxChartMultiTooltipOptions::wxChartMultiTooltipOptions()
-	: m_titleFontOptions(wxFONTFAMILY_SWISS, 14, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, 0xFFFFFF),
+	: m_showTitle(true), 
+    m_titleFontOptions(wxFONTFAMILY_SWISS, 14, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, 0xFFFFFF),
 	m_textFontOptions(wxFONTFAMILY_SWISS, 14, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0xFFFFFF),
 	m_horizontalPadding(6), m_verticalPadding(6), m_backgroundColor(0, 0, 0, 0xCC), m_cornerRadius(6),
 	m_lineSpacing(5)
 {
+}
+
+bool wxChartMultiTooltipOptions::ShowTitle() const
+{
+    return m_showTitle;
+}
+
+void wxChartMultiTooltipOptions::SetShowTitle(bool show)
+{
+    m_showTitle = show;
 }
 
 const wxChartFontOptions& wxChartMultiTooltipOptions::GetTitleFontOptions() const

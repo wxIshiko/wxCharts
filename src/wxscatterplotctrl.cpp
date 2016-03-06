@@ -68,7 +68,7 @@ wxScatterPlotCtrl::Point::Point(wxPoint2DDouble value,
                                 wxDouble x,
                                 wxDouble y,
                                 const wxChartPointOptions &options)
-    : wxChartPoint(x, y, 5, tooltipProvider, options), m_value(value)
+    : wxChartPoint(x, y, 5, 20, tooltipProvider, options), m_value(value)
 {
 }
 
@@ -146,7 +146,7 @@ void wxScatterPlotCtrl::Initialize(const wxScatterPlotData &data)
             std::stringstream tooltip;
             tooltip << "(" << datasetData[j].m_x << "," << datasetData[j].m_y << ")";
             wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic("dummy", tooltip.str(), *wxWHITE)
+                new wxChartTooltipProviderStatic("", tooltip.str(), datasets[i]->GetFillColor())
                 );
 
             Point::ptr point(
