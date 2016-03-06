@@ -72,6 +72,13 @@ wxScatterPlotCtrl::Point::Point(wxPoint2DDouble value,
 {
 }
 
+wxPoint2DDouble wxScatterPlotCtrl::Point::GetTooltipPosition() const
+{
+    wxPoint2DDouble position = wxChartPoint::GetTooltipPosition();
+    position.m_y -= 10;
+    return position;
+}
+
 wxPoint2DDouble wxScatterPlotCtrl::Point::GetValue() const
 {
     return m_value;

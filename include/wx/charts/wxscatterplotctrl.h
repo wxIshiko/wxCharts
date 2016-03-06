@@ -119,6 +119,8 @@ private:
             wxDouble x, wxDouble y, 
             const wxChartPointOptions &options);
 
+        virtual wxPoint2DDouble GetTooltipPosition() const;
+
         wxPoint2DDouble GetValue() const;
 
     private:

@@ -51,3 +51,14 @@ void wxChartOptions::SetShowTooltips(bool show)
 {
 	m_showTooltips = show;
 }
+
+
+const wxChartMultiTooltipOptions& wxChartOptions::GetMultiTooltipOptions() const
+{
+    return m_multiTooltipOptions;
+}
+
+wxChartMultiTooltipOptions& wxChartOptions::GetMultiTooltipOptions()
+{
+    return m_multiTooltipOptions;
+}

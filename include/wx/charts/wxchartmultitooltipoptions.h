@@ -39,6 +39,9 @@ public:
 	const wxChartFontOptions& GetTitleFontOptions() const;
 	const wxChartFontOptions& GetTextFontOptions() const;
 
+    wxAlignment GetAlignment() const;
+    void SetAlignment(wxAlignment alignment);
+
 	/// Gets the horizontal padding. The padding will
 	/// be added on the left and on the right of the text 
 	/// and will be painted using the background color.
@@ -63,6 +66,7 @@ private:
     bool m_showTitle;
 	wxChartFontOptions m_titleFontOptions;
 	wxChartFontOptions m_textFontOptions;
+    wxAlignment m_alignment;
 	wxDouble m_horizontalPadding;
 	wxDouble m_verticalPadding;
 	wxColor m_backgroundColor;

@@ -40,6 +40,12 @@ wxChartMultiTooltip::wxChartMultiTooltip(const wxString &title)
 {
 }
 
+wxChartMultiTooltip::wxChartMultiTooltip(const wxString &title,
+    const wxChartMultiTooltipOptions &options)
+    : m_title(title), m_options(options)
+{
+}
+
 void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 {
 	// First we will compute the size of each of the lines
@@ -52,7 +58,10 @@ void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 	// Get the size of the title
 	wxDouble titleWidth = 0;
 	wxDouble titleHeight = 0;
-	wxChartUtilities::GetTextSize(gc, titleFont, m_title, titleWidth, titleHeight);
+    if (m_options.ShowTitle())
+    {
+        wxChartUtilities::GetTextSize(gc, titleFont, m_title, titleWidth, titleHeight);
+    }
 
 	// Update the size of each line to reflect the currently
 	// selected options and the contents of each line.
@@ -69,7 +78,11 @@ void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 	{
 		wxSize size = m_lines[i].GetSize();
 
-		totalInnerHeight += size.GetHeight() + m_options.GetLineSpacing();
+        totalInnerHeight += size.GetHeight();
+        if (m_options.ShowTitle() || (i != 0))
+        {
+            totalInnerHeight += m_options.GetLineSpacing();
+        }
 
 		if (size.GetWidth() > totalInnerWidth)
 		{
@@ -89,28 +102,62 @@ void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 	// First calculate the position of the center of
 	// the tooltip
 	wxPoint2DDouble tooltipCenter(0, 0);
-	if (m_tooltipPositions.size() > 0)
-	{
-		for (size_t i = 0; i < m_tooltipPositions.size(); ++i)
-		{
-			tooltipCenter.m_x += m_tooltipPositions[i].m_x;
-			tooltipCenter.m_y += m_tooltipPositions[i].m_y;
-		}
+    if (m_options.GetAlignment() == wxALIGN_CENTER)
+    {
+        if (m_tooltipPositions.size() > 0)
+        {
+            for (size_t i = 0; i < m_tooltipPositions.size(); ++i)
+            {
+                tooltipCenter.m_x += m_tooltipPositions[i].m_x;
+                tooltipCenter.m_y += m_tooltipPositions[i].m_y;
+            }
 
-		tooltipCenter.m_x /= m_tooltipPositions.size();
-		tooltipCenter.m_y /= m_tooltipPositions.size();
-	}
+            tooltipCenter.m_x /= m_tooltipPositions.size();
+            tooltipCenter.m_y /= m_tooltipPositions.size();
+        }
+    }
+    else if (m_options.GetAlignment() == wxALIGN_TOP)
+    {
+        if (m_tooltipPositions.size() > 0)
+        {
+            tooltipCenter.m_y = m_tooltipPositions[0].m_y;
+            for (size_t i = 0; i < m_tooltipPositions.size(); ++i)
+            {
+                tooltipCenter.m_x += m_tooltipPositions[i].m_x;
+                if (tooltipCenter.m_y > m_tooltipPositions[i].m_y)
+                {
+                    tooltipCenter.m_y = m_tooltipPositions[i].m_y;
+                }
+            }
+
+            tooltipCenter.m_x /= m_tooltipPositions.size();
+        }
+    }
 
 	// Calculate the coordinates of the upper left corner of
 	// the multi-tooltip both with and without the margins
 	wxDouble outerX = (tooltipCenter.m_x - (totalOuterWidth / 2));
-	wxDouble outerY = (tooltipCenter.m_y - (totalOuterHeight / 2));
 	wxDouble innerX = (tooltipCenter.m_x - (totalInnerWidth / 2));
-	wxDouble innerY = (tooltipCenter.m_y - (totalInnerHeight / 2));
+    wxDouble outerY = tooltipCenter.m_y;
+    wxDouble innerY = tooltipCenter.m_y;
+    if (m_options.GetAlignment() == wxALIGN_CENTER)
+    {
+        outerY -= (totalOuterHeight / 2);
+        innerY -= (totalInnerHeight / 2);
+    }
+    else if (m_options.GetAlignment() == wxALIGN_TOP)
+    {
+        outerY -= totalOuterHeight;
+        innerY = outerY + m_options.GetVerticalPadding();
+    }
 
 	// Set the position of each line based on the size of
 	// the lines that precede it.
-	wxDouble y = innerY + titleHeight + m_options.GetLineSpacing();
+    wxDouble y = innerY + titleHeight;
+    if (titleHeight != 0)
+    {
+        y += m_options.GetLineSpacing();
+    }
 	for (size_t i = 0; i < m_lines.size(); ++i)
 	{
 		m_lines[i].SetPosition(innerX, y);
@@ -130,9 +177,12 @@ void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
 	gc.SetBrush(brush);
 	gc.FillPath(path);
 
-	// Draw the title
-	gc.SetFont(titleFont, m_options.GetTitleFontOptions().GetColor());
-	gc.DrawText(m_title, innerX, innerY);
+    if (m_options.ShowTitle())
+    {
+        // Draw the title
+        gc.SetFont(titleFont, m_options.GetTitleFontOptions().GetColor());
+        gc.DrawText(m_title, innerX, innerY);
+    }
 
 	// Draw the lines
 	for (size_t i = 0; i < m_lines.size(); ++i)

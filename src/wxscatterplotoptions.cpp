@@ -26,6 +26,8 @@
 
 wxScatterPlotOptions::wxScatterPlotOptions()
 {
+    GetMultiTooltipOptions().SetShowTitle(false);
+    GetMultiTooltipOptions().SetAlignment(wxALIGN_TOP);
 }
 
 const wxChartGridOptions& wxScatterPlotOptions::GetGridOptions() const

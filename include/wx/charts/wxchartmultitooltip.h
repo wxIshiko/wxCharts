@@ -46,6 +46,7 @@ public:
 	/// Constructs a wxChartMultiTooltip
 	/// instance.
 	wxChartMultiTooltip(const wxString &title);
+    wxChartMultiTooltip(const wxString &title, const wxChartMultiTooltipOptions &options);
 
 	/// Draws the tooltip using the graphics context passed
 	/// in as argument.

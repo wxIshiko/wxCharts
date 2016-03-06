@@ -26,8 +26,8 @@ wxChartMultiTooltipOptions::wxChartMultiTooltipOptions()
 	: m_showTitle(true), 
     m_titleFontOptions(wxFONTFAMILY_SWISS, 14, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, 0xFFFFFF),
 	m_textFontOptions(wxFONTFAMILY_SWISS, 14, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0xFFFFFF),
-	m_horizontalPadding(6), m_verticalPadding(6), m_backgroundColor(0, 0, 0, 0xCC), m_cornerRadius(6),
-	m_lineSpacing(5)
+    m_alignment(wxALIGN_CENTER), m_horizontalPadding(6), m_verticalPadding(6), 
+    m_backgroundColor(0, 0, 0, 0xCC), m_cornerRadius(6), m_lineSpacing(5)
 {
 }
 
@@ -49,6 +49,16 @@ const wxChartFontOptions& wxChartMultiTooltipOptions::GetTitleFontOptions() cons
 const wxChartFontOptions& wxChartMultiTooltipOptions::GetTextFontOptions() const
 {
 	return m_textFontOptions;
+}
+
+wxAlignment wxChartMultiTooltipOptions::GetAlignment() const
+{
+    return m_alignment;
+}
+
+void wxChartMultiTooltipOptions::SetAlignment(wxAlignment alignment)
+{
+    m_alignment = alignment;
 }
 
 wxDouble wxChartMultiTooltipOptions::GetHorizontalPadding() const

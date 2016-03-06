@@ -26,6 +26,7 @@
 #define _WX_CHARTS_WXCHARTOPTIONS_H_
 
 #include "wxchartpadding.h"
+#include "wxchartmultitooltipoptions.h"
 
 /// Options for the wxChartCtrl control.
 class wxChartOptions
@@ -52,11 +53,14 @@ public:
 	/// Enables or disable tooltips.
 	/// @param show True to enable tooltips, false to disable them.
 	void SetShowTooltips(bool show);
+    const wxChartMultiTooltipOptions& GetMultiTooltipOptions() const;
+    wxChartMultiTooltipOptions& GetMultiTooltipOptions();
 
 private:
 	wxChartPadding m_padding;
 	bool m_responsive;
 	bool m_showTooltips;
+    wxChartMultiTooltipOptions m_multiTooltipOptions;
 };
 
 #endif
