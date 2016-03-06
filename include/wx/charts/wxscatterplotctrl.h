@@ -89,6 +89,9 @@ public:
 	wxScatterPlotCtrl(wxWindow *parent, wxWindowID id, const wxScatterPlotData &data,
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
+    wxScatterPlotCtrl(wxWindow *parent, wxWindowID id, const wxScatterPlotData &data,
+        const wxScatterPlotOptions &options, const wxPoint &pos = wxDefaultPosition,
+        const wxSize &size = wxDefaultSize, long style = 0);
 
 	virtual const wxScatterPlotOptions& GetOptions() const;
 
