@@ -42,13 +42,11 @@ wxChartRadialGrid::wxChartRadialGrid(const wxSize &size,
 	: m_options(options), m_size(size), m_center(CalculateCenter(size))
 {
 	m_drawingArea = (size.x < size.y) ? size.x / 2 : size.y / 2;
-	wxDouble graphMinValue;
-	wxDouble graphMaxValue;
 	wxDouble valueRange = 0;
 	wxDouble stepValue;
 	wxChartUtilities::CalculateGridRange(minValue, maxValue, 
-		graphMinValue, graphMaxValue, valueRange, m_steps, stepValue);
-    wxChartUtilities::BuildNumericalLabels(graphMinValue, m_steps, stepValue, m_yLabels);
+		m_graphMinValue, m_graphMaxValue, valueRange, m_steps, stepValue);
+    wxChartUtilities::BuildNumericalLabels(m_graphMinValue, m_steps, stepValue, m_yLabels);
 }
 
 bool wxChartRadialGrid::HitTest(const wxPoint &point) const
@@ -73,6 +71,18 @@ void wxChartRadialGrid::Draw(wxGraphicsContext &gc)
 		DrawPolygonal(gc);
 		break;
 	}
+}
+
+void wxChartRadialGrid::Resize(const wxSize &size)
+{
+    m_size = size;
+    m_drawingArea = (size.x < size.y) ? size.x / 2 : size.y / 2;
+    m_center = CalculateCenter(size);
+}
+
+wxDouble wxChartRadialGrid::GetRadius(wxDouble value) const
+{
+    return (((value - m_graphMinValue) / (m_graphMaxValue - m_graphMinValue)) * m_drawingArea);
 }
 
 void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc)
@@ -122,13 +132,6 @@ void wxChartRadialGrid::DrawPolygonal(wxGraphicsContext &gc)
 		gc.SetPen(pen);
 		gc.StrokePath(path);
 	}
-}
-
-void wxChartRadialGrid::Resize(const wxSize &size)
-{
-	m_size = size;
-	m_drawingArea = (size.x < size.y) ? size.x / 2 : size.y / 2;
-	m_center = CalculateCenter(size);
 }
 
 wxPoint2DDouble wxChartRadialGrid::CalculateCenter(const wxSize& size)

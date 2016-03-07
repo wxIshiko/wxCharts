@@ -101,6 +101,11 @@ private:
             wxDouble startAngle, wxDouble endAngle, wxDouble radius);
 
         void Resize(const wxSize &size);
+
+        wxDouble GetValue() const;
+
+    private:
+        wxDouble m_value;
     };
 
 private:

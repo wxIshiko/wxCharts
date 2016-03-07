@@ -71,6 +71,8 @@ public:
 
 	void Resize(const wxSize &size);
 
+    wxDouble GetRadius(wxDouble value) const;
+
 private:
 	void DrawCircular(wxGraphicsContext &gc);
 	void DrawPolygonal(wxGraphicsContext &gc);
@@ -85,6 +87,8 @@ private:
 	wxDouble m_drawingArea;
 	wxPoint2DDouble m_center;
 	wxVector<wxChartLabel> m_yLabels;
+    wxDouble m_graphMinValue;
+    wxDouble m_graphMaxValue;
 	size_t m_steps;
 };
 
