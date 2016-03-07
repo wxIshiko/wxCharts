@@ -25,4 +25,18 @@
 #ifndef _WX_CHARTS_WXCHARTLABELGROUP_H_
 #define _WX_CHARTS_WXCHARTLABELGROUP_H_
 
+#include "wxchartlabel.h"
+
+/// This class is to manage a group of labels that use the same font properties.
+
+/// The wxChartLabel class itself doesn't store any font information and also
+/// expect its size to be updated when the font changes. The wxChartLabelGroup
+/// class has font information and methods to update the size of the labels
+/// it manages.
+class wxChartLabelGroup : public wxVector<wxChartLabel>
+{
+public:
+    wxChartLabelGroup();
+};
+
 #endif

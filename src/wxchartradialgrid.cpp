@@ -39,14 +39,15 @@ wxChartRadialGrid::wxChartRadialGrid(const wxSize &size,
 									 wxDouble minValue,
 									 wxDouble maxValue,
 									 const wxChartRadialGridOptions& options)
-	: m_options(options), m_size(size), m_center(CalculateCenter(size))
+	: m_options(options), m_size(size), m_center(CalculateCenter(size)),
+    m_needsFit(true)
 {
 	m_drawingArea = (size.x < size.y) ? size.x / 2 : size.y / 2;
 	wxDouble valueRange = 0;
 	wxDouble stepValue;
 	wxChartUtilities::CalculateGridRange(minValue, maxValue, 
 		m_graphMinValue, m_graphMaxValue, valueRange, m_steps, stepValue);
-    wxChartUtilities::BuildNumericalLabels(m_graphMinValue, m_steps, stepValue, m_yLabels);
+    wxChartUtilities::BuildNumericalLabels(m_graphMinValue, m_steps, stepValue, m_labels);
 }
 
 bool wxChartRadialGrid::HitTest(const wxPoint &point) const
@@ -61,6 +62,8 @@ wxPoint2DDouble wxChartRadialGrid::GetTooltipPosition() const
 
 void wxChartRadialGrid::Draw(wxGraphicsContext &gc)
 {
+    Fit(gc);
+
 	switch (m_options.GetStyle())
 	{
 	case wxCHARTRADIALGRIDSTYLE_CIRCULAR:
@@ -85,10 +88,30 @@ wxDouble wxChartRadialGrid::GetRadius(wxDouble value) const
     return (((value - m_graphMinValue) / (m_graphMaxValue - m_graphMinValue)) * m_drawingArea);
 }
 
+void wxChartRadialGrid::Fit(wxGraphicsContext &gc)
+{
+    if (!m_needsFit)
+    {
+        return;
+    }
+
+    wxFont font = m_options.GetFontOptions().GetFont();
+
+    for (size_t i = 0; i < m_labels.size(); ++i)
+    {
+        wxDouble labelWidth;
+        wxDouble labelHeight;
+        wxChartUtilities::GetTextSize(gc, font, m_labels[i].GetText(), labelWidth, labelHeight);
+        m_labels[i].SetSize(labelWidth, labelHeight);
+    }
+
+    m_needsFit = false;
+}
+
 void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc)
 {
 	// Don't draw a centre value so start from 1
-	for (size_t i = 1; i < m_yLabels.size(); ++i)
+	for (size_t i = 1; i < m_labels.size(); ++i)
 	{
 		wxDouble yCenterOffset = i * (m_drawingArea / m_steps);
 		wxDouble yHeight = m_center.m_y - yCenterOffset;
@@ -103,11 +126,11 @@ void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc)
 
 		if (m_options.ShowLabels())
 		{
-			wxFont font(wxSize(0, m_options.GetFontSize()),
-				m_options.GetFontFamily(), m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
-			gc.SetFont(font, m_options.GetFontColor());
-            m_yLabels[i].SetPosition(m_center.m_x, yHeight);
-            m_yLabels[i].Draw(gc);
+			wxFont font = m_options.GetFontOptions().GetFont();
+			gc.SetFont(font, m_options.GetFontOptions().GetColor());
+
+            m_labels[i].SetPosition(m_center.m_x, yHeight);
+            m_labels[i].Draw(gc);
 		}
 	}
 }
@@ -115,7 +138,7 @@ void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc)
 void wxChartRadialGrid::DrawPolygonal(wxGraphicsContext &gc)
 {
 	// Don't draw a centre value so start from 1
-	for (size_t i = 1; i < m_yLabels.size(); ++i)
+	for (size_t i = 1; i < m_labels.size(); ++i)
 	{
 		wxGraphicsPath path = gc.CreatePath();
 		path.MoveToPoint(100, 100);

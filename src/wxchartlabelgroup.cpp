@@ -21,3 +21,7 @@
 */
 
 #include "wxchartlabelgroup.h"
+
+wxChartLabelGroup::wxChartLabelGroup()
+{
+}

@@ -38,7 +38,7 @@
 
 #include "wxchartelement.h"
 #include "wxchartradialgridoptions.h"
-#include "wxchartlabel.h"
+#include "wxchartlabelgroup.h"
 #include <wx/graphics.h>
 
 /// This class is used to display a radial grid.
@@ -74,6 +74,7 @@ public:
     wxDouble GetRadius(wxDouble value) const;
 
 private:
+    void Fit(wxGraphicsContext &gc);
 	void DrawCircular(wxGraphicsContext &gc);
 	void DrawPolygonal(wxGraphicsContext &gc);
 	static wxPoint2DDouble CalculateCenter(const wxSize& size);
@@ -86,10 +87,13 @@ private:
 	wxSize m_size;
 	wxDouble m_drawingArea;
 	wxPoint2DDouble m_center;
-	wxVector<wxChartLabel> m_yLabels;
+    wxChartLabelGroup m_labels;
     wxDouble m_graphMinValue;
     wxDouble m_graphMaxValue;
 	size_t m_steps;
+    // Whether something has changed and we
+    // need to rearrange the chart
+    bool m_needsFit;
 };
 
 #endif
