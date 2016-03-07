@@ -25,8 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTRADIALGRIDOPTIONS_H_
 #define _WX_CHARTS_WXCHARTRADIALGRIDOPTIONS_H_
 
-#include <wx/colour.h>
-#include <wx/font.h>
+#include "wxchartfontoptions.h"
 
 /// Styles for the wxChartRadialGrid element.
 enum wxChartRadialGridStyle
@@ -62,32 +61,14 @@ public:
 	/// @retval true Display the values.
 	/// @retval false Don't display the values.
 	bool ShowLabels() const;
-	/// Gets the font family to be used for 
-	/// the labels.
-	/// @return The font family.
-	wxFontFamily GetFontFamily() const;
-	/// Gets the font size to be used for 
-	/// the labels.
-	/// @return The font size in pixels.
-	int GetFontSize() const;
-	/// Gets the font style to be used for 
-	/// the labels.
-	/// @return The font style.
-	wxFontStyle GetFontStyle() const;
-	/// Gets the font color to be used for 
-	/// the labels.
-	/// @return The font color.
-	const wxColor& GetFontColor() const;
+    const wxChartFontOptions& GetFontOptions() const;
 
 private:
 	wxChartRadialGridStyle m_style;
 	unsigned int m_lineWidth;
 	wxColor m_lineColor;
 	bool m_showLabels;
-	wxFontFamily m_fontFamily;
-	int m_fontSize;
-	wxFontStyle m_fontStyle;
-	wxColor m_fontColor;
+    wxChartFontOptions m_fontOptions;
 };
 
 #endif
