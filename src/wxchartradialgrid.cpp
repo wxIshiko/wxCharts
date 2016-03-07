@@ -40,7 +40,7 @@ wxChartRadialGrid::wxChartRadialGrid(const wxSize &size,
 									 wxDouble maxValue,
 									 const wxChartRadialGridOptions& options)
 	: m_options(options), m_size(size), m_center(CalculateCenter(size)),
-    m_needsFit(true)
+    m_labels(m_options.GetFontOptions()), m_needsFit(true)
 {
 	m_drawingArea = (size.x < size.y) ? size.x / 2 : size.y / 2;
 	wxDouble valueRange = 0;

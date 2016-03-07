@@ -38,7 +38,7 @@
 
 #include "wxchartelement.h"
 #include "wxchartaxisoptions.h"
-#include "wxchartlabel.h"
+#include "wxchartlabelgroup.h"
 #include <wx/graphics.h>
 
 enum wxChartAxisType
@@ -82,14 +82,8 @@ public:
     wxChartAxisType GetType() const;
 	/// Gets the labels.
 	/// @return The list of labels.
-	const wxVector<wxChartLabel>& GetLabels() const;
+	const wxChartLabelGroup& GetLabels() const;
 	void SetLabels(const wxVector<wxChartLabel> &labels);
-	/// Gets the width of the widest label. Note that
-	/// this assumes the size of the labels has been
-	/// correctly set for instance using the 
-	/// UpdateLabelSizes(wxGraphicsContext &gc) function.
-	/// @return The maximum width of the labels.
-	wxDouble GetLabelMaxWidth() const;
 
 	wxPoint2DDouble CalculateLabelPosition(size_t index);
 	size_t GetNumberOfTickMarks() const;
@@ -108,8 +102,7 @@ private:
 	wxChartAxisOptions m_options;
 	wxPoint2DDouble m_startPoint;
 	wxPoint2DDouble m_endPoint;
-	wxVector<wxChartLabel> m_labels;
-	wxDouble m_labelMaxWidth;
+    wxChartLabelGroup m_labels;
 };
 
 #endif

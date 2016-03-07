@@ -21,7 +21,36 @@
 */
 
 #include "wxchartlabelgroup.h"
+#include "wxchartutilities.h"
 
-wxChartLabelGroup::wxChartLabelGroup()
+wxChartLabelGroup::wxChartLabelGroup(const wxChartFontOptions &fontOptions)
+    : m_fontOptions(fontOptions), m_maxWidth(0)
 {
+}
+
+void wxChartLabelGroup::UpdateSizes(wxGraphicsContext &gc)
+{
+    m_maxWidth = 0;
+
+    wxFont font = m_fontOptions.GetFont();
+
+    for (size_t i = 0; i < size(); ++i)
+    {
+        wxDouble labelWidth;
+        wxDouble labelHeight;
+        wxChartUtilities::GetTextSize(gc, font, (*this)[i].GetText(), labelWidth, labelHeight);
+
+        (*this)[i].SetSize(labelWidth, labelHeight);
+        if (labelWidth > m_maxWidth)
+        {
+            m_maxWidth = labelWidth;
+        }
+    }
+
+    m_maxWidth += 10;
+}
+
+wxDouble wxChartLabelGroup::GetMaxWidth() const
+{
+    return m_maxWidth;
 }

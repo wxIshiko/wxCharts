@@ -32,20 +32,21 @@
 */
 
 #include "wxchartaxis.h"
-#include "wxchartutilities.h"
 #include <wx/pen.h>
 
 wxChartAxis::wxChartAxis(wxChartAxisType type, 
                          const wxChartAxisOptions &options)
 	: m_type(type), m_options(options),
-    m_startPoint(0, 0), m_endPoint(0, 0), m_labelMaxWidth(0)
+    m_startPoint(0, 0), m_endPoint(0, 0), 
+    m_labels(m_options.GetFontOptions())
 {
 }
 
 wxChartAxis::wxChartAxis(const wxVector<wxString> &labels,
 						 const wxChartAxisOptions &options)
 	: m_type(wxCHARTAXISTYPE_GENERIC), m_options(options),
-    m_startPoint(0, 0), m_endPoint(0, 0), m_labelMaxWidth(0)
+    m_startPoint(0, 0), m_endPoint(0, 0),
+    m_labels(m_options.GetFontOptions())
 {
 	for (size_t i = 0; i < labels.size(); ++i)
 	{
@@ -95,24 +96,7 @@ void wxChartAxis::Fit(wxPoint2DDouble startPoint,
 
 void wxChartAxis::UpdateLabelSizes(wxGraphicsContext &gc)
 {
-	m_labelMaxWidth = 0;
-
-	wxFont font = m_options.GetFontOptions().GetFont();
-
-	for (size_t i = 0; i < m_labels.size(); ++i)
-	{
-		wxDouble labelWidth;
-		wxDouble labelHeight;
-		wxChartUtilities::GetTextSize(gc, font, m_labels[i].GetText(), labelWidth, labelHeight);
-
-		m_labels[i].SetSize(labelWidth, labelHeight);
-		if (labelWidth > m_labelMaxWidth)
-		{
-			m_labelMaxWidth = labelWidth;
-		}
-	}
-
-	m_labelMaxWidth += 10;
+    m_labels.UpdateSizes(gc);
 }
 
 void wxChartAxis::UpdateLabelPositions()
@@ -128,19 +112,14 @@ wxChartAxisType wxChartAxis::GetType() const
     return m_type;
 }
 
-const wxVector<wxChartLabel>& wxChartAxis::GetLabels() const
+const wxChartLabelGroup& wxChartAxis::GetLabels() const
 {
 	return m_labels;
 }
 
 void wxChartAxis::SetLabels(const wxVector<wxChartLabel> &labels)
 {
-	m_labels = labels;
-}
-
-wxDouble wxChartAxis::GetLabelMaxWidth() const
-{
-	return m_labelMaxWidth;
+    m_labels.assign(labels.begin(), labels.end());
 }
 
 wxPoint2DDouble wxChartAxis::CalculateLabelPosition(size_t index)
