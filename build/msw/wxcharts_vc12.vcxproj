@@ -88,6 +88,7 @@
     <ClCompile Include="..\..\src\wxchartelement.cpp" />
     <ClCompile Include="..\..\src\wxchartfontoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartlabel.cpp" />
+    <ClCompile Include="..\..\src\wxchartlabelgroup.cpp" />
     <ClCompile Include="..\..\src\wxchartaxis.cpp" />
     <ClCompile Include="..\..\src\wxchartaxisoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartnumericalaxis.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartelement.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartfontoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartlabel.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartlabelgroup.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartaxis.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartaxisoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartnumericalaxis.h" />
