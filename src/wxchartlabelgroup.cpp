@@ -28,6 +28,16 @@ wxChartLabelGroup::wxChartLabelGroup(const wxChartFontOptions &fontOptions)
 {
 }
 
+void wxChartLabelGroup::Draw(wxGraphicsContext &gc)
+{
+    wxFont font = m_fontOptions.GetFont();
+    gc.SetFont(font, m_fontOptions.GetColor());
+    for (size_t i = 0; i < size(); ++i)
+    {
+        (*this)[i].Draw(gc);
+    }
+}
+
 void wxChartLabelGroup::UpdateSizes(wxGraphicsContext &gc)
 {
     m_maxWidth = 0;
@@ -46,8 +56,6 @@ void wxChartLabelGroup::UpdateSizes(wxGraphicsContext &gc)
             m_maxWidth = labelWidth;
         }
     }
-
-    m_maxWidth += 10;
 }
 
 wxDouble wxChartLabelGroup::GetMaxWidth() const

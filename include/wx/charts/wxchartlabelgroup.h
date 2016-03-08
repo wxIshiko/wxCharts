@@ -39,6 +39,8 @@ class wxChartLabelGroup : public wxVector<wxChartLabel>
 public:
     wxChartLabelGroup(const wxChartFontOptions &fontOptions);
 
+    void Draw(wxGraphicsContext &gc);
+
     void UpdateSizes(wxGraphicsContext &gc);
 
     /// Gets the width of the widest label. Note that

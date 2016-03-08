@@ -95,7 +95,6 @@ public:
 
 private:
 	void DrawTickMarks(wxGraphicsContext &gc);
-	void DrawLabels(wxGraphicsContext &gc);
 
 private:
     wxChartAxisType m_type;

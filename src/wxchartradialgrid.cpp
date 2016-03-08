@@ -95,15 +95,7 @@ void wxChartRadialGrid::Fit(wxGraphicsContext &gc)
         return;
     }
 
-    wxFont font = m_options.GetFontOptions().GetFont();
-
-    for (size_t i = 0; i < m_labels.size(); ++i)
-    {
-        wxDouble labelWidth;
-        wxDouble labelHeight;
-        wxChartUtilities::GetTextSize(gc, font, m_labels[i].GetText(), labelWidth, labelHeight);
-        m_labels[i].SetSize(labelWidth, labelHeight);
-    }
+    m_labels.UpdateSizes(gc);
 
     m_needsFit = false;
 }
@@ -129,7 +121,10 @@ void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc)
 			wxFont font = m_options.GetFontOptions().GetFont();
 			gc.SetFont(font, m_options.GetFontOptions().GetColor());
 
-            m_labels[i].SetPosition(m_center.m_x, yHeight);
+            m_labels[i].SetPosition(
+                m_center.m_x - (m_labels[i].GetSize().GetX() / 2), 
+                yHeight - (m_labels[i].GetSize().GetY() / 2)
+                );
             m_labels[i].Draw(gc);
 		}
 	}

@@ -231,7 +231,7 @@ void wxChartGrid::CalculatePadding(const wxChartAxis &xAxis,
 	{
 		// Either the first x label or any of the y labels can be the widest
 		// so they are all taken into account to compute the left padding
-		left = yAxis.GetLabels().GetMaxWidth();
+		left = yAxis.GetLabels().GetMaxWidth() + 10;
 		if ((xAxis.GetLabels().size() > 0) && ((xAxis.GetLabels().front().GetSize().GetWidth() / 2) > left))
 		{
 			left = (xAxis.GetLabels().front().GetSize().GetWidth() / 2);
@@ -247,7 +247,7 @@ void wxChartGrid::CalculatePadding(const wxChartAxis &xAxis,
 	{
 		// Either the first y label or any of the x labels can be the widest
 		// so they are all taken into account to compute the left padding
-		left = xAxis.GetLabels().GetMaxWidth();
+		left = xAxis.GetLabels().GetMaxWidth() + 10;
 		if ((yAxis.GetLabels().size() > 0) && ((yAxis.GetLabels().front().GetSize().GetWidth() / 2) > left))
 		{
 			left = (yAxis.GetLabels().front().GetSize().GetWidth() / 2);

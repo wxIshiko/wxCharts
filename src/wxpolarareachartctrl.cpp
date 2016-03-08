@@ -162,6 +162,13 @@ void wxPolarAreaChartCtrl::Resize(const wxSize &size)
 wxSharedPtr<wxVector<const wxChartElement*> > wxPolarAreaChartCtrl::GetActiveElements(const wxPoint &point)
 {
 	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    for (size_t i = 0; i < m_slices.size(); ++i)
+    {
+        if (m_slices[i]->HitTest(point))
+        {
+            activeElements->push_back(m_slices[i].get());
+        }
+    }
 	return activeElements;
 }
 

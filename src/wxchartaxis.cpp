@@ -84,7 +84,7 @@ void wxChartAxis::Draw(wxGraphicsContext &gc)
 	gc.StrokePath(path);
 
 	DrawTickMarks(gc);	// Draw the little lines corresponding to the labels
-	DrawLabels(gc);
+	m_labels.Draw(gc);
 }
 
 void wxChartAxis::Fit(wxPoint2DDouble startPoint,
@@ -266,15 +266,5 @@ void wxChartAxis::DrawTickMarks(wxGraphicsContext &gc)
 			path.AddLineToPoint(linePosition, m_startPoint.m_y + 5);
 			gc.StrokePath(path);
 		}
-	}
-}
-
-void wxChartAxis::DrawLabels(wxGraphicsContext &gc)
-{
-	wxFont font = m_options.GetFontOptions().GetFont();
-	gc.SetFont(font, m_options.GetFontOptions().GetColor());
-	for (size_t i = 0; i < m_labels.size(); ++i)
-	{
-		m_labels[i].Draw(gc);
 	}
 }
