@@ -25,4 +25,25 @@
 #ifndef _WX_CHARTS_WXCHARTBACKGROUNDOPTIONS_H_
 #define _WX_CHARTS_WXCHARTBACKGROUNDOPTIONS_H_
 
+#include <wx/colour.h>
+
+class wxChartBackgroundOptions
+{
+public:
+    wxChartBackgroundOptions(const wxColor &color, wxDouble cornerRadius);
+
+    /// Gets the background color.
+    /// @return The background color.
+    const wxColor& GetColor() const;
+    /// Gets the corner radius. The background
+    /// is a rounded rectangle. This gets the radius
+    /// used for the rounded corners.
+    /// @return The corner radius.
+    wxDouble GetCornerRadius() const;
+
+private:
+    wxColor m_color;
+    wxDouble m_cornerRadius;
+};
+
 #endif

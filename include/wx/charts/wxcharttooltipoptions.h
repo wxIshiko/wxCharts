@@ -25,6 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTTOOLTIPOPTIONS_H_
 #define _WX_CHARTS_WXCHARTTOOLTIPOPTIONS_H_
 
+#include "wxchartbackgroundoptions.h"
 #include <wx/colour.h>
 #include <wx/font.h>
 
@@ -62,14 +63,7 @@ public:
 	/// painted using the background color.
 	/// @return The vertical padding.
 	wxDouble GetVerticalPadding() const;
-	/// Gets the background color.
-	/// @return The background color.
-	const wxColor& GetBackgroundColor() const;
-	/// Gets the corner radius. The tooltip backround
-	/// is a rounded rectangle. This gets the radius
-	/// used for the rounded corners.
-	/// @return The corner radius.
-	wxDouble GetCornerRadius() const;
+    const wxChartBackgroundOptions& GetBackgroundOptions() const;
 
 private:
 	wxFontFamily m_fontFamily;
@@ -78,8 +72,7 @@ private:
 	wxColor m_fontColor;
 	wxDouble m_horizontalPadding;
 	wxDouble m_verticalPadding;
-	wxColor m_backgroundColor;
-	wxDouble m_cornerRadius;
+    wxChartBackgroundOptions m_backgroundOptions;
 };
 
 #endif

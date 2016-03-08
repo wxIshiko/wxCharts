@@ -65,9 +65,10 @@ void wxChartTooltip::Draw(wxGraphicsContext &gc)
 
 	wxGraphicsPath path = gc.CreatePath();
 	
-	path.AddRoundedRectangle(tooltipX, tooltipY, tooltipWidth, tooltipHeight, m_options.GetCornerRadius());
+	path.AddRoundedRectangle(tooltipX, tooltipY, tooltipWidth, tooltipHeight, 
+        m_options.GetBackgroundOptions().GetCornerRadius());
 
-	wxBrush brush(m_options.GetBackgroundColor());
+	wxBrush brush(m_options.GetBackgroundOptions().GetColor());
 	gc.SetBrush(brush);
 	gc.FillPath(path);
 

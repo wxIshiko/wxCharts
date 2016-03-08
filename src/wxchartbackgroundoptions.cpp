@@ -23,3 +23,19 @@
 /// @file
 
 #include "wxchartbackgroundoptions.h"
+
+wxChartBackgroundOptions::wxChartBackgroundOptions(const wxColor &color,
+                                                   wxDouble cornerRadius)
+    : m_color(color), m_cornerRadius(cornerRadius)
+{
+}
+
+const wxColor& wxChartBackgroundOptions::GetColor() const
+{
+    return m_color;
+}
+
+wxDouble wxChartBackgroundOptions::GetCornerRadius() const
+{
+    return m_cornerRadius;
+}
