@@ -41,6 +41,7 @@ library wxcharts
         ../../include/wx/charts/wxchartutilities.h
         ../../include/wx/charts/wxchartpadding.h
         ../../include/wx/charts/wxchartelement.h
+        ../../include/wx/charts/wxchartbackground.h
         ../../include/wx/charts/wxchartfontoptions.h
         ../../include/wx/charts/wxchartlabel.h
         ../../include/wx/charts/wxchartlabelgroup.h
@@ -102,6 +103,7 @@ library wxcharts
         ../../src/wxchartutilities.cpp
         ../../src/wxchartpadding.cpp
         ../../src/wxchartelement.cpp
+        ../../src/wxchartbackground.cpp
         ../../src/wxchartfontoptions.cpp
         ../../src/wxchartlabel.cpp
         ../../src/wxchartlabelgroup.cpp
