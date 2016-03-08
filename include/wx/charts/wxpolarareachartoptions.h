@@ -39,8 +39,12 @@ public:
 	/// @return The options for the grid.
 	const wxChartRadialGridOptions& GetGridOptions() const;
 
+    wxDouble GetStartAngle() const;
+    void SetStartAngle(wxDouble startAngle);
+
 private:
 	wxChartRadialGridOptions m_gridOptions;
+    wxDouble m_startAngle;
 };
 
 #endif

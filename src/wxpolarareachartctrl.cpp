@@ -92,6 +92,24 @@ wxPolarAreaChartCtrl::wxPolarAreaChartCtrl(wxWindow *parent,
 	}
 }
 
+wxPolarAreaChartCtrl::wxPolarAreaChartCtrl(wxWindow *parent,
+										   wxWindowID id,
+										   const wxPolarAreaChartData &data,
+                                           const wxPolarAreaChartOptions &options,
+										   const wxPoint &pos,
+										   const wxSize &size,
+										   long style)
+	: wxChartCtrl(parent, id, pos, size, style), m_options(options),
+	m_grid(size, GetMinValue(data.GetSlices()), GetMaxValue(data.GetSlices()),
+	m_options.GetGridOptions())
+{
+	const wxVector<wxChartSliceData>& slices = data.GetSlices();
+	for (size_t i = 0; i < slices.size(); ++i)
+	{
+		Add(slices[i]);
+	}
+}
+
 const wxPolarAreaChartOptions& wxPolarAreaChartCtrl::GetOptions() const
 {
 	return m_options;
@@ -181,7 +199,7 @@ void wxPolarAreaChartCtrl::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{
-        wxDouble startAngle = 0.0;
+        wxDouble startAngle = m_options.GetStartAngle();
         wxDouble angleIncrement = ((2 * M_PI) / m_slices.size());
 
         for (size_t i = 0; i < m_slices.size(); ++i)

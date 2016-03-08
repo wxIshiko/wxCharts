@@ -76,6 +76,9 @@ public:
 	wxPolarAreaChartCtrl(wxWindow *parent, wxWindowID id, const wxPolarAreaChartData &data,
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
+    wxPolarAreaChartCtrl(wxWindow *parent, wxWindowID id, const wxPolarAreaChartData &data,
+        const wxPolarAreaChartOptions &options, const wxPoint &pos = wxDefaultPosition, 
+        const wxSize &size = wxDefaultSize, long style = 0);
 
 	virtual const wxPolarAreaChartOptions& GetOptions() const;
 

@@ -23,11 +23,22 @@
 #include "wxpolarareachartoptions.h"
 
 wxPolarAreaChartOptions::wxPolarAreaChartOptions()
-	: m_gridOptions(wxCHARTRADIALGRIDSTYLE_CIRCULAR)
+	: m_gridOptions(wxCHARTRADIALGRIDSTYLE_CIRCULAR),
+    m_startAngle(0)
 {
 }
 
 const wxChartRadialGridOptions& wxPolarAreaChartOptions::GetGridOptions() const
 {
 	return m_gridOptions;
+}
+
+wxDouble wxPolarAreaChartOptions::GetStartAngle() const
+{
+    return m_startAngle;
+}
+
+void wxPolarAreaChartOptions::SetStartAngle(wxDouble startAngle)
+{
+    m_startAngle = startAngle;
 }
