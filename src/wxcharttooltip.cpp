@@ -32,6 +32,7 @@
 */
 
 #include "wxcharttooltip.h"
+#include "wxchartbackground.h"
 #include "wxchartutilities.h"
 #include <wx/brush.h>
 
@@ -63,14 +64,9 @@ void wxChartTooltip::Draw(wxGraphicsContext &gc)
 	wxDouble tooltipX = m_position.m_x - (tooltipWidth / 2);
 	wxDouble tooltipY = m_position.m_y - tooltipHeight;
 
-	wxGraphicsPath path = gc.CreatePath();
-	
-	path.AddRoundedRectangle(tooltipX, tooltipY, tooltipWidth, tooltipHeight, 
-        m_options.GetBackgroundOptions().GetCornerRadius());
 
-	wxBrush brush(m_options.GetBackgroundOptions().GetColor());
-	gc.SetBrush(brush);
-	gc.FillPath(path);
+    wxChartBackground background(m_options.GetBackgroundOptions());
+    background.Draw(tooltipX, tooltipY, tooltipWidth, tooltipHeight, gc);
 
 	gc.SetFont(font, m_options.GetFontColor());
 	gc.DrawText(text, tooltipX + m_options.GetHorizontalPadding(), tooltipY + m_options.GetVerticalPadding());

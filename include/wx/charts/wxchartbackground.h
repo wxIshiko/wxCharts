@@ -25,4 +25,19 @@
 #ifndef _WX_CHARTS_WXCHARTBACKGROUND_H_
 #define _WX_CHARTS_WXCHARTBACKGROUND_H_
 
+#include "wxchartbackgroundoptions.h"
+#include <wx/graphics.h>
+
+class wxChartBackground
+{
+public:
+    wxChartBackground(const wxChartBackgroundOptions &options);
+
+    void Draw(wxDouble x, wxDouble y, wxDouble width, wxDouble height,
+        wxGraphicsContext &gc);
+
+private:
+    wxChartBackgroundOptions m_options;
+};
+
 #endif
