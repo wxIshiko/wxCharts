@@ -46,6 +46,7 @@ library wxcharts
         ../../include/wx/charts/wxchartfontoptions.h
         ../../include/wx/charts/wxchartlabel.h
         ../../include/wx/charts/wxchartlabelgroup.h
+        ../../include/wx/charts/wxchartlabelgroupoptions.h
         ../../include/wx/charts/wxchartaxis.h
         ../../include/wx/charts/wxchartaxisoptions.h
         ../../include/wx/charts/wxchartnumericalaxis.h
@@ -109,6 +110,7 @@ library wxcharts
         ../../src/wxchartfontoptions.cpp
         ../../src/wxchartlabel.cpp
         ../../src/wxchartlabelgroup.cpp
+        ../../src/wxchartlabelgroupoptions.cpp
         ../../src/wxchartaxis.cpp
         ../../src/wxchartaxisoptions.cpp
         ../../src/wxchartnumericalaxis.cpp
