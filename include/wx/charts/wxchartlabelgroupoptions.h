@@ -25,4 +25,17 @@
 #ifndef _WX_CHARTS_WXCHARTLABELGROUPOPTIONS_H_
 #define _WX_CHARTS_WXCHARTLABELGROUPOPTIONS_H_
 
+#include "wxchartfontoptions.h"
+
+class wxChartLabelGroupOptions
+{
+public:
+    wxChartLabelGroupOptions(const wxChartFontOptions &fontOptions);
+
+    const wxChartFontOptions& GetFontOptions() const;
+
+private:
+    wxChartFontOptions m_fontOptions;
+};
+
 #endif

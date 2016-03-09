@@ -21,3 +21,13 @@
 */
 
 #include "wxchartlabelgroupoptions.h"
+
+wxChartLabelGroupOptions::wxChartLabelGroupOptions(const wxChartFontOptions &fontOptions)
+    : m_fontOptions(fontOptions)
+{
+}
+
+const wxChartFontOptions& wxChartLabelGroupOptions::GetFontOptions() const
+{
+    return m_fontOptions;
+}

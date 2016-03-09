@@ -23,15 +23,15 @@
 #include "wxchartlabelgroup.h"
 #include "wxchartutilities.h"
 
-wxChartLabelGroup::wxChartLabelGroup(const wxChartFontOptions &fontOptions)
-    : m_fontOptions(fontOptions), m_maxWidth(0)
+wxChartLabelGroup::wxChartLabelGroup(const wxChartLabelGroupOptions &options)
+    : m_options(options), m_maxWidth(0)
 {
 }
 
 void wxChartLabelGroup::Draw(wxGraphicsContext &gc)
 {
-    wxFont font = m_fontOptions.GetFont();
-    gc.SetFont(font, m_fontOptions.GetColor());
+    wxFont font = m_options.GetFontOptions().GetFont();
+    gc.SetFont(font, m_options.GetFontOptions().GetColor());
     for (size_t i = 0; i < size(); ++i)
     {
         (*this)[i].Draw(gc);
@@ -42,7 +42,7 @@ void wxChartLabelGroup::UpdateSizes(wxGraphicsContext &gc)
 {
     m_maxWidth = 0;
 
-    wxFont font = m_fontOptions.GetFont();
+    wxFont font = m_options.GetFontOptions().GetFont();
 
     for (size_t i = 0; i < size(); ++i)
     {
