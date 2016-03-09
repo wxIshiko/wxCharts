@@ -21,6 +21,7 @@
 */
 
 #include "wxchartlabelgroup.h"
+#include "wxchartbackground.h"
 #include "wxchartutilities.h"
 
 wxChartLabelGroup::wxChartLabelGroup(const wxChartLabelGroupOptions &options)
@@ -30,6 +31,15 @@ wxChartLabelGroup::wxChartLabelGroup(const wxChartLabelGroupOptions &options)
 
 void wxChartLabelGroup::Draw(wxGraphicsContext &gc)
 {
+    if (m_options.HasBackground())
+    {
+        for (size_t i = 0; i < size(); ++i)
+        {
+            wxChartBackground background(m_options.GetBackgroundOptions());
+            background.Draw((*this)[i].GetPosition(), (*this)[i].GetSize(), gc);
+        }
+    }
+
     wxFont font = m_options.GetFontOptions().GetFont();
     gc.SetFont(font, m_options.GetFontOptions().GetColor());
     for (size_t i = 0; i < size(); ++i)

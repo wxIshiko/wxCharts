@@ -40,7 +40,7 @@ wxChartRadialGrid::wxChartRadialGrid(const wxSize &size,
 									 wxDouble maxValue,
 									 const wxChartRadialGridOptions& options)
 	: m_options(options), m_size(size), m_center(CalculateCenter(size)),
-    m_labels(m_options.GetFontOptions()), m_needsFit(true)
+    m_labels(options.GetLabelOptions()), m_needsFit(true)
 {
 	m_drawingArea = (size.x < size.y) ? size.x / 2 : size.y / 2;
 	wxDouble valueRange = 0;
@@ -118,16 +118,20 @@ void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc)
 
 		if (m_options.ShowLabels())
 		{
-			wxFont font = m_options.GetFontOptions().GetFont();
-			gc.SetFont(font, m_options.GetFontOptions().GetColor());
+			wxFont font = m_options.GetLabelOptions().GetFontOptions().GetFont();
+			gc.SetFont(font, m_options.GetLabelOptions().GetFontOptions().GetColor());
 
             m_labels[i].SetPosition(
                 m_center.m_x - (m_labels[i].GetSize().GetX() / 2), 
                 yHeight - (m_labels[i].GetSize().GetY() / 2)
                 );
-            m_labels[i].Draw(gc);
 		}
 	}
+
+    if (m_options.ShowLabels())
+    {
+        m_labels.Draw(gc);
+    }
 }
 
 void wxChartRadialGrid::DrawPolygonal(wxGraphicsContext &gc)

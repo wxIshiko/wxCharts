@@ -30,6 +30,13 @@ wxChartBackground::wxChartBackground(const wxChartBackgroundOptions &options)
 {
 }
 
+void wxChartBackground::Draw(const wxPoint2DDouble &position,
+                             const wxSize &size,
+                             wxGraphicsContext &gc)
+{
+    Draw(position.m_x, position.m_y, size.GetWidth(), size.GetHeight(), gc);
+}
+
 void wxChartBackground::Draw(wxDouble x, 
                              wxDouble y, 
                              wxDouble width, 

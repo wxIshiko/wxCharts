@@ -22,12 +22,25 @@
 
 #include "wxchartlabelgroupoptions.h"
 
-wxChartLabelGroupOptions::wxChartLabelGroupOptions(const wxChartFontOptions &fontOptions)
-    : m_fontOptions(fontOptions)
+wxChartLabelGroupOptions::wxChartLabelGroupOptions(const wxChartFontOptions &fontOptions,
+                                                   bool hasBackground,
+                                                   const wxChartBackgroundOptions &backgroundOptions)
+    : m_fontOptions(fontOptions), m_hasBackground(hasBackground),
+    m_backgroundOptions(backgroundOptions)
 {
 }
 
 const wxChartFontOptions& wxChartLabelGroupOptions::GetFontOptions() const
 {
     return m_fontOptions;
+}
+
+bool wxChartLabelGroupOptions::HasBackground() const
+{
+    return m_hasBackground;
+}
+
+const wxChartBackgroundOptions& wxChartLabelGroupOptions::GetBackgroundOptions() const
+{
+    return m_backgroundOptions;
 }

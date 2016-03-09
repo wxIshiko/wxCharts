@@ -33,6 +33,8 @@ class wxChartBackground
 public:
     wxChartBackground(const wxChartBackgroundOptions &options);
 
+    void Draw(const wxPoint2DDouble &position, const wxSize &size,
+        wxGraphicsContext &gc);
     void Draw(wxDouble x, wxDouble y, wxDouble width, wxDouble height,
         wxGraphicsContext &gc);
 
