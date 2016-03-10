@@ -48,6 +48,8 @@ wxChartRadialGrid::wxChartRadialGrid(const wxSize &size,
 	wxChartUtilities::CalculateGridRange(minValue, maxValue, 
 		m_graphMinValue, m_graphMaxValue, valueRange, m_steps, stepValue);
     wxChartUtilities::BuildNumericalLabels(m_graphMinValue, m_steps, stepValue, m_labels);
+    // We don't want to display the label at the center of the grid
+    m_labels.erase(m_labels.begin());
 }
 
 bool wxChartRadialGrid::HitTest(const wxPoint &point) const
@@ -102,10 +104,9 @@ void wxChartRadialGrid::Fit(wxGraphicsContext &gc)
 
 void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc)
 {
-	// Don't draw a centre value so start from 1
-	for (size_t i = 1; i < m_labels.size(); ++i)
+	for (size_t i = 0; i < m_labels.size(); ++i)
 	{
-		wxDouble yCenterOffset = i * (m_drawingArea / m_steps);
+		wxDouble yCenterOffset = (i + 1) * (m_drawingArea / m_steps);
 		wxDouble yHeight = m_center.m_y - yCenterOffset;
 
 		wxGraphicsPath path = gc.CreatePath();
@@ -118,10 +119,7 @@ void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc)
 
 		if (m_options.ShowLabels())
 		{
-			wxFont font = m_options.GetLabelOptions().GetFontOptions().GetFont();
-			gc.SetFont(font, m_options.GetLabelOptions().GetFontOptions().GetColor());
-
-            m_labels[i].SetPosition(
+			m_labels[i].SetPosition(
                 m_center.m_x - (m_labels[i].GetSize().GetX() / 2), 
                 yHeight - (m_labels[i].GetSize().GetY() / 2)
                 );
