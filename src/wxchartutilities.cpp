@@ -79,6 +79,7 @@ wxDouble wxChartUtilities::CalculateOrderOfMagnitude(wxDouble value)
 void wxChartUtilities::BuildNumericalLabels(wxDouble minValue,
                                             size_t steps,
                                             wxDouble stepValue,
+                                            const wxChartLabelOptions &options,
                                             wxVector<wxChartLabel> &labels)
 {
     size_t stepDecimalPlaces = wxChartUtilities::GetDecimalPlaces();
@@ -89,7 +90,7 @@ void wxChartUtilities::BuildNumericalLabels(wxDouble minValue,
         std::stringstream valueStr;
         valueStr << value;
 
-        labels.push_back(wxChartLabel(valueStr.str()));
+        labels.push_back(wxChartLabel(valueStr.str(), options));
     }
 }
 

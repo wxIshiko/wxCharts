@@ -22,16 +22,16 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTLABELGROUPOPTIONS_H_
-#define _WX_CHARTS_WXCHARTLABELGROUPOPTIONS_H_
+#ifndef _WX_CHARTS_WXCHARTLABELOPTIONS_H_
+#define _WX_CHARTS_WXCHARTLABELOPTIONS_H_
 
 #include "wxchartfontoptions.h"
 #include "wxchartbackgroundoptions.h"
 
-class wxChartLabelGroupOptions
+class wxChartLabelOptions
 {
 public:
-    wxChartLabelGroupOptions(const wxChartFontOptions &fontOptions,
+    wxChartLabelOptions(const wxChartFontOptions &fontOptions,
         bool hasBackground, const wxChartBackgroundOptions &backgroundOptions);
 
     const wxChartFontOptions& GetFontOptions() const;

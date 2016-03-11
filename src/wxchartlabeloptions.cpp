@@ -20,27 +20,27 @@
 	IN THE SOFTWARE.
 */
 
-#include "wxchartlabelgroupoptions.h"
+#include "wxchartlabeloptions.h"
 
-wxChartLabelGroupOptions::wxChartLabelGroupOptions(const wxChartFontOptions &fontOptions,
-                                                   bool hasBackground,
-                                                   const wxChartBackgroundOptions &backgroundOptions)
+wxChartLabelOptions::wxChartLabelOptions(const wxChartFontOptions &fontOptions,
+                                         bool hasBackground,
+                                         const wxChartBackgroundOptions &backgroundOptions)
     : m_fontOptions(fontOptions), m_hasBackground(hasBackground),
     m_backgroundOptions(backgroundOptions)
 {
 }
 
-const wxChartFontOptions& wxChartLabelGroupOptions::GetFontOptions() const
+const wxChartFontOptions& wxChartLabelOptions::GetFontOptions() const
 {
     return m_fontOptions;
 }
 
-bool wxChartLabelGroupOptions::HasBackground() const
+bool wxChartLabelOptions::HasBackground() const
 {
     return m_hasBackground;
 }
 
-const wxChartBackgroundOptions& wxChartLabelGroupOptions::GetBackgroundOptions() const
+const wxChartBackgroundOptions& wxChartLabelOptions::GetBackgroundOptions() const
 {
     return m_backgroundOptions;
 }
