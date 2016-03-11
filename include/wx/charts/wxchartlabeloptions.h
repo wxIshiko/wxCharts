@@ -28,7 +28,7 @@
 #include "wxchartfontoptions.h"
 #include "wxchartbackgroundoptions.h"
 
-class wxChartLabelOptions
+class wxChartLabelOptions : public wxObject
 {
 public:
     wxChartLabelOptions(const wxChartFontOptions &fontOptions,
@@ -39,9 +39,21 @@ public:
     const wxChartBackgroundOptions& GetBackgroundOptions() const;
 
 private:
-    wxChartFontOptions m_fontOptions;
-    bool m_hasBackground;
-    wxChartBackgroundOptions m_backgroundOptions;
+    class RefData : public wxObjectRefData
+    {
+    public:
+        RefData(const wxChartFontOptions &fontOptions, bool hasBackground, 
+            const wxChartBackgroundOptions &backgroundOptions);
+
+        const wxChartFontOptions& GetFontOptions() const;
+        bool HasBackground() const;
+        const wxChartBackgroundOptions& GetBackgroundOptions() const;
+
+    private:
+        wxChartFontOptions m_fontOptions;
+        bool m_hasBackground;
+        wxChartBackgroundOptions m_backgroundOptions;
+    };
 };
 
 #endif

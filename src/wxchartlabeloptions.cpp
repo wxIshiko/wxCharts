@@ -22,25 +22,47 @@
 
 #include "wxchartlabeloptions.h"
 
-wxChartLabelOptions::wxChartLabelOptions(const wxChartFontOptions &fontOptions,
-                                         bool hasBackground,
-                                         const wxChartBackgroundOptions &backgroundOptions)
+wxChartLabelOptions::wxChartLabelOptions::RefData::RefData(const wxChartFontOptions &fontOptions,
+                                                           bool hasBackground,
+                                                           const wxChartBackgroundOptions &backgroundOptions)
     : m_fontOptions(fontOptions), m_hasBackground(hasBackground),
     m_backgroundOptions(backgroundOptions)
 {
 }
 
-const wxChartFontOptions& wxChartLabelOptions::GetFontOptions() const
+const wxChartFontOptions& wxChartLabelOptions::RefData::GetFontOptions() const
 {
     return m_fontOptions;
 }
 
-bool wxChartLabelOptions::HasBackground() const
+bool wxChartLabelOptions::RefData::HasBackground() const
 {
     return m_hasBackground;
 }
 
-const wxChartBackgroundOptions& wxChartLabelOptions::GetBackgroundOptions() const
+const wxChartBackgroundOptions& wxChartLabelOptions::RefData::GetBackgroundOptions() const
 {
     return m_backgroundOptions;
+}
+
+wxChartLabelOptions::wxChartLabelOptions(const wxChartFontOptions &fontOptions,
+                                         bool hasBackground,
+                                         const wxChartBackgroundOptions &backgroundOptions)
+{
+    m_refData = new RefData(fontOptions, hasBackground, backgroundOptions);
+}
+
+const wxChartFontOptions& wxChartLabelOptions::GetFontOptions() const
+{
+    return static_cast<const RefData*>(m_refData)->GetFontOptions();
+}
+
+bool wxChartLabelOptions::HasBackground() const
+{
+    return static_cast<const RefData*>(m_refData)->HasBackground();
+}
+
+const wxChartBackgroundOptions& wxChartLabelOptions::GetBackgroundOptions() const
+{
+    return static_cast<const RefData*>(m_refData)->GetBackgroundOptions();
 }
