@@ -178,7 +178,12 @@ wxChartAxis::ptr wxChartGrid::CreateNumericalAxis(wxDouble minValue,
     numericalAxis->SetMaxValue(graphMaxXValue);
 
     wxVector<wxChartLabel> xLabels;
-    wxChartUtilities::BuildNumericalLabels(numericalAxis->GetMinValue(), steps, stepValue, xLabels);
+    wxChartUtilities::BuildNumericalLabels(
+        numericalAxis->GetMinValue(),
+        steps, 
+        stepValue, 
+        wxChartLabelOptions(options.GetFontOptions(), false, wxChartBackgroundOptions(*wxWHITE, 0)),
+        xLabels);
     numericalAxis->SetLabels(xLabels);
 
     return axis;

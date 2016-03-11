@@ -26,6 +26,8 @@
 #define _WX_CHARTS_WXCHARTLABEL_H_
 
 #include "wxchartelement.h"
+#include "wxchartlabeloptions.h"
+#include "wxchartpadding.h"
 #include <wx/graphics.h>
 #include <wx/string.h>
 
@@ -43,13 +45,15 @@ public:
 	/// Constructs a wxChartLabel element. The width
 	/// and height are set to 0.
 	/// @param text The text to display.
-	wxChartLabel(const wxString &text);
+    /// @param options The settings to be used for the label.
+	wxChartLabel(const wxString &text, const wxChartLabelOptions &options);
 	/// Constructs a wxChartLabel element.
 	/// @param text The text to display.
 	/// @param width The width of the label.
 	/// @param height The height of the label.
+    /// @param options The settings to be used for the label.
 	wxChartLabel(const wxString &text, wxDouble width,
-		wxDouble height);
+		wxDouble height, const wxChartLabelOptions &options);
 
 	virtual bool HitTest(const wxPoint &point) const;
 
@@ -78,6 +82,7 @@ public:
 	/// @return The size of the label.
 	/// @see SetSize(const wxSize &size)
 	/// @see SetSize(wxDouble width, wxDouble height)
+    /// @see UpdateSize(wxGraphicsContext &gc)
 	const wxSize& GetSize() const;
 	/// Sets the size of the label.
 	/// @param size The new size.
@@ -85,12 +90,17 @@ public:
 	/// Sets the size of the label.
 	/// @param width The new width.
 	/// @param height The new height.
-	void SetSize(wxDouble width, wxDouble height);
+    void SetSize(wxDouble width, wxDouble height);
+    void UpdateSize(wxGraphicsContext &gc);
+    const wxChartPadding& GetPadding() const;
+    void SetPadding(const wxChartPadding &padding);
 
 private:
+    wxChartLabelOptions m_options;
 	wxString m_text;
 	wxPoint2DDouble m_position;
 	wxSize m_size;
+    wxChartPadding m_padding;
 };
 
 #endif

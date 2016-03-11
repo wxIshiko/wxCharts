@@ -40,16 +40,20 @@ wxChartRadialGrid::wxChartRadialGrid(const wxSize &size,
 									 wxDouble maxValue,
 									 const wxChartRadialGridOptions& options)
 	: m_options(options), m_size(size), m_center(CalculateCenter(size)),
-    m_labels(options.GetLabelOptions()), m_needsFit(true)
+    m_needsFit(true)
 {
 	m_drawingArea = (size.x < size.y) ? size.x / 2 : size.y / 2;
 	wxDouble valueRange = 0;
 	wxDouble stepValue;
 	wxChartUtilities::CalculateGridRange(minValue, maxValue, 
 		m_graphMinValue, m_graphMaxValue, valueRange, m_steps, stepValue);
-    wxChartUtilities::BuildNumericalLabels(m_graphMinValue, m_steps, stepValue, m_labels);
+    wxChartUtilities::BuildNumericalLabels(m_graphMinValue, m_steps, stepValue, options.GetLabelOptions(), m_labels);
     // We don't want to display the label at the center of the grid
     m_labels.erase(m_labels.begin());
+    for (size_t i = 0; i < m_labels.size(); ++i)
+    {
+        m_labels[i].SetPadding(wxChartPadding(10, 10, 10, 10));
+    }
 }
 
 bool wxChartRadialGrid::HitTest(const wxPoint &point) const

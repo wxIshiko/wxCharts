@@ -169,11 +169,15 @@ wxDouble wxPolarAreaChartCtrl::GetMaxValue(const wxVector<wxChartSliceData> &sli
 
 void wxPolarAreaChartCtrl::Resize(const wxSize &size)
 {
-	m_grid.Resize(size);
+    wxSize newSize(
+        size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
+        size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+        );
 
+    m_grid.Resize(newSize);
     for (size_t i = 0; i < m_slices.size(); ++i)
     {
-        m_slices[i]->Resize(size);
+        m_slices[i]->Resize(newSize);
     }
 }
 

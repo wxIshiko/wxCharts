@@ -37,20 +37,23 @@
 wxChartAxis::wxChartAxis(wxChartAxisType type, 
                          const wxChartAxisOptions &options)
 	: m_type(type), m_options(options),
-    m_startPoint(0, 0), m_endPoint(0, 0), 
-    m_labels(wxChartLabelGroupOptions(m_options.GetFontOptions(), false, wxChartBackgroundOptions(*wxWHITE, 0)))
+    m_startPoint(0, 0), m_endPoint(0, 0)
 {
 }
 
 wxChartAxis::wxChartAxis(const wxVector<wxString> &labels,
 						 const wxChartAxisOptions &options)
 	: m_type(wxCHARTAXISTYPE_GENERIC), m_options(options),
-    m_startPoint(0, 0), m_endPoint(0, 0),
-    m_labels(wxChartLabelGroupOptions(m_options.GetFontOptions(), false, wxChartBackgroundOptions(*wxWHITE, 0)))
+    m_startPoint(0, 0), m_endPoint(0, 0)
 {
 	for (size_t i = 0; i < labels.size(); ++i)
 	{
-		m_labels.push_back(wxChartLabel(labels[i]));
+		m_labels.push_back(
+            wxChartLabel(
+                labels[i], 
+                wxChartLabelOptions(m_options.GetFontOptions(), false, wxChartBackgroundOptions(*wxWHITE, 0))
+                )
+            );
 	}
 }
 

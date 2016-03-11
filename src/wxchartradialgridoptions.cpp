@@ -28,7 +28,7 @@ wxChartRadialGridOptions::wxChartRadialGridOptions(wxChartRadialGridStyle style)
     m_labelOptions(
         wxChartFontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666), 
         true, 
-        wxChartBackgroundOptions(*wxWHITE, 0)
+        wxChartBackgroundOptions(*wxWHITE, 6)
         )
 {
 }
@@ -53,7 +53,7 @@ bool wxChartRadialGridOptions::ShowLabels() const
 	return m_showLabels;
 }
 
-const wxChartLabelGroupOptions& wxChartRadialGridOptions::GetLabelOptions() const
+const wxChartLabelOptions& wxChartRadialGridOptions::GetLabelOptions() const
 {
     return m_labelOptions;
 }

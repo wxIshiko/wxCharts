@@ -21,16 +21,21 @@
 */
 
 #include "wxchartlabel.h"
+#include "wxchartbackground.h"
+#include "wxchartutilities.h"
 
-wxChartLabel::wxChartLabel(const wxString &text)
-	: m_text(text), m_position(0, 0), m_size(0, 0)
+wxChartLabel::wxChartLabel(const wxString &text,
+                           const wxChartLabelOptions &options)
+	: m_options(options), m_text(text), m_position(0, 0),
+    m_size(0, 0)
 {
 }
 
 wxChartLabel::wxChartLabel(const wxString &text,
 						   wxDouble width,
-						   wxDouble height)
-	: m_text(text), m_position(0, 0), 
+						   wxDouble height,
+                           const wxChartLabelOptions &options)
+	: m_options(options), m_text(text), m_position(0, 0),
 	m_size(width, height)
 {
 }
@@ -47,6 +52,18 @@ wxPoint2DDouble wxChartLabel::GetTooltipPosition() const
 
 void wxChartLabel::Draw(wxGraphicsContext &gc) const
 {
+    if (m_options.HasBackground())
+    {
+        wxSize backgroundSize(m_size);
+        backgroundSize.x += (m_padding.GetLeft() + m_padding.GetRight());
+        backgroundSize.y += (m_padding.GetTop() + m_padding.GetBottom());
+
+        wxChartBackground background(m_options.GetBackgroundOptions());
+        background.Draw(m_position, backgroundSize, gc);
+    }
+
+    wxFont font = m_options.GetFontOptions().GetFont();
+    gc.SetFont(font, m_options.GetFontOptions().GetColor());
 	gc.DrawText(m_text, m_position.m_x, m_position.m_y);
 }
 
@@ -86,4 +103,24 @@ void wxChartLabel::SetSize(wxDouble width, wxDouble height)
 {
 	m_size.x = width;
 	m_size.y = height;
+}
+
+void wxChartLabel::UpdateSize(wxGraphicsContext &gc)
+{
+    wxFont font = m_options.GetFontOptions().GetFont();
+    wxDouble width = 0;
+    wxDouble height = 0;
+    wxChartUtilities::GetTextSize(gc, font, m_text, width, height);
+    m_size.x = width;
+    m_size.y = height;
+}
+
+const wxChartPadding& wxChartLabel::GetPadding() const
+{
+    return m_padding;
+}
+
+void wxChartLabel::SetPadding(const wxChartPadding &padding)
+{
+    m_padding = padding;
 }

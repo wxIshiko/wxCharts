@@ -26,18 +26,12 @@
 #define _WX_CHARTS_WXCHARTLABELGROUP_H_
 
 #include "wxchartlabel.h"
-#include "wxchartlabelgroupoptions.h"
 
-/// This class is to manage a group of labels that use the same font properties.
-
-/// The wxChartLabel class itself doesn't store any font information and also
-/// expect its size to be updated when the font changes. The wxChartLabelGroup
-/// class has font information and methods to update the size of the labels
-/// it manages.
+/// This class is to manage a group of labels.
 class wxChartLabelGroup : public wxVector<wxChartLabel>
 {
 public:
-    wxChartLabelGroup(const wxChartLabelGroupOptions &options);
+    wxChartLabelGroup();
 
     void Draw(wxGraphicsContext &gc);
 
@@ -51,7 +45,6 @@ public:
     wxDouble GetMaxWidth() const;
 
 private:
-    wxChartLabelGroupOptions m_options;
     wxDouble m_maxWidth;
 };
 
