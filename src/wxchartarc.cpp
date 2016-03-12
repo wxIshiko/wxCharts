@@ -48,6 +48,14 @@ wxChartArc::wxChartArc(wxDouble x,
 	m_outerRadius(outerRadius), m_innerRadius(innerRadius), 
 	m_options(options)
 {
+    if (m_startAngle > (2 * M_PI))
+    {
+        m_startAngle -= 2 * M_PI;
+    }
+    if (m_endAngle > (2 * M_PI))
+    {
+        m_endAngle -= 2 * M_PI;
+    }
 }
 
 bool wxChartArc::HitTest(const wxPoint &point) const
@@ -63,7 +71,20 @@ bool wxChartArc::HitTest(const wxPoint &point) const
 	}
 
 	// Calculate wether the angle is between the start and the end angle
-	bool betweenAngles = ((angle >= m_startAngle) && (angle <= m_endAngle));
+    bool betweenAngles = false;
+    if (m_startAngle <= m_endAngle)
+    {
+        betweenAngles = ((angle >= m_startAngle) && (angle <= m_endAngle));
+    }
+    else
+    {
+        betweenAngles =
+            (
+                ((angle >= m_startAngle) && (angle <= (2 * M_PI)))
+                ||
+                ((angle >= 0) && (angle <= m_endAngle))
+            );
+    }
 
 	// Ensure within the outside of the arc centre, but inside arc outer
 	bool withinRadius = ((radialDistanceFromCenter >= m_innerRadius) && (radialDistanceFromCenter <= m_outerRadius));
@@ -115,7 +136,15 @@ void wxChartArc::SetCenter(wxDouble x, wxDouble y)
 void wxChartArc::SetAngles(wxDouble startAngle, wxDouble endAngle)
 {
 	m_startAngle = startAngle;
+    if (m_startAngle > (2 * M_PI))
+    {
+        m_startAngle -= 2 * M_PI;
+    }
 	m_endAngle = endAngle;
+    if (m_endAngle > (2 * M_PI))
+    {
+        m_endAngle -= 2 * M_PI;
+    }
 }
 
 void wxChartArc::SetRadiuses(wxDouble outerRadius, wxDouble innerRadius)
