@@ -22,7 +22,7 @@
 
 #include "wxchartlabeloptions.h"
 
-wxChartLabelOptions::wxChartLabelOptions::RefData::RefData(const wxChartFontOptions &fontOptions,
+wxChartLabelOptions::RefData::RefData(const wxChartFontOptions &fontOptions,
                                                            bool hasBackground,
                                                            const wxChartBackgroundOptions &backgroundOptions)
     : m_fontOptions(fontOptions), m_hasBackground(hasBackground),
