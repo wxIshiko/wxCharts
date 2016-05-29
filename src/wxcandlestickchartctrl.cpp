@@ -23,3 +23,13 @@
 /// @file
 
 #include "wxcandlestickchartctrl.h"
+
+void wxCandlestickChartCtrl::Resize(const wxSize &size)
+{
+}
+
+wxSharedPtr<wxVector<const wxChartElement*> > wxCandlestickChartCtrl::GetActiveElements(const wxPoint &point)
+{
+    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    return activeElements;
+}

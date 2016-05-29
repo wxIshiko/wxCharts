@@ -25,4 +25,14 @@
 #ifndef _WX_CHARTS_WXCANDLESTICKCHARTCTRL_H_
 #define _WX_CHARTS_WXCANDLESTICKCHARTCTRL_H_
 
+#include "wxchartctrl.h"
+
+/// A control that displays a candlestick chart.
+class wxCandlestickChartCtrl : public wxChartCtrl
+{
+private:
+    virtual void Resize(const wxSize &size);
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
+};
+
 #endif

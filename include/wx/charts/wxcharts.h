@@ -36,6 +36,8 @@
 #include "wxradarchartctrl.h"
 #include "wxscatterplotctrl.h"
 #include "wxbubblechartctrl.h"
+#include "wxcandlestickchartctrl.h"
+#include "wxohlcchartctrl.h"
 #include "wxchartlegendctrl.h"
 
 #ifdef _MSC_VER
