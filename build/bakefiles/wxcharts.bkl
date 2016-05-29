@@ -76,6 +76,7 @@ library wxcharts
         ../../include/wx/charts/wxbarchartdata.h
         ../../include/wx/charts/wxbarchartoptions.h
         ../../include/wx/charts/wxbarchartctrl.h
+        ../../include/wx/charts/wxcandlestickchartoptions.h
         ../../include/wx/charts/wxcandlestickchartctrl.h
         ../../include/wx/charts/wxcolumnchartoptions.h
         ../../include/wx/charts/wxcolumnchartctrl.h
@@ -89,6 +90,7 @@ library wxcharts
         ../../include/wx/charts/wxdoughnutandpiechartbase.h
         ../../include/wx/charts/wxdoughnutchartoptions.h
         ../../include/wx/charts/wxdoughnutchartctrl.h
+        ../../include/wx/charts/wxohlcchartoptions.h
         ../../include/wx/charts/wxohlcchartctrl.h
         ../../include/wx/charts/wxpiechartoptions.h
         ../../include/wx/charts/wxpiechartctrl.h
@@ -142,6 +144,7 @@ library wxcharts
         ../../src/wxbarchartdata.cpp
         ../../src/wxbarchartoptions.cpp
         ../../src/wxbarchartctrl.cpp
+        ../../src/wxcandlestickchartoptions.cpp
         ../../src/wxcandlestickchartctrl.cpp
         ../../src/wxcolumnchartoptions.cpp
         ../../src/wxcolumnchartctrl.cpp
@@ -155,6 +158,7 @@ library wxcharts
         ../../src/wxdoughnutandpiechartbase.cpp
         ../../src/wxdoughnutchartoptions.cpp
         ../../src/wxdoughnutchartctrl.cpp
+        ../../src/wxohlcchartoptions.cpp
         ../../src/wxohlcchartctrl.cpp
         ../../src/wxpiechartoptions.cpp
         ../../src/wxpiechartctrl.cpp
