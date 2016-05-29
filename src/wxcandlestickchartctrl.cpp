@@ -24,6 +24,16 @@
 
 #include "wxcandlestickchartctrl.h"
 
+wxCandlestickChartCtrl::wxCandlestickChartCtrl(wxWindow *parent,
+                                               wxWindowID id,
+                                               const wxCandlestickChartData &data,
+                                               const wxPoint &pos,
+                                               const wxSize &size,
+                                               long style)
+    : wxChartCtrl(parent, id, pos, size, style)
+{
+}
+
 const wxCandlestickChartOptions& wxCandlestickChartCtrl::GetOptions() const
 {
     return m_options;

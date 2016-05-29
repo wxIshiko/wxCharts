@@ -25,4 +25,11 @@
 
 /// @file
 
+/// The open, high, low and close values for a single unit of time.
+
+/// This is used in charts like the OHLDC and candlestick charts.
+class wxChartOHLCData
+{
+};
+
 #endif

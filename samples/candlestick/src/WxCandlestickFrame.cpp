@@ -31,6 +31,9 @@ WxCandlestickFrame::WxCandlestickFrame(const wxString& title)
 	// Create a top-level panel to hold all the contents of the frame
 	wxPanel* panel = new wxPanel(this, wxID_ANY);
 
+    // Create the data for the line chart widget
+    wxCandlestickChartData chartData;
+
 	// Create the candlestick chart widget from the constructed data
 	wxCandlestickChartCtrl* candlestickChartCtrl = new wxCandlestickChartCtrl(panel, wxID_ANY, chartData,
 		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
