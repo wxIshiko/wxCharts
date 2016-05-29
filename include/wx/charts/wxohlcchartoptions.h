@@ -25,4 +25,14 @@
 #ifndef _WX_CHARTS_WXOHLCCHARTOPTIONS_H_
 #define _WX_CHARTS_WXOHLCCHARTOPTIONS_H_
 
+#include "wxchartoptions.h"
+
+/// The options for the wxOHLCChartCtrl control.
+class wxOHLCChartOptions : public wxChartOptions
+{
+public:
+    /// Constructs a wxOHLCChartOptions instance.
+    wxOHLCChartOptions();
+};
+
 #endif

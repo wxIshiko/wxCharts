@@ -23,3 +23,28 @@
 /// @file
 
 #include "wxohlcchartctrl.h"
+
+wxOHLCChartCtrl::wxOHLCChartCtrl(wxWindow *parent,
+                                 wxWindowID id,
+                                 const wxOHLCChartData &data,
+                                 const wxPoint &pos,
+                                 const wxSize &size,
+                                 long style)
+    : wxChartCtrl(parent, id, pos, size, style)
+{
+}
+
+const wxOHLCChartOptions& wxOHLCChartCtrl::GetOptions() const
+{
+    return m_options;
+}
+
+void wxOHLCChartCtrl::Resize(const wxSize &size)
+{
+}
+
+wxSharedPtr<wxVector<const wxChartElement*> > wxOHLCChartCtrl::GetActiveElements(const wxPoint &point)
+{
+    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    return activeElements;
+}

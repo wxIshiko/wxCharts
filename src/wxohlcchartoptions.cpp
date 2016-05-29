@@ -23,3 +23,7 @@
 /// @file
 
 #include "wxohlcchartoptions.h"
+
+wxOHLCChartOptions::wxOHLCChartOptions()
+{
+}
