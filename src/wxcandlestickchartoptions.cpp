@@ -23,3 +23,7 @@
 /// @file
 
 #include "wxcandlestickchartoptions.h"
+
+wxCandlestickChartOptions::wxCandlestickChartOptions()
+{
+}

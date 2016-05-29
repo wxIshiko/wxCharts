@@ -25,4 +25,14 @@
 #ifndef _WX_CHARTS_WXCANDLESTICKCHARTOPTIONS_H_
 #define _WX_CHARTS_WXCANDLESTICKCHARTOPTIONS_H_
 
+#include "wxchartoptions.h"
+
+/// The options for the wxCandlestickChartCtrl control.
+class wxCandlestickChartOptions : public wxChartOptions
+{
+public:
+    /// Constructs a wxCandlestickChartOptions instance.
+    wxCandlestickChartOptions();
+};
+
 #endif

@@ -24,6 +24,11 @@
 
 #include "wxcandlestickchartctrl.h"
 
+const wxCandlestickChartOptions& wxCandlestickChartCtrl::GetOptions() const
+{
+    return m_options;
+}
+
 void wxCandlestickChartCtrl::Resize(const wxSize &size)
 {
 }
