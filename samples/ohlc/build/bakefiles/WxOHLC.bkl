@@ -15,7 +15,7 @@ setting WXCHARTS_ROOT
     default = '$(WXCHARTS)';
 }
 
-program WxBar
+program WxOHLC
 {
     vs2015.projectfile = ../msw/WxOHLC_vc14.vcxproj;
     vs2013.projectfile = ../msw/WxOHLC_vc12.vcxproj;

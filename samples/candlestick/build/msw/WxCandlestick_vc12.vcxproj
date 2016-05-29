@@ -13,10 +13,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{92F35DCD-A524-5653-8211-5728ECC71C2D}</ProjectGuid>
+    <ProjectGuid>{AFEF58C8-2360-5143-9852-093BCD1DFE16}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>WxBar</RootNamespace>
-    <ProjectName>WxBar</ProjectName>
+    <RootNamespace>WxCandlestick</RootNamespace>
+    <ProjectName>WxCandlestick</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

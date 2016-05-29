@@ -15,7 +15,7 @@ setting WXCHARTS_ROOT
     default = '$(WXCHARTS)';
 }
 
-program WxBar
+program WxCandlestick
 {
     vs2015.projectfile = ../msw/WxCandlestick_vc14.vcxproj;
     vs2013.projectfile = ../msw/WxCandlestick_vc12.vcxproj;
