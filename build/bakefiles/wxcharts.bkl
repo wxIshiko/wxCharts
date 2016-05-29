@@ -71,6 +71,7 @@ library wxcharts
         ../../include/wx/charts/wxchartlegendoptions.h
         ../../include/wx/charts/wxchartlegendctrl.h
         ../../include/wx/charts/wxchartslicedata.h
+        ../../include/wx/charts/wxchartohlcdata.h
         ../../include/wx/charts/wxchartoptions.h
         ../../include/wx/charts/wxchartctrl.h
         ../../include/wx/charts/wxbarchartdata.h
@@ -139,6 +140,7 @@ library wxcharts
         ../../src/wxchartlegendoptions.cpp
         ../../src/wxchartlegendctrl.cpp
         ../../src/wxchartslicedata.cpp
+        ../../src/wxchartohlcdata.cpp
         ../../src/wxchartoptions.cpp
         ../../src/wxchartctrl.cpp
         ../../src/wxbarchartdata.cpp
