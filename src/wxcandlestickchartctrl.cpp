@@ -23,6 +23,8 @@
 /// @file
 
 #include "wxcandlestickchartctrl.h"
+#include <wx/dcbuffer.h>
+#include <wx/graphics.h>
 
 wxCandlestickChartCtrl::wxCandlestickChartCtrl(wxWindow *parent,
                                                wxWindowID id,
@@ -48,3 +50,19 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxCandlestickChartCtrl::GetActiveE
     wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
     return activeElements;
 }
+
+void wxCandlestickChartCtrl::OnPaint(wxPaintEvent &evt)
+{
+    wxAutoBufferedPaintDC dc(this);
+
+    dc.Clear();
+
+    wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+    if (gc)
+    {
+    }
+}
+
+BEGIN_EVENT_TABLE(wxCandlestickChartCtrl, wxChartCtrl)
+	EVT_PAINT(wxCandlestickChartCtrl::OnPaint)
+END_EVENT_TABLE()

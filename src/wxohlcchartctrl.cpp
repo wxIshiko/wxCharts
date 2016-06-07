@@ -23,6 +23,8 @@
 /// @file
 
 #include "wxohlcchartctrl.h"
+#include <wx/dcbuffer.h>
+#include <wx/graphics.h>
 
 wxOHLCChartCtrl::wxOHLCChartCtrl(wxWindow *parent,
                                  wxWindowID id,
@@ -48,3 +50,19 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxOHLCChartCtrl::GetActiveElements
     wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
     return activeElements;
 }
+
+void wxOHLCChartCtrl::OnPaint(wxPaintEvent &evt)
+{
+    wxAutoBufferedPaintDC dc(this);
+
+    dc.Clear();
+
+    wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+    if (gc)
+    {
+    }
+}
+
+BEGIN_EVENT_TABLE(wxOHLCChartCtrl, wxChartCtrl)
+	EVT_PAINT(wxOHLCChartCtrl::OnPaint)
+END_EVENT_TABLE()
