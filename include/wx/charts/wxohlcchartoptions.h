@@ -26,6 +26,7 @@
 #define _WX_CHARTS_WXOHLCCHARTOPTIONS_H_
 
 #include "wxchartoptions.h"
+#include "wxchartgridoptions.h"
 
 /// The options for the wxOHLCChartCtrl control.
 class wxOHLCChartOptions : public wxChartOptions
@@ -33,6 +34,16 @@ class wxOHLCChartOptions : public wxChartOptions
 public:
     /// Constructs a wxOHLCChartOptions instance.
     wxOHLCChartOptions();
+
+    /// Gets the options for the grid.
+    /// @return The grid options.
+    const wxChartGridOptions& GetGridOptions() const;
+    /// Gets the options for the grid.
+    /// @return The grid options.
+    wxChartGridOptions& GetGridOptions();
+
+private:
+    wxChartGridOptions m_gridOptions;
 };
 
 #endif

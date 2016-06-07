@@ -27,3 +27,13 @@
 wxCandlestickChartOptions::wxCandlestickChartOptions()
 {
 }
+
+const wxChartGridOptions& wxCandlestickChartOptions::GetGridOptions() const
+{
+    return m_gridOptions;
+}
+
+wxChartGridOptions& wxCandlestickChartOptions::GetGridOptions()
+{
+    return m_gridOptions;
+}

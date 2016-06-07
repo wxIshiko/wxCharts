@@ -28,10 +28,21 @@
 #include "wxchartctrl.h"
 #include "wxchartohlcdata.h"
 #include "wxohlcchartoptions.h"
+#include "wxchartgrid.h"
 
 /// Data for the wxOHLCChartCtrl control.
 class wxOHLCChartData
 {
+public:
+    wxOHLCChartData(const wxVector<wxString> &labels);
+
+    /// Gets the labels of the X axis.
+    /// @return A vector containing the labels of the
+    /// X axis.
+    const wxVector<wxString>& GetLabels() const;
+
+private:
+    wxVector<wxString> m_labels;
 };
 
 /// A control that displays a candlestick chart.
@@ -65,6 +76,7 @@ private:
 
 private:
     wxOHLCChartOptions m_options;
+    wxChartGrid m_grid;
 
     DECLARE_EVENT_TABLE();
 };

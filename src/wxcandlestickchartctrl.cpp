@@ -26,13 +26,27 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
+wxCandlestickChartData::wxCandlestickChartData(const wxVector<wxString> &labels)
+    : m_labels(labels)
+{
+}
+
+const wxVector<wxString>& wxCandlestickChartData::GetLabels() const
+{
+    return m_labels;
+}
+
 wxCandlestickChartCtrl::wxCandlestickChartCtrl(wxWindow *parent,
                                                wxWindowID id,
                                                const wxCandlestickChartData &data,
                                                const wxPoint &pos,
                                                const wxSize &size,
                                                long style)
-    : wxChartCtrl(parent, id, pos, size, style)
+    : wxChartCtrl(parent, id, pos, size, style),
+    m_grid(
+        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
+        size, data.GetLabels(), 12, 100, m_options.GetGridOptions()
+        )
 {
 }
 
@@ -43,6 +57,11 @@ const wxCandlestickChartOptions& wxCandlestickChartCtrl::GetOptions() const
 
 void wxCandlestickChartCtrl::Resize(const wxSize &size)
 {
+    wxSize newSize(
+        size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
+        size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+        );
+    m_grid.Resize(newSize);
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxCandlestickChartCtrl::GetActiveElements(const wxPoint &point)
@@ -60,6 +79,7 @@ void wxCandlestickChartCtrl::OnPaint(wxPaintEvent &evt)
     wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
     if (gc)
     {
+        m_grid.Draw(*gc);
     }
 }
 

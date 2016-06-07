@@ -27,3 +27,13 @@
 wxOHLCChartOptions::wxOHLCChartOptions()
 {
 }
+
+const wxChartGridOptions& wxOHLCChartOptions::GetGridOptions() const
+{
+    return m_gridOptions;
+}
+
+wxChartGridOptions& wxOHLCChartOptions::GetGridOptions()
+{
+    return m_gridOptions;
+}

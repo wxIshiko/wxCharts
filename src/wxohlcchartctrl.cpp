@@ -26,13 +26,27 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
+wxOHLCChartData::wxOHLCChartData(const wxVector<wxString> &labels)
+    : m_labels(labels)
+{
+}
+
+const wxVector<wxString>& wxOHLCChartData::GetLabels() const
+{
+    return m_labels;
+}
+
 wxOHLCChartCtrl::wxOHLCChartCtrl(wxWindow *parent,
                                  wxWindowID id,
                                  const wxOHLCChartData &data,
                                  const wxPoint &pos,
                                  const wxSize &size,
                                  long style)
-    : wxChartCtrl(parent, id, pos, size, style)
+    : wxChartCtrl(parent, id, pos, size, style),
+    m_grid(
+        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
+        size, data.GetLabels(), 12, 100, m_options.GetGridOptions()
+        )
 {
 }
 
@@ -43,6 +57,11 @@ const wxOHLCChartOptions& wxOHLCChartCtrl::GetOptions() const
 
 void wxOHLCChartCtrl::Resize(const wxSize &size)
 {
+    wxSize newSize(
+        size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
+        size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+        );
+    m_grid.Resize(newSize);
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxOHLCChartCtrl::GetActiveElements(const wxPoint &point)
@@ -60,6 +79,7 @@ void wxOHLCChartCtrl::OnPaint(wxPaintEvent &evt)
     wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
     if (gc)
     {
+        m_grid.Draw(*gc);
     }
 }
 
