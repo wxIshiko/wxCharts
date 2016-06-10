@@ -47,25 +47,61 @@
 /// It represents the grid displayed in the background
 /// of some of the chart controls like for instance line and 
 /// bar charts.
+///
+/// Grid lines can be drawn to see points on the grid corresponding to tick mark values. These lines
+/// are called major grid lines.
+///
+/// Minor grid lines can be drawn in between major grid lines when more precise readings are 
+/// needed. By default minor grid lines are not shown. Use the wxChartGridOptions::GetNumberOfHorizontalMinorGridLinesBetweenTickMarks,
+/// wxChartGridOptions::SetNumberOfHorizontalMinorGridLinesBetweenTickMarks, wxChartGridOptions::GetNumberOfVerticalMinorGridLinesBetweenTickMarks
+/// and wxChartGridOptions::SetNumberOfVerticalMinorGridLinesBetweenTickMarks to control the
+/// display of minor grid lines.
+/// 
+///
+/// The wxChartGridOptions::ShowHorizontalGridLines, wxChartGridOptions::ShowVerticalGridLines, 
+/// wxChartGridOptions::SetShowHorizontalGridLines and wxChartGridOptions::SetShowVerticalGridLines
+/// functions can be used to control the visibility of grid lines.
+///
+/// @see wxChartGridOptions
 class wxChartGrid : public wxChartElement
 {
 public:
-	/// Constructs a wxChartGrid element.
+	/// Constructs a wxChartGrid element. The tick marks on the
+    /// X axis are specified explicitly by the labels parameter. The
+    /// tick marks on the Y axis are computed automatically using the
+    /// minimum and maximum values that need to be displayed on the grid.
 	/// @param position The position of the top left corner
 	/// of the chart.
 	/// @param size The size of the area where the grid 
 	/// will be displayed.
 	/// @param labels The labels of the X axis.
-	/// @param minValue The minimum of the values that
-	/// will be shown on the chart.
-	/// @param maxValue The maximum of the values that
-	/// will be shown on the chart.
+	/// @param minYValue The minimum of the values that
+	/// will be shown on the chart for the Y coordinate.
+	/// @param maxYValue The maximum of the values that
+	/// will be shown on the chart for the Y coordinate.
 	/// @param options The settings to be used for the
 	/// grid.
 	wxChartGrid(const wxPoint2DDouble &position, const wxSize &size,
 		const wxVector<wxString> &labels,
-		wxDouble minValue, wxDouble maxValue,
+		wxDouble minYValue, wxDouble maxYValue,
 		const wxChartGridOptions& options);
+    /// Constructs a wxChartGrid element. The tick marks on the X and
+    /// Y axes are computed automatically using the
+    /// minimum and maximum values that need to be displayed on the grid.
+    /// @param position The position of the top left corner
+    /// of the chart.
+    /// @param size The size of the area where the grid 
+    /// will be displayed.
+    /// @param minXValue The minimum of the values that
+    /// will be shown on the chart for the X coordinate.
+    /// @param maxXValue The maximum of the values that
+    /// will be shown on the chart for the X coordinate.
+    /// @param minYValue The minimum of the values that
+    /// will be shown on the chart for the Y coordinate.
+    /// @param maxYValue The maximum of the values that
+    /// will be shown on the chart for the Y coordinate.
+    /// @param options The settings to be used for the
+    /// grid.
 	wxChartGrid(const wxPoint2DDouble &position, const wxSize &size,
 		wxDouble minXValue, wxDouble maxXValue,
 		wxDouble minYValue, wxDouble maxYValue,

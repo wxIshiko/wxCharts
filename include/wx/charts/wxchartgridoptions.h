@@ -52,6 +52,8 @@ public:
 	/// Gets the options for the Y axis.
 	/// @return The options for the Y axis.
 	const wxChartAxisOptions& GetYAxisOptions() const;
+    /// Gets the options for the Y axis.
+    /// @return The options for the Y axis.
 	wxChartAxisOptions& GetYAxisOptions();
 
 	/// Whether to show horizontal grid lines. This doesn't affect
@@ -59,24 +61,50 @@ public:
 	/// @retval true Show horizontal grid lines.
 	/// @retval false Don't show horizontal grid lines.
 	bool ShowHorizontalGridLines() const;
+    /// Sets whether horizontal grid lines should be shown.
+    /// @param show True if horizontal grid lines should be shown, false 
+    /// otherwise.
+    void SetShowHorizontalGridLines(bool show);
+    /// Gets the number of horizontal minor grid lines that should be drawn between
+    /// major grid lines. By default this is 0 which means no minor lines
+    /// will be drawn.
+    /// @return The number of horizontal minor grid lines that should be drawn.
     unsigned int GetNumberOfHorizontalMinorGridLinesBetweenTickMarks() const;
+    /// Sets the number of horizontal minor grid lines to draw between
+    /// major grid lines.
+    /// @param n The number of horizontal minor grid lines to draw.
     void SetNumberOfHorizontalMinorGridLinesBetweenTickMarks(unsigned int n);
 	/// Whether to show vertical grid lines. This doesn't affect
 	/// the visibility of the Y axis.
 	/// @retval true Show vertical grid lines.
 	/// @retval false Don't show vertical grid lines.
 	bool ShowVerticalGridLines() const;
+    /// Sets whether vertical grid lines should be shown.
+    /// @param show True if vertical grid lines should be shown, false 
+    /// otherwise.
+    void SetShowVerticalGridLines(bool show);
+    /// Gets the number of vertical minor grid lines that should be drawn between
+    /// major grid lines. By default this is 0 which means no minor lines
+    /// will be drawn.
+    /// @return The number of vertical minor grid lines that should be drawn.
     unsigned int GetNumberOfVerticalMinorGridLinesBetweenTickMarks() const;
+    /// Sets the number of vertical minor grid lines to draw between
+    /// major grid lines.
+    /// @param n The number of vertical minor grid lines to draw.
     void SetNumberOfVerticalMinorGridLinesBetweenTickMarks(unsigned int n);
 	/// Gets the width of the grid lines. This doesn't affect
 	/// the width of the axes.
 	/// @return The width of the grid lines.
 	unsigned int GetGridLineWidth() const;
+    /// Sets the width of the major grid lines.
+    /// @param width The width of the major grid lines.
     void SetGridLineWidth(unsigned int width);
 	/// Gets the color of the grid lines. This doesn't affect
 	/// the color of the axes.
 	/// @return The color of the grid lines.
 	const wxColor& GetGridLineColor() const;
+    /// Sets the color of the major grid lines.
+    /// @param color The color of the major grid lines.
     void SetGridLineColor(const wxColor &color);
 
 private:
