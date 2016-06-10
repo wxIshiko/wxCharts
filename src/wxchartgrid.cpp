@@ -39,12 +39,12 @@
 wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 						 const wxSize &size,
 						 const wxVector<wxString> &labels,
-						 wxDouble minValue,
-						 wxDouble maxValue,
+						 wxDouble minYValue,
+						 wxDouble maxYValue,
 						 const wxChartGridOptions& options)
 	: m_options(options), m_position(position),
 	m_XAxis(new wxChartAxis(labels, options.GetXAxisOptions())),
-	m_YAxis(CreateNumericalAxis(minValue, maxValue, options.GetYAxisOptions())),
+	m_YAxis(CreateNumericalAxis(minYValue, maxYValue, options.GetYAxisOptions())),
 	m_mapping(size, m_XAxis, m_YAxis),
 	m_needsFit(true)
 {
@@ -110,7 +110,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
             path.MoveToPoint(lineStartPosition);
             path.AddLineToPoint(lineEndPosition.m_x + horizontalAxis->GetOptions().GetOverhang(), lineStartPosition.m_y);
 
-            wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
+            wxPen pen1(m_options.GetMajorGridLineColor(), m_options.GetMajorGridLineWidth());
             gc.SetPen(pen1);
             gc.StrokePath(path);
 
@@ -146,7 +146,7 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
             path.MoveToPoint(lineStartPosition);
             path.AddLineToPoint(lineStartPosition.m_x, lineEndPosition.m_y - verticalAxis->GetOptions().GetOverhang());
 
-            wxPen pen1(m_options.GetGridLineColor(), m_options.GetGridLineWidth());
+            wxPen pen1(m_options.GetMajorGridLineColor(), m_options.GetMajorGridLineWidth());
             gc.SetPen(pen1);
             gc.StrokePath(path);
 

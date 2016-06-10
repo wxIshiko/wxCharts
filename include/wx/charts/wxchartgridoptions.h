@@ -92,20 +92,20 @@ public:
     /// major grid lines.
     /// @param n The number of vertical minor grid lines to draw.
     void SetNumberOfVerticalMinorGridLinesBetweenTickMarks(unsigned int n);
-	/// Gets the width of the grid lines. This doesn't affect
+	/// Gets the width of the major grid lines. This doesn't affect
 	/// the width of the axes.
-	/// @return The width of the grid lines.
-	unsigned int GetGridLineWidth() const;
+	/// @return The width of the major grid lines.
+	unsigned int GetMajorGridLineWidth() const;
     /// Sets the width of the major grid lines.
     /// @param width The width of the major grid lines.
-    void SetGridLineWidth(unsigned int width);
-	/// Gets the color of the grid lines. This doesn't affect
+    void SetMajorGridLineWidth(unsigned int width);
+	/// Gets the color of the major grid lines. This doesn't affect
 	/// the color of the axes.
-	/// @return The color of the grid lines.
-	const wxColor& GetGridLineColor() const;
+	/// @return The color of the major grid lines.
+	const wxColor& GetMajorGridLineColor() const;
     /// Sets the color of the major grid lines.
     /// @param color The color of the major grid lines.
-    void SetGridLineColor(const wxColor &color);
+    void SetMajorGridLineColor(const wxColor &color);
 
 private:
 	wxChartAxisOptions m_XAxisOptions;
@@ -116,8 +116,8 @@ private:
 	// Whether to show vertical lines (the Y-axis is always shown)
 	bool m_showVerticalGridLines;
     unsigned int m_numberOfVerticalMinorGridLinesBetweenTickMarks;
-	unsigned int m_gridLineWidth;
-	wxColor m_gridLineColor;
+	unsigned int m_majorGridLineWidth;
+	wxColor m_majorGridLineColor;
 };
 
 #endif
