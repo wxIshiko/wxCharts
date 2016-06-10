@@ -58,28 +58,36 @@ public:
 	/// the visibility of the X axis.
 	/// @retval true Show horizontal grid lines.
 	/// @retval false Don't show horizontal grid lines.
-	bool ShowHorizontalLines() const;
+	bool ShowHorizontalGridLines() const;
+    unsigned int GetNumberOfHorizontalMinorGridLinesBetweenTickMarks() const;
+    void SetNumberOfHorizontalMinorGridLinesBetweenTickMarks(unsigned int n);
 	/// Whether to show vertical grid lines. This doesn't affect
 	/// the visibility of the Y axis.
 	/// @retval true Show vertical grid lines.
 	/// @retval false Don't show vertical grid lines.
-	bool ShowVerticalLines() const;
+	bool ShowVerticalGridLines() const;
+    unsigned int GetNumberOfVerticalMinorGridLinesBetweenTickMarks() const;
+    void SetNumberOfVerticalMinorGridLinesBetweenTickMarks(unsigned int n);
 	/// Gets the width of the grid lines. This doesn't affect
 	/// the width of the axes.
 	/// @return The width of the grid lines.
 	unsigned int GetGridLineWidth() const;
+    void SetGridLineWidth(unsigned int width);
 	/// Gets the color of the grid lines. This doesn't affect
 	/// the color of the axes.
 	/// @return The color of the grid lines.
 	const wxColor& GetGridLineColor() const;
+    void SetGridLineColor(const wxColor &color);
 
 private:
 	wxChartAxisOptions m_XAxisOptions;
 	wxChartAxisOptions m_YAxisOptions;
 	// Whether to show horizontal lines (the X-axis is always shown)
-	bool m_showHorizontalLines;
+	bool m_showHorizontalGridLines;
+    unsigned int m_numberOfHorizontalMinorGridLinesBetweenTickMarks;
 	// Whether to show vertical lines (the Y-axis is always shown)
-	bool m_showVerticalLines;
+	bool m_showVerticalGridLines;
+    unsigned int m_numberOfVerticalMinorGridLinesBetweenTickMarks;
 	unsigned int m_gridLineWidth;
 	wxColor m_gridLineColor;
 };

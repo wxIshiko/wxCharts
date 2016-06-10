@@ -24,16 +24,18 @@
 
 wxChartGridOptions::wxChartGridOptions()
 	: m_XAxisOptions(wxCHARTAXISPOSITION_BOTTOM), m_YAxisOptions(wxCHARTAXISPOSITION_LEFT),
-	m_showHorizontalLines(true), m_showVerticalLines(true),
-	m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x0C)
+	m_showHorizontalGridLines(true), m_numberOfHorizontalMinorGridLinesBetweenTickMarks(0),
+    m_showVerticalGridLines(true), m_numberOfVerticalMinorGridLinesBetweenTickMarks(0),
+    m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x0C)
 {
 }
 
 wxChartGridOptions::wxChartGridOptions(const wxChartAxisOptions &xAxisOptions,
 									   const wxChartAxisOptions &yAxisOptions)
 	: m_XAxisOptions(xAxisOptions), m_YAxisOptions(yAxisOptions),
-	m_showHorizontalLines(true), m_showVerticalLines(true),
-	m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x0C)
+	m_showHorizontalGridLines(true), m_numberOfHorizontalMinorGridLinesBetweenTickMarks(0),
+    m_showVerticalGridLines(true), m_numberOfVerticalMinorGridLinesBetweenTickMarks(0),
+    m_gridLineWidth(1), m_gridLineColor(0, 0, 0, 0x0C)
 {
 }
 
@@ -57,14 +59,34 @@ wxChartAxisOptions& wxChartGridOptions::GetYAxisOptions()
 	return m_YAxisOptions;
 }
 
-bool wxChartGridOptions::ShowHorizontalLines() const
+bool wxChartGridOptions::ShowHorizontalGridLines() const
 {
-	return m_showHorizontalLines;
+	return m_showHorizontalGridLines;
 }
 
-bool wxChartGridOptions::ShowVerticalLines() const
+unsigned int wxChartGridOptions::GetNumberOfHorizontalMinorGridLinesBetweenTickMarks() const
 {
-	return m_showVerticalLines;
+    return m_numberOfHorizontalMinorGridLinesBetweenTickMarks;
+}
+
+void wxChartGridOptions::SetNumberOfHorizontalMinorGridLinesBetweenTickMarks(unsigned int n)
+{
+    m_numberOfHorizontalMinorGridLinesBetweenTickMarks = n;
+}
+
+bool wxChartGridOptions::ShowVerticalGridLines() const
+{
+	return m_showVerticalGridLines;
+}
+
+unsigned int wxChartGridOptions::GetNumberOfVerticalMinorGridLinesBetweenTickMarks() const
+{
+    return m_numberOfVerticalMinorGridLinesBetweenTickMarks;
+}
+
+void wxChartGridOptions::SetNumberOfVerticalMinorGridLinesBetweenTickMarks(unsigned int n)
+{
+    m_numberOfVerticalMinorGridLinesBetweenTickMarks = n;
 }
 
 unsigned int wxChartGridOptions::GetGridLineWidth() const
@@ -72,7 +94,17 @@ unsigned int wxChartGridOptions::GetGridLineWidth() const
 	return m_gridLineWidth;
 }
 
+void wxChartGridOptions::SetGridLineWidth(unsigned int width)
+{
+    m_gridLineWidth = width;
+}
+
 const wxColor& wxChartGridOptions::GetGridLineColor() const
 {
 	return m_gridLineColor;
+}
+
+void wxChartGridOptions::SetGridLineColor(const wxColor &color)
+{
+    m_gridLineColor = color;
 }
