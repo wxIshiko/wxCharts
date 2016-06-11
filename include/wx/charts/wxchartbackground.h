@@ -28,6 +28,7 @@
 #include "wxchartbackgroundoptions.h"
 #include <wx/graphics.h>
 
+/// Class to draw backgrounds for various chart elements.
 class wxChartBackground
 {
 public:

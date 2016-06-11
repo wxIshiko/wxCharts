@@ -28,6 +28,7 @@
 #include "wxchartfontoptions.h"
 #include "wxchartbackgroundoptions.h"
 
+/// The options for the wxChartLabel element.
 class wxChartLabelOptions : public wxObject
 {
 public:

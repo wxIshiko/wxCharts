@@ -21,3 +21,29 @@
 */
 
 #include "wxchartohlcdata.h"
+
+wxChartOHLCData::wxChartOHLCData(double open, double high, double low, double close)
+    : m_open(open), m_high(high), m_low(low), m_close(close)
+{
+}
+
+double wxChartOHLCData::open() const
+{
+    return m_open;
+}
+
+double wxChartOHLCData::high() const
+{
+    return m_high;
+}
+
+double wxChartOHLCData::low() const
+{
+    return m_low;
+}
+
+double wxChartOHLCData::close() const
+{
+    return m_close;
+
+}

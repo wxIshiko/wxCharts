@@ -80,6 +80,10 @@ void wxCandlestickChartCtrl::OnPaint(wxPaintEvent &evt)
     if (gc)
     {
         m_grid.Draw(*gc);
+
+        DrawTooltips(*gc);
+
+        delete gc;
     }
 }
 

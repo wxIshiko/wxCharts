@@ -27,6 +27,7 @@
 
 #include <wx/colour.h>
 
+/// The options for the wxChartBackground class.
 class wxChartBackgroundOptions
 {
 public:

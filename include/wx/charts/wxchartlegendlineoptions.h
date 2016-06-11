@@ -27,7 +27,7 @@
 
 #include "wxchartfontoptions.h"
 
-/// Options for the wxChartLegendLine element.
+/// The options for the wxChartLegendLine element.
 class wxChartLegendLineOptions
 {
 public:

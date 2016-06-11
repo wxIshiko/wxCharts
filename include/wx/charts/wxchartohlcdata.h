@@ -30,6 +30,19 @@
 /// This is used in charts like the OHLDC and candlestick charts.
 class wxChartOHLCData
 {
+public:
+    wxChartOHLCData(double open, double high, double low, double close);
+
+    double open() const;
+    double high() const;
+    double low() const;
+    double close() const;
+
+private:
+    double m_open;
+    double m_high;
+    double m_low;
+    double m_close;
 };
 
 #endif

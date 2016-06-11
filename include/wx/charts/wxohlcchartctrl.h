@@ -34,15 +34,21 @@
 class wxOHLCChartData
 {
 public:
-    wxOHLCChartData(const wxVector<wxString> &labels);
+    wxOHLCChartData(const wxVector<wxString> &labels, const wxVector<wxChartOHLCData> &data);
 
     /// Gets the labels of the X axis.
     /// @return A vector containing the labels of the
     /// X axis.
     const wxVector<wxString>& GetLabels() const;
+    unsigned int GetLineWidth() const;
+    const wxColor& GetLineColor() const;
+    const wxVector<wxChartOHLCData>& GetData() const;
 
 private:
     wxVector<wxString> m_labels;
+    unsigned int m_lineWidth;
+    wxColor m_lineColor;
+    wxVector<wxChartOHLCData> m_data;
 };
 
 /// A control that displays a candlestick chart.
@@ -69,14 +75,44 @@ public:
     virtual const wxOHLCChartOptions& GetOptions() const;
 
 private:
+    static wxDouble GetMinValue(const wxOHLCChartData &data);
+    static wxDouble GetMaxValue(const wxOHLCChartData &data);
+
     virtual void Resize(const wxSize &size);
     virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
     void OnPaint(wxPaintEvent &evt);
 
 private:
+    class OHLDCLines : public wxChartElement
+    {
+    public:
+        typedef wxSharedPtr<OHLDCLines> ptr;
+
+        OHLDCLines(const wxChartOHLCData &data, unsigned int lineWidth,
+            const wxColor& lineColor);
+
+        virtual bool HitTest(const wxPoint &point) const;
+        virtual wxPoint2DDouble GetTooltipPosition() const;
+
+        /// Draws the OHLDC lines.
+        /// @param gc The graphics context.
+        void Draw(wxGraphicsContext &gc);
+
+        void Update(const wxChartGridMapping& mapping, size_t index);
+
+    private:
+        wxChartOHLCData m_data;
+        wxPoint2DDouble m_bottom;
+        wxPoint2DDouble m_top;
+        unsigned int m_lineWidth;
+        wxColor m_lineColor;
+    };
+
+private:
     wxOHLCChartOptions m_options;
     wxChartGrid m_grid;
+    wxVector<OHLDCLines::ptr> m_data;
 
     DECLARE_EVENT_TABLE();
 };

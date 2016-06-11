@@ -131,6 +131,10 @@ private:
 	void Fit(wxGraphicsContext &gc);
 	void CalculatePadding(const wxChartAxis &xAxis,
 		const wxChartAxis &yAxis, wxDouble &left, wxDouble &right);
+    static void DrawHorizontalGridLines(const wxChartAxis &horizontalAxis, const wxChartAxis &verticalAxis,
+        const wxChartGridLineOptions &options, wxGraphicsContext &gc);
+    static void DrawVerticalGridLines(const wxChartAxis &horizontalAxis, const wxChartAxis &verticalAxis,
+        const wxChartGridLineOptions &options, wxGraphicsContext &gc);
 
 private:
 	wxChartGridOptions m_options;
