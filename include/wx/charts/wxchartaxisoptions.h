@@ -76,6 +76,26 @@ enum wxChartAxisLabelType
 	wxCHARTAXISLABELTYPE_RANGE = 1
 };
 
+/// Margin types for the gap between the first label and the start
+/// of the axis (start margin) or between the last label 
+/// and the end of the axis (end margin).
+enum wxChartAxisMarginType
+{
+    /// No margin.
+    wxCHARTAXISMARGINTYPE_NONE = 0,
+    /// In the case of the start margin the first tick mark 
+    /// is usually immediately located at the start of
+    /// the axis. This margin type will offset the start of the first tick mark
+    /// by the distance between two tick marks. It's like inserting a hidden
+    /// tick mark before the first tick mark.
+    /// In the case of the end margin the last tick mark 
+    /// is usually located right at the end of
+    /// the axis. This margin type will offset the end of the last tick mark
+    /// by the distance between two tick marks. It's like inserting a hidden
+    /// tick mark after the last tick mark.
+    wxCHARTAXISMARGINTYPE_TICKMARKOFFSET = 1
+};
+
 enum wxChartAxisValueMode
 {
 	wxCHARTAXISVALUEMODE_AUTO = 0,
@@ -87,15 +107,36 @@ class wxChartAxisOptions
 {
 public:
 	/// Constructs a new wxChartAxisOptions
-	/// instance.
+	/// instance. The axis will use the wxCHARTAXISLABELTYPE_POINT type
+    /// as label type.
+    /// @param position The position of the axis.
 	wxChartAxisOptions(wxChartAxisPosition position);
+    /// Constructs a new wxChartAxisOptions
+    /// instance.
+    /// @param position The position of the axis.
+    /// @param labelType The type of labels.
 	wxChartAxisOptions(wxChartAxisPosition position, wxChartAxisLabelType labelType);
 
+    /// Gets the position of the axis.
+    /// @return The position of the axis.
 	wxChartAxisPosition GetPosition() const;
 
 	/// Gets the label type.
 	/// @return The label type.
 	wxChartAxisLabelType GetLabelType() const;
+
+    /// Gets the start margin type.
+    /// @return The start margin type.
+    wxChartAxisMarginType GetStartMarginType() const;
+    /// Sets the type of the start margin.
+    /// @param type The margin type.
+    void SetStartMarginType(wxChartAxisMarginType type);
+    /// Gets the end margin type.
+    /// @return The end margin type.
+    wxChartAxisMarginType GetEndMarginType() const;
+    /// Sets the type of the end margin.
+    /// @param type The margin type.
+    void SetEndMarginType(wxChartAxisMarginType type);
 
 	wxChartAxisValueMode GetStartValueMode() const;
 	wxDouble GetStartValue() const;
@@ -116,11 +157,15 @@ public:
 	/// @return The overhang.
 	wxDouble GetOverhang() const;
 
+    /// Gets the font options for the labels.
+    /// @return The font options for the labels.
 	const wxChartFontOptions& GetFontOptions() const;
 
 private:
 	wxChartAxisPosition m_position;
 	wxChartAxisLabelType m_labelType;
+    wxChartAxisMarginType m_startMarginType;
+    wxChartAxisMarginType m_endMarginType;
 	wxChartAxisValueMode m_startValueMode;
 	wxDouble m_startValue;
 	wxChartAxisValueMode m_endValueMode;

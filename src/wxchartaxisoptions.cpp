@@ -24,6 +24,7 @@
 
 wxChartAxisOptions::wxChartAxisOptions(wxChartAxisPosition position)
 	: m_position(position), m_labelType(wxCHARTAXISLABELTYPE_POINT),
+    m_startMarginType(wxCHARTAXISMARGINTYPE_NONE), m_endMarginType(wxCHARTAXISMARGINTYPE_NONE),
 	m_startValueMode(wxCHARTAXISVALUEMODE_AUTO), m_startValue(0),
 	m_endValueMode(wxCHARTAXISVALUEMODE_AUTO), m_endValue(0),
 	m_lineWidth(1), m_lineColor(0, 0, 0, 0x19), m_overhang(3),
@@ -34,6 +35,7 @@ wxChartAxisOptions::wxChartAxisOptions(wxChartAxisPosition position)
 wxChartAxisOptions::wxChartAxisOptions(wxChartAxisPosition position,
 									   wxChartAxisLabelType labelType)
 	: m_position(position), m_labelType(labelType),
+    m_startMarginType(wxCHARTAXISMARGINTYPE_NONE), m_endMarginType(wxCHARTAXISMARGINTYPE_NONE),
 	m_startValueMode(wxCHARTAXISVALUEMODE_AUTO), m_startValue(0),
 	m_endValueMode(wxCHARTAXISVALUEMODE_AUTO), m_endValue(0),
 	m_lineWidth(1), m_lineColor(0, 0, 0, 0x19), m_overhang(3),
@@ -49,6 +51,26 @@ wxChartAxisPosition wxChartAxisOptions::GetPosition() const
 wxChartAxisLabelType wxChartAxisOptions::GetLabelType() const
 {
 	return m_labelType;
+}
+
+wxChartAxisMarginType wxChartAxisOptions::GetStartMarginType() const
+{
+    return m_startMarginType;
+}
+
+void wxChartAxisOptions::SetStartMarginType(wxChartAxisMarginType type)
+{
+    m_startMarginType = type;
+}
+
+wxChartAxisMarginType wxChartAxisOptions::GetEndMarginType() const
+{
+    return m_endMarginType;
+}
+
+void wxChartAxisOptions::SetEndMarginType(wxChartAxisMarginType type)
+{
+    m_endMarginType = type;
 }
 
 wxChartAxisValueMode wxChartAxisOptions::GetStartValueMode() const
