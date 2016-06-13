@@ -251,6 +251,10 @@ void wxChartGrid::DrawHorizontalGridLines(const wxChartAxis &horizontalAxis,
     {
         wxPoint2DDouble lineStartPosition = verticalAxis.GetTickMarkPosition(i);
         wxPoint2DDouble lineEndPosition = horizontalAxis.GetTickMarkPosition(horizontalAxis.GetNumberOfTickMarks() - 1);
+        if (horizontalAxis.GetOptions().GetEndMarginType() == wxCHARTAXISMARGINTYPE_TICKMARKOFFSET)
+        {
+            lineEndPosition.m_x += horizontalAxis.GetDistanceBetweenTickMarks();
+        }
 
         wxGraphicsPath path = gc.CreatePath();
         path.MoveToPoint(lineStartPosition);
@@ -286,7 +290,17 @@ void wxChartGrid::DrawVerticalGridLines(const wxChartAxis &horizontalAxis,
                                         const wxChartGridLineOptions &options,
                                         wxGraphicsContext &gc)
 {
-    for (size_t i = 1; i < horizontalAxis.GetNumberOfTickMarks(); ++i)
+    size_t i = 1;
+    if (horizontalAxis.GetOptions().GetStartMarginType() == wxCHARTAXISMARGINTYPE_TICKMARKOFFSET)
+    {
+        i = 0;
+    }
+    size_t end = horizontalAxis.GetNumberOfTickMarks();
+    if (horizontalAxis.GetOptions().GetEndMarginType() == wxCHARTAXISMARGINTYPE_TICKMARKOFFSET)
+    {
+        ++end;
+    }
+    for (; i < end; ++i)
     {
         wxPoint2DDouble lineStartPosition = horizontalAxis.GetTickMarkPosition(i);
         wxPoint2DDouble lineEndPosition = verticalAxis.GetTickMarkPosition(verticalAxis.GetNumberOfTickMarks() - 1);
@@ -298,7 +312,6 @@ void wxChartGrid::DrawVerticalGridLines(const wxChartAxis &horizontalAxis,
         wxPen pen1(options.GetMajorGridLineColor(), options.GetMajorGridLineWidth());
         gc.SetPen(pen1);
         gc.StrokePath(path);
-
 
         unsigned int n = options.GetNumberOfMinorGridLinesBetweenTickMarks();
         if (n != 0)

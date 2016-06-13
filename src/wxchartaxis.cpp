@@ -127,12 +127,17 @@ void wxChartAxis::SetLabels(const wxVector<wxChartLabel> &labels)
 
 wxPoint2DDouble wxChartAxis::CalculateLabelPosition(size_t index)
 {
+    wxDouble marginCorrection = 0;
+    if (m_options.GetStartMarginType() == wxCHARTAXISMARGINTYPE_TICKMARKOFFSET)
+    {
+        marginCorrection += GetDistanceBetweenTickMarks();
+    }
 	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
 	{
 		wxDouble distance = GetDistanceBetweenTickMarks();
 		wxPoint2DDouble position(
 			m_startPoint.m_x - 10 - m_labels[index].GetSize().GetWidth(),
-			m_startPoint.m_y - (distance * index) - (m_labels[index].GetSize().GetHeight() / 2)
+			m_startPoint.m_y - (distance * index) - (m_labels[index].GetSize().GetHeight() / 2) - marginCorrection
 			);
 
 		if (m_options.GetLabelType() == wxCHARTAXISLABELTYPE_RANGE)
@@ -146,7 +151,7 @@ wxPoint2DDouble wxChartAxis::CalculateLabelPosition(size_t index)
 	{
 		wxDouble distance = GetDistanceBetweenTickMarks();
 		wxPoint2DDouble position(
-			m_startPoint.m_x + (distance * index) - (m_labels[index].GetSize().GetWidth() / 2),
+			m_startPoint.m_x + (distance * index) - (m_labels[index].GetSize().GetWidth() / 2) + marginCorrection,
 			m_startPoint.m_y + 8
 			);
 
@@ -186,13 +191,22 @@ size_t wxChartAxis::GetNumberOfTickMarks() const
 
 wxDouble wxChartAxis::GetDistanceBetweenTickMarks() const
 {
+    size_t marginCorrection = 0;
+    if (m_options.GetStartMarginType() == wxCHARTAXISMARGINTYPE_TICKMARKOFFSET)
+    {
+        ++marginCorrection;
+    }
+    if (m_options.GetEndMarginType() == wxCHARTAXISMARGINTYPE_TICKMARKOFFSET)
+    {
+        ++marginCorrection;
+    }
 	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
 	{
-		return ((m_startPoint.m_y - m_endPoint.m_y) / (GetNumberOfTickMarks() - 1));
+		return ((m_startPoint.m_y - m_endPoint.m_y) / (GetNumberOfTickMarks() + marginCorrection - 1));
 	}
 	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
 	{
-		return ((m_endPoint.m_x - m_startPoint.m_x) / (GetNumberOfTickMarks() - 1));
+		return ((m_endPoint.m_x - m_startPoint.m_x) / (GetNumberOfTickMarks() + marginCorrection - 1));
 	}
 
 	wxTrap();
@@ -201,14 +215,19 @@ wxDouble wxChartAxis::GetDistanceBetweenTickMarks() const
 
 wxPoint2DDouble wxChartAxis::GetTickMarkPosition(size_t index) const
 {
+    wxDouble marginCorrection = 0;
+    if (m_options.GetStartMarginType() == wxCHARTAXISMARGINTYPE_TICKMARKOFFSET)
+    {
+        marginCorrection += GetDistanceBetweenTickMarks();
+    }
 	if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
 	{
-		wxDouble yLabelCenter = m_startPoint.m_y - (GetDistanceBetweenTickMarks() * index);
-		return wxPoint2DDouble(m_startPoint.m_x, yLabelCenter);
+		wxDouble valueOffset = m_startPoint.m_y - (GetDistanceBetweenTickMarks() * index) - marginCorrection;
+		return wxPoint2DDouble(m_startPoint.m_x, valueOffset);
 	}
 	else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
 	{
-		wxDouble valueOffset = m_startPoint.m_x + (GetDistanceBetweenTickMarks() * index);
+		wxDouble valueOffset = m_startPoint.m_x + (GetDistanceBetweenTickMarks() * index) + marginCorrection;
 		return wxPoint2DDouble(valueOffset, m_startPoint.m_y);
 	}
 

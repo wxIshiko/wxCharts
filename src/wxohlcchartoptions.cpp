@@ -26,6 +26,8 @@
 
 wxOHLCChartOptions::wxOHLCChartOptions()
 {
+    m_gridOptions.GetXAxisOptions().SetStartMarginType(wxCHARTAXISMARGINTYPE_TICKMARKOFFSET);
+    m_gridOptions.GetXAxisOptions().SetEndMarginType(wxCHARTAXISMARGINTYPE_TICKMARKOFFSET);
     m_gridOptions.GetHorizontalGridLineOptions().SetMajorGridLineColor(wxColor(0, 0, 0, 0x30));
     m_gridOptions.GetHorizontalGridLineOptions().SetNumberOfMinorGridLinesBetweenTickMarks(4);
     m_gridOptions.GetVerticalGridLineOptions().SetMajorGridLineColor(wxColor(0, 0, 0, 0x30));
