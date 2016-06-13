@@ -42,6 +42,20 @@ const wxVector<wxChartOHLCData>& wxCandlestickChartData::GetData() const
     return m_data;
 }
 
+wxCandlestickChartCtrl::Candlestick::Candlestick()
+{
+}
+
+bool wxCandlestickChartCtrl::Candlestick::HitTest(const wxPoint &point) const
+{
+    return false;
+}
+
+wxPoint2DDouble wxCandlestickChartCtrl::Candlestick::GetTooltipPosition() const
+{
+    return wxPoint2DDouble(0, 0);
+}
+
 wxCandlestickChartCtrl::wxCandlestickChartCtrl(wxWindow *parent,
                                                wxWindowID id,
                                                const wxCandlestickChartData &data,
@@ -54,6 +68,11 @@ wxCandlestickChartCtrl::wxCandlestickChartCtrl(wxWindow *parent,
         size, data.GetLabels(), GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions()
         )
 {
+    for (size_t i = 0; i < data.GetData().size(); ++i)
+    {
+        Candlestick::ptr newCandlestick(new Candlestick());
+        m_data.push_back(newCandlestick);
+    }
 }
 
 const wxCandlestickChartOptions& wxCandlestickChartCtrl::GetOptions() const

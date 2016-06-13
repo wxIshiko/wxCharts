@@ -80,8 +80,21 @@ private:
     void OnPaint(wxPaintEvent &evt);
 
 private:
+    class Candlestick : public wxChartElement
+    {
+    public:
+        typedef wxSharedPtr<Candlestick> ptr;
+
+        Candlestick();
+
+        virtual bool HitTest(const wxPoint &point) const;
+        virtual wxPoint2DDouble GetTooltipPosition() const;
+    };
+
+private:
     wxCandlestickChartOptions m_options;
     wxChartGrid m_grid;
+    wxVector<Candlestick::ptr> m_data;
 
     DECLARE_EVENT_TABLE();
 };
