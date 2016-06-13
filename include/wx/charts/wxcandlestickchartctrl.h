@@ -85,10 +85,23 @@ private:
     public:
         typedef wxSharedPtr<Candlestick> ptr;
 
-        Candlestick();
+        Candlestick(const wxChartOHLCData &data);
 
         virtual bool HitTest(const wxPoint &point) const;
         virtual wxPoint2DDouble GetTooltipPosition() const;
+
+        /// Draws the OHLDC lines.
+        /// @param gc The graphics context.
+        void Draw(wxGraphicsContext &gc);
+
+        void Update(const wxChartGridMapping& mapping, size_t index);
+
+    private:
+        wxChartOHLCData m_data;
+        wxPoint2DDouble m_lowPoint;
+        wxPoint2DDouble m_highPoint;
+        wxPoint2DDouble m_openPoint;
+        wxPoint2DDouble m_closePoint;
     };
 
 private:

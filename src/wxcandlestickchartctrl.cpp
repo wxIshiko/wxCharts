@@ -42,7 +42,9 @@ const wxVector<wxChartOHLCData>& wxCandlestickChartData::GetData() const
     return m_data;
 }
 
-wxCandlestickChartCtrl::Candlestick::Candlestick()
+wxCandlestickChartCtrl::Candlestick::Candlestick(const wxChartOHLCData &data)
+    : m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
+    m_openPoint(0, 0), m_closePoint(0, 0)
 {
 }
 
@@ -54,6 +56,27 @@ bool wxCandlestickChartCtrl::Candlestick::HitTest(const wxPoint &point) const
 wxPoint2DDouble wxCandlestickChartCtrl::Candlestick::GetTooltipPosition() const
 {
     return wxPoint2DDouble(0, 0);
+}
+
+void wxCandlestickChartCtrl::Candlestick::Draw(wxGraphicsContext &gc)
+{
+    wxGraphicsPath path = gc.CreatePath();
+    path.MoveToPoint(m_highPoint);
+    path.AddLineToPoint(m_lowPoint);
+
+    wxPen pen(*wxBLACK, 5);
+    gc.SetPen(pen);
+    
+    gc.StrokePath(path);
+}
+
+void wxCandlestickChartCtrl::Candlestick::Update(const wxChartGridMapping& mapping,
+                                                 size_t index)
+{
+    m_lowPoint = mapping.GetWindowPositionAtTickMark(index, m_data.low());
+    m_highPoint = mapping.GetWindowPositionAtTickMark(index, m_data.high());
+    m_openPoint = mapping.GetWindowPositionAtTickMark(index, m_data.open());
+    m_closePoint = mapping.GetWindowPositionAtTickMark(index, m_data.close());
 }
 
 wxCandlestickChartCtrl::wxCandlestickChartCtrl(wxWindow *parent,
@@ -70,7 +93,9 @@ wxCandlestickChartCtrl::wxCandlestickChartCtrl(wxWindow *parent,
 {
     for (size_t i = 0; i < data.GetData().size(); ++i)
     {
-        Candlestick::ptr newCandlestick(new Candlestick());
+        Candlestick::ptr newCandlestick(new Candlestick(
+            data.GetData()[i]
+            ));
         m_data.push_back(newCandlestick);
     }
 }
@@ -147,6 +172,16 @@ void wxCandlestickChartCtrl::OnPaint(wxPaintEvent &evt)
     if (gc)
     {
         m_grid.Draw(*gc);
+
+        for (size_t i = 0; i < m_data.size(); ++i)
+        {
+            m_data[i]->Update(m_grid.GetMapping(), i);
+        }
+
+        for (size_t i = 0; i < m_data.size(); ++i)
+        {
+            m_data[i]->Draw(*gc);
+        }
 
         DrawTooltips(*gc);
 
