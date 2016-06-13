@@ -42,12 +42,16 @@ public:
     const wxVector<wxString>& GetLabels() const;
     unsigned int GetLineWidth() const;
     const wxColor& GetLineColor() const;
+    unsigned int GetOpenLineLength() const;
+    unsigned int GetCloseLineLength() const;
     const wxVector<wxChartOHLCData>& GetData() const;
 
 private:
     wxVector<wxString> m_labels;
     unsigned int m_lineWidth;
     wxColor m_lineColor;
+    unsigned int m_openLineLength;
+    unsigned int m_closeLineLength;
     wxVector<wxChartOHLCData> m_data;
 };
 
@@ -90,7 +94,9 @@ private:
         typedef wxSharedPtr<OHLDCLines> ptr;
 
         OHLDCLines(const wxChartOHLCData &data, unsigned int lineWidth,
-            const wxColor& lineColor);
+            const wxColor& lineColor, unsigned int openLineLength,
+            unsigned int closeLineLength, 
+            const wxChartTooltipProvider::ptr tooltipProvider);
 
         virtual bool HitTest(const wxPoint &point) const;
         virtual wxPoint2DDouble GetTooltipPosition() const;
@@ -103,10 +109,14 @@ private:
 
     private:
         wxChartOHLCData m_data;
-        wxPoint2DDouble m_bottom;
-        wxPoint2DDouble m_top;
+        wxPoint2DDouble m_lowPoint;
+        wxPoint2DDouble m_highPoint;
+        wxPoint2DDouble m_openPoint;
+        wxPoint2DDouble m_closePoint;
         unsigned int m_lineWidth;
         wxColor m_lineColor;
+        unsigned int m_openLineLength;
+        unsigned int m_closeLineLength;
     };
 
 private:
