@@ -29,7 +29,8 @@
 
 wxOHLCChartData::wxOHLCChartData(const wxVector<wxString> &labels, 
                                  const wxVector<wxChartOHLCData> &data)
-    : m_labels(labels), m_lineWidth(3), m_lineColor(91, 127, 125), 
+    : m_labels(labels), m_lineWidth(3), 
+    m_upLineColor(0, 185, 0), m_downLineColor(200, 0, 0),
     m_openLineLength(10), m_closeLineLength(10), m_data(data)
 {
 }
@@ -44,9 +45,14 @@ unsigned int wxOHLCChartData::GetLineWidth() const
     return m_lineWidth;
 }
 
-const wxColor& wxOHLCChartData::GetLineColor() const
+const wxColor& wxOHLCChartData::GetUpLineColor() const
 {
-    return m_lineColor;
+    return m_upLineColor;
+}
+
+const wxColor& wxOHLCChartData::GetDownLineColor() const
+{
+    return m_downLineColor;
 }
 
 unsigned int wxOHLCChartData::GetOpenLineLength() const
@@ -66,12 +72,14 @@ const wxVector<wxChartOHLCData>& wxOHLCChartData::GetData() const
 
 wxOHLCChartCtrl::OHLDCLines::OHLDCLines(const wxChartOHLCData &data, 
                                         unsigned int lineWidth,
-                                        const wxColor& lineColor,
+                                        const wxColor& upLineColor,
+                                        const wxColor& downLineColor,
                                         unsigned int openLineLength,
                                         unsigned int closeLineLength,
                                         const wxChartTooltipProvider::ptr tooltipProvider)
     : wxChartElement(tooltipProvider), m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
-    m_openPoint(0, 0), m_closePoint(0, 0), m_lineWidth(lineWidth), m_lineColor(lineColor),
+    m_openPoint(0, 0), m_closePoint(0, 0), m_lineWidth(lineWidth), 
+    m_upLineColor(upLineColor), m_downLineColor(downLineColor),
     m_openLineLength(openLineLength), m_closeLineLength(closeLineLength)
 {
 }
@@ -100,8 +108,16 @@ void wxOHLCChartCtrl::OHLDCLines::Draw(wxGraphicsContext &gc)
     path.MoveToPoint(m_closePoint);
     path.AddLineToPoint(wxPoint2DDouble(m_closePoint.m_x + m_closeLineLength, m_closePoint.m_y));
 
-    wxPen pen(m_lineColor, m_lineWidth);
-    gc.SetPen(pen);
+    if (m_data.close() >= m_data.open())
+    {
+        wxPen pen(m_upLineColor, m_lineWidth);
+        gc.SetPen(pen);
+    }
+    else
+    {
+        wxPen pen(m_downLineColor, m_lineWidth);
+        gc.SetPen(pen);
+    }
     gc.StrokePath(path);
 }
 
@@ -140,7 +156,8 @@ wxOHLCChartCtrl::wxOHLCChartCtrl(wxWindow *parent,
         OHLDCLines::ptr newOHLCLines(new OHLDCLines(
             data.GetData()[i], 
             data.GetLineWidth(), 
-            data.GetLineColor(),
+            data.GetUpLineColor(),
+            data.GetDownLineColor(),
             data.GetOpenLineLength(),
             data.GetCloseLineLength(),
             tooltipProvider
