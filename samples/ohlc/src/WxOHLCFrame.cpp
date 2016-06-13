@@ -32,7 +32,29 @@ WxOHLCFrame::WxOHLCFrame(const wxString& title)
 	wxPanel* panel = new wxPanel(this, wxID_ANY);
 
     // Create the data for the OHLC chart widget
-    wxOHLCChartData chartData;
+    wxVector<wxString> labels;
+    labels.push_back("02/02");
+    labels.push_back("03/02");
+    labels.push_back("04/02");
+    labels.push_back("05/02");
+    labels.push_back("06/02");
+    labels.push_back("07/02");
+    labels.push_back("08/02");
+    labels.push_back("09/02");
+    labels.push_back("10/02");
+
+    wxVector<wxChartOHLCData> data;
+    data.push_back(wxChartOHLCData(6, 10, 5, 8));
+    data.push_back(wxChartOHLCData(7, 7.5, 6, 6.2));
+    data.push_back(wxChartOHLCData(5, 6, 3, 4));
+    data.push_back(wxChartOHLCData(3.5, 4.2, 3.2, 3.5));
+    data.push_back(wxChartOHLCData(4, 7, 4, 5));
+    data.push_back(wxChartOHLCData(4.5, 6, 4, 6));
+    data.push_back(wxChartOHLCData(5, 7, 4.5, 7));
+    data.push_back(wxChartOHLCData(7, 8, 5, 7.5));
+    data.push_back(wxChartOHLCData(7.2, 8, 6, 6.5));
+
+    wxOHLCChartData chartData(labels, data);
 
 	// Create the OHLC chart widget from the constructed data
 	wxOHLCChartCtrl* ohlcChartCtrl = new wxOHLCChartCtrl(panel, wxID_ANY, chartData,
