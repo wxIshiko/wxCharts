@@ -34,15 +34,17 @@
 class wxCandlestickChartData
 {
 public:
-    wxCandlestickChartData(const wxVector<wxString> &labels);
+    wxCandlestickChartData(const wxVector<wxString> &labels, const wxVector<wxChartOHLCData> &data);
 
     /// Gets the labels of the X axis.
     /// @return A vector containing the labels of the
     /// X axis.
     const wxVector<wxString>& GetLabels() const;
+    const wxVector<wxChartOHLCData>& GetData() const;
 
 private:
     wxVector<wxString> m_labels;
+    wxVector<wxChartOHLCData> m_data;
 };
 
 /// A control that displays a candlestick chart.
@@ -69,6 +71,9 @@ public:
     virtual const wxCandlestickChartOptions& GetOptions() const;
 
 private:
+    static wxDouble GetMinValue(const wxCandlestickChartData &data);
+    static wxDouble GetMaxValue(const wxCandlestickChartData &data);
+
     virtual void Resize(const wxSize &size);
     virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 

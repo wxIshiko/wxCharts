@@ -26,14 +26,20 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
-wxCandlestickChartData::wxCandlestickChartData(const wxVector<wxString> &labels)
-    : m_labels(labels)
+wxCandlestickChartData::wxCandlestickChartData(const wxVector<wxString> &labels,
+                                               const wxVector<wxChartOHLCData> &data)
+    : m_labels(labels), m_data(data)
 {
 }
 
 const wxVector<wxString>& wxCandlestickChartData::GetLabels() const
 {
     return m_labels;
+}
+
+const wxVector<wxChartOHLCData>& wxCandlestickChartData::GetData() const
+{
+    return m_data;
 }
 
 wxCandlestickChartCtrl::wxCandlestickChartCtrl(wxWindow *parent,
@@ -45,7 +51,7 @@ wxCandlestickChartCtrl::wxCandlestickChartCtrl(wxWindow *parent,
     : wxChartCtrl(parent, id, pos, size, style),
     m_grid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
-        size, data.GetLabels(), 12, 100, m_options.GetGridOptions()
+        size, data.GetLabels(), GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions()
         )
 {
 }
@@ -53,6 +59,48 @@ wxCandlestickChartCtrl::wxCandlestickChartCtrl(wxWindow *parent,
 const wxCandlestickChartOptions& wxCandlestickChartCtrl::GetOptions() const
 {
     return m_options;
+}
+
+wxDouble wxCandlestickChartCtrl::GetMinValue(const wxCandlestickChartData &data)
+{
+    wxDouble result = 0;
+    bool foundValue = false;
+
+    for (size_t i = 0; i < data.GetData().size(); ++i)
+    {
+        if (!foundValue)
+        {
+            result = data.GetData()[i].low();
+            foundValue = true;
+        }
+        else if (result > data.GetData()[i].low())
+        {
+            result = data.GetData()[i].low();
+        }
+    }
+
+    return result;
+}
+
+wxDouble wxCandlestickChartCtrl::GetMaxValue(const wxCandlestickChartData &data)
+{
+    wxDouble result = 0;
+    bool foundValue = false;
+
+    for (size_t i = 0; i < data.GetData().size(); ++i)
+    {
+        if (!foundValue)
+        {
+            result = data.GetData()[i].high();
+            foundValue = true;
+        }
+        else if (result < data.GetData()[i].high())
+        {
+            result = data.GetData()[i].high();
+        }
+    }
+
+    return result;
 }
 
 void wxCandlestickChartCtrl::Resize(const wxSize &size)
