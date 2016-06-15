@@ -104,8 +104,13 @@ void wxCandlestickChartCtrl::Candlestick::Draw(wxGraphicsContext &gc)
         path.AddLineToPoint(m_closePoint);
 
         wxDouble halfWidth = m_rectangleWidth / 2;
+        wxDouble rectangleHeight = m_openPoint.m_y - m_closePoint.m_y;
+        if (rectangleHeight < 2)
+        {
+            rectangleHeight = 2;
+        }
         path.AddRectangle(m_closePoint.m_x - halfWidth, m_closePoint.m_y, 
-            m_rectangleWidth, m_openPoint.m_y - m_closePoint.m_y);
+            m_rectangleWidth, rectangleHeight);
 
         path.MoveToPoint(m_openPoint);
         path.AddLineToPoint(m_lowPoint);
@@ -126,8 +131,13 @@ void wxCandlestickChartCtrl::Candlestick::Draw(wxGraphicsContext &gc)
         path.AddLineToPoint(m_openPoint);
 
         wxDouble halfWidth = m_rectangleWidth / 2;
+        wxDouble rectangleHeight = m_closePoint.m_y - m_openPoint.m_y;
+        if (rectangleHeight < 2)
+        {
+            rectangleHeight = 2;
+        }
         path.AddRectangle(m_openPoint.m_x - halfWidth, m_openPoint.m_y,
-            m_rectangleWidth, m_closePoint.m_y - m_openPoint.m_y);
+            m_rectangleWidth, rectangleHeight);
 
         path.MoveToPoint(m_closePoint);
         path.AddLineToPoint(m_lowPoint);
