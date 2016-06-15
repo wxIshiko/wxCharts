@@ -97,7 +97,7 @@ wxPoint2DDouble wxCandlestickChartCtrl::Candlestick::GetTooltipPosition() const
 
 void wxCandlestickChartCtrl::Candlestick::Draw(wxGraphicsContext &gc)
 {
-    if (m_data.close() >= m_data.open())
+    if (m_data.GetCloseValue() >= m_data.GetOpenValue())
     {
         wxGraphicsPath path = gc.CreatePath();
         path.MoveToPoint(m_highPoint);
@@ -156,10 +156,10 @@ void wxCandlestickChartCtrl::Candlestick::Draw(wxGraphicsContext &gc)
 void wxCandlestickChartCtrl::Candlestick::Update(const wxChartGridMapping& mapping,
                                                  size_t index)
 {
-    m_lowPoint = mapping.GetWindowPositionAtTickMark(index, m_data.low());
-    m_highPoint = mapping.GetWindowPositionAtTickMark(index, m_data.high());
-    m_openPoint = mapping.GetWindowPositionAtTickMark(index, m_data.open());
-    m_closePoint = mapping.GetWindowPositionAtTickMark(index, m_data.close());
+    m_lowPoint = mapping.GetWindowPositionAtTickMark(index, m_data.GetLowValue());
+    m_highPoint = mapping.GetWindowPositionAtTickMark(index, m_data.GetHighValue());
+    m_openPoint = mapping.GetWindowPositionAtTickMark(index, m_data.GetOpenValue());
+    m_closePoint = mapping.GetWindowPositionAtTickMark(index, m_data.GetCloseValue());
 }
 
 wxCandlestickChartCtrl::wxCandlestickChartCtrl(wxWindow *parent,
@@ -177,10 +177,10 @@ wxCandlestickChartCtrl::wxCandlestickChartCtrl(wxWindow *parent,
     for (size_t i = 0; i < data.GetData().size(); ++i)
     {
         std::stringstream tooltip;
-        tooltip << "O: " << data.GetData()[i].open()
-            << "\r\nH: " << data.GetData()[i].high()
-            << "\r\nL: " << data.GetData()[i].low()
-            << "\r\nC: " << data.GetData()[i].close();
+        tooltip << "O: " << data.GetData()[i].GetOpenValue()
+            << "\r\nH: " << data.GetData()[i].GetHighValue()
+            << "\r\nL: " << data.GetData()[i].GetLowValue()
+            << "\r\nC: " << data.GetData()[i].GetCloseValue();
         wxChartTooltipProvider::ptr tooltipProvider(
             new wxChartTooltipProviderStatic(data.GetLabels()[i], tooltip.str(), *wxWHITE)
             );
@@ -212,12 +212,12 @@ wxDouble wxCandlestickChartCtrl::GetMinValue(const wxCandlestickChartData &data)
     {
         if (!foundValue)
         {
-            result = data.GetData()[i].low();
+            result = data.GetData()[i].GetLowValue();
             foundValue = true;
         }
-        else if (result > data.GetData()[i].low())
+        else if (result > data.GetData()[i].GetLowValue())
         {
-            result = data.GetData()[i].low();
+            result = data.GetData()[i].GetLowValue();
         }
     }
 
@@ -233,12 +233,12 @@ wxDouble wxCandlestickChartCtrl::GetMaxValue(const wxCandlestickChartData &data)
     {
         if (!foundValue)
         {
-            result = data.GetData()[i].high();
+            result = data.GetData()[i].GetHighValue();
             foundValue = true;
         }
-        else if (result < data.GetData()[i].high())
+        else if (result < data.GetData()[i].GetHighValue())
         {
-            result = data.GetData()[i].high();
+            result = data.GetData()[i].GetHighValue();
         }
     }
 

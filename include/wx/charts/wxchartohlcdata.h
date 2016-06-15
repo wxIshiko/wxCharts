@@ -20,10 +20,12 @@
 	IN THE SOFTWARE.
 */
 
+/// @file
+
 #ifndef _WX_CHARTS_WXCHARTOHLCDATA_H_
 #define _WX_CHARTS_WXCHARTOHLCDATA_H_
 
-/// @file
+#include <wx/defs.h>
 
 /// The open, high, low and close values for a single unit of time.
 
@@ -31,18 +33,18 @@
 class wxChartOHLCData
 {
 public:
-    wxChartOHLCData(double open, double high, double low, double close);
+    wxChartOHLCData(wxDouble open, wxDouble high, wxDouble low, wxDouble close);
 
-    double open() const;
-    double high() const;
-    double low() const;
-    double close() const;
+    wxDouble GetOpenValue() const;
+    wxDouble GetHighValue() const;
+    wxDouble GetLowValue() const;
+    wxDouble GetCloseValue() const;
 
 private:
-    double m_open;
-    double m_high;
-    double m_low;
-    double m_close;
+    wxDouble m_open;
+    wxDouble m_high;
+    wxDouble m_low;
+    wxDouble m_close;
 };
 
 #endif
