@@ -25,6 +25,7 @@
 #include "wxcandlestickchartctrl.h"
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
+#include <sstream>
 
 wxCandlestickChartData::wxCandlestickChartData(const wxVector<wxString> &labels,
                                                const wxVector<wxChartOHLCData> &data)
@@ -74,8 +75,9 @@ wxCandlestickChartCtrl::Candlestick::Candlestick(const wxChartOHLCData &data,
                                                  unsigned int lineWidth,
                                                  const wxColor &upFillColor, 
                                                  const wxColor &downFillColor, 
-                                                 unsigned int rectangleWidth)
-    : m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
+                                                 unsigned int rectangleWidth,
+                                                 const wxChartTooltipProvider::ptr tooltipProvider)
+    : wxChartElement(tooltipProvider), m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
     m_openPoint(0, 0), m_closePoint(0, 0), m_lineColor(lineColor), m_lineWidth(lineWidth),
     m_upFillColor(upFillColor), m_downFillColor(downFillColor), m_rectangleWidth(rectangleWidth)
 {
@@ -83,12 +85,14 @@ wxCandlestickChartCtrl::Candlestick::Candlestick(const wxChartOHLCData &data,
 
 bool wxCandlestickChartCtrl::Candlestick::HitTest(const wxPoint &point) const
 {
-    return false;
+    return ((point.y <= m_lowPoint.m_y) && (point.y >= m_highPoint.m_y) &&
+        (point.x >= (m_lowPoint.m_x - (m_rectangleWidth / 2))) &&
+        (point.x <= (m_lowPoint.m_x + (m_rectangleWidth / 2))));
 }
 
 wxPoint2DDouble wxCandlestickChartCtrl::Candlestick::GetTooltipPosition() const
 {
-    return wxPoint2DDouble(0, 0);
+    return wxPoint2DDouble(m_lowPoint.m_x, m_highPoint.m_y + (m_lowPoint.m_y - m_highPoint.m_y) / 2);
 }
 
 void wxCandlestickChartCtrl::Candlestick::Draw(wxGraphicsContext &gc)
@@ -162,13 +166,23 @@ wxCandlestickChartCtrl::wxCandlestickChartCtrl(wxWindow *parent,
 {
     for (size_t i = 0; i < data.GetData().size(); ++i)
     {
+        std::stringstream tooltip;
+        tooltip << "O: " << data.GetData()[i].open()
+            << "\r\nH: " << data.GetData()[i].high()
+            << "\r\nL: " << data.GetData()[i].low()
+            << "\r\nC: " << data.GetData()[i].close();
+        wxChartTooltipProvider::ptr tooltipProvider(
+            new wxChartTooltipProviderStatic(data.GetLabels()[i], tooltip.str(), *wxWHITE)
+            );
+
         Candlestick::ptr newCandlestick(new Candlestick(
             data.GetData()[i],
             data.GetLineColor(),
             data.GetLineWidth(),
             data.GetUpFillColor(),
             data.GetDownFillColor(),
-            data.GetRectangleWidth()
+            data.GetRectangleWidth(),
+            tooltipProvider
             ));
         m_data.push_back(newCandlestick);
     }
@@ -233,6 +247,13 @@ void wxCandlestickChartCtrl::Resize(const wxSize &size)
 wxSharedPtr<wxVector<const wxChartElement*> > wxCandlestickChartCtrl::GetActiveElements(const wxPoint &point)
 {
     wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    for (size_t i = 0; i < m_data.size(); ++i)
+    {
+        if (m_data[i]->HitTest(point))
+        {
+            activeElements->push_back(m_data[i].get());
+        }
+    }
     return activeElements;
 }
 

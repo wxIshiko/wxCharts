@@ -96,7 +96,8 @@ private:
         typedef wxSharedPtr<Candlestick> ptr;
 
         Candlestick(const wxChartOHLCData &data, const wxColor &lineColor, unsigned int lineWidth,
-            const wxColor &upFillColor, const wxColor &downFillColor, unsigned int rectangleWidth);
+            const wxColor &upFillColor, const wxColor &downFillColor, unsigned int rectangleWidth,
+            const wxChartTooltipProvider::ptr tooltipProvider);
 
         virtual bool HitTest(const wxPoint &point) const;
         virtual wxPoint2DDouble GetTooltipPosition() const;
