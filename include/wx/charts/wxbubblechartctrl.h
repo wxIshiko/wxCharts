@@ -29,21 +29,29 @@
 #include "wxbubblechartoptions.h"
 #include "wxchartgrid.h"
 
+class wxBubbleChartDataset
+{
+public:
+    /// Smart pointer typedef.
+    typedef wxSharedPtr<wxBubbleChartDataset> ptr;
+
+    const wxVector<wxPoint2DDouble>& GetData() const;
+
+private:
+    wxVector<wxPoint2DDouble> m_data;
+};
+
 /// Data for the wxBubbleChartCtrl control.
 class wxBubbleChartData
 {
 public:
 	/// Constructs a wxBubbleChartData instance.
-	/// @param labels The labels of the X axis.
-	wxBubbleChartData(const wxVector<wxString> &labels);
+	wxBubbleChartData();
 
-	/// Gets the labels of the X axis.
-	/// @return A vector containing the labels of the
-	/// X axis.
-	const wxVector<wxString>& GetLabels() const;
+    const wxVector<wxBubbleChartDataset::ptr>& GetDatasets() const;
 
 private:
-	wxVector<wxString> m_labels;
+	wxVector<wxBubbleChartDataset::ptr> m_datasets;
 };
 
 /// A control that displays a bubble chart.
@@ -70,6 +78,11 @@ public:
 	virtual const wxBubbleChartOptions& GetOptions() const;
 
 private:
+    static wxDouble GetMinXValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
+    static wxDouble GetMaxXValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
+    static wxDouble GetMinYValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
+    static wxDouble GetMaxYValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
+
 	virtual void Resize(const wxSize &size);
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 

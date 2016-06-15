@@ -26,14 +26,18 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
-wxBubbleChartData::wxBubbleChartData(const wxVector<wxString> &labels)
-	: m_labels(labels)
+const wxVector<wxPoint2DDouble>& wxBubbleChartDataset::GetData() const
+{
+    return m_data;
+}
+
+wxBubbleChartData::wxBubbleChartData()
 {
 }
 
-const wxVector<wxString>& wxBubbleChartData::GetLabels() const
+const wxVector<wxBubbleChartDataset::ptr>& wxBubbleChartData::GetDatasets() const
 {
-	return m_labels;
+    return m_datasets;
 }
 
 wxBubbleChartCtrl::wxBubbleChartCtrl(wxWindow *parent,
@@ -43,16 +47,119 @@ wxBubbleChartCtrl::wxBubbleChartCtrl(wxWindow *parent,
 									 const wxSize &size,
 									 long style)
 	: wxChartCtrl(parent, id, pos, size, style),
-	m_grid(
-		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()), 
-		size, data.GetLabels(), 0, 20, m_options.GetGridOptions()
-		)
+    m_grid(
+        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+        size,
+        GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
+        GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
+        m_options.GetGridOptions()
+        )
 {
 }
 
 const wxBubbleChartOptions& wxBubbleChartCtrl::GetOptions() const
 {
 	return m_options;
+}
+
+wxDouble wxBubbleChartCtrl::GetMinXValue(const wxVector<wxBubbleChartDataset::ptr>& datasets)
+{
+    wxDouble result = 0;
+    bool foundValue = false;
+
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
+        for (size_t j = 0; j < values.size(); ++j)
+        {
+            if (!foundValue)
+            {
+                result = values[j].m_x;
+                foundValue = true;
+            }
+            else if (result > values[j].m_x)
+            {
+                result = values[j].m_x;
+            }
+        }
+    }
+
+    return result;
+}
+
+wxDouble wxBubbleChartCtrl::GetMaxXValue(const wxVector<wxBubbleChartDataset::ptr>& datasets)
+{
+    wxDouble result = 0;
+    bool foundValue = false;
+
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
+        for (size_t j = 0; j < values.size(); ++j)
+        {
+            if (!foundValue)
+            {
+                result = values[j].m_x;
+                foundValue = true;
+            }
+            else if (result < values[j].m_x)
+            {
+                result = values[j].m_x;
+            }
+        }
+    }
+
+    return result;
+}
+
+wxDouble wxBubbleChartCtrl::GetMinYValue(const wxVector<wxBubbleChartDataset::ptr>& datasets)
+{
+    wxDouble result = 0;
+    bool foundValue = false;
+
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
+        for (size_t j = 0; j < values.size(); ++j)
+        {
+            if (!foundValue)
+            {
+                result = values[j].m_y;
+                foundValue = true;
+            }
+            else if (result > values[j].m_y)
+            {
+                result = values[j].m_y;
+            }
+        }
+    }
+
+    return result;
+}
+
+wxDouble wxBubbleChartCtrl::GetMaxYValue(const wxVector<wxBubbleChartDataset::ptr>& datasets)
+{
+    wxDouble result = 0;
+    bool foundValue = false;
+
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
+        for (size_t j = 0; j < values.size(); ++j)
+        {
+            if (!foundValue)
+            {
+                result = values[j].m_y;
+                foundValue = true;
+            }
+            else if (result < values[j].m_y)
+            {
+                result = values[j].m_y;
+            }
+        }
+    }
+
+    return result;
 }
 
 void wxBubbleChartCtrl::Resize(const wxSize &size)
