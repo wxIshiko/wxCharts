@@ -28,7 +28,9 @@
 
 wxCandlestickChartData::wxCandlestickChartData(const wxVector<wxString> &labels,
                                                const wxVector<wxChartOHLCData> &data)
-    : m_labels(labels), m_data(data)
+    : m_labels(labels), m_lineColor(0, 0, 0, 0x80), m_lineWidth(3), 
+    m_upFillColor(0, 205, 0, 0x60), m_downFillColor(225, 0, 0, 0x60), m_rectangleWidth(20), 
+    m_data(data)
 {
 }
 
@@ -37,14 +39,45 @@ const wxVector<wxString>& wxCandlestickChartData::GetLabels() const
     return m_labels;
 }
 
+const wxColor& wxCandlestickChartData::GetLineColor() const
+{
+    return m_lineColor;
+}
+
+unsigned int wxCandlestickChartData::GetLineWidth() const
+{
+    return m_lineWidth;
+}
+
+const wxColor& wxCandlestickChartData::GetUpFillColor() const
+{
+    return m_upFillColor;
+}
+
+const wxColor& wxCandlestickChartData::GetDownFillColor() const
+{
+    return m_downFillColor;
+}
+
+unsigned int wxCandlestickChartData::GetRectangleWidth() const
+{
+    return m_rectangleWidth;
+}
+
 const wxVector<wxChartOHLCData>& wxCandlestickChartData::GetData() const
 {
     return m_data;
 }
 
-wxCandlestickChartCtrl::Candlestick::Candlestick(const wxChartOHLCData &data)
+wxCandlestickChartCtrl::Candlestick::Candlestick(const wxChartOHLCData &data,
+                                                 const wxColor &lineColor,
+                                                 unsigned int lineWidth,
+                                                 const wxColor &upFillColor, 
+                                                 const wxColor &downFillColor, 
+                                                 unsigned int rectangleWidth)
     : m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
-    m_openPoint(0, 0), m_closePoint(0, 0)
+    m_openPoint(0, 0), m_closePoint(0, 0), m_lineColor(lineColor), m_lineWidth(lineWidth),
+    m_upFillColor(upFillColor), m_downFillColor(downFillColor), m_rectangleWidth(rectangleWidth)
 {
 }
 
@@ -60,14 +93,50 @@ wxPoint2DDouble wxCandlestickChartCtrl::Candlestick::GetTooltipPosition() const
 
 void wxCandlestickChartCtrl::Candlestick::Draw(wxGraphicsContext &gc)
 {
-    wxGraphicsPath path = gc.CreatePath();
-    path.MoveToPoint(m_highPoint);
-    path.AddLineToPoint(m_lowPoint);
+    if (m_data.close() >= m_data.open())
+    {
+        wxGraphicsPath path = gc.CreatePath();
+        path.MoveToPoint(m_highPoint);
+        path.AddLineToPoint(m_closePoint);
 
-    wxPen pen(*wxBLACK, 5);
-    gc.SetPen(pen);
-    
-    gc.StrokePath(path);
+        wxDouble halfWidth = m_rectangleWidth / 2;
+        path.AddRectangle(m_closePoint.m_x - halfWidth, m_closePoint.m_y, 
+            m_rectangleWidth, m_openPoint.m_y - m_closePoint.m_y);
+
+        path.MoveToPoint(m_openPoint);
+        path.AddLineToPoint(m_lowPoint);
+
+        wxBrush brush(m_upFillColor);
+        gc.SetBrush(brush);
+        gc.FillPath(path);
+
+        wxPen pen(m_lineColor, m_lineWidth);
+        gc.SetPen(pen);
+
+        gc.StrokePath(path);
+    }
+    else
+    {
+        wxGraphicsPath path = gc.CreatePath();
+        path.MoveToPoint(m_highPoint);
+        path.AddLineToPoint(m_openPoint);
+
+        wxDouble halfWidth = m_rectangleWidth / 2;
+        path.AddRectangle(m_openPoint.m_x - halfWidth, m_openPoint.m_y,
+            m_rectangleWidth, m_closePoint.m_y - m_openPoint.m_y);
+
+        path.MoveToPoint(m_closePoint);
+        path.AddLineToPoint(m_lowPoint);
+
+        wxBrush brush(m_downFillColor);
+        gc.SetBrush(brush);
+        gc.FillPath(path);
+
+        wxPen pen(m_lineColor, m_lineWidth);
+        gc.SetPen(pen);
+
+        gc.StrokePath(path);
+    }
 }
 
 void wxCandlestickChartCtrl::Candlestick::Update(const wxChartGridMapping& mapping,
@@ -94,7 +163,12 @@ wxCandlestickChartCtrl::wxCandlestickChartCtrl(wxWindow *parent,
     for (size_t i = 0; i < data.GetData().size(); ++i)
     {
         Candlestick::ptr newCandlestick(new Candlestick(
-            data.GetData()[i]
+            data.GetData()[i],
+            data.GetLineColor(),
+            data.GetLineWidth(),
+            data.GetUpFillColor(),
+            data.GetDownFillColor(),
+            data.GetRectangleWidth()
             ));
         m_data.push_back(newCandlestick);
     }

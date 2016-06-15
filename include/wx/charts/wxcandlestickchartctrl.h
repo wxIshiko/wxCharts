@@ -40,10 +40,20 @@ public:
     /// @return A vector containing the labels of the
     /// X axis.
     const wxVector<wxString>& GetLabels() const;
+    const wxColor& GetLineColor() const;
+    unsigned int GetLineWidth() const;
+    const wxColor& GetUpFillColor() const;
+    const wxColor& GetDownFillColor() const;
+    unsigned int GetRectangleWidth() const;
     const wxVector<wxChartOHLCData>& GetData() const;
 
 private:
     wxVector<wxString> m_labels;
+    wxColor m_lineColor;
+    unsigned int m_lineWidth;
+    wxColor m_upFillColor;
+    wxColor m_downFillColor;
+    unsigned int m_rectangleWidth;
     wxVector<wxChartOHLCData> m_data;
 };
 
@@ -85,7 +95,8 @@ private:
     public:
         typedef wxSharedPtr<Candlestick> ptr;
 
-        Candlestick(const wxChartOHLCData &data);
+        Candlestick(const wxChartOHLCData &data, const wxColor &lineColor, unsigned int lineWidth,
+            const wxColor &upFillColor, const wxColor &downFillColor, unsigned int rectangleWidth);
 
         virtual bool HitTest(const wxPoint &point) const;
         virtual wxPoint2DDouble GetTooltipPosition() const;
@@ -102,6 +113,11 @@ private:
         wxPoint2DDouble m_highPoint;
         wxPoint2DDouble m_openPoint;
         wxPoint2DDouble m_closePoint;
+        wxColor m_lineColor;
+        unsigned int m_lineWidth;
+        wxColor m_upFillColor;
+        wxColor m_downFillColor;
+        unsigned int m_rectangleWidth;
     };
 
 private:
