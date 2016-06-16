@@ -25,4 +25,24 @@
 #ifndef _WX_CHARTS_WXCHARTCIRCLE_H_
 #define _WX_CHARTS_WXCHARTCIRCLE_H_
 
+#include "wxchartelement.h"
+#include "wxchartcircleoptions.h"
+
+/// This class is used to draw a circle on the chart.
+class wxChartCircle : public wxChartElement
+{
+public:
+    wxChartCircle(wxDouble x, wxDouble y, const wxChartTooltipProvider::ptr tooltipProvider,
+        const wxChartCircleOptions &options);
+
+    virtual bool HitTest(const wxPoint &point) const;
+
+    virtual wxPoint2DDouble GetTooltipPosition() const;
+
+private:
+    wxChartCircleOptions m_options;
+    wxDouble m_x;
+    wxDouble m_y;
+};
+
 #endif

@@ -28,6 +28,7 @@
 #include "wxchartctrl.h"
 #include "wxbubblechartoptions.h"
 #include "wxchartgrid.h"
+#include "wxchartcircle.h"
 
 class wxBubbleChartDataset
 {
@@ -37,17 +38,19 @@ public:
 
     /// Constructs a wxBubbleChartDataset instance.
     /// @param data The list of values.
-    wxBubbleChartDataset(const wxColor& fillColor, const wxColor& strokeColor,
+    wxBubbleChartDataset(const wxColor& fillColor, const wxColor& outlineColor,
         wxVector<wxPoint2DDouble> &data);
 
     const wxColor& GetFillColor() const;
-    const wxColor& GetStrokeColor() const;
+    unsigned int GetOutlineWidth() const;
+    const wxColor& GetOutlineColor() const;
 
     const wxVector<wxPoint2DDouble>& GetData() const;
 
 private:
     wxColor m_fillColor;
-    wxColor m_strokeColor;
+    unsigned int m_outlineWidth;
+    wxColor m_outlineColor;
     wxVector<wxPoint2DDouble> m_data;
 };
 
@@ -92,6 +95,8 @@ public:
 	virtual const wxBubbleChartOptions& GetOptions() const;
 
 private:
+    void Initialize(const wxBubbleChartData &data);
+
     static wxDouble GetMinXValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
     static wxDouble GetMaxXValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
     static wxDouble GetMinYValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
@@ -101,10 +106,35 @@ private:
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 	void OnPaint(wxPaintEvent &evt);
+    
+private:
+    class Circle : public wxChartCircle
+    {
+    public:
+        typedef wxSharedPtr<Circle> ptr;
+
+        Circle(wxDouble x, wxDouble y, const wxChartTooltipProvider::ptr tooltipProvider,
+            const wxChartCircleOptions &options);
+    };
+
+    class Dataset
+    {
+    public:
+        typedef wxSharedPtr<Dataset> ptr;
+
+        Dataset();
+
+        const wxVector<Circle::ptr>& GetCircles() const;
+        void AppendCircle(Circle::ptr circle);
+
+    private:
+        wxVector<Circle::ptr> m_circles;
+    };
 
 private:
 	wxBubbleChartOptions m_options;
 	wxChartGrid m_grid;
+    wxVector<Dataset::ptr> m_datasets;
 
 	DECLARE_EVENT_TABLE();
 };

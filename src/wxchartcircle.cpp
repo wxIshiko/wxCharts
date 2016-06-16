@@ -21,3 +21,22 @@
 */
 
 #include "wxchartcircle.h"
+
+wxChartCircle::wxChartCircle(wxDouble x, 
+                             wxDouble y, 
+                             const wxChartTooltipProvider::ptr tooltipProvider,
+                             const wxChartCircleOptions &options)
+    : wxChartElement(tooltipProvider), m_options(options),
+    m_x(x), m_y(y)
+{
+}
+
+bool wxChartCircle::HitTest(const wxPoint &point) const
+{
+    return false;
+}
+
+wxPoint2DDouble wxChartCircle::GetTooltipPosition() const
+{
+    return wxPoint2DDouble(0, 0);
+}

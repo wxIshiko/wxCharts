@@ -37,6 +37,10 @@ wxChartElement::wxChartElement(const wxChartTooltipProvider::ptr tooltipProvider
 {
 }
 
+wxChartElement::~wxChartElement()
+{
+}
+
 const wxChartTooltipProvider::ptr wxChartElement::GetTooltipProvider() const
 {
 	return m_tooltipProvider;

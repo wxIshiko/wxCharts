@@ -51,6 +51,7 @@ public:
 	/// Constructs a wxChartElement instance.
 	/// @param tooltipProvider The tooltip provider.
 	wxChartElement(const wxChartTooltipProvider::ptr tooltipProvider);
+    virtual ~wxChartElement();
 
 	/// Elements can be activated with the mouse. This function
 	/// checks whether the mouse is in the activation zone for 

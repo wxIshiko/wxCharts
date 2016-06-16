@@ -25,11 +25,13 @@
 #include "wxbubblechartctrl.h"
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
+#include <sstream>
 
 wxBubbleChartDataset::wxBubbleChartDataset(const wxColor& fillColor,
-                                           const wxColor& strokeColor,
+                                           const wxColor& outlineColor,
                                            wxVector<wxPoint2DDouble> &data)
-    : m_fillColor(fillColor), m_strokeColor(strokeColor), m_data(data)
+    : m_fillColor(fillColor), m_outlineWidth(1), 
+    m_outlineColor(outlineColor), m_data(data)
 {
 }
 
@@ -38,9 +40,14 @@ const wxColor& wxBubbleChartDataset::GetFillColor() const
     return m_fillColor;
 }
 
-const wxColor& wxBubbleChartDataset::GetStrokeColor() const
+unsigned int wxBubbleChartDataset::GetOutlineWidth() const
 {
-    return m_strokeColor;
+    return m_outlineWidth;
+}
+
+const wxColor& wxBubbleChartDataset::GetOutlineColor() const
+{
+    return m_outlineColor;
 }
 
 const wxVector<wxPoint2DDouble>& wxBubbleChartDataset::GetData() const
@@ -62,6 +69,28 @@ const wxVector<wxBubbleChartDataset::ptr>& wxBubbleChartData::GetDatasets() cons
     return m_datasets;
 }
 
+wxBubbleChartCtrl::Dataset::Dataset()
+{
+}
+
+const wxVector<wxBubbleChartCtrl::Circle::ptr>& wxBubbleChartCtrl::Dataset::GetCircles() const
+{
+    return m_circles;
+}
+
+void wxBubbleChartCtrl::Dataset::AppendCircle(Circle::ptr circle)
+{
+    m_circles.push_back(circle);
+}
+
+wxBubbleChartCtrl::Circle::Circle(wxDouble x,
+                                  wxDouble y,
+                                  const wxChartTooltipProvider::ptr tooltipProvider,
+                                  const wxChartCircleOptions &options)
+    : wxChartCircle(x, y, tooltipProvider, options)
+{
+}
+
 wxBubbleChartCtrl::wxBubbleChartCtrl(wxWindow *parent,
 									 wxWindowID id,
 									 const wxBubbleChartData &data,
@@ -77,11 +106,41 @@ wxBubbleChartCtrl::wxBubbleChartCtrl(wxWindow *parent,
         m_options.GetGridOptions()
         )
 {
+    Initialize(data);
 }
 
 const wxBubbleChartOptions& wxBubbleChartCtrl::GetOptions() const
 {
 	return m_options;
+}
+
+void wxBubbleChartCtrl::Initialize(const wxBubbleChartData &data)
+{
+    const wxVector<wxBubbleChartDataset::ptr>& datasets = data.GetDatasets();
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        Dataset::ptr newDataset(new Dataset());
+
+        const wxVector<wxPoint2DDouble>& datasetData = datasets[i]->GetData();
+        for (size_t j = 0; j < datasetData.size(); ++j)
+        {
+            std::stringstream tooltip;
+            tooltip << "(" << datasetData[j].m_x << "," << datasetData[j].m_y << ")";
+            wxChartTooltipProvider::ptr tooltipProvider(
+                new wxChartTooltipProviderStatic("", tooltip.str(), datasets[i]->GetFillColor())
+                );
+
+            Circle::ptr circle(
+                new Circle(0, 0, tooltipProvider,
+                    wxChartCircleOptions(datasets[i]->GetOutlineWidth(),
+                        datasets[i]->GetOutlineColor(), datasets[i]->GetFillColor()))
+                );
+
+            newDataset->AppendCircle(circle);
+        }
+
+        m_datasets.push_back(newDataset);
+    }
 }
 
 wxDouble wxBubbleChartCtrl::GetMinXValue(const wxVector<wxBubbleChartDataset::ptr>& datasets)
