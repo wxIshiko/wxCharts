@@ -26,6 +26,12 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
+wxBubbleChartDataset::wxBubbleChartDataset(const wxColor& fillColor,
+                                           const wxColor& strokeColor,
+                                           wxVector<wxPoint2DDouble> &data)
+{
+}
+
 const wxVector<wxPoint2DDouble>& wxBubbleChartDataset::GetData() const
 {
     return m_data;

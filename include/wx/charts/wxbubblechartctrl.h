@@ -35,6 +35,11 @@ public:
     /// Smart pointer typedef.
     typedef wxSharedPtr<wxBubbleChartDataset> ptr;
 
+    /// Constructs a wxBubbleChartDataset instance.
+    /// @param data The list of values.
+    wxBubbleChartDataset(const wxColor& fillColor, const wxColor& strokeColor,
+        wxVector<wxPoint2DDouble> &data);
+
     const wxVector<wxPoint2DDouble>& GetData() const;
 
 private:

@@ -32,15 +32,41 @@ WxBubbleFrame::WxBubbleFrame(const wxString& title)
 	wxPanel* panel = new wxPanel(this, wxID_ANY);
 
 	// Create the data for the bubble chart widget
-	wxVector<wxString> labels;
-	labels.push_back("January");
-	labels.push_back("February");
-	labels.push_back("March");
-	labels.push_back("April");
-	labels.push_back("May");
-	labels.push_back("June");
-	labels.push_back("July");
-	wxBubbleChartData chartData(labels);
+	wxBubbleChartData chartData;
+
+    // Add the first dataset
+    wxVector<wxPoint2DDouble> points1;
+    points1.push_back(wxPoint2DDouble(-0.2, 3.5));
+    points1.push_back(wxPoint2DDouble(0.5, 2.5));
+    points1.push_back(wxPoint2DDouble(1.2, 0.1));
+    points1.push_back(wxPoint2DDouble(1.5, 1.6));
+    points1.push_back(wxPoint2DDouble(2, 1.8));
+    points1.push_back(wxPoint2DDouble(2.2, 2.1));
+    points1.push_back(wxPoint2DDouble(2.7, 2));
+    wxBubbleChartDataset::ptr dataset1(
+        new wxBubbleChartDataset(
+            wxColor(250, 20, 20, 0x78),
+            wxColor(250, 20, 20, 0xB8),
+            points1)
+        );
+    chartData.AddDataset(dataset1);
+
+    // Add the second dataset
+    wxVector<wxPoint2DDouble> points2;
+    points2.push_back(wxPoint2DDouble(-0.3, 6.5));
+    points2.push_back(wxPoint2DDouble(0.2, -1.5));
+    points2.push_back(wxPoint2DDouble(1.6, 0.7));
+    points2.push_back(wxPoint2DDouble(1.5, 4.1));
+    points2.push_back(wxPoint2DDouble(1.8, 2.7));
+    points2.push_back(wxPoint2DDouble(2.1, 2));
+    points2.push_back(wxPoint2DDouble(2.3, 6));
+    wxBubbleChartDataset::ptr dataset2(
+        new wxBubbleChartDataset(
+            wxColor(20, 20, 20, 0x78),
+            wxColor(20, 20, 20, 0xB8),
+            points2)
+        );
+    chartData.AddDataset(dataset2);
 
 	// Create the bubble chart widget
 	wxBubbleChartCtrl* bubbleChartCtrl = new wxBubbleChartCtrl(panel, wxID_ANY, chartData);
