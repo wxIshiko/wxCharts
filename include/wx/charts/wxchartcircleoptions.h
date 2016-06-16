@@ -25,4 +25,19 @@
 #ifndef _WX_CHARTS_WXCHARTCIRCLEOPTIONS_H_
 #define _WX_CHARTS_WXCHARTCIRCLEOPTIONS_H_
 
+#include <wx/colour.h>
+
+/// Options for the wxChartCircle class.
+class wxChartCircleOptions
+{
+public:
+    /// Constructs a wxChartCircleOptions instance.
+    /// @param outlineWidth The width of the pen used to draw the outline
+    /// of the circle.
+    /// @param outlineColor The color of the outline.
+    /// @param fillColor The color of the brush used to fill the circle.
+    wxChartCircleOptions(unsigned int outlineWidth, const wxColor &outlineColor,
+        const wxColor &fillColor);
+};
+
 #endif

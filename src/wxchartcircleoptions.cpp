@@ -21,3 +21,9 @@
 */
 
 #include "wxchartcircleoptions.h"
+
+wxChartCircleOptions::wxChartCircleOptions(unsigned int outlineWidth, 
+                                           const wxColor &outlineColor,
+                                           const wxColor &fillColor)
+{
+}
