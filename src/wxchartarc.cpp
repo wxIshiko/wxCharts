@@ -122,7 +122,7 @@ void wxChartArc::Draw(wxGraphicsContext &gc)
 	gc.SetBrush(brush);
 	gc.FillPath(path);
 
-	wxPen pen(*wxWHITE, m_options.GetStrokeWidth());
+	wxPen pen(*wxWHITE, m_options.GetOutlineWidth());
 	gc.SetPen(pen);
 	gc.StrokePath(path);
 }
