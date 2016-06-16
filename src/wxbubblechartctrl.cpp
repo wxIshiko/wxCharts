@@ -69,6 +69,20 @@ const wxVector<wxBubbleChartDataset::ptr>& wxBubbleChartData::GetDatasets() cons
     return m_datasets;
 }
 
+wxBubbleChartCtrl::Circle::Circle(wxPoint2DDouble value, 
+                                  wxDouble x,
+                                  wxDouble y,
+                                  const wxChartTooltipProvider::ptr tooltipProvider,
+                                  const wxChartCircleOptions &options)
+    : wxChartCircle(x, y, tooltipProvider, options), m_value(value)
+{
+}
+
+wxPoint2DDouble wxBubbleChartCtrl::Circle::GetValue() const
+{
+    return m_value;
+}
+
 wxBubbleChartCtrl::Dataset::Dataset()
 {
 }
@@ -81,14 +95,6 @@ const wxVector<wxBubbleChartCtrl::Circle::ptr>& wxBubbleChartCtrl::Dataset::GetC
 void wxBubbleChartCtrl::Dataset::AppendCircle(Circle::ptr circle)
 {
     m_circles.push_back(circle);
-}
-
-wxBubbleChartCtrl::Circle::Circle(wxDouble x,
-                                  wxDouble y,
-                                  const wxChartTooltipProvider::ptr tooltipProvider,
-                                  const wxChartCircleOptions &options)
-    : wxChartCircle(x, y, tooltipProvider, options)
-{
 }
 
 wxBubbleChartCtrl::wxBubbleChartCtrl(wxWindow *parent,
@@ -131,7 +137,7 @@ void wxBubbleChartCtrl::Initialize(const wxBubbleChartData &data)
                 );
 
             Circle::ptr circle(
-                new Circle(0, 0, tooltipProvider,
+                new Circle(datasetData[j], 0, 0, tooltipProvider,
                     wxChartCircleOptions(datasets[i]->GetOutlineWidth(),
                         datasets[i]->GetOutlineColor(), datasets[i]->GetFillColor()))
                 );
@@ -256,17 +262,30 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxBubbleChartCtrl::GetActiveElemen
 
 void wxBubbleChartCtrl::OnPaint(wxPaintEvent &evt)
 {
-	wxAutoBufferedPaintDC dc(this);
+    wxAutoBufferedPaintDC dc(this);
 
-	dc.Clear();
+    dc.Clear();
 
-	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
-	if (gc)
-	{
-		m_grid.Draw(*gc);
+    wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+    if (gc)
+    {
+        m_grid.Draw(*gc);
 
-		delete gc;
-	}
+        for (size_t i = 0; i < m_datasets.size(); ++i)
+        {
+            const wxVector<Circle::ptr>& circles = m_datasets[i]->GetCircles();
+            for (size_t j = 0; j < circles.size(); ++j)
+            {
+                const Circle::ptr& circle = circles[j];
+                circle->SetCenter(m_grid.GetMapping().GetWindowPosition(circle->GetValue().m_x, circle->GetValue().m_y));
+                circle->Draw(*gc);
+            }
+        }
+
+        DrawTooltips(*gc);
+
+        delete gc;
+    }
 }
 
 BEGIN_EVENT_TABLE(wxBubbleChartCtrl, wxChartCtrl)

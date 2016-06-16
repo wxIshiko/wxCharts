@@ -113,8 +113,14 @@ private:
     public:
         typedef wxSharedPtr<Circle> ptr;
 
-        Circle(wxDouble x, wxDouble y, const wxChartTooltipProvider::ptr tooltipProvider,
+        Circle(wxPoint2DDouble value, wxDouble x, wxDouble y, 
+            const wxChartTooltipProvider::ptr tooltipProvider,
             const wxChartCircleOptions &options);
+
+        wxPoint2DDouble GetValue() const;
+
+    private:
+        wxPoint2DDouble m_value;
     };
 
     class Dataset

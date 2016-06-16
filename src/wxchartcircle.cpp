@@ -21,6 +21,8 @@
 */
 
 #include "wxchartcircle.h"
+#include <wx/pen.h>
+#include <wx/brush.h>
 
 wxChartCircle::wxChartCircle(wxDouble x, 
                              wxDouble y, 
@@ -39,4 +41,35 @@ bool wxChartCircle::HitTest(const wxPoint &point) const
 wxPoint2DDouble wxChartCircle::GetTooltipPosition() const
 {
     return wxPoint2DDouble(0, 0);
+}
+
+void wxChartCircle::Draw(wxGraphicsContext &gc)
+{
+    wxGraphicsPath path = gc.CreatePath();
+
+    
+        path.AddCircle(m_x, m_y, 20);
+        
+    
+ 
+
+    wxBrush brush(*wxRED);
+    gc.SetBrush(brush);
+    gc.FillPath(path);
+
+    wxPen pen(*wxWHITE, 5);
+    gc.SetPen(pen);
+    gc.StrokePath(path);
+}
+
+void wxChartCircle::SetCenter(wxDouble x, wxDouble y)
+{
+    m_x = x;
+    m_y = y;
+}
+
+void wxChartCircle::SetCenter(wxPoint2DDouble center)
+{
+    m_x = center.m_x;
+    m_y = center.m_y;
 }

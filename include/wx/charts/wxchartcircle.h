@@ -39,6 +39,18 @@ public:
 
     virtual wxPoint2DDouble GetTooltipPosition() const;
 
+    /// Draws the arc.
+    /// @param gc The graphics context.
+    void Draw(wxGraphicsContext &gc);
+
+    /// Sets the center of the circle.
+    /// @param x The X coordinate of the center.
+    /// @param y The Y coordinate of the center.
+    void SetCenter(wxDouble x, wxDouble y);
+    /// Sets the center of the circle.
+    /// @param position The new center of the circle.
+    void SetCenter(wxPoint2DDouble center);
+
 private:
     wxChartCircleOptions m_options;
     wxDouble m_x;
