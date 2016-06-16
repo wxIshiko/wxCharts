@@ -32,15 +32,15 @@ class wxChartArcOptions
 {
 public:
 	/// Constructs a wxChartArcOptions instance.
-	/// @param strokeWidth The width of the pen used to draw the contour
+	/// @param outlineWidth The width of the pen used to draw the outline
 	/// of the arc.
 	/// @param fillColor The color of the brush used to fill the arc.
-	wxChartArcOptions(unsigned int strokeWidth, const wxColor &fillColor);
+	wxChartArcOptions(unsigned int outlineWidth, const wxColor &fillColor);
 
 	/// Gets the width of the pen used to draw
 	/// the outline of the arc.
 	/// @return The width of the pen.
-	unsigned int GetStrokeWidth() const;
+	unsigned int GetOutlineWidth() const;
 
 	/// Gets the color of the brush used to fill the
 	/// arc.
@@ -49,7 +49,7 @@ public:
 	const wxColor& GetFillColor() const;
 
 private:
-	unsigned int m_strokeWidth;
+	unsigned int m_outlineWidth;
 	wxColor m_fillColor;
 };
 

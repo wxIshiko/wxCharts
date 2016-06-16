@@ -22,16 +22,16 @@
 
 #include "wxchartarcoptions.h"
 
-wxChartArcOptions::wxChartArcOptions(unsigned int strokeWidth,
+wxChartArcOptions::wxChartArcOptions(unsigned int outlineWidth,
 									 const wxColor &fillColor)
-	: m_strokeWidth(strokeWidth),
+	: m_outlineWidth(outlineWidth),
 	m_fillColor(fillColor)
 {
 }
 
-unsigned int wxChartArcOptions::GetStrokeWidth() const
+unsigned int wxChartArcOptions::GetOutlineWidth() const
 {
-	return m_strokeWidth;
+	return m_outlineWidth;
 }
 
 const wxColor& wxChartArcOptions::GetFillColor() const
