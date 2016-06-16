@@ -29,7 +29,18 @@
 wxBubbleChartDataset::wxBubbleChartDataset(const wxColor& fillColor,
                                            const wxColor& strokeColor,
                                            wxVector<wxPoint2DDouble> &data)
+    : m_fillColor(fillColor), m_strokeColor(strokeColor), m_data(data)
 {
+}
+
+const wxColor& wxBubbleChartDataset::GetFillColor() const
+{
+    return m_fillColor;
+}
+
+const wxColor& wxBubbleChartDataset::GetStrokeColor() const
+{
+    return m_strokeColor;
 }
 
 const wxVector<wxPoint2DDouble>& wxBubbleChartDataset::GetData() const
@@ -39,6 +50,11 @@ const wxVector<wxPoint2DDouble>& wxBubbleChartDataset::GetData() const
 
 wxBubbleChartData::wxBubbleChartData()
 {
+}
+
+void wxBubbleChartData::AddDataset(wxBubbleChartDataset::ptr dataset)
+{
+    m_datasets.push_back(dataset);
 }
 
 const wxVector<wxBubbleChartDataset::ptr>& wxBubbleChartData::GetDatasets() const

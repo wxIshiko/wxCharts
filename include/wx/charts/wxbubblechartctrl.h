@@ -40,9 +40,14 @@ public:
     wxBubbleChartDataset(const wxColor& fillColor, const wxColor& strokeColor,
         wxVector<wxPoint2DDouble> &data);
 
+    const wxColor& GetFillColor() const;
+    const wxColor& GetStrokeColor() const;
+
     const wxVector<wxPoint2DDouble>& GetData() const;
 
 private:
+    wxColor m_fillColor;
+    wxColor m_strokeColor;
     wxVector<wxPoint2DDouble> m_data;
 };
 
@@ -52,6 +57,10 @@ class wxBubbleChartData
 public:
 	/// Constructs a wxBubbleChartData instance.
 	wxBubbleChartData();
+
+    /// Adds a dataset.
+    /// @param dataset The dataset to add.
+    void AddDataset(wxBubbleChartDataset::ptr dataset);
 
     const wxVector<wxBubbleChartDataset::ptr>& GetDatasets() const;
 
