@@ -254,6 +254,56 @@ wxDouble wxBubbleChartCtrl::GetMaxYValue(const wxVector<wxBubbleChartDataset::pt
     return result;
 }
 
+wxDouble wxBubbleChartCtrl::GetMinZValue(const wxVector<wxBubbleChartDataset::ptr>& datasets)
+{
+    wxDouble result = 0;
+    bool foundValue = false;
+
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        const wxVector<wxDoubleTriplet>& values = datasets[i]->GetData();
+        for (size_t j = 0; j < values.size(); ++j)
+        {
+            if (!foundValue)
+            {
+                result = values[j].m_z;
+                foundValue = true;
+            }
+            else if (result > values[j].m_z)
+            {
+                result = values[j].m_z;
+            }
+        }
+    }
+
+    return result;
+}
+
+wxDouble wxBubbleChartCtrl::GetMaxZValue(const wxVector<wxBubbleChartDataset::ptr>& datasets)
+{
+    wxDouble result = 0;
+    bool foundValue = false;
+
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        const wxVector<wxDoubleTriplet>& values = datasets[i]->GetData();
+        for (size_t j = 0; j < values.size(); ++j)
+        {
+            if (!foundValue)
+            {
+                result = values[j].m_z;
+                foundValue = true;
+            }
+            else if (result < values[j].m_z)
+            {
+                result = values[j].m_z;
+            }
+        }
+    }
+
+    return result;
+}
+
 void wxBubbleChartCtrl::Resize(const wxSize &size)
 {
 	m_grid.Resize(size);

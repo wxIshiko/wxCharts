@@ -111,6 +111,8 @@ private:
     static wxDouble GetMaxXValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
     static wxDouble GetMinYValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
     static wxDouble GetMaxYValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
+    static wxDouble GetMinZValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
+    static wxDouble GetMaxZValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
 
 	virtual void Resize(const wxSize &size);
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
