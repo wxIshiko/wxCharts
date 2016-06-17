@@ -35,14 +35,14 @@ WxBubbleFrame::WxBubbleFrame(const wxString& title)
 	wxBubbleChartData chartData;
 
     // Add the first dataset
-    wxVector<wxPoint2DDouble> points1;
-    points1.push_back(wxPoint2DDouble(-0.2, 3.5));
-    points1.push_back(wxPoint2DDouble(0.5, 2.5));
-    points1.push_back(wxPoint2DDouble(1.2, 0.1));
-    points1.push_back(wxPoint2DDouble(1.5, 1.6));
-    points1.push_back(wxPoint2DDouble(2, 1.8));
-    points1.push_back(wxPoint2DDouble(2.2, 2.1));
-    points1.push_back(wxPoint2DDouble(2.7, 2));
+    wxVector<wxDoubleTriplet> points1;
+    points1.push_back(wxDoubleTriplet(-0.2, 3.5, 1));
+    points1.push_back(wxDoubleTriplet(0.5, 2.5, 1));
+    points1.push_back(wxDoubleTriplet(1.2, 0.1, 1));
+    points1.push_back(wxDoubleTriplet(1.5, 1.6, 2));
+    points1.push_back(wxDoubleTriplet(2, 1.8, 2));
+    points1.push_back(wxDoubleTriplet(2.2, 2.1, 3));
+    points1.push_back(wxDoubleTriplet(2.7, 2, 3));
     wxBubbleChartDataset::ptr dataset1(
         new wxBubbleChartDataset(
             wxColor(250, 20, 20, 0x78),
@@ -52,14 +52,14 @@ WxBubbleFrame::WxBubbleFrame(const wxString& title)
     chartData.AddDataset(dataset1);
 
     // Add the second dataset
-    wxVector<wxPoint2DDouble> points2;
-    points2.push_back(wxPoint2DDouble(-0.3, 6.5));
-    points2.push_back(wxPoint2DDouble(0.2, -1.5));
-    points2.push_back(wxPoint2DDouble(1.6, 0.7));
-    points2.push_back(wxPoint2DDouble(1.5, 4.1));
-    points2.push_back(wxPoint2DDouble(1.8, 2.7));
-    points2.push_back(wxPoint2DDouble(2.1, 2));
-    points2.push_back(wxPoint2DDouble(2.3, 6));
+    wxVector<wxDoubleTriplet> points2;
+    points2.push_back(wxDoubleTriplet(-0.3, 6.5, 0.5));
+    points2.push_back(wxDoubleTriplet(0.2, -1.5, 0.5));
+    points2.push_back(wxDoubleTriplet(1.6, 0.7, 1));
+    points2.push_back(wxDoubleTriplet(1.5, 4.1, 1));
+    points2.push_back(wxDoubleTriplet(1.8, 2.7, 2));
+    points2.push_back(wxDoubleTriplet(2.1, 2, 2));
+    points2.push_back(wxDoubleTriplet(2.3, 6, 2));
     wxBubbleChartDataset::ptr dataset2(
         new wxBubbleChartDataset(
             wxColor(20, 20, 20, 0x78),

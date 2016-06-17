@@ -46,18 +46,14 @@ wxPoint2DDouble wxChartCircle::GetTooltipPosition() const
 void wxChartCircle::Draw(wxGraphicsContext &gc)
 {
     wxGraphicsPath path = gc.CreatePath();
-
     
-        path.AddCircle(m_x, m_y, 20);
+    path.AddCircle(m_x, m_y, 20);
         
-    
- 
-
-    wxBrush brush(*wxRED);
+    wxBrush brush(m_options.GetFillColor());
     gc.SetBrush(brush);
     gc.FillPath(path);
 
-    wxPen pen(*wxWHITE, 5);
+    wxPen pen(m_options.GetOutlineColor(), m_options.GetOutlineWidth());
     gc.SetPen(pen);
     gc.StrokePath(path);
 }

@@ -38,6 +38,15 @@ public:
     /// @param fillColor The color of the brush used to fill the circle.
     wxChartCircleOptions(unsigned int outlineWidth, const wxColor &outlineColor,
         const wxColor &fillColor);
+
+    unsigned int GetOutlineWidth() const;
+    const wxColor& GetOutlineColor() const;
+    const wxColor& GetFillColor() const;
+
+private:
+    unsigned int m_outlineWidth;
+    wxColor m_outlineColor;
+    wxColor m_fillColor;
 };
 
 #endif

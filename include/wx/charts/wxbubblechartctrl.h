@@ -30,6 +30,16 @@
 #include "wxchartgrid.h"
 #include "wxchartcircle.h"
 
+class wxDoubleTriplet
+{
+public:
+    wxDoubleTriplet(wxDouble x, wxDouble y, wxDouble z);
+
+    wxDouble m_x;
+    wxDouble m_y;
+    wxDouble m_z;
+};
+
 class wxBubbleChartDataset
 {
 public:
@@ -39,19 +49,19 @@ public:
     /// Constructs a wxBubbleChartDataset instance.
     /// @param data The list of values.
     wxBubbleChartDataset(const wxColor& fillColor, const wxColor& outlineColor,
-        wxVector<wxPoint2DDouble> &data);
+        wxVector<wxDoubleTriplet> &data);
 
     const wxColor& GetFillColor() const;
     unsigned int GetOutlineWidth() const;
     const wxColor& GetOutlineColor() const;
 
-    const wxVector<wxPoint2DDouble>& GetData() const;
+    const wxVector<wxDoubleTriplet>& GetData() const;
 
 private:
     wxColor m_fillColor;
     unsigned int m_outlineWidth;
     wxColor m_outlineColor;
-    wxVector<wxPoint2DDouble> m_data;
+    wxVector<wxDoubleTriplet> m_data;
 };
 
 /// Data for the wxBubbleChartCtrl control.
@@ -113,14 +123,14 @@ private:
     public:
         typedef wxSharedPtr<Circle> ptr;
 
-        Circle(wxPoint2DDouble value, wxDouble x, wxDouble y, 
+        Circle(wxDoubleTriplet value, wxDouble x, wxDouble y,
             const wxChartTooltipProvider::ptr tooltipProvider,
             const wxChartCircleOptions &options);
 
-        wxPoint2DDouble GetValue() const;
+        wxDoubleTriplet GetValue() const;
 
     private:
-        wxPoint2DDouble m_value;
+        wxDoubleTriplet m_value;
     };
 
     class Dataset

@@ -25,5 +25,22 @@
 wxChartCircleOptions::wxChartCircleOptions(unsigned int outlineWidth, 
                                            const wxColor &outlineColor,
                                            const wxColor &fillColor)
+    : m_outlineWidth(outlineWidth), m_outlineColor(outlineColor),
+    m_fillColor(fillColor)
 {
+}
+
+unsigned int wxChartCircleOptions::GetOutlineWidth() const
+{
+    return m_outlineWidth;
+}
+
+const wxColor& wxChartCircleOptions::GetOutlineColor() const
+{
+    return m_outlineColor;
+}
+
+const wxColor& wxChartCircleOptions::GetFillColor() const
+{
+    return m_fillColor;
 }

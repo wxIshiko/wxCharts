@@ -27,9 +27,14 @@
 #include <wx/graphics.h>
 #include <sstream>
 
+wxDoubleTriplet::wxDoubleTriplet(wxDouble x, wxDouble y, wxDouble z)
+    : m_x(x), m_y(y), m_z(z)
+{
+}
+
 wxBubbleChartDataset::wxBubbleChartDataset(const wxColor& fillColor,
                                            const wxColor& outlineColor,
-                                           wxVector<wxPoint2DDouble> &data)
+                                           wxVector<wxDoubleTriplet> &data)
     : m_fillColor(fillColor), m_outlineWidth(1), 
     m_outlineColor(outlineColor), m_data(data)
 {
@@ -50,7 +55,7 @@ const wxColor& wxBubbleChartDataset::GetOutlineColor() const
     return m_outlineColor;
 }
 
-const wxVector<wxPoint2DDouble>& wxBubbleChartDataset::GetData() const
+const wxVector<wxDoubleTriplet>& wxBubbleChartDataset::GetData() const
 {
     return m_data;
 }
@@ -69,7 +74,7 @@ const wxVector<wxBubbleChartDataset::ptr>& wxBubbleChartData::GetDatasets() cons
     return m_datasets;
 }
 
-wxBubbleChartCtrl::Circle::Circle(wxPoint2DDouble value, 
+wxBubbleChartCtrl::Circle::Circle(wxDoubleTriplet value,
                                   wxDouble x,
                                   wxDouble y,
                                   const wxChartTooltipProvider::ptr tooltipProvider,
@@ -78,7 +83,7 @@ wxBubbleChartCtrl::Circle::Circle(wxPoint2DDouble value,
 {
 }
 
-wxPoint2DDouble wxBubbleChartCtrl::Circle::GetValue() const
+wxDoubleTriplet wxBubbleChartCtrl::Circle::GetValue() const
 {
     return m_value;
 }
@@ -127,7 +132,7 @@ void wxBubbleChartCtrl::Initialize(const wxBubbleChartData &data)
     {
         Dataset::ptr newDataset(new Dataset());
 
-        const wxVector<wxPoint2DDouble>& datasetData = datasets[i]->GetData();
+        const wxVector<wxDoubleTriplet>& datasetData = datasets[i]->GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
         {
             std::stringstream tooltip;
@@ -156,7 +161,7 @@ wxDouble wxBubbleChartCtrl::GetMinXValue(const wxVector<wxBubbleChartDataset::pt
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
+        const wxVector<wxDoubleTriplet>& values = datasets[i]->GetData();
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
@@ -181,7 +186,7 @@ wxDouble wxBubbleChartCtrl::GetMaxXValue(const wxVector<wxBubbleChartDataset::pt
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
+        const wxVector<wxDoubleTriplet>& values = datasets[i]->GetData();
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
@@ -206,7 +211,7 @@ wxDouble wxBubbleChartCtrl::GetMinYValue(const wxVector<wxBubbleChartDataset::pt
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
+        const wxVector<wxDoubleTriplet>& values = datasets[i]->GetData();
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
@@ -231,7 +236,7 @@ wxDouble wxBubbleChartCtrl::GetMaxYValue(const wxVector<wxBubbleChartDataset::pt
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
+        const wxVector<wxDoubleTriplet>& values = datasets[i]->GetData();
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
