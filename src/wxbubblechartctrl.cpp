@@ -26,6 +26,7 @@
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 #include <sstream>
+#include <cmath>
 
 wxDoubleTriplet::wxDoubleTriplet(wxDouble x, wxDouble y, wxDouble z)
     : m_x(x), m_y(y), m_z(z)
@@ -36,7 +37,8 @@ wxBubbleChartDataset::wxBubbleChartDataset(const wxColor& fillColor,
                                            const wxColor& outlineColor,
                                            wxVector<wxDoubleTriplet> &data)
     : m_fillColor(fillColor), m_outlineWidth(1), 
-    m_outlineColor(outlineColor), m_data(data)
+    m_outlineColor(outlineColor), m_minRadius(2), m_maxRadius(40),
+    m_data(data)
 {
 }
 
@@ -53,6 +55,16 @@ unsigned int wxBubbleChartDataset::GetOutlineWidth() const
 const wxColor& wxBubbleChartDataset::GetOutlineColor() const
 {
     return m_outlineColor;
+}
+
+unsigned int wxBubbleChartDataset::GetMinRadius() const
+{
+    return m_minRadius;
+}
+
+unsigned int wxBubbleChartDataset::GetMaxRadius() const
+{
+    return m_maxRadius;
 }
 
 const wxVector<wxDoubleTriplet>& wxBubbleChartDataset::GetData() const
@@ -77,9 +89,10 @@ const wxVector<wxBubbleChartDataset::ptr>& wxBubbleChartData::GetDatasets() cons
 wxBubbleChartCtrl::Circle::Circle(wxDoubleTriplet value,
                                   wxDouble x,
                                   wxDouble y,
+                                  wxDouble radius,
                                   const wxChartTooltipProvider::ptr tooltipProvider,
                                   const wxChartCircleOptions &options)
-    : wxChartCircle(x, y, tooltipProvider, options), m_value(value)
+    : wxChartCircle(x, y, radius, tooltipProvider, options), m_value(value)
 {
 }
 
@@ -88,7 +101,9 @@ wxDoubleTriplet wxBubbleChartCtrl::Circle::GetValue() const
     return m_value;
 }
 
-wxBubbleChartCtrl::Dataset::Dataset()
+wxBubbleChartCtrl::Dataset::Dataset(unsigned int minRadius, 
+                                    unsigned int maxRadius)
+    : m_minRadius(minRadius), m_maxRadius(maxRadius)
 {
 }
 
@@ -100,6 +115,16 @@ const wxVector<wxBubbleChartCtrl::Circle::ptr>& wxBubbleChartCtrl::Dataset::GetC
 void wxBubbleChartCtrl::Dataset::AppendCircle(Circle::ptr circle)
 {
     m_circles.push_back(circle);
+}
+
+unsigned int wxBubbleChartCtrl::Dataset::GetMinRadius() const
+{
+    return m_minRadius;
+}
+
+unsigned int wxBubbleChartCtrl::Dataset::GetMaxRadius() const
+{
+    return m_maxRadius;
 }
 
 wxBubbleChartCtrl::wxBubbleChartCtrl(wxWindow *parent,
@@ -115,7 +140,8 @@ wxBubbleChartCtrl::wxBubbleChartCtrl(wxWindow *parent,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
         m_options.GetGridOptions()
-        )
+        ),
+    m_minZValue(GetMinZValue(data.GetDatasets())), m_maxZValue(GetMaxZValue(data.GetDatasets()))
 {
     Initialize(data);
 }
@@ -130,7 +156,7 @@ void wxBubbleChartCtrl::Initialize(const wxBubbleChartData &data)
     const wxVector<wxBubbleChartDataset::ptr>& datasets = data.GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        Dataset::ptr newDataset(new Dataset());
+        Dataset::ptr newDataset(new Dataset(datasets[i]->GetMinRadius(), datasets[i]->GetMaxRadius()));
 
         const wxVector<wxDoubleTriplet>& datasetData = datasets[i]->GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
@@ -142,7 +168,7 @@ void wxBubbleChartCtrl::Initialize(const wxBubbleChartData &data)
                 );
 
             Circle::ptr circle(
-                new Circle(datasetData[j], 0, 0, tooltipProvider,
+                new Circle(datasetData[j], 0, 0, 1, tooltipProvider,
                     wxChartCircleOptions(datasets[i]->GetOutlineWidth(),
                         datasets[i]->GetOutlineColor(), datasets[i]->GetFillColor()))
                 );
@@ -326,13 +352,28 @@ void wxBubbleChartCtrl::OnPaint(wxPaintEvent &evt)
     {
         m_grid.Draw(*gc);
 
+        wxDouble zFactor = 1 / (m_maxZValue - m_minZValue);
+
+        for (size_t i = 0; i < m_datasets.size(); ++i)
+        {
+            wxDouble minRadius = m_datasets[i]->GetMinRadius();
+            wxDouble maxRadius = m_datasets[i]->GetMaxRadius();
+            wxDouble radiusFactor = (maxRadius);
+            const wxVector<Circle::ptr>& circles = m_datasets[i]->GetCircles();
+            for (size_t j = 0; j < circles.size(); ++j)
+            {
+                const Circle::ptr& circle = circles[j];
+                circle->SetCenter(m_grid.GetMapping().GetWindowPosition(circle->GetValue().m_x, circle->GetValue().m_y));
+                circle->SetRadius(minRadius + (sqrt(circle->GetValue().m_z * zFactor) * radiusFactor));
+            }
+        }
+
         for (size_t i = 0; i < m_datasets.size(); ++i)
         {
             const wxVector<Circle::ptr>& circles = m_datasets[i]->GetCircles();
             for (size_t j = 0; j < circles.size(); ++j)
             {
                 const Circle::ptr& circle = circles[j];
-                circle->SetCenter(m_grid.GetMapping().GetWindowPosition(circle->GetValue().m_x, circle->GetValue().m_y));
                 circle->Draw(*gc);
             }
         }

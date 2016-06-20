@@ -26,10 +26,11 @@
 
 wxChartCircle::wxChartCircle(wxDouble x, 
                              wxDouble y, 
+                             wxDouble radius,
                              const wxChartTooltipProvider::ptr tooltipProvider,
                              const wxChartCircleOptions &options)
     : wxChartElement(tooltipProvider), m_options(options),
-    m_x(x), m_y(y)
+    m_x(x), m_y(y), m_radius(radius)
 {
 }
 
@@ -47,7 +48,7 @@ void wxChartCircle::Draw(wxGraphicsContext &gc)
 {
     wxGraphicsPath path = gc.CreatePath();
     
-    path.AddCircle(m_x, m_y, 20);
+    path.AddCircle(m_x, m_y, m_radius);
         
     wxBrush brush(m_options.GetFillColor());
     gc.SetBrush(brush);
@@ -68,4 +69,9 @@ void wxChartCircle::SetCenter(wxPoint2DDouble center)
 {
     m_x = center.m_x;
     m_y = center.m_y;
+}
+
+void wxChartCircle::SetRadius(wxDouble radius)
+{
+    m_radius = radius;
 }

@@ -54,6 +54,8 @@ public:
     const wxColor& GetFillColor() const;
     unsigned int GetOutlineWidth() const;
     const wxColor& GetOutlineColor() const;
+    unsigned int GetMinRadius() const;
+    unsigned int GetMaxRadius() const;
 
     const wxVector<wxDoubleTriplet>& GetData() const;
 
@@ -61,6 +63,8 @@ private:
     wxColor m_fillColor;
     unsigned int m_outlineWidth;
     wxColor m_outlineColor;
+    unsigned int m_minRadius;
+    unsigned int m_maxRadius;
     wxVector<wxDoubleTriplet> m_data;
 };
 
@@ -125,7 +129,7 @@ private:
     public:
         typedef wxSharedPtr<Circle> ptr;
 
-        Circle(wxDoubleTriplet value, wxDouble x, wxDouble y,
+        Circle(wxDoubleTriplet value, wxDouble x, wxDouble y, wxDouble radius,
             const wxChartTooltipProvider::ptr tooltipProvider,
             const wxChartCircleOptions &options);
 
@@ -140,12 +144,17 @@ private:
     public:
         typedef wxSharedPtr<Dataset> ptr;
 
-        Dataset();
+        Dataset(unsigned int minRadius, unsigned int maxRadius);
 
         const wxVector<Circle::ptr>& GetCircles() const;
         void AppendCircle(Circle::ptr circle);
 
+        unsigned int GetMinRadius() const;
+        unsigned int GetMaxRadius() const;
+
     private:
+        unsigned int m_minRadius;
+        unsigned int m_maxRadius;
         wxVector<Circle::ptr> m_circles;
     };
 
@@ -153,6 +162,8 @@ private:
 	wxBubbleChartOptions m_options;
 	wxChartGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
+    wxDouble m_minZValue;
+    wxDouble m_maxZValue;
 
 	DECLARE_EVENT_TABLE();
 };

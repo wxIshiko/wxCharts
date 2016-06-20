@@ -32,7 +32,8 @@
 class wxChartCircle : public wxChartElement
 {
 public:
-    wxChartCircle(wxDouble x, wxDouble y, const wxChartTooltipProvider::ptr tooltipProvider,
+    wxChartCircle(wxDouble x, wxDouble y, wxDouble radius,
+        const wxChartTooltipProvider::ptr tooltipProvider,
         const wxChartCircleOptions &options);
 
     virtual bool HitTest(const wxPoint &point) const;
@@ -50,11 +51,13 @@ public:
     /// Sets the center of the circle.
     /// @param position The new center of the circle.
     void SetCenter(wxPoint2DDouble center);
+    void SetRadius(wxDouble radius);
 
 private:
     wxChartCircleOptions m_options;
     wxDouble m_x;
     wxDouble m_y;
+    wxDouble m_radius;
 };
 
 #endif

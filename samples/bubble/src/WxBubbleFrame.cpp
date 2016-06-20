@@ -46,7 +46,7 @@ WxBubbleFrame::WxBubbleFrame(const wxString& title)
     wxBubbleChartDataset::ptr dataset1(
         new wxBubbleChartDataset(
             wxColor(250, 20, 20, 0x78),
-            wxColor(250, 20, 20, 0xB8),
+            *wxWHITE,
             points1)
         );
     chartData.AddDataset(dataset1);
@@ -59,11 +59,11 @@ WxBubbleFrame::WxBubbleFrame(const wxString& title)
     points2.push_back(wxDoubleTriplet(1.5, 4.1, 1));
     points2.push_back(wxDoubleTriplet(1.8, 2.7, 2));
     points2.push_back(wxDoubleTriplet(2.1, 2, 2));
-    points2.push_back(wxDoubleTriplet(2.3, 6, 2));
+    points2.push_back(wxDoubleTriplet(2.3, 6, 5));
     wxBubbleChartDataset::ptr dataset2(
         new wxBubbleChartDataset(
-            wxColor(20, 20, 20, 0x78),
-            wxColor(20, 20, 20, 0xB8),
+            wxColor(20, 20, 20, 0x58),
+            *wxWHITE,
             points2)
         );
     chartData.AddDataset(dataset2);
