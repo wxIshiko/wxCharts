@@ -36,12 +36,16 @@ wxChartCircle::wxChartCircle(wxDouble x,
 
 bool wxChartCircle::HitTest(const wxPoint &point) const
 {
-    return false;
+    wxDouble distanceFromXCenter = point.x - m_x;
+    wxDouble distanceFromYCenter = point.y - m_y;
+    wxDouble radialDistanceFromCenter = sqrt((distanceFromXCenter * distanceFromXCenter) + (distanceFromYCenter * distanceFromYCenter));
+
+    return (radialDistanceFromCenter <= m_radius);
 }
 
 wxPoint2DDouble wxChartCircle::GetTooltipPosition() const
 {
-    return wxPoint2DDouble(0, 0);
+    return wxPoint2DDouble(m_x, m_y);
 }
 
 void wxChartCircle::Draw(wxGraphicsContext &gc)

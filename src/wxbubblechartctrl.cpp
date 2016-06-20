@@ -338,6 +338,19 @@ void wxBubbleChartCtrl::Resize(const wxSize &size)
 wxSharedPtr<wxVector<const wxChartElement*> > wxBubbleChartCtrl::GetActiveElements(const wxPoint &point)
 {
 	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        const wxVector<Circle::ptr>& circles = m_datasets[i]->GetCircles();
+        for (size_t j = 0; j < circles.size(); ++j)
+        {
+            if (circles[j]->HitTest(point))
+            {
+                activeElements->push_back(circles[j].get());
+            }
+        }
+    }
+
 	return activeElements;
 }
 
