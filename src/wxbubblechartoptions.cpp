@@ -26,6 +26,8 @@
 
 wxBubbleChartOptions::wxBubbleChartOptions()
 {
+    GetMultiTooltipOptions().SetShowTitle(false);
+    GetMultiTooltipOptions().SetAlignment(wxALIGN_TOP);
 }
 
 const wxChartGridOptions& wxBubbleChartOptions::GetGridOptions() const
