@@ -42,6 +42,7 @@
 #include "wxchartpoint.h"
 #include <wx/control.h>
 #include <wx/sharedptr.h>
+#include <wx/menu.h>
 
 /// Stores the information about a dataset to be shown on a wxLineChartCtrl.
 class wxLineChartDataset
@@ -57,11 +58,11 @@ public:
 	/// @param dotStrokeColor The color of the pen
 	/// used to draw the outline of the points.
 	/// @param fillColor The part of the graph between
-	/// the X-axis and the line will be filled using 
+	/// the X-axis and the line will be filled using
 	/// this color.
 	/// @param data The list of values.
-	wxLineChartDataset(const wxString &label, 
-		const wxColor &dotColor, const wxColor &dotStrokeColor, 
+	wxLineChartDataset(const wxString &label,
+		const wxColor &dotColor, const wxColor &dotStrokeColor,
 		const wxColor &fillColor, const wxVector<wxDouble> &data);
 
 	/// Gets the name of the dataset.
@@ -135,16 +136,16 @@ public:
 	/// @param id Control identifier. If wxID_ANY, will automatically
 	/// create an identifier.
 	/// @param data The data that will be used to initialize the chart.
-	/// @param pos Control position. wxDefaultPosition indicates that 
+	/// @param pos Control position. wxDefaultPosition indicates that
 	/// wxWidgets should generate a default position for the control.
 	/// @param size Control size. wxDefaultSize indicates that wxWidgets
-	/// should generate a default size for the window. If no suitable 
-	/// size can  be found, the window will be sized to 20x20 pixels 
+	/// should generate a default size for the window. If no suitable
+	/// size can  be found, the window will be sized to 20x20 pixels
 	/// so that the window is visible but obviously not correctly sized.
-	/// @param style Control style. For generic window styles, please 
+	/// @param style Control style. For generic window styles, please
 	/// see wxWindow.
 	wxLineChartCtrl(wxWindow *parent, wxWindowID id, const wxLineChartData &data,
-		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize, 
+		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
 	/// Constructs a wxLineChartCtrl control.
 	/// @param parent Pointer to a parent window.
@@ -152,19 +153,22 @@ public:
 	/// create an identifier.
 	/// @param data The data that will be used to initialize the chart.
 	/// @param options The settings to be used for this chart.
-	/// @param pos Control position. wxDefaultPosition indicates that 
+	/// @param pos Control position. wxDefaultPosition indicates that
 	/// wxWidgets should generate a default position for the control.
 	/// @param size Control size. wxDefaultSize indicates that wxWidgets
-	/// should generate a default size for the window. If no suitable 
-	/// size can  be found, the window will be sized to 20x20 pixels 
+	/// should generate a default size for the window. If no suitable
+	/// size can  be found, the window will be sized to 20x20 pixels
 	/// so that the window is visible but obviously not correctly sized.
-	/// @param style Control style. For generic window styles, please 
+	/// @param style Control style. For generic window styles, please
 	/// see wxWindow.
 	wxLineChartCtrl(wxWindow *parent, wxWindowID id, const wxLineChartData &data,
 		const wxLineChartOptions &options, const wxPoint &pos = wxDefaultPosition,
 		const wxSize &size = wxDefaultSize, long style = 0);
 
 	virtual const wxLineChartOptions& GetOptions() const;
+
+	void Draw(wxGraphicsContext* gc);
+	void Save(const wxString &filename, const wxBitmapType &type);
 
 private:
 	void Initialize(const wxLineChartData &data);
@@ -176,6 +180,7 @@ private:
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 	void OnPaint(wxPaintEvent &evt);
+	void EventBind();
 
 private:
 	class Point : public wxChartPoint
@@ -183,10 +188,10 @@ private:
 	public:
 		typedef wxSharedPtr<Point> ptr;
 
-		Point(wxDouble value, 
-			const wxChartTooltipProvider::ptr tooltipProvider, 
-			wxDouble x, wxDouble y, wxDouble radius, 
-			unsigned int strokeWidth, const wxColor &strokeColor, 
+		Point(wxDouble value,
+			const wxChartTooltipProvider::ptr tooltipProvider,
+			wxDouble x, wxDouble y, wxDouble radius,
+			unsigned int strokeWidth, const wxColor &strokeColor,
 			const wxColor &fillColor, wxDouble hitDetectionRange);
 
 		virtual bool HitTest(const wxPoint &point) const;
@@ -228,6 +233,7 @@ private:
 	wxLineChartOptions m_options;
 	wxChartGrid m_grid;
 	wxVector<Dataset::ptr> m_datasets;
+	wxMenu *m_menu;
 
 	DECLARE_EVENT_TABLE();
 };

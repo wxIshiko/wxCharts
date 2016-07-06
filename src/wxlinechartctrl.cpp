@@ -34,6 +34,7 @@
 #include "wxlinechartctrl.h"
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
+#include <wx/filedlg.h>
 #include <sstream>
 
 wxLineChartDataset::wxLineChartDataset(const wxString &label,
@@ -41,9 +42,9 @@ wxLineChartDataset::wxLineChartDataset(const wxString &label,
 									   const wxColor &dotStrokeColor,
 									   const wxColor &fillColor,
 									   const wxVector<wxDouble> &data)
-	: m_label(label), m_showDots(true), m_dotColor(dotColor), 
-	m_dotStrokeColor(dotStrokeColor), m_showLine(true), 
-	m_lineColor(dotColor), m_fill(true), m_fillColor(fillColor), 
+	: m_label(label), m_showDots(true), m_dotColor(dotColor),
+	m_dotStrokeColor(dotStrokeColor), m_showLine(true),
+	m_lineColor(dotColor), m_fill(true), m_fillColor(fillColor),
 	m_data(data)
 {
 }
@@ -116,7 +117,7 @@ const wxVector<wxLineChartDataset::ptr>& wxLineChartData::GetDatasets() const
 wxLineChartCtrl::Point::Point(wxDouble value,
 							  const wxChartTooltipProvider::ptr tooltipProvider,
 							  wxDouble x,
-							  wxDouble y, 
+							  wxDouble y,
 							  wxDouble radius,
 							  unsigned int strokeWidth,
 							  const wxColor &strokeColor,
@@ -145,9 +146,9 @@ wxDouble wxLineChartCtrl::Point::GetValue() const
 wxLineChartCtrl::Dataset::Dataset(bool showDots,
 								  bool showLine,
 								  const wxColor &lineColor,
-								  bool fill, 
+								  bool fill,
 								  const wxColor &fillColor)
-	: m_showDots(showDots), m_showLine(showLine), 
+	: m_showDots(showDots), m_showLine(showLine),
 	m_lineColor(lineColor), m_fill(fill), m_fillColor(fillColor)
 {
 }
@@ -193,14 +194,17 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 								 const wxPoint &pos,
 								 const wxSize &size,
 								 long style)
-	: wxChartCtrl(parent, id, pos, size, style), 
+	: wxChartCtrl(parent, id, pos, size, style),
 	m_grid(
 		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
 		size, data.GetLabels(), GetMinValue(data.GetDatasets()),
 		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
 		)
 {
+	m_menu = new wxMenu();
+	m_menu->Append(wxID_SAVEAS,wxString("Save as"));
 	Initialize(data);
+	EventBind();
 }
 
 wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
@@ -208,7 +212,7 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 								 const wxLineChartData &data,
 								 const wxLineChartOptions &options,
 								 const wxPoint &pos,
-								 const wxSize &size, 
+								 const wxSize &size,
 								 long style)
 	: wxChartCtrl(parent, id, pos, size, style), m_options(options),
 	m_grid(
@@ -217,7 +221,10 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
 		)
 {
+	m_menu = new wxMenu();
+	m_menu->Append(wxID_SAVEAS,wxString("Save as"));
 	Initialize(data);
+	EventBind();
 }
 
 const wxLineChartOptions& wxLineChartCtrl::GetOptions() const
@@ -233,7 +240,7 @@ void wxLineChartCtrl::Initialize(const wxLineChartData &data)
 		Dataset::ptr newDataset(new Dataset(datasets[i]->ShowDots(),
 			datasets[i]->ShowLine(), datasets[i]->GetLineColor(),
 			datasets[i]->Fill(), datasets[i]->GetFillColor()));
-		
+
 		const wxVector<wxDouble>& datasetData = datasets[i]->GetData();
 		for (size_t j = 0; j < datasetData.size(); ++j)
 		{
@@ -333,14 +340,10 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxLineChartCtrl::GetActiveElements
 	return activeElements;
 }
 
-void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
+
+void wxLineChartCtrl::Draw(wxGraphicsContext* gc)
 {
-	wxAutoBufferedPaintDC dc(this);
-
-	dc.Clear();
-
-	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
-	if (gc)
+if (gc)
 	{
 		m_grid.Draw(*gc);
 
@@ -403,6 +406,61 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 		delete gc;
 	}
 }
+
+void wxLineChartCtrl::Save(const wxString &filename, const wxBitmapType &type)
+	{
+	int w,h;
+	this->GetSize(&w,&h);
+	wxBitmap bmp(w,h);
+	wxMemoryDC mdc(bmp);
+	mdc.Clear();
+	wxGraphicsContext* gdc = wxGraphicsContext::Create( mdc );
+	this->Draw(gdc);
+	bmp.SaveFile(filename,type);
+	}
+
+void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
+{
+	wxAutoBufferedPaintDC dc(this);
+	dc.Clear();
+	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+	Draw(gc);
+}
+
+void wxLineChartCtrl::EventBind()
+	{
+	this->Bind(wxEVT_RIGHT_DOWN,
+		[this](wxMouseEvent& ev) {
+			PopupMenu(m_menu,ev.GetX(),ev.GetY());
+		});
+
+	m_menu->Bind(wxEVT_MENU,
+		[this](wxCommandEvent &){
+
+		wxFileDialog saveFileDialog(this, _("Save file"), "", "",
+			"PNG files (*.png)|*.png|JPEG files (*.jpeg)|*.jpeg",
+			wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+		if (saveFileDialog.ShowModal() == wxID_CANCEL)
+			return;
+
+		wxString filename = saveFileDialog.GetPath();
+
+		switch (saveFileDialog.GetFilterIndex())
+			{
+			case 0:
+			{
+				Save(filename,wxBitmapType::wxBITMAP_TYPE_PNG);
+				return ;
+			}
+			case 1:
+			{
+				Save(filename,wxBitmapType::wxBITMAP_TYPE_JPEG);
+			}
+			}
+		}, wxID_SAVEAS);
+
+	}
+
 
 BEGIN_EVENT_TABLE(wxLineChartCtrl, wxChartCtrl)
 	EVT_PAINT(wxLineChartCtrl::OnPaint)
