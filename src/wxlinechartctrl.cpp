@@ -201,8 +201,7 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
 		)
 {
-	m_menu = new wxMenu();
-	m_menu->Append(wxID_SAVEAS,wxString("Save as"));
+	m_menu.Append(wxID_SAVEAS, wxString("Save as"));
 	Initialize(data);
 	EventBind();
 }
@@ -221,8 +220,7 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
 		)
 {
-	m_menu = new wxMenu();
-	m_menu->Append(wxID_SAVEAS,wxString("Save as"));
+	m_menu.Append(wxID_SAVEAS, wxString("Save as"));
 	Initialize(data);
 	EventBind();
 }
@@ -426,14 +424,14 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 
 void wxLineChartCtrl::EventBind()
 {
-    Bind(wxEVT_RIGHT_DOWN, 
-        [this](wxMouseEvent& ev) 
+    Bind(wxEVT_CONTEXT_MENU, 
+        [this](wxContextMenuEvent& evt) 
         {
-            PopupMenu(m_menu,ev.GetX(),ev.GetY());
+            PopupMenu(&m_menu, ScreenToClient(evt.GetPosition()));
         }
         );
 
-    m_menu->Bind(wxEVT_MENU,
+    m_menu.Bind(wxEVT_MENU,
         [this](wxCommandEvent &)
         {
             wxFileDialog saveFileDialog(this, _("Save file"), "", "",

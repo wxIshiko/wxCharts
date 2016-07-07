@@ -233,7 +233,7 @@ private:
 	wxLineChartOptions m_options;
 	wxChartGrid m_grid;
 	wxVector<Dataset::ptr> m_datasets;
-	wxMenu *m_menu;
+	wxMenu m_menu;
 
 	DECLARE_EVENT_TABLE();
 };
