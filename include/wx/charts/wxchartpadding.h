@@ -27,9 +27,12 @@
 
 #include <wx/defs.h>
 
+/// Padding options for the wxChartCtrl class.
 class wxChartPadding
 {
 public:
+    /// Constructs a wxChartPadding
+    /// instance.
 	wxChartPadding();
 	wxChartPadding(wxDouble left, wxDouble right,
 		wxDouble top, wxDouble bottom);

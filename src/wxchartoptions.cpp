@@ -23,7 +23,7 @@
 #include "wxchartoptions.h"
 
 wxChartOptions::wxChartOptions()
-	: m_responsive(true), m_showTooltips(true)
+	: m_responsive(true), m_showTooltips(true), m_enableSaveAsMenu(true)
 {
 }
 
@@ -61,4 +61,9 @@ const wxChartMultiTooltipOptions& wxChartOptions::GetMultiTooltipOptions() const
 wxChartMultiTooltipOptions& wxChartOptions::GetMultiTooltipOptions()
 {
     return m_multiTooltipOptions;
+}
+
+bool wxChartOptions::IsSaveAsMenuEnabled() const
+{
+    return m_enableSaveAsMenu;
 }

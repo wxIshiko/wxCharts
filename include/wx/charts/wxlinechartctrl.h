@@ -167,7 +167,7 @@ public:
 
 	virtual const wxLineChartOptions& GetOptions() const;
 
-	void Draw(wxGraphicsContext* gc);
+	void Draw(wxGraphicsContext &gc);
 	void Save(const wxString &filename, const wxBitmapType &type);
 
 private:

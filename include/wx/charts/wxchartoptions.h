@@ -32,9 +32,12 @@
 class wxChartOptions
 {
 public:
-	/// Constructs a wxChartOptions instance.
+	/// Constructs a wxChartOptions
+    /// instance.
 	wxChartOptions();
 
+    /// Gets the padding options.
+    /// @return The padding options.
 	const wxChartPadding& GetPadding() const;
 	void SetPadding(const wxChartPadding &padding);
 
@@ -53,14 +56,25 @@ public:
 	/// Enables or disable tooltips.
 	/// @param show True to enable tooltips, false to disable them.
 	void SetShowTooltips(bool show);
+    /// Gets the options for the multi-tooltips (const version).
+    /// @return The options for the multi-tooltips.
     const wxChartMultiTooltipOptions& GetMultiTooltipOptions() const;
+    /// Gets the options for the multi-tooltips (non-const version).
+    /// @return The options for the multi-tooltips.
     wxChartMultiTooltipOptions& GetMultiTooltipOptions();
+
+    /// Whether a contextual menu that allows the user
+    /// to save the graph to file should be provided.
+    /// @retval true A contextual menu with a Save As item is provided.
+    /// @retval false No contextual menu is provided.
+    bool IsSaveAsMenuEnabled() const;
 
 private:
 	wxChartPadding m_padding;
 	bool m_responsive;
 	bool m_showTooltips;
     wxChartMultiTooltipOptions m_multiTooltipOptions;
+    bool m_enableSaveAsMenu;
 };
 
 #endif
