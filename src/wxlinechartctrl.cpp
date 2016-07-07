@@ -425,39 +425,39 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 }
 
 void wxLineChartCtrl::EventBind()
-	{
-	this->Bind(wxEVT_RIGHT_DOWN,
-		[this](wxMouseEvent& ev) {
-			PopupMenu(m_menu,ev.GetX(),ev.GetY());
-		});
+{
+    Bind(wxEVT_RIGHT_DOWN, 
+        [this](wxMouseEvent& ev) 
+        {
+            PopupMenu(m_menu,ev.GetX(),ev.GetY());
+        }
+        );
 
-	m_menu->Bind(wxEVT_MENU,
-		[this](wxCommandEvent &){
+    m_menu->Bind(wxEVT_MENU,
+        [this](wxCommandEvent &)
+        {
+            wxFileDialog saveFileDialog(this, _("Save file"), "", "",
+                "PNG files (*.png)|*.png|JPEG files (*.jpeg)|*.jpeg",
+                wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+            if (saveFileDialog.ShowModal() == wxID_CANCEL)
+                return;
 
-		wxFileDialog saveFileDialog(this, _("Save file"), "", "",
-			"PNG files (*.png)|*.png|JPEG files (*.jpeg)|*.jpeg",
-			wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
-		if (saveFileDialog.ShowModal() == wxID_CANCEL)
-			return;
+            wxString filename = saveFileDialog.GetPath();
 
-		wxString filename = saveFileDialog.GetPath();
+            switch (saveFileDialog.GetFilterIndex())
+            {
+            case 0:
+                Save(filename, wxBitmapType::wxBITMAP_TYPE_PNG);
+                break;
 
-		switch (saveFileDialog.GetFilterIndex())
-			{
-			case 0:
-			{
-				Save(filename,wxBitmapType::wxBITMAP_TYPE_PNG);
-				return ;
-			}
-			case 1:
-			{
-				Save(filename,wxBitmapType::wxBITMAP_TYPE_JPEG);
-			}
-			}
-		}, wxID_SAVEAS);
-
-	}
-
+            case 1:
+                Save(filename, wxBitmapType::wxBITMAP_TYPE_JPEG);
+                break;
+            }
+		},
+        wxID_SAVEAS
+        );
+}
 
 BEGIN_EVENT_TABLE(wxLineChartCtrl, wxChartCtrl)
 	EVT_PAINT(wxLineChartCtrl::OnPaint)
