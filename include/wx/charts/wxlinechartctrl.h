@@ -172,6 +172,7 @@ public:
 
 private:
 	void Initialize(const wxLineChartData &data);
+    void CreateContextMenu();
 
 	static wxDouble GetMinValue(const wxVector<wxLineChartDataset::ptr>& datasets);
 	static wxDouble GetMaxValue(const wxVector<wxLineChartDataset::ptr>& datasets);
@@ -180,7 +181,6 @@ private:
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 	void OnPaint(wxPaintEvent &evt);
-	void EventBind();
 
 private:
 	class Point : public wxChartPoint
@@ -233,7 +233,7 @@ private:
 	wxLineChartOptions m_options;
 	wxChartGrid m_grid;
 	wxVector<Dataset::ptr> m_datasets;
-	wxMenu m_menu;
+	wxMenu m_contextMenu;
 
 	DECLARE_EVENT_TABLE();
 };

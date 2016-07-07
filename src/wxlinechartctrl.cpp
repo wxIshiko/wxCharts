@@ -201,9 +201,7 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
 		)
 {
-	m_menu.Append(wxID_SAVEAS, wxString("Save as"));
 	Initialize(data);
-	EventBind();
 }
 
 wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
@@ -220,9 +218,7 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
 		)
 {
-	m_menu.Append(wxID_SAVEAS, wxString("Save as"));
-	Initialize(data);
-	EventBind();
+    Initialize(data);
 }
 
 const wxLineChartOptions& wxLineChartCtrl::GetOptions() const
@@ -232,6 +228,8 @@ const wxLineChartOptions& wxLineChartCtrl::GetOptions() const
 
 void wxLineChartCtrl::Initialize(const wxLineChartData &data)
 {
+    CreateContextMenu();
+
 	const wxVector<wxLineChartDataset::ptr>& datasets = data.GetDatasets();
 	for (size_t i = 0; i < datasets.size(); ++i)
 	{
@@ -260,6 +258,43 @@ void wxLineChartCtrl::Initialize(const wxLineChartData &data)
 
 		m_datasets.push_back(newDataset);
 	}
+}
+
+void wxLineChartCtrl::CreateContextMenu()
+{
+    m_contextMenu.Append(wxID_SAVEAS, wxString("Save as"));
+
+    Bind(wxEVT_CONTEXT_MENU, 
+        [this](wxContextMenuEvent& evt) 
+        {
+            PopupMenu(&m_contextMenu, ScreenToClient(evt.GetPosition()));
+        }
+        );
+
+    m_contextMenu.Bind(wxEVT_MENU,
+        [this](wxCommandEvent &)
+        {
+            wxFileDialog saveFileDialog(this, _("Save file"), "", "",
+                "PNG files (*.png)|*.png|JPEG files (*.jpeg)|*.jpeg",
+                wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+            if (saveFileDialog.ShowModal() == wxID_CANCEL)
+                return;
+
+            wxString filename = saveFileDialog.GetPath();
+
+            switch (saveFileDialog.GetFilterIndex())
+            {
+            case 0:
+                Save(filename, wxBitmapType::wxBITMAP_TYPE_PNG);
+                break;
+
+            case 1:
+                Save(filename, wxBitmapType::wxBITMAP_TYPE_JPEG);
+                break;
+            }
+		},
+        wxID_SAVEAS
+        );
 }
 
 wxDouble wxLineChartCtrl::GetMinValue(const wxVector<wxLineChartDataset::ptr>& datasets)
@@ -420,41 +455,6 @@ void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	Draw(*gc);
     delete gc;
-}
-
-void wxLineChartCtrl::EventBind()
-{
-    Bind(wxEVT_CONTEXT_MENU, 
-        [this](wxContextMenuEvent& evt) 
-        {
-            PopupMenu(&m_menu, ScreenToClient(evt.GetPosition()));
-        }
-        );
-
-    m_menu.Bind(wxEVT_MENU,
-        [this](wxCommandEvent &)
-        {
-            wxFileDialog saveFileDialog(this, _("Save file"), "", "",
-                "PNG files (*.png)|*.png|JPEG files (*.jpeg)|*.jpeg",
-                wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
-            if (saveFileDialog.ShowModal() == wxID_CANCEL)
-                return;
-
-            wxString filename = saveFileDialog.GetPath();
-
-            switch (saveFileDialog.GetFilterIndex())
-            {
-            case 0:
-                Save(filename, wxBitmapType::wxBITMAP_TYPE_PNG);
-                break;
-
-            case 1:
-                Save(filename, wxBitmapType::wxBITMAP_TYPE_JPEG);
-                break;
-            }
-		},
-        wxID_SAVEAS
-        );
 }
 
 BEGIN_EVENT_TABLE(wxLineChartCtrl, wxChartCtrl)
