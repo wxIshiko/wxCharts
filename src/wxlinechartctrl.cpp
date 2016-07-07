@@ -275,23 +275,34 @@ void wxLineChartCtrl::CreateContextMenu()
         [this](wxCommandEvent &)
         {
             wxFileDialog saveFileDialog(this, _("Save file"), "", "",
-                "PNG files (*.png)|*.png|JPEG files (*.jpeg)|*.jpeg",
-                wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+                "JPEG files (*.jpg;*.jpeg)|*.jpg;*.jpeg|PNG files (*.png)|*.png",
+                wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
             if (saveFileDialog.ShowModal() == wxID_CANCEL)
                 return;
 
             wxString filename = saveFileDialog.GetPath();
 
+            wxBitmapType type = wxBitmapType::wxBITMAP_TYPE_INVALID;
             switch (saveFileDialog.GetFilterIndex())
             {
             case 0:
-                Save(filename, wxBitmapType::wxBITMAP_TYPE_PNG);
+                type = wxBitmapType::wxBITMAP_TYPE_JPEG;
+                if (wxImage::FindHandler(wxBitmapType::wxBITMAP_TYPE_JPEG) == 0)
+                {
+                    wxImage::AddHandler(new wxJPEGHandler());
+                }
                 break;
 
             case 1:
-                Save(filename, wxBitmapType::wxBITMAP_TYPE_JPEG);
+                type = wxBitmapType::wxBITMAP_TYPE_PNG;
+                if (wxImage::FindHandler(wxBitmapType::wxBITMAP_TYPE_PNG) == 0)
+                {
+                    wxImage::AddHandler(new wxPNGHandler());
+                }
                 break;
             }
+            
+            Save(filename, type);
 		},
         wxID_SAVEAS
         );
