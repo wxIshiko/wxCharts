@@ -384,7 +384,6 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxLineChartCtrl::GetActiveElements
 	return activeElements;
 }
 
-
 void wxLineChartCtrl::Draw(wxGraphicsContext &gc)
 {
     m_grid.Draw(gc);
@@ -449,13 +448,13 @@ void wxLineChartCtrl::Draw(wxGraphicsContext &gc)
 void wxLineChartCtrl::Save(const wxString &filename, const wxBitmapType &type)
 {
     int w,h;
-    GetSize(&w,&h);
-    wxBitmap bmp(w,h);
+    GetSize(&w, &h);
+    wxBitmap bmp(w, h);
     wxMemoryDC mdc(bmp);
     mdc.Clear();
     wxGraphicsContext* gc = wxGraphicsContext::Create(mdc);
     Draw(*gc);
-    bmp.SaveFile(filename,type);
+    bmp.SaveFile(filename, type);
     delete gc;
 }
 

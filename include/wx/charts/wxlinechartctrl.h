@@ -169,11 +169,11 @@ public:
 
 	void Draw(wxGraphicsContext &gc);
 	void Save(const wxString &filename, const wxBitmapType &type);
-
+    
 private:
 	void Initialize(const wxLineChartData &data);
     void CreateContextMenu();
-
+    
 	static wxDouble GetMinValue(const wxVector<wxLineChartDataset::ptr>& datasets);
 	static wxDouble GetMaxValue(const wxVector<wxLineChartDataset::ptr>& datasets);
 
