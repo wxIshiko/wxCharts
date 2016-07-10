@@ -275,7 +275,7 @@ void wxLineChartCtrl::CreateContextMenu()
         [this](wxCommandEvent &)
         {
             wxFileDialog saveFileDialog(this, _("Save file"), "", "",
-                "JPEG files (*.jpg;*.jpeg)|*.jpg;*.jpeg|PNG files (*.png)|*.png",
+                "JPEG files (*.jpg;*.jpeg)|*.jpg;*.jpeg|PNG files (*.png)|*.png|SVG files (*.svg)|*.svg",
                 wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
             if (saveFileDialog.ShowModal() == wxID_CANCEL)
                 return;
@@ -287,7 +287,7 @@ void wxLineChartCtrl::CreateContextMenu()
             {
             case 0:
                 type = wxBitmapType::wxBITMAP_TYPE_JPEG;
-                if (wxImage::FindHandler(wxBitmapType::wxBITMAP_TYPE_JPEG) == 0)
+                if (wxImage::FindHandler(type) == 0)
                 {
                     wxImage::AddHandler(new wxJPEGHandler());
                 }
@@ -295,11 +295,29 @@ void wxLineChartCtrl::CreateContextMenu()
 
             case 1:
                 type = wxBitmapType::wxBITMAP_TYPE_PNG;
-                if (wxImage::FindHandler(wxBitmapType::wxBITMAP_TYPE_PNG) == 0)
+                if (wxImage::FindHandler(type) == 0)
                 {
                     wxImage::AddHandler(new wxPNGHandler());
                 }
                 break;
+
+            case 2:
+				//auto bmp = this->CreateBitmap();
+
+				type = wxBitmapType::wxBITMAP_TYPE_JPEG;
+				if (wxImage::FindHandler(type) == 0)
+                {
+                    wxImage::AddHandler(new wxJPEGHandler());
+                }
+				auto testfile = "testfile";
+				this->CreateBitmap().SaveFile(testfile,type);
+				auto bmp = wxBitmap(testfile,type);
+
+				wxSVGFileDC svgDC(filename,bmp.GetWidth(),bmp.GetHeight());
+				svgDC.SetBitmapHandler(new wxSVGBitmapEmbedHandler());
+				svgDC.DrawBitmap(bmp,0,0);
+				wxRemoveFile(testfile);
+                return;
             }
             
             Save(filename, type);
