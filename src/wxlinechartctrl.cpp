@@ -448,15 +448,21 @@ void wxLineChartCtrl::Draw(wxGraphicsContext &gc)
 
 void wxLineChartCtrl::Save(const wxString &filename, const wxBitmapType &type)
 {
-    int w,h;
+    CreateBitmap().SaveFile(filename,type);
+}
+
+wxBitmap wxLineChartCtrl::CreateBitmap()
+{
+	int w,h;
     GetSize(&w,&h);
     wxBitmap bmp(w,h);
     wxMemoryDC mdc(bmp);
     mdc.Clear();
     wxGraphicsContext* gc = wxGraphicsContext::Create(mdc);
     Draw(*gc);
-    bmp.SaveFile(filename,type);
     delete gc;
+
+	return bmp;
 }
 
 void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)

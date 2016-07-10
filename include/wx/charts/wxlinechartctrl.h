@@ -169,6 +169,7 @@ public:
 
 	void Draw(wxGraphicsContext &gc);
 	void Save(const wxString &filename, const wxBitmapType &type);
+	wxBitmap CreateBitmap();
 
 private:
 	void Initialize(const wxLineChartData &data);
