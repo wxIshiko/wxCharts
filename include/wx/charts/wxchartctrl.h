@@ -64,6 +64,7 @@ protected:
 	void DrawTooltips(wxGraphicsContext &gc);
 
 private:
+    virtual void DoDraw(wxGraphicsContext &gc) = 0;
 	virtual void Resize(const wxSize &size) = 0;
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) = 0;
 

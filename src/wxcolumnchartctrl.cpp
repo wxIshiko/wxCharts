@@ -160,6 +160,38 @@ wxDouble wxColumnChartCtrl::GetMaxValue(const wxVector<wxBarChartDataset::ptr>& 
 	return result;
 }
 
+void wxColumnChartCtrl::DoDraw(wxGraphicsContext &gc)
+{
+    m_grid.Draw(gc);
+
+    wxDouble columnWidth = GetColumnWidth();
+
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        Dataset& currentDataset = *m_datasets[i];
+        for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
+        {
+            Column& column = *(currentDataset.GetColumns()[j]);
+            wxPoint2DDouble position = m_grid.GetMapping().GetWindowPositionAtTickMark(j, column.GetValue());
+            position.m_x += m_options.GetColumnSpacing() + (i * (columnWidth + m_options.GetDatasetSpacing()));
+
+            wxPoint2DDouble bottomLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j);
+
+            column.SetPosition(position);
+            column.SetSize(columnWidth, bottomLeftCornerPosition.m_y - position.m_y);
+        }
+    }
+
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        Dataset& currentDataset = *m_datasets[i];
+        for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
+        {
+            currentDataset.GetColumns()[j]->Draw(gc);
+        }
+    }
+}
+
 void wxColumnChartCtrl::Resize(const wxSize &size)
 {
 	m_grid.Resize(size);
@@ -196,38 +228,9 @@ void wxColumnChartCtrl::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{
-		m_grid.Draw(*gc);
-
-		wxDouble columnWidth = GetColumnWidth();
-
-		for (size_t i = 0; i < m_datasets.size(); ++i)
-		{
-			Dataset& currentDataset = *m_datasets[i];
-			for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
-			{
-				Column& column = *(currentDataset.GetColumns()[j]);
-				wxPoint2DDouble position = m_grid.GetMapping().GetWindowPositionAtTickMark(j, column.GetValue());
-				position.m_x += m_options.GetColumnSpacing() + (i * (columnWidth + m_options.GetDatasetSpacing()));
-
-				wxPoint2DDouble bottomLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j);
-					
-				column.SetPosition(position);
-				column.SetSize(columnWidth, bottomLeftCornerPosition.m_y - position.m_y);
-			}
-		}
-
-		for (size_t i = 0; i < m_datasets.size(); ++i)
-		{
-			Dataset& currentDataset = *m_datasets[i];
-			for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
-			{	
-				currentDataset.GetColumns()[j]->Draw(*gc);
-			}
-		}
-
+        DoDraw(*gc);
 		DrawTooltips(*gc);
-
-		delete gc;
+        delete gc;
 	}
 }
 

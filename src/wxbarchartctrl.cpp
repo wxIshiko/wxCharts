@@ -199,6 +199,43 @@ wxDouble wxBarChartCtrl::GetMaxValue(const wxVector<wxBarChartDataset::ptr>& dat
 	return result;
 }
 
+void wxBarChartCtrl::DoDraw(wxGraphicsContext &gc)
+{
+    m_grid.Draw(gc);
+
+    wxDouble barHeight = GetBarHeight();
+
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        Dataset& currentDataset = *m_datasets[i];
+        for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
+        {
+            Bar& bar = *(currentDataset.GetBars()[j]);
+
+            wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j + 1);
+            upperLeftCornerPosition.m_y += m_options.GetBarSpacing() + (i * (barHeight + m_options.GetDatasetSpacing()));
+
+            wxPoint2DDouble bottomLeftCornerPosition = upperLeftCornerPosition;
+            bottomLeftCornerPosition.m_y += barHeight;
+
+            wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j + 1, bar.GetValue());
+
+            bar.SetPosition(upperLeftCornerPosition);
+            bar.SetSize(upperRightCornerPosition.m_x - upperLeftCornerPosition.m_x,
+                bottomLeftCornerPosition.m_y - upperLeftCornerPosition.m_y);
+        }
+    }
+
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        Dataset& currentDataset = *m_datasets[i];
+        for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
+        {
+            currentDataset.GetBars()[j]->Draw(gc);
+        }
+    }
+}
+
 void wxBarChartCtrl::Resize(const wxSize &size)
 {
 	wxSize newSize(
@@ -239,42 +276,8 @@ void wxBarChartCtrl::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{
-		m_grid.Draw(*gc);
-
-		wxDouble barHeight = GetBarHeight();
-
-		for (size_t i = 0; i < m_datasets.size(); ++i)
-		{
-			Dataset& currentDataset = *m_datasets[i];
-			for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
-			{
-				Bar& bar = *(currentDataset.GetBars()[j]);
-
-				wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j + 1);
-				upperLeftCornerPosition.m_y += m_options.GetBarSpacing() + (i * (barHeight + m_options.GetDatasetSpacing()));
-
-				wxPoint2DDouble bottomLeftCornerPosition = upperLeftCornerPosition;
-				bottomLeftCornerPosition.m_y += barHeight;
-
-				wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j + 1, bar.GetValue());
-				
-				bar.SetPosition(upperLeftCornerPosition);
-				bar.SetSize(upperRightCornerPosition.m_x - upperLeftCornerPosition.m_x,
-					bottomLeftCornerPosition.m_y - upperLeftCornerPosition.m_y);
-			}
-		}
-
-		for (size_t i = 0; i < m_datasets.size(); ++i)
-		{
-			Dataset& currentDataset = *m_datasets[i];
-			for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
-			{
-				currentDataset.GetBars()[j]->Draw(*gc);
-			}
-		}
-
+        DoDraw(*gc);
 		DrawTooltips(*gc);
-
 		delete gc;
 	}
 }

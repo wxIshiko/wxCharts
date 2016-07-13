@@ -167,7 +167,6 @@ public:
 
 	virtual const wxLineChartOptions& GetOptions() const;
 
-	void Draw(wxGraphicsContext &gc);
 	void Save(const wxString &filename, const wxBitmapType &type);
     
 private:
@@ -177,8 +176,9 @@ private:
 	static wxDouble GetMinValue(const wxVector<wxLineChartDataset::ptr>& datasets);
 	static wxDouble GetMaxValue(const wxVector<wxLineChartDataset::ptr>& datasets);
 
-	virtual void Resize(const wxSize &size);
-	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
+    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
+	virtual void Resize(const wxSize &size) wxOVERRIDE;
+	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
 
 	void OnPaint(wxPaintEvent &evt);
 

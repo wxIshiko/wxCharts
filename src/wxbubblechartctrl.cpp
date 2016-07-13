@@ -330,6 +330,37 @@ wxDouble wxBubbleChartCtrl::GetMaxZValue(const wxVector<wxBubbleChartDataset::pt
     return result;
 }
 
+void wxBubbleChartCtrl::DoDraw(wxGraphicsContext &gc)
+{
+    m_grid.Draw(gc);
+
+    wxDouble zFactor = 1 / (m_maxZValue - m_minZValue);
+
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        wxDouble minRadius = m_datasets[i]->GetMinRadius();
+        wxDouble maxRadius = m_datasets[i]->GetMaxRadius();
+        wxDouble radiusFactor = (maxRadius);
+        const wxVector<Circle::ptr>& circles = m_datasets[i]->GetCircles();
+        for (size_t j = 0; j < circles.size(); ++j)
+        {
+            const Circle::ptr& circle = circles[j];
+            circle->SetCenter(m_grid.GetMapping().GetWindowPosition(circle->GetValue().m_x, circle->GetValue().m_y));
+            circle->SetRadius(minRadius + (sqrt(circle->GetValue().m_z * zFactor) * radiusFactor));
+        }
+    }
+
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        const wxVector<Circle::ptr>& circles = m_datasets[i]->GetCircles();
+        for (size_t j = 0; j < circles.size(); ++j)
+        {
+            const Circle::ptr& circle = circles[j];
+            circle->Draw(gc);
+        }
+    }
+}
+
 void wxBubbleChartCtrl::Resize(const wxSize &size)
 {
 	m_grid.Resize(size);
@@ -363,36 +394,8 @@ void wxBubbleChartCtrl::OnPaint(wxPaintEvent &evt)
     wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
     if (gc)
     {
-        m_grid.Draw(*gc);
-
-        wxDouble zFactor = 1 / (m_maxZValue - m_minZValue);
-
-        for (size_t i = 0; i < m_datasets.size(); ++i)
-        {
-            wxDouble minRadius = m_datasets[i]->GetMinRadius();
-            wxDouble maxRadius = m_datasets[i]->GetMaxRadius();
-            wxDouble radiusFactor = (maxRadius);
-            const wxVector<Circle::ptr>& circles = m_datasets[i]->GetCircles();
-            for (size_t j = 0; j < circles.size(); ++j)
-            {
-                const Circle::ptr& circle = circles[j];
-                circle->SetCenter(m_grid.GetMapping().GetWindowPosition(circle->GetValue().m_x, circle->GetValue().m_y));
-                circle->SetRadius(minRadius + (sqrt(circle->GetValue().m_z * zFactor) * radiusFactor));
-            }
-        }
-
-        for (size_t i = 0; i < m_datasets.size(); ++i)
-        {
-            const wxVector<Circle::ptr>& circles = m_datasets[i]->GetCircles();
-            for (size_t j = 0; j < circles.size(); ++j)
-            {
-                const Circle::ptr& circle = circles[j];
-                circle->Draw(*gc);
-            }
-        }
-
+        DoDraw(*gc);
         DrawTooltips(*gc);
-
         delete gc;
     }
 }

@@ -72,8 +72,9 @@ private:
 	static wxDouble GetMinValue(const wxVector<wxBarChartDataset::ptr>& datasets);
 	static wxDouble GetMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets);
 
-	virtual void Resize(const wxSize &size);
-	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
+    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
+	virtual void Resize(const wxSize &size) wxOVERRIDE;
+	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
 
 	void OnPaint(wxPaintEvent &evt);
 

@@ -94,6 +94,21 @@ void wxDoughnutAndPieChartBase::Add(const wxChartSliceData &slice, size_t index)
 	m_slices.insert(m_slices.begin() + index, newSlice);
 }
 
+void wxDoughnutAndPieChartBase::DoDraw(wxGraphicsContext &gc)
+{
+    wxDouble startAngle = 0.0;
+    for (size_t i = 0; i < m_slices.size(); ++i)
+    {
+        SliceArc& currentSlice = *m_slices[i];
+
+        wxDouble endAngle = startAngle + CalculateCircumference(currentSlice.GetValue());
+        currentSlice.SetAngles(startAngle, endAngle);
+        startAngle = endAngle;
+
+        currentSlice.Draw(gc);
+    }
+}
+
 void wxDoughnutAndPieChartBase::Resize(const wxSize &size)
 {
 	for (size_t i = 0; i < m_slices.size(); ++i)
@@ -136,20 +151,8 @@ void wxDoughnutAndPieChartBase::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{
-		wxDouble startAngle = 0.0;
-		for (size_t i = 0; i < m_slices.size(); ++i)
-		{
-			SliceArc& currentSlice = *m_slices[i];
-
-			wxDouble endAngle = startAngle + CalculateCircumference(currentSlice.GetValue());
-			currentSlice.SetAngles(startAngle, endAngle);
-			startAngle = endAngle;
-
-			currentSlice.Draw(*gc);
-		}
-
+        DoDraw(*gc);
 		DrawTooltips(*gc);
-
 		delete gc;
 	}
 }

@@ -245,6 +245,21 @@ wxDouble wxCandlestickChartCtrl::GetMaxValue(const wxCandlestickChartData &data)
     return result;
 }
 
+void wxCandlestickChartCtrl::DoDraw(wxGraphicsContext &gc)
+{
+    m_grid.Draw(gc);
+
+    for (size_t i = 0; i < m_data.size(); ++i)
+    {
+        m_data[i]->Update(m_grid.GetMapping(), i);
+    }
+
+    for (size_t i = 0; i < m_data.size(); ++i)
+    {
+        m_data[i]->Draw(gc);
+    }
+}
+
 void wxCandlestickChartCtrl::Resize(const wxSize &size)
 {
     wxSize newSize(
@@ -276,20 +291,8 @@ void wxCandlestickChartCtrl::OnPaint(wxPaintEvent &evt)
     wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
     if (gc)
     {
-        m_grid.Draw(*gc);
-
-        for (size_t i = 0; i < m_data.size(); ++i)
-        {
-            m_data[i]->Update(m_grid.GetMapping(), i);
-        }
-
-        for (size_t i = 0; i < m_data.size(); ++i)
-        {
-            m_data[i]->Draw(*gc);
-        }
-
+        DoDraw(*gc);
         DrawTooltips(*gc);
-
         delete gc;
     }
 }

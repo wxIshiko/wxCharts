@@ -358,6 +358,65 @@ wxDouble wxLineChartCtrl::GetMaxValue(const wxVector<wxLineChartDataset::ptr>& d
 	return result;
 }
 
+void wxLineChartCtrl::DoDraw(wxGraphicsContext &gc)
+{
+    m_grid.Draw(gc);
+
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();
+
+        wxGraphicsPath path = gc.CreatePath();
+
+        if (points.size() > 0)
+        {
+            const Point::ptr& point = points[0];
+            wxPoint2DDouble firstPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(0, point->GetValue());
+            path.MoveToPoint(firstPosition);
+
+            wxPoint2DDouble lastPosition;
+            for (size_t j = 1; j < points.size(); ++j)
+            {
+                const Point::ptr& point = points[j];
+                lastPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j, point->GetValue());
+                path.AddLineToPoint(lastPosition);
+            }
+
+            if (m_datasets[i]->ShowLine())
+            {
+                wxPen pen(m_datasets[i]->GetLineColor(), m_options.GetLineWidth());
+                gc.SetPen(pen);
+            }
+            else
+            {
+                // TODO : transparent pen
+            }
+
+            gc.StrokePath(path);
+
+            wxPoint2DDouble yPos = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(0);
+
+            path.AddLineToPoint(lastPosition.m_x, yPos.m_y);
+            path.AddLineToPoint(firstPosition.m_x, yPos.m_y);
+            path.CloseSubpath();
+
+            wxBrush brush(m_datasets[i]->GetFillColor());
+            gc.SetBrush(brush);
+            gc.FillPath(path);
+        }
+
+        if (m_datasets[i]->ShowDots())
+        {
+            for (size_t j = 0; j < points.size(); ++j)
+            {
+                const Point::ptr& point = points[j];
+                point->SetPosition(m_grid.GetMapping().GetWindowPositionAtTickMark(j, point->GetValue()));
+                point->Draw(gc);
+            }
+        }
+    }
+}
+
 void wxLineChartCtrl::Resize(const wxSize &size)
 {
 	wxSize newSize(
@@ -384,67 +443,6 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxLineChartCtrl::GetActiveElements
 	return activeElements;
 }
 
-void wxLineChartCtrl::Draw(wxGraphicsContext &gc)
-{
-    m_grid.Draw(gc);
-
-    for (size_t i = 0; i < m_datasets.size(); ++i)
-    {
-        const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();
-
-		wxGraphicsPath path = gc.CreatePath();
-
-		if (points.size() > 0)
-		{
-			const Point::ptr& point = points[0];
-			wxPoint2DDouble firstPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(0, point->GetValue());
-			path.MoveToPoint(firstPosition);
-
-            wxPoint2DDouble lastPosition;
-			for (size_t j = 1; j < points.size(); ++j)
-			{
-				const Point::ptr& point = points[j];
-				lastPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j, point->GetValue());
-				path.AddLineToPoint(lastPosition);
-			}
-
-			if (m_datasets[i]->ShowLine())
-			{
-				wxPen pen(m_datasets[i]->GetLineColor(), m_options.GetLineWidth());
-				gc.SetPen(pen);
-			}
-			else
-			{
-				// TODO : transparent pen
-			}
-
-			gc.StrokePath(path);
-
-			wxPoint2DDouble yPos = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(0);
-
-			path.AddLineToPoint(lastPosition.m_x, yPos.m_y);
-			path.AddLineToPoint(firstPosition.m_x, yPos.m_y);
-			path.CloseSubpath();
-
-			wxBrush brush(m_datasets[i]->GetFillColor());
-			gc.SetBrush(brush);
-			gc.FillPath(path);
-		}
-
-		if (m_datasets[i]->ShowDots())
-		{
-			for (size_t j = 0; j < points.size(); ++j)
-			{
-				const Point::ptr& point = points[j];
-				point->SetPosition(m_grid.GetMapping().GetWindowPositionAtTickMark(j, point->GetValue()));
-				point->Draw(gc);
-			}
-		}
-	}
-
-	DrawTooltips(gc);
-}
-
 void wxLineChartCtrl::Save(const wxString &filename, const wxBitmapType &type)
 {
     int w,h;
@@ -453,18 +451,27 @@ void wxLineChartCtrl::Save(const wxString &filename, const wxBitmapType &type)
     wxMemoryDC mdc(bmp);
     mdc.Clear();
     wxGraphicsContext* gc = wxGraphicsContext::Create(mdc);
-    Draw(*gc);
-    bmp.SaveFile(filename, type);
-    delete gc;
+    if (gc)
+    {
+        DoDraw(*gc);
+        bmp.SaveFile(filename, type);
+        delete gc;
+    }
 }
 
 void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
 {
 	wxAutoBufferedPaintDC dc(this);
-	dc.Clear();
-	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
-	Draw(*gc);
-    delete gc;
+
+    dc.Clear();
+
+    wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+    if (gc)
+    {
+        DoDraw(*gc);
+        DrawTooltips(*gc);
+        delete gc;
+    }
 }
 
 BEGIN_EVENT_TABLE(wxLineChartCtrl, wxChartCtrl)

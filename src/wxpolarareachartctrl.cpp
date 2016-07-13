@@ -167,6 +167,26 @@ wxDouble wxPolarAreaChartCtrl::GetMaxValue(const wxVector<wxChartSliceData> &sli
 	return result;
 }
 
+void wxPolarAreaChartCtrl::DoDraw(wxGraphicsContext &gc)
+{
+    wxDouble startAngle = m_options.GetStartAngle();
+    wxDouble angleIncrement = ((2 * M_PI) / m_slices.size());
+
+    for (size_t i = 0; i < m_slices.size(); ++i)
+    {
+        SliceArc& currentSlice = *m_slices[i];
+
+        wxDouble endAngle = startAngle + angleIncrement;
+        currentSlice.SetAngles(startAngle, endAngle);
+        currentSlice.SetRadiuses(m_grid.GetRadius(currentSlice.GetValue()), 0);
+        startAngle = endAngle;
+
+        currentSlice.Draw(gc);
+    }
+
+    m_grid.Draw(gc);
+}
+
 void wxPolarAreaChartCtrl::Resize(const wxSize &size)
 {
     wxSize newSize(
@@ -203,25 +223,8 @@ void wxPolarAreaChartCtrl::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{
-        wxDouble startAngle = m_options.GetStartAngle();
-        wxDouble angleIncrement = ((2 * M_PI) / m_slices.size());
-
-        for (size_t i = 0; i < m_slices.size(); ++i)
-        {
-            SliceArc& currentSlice = *m_slices[i];
-
-            wxDouble endAngle = startAngle + angleIncrement;
-            currentSlice.SetAngles(startAngle, endAngle);
-            currentSlice.SetRadiuses(m_grid.GetRadius(currentSlice.GetValue()), 0);
-            startAngle = endAngle;
-
-            currentSlice.Draw(*gc);
-        }
-
-        m_grid.Draw(*gc);
-
+        DoDraw(*gc);
         DrawTooltips(*gc);
-
 		delete gc;
 	}
 }

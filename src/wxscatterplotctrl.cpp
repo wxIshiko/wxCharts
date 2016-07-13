@@ -268,6 +268,22 @@ wxDouble wxScatterPlotCtrl::GetMaxYValue(const wxVector<wxScatterPlotDataset::pt
     return result;
 }
 
+void wxScatterPlotCtrl::DoDraw(wxGraphicsContext &gc)
+{
+    m_grid.Draw(gc);
+
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();
+        for (size_t j = 0; j < points.size(); ++j)
+        {
+            const Point::ptr& point = points[j];
+            point->SetPosition(m_grid.GetMapping().GetWindowPosition(point->GetValue().m_x, point->GetValue().m_y));
+            point->Draw(gc);
+        }
+    }
+}
+
 void wxScatterPlotCtrl::Resize(const wxSize &size)
 {
 	wxSize newSize(
@@ -303,21 +319,8 @@ void wxScatterPlotCtrl::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{
-		m_grid.Draw(*gc);
-
-        for (size_t i = 0; i < m_datasets.size(); ++i)
-        {
-            const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();
-            for (size_t j = 0; j < points.size(); ++j)
-            {
-                const Point::ptr& point = points[j];
-                point->SetPosition(m_grid.GetMapping().GetWindowPosition(point->GetValue().m_x, point->GetValue().m_y));
-                point->Draw(*gc);
-            }
-        }
-
-        DrawTooltips(*gc);
-
+        DoDraw(*gc);
+		DrawTooltips(*gc);
 		delete gc;
 	}
 }

@@ -188,6 +188,50 @@ wxDouble wxStackedColumnChartCtrl::GetCumulativeMaxValue(const wxVector<wxBarCha
 	return result;
 }
 
+void wxStackedColumnChartCtrl::DoDraw(wxGraphicsContext &gc)
+{
+    m_grid.Draw(gc);
+
+    wxVector<wxDouble> heightOfPreviousDatasets;
+    for (size_t i = 0; i < m_datasets[0]->GetColumns().size(); ++i)
+    {
+        heightOfPreviousDatasets.push_back(0);
+    }
+
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        Dataset& currentDataset = *m_datasets[i];
+        for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
+        {
+            Column& column = *(currentDataset.GetColumns()[j]);
+
+            wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j, column.GetValue());
+            upperLeftCornerPosition.m_x += m_options.GetColumnSpacing();
+            upperLeftCornerPosition.m_y -= heightOfPreviousDatasets[j];
+            wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j + 1, column.GetValue());
+            upperRightCornerPosition.m_x -= m_options.GetColumnSpacing();
+            upperRightCornerPosition.m_y -= heightOfPreviousDatasets[j];
+
+            wxPoint2DDouble bottomLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j);
+
+            column.SetPosition(upperLeftCornerPosition);
+            column.SetSize(upperRightCornerPosition.m_x - upperLeftCornerPosition.m_x,
+                (bottomLeftCornerPosition.m_y - heightOfPreviousDatasets[j]) - upperLeftCornerPosition.m_y);
+
+            heightOfPreviousDatasets[j] = bottomLeftCornerPosition.m_y - upperLeftCornerPosition.m_y;
+        }
+    }
+
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        Dataset& currentDataset = *m_datasets[i];
+        for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
+        {
+            currentDataset.GetColumns()[j]->Draw(gc);
+        }
+    }
+}
+
 void wxStackedColumnChartCtrl::Resize(const wxSize &size)
 {
 	m_grid.Resize(size);
@@ -223,50 +267,9 @@ void wxStackedColumnChartCtrl::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{
-		m_grid.Draw(*gc);
-
-		wxVector<wxDouble> heightOfPreviousDatasets;
-		for (size_t i = 0; i < m_datasets[0]->GetColumns().size(); ++i)
-		{
-			heightOfPreviousDatasets.push_back(0);
-		}
-
-		for (size_t i = 0; i < m_datasets.size(); ++i)
-		{
-			Dataset& currentDataset = *m_datasets[i];
-			for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
-			{
-				Column& column = *(currentDataset.GetColumns()[j]);
-
-				wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j, column.GetValue());
-				upperLeftCornerPosition.m_x += m_options.GetColumnSpacing();
-				upperLeftCornerPosition.m_y -= heightOfPreviousDatasets[j];
-				wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j + 1, column.GetValue());
-				upperRightCornerPosition.m_x -= m_options.GetColumnSpacing();
-				upperRightCornerPosition.m_y -= heightOfPreviousDatasets[j];
-
-				wxPoint2DDouble bottomLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j);
-
-				column.SetPosition(upperLeftCornerPosition);
-				column.SetSize(upperRightCornerPosition.m_x - upperLeftCornerPosition.m_x,
-					(bottomLeftCornerPosition.m_y - heightOfPreviousDatasets[j]) - upperLeftCornerPosition.m_y);
-
-				heightOfPreviousDatasets[j] = bottomLeftCornerPosition.m_y - upperLeftCornerPosition.m_y;
-			}
-		}
-
-		for (size_t i = 0; i < m_datasets.size(); ++i)
-		{
-			Dataset& currentDataset = *m_datasets[i];
-			for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
-			{
-				currentDataset.GetColumns()[j]->Draw(*gc);
-			}
-		}
-
+        DoDraw(*gc);
 		DrawTooltips(*gc);
-
-		delete gc;
+        delete gc;
 	}
 }
 

@@ -73,6 +73,11 @@ wxDouble wxRadarChartCtrl::GetMaxValue()
 	return result;
 }
 
+void wxRadarChartCtrl::DoDraw(wxGraphicsContext &gc)
+{
+    m_grid.Draw(gc);
+}
+
 void wxRadarChartCtrl::Resize(const wxSize &size)
 {
 	m_grid.Resize(size);
@@ -93,8 +98,8 @@ void wxRadarChartCtrl::OnPaint(wxPaintEvent &evt)
 	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
 	if (gc)
 	{
-		m_grid.Draw(*gc);
-
+        DoDraw(*gc);
+        DrawTooltips(*gc);
 		delete gc;
 	}
 }
