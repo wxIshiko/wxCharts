@@ -21,8 +21,6 @@
 */
 
 #include "wxstackedbarchartctrl.h"
-#include <wx/dcbuffer.h>
-#include <wx/graphics.h>
 #include <sstream>
 
 wxStackedBarChartCtrl::Bar::Bar(wxDouble value,
@@ -298,22 +296,3 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxStackedBarChartCtrl::GetActiveEl
 
 	return activeElements;
 }
-
-void wxStackedBarChartCtrl::OnPaint(wxPaintEvent &evt)
-{
-	wxAutoBufferedPaintDC dc(this);
-
-	dc.Clear();
-
-	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
-	if (gc)
-	{
-        DoDraw(*gc);
-		DrawTooltips(*gc);
-		delete gc;
-	}
-}
-
-BEGIN_EVENT_TABLE(wxStackedBarChartCtrl, wxChartCtrl)
-	EVT_PAINT(wxStackedBarChartCtrl::OnPaint)
-END_EVENT_TABLE()

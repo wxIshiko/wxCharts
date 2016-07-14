@@ -32,8 +32,6 @@
 */
 
 #include "wxcolumnchartctrl.h"
-#include <wx/dcbuffer.h>
-#include <wx/graphics.h>
 #include <sstream>
 
 wxColumnChartCtrl::Column::Column(wxDouble value,
@@ -219,28 +217,9 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxColumnChartCtrl::GetActiveElemen
 	return activeElements;
 }
 
-void wxColumnChartCtrl::OnPaint(wxPaintEvent &evt)
-{
-	wxAutoBufferedPaintDC dc(this);
-
-	dc.Clear();
-
-	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
-	if (gc)
-	{
-        DoDraw(*gc);
-		DrawTooltips(*gc);
-        delete gc;
-	}
-}
-
 wxDouble wxColumnChartCtrl::GetColumnWidth() const
 {
 	wxDouble availableWidth = m_grid.GetMapping().GetXAxis().GetDistanceBetweenTickMarks() -
 		(2 * m_options.GetColumnSpacing()) - ((m_datasets.size() - 1) * m_options.GetDatasetSpacing());
 	return (availableWidth / m_datasets.size());
 }
-
-BEGIN_EVENT_TABLE(wxColumnChartCtrl, wxChartCtrl)
-	EVT_PAINT(wxColumnChartCtrl::OnPaint)
-END_EVENT_TABLE()

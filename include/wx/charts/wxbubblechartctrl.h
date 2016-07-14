@@ -121,9 +121,7 @@ private:
     virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
 	virtual void Resize(const wxSize &size) wxOVERRIDE;
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
-
-	void OnPaint(wxPaintEvent &evt);
-    
+  
 private:
     class Circle : public wxChartCircle
     {
@@ -165,8 +163,6 @@ private:
     wxVector<Dataset::ptr> m_datasets;
     wxDouble m_minZValue;
     wxDouble m_maxZValue;
-
-	DECLARE_EVENT_TABLE();
 };
 
 #endif

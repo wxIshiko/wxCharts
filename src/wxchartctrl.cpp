@@ -23,6 +23,7 @@
 #include "wxchartctrl.h"
 #include "wxcharttooltip.h"
 #include "wxchartmultitooltip.h"
+#include <wx/dcbuffer.h>
 
 wxChartCtrl::wxChartCtrl(wxWindow *parent,
 						 wxWindowID id,
@@ -60,7 +61,21 @@ void wxChartCtrl::DrawTooltips(wxGraphicsContext &gc)
 	}
 }
 
-void wxChartCtrl::OnSize(wxSizeEvent& evt)
+void wxChartCtrl::OnPaint(wxPaintEvent &evt)
+{
+    wxAutoBufferedPaintDC dc(this);
+    dc.Clear();
+
+    wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+    if (gc)
+    {
+        DoDraw(*gc);
+        DrawTooltips(*gc);
+        delete gc;
+    }
+}
+
+void wxChartCtrl::OnSize(wxSizeEvent &evt)
 {
 	if (GetOptions().IsResponsive())
 	{
@@ -69,7 +84,7 @@ void wxChartCtrl::OnSize(wxSizeEvent& evt)
 	}
 }
 
-void wxChartCtrl::OnMouseOver(wxMouseEvent& evt)
+void wxChartCtrl::OnMouseOver(wxMouseEvent &evt)
 {
 	if (GetOptions().ShowTooltips())
 	{
@@ -79,6 +94,7 @@ void wxChartCtrl::OnMouseOver(wxMouseEvent& evt)
 }
 
 BEGIN_EVENT_TABLE(wxChartCtrl, wxControl)
+    EVT_PAINT(wxChartCtrl::OnPaint)
 	EVT_SIZE(wxChartCtrl::OnSize)
 	EVT_MOTION(wxChartCtrl::OnMouseOver)
 END_EVENT_TABLE()

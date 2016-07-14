@@ -180,8 +180,6 @@ private:
 	virtual void Resize(const wxSize &size) wxOVERRIDE;
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
 
-	void OnPaint(wxPaintEvent &evt);
-
 private:
 	class Point : public wxChartPoint
 	{
@@ -234,8 +232,6 @@ private:
 	wxChartGrid m_grid;
 	wxVector<Dataset::ptr> m_datasets;
 	wxMenu m_contextMenu;
-
-	DECLARE_EVENT_TABLE();
 };
 
 #endif

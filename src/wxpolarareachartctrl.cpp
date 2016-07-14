@@ -32,8 +32,6 @@
 */
 
 #include "wxpolarareachartctrl.h"
-#include <wx/dcbuffer.h>
-#include <wx/graphics.h>
 
 wxPolarAreaChartData::wxPolarAreaChartData()
 {
@@ -213,22 +211,3 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxPolarAreaChartCtrl::GetActiveEle
     }
 	return activeElements;
 }
-
-void wxPolarAreaChartCtrl::OnPaint(wxPaintEvent &evt)
-{
-	wxAutoBufferedPaintDC dc(this);
-
-	dc.Clear();
-
-	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
-	if (gc)
-	{
-        DoDraw(*gc);
-        DrawTooltips(*gc);
-		delete gc;
-	}
-}
-
-BEGIN_EVENT_TABLE(wxPolarAreaChartCtrl, wxChartCtrl)
-	EVT_PAINT(wxPolarAreaChartCtrl::OnPaint)
-END_EVENT_TABLE()

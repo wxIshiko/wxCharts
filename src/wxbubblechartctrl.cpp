@@ -23,8 +23,6 @@
 /// @file
 
 #include "wxbubblechartctrl.h"
-#include <wx/dcbuffer.h>
-#include <wx/graphics.h>
 #include <sstream>
 #include <cmath>
 
@@ -384,22 +382,3 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxBubbleChartCtrl::GetActiveElemen
 
 	return activeElements;
 }
-
-void wxBubbleChartCtrl::OnPaint(wxPaintEvent &evt)
-{
-    wxAutoBufferedPaintDC dc(this);
-
-    dc.Clear();
-
-    wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
-    if (gc)
-    {
-        DoDraw(*gc);
-        DrawTooltips(*gc);
-        delete gc;
-    }
-}
-
-BEGIN_EVENT_TABLE(wxBubbleChartCtrl, wxChartCtrl)
-	EVT_PAINT(wxBubbleChartCtrl::OnPaint)
-END_EVENT_TABLE()

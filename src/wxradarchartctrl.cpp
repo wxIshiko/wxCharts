@@ -32,8 +32,6 @@
 */
 
 #include "wxradarchartctrl.h"
-#include <wx/dcbuffer.h>
-#include <wx/graphics.h>
 
 wxRadarChartData::wxRadarChartData(const wxVector<wxString> &labels)
 	: m_labels(labels)
@@ -88,22 +86,3 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxRadarChartCtrl::GetActiveElement
 	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
 	return activeElements;
 }
-
-void wxRadarChartCtrl::OnPaint(wxPaintEvent &evt)
-{
-	wxAutoBufferedPaintDC dc(this);
-
-	dc.Clear();
-
-	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
-	if (gc)
-	{
-        DoDraw(*gc);
-        DrawTooltips(*gc);
-		delete gc;
-	}
-}
-
-BEGIN_EVENT_TABLE(wxRadarChartCtrl, wxChartCtrl)
-	EVT_PAINT(wxRadarChartCtrl::OnPaint)
-END_EVENT_TABLE()

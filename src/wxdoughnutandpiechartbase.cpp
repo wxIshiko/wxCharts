@@ -32,8 +32,6 @@
 */
 
 #include "wxdoughnutandpiechartbase.h"
-#include <wx/dcbuffer.h>
-#include <wx/graphics.h>
 
 wxDoughnutAndPieChartBase::SliceArc::SliceArc(const wxChartSliceData &slice,
 											  wxDouble x,
@@ -141,22 +139,3 @@ double wxDoughnutAndPieChartBase::CalculateCircumference(wxDouble value)
 		return 0;
 	}
 }
-
-void wxDoughnutAndPieChartBase::OnPaint(wxPaintEvent &evt)
-{
-	wxAutoBufferedPaintDC dc(this);
-
-	dc.Clear();
-
-	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
-	if (gc)
-	{
-        DoDraw(*gc);
-		DrawTooltips(*gc);
-		delete gc;
-	}
-}
-
-BEGIN_EVENT_TABLE(wxDoughnutAndPieChartBase, wxChartCtrl)
-	EVT_PAINT(wxDoughnutAndPieChartBase::OnPaint)
-END_EVENT_TABLE()

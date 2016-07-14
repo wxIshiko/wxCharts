@@ -32,7 +32,6 @@
 */
 
 #include "wxstackedcolumnchartctrl.h"
-#include <wx/dcbuffer.h>
 #include <sstream>
 
 wxStackedColumnChartCtrl::Column::Column(wxDouble value,
@@ -257,22 +256,3 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxStackedColumnChartCtrl::GetActiv
 
 	return activeElements;
 }
-
-void wxStackedColumnChartCtrl::OnPaint(wxPaintEvent &evt)
-{
-	wxAutoBufferedPaintDC dc(this);
-
-	dc.Clear();
-
-	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
-	if (gc)
-	{
-        DoDraw(*gc);
-		DrawTooltips(*gc);
-        delete gc;
-	}
-}
-
-BEGIN_EVENT_TABLE(wxStackedColumnChartCtrl, wxChartCtrl)
-	EVT_PAINT(wxStackedColumnChartCtrl::OnPaint)
-END_EVENT_TABLE()

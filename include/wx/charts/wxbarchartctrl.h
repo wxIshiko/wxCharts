@@ -76,8 +76,6 @@ private:
 	virtual void Resize(const wxSize &size) wxOVERRIDE;
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
 
-	void OnPaint(wxPaintEvent &evt);
-
 	wxDouble GetBarHeight() const;
 
 private:
@@ -116,8 +114,6 @@ private:
 	wxBarChartOptions m_options;
 	wxChartGrid m_grid;
 	wxVector<Dataset::ptr> m_datasets;
-
-	DECLARE_EVENT_TABLE();
 };
 
 #endif

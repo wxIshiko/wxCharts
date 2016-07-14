@@ -93,8 +93,6 @@ private:
 	virtual void Resize(const wxSize &size) wxOVERRIDE;
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
 
-	void OnPaint(wxPaintEvent &evt);
-
 private:
     class SliceArc : public wxChartArc
     {
@@ -116,8 +114,6 @@ private:
 	wxPolarAreaChartOptions m_options;
 	wxChartRadialGrid m_grid;
 	wxVector<SliceArc::ptr> m_slices;
-
-	DECLARE_EVENT_TABLE();
 };
 
 #endif

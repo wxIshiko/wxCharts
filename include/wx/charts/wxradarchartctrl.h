@@ -86,13 +86,9 @@ private:
 	virtual void Resize(const wxSize &size) wxOVERRIDE;
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
 
-	void OnPaint(wxPaintEvent &evt);
-
 private:
 	wxRadarChartOptions m_options;
 	wxChartRadialGrid m_grid;
-
-	DECLARE_EVENT_TABLE();
 };
 
 #endif

@@ -23,8 +23,6 @@
 /// @file
 
 #include "wxscatterplotctrl.h"
-#include <wx/dcbuffer.h>
-#include <wx/graphics.h>
 #include <sstream>
 
 wxScatterPlotDataset::wxScatterPlotDataset(const wxColor& fillColor, 
@@ -309,22 +307,3 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxScatterPlotCtrl::GetActiveElemen
     }
 	return activeElements;
 }
-
-void wxScatterPlotCtrl::OnPaint(wxPaintEvent &evt)
-{
-	wxAutoBufferedPaintDC dc(this);
-
-	dc.Clear();
-
-	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
-	if (gc)
-	{
-        DoDraw(*gc);
-		DrawTooltips(*gc);
-		delete gc;
-	}
-}
-
-BEGIN_EVENT_TABLE(wxScatterPlotCtrl, wxChartCtrl)
-	EVT_PAINT(wxScatterPlotCtrl::OnPaint)
-END_EVENT_TABLE()

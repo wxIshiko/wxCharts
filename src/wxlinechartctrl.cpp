@@ -32,9 +32,10 @@
 */
 
 #include "wxlinechartctrl.h"
-#include <wx/dcbuffer.h>
-#include <wx/graphics.h>
+#include <wx/brush.h>
+#include <wx/pen.h>
 #include <wx/filedlg.h>
+#include <wx/dcmemory.h>
 #include <sstream>
 
 wxLineChartDataset::wxLineChartDataset(const wxString &label,
@@ -458,22 +459,3 @@ void wxLineChartCtrl::Save(const wxString &filename, const wxBitmapType &type)
         delete gc;
     }
 }
-
-void wxLineChartCtrl::OnPaint(wxPaintEvent &evt)
-{
-	wxAutoBufferedPaintDC dc(this);
-
-    dc.Clear();
-
-    wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
-    if (gc)
-    {
-        DoDraw(*gc);
-        DrawTooltips(*gc);
-        delete gc;
-    }
-}
-
-BEGIN_EVENT_TABLE(wxLineChartCtrl, wxChartCtrl)
-	EVT_PAINT(wxLineChartCtrl::OnPaint)
-END_EVENT_TABLE()

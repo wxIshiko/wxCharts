@@ -88,8 +88,6 @@ private:
     virtual void Resize(const wxSize &size) wxOVERRIDE;
     virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
 
-    void OnPaint(wxPaintEvent &evt);
-
 private:
     class OHLDCLines : public wxChartElement
     {
@@ -127,8 +125,6 @@ private:
     wxOHLCChartOptions m_options;
     wxChartGrid m_grid;
     wxVector<OHLDCLines::ptr> m_data;
-
-    DECLARE_EVENT_TABLE();
 };
 
 #endif

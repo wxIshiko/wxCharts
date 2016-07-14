@@ -32,8 +32,6 @@
 */
 
 #include "wxbarchartctrl.h"
-#include <wx/dcbuffer.h>
-#include <wx/graphics.h>
 #include <sstream>
 
 wxBarChartCtrl::Bar::Bar(wxDouble value,
@@ -267,28 +265,9 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxBarChartCtrl::GetActiveElements(
 	return activeElements;
 }
 
-void wxBarChartCtrl::OnPaint(wxPaintEvent &evt)
-{
-	wxAutoBufferedPaintDC dc(this);
-
-	dc.Clear();
-
-	wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
-	if (gc)
-	{
-        DoDraw(*gc);
-		DrawTooltips(*gc);
-		delete gc;
-	}
-}
-
 wxDouble wxBarChartCtrl::GetBarHeight() const
 {
 	wxDouble availableHeight = m_grid.GetMapping().GetXAxis().GetDistanceBetweenTickMarks() -
 		(2 * m_options.GetBarSpacing()) - ((m_datasets.size() - 1) * m_options.GetDatasetSpacing());
 	return (availableHeight / m_datasets.size());
 }
-
-BEGIN_EVENT_TABLE(wxBarChartCtrl, wxChartCtrl)
-	EVT_PAINT(wxBarChartCtrl::OnPaint)
-END_EVENT_TABLE()

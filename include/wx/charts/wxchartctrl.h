@@ -68,8 +68,9 @@ private:
 	virtual void Resize(const wxSize &size) = 0;
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) = 0;
 
-	void OnSize(wxSizeEvent& evt);
-	void OnMouseOver(wxMouseEvent& evt);
+    void OnPaint(wxPaintEvent &evt);
+	void OnSize(wxSizeEvent &evt);
+	void OnMouseOver(wxMouseEvent &evt);
 
 private:
 	wxSharedPtr<wxVector<const wxChartElement*> > m_activeElements;

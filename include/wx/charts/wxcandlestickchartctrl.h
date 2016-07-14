@@ -88,8 +88,6 @@ private:
     virtual void Resize(const wxSize &size) wxOVERRIDE;
     virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
 
-    void OnPaint(wxPaintEvent &evt);
-
 private:
     class Candlestick : public wxChartElement
     {
@@ -126,8 +124,6 @@ private:
     wxCandlestickChartOptions m_options;
     wxChartGrid m_grid;
     wxVector<Candlestick::ptr> m_data;
-
-    DECLARE_EVENT_TABLE();
 };
 
 #endif
