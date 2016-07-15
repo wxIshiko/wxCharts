@@ -172,7 +172,8 @@ wxCandlestickChartCtrl::wxCandlestickChartCtrl(wxWindow *parent,
     m_grid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
         size, data.GetLabels(), GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions()
-        )
+        ),
+    m_needsFit(true)
 {
     for (size_t i = 0; i < data.GetData().size(); ++i)
     {
@@ -245,14 +246,26 @@ wxDouble wxCandlestickChartCtrl::GetMaxValue(const wxCandlestickChartData &data)
     return result;
 }
 
-void wxCandlestickChartCtrl::DoDraw(wxGraphicsContext &gc)
+void wxCandlestickChartCtrl::Fit()
 {
-    m_grid.Draw(gc);
+    if (!m_needsFit)
+    {
+        return;
+    }
 
     for (size_t i = 0; i < m_data.size(); ++i)
     {
         m_data[i]->Update(m_grid.GetMapping(), i);
     }
+
+    m_needsFit = false;
+}
+
+void wxCandlestickChartCtrl::DoDraw(wxGraphicsContext &gc)
+{
+    m_grid.Draw(gc);
+
+    Fit();
 
     for (size_t i = 0; i < m_data.size(); ++i)
     {
@@ -267,6 +280,7 @@ void wxCandlestickChartCtrl::Resize(const wxSize &size)
         size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
         );
     m_grid.Resize(newSize);
+    m_needsFit = true;
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxCandlestickChartCtrl::GetActiveElements(const wxPoint &point)

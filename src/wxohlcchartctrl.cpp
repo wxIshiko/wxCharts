@@ -140,7 +140,8 @@ wxOHLCChartCtrl::wxOHLCChartCtrl(wxWindow *parent,
     m_grid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
         size, data.GetLabels(), GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions()
-        )
+        ),
+    m_needsFit(true)
 {
     for (size_t i = 0; i < data.GetData().size(); ++i)
     {
@@ -213,14 +214,26 @@ wxDouble wxOHLCChartCtrl::GetMaxValue(const wxOHLCChartData &data)
     return result;
 }
 
-void wxOHLCChartCtrl::DoDraw(wxGraphicsContext &gc)
+void wxOHLCChartCtrl::Fit()
 {
-    m_grid.Draw(gc);
+    if (!m_needsFit)
+    {
+        return;
+    }
 
     for (size_t i = 0; i < m_data.size(); ++i)
     {
         m_data[i]->Update(m_grid.GetMapping(), i);
     }
+
+    m_needsFit = false;
+}
+
+void wxOHLCChartCtrl::DoDraw(wxGraphicsContext &gc)
+{
+    m_grid.Draw(gc);
+
+    Fit();
 
     for (size_t i = 0; i < m_data.size(); ++i)
     {
@@ -235,6 +248,7 @@ void wxOHLCChartCtrl::Resize(const wxSize &size)
         size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
         );
     m_grid.Resize(newSize);
+    m_needsFit = true;
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxOHLCChartCtrl::GetActiveElements(const wxPoint &point)
