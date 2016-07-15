@@ -76,7 +76,8 @@ wxColumnChartCtrl::wxColumnChartCtrl(wxWindow *parent,
 		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()), 
 		size, data.GetLabels(), GetMinValue(data.GetDatasets()),
 		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
-		)
+		),
+    m_needsFit(true)
 {
 	const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
 	for (size_t i = 0; i < datasets.size(); ++i)
@@ -158,9 +159,12 @@ wxDouble wxColumnChartCtrl::GetMaxValue(const wxVector<wxBarChartDataset::ptr>& 
 	return result;
 }
 
-void wxColumnChartCtrl::DoDraw(wxGraphicsContext &gc)
+void wxColumnChartCtrl::Fit()
 {
-    m_grid.Draw(gc);
+    if (!m_needsFit)
+    {
+        return;
+    }
 
     wxDouble columnWidth = GetColumnWidth();
 
@@ -180,6 +184,15 @@ void wxColumnChartCtrl::DoDraw(wxGraphicsContext &gc)
         }
     }
 
+    m_needsFit = false;
+}
+
+void wxColumnChartCtrl::DoDraw(wxGraphicsContext &gc)
+{
+    m_grid.Draw(gc);
+
+    Fit();
+
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
         Dataset& currentDataset = *m_datasets[i];
@@ -193,6 +206,7 @@ void wxColumnChartCtrl::DoDraw(wxGraphicsContext &gc)
 void wxColumnChartCtrl::Resize(const wxSize &size)
 {
 	m_grid.Resize(size);
+    m_needsFit = true;
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxColumnChartCtrl::GetActiveElements(const wxPoint &point)

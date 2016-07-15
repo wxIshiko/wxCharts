@@ -139,7 +139,8 @@ wxBubbleChartCtrl::wxBubbleChartCtrl(wxWindow *parent,
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
         m_options.GetGridOptions()
         ),
-    m_minZValue(GetMinZValue(data.GetDatasets())), m_maxZValue(GetMaxZValue(data.GetDatasets()))
+    m_minZValue(GetMinZValue(data.GetDatasets())), m_maxZValue(GetMaxZValue(data.GetDatasets())),
+    m_needsFit(true)
 {
     Initialize(data);
 }
@@ -328,9 +329,12 @@ wxDouble wxBubbleChartCtrl::GetMaxZValue(const wxVector<wxBubbleChartDataset::pt
     return result;
 }
 
-void wxBubbleChartCtrl::DoDraw(wxGraphicsContext &gc)
+void wxBubbleChartCtrl::Fit()
 {
-    m_grid.Draw(gc);
+    if (!m_needsFit)
+    {
+        return;
+    }
 
     wxDouble zFactor = 1 / (m_maxZValue - m_minZValue);
 
@@ -348,6 +352,15 @@ void wxBubbleChartCtrl::DoDraw(wxGraphicsContext &gc)
         }
     }
 
+    m_needsFit = false;
+}
+
+void wxBubbleChartCtrl::DoDraw(wxGraphicsContext &gc)
+{
+    m_grid.Draw(gc);
+
+    Fit();
+
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
         const wxVector<Circle::ptr>& circles = m_datasets[i]->GetCircles();
@@ -362,6 +375,7 @@ void wxBubbleChartCtrl::DoDraw(wxGraphicsContext &gc)
 void wxBubbleChartCtrl::Resize(const wxSize &size)
 {
 	m_grid.Resize(size);
+    m_needsFit = true;
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxBubbleChartCtrl::GetActiveElements(const wxPoint &point)
