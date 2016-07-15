@@ -69,6 +69,8 @@ public:
 	virtual const wxBarChartOptions& GetOptions() const;
 
 private:
+    void Initialize(const wxBarChartData &data);
+
 	static wxDouble GetMinValue(const wxVector<wxBarChartDataset::ptr>& datasets);
 	static wxDouble GetMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets);
 

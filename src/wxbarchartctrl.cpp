@@ -79,29 +79,7 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 		),
     m_needsFit(true)
 {
-	const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
-	for (size_t i = 0; i < datasets.size(); ++i)
-	{
-		const wxBarChartDataset& dataset = *datasets[i];
-		Dataset::ptr newDataset(new Dataset());
-
-		const wxVector<wxDouble>& datasetData = dataset.GetData();
-		for (size_t j = 0; j < datasetData.size(); ++j)
-		{
-			std::stringstream tooltip;
-			tooltip << datasetData[j];
-			wxChartTooltipProvider::ptr tooltipProvider(
-				new wxChartTooltipProviderStatic(data.GetLabels()[j], tooltip.str(), dataset.GetFillColor())
-				);
-
-			newDataset->AppendBar(Bar::ptr(new Bar(
-				datasetData[j], tooltipProvider, 25, 50, dataset.GetFillColor(),
-				dataset.GetStrokeColor(), wxTOP | wxRIGHT | wxBOTTOM
-				)));
-		}
-
-		m_datasets.push_back(newDataset);
-	}
+    Initialize(data);
 }
 
 wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent, 
@@ -119,34 +97,39 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 		),
     m_needsFit(true)
 {
-	const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
-	for (size_t i = 0; i < datasets.size(); ++i)
-	{
-		const wxBarChartDataset& dataset = *datasets[i];
-		Dataset::ptr newDataset(new Dataset());
-
-		const wxVector<wxDouble>& datasetData = dataset.GetData();
-		for (size_t j = 0; j < datasetData.size(); ++j)
-		{
-			std::stringstream tooltip;
-			tooltip << datasetData[j];
-			wxChartTooltipProvider::ptr tooltipProvider(
-				new wxChartTooltipProviderStatic(data.GetLabels()[j], tooltip.str(), dataset.GetFillColor())
-				);
-
-			newDataset->AppendBar(Bar::ptr(new Bar(
-				datasetData[j], tooltipProvider, 25, 50, dataset.GetFillColor(),
-				dataset.GetStrokeColor(), wxTOP | wxRIGHT | wxBOTTOM
-				)));
-		}
-
-		m_datasets.push_back(newDataset);
-	}
+    Initialize(data);
 }
 
 const wxBarChartOptions& wxBarChartCtrl::GetOptions() const
 {
 	return m_options;
+}
+
+void wxBarChartCtrl::Initialize(const wxBarChartData &data)
+{
+    const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        const wxBarChartDataset& dataset = *datasets[i];
+        Dataset::ptr newDataset(new Dataset());
+
+        const wxVector<wxDouble>& datasetData = dataset.GetData();
+        for (size_t j = 0; j < datasetData.size(); ++j)
+        {
+            std::stringstream tooltip;
+            tooltip << datasetData[j];
+            wxChartTooltipProvider::ptr tooltipProvider(
+                new wxChartTooltipProviderStatic(data.GetLabels()[j], tooltip.str(), dataset.GetFillColor())
+                );
+
+            newDataset->AppendBar(Bar::ptr(new Bar(
+                datasetData[j], tooltipProvider, 25, 50, dataset.GetFillColor(),
+                dataset.GetStrokeColor(), wxTOP | wxRIGHT | wxBOTTOM
+                )));
+        }
+
+        m_datasets.push_back(newDataset);
+    }
 }
 
 wxDouble wxBarChartCtrl::GetMinValue(const wxVector<wxBarChartDataset::ptr>& datasets)
