@@ -81,7 +81,7 @@ wxPolarAreaChartCtrl::wxPolarAreaChartCtrl(wxWindow *parent,
 										   long style)
 	: wxChartCtrl(parent, id, pos, size, style), 
 	m_grid(size, GetMinValue(data.GetSlices()), GetMaxValue(data.GetSlices()),
-	m_options.GetGridOptions())
+	m_options.GetGridOptions()), m_needsFit(true)
 {
 	const wxVector<wxChartSliceData>& slices = data.GetSlices();
 	for (size_t i = 0; i < slices.size(); ++i)
@@ -99,7 +99,7 @@ wxPolarAreaChartCtrl::wxPolarAreaChartCtrl(wxWindow *parent,
 										   long style)
 	: wxChartCtrl(parent, id, pos, size, style), m_options(options),
 	m_grid(size, GetMinValue(data.GetSlices()), GetMaxValue(data.GetSlices()),
-	m_options.GetGridOptions())
+	m_options.GetGridOptions()), m_needsFit(true)
 {
 	const wxVector<wxChartSliceData>& slices = data.GetSlices();
 	for (size_t i = 0; i < slices.size(); ++i)
@@ -165,8 +165,13 @@ wxDouble wxPolarAreaChartCtrl::GetMaxValue(const wxVector<wxChartSliceData> &sli
 	return result;
 }
 
-void wxPolarAreaChartCtrl::DoDraw(wxGraphicsContext &gc)
+void wxPolarAreaChartCtrl::Fit()
 {
+    if (!m_needsFit)
+    {
+        return;
+    }
+
     wxDouble startAngle = m_options.GetStartAngle();
     wxDouble angleIncrement = ((2 * M_PI) / m_slices.size());
 
@@ -178,8 +183,18 @@ void wxPolarAreaChartCtrl::DoDraw(wxGraphicsContext &gc)
         currentSlice.SetAngles(startAngle, endAngle);
         currentSlice.SetRadiuses(m_grid.GetRadius(currentSlice.GetValue()), 0);
         startAngle = endAngle;
+    }
 
-        currentSlice.Draw(gc);
+    m_needsFit = false;
+}
+
+void wxPolarAreaChartCtrl::DoDraw(wxGraphicsContext &gc)
+{
+    Fit();
+
+    for (size_t i = 0; i < m_slices.size(); ++i)
+    {
+        m_slices[i]->Draw(gc);
     }
 
     m_grid.Draw(gc);
@@ -197,6 +212,7 @@ void wxPolarAreaChartCtrl::Resize(const wxSize &size)
     {
         m_slices[i]->Resize(newSize);
     }
+    m_needsFit = true;
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxPolarAreaChartCtrl::GetActiveElements(const wxPoint &point)

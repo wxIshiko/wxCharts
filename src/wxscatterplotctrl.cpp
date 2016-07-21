@@ -109,7 +109,8 @@ wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
 		m_options.GetGridOptions()
-		)
+		),
+    m_needsFit(true)
 {
     Initialize(data);
 }
@@ -128,7 +129,8 @@ wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
         m_options.GetGridOptions()
-        )
+        ),
+    m_needsFit(true)
 {
     Initialize(data);
 }
@@ -266,9 +268,12 @@ wxDouble wxScatterPlotCtrl::GetMaxYValue(const wxVector<wxScatterPlotDataset::pt
     return result;
 }
 
-void wxScatterPlotCtrl::DoDraw(wxGraphicsContext &gc)
+void wxScatterPlotCtrl::Fit()
 {
-    m_grid.Draw(gc);
+    if (!m_needsFit)
+    {
+        return;
+    }
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
@@ -277,7 +282,24 @@ void wxScatterPlotCtrl::DoDraw(wxGraphicsContext &gc)
         {
             const Point::ptr& point = points[j];
             point->SetPosition(m_grid.GetMapping().GetWindowPosition(point->GetValue().m_x, point->GetValue().m_y));
-            point->Draw(gc);
+        }
+    }
+
+    m_needsFit = false;
+}
+
+void wxScatterPlotCtrl::DoDraw(wxGraphicsContext &gc)
+{
+    m_grid.Draw(gc);
+
+    Fit();
+
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();
+        for (size_t j = 0; j < points.size(); ++j)
+        {
+            points[j]->Draw(gc);
         }
     }
 }
@@ -289,6 +311,7 @@ void wxScatterPlotCtrl::Resize(const wxSize &size)
 		size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
 		);
 	m_grid.Resize(newSize);
+    m_needsFit = true;
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxScatterPlotCtrl::GetActiveElements(const wxPoint &point)

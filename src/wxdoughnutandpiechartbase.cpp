@@ -69,7 +69,8 @@ wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(wxWindow *parent,
 													 const wxPoint &pos,
 													 const wxSize &size,
 													 long style)
-	: wxChartCtrl(parent, id, pos, size, style), m_total(0)
+	: wxChartCtrl(parent, id, pos, size, style), m_total(0),
+    m_needsFit(true)
 {
 }
 
@@ -92,8 +93,13 @@ void wxDoughnutAndPieChartBase::Add(const wxChartSliceData &slice, size_t index)
 	m_slices.insert(m_slices.begin() + index, newSlice);
 }
 
-void wxDoughnutAndPieChartBase::DoDraw(wxGraphicsContext &gc)
+void wxDoughnutAndPieChartBase::Fit()
 {
+    if (!m_needsFit)
+    {
+        return;
+    }
+
     wxDouble startAngle = 0.0;
     for (size_t i = 0; i < m_slices.size(); ++i)
     {
@@ -102,8 +108,18 @@ void wxDoughnutAndPieChartBase::DoDraw(wxGraphicsContext &gc)
         wxDouble endAngle = startAngle + CalculateCircumference(currentSlice.GetValue());
         currentSlice.SetAngles(startAngle, endAngle);
         startAngle = endAngle;
+    }
 
-        currentSlice.Draw(gc);
+    m_needsFit = false;
+}
+
+void wxDoughnutAndPieChartBase::DoDraw(wxGraphicsContext &gc)
+{
+    Fit();
+
+    for (size_t i = 0; i < m_slices.size(); ++i)
+    {
+        m_slices[i]->Draw(gc);
     }
 }
 
