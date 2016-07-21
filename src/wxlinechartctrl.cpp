@@ -359,6 +359,10 @@ wxDouble wxLineChartCtrl::GetMaxValue(const wxVector<wxLineChartDataset::ptr>& d
 	return result;
 }
 
+void wxLineChartCtrl::Fit()
+{
+}
+
 void wxLineChartCtrl::DoDraw(wxGraphicsContext &gc)
 {
     m_grid.Draw(gc);

@@ -72,7 +72,7 @@ protected:
 	void Add(const wxChartSliceData &slice, size_t index);
 	
 private:
-    void Fit();
+    virtual void Fit() wxOVERRIDE;
     virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
 	virtual void Resize(const wxSize &size) wxOVERRIDE;
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;

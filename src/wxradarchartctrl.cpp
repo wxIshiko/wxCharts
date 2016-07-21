@@ -71,6 +71,10 @@ wxDouble wxRadarChartCtrl::GetMaxValue()
 	return result;
 }
 
+void wxRadarChartCtrl::Fit()
+{
+}
+
 void wxRadarChartCtrl::DoDraw(wxGraphicsContext &gc)
 {
     m_grid.Draw(gc);

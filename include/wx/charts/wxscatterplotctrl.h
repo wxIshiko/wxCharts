@@ -103,7 +103,7 @@ private:
     static wxDouble GetMinYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
     static wxDouble GetMaxYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
 
-    void Fit();
+    virtual void Fit() wxOVERRIDE;
     virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
 	virtual void Resize(const wxSize &size) wxOVERRIDE;
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;

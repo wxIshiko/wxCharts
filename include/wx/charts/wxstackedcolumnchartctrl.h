@@ -69,7 +69,7 @@ private:
 	static wxDouble GetCumulativeMinValue(const wxVector<wxBarChartDataset::ptr>& datasets);
 	static wxDouble GetCumulativeMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets);
 
-    void Fit();
+    virtual void Fit() wxOVERRIDE;
     virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
 	virtual void Resize(const wxSize &size) wxOVERRIDE;
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
