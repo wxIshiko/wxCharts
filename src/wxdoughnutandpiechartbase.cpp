@@ -94,6 +94,11 @@ void wxDoughnutAndPieChartBase::Add(const wxChartSliceData &slice, size_t index)
 
 void wxDoughnutAndPieChartBase::DoFit()
 {
+    for (size_t i = 0; i < m_slices.size(); ++i)
+    {
+        m_slices[i]->Resize(GetSize(), GetOptions());
+    }
+
    wxDouble startAngle = 0.0;
     for (size_t i = 0; i < m_slices.size(); ++i)
     {
@@ -117,10 +122,7 @@ void wxDoughnutAndPieChartBase::DoDraw(wxGraphicsContext &gc)
 
 void wxDoughnutAndPieChartBase::Resize(const wxSize &size)
 {
-	for (size_t i = 0; i < m_slices.size(); ++i)
-	{
-		m_slices[i]->Resize(size, GetOptions());
-	}
+    m_needsFit = true;
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxDoughnutAndPieChartBase::GetActiveElements(const wxPoint &point)
