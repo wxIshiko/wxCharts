@@ -118,7 +118,7 @@ private:
     static wxDouble GetMinZValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
     static wxDouble GetMaxZValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
 
-    virtual void Fit() wxOVERRIDE;
+    virtual void DoFit() wxOVERRIDE;
     virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
 	virtual void Resize(const wxSize &size) wxOVERRIDE;
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
@@ -164,7 +164,6 @@ private:
     wxVector<Dataset::ptr> m_datasets;
     wxDouble m_minZValue;
     wxDouble m_maxZValue;
-    bool m_needsFit;
 };
 
 #endif

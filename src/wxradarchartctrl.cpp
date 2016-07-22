@@ -71,7 +71,7 @@ wxDouble wxRadarChartCtrl::GetMaxValue()
 	return result;
 }
 
-void wxRadarChartCtrl::Fit()
+void wxRadarChartCtrl::DoFit()
 {
 }
 

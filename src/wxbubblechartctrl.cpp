@@ -139,8 +139,7 @@ wxBubbleChartCtrl::wxBubbleChartCtrl(wxWindow *parent,
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
         m_options.GetGridOptions()
         ),
-    m_minZValue(GetMinZValue(data.GetDatasets())), m_maxZValue(GetMaxZValue(data.GetDatasets())),
-    m_needsFit(true)
+    m_minZValue(GetMinZValue(data.GetDatasets())), m_maxZValue(GetMaxZValue(data.GetDatasets()))
 {
     Initialize(data);
 }
@@ -329,13 +328,8 @@ wxDouble wxBubbleChartCtrl::GetMaxZValue(const wxVector<wxBubbleChartDataset::pt
     return result;
 }
 
-void wxBubbleChartCtrl::Fit()
+void wxBubbleChartCtrl::DoFit()
 {
-    if (!m_needsFit)
-    {
-        return;
-    }
-
     wxDouble zFactor = 1 / (m_maxZValue - m_minZValue);
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
@@ -351,8 +345,6 @@ void wxBubbleChartCtrl::Fit()
             circle->SetRadius(minRadius + (sqrt(circle->GetValue().m_z * zFactor) * radiusFactor));
         }
     }
-
-    m_needsFit = false;
 }
 
 void wxBubbleChartCtrl::DoDraw(wxGraphicsContext &gc)

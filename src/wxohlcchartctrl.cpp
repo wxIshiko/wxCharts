@@ -140,8 +140,7 @@ wxOHLCChartCtrl::wxOHLCChartCtrl(wxWindow *parent,
     m_grid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
         size, data.GetLabels(), GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions()
-        ),
-    m_needsFit(true)
+        )
 {
     for (size_t i = 0; i < data.GetData().size(); ++i)
     {
@@ -214,19 +213,12 @@ wxDouble wxOHLCChartCtrl::GetMaxValue(const wxOHLCChartData &data)
     return result;
 }
 
-void wxOHLCChartCtrl::Fit()
+void wxOHLCChartCtrl::DoFit()
 {
-    if (!m_needsFit)
-    {
-        return;
-    }
-
     for (size_t i = 0; i < m_data.size(); ++i)
     {
         m_data[i]->Update(m_grid.GetMapping(), i);
     }
-
-    m_needsFit = false;
 }
 
 void wxOHLCChartCtrl::DoDraw(wxGraphicsContext &gc)

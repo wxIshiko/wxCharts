@@ -82,8 +82,7 @@ wxStackedColumnChartCtrl::wxStackedColumnChartCtrl(wxWindow *parent,
 		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()), 
 		size, data.GetLabels(), GetCumulativeMinValue(data.GetDatasets()),
 		GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions()
-		),
-    m_needsFit(true)
+		)
 {
 	const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
 	for (size_t i = 0; i < datasets.size(); ++i)
@@ -188,13 +187,8 @@ wxDouble wxStackedColumnChartCtrl::GetCumulativeMaxValue(const wxVector<wxBarCha
 	return result;
 }
 
-void wxStackedColumnChartCtrl::Fit()
+void wxStackedColumnChartCtrl::DoFit()
 {
-    if (!m_needsFit)
-    {
-        return;
-    }
-
     wxVector<wxDouble> heightOfPreviousDatasets;
     for (size_t i = 0; i < m_datasets[0]->GetColumns().size(); ++i)
     {
@@ -224,8 +218,6 @@ void wxStackedColumnChartCtrl::Fit()
             heightOfPreviousDatasets[j] = bottomLeftCornerPosition.m_y - upperLeftCornerPosition.m_y;
         }
     }
-
-    m_needsFit = false;
 }
 
 void wxStackedColumnChartCtrl::DoDraw(wxGraphicsContext &gc)

@@ -61,10 +61,11 @@ public:
 	virtual const wxChartOptions& GetOptions() const = 0;
 
 protected:
+    void Fit();
 	void DrawTooltips(wxGraphicsContext &gc);
 
 private:
-    virtual void Fit() = 0;
+    virtual void DoFit() = 0;
     virtual void DoDraw(wxGraphicsContext &gc) = 0;
 	virtual void Resize(const wxSize &size) = 0;
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) = 0;
@@ -72,6 +73,9 @@ private:
     void OnPaint(wxPaintEvent &evt);
 	void OnSize(wxSizeEvent &evt);
 	void OnMouseOver(wxMouseEvent &evt);
+
+protected:
+    bool m_needsFit;
 
 private:
 	wxSharedPtr<wxVector<const wxChartElement*> > m_activeElements;

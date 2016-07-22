@@ -82,7 +82,7 @@ private:
 	static wxDouble GetMinValue();
 	static wxDouble GetMaxValue();
 
-    virtual void Fit() wxOVERRIDE;
+    virtual void DoFit() wxOVERRIDE;
     virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
 	virtual void Resize(const wxSize &size) wxOVERRIDE;
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;

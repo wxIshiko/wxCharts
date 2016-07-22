@@ -31,10 +31,23 @@ wxChartCtrl::wxChartCtrl(wxWindow *parent,
 						 const wxSize &size,
 						 long style)
 	: wxControl(parent, id, pos, size, style),
+    m_needsFit(true),
 	m_activeElements(new wxVector<const wxChartElement*>())
 {
 	SetBackgroundStyle(wxBG_STYLE_PAINT);
 	SetBackgroundColour(*wxWHITE);
+}
+
+void wxChartCtrl::Fit()
+{
+    if (!m_needsFit)
+    {
+        return;
+    }
+
+    DoFit();
+
+    m_needsFit = false;
 }
 
 void wxChartCtrl::DrawTooltips(wxGraphicsContext &gc)

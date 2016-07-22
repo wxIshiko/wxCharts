@@ -76,8 +76,7 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()), 
 		size, data.GetLabels(), GetMinValue(data.GetDatasets()),
 		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
-		),
-    m_needsFit(true)
+		)
 {
     Initialize(data);
 }
@@ -94,8 +93,7 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
 		size, data.GetLabels(), GetMinValue(data.GetDatasets()),
 		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
-		),
-    m_needsFit(true)
+		)
 {
     Initialize(data);
 }
@@ -182,13 +180,8 @@ wxDouble wxBarChartCtrl::GetMaxValue(const wxVector<wxBarChartDataset::ptr>& dat
 	return result;
 }
 
-void wxBarChartCtrl::Fit()
+void wxBarChartCtrl::DoFit()
 {
-    if (!m_needsFit)
-    {
-        return;
-    }
-
     wxDouble barHeight = GetBarHeight();
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
@@ -211,8 +204,6 @@ void wxBarChartCtrl::Fit()
                 bottomLeftCornerPosition.m_y - upperLeftCornerPosition.m_y);
         }
     }
-
-    m_needsFit = false;
 }
 
 void wxBarChartCtrl::DoDraw(wxGraphicsContext &gc)

@@ -84,7 +84,7 @@ private:
     static wxDouble GetMinValue(const wxCandlestickChartData &data);
     static wxDouble GetMaxValue(const wxCandlestickChartData &data);
 
-    virtual void Fit() wxOVERRIDE;
+    virtual void DoFit() wxOVERRIDE;
     virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
     virtual void Resize(const wxSize &size) wxOVERRIDE;
     virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
@@ -125,7 +125,6 @@ private:
     wxCandlestickChartOptions m_options;
     wxChartGrid m_grid;
     wxVector<Candlestick::ptr> m_data;
-    bool m_needsFit;
 };
 
 #endif

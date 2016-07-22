@@ -76,8 +76,7 @@ wxColumnChartCtrl::wxColumnChartCtrl(wxWindow *parent,
 		wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()), 
 		size, data.GetLabels(), GetMinValue(data.GetDatasets()),
 		GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
-		),
-    m_needsFit(true)
+		)
 {
 	const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
 	for (size_t i = 0; i < datasets.size(); ++i)
@@ -159,13 +158,8 @@ wxDouble wxColumnChartCtrl::GetMaxValue(const wxVector<wxBarChartDataset::ptr>& 
 	return result;
 }
 
-void wxColumnChartCtrl::Fit()
+void wxColumnChartCtrl::DoFit()
 {
-    if (!m_needsFit)
-    {
-        return;
-    }
-
     wxDouble columnWidth = GetColumnWidth();
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
@@ -183,8 +177,6 @@ void wxColumnChartCtrl::Fit()
             column.SetSize(columnWidth, bottomLeftCornerPosition.m_y - position.m_y);
         }
     }
-
-    m_needsFit = false;
 }
 
 void wxColumnChartCtrl::DoDraw(wxGraphicsContext &gc)

@@ -176,7 +176,7 @@ private:
 	static wxDouble GetMinValue(const wxVector<wxLineChartDataset::ptr>& datasets);
 	static wxDouble GetMaxValue(const wxVector<wxLineChartDataset::ptr>& datasets);
 
-    virtual void Fit() wxOVERRIDE;
+    virtual void DoFit() wxOVERRIDE;
     virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
 	virtual void Resize(const wxSize &size) wxOVERRIDE;
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;

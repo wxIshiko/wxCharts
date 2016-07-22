@@ -89,7 +89,7 @@ private:
 	static wxDouble GetMinValue(const wxVector<wxChartSliceData> &slices);
 	static wxDouble GetMaxValue(const wxVector<wxChartSliceData> &slices);
 
-    virtual void Fit() wxOVERRIDE;
+    virtual void DoFit() wxOVERRIDE;
     virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
 	virtual void Resize(const wxSize &size) wxOVERRIDE;
 	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
@@ -115,7 +115,6 @@ private:
 	wxPolarAreaChartOptions m_options;
 	wxChartRadialGrid m_grid;
 	wxVector<SliceArc::ptr> m_slices;
-    bool m_needsFit;
 };
 
 #endif

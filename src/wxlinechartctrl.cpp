@@ -359,7 +359,7 @@ wxDouble wxLineChartCtrl::GetMaxValue(const wxVector<wxLineChartDataset::ptr>& d
 	return result;
 }
 
-void wxLineChartCtrl::Fit()
+void wxLineChartCtrl::DoFit()
 {
 }
 
