@@ -1,0 +1,16 @@
+toolsets = gnu vs2015 vs2013;
+
+gnu.makefile = ../../GNUmakefile;
+vs2015.solutionfile = ../msw/wxchartstests_vc14.sln;
+vs2013.solutionfile = ../msw/wxchartstests_vc12.sln;
+
+program wxchartstests
+{
+    vs2015.projectfile = ../msw/wxchartstests_vc14.vcxproj;
+    vs2013.projectfile = ../msw/wxchartstests_vc12.vcxproj;
+ 
+    sources
+    {
+        ../../src/main.cpp
+    }
+}
