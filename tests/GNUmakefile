@@ -33,6 +33,11 @@ override CXXFLAGS += -O2
 else ifneq (,$(config))
 $(warning Unknown configuration "$(config)")
 endif
+#
+# Additionally, this makefile is customizable with the following
+# settings:
+#
+#      WXWIDGETS_ROOT  Path to the wxWidgets installation
 
 # Use "make RANLIB=''" for platforms without ranlib.
 RANLIB ?= ranlib
@@ -48,13 +53,26 @@ _builddir := $(if $(findstring $(abspath $(builddir)),$(builddir)),,../../)$(bui
 _builddir_error := $(shell mkdir -p $(_builddir) 2>&1)
 $(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_error)))
 endif
+
+# ------------
+# Configurable settings:
+# 
+
+# Path to the wxWidgets installation
+WXWIDGETS_ROOT ?= $(WXWIN)
+
+# ------------
+
 all: $(_builddir)wxchartstests
 
-$(_builddir)wxchartstests: $(_builddir)wxchartstests_main.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxchartstests_main.o -pthread
+$(_builddir)wxchartstests: $(_builddir)wxchartstests_main.o $(_builddir)wxchartstests_wxchartstestapp.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxchartstests_main.o $(_builddir)wxchartstests_wxchartstestapp.o -pthread
 
 $(_builddir)wxchartstests_main.o: src/main.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread src/main.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread `wx-config --cxxflags --libs` src/main.cpp
+
+$(_builddir)wxchartstests_wxchartstestapp.o: src/wxchartstestapp.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread `wx-config --cxxflags --libs` src/wxchartstestapp.cpp
 
 clean:
 	rm -f $(_builddir)*.o
