@@ -36,4 +36,11 @@
 #ifndef _WX_CHARTS_WXSTACKEDCOLUMNCHART_H_
 #define _WX_CHARTS_WXSTACKEDCOLUMNCHART_H_
 
+#include "wxchart.h"
+
+/// A stacked column chart.
+class wxStackedColumnChart : public wxChart
+{
+};
+
 #endif

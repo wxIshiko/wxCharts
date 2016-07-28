@@ -20,16 +20,15 @@
 	IN THE SOFTWARE.
 */
 
-/// @file
+/*
+	Part of this file were copied from the Chart.js project (http://chartjs.org/)
+	and translated into C++.
 
-#ifndef _WX_CHARTS_WXSTACKEDBARCHART_H_
-#define _WX_CHARTS_WXSTACKEDBARCHART_H_
+	The files of the Chart.js project have the following copyright and license.
 
-#include "wxchart.h"
+	Copyright (c) 2013-2016 Nick Downie
+	Released under the MIT license
+	https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
+*/
 
-/// A stacked bar chart.
-class wxStackedBarChart : public wxChart
-{
-};
-
-#endif
+#include "wxlinechart.h"

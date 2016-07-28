@@ -22,14 +22,7 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXSTACKEDBARCHART_H_
-#define _WX_CHARTS_WXSTACKEDBARCHART_H_
-
-#include "wxchart.h"
-
-/// A stacked bar chart.
-class wxStackedBarChart : public wxChart
-{
-};
+#ifndef _WX_CHARTS_WXBUBBLECHART_H_
+#define _WX_CHARTS_WXBUBBLECHART_H_
 
 #endif

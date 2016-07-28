@@ -36,4 +36,11 @@
 #ifndef _WX_CHARTS_WXCOLUMNCHART_H_
 #define _WX_CHARTS_WXCOLUMNCHART_H_
 
+#include "wxchart.h"
+
+/// A column chart.
+class wxColumnChart : public wxChart
+{
+};
+
 #endif

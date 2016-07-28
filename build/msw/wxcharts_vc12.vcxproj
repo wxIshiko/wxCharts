@@ -139,12 +139,14 @@
     <ClCompile Include="..\..\src\wxstackedcolumnchart.cpp" />
     <ClCompile Include="..\..\src\wxstackedcolumnchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxlinechartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxlinechart.cpp" />
     <ClCompile Include="..\..\src\wxlinechartctrl.cpp" />
     <ClCompile Include="..\..\src\wxdoughnutandpiechartoptionsbase.cpp" />
     <ClCompile Include="..\..\src\wxdoughnutandpiechartbase.cpp" />
     <ClCompile Include="..\..\src\wxdoughnutchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxdoughnutchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxohlcchartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxohlcchart.cpp" />
     <ClCompile Include="..\..\src\wxohlcchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxpiechartoptions.cpp" />
     <ClCompile Include="..\..\src\wxpiechartctrl.cpp" />
@@ -155,6 +157,7 @@
     <ClCompile Include="..\..\src\wxscatterplotoptions.cpp" />
     <ClCompile Include="..\..\src\wxscatterplotctrl.cpp" />
     <ClCompile Include="..\..\src\wxbubblechartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxbubblechart.cpp" />
     <ClCompile Include="..\..\src\wxbubblechartctrl.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -215,12 +218,14 @@
     <ClInclude Include="..\..\include\wx\charts\wxstackedcolumnchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxstackedcolumnchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxlinechartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxlinechart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxlinechartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxdoughnutandpiechartoptionsbase.h" />
     <ClInclude Include="..\..\include\wx\charts\wxdoughnutandpiechartbase.h" />
     <ClInclude Include="..\..\include\wx\charts\wxdoughnutchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxdoughnutchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxohlcchartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxohlcchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxohlcchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxpiechartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxpiechartctrl.h" />
@@ -231,6 +236,7 @@
     <ClInclude Include="..\..\include\wx\charts\wxscatterplotoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxscatterplotctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbubblechartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxbubblechart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbubblechartctrl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
