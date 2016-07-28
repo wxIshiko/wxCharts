@@ -33,14 +33,7 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXBARCHART_H_
-#define _WX_CHARTS_WXBARCHART_H_
-
-#include "wxchart.h"
-
-/// A bar chart.
-class wxBarChart : public wxChart
-{
-};
+#ifndef _WX_CHARTS_WXCOLUMNCHART_H_
+#define _WX_CHARTS_WXCOLUMNCHART_H_
 
 #endif

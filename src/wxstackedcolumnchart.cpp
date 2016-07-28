@@ -31,16 +31,4 @@
 	https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
-/// @file
-
-#ifndef _WX_CHARTS_WXBARCHART_H_
-#define _WX_CHARTS_WXBARCHART_H_
-
-#include "wxchart.h"
-
-/// A bar chart.
-class wxBarChart : public wxChart
-{
-};
-
-#endif
+#include "wxstackedcolumnchart.h"

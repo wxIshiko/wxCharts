@@ -25,4 +25,11 @@
 #ifndef _WX_CHARTS_WXCANDLESTICKCHART_H_
 #define _WX_CHARTS_WXCANDLESTICKCHART_H_
 
+#include "wxchart.h"
+
+/// A candlestick chart.
+class wxCandlestickChart : public wxChart
+{
+};
+
 #endif

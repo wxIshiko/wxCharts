@@ -85,10 +85,13 @@ library wxcharts
         ../../include/wx/charts/wxcandlestickchart.h
         ../../include/wx/charts/wxcandlestickchartctrl.h
         ../../include/wx/charts/wxcolumnchartoptions.h
+        ../../include/wx/charts/wxcolumnchart.h
         ../../include/wx/charts/wxcolumnchartctrl.h
         ../../include/wx/charts/wxstackedbarchartoptions.h
+        ../../include/wx/charts/wxstackedbarchart.h
         ../../include/wx/charts/wxstackedbarchartctrl.h
         ../../include/wx/charts/wxstackedcolumnchartoptions.h
+        ../../include/wx/charts/wxstackedcolumnchart.h
         ../../include/wx/charts/wxstackedcolumnchartctrl.h
         ../../include/wx/charts/wxlinechartoptions.h
         ../../include/wx/charts/wxlinechartctrl.h
@@ -159,10 +162,13 @@ library wxcharts
         ../../src/wxcandlestickchart.cpp
         ../../src/wxcandlestickchartctrl.cpp
         ../../src/wxcolumnchartoptions.cpp
+        ../../src/wxcolumnchart.cpp
         ../../src/wxcolumnchartctrl.cpp
         ../../src/wxstackedbarchartoptions.cpp
+        ../../src/wxstackedbarchart.cpp
         ../../src/wxstackedbarchartctrl.cpp
         ../../src/wxstackedcolumnchartoptions.cpp
+        ../../src/wxstackedcolumnchart.cpp
         ../../src/wxstackedcolumnchartctrl.cpp
         ../../src/wxlinechartoptions.cpp
         ../../src/wxlinechartctrl.cpp
