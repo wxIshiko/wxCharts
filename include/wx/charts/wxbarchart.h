@@ -37,10 +37,69 @@
 #define _WX_CHARTS_WXBARCHART_H_
 
 #include "wxchart.h"
+#include "wxbarchartdata.h"
+#include "wxbarchartoptions.h"
+#include "wxchartgrid.h"
+#include "wxchartrectangle.h"
 
 /// A bar chart.
 class wxBarChart : public wxChart
 {
+public:
+    wxBarChart(const wxBarChartData &data, const wxSize &size);
+    wxBarChart(const wxBarChartData &data, const wxBarChartOptions &options,
+        const wxSize &size);
+
+    virtual const wxBarChartOptions& GetOptions() const wxOVERRIDE;
+
+private:
+    void Initialize(const wxBarChartData &data);
+    static wxDouble GetMinValue(const wxVector<wxBarChartDataset::ptr>& datasets);
+    static wxDouble GetMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets);
+
+    virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
+    virtual void DoFit() wxOVERRIDE;
+    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
+
+    wxDouble GetBarHeight() const;
+
+private:
+    class Bar : public wxChartRectangle
+    {
+    public:
+        typedef wxSharedPtr<Bar> ptr;
+
+        Bar(wxDouble value,
+            const wxChartTooltipProvider::ptr tooltipProvider,
+            wxDouble x, wxDouble y,
+            const wxColor &fillColor, const wxColor &strokeColor,
+            int directions);
+
+        wxDouble GetValue() const;
+
+    private:
+        wxDouble m_value;
+    };
+
+    class Dataset
+    {
+    public:
+        typedef wxSharedPtr<Dataset> ptr;
+
+        Dataset();
+
+        const wxVector<Bar::ptr>& GetBars() const;
+        void AppendBar(Bar::ptr bar);
+
+    private:
+        wxVector<Bar::ptr> m_bars;
+    };
+
+private:
+    wxBarChartOptions m_options;
+    wxChartGrid m_grid;
+    wxVector<Dataset::ptr> m_datasets;
 };
 
 #endif

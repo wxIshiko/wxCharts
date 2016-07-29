@@ -25,8 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTCTRL_H_
 #define _WX_CHARTS_WXCHARTCTRL_H_
 
-#include "wxchartoptions.h"
-#include "wxchartelement.h"
+#include "wxchart.h"
 #include <wx/control.h>
 
 /// Base class for the chart controls.
@@ -54,31 +53,12 @@ public:
 		const wxSize &size = wxDefaultSize,
 		long style = 0);
 
-	/// Gets the options for the chart. Derived classes
-	/// would typically change the signature of this method
-	/// to return a class derived from wxChartOptions.
-	/// @return The options.
-	virtual const wxChartOptions& GetOptions() const = 0;
-
-protected:
-    void Fit();
-	void DrawTooltips(wxGraphicsContext &gc);
-
 private:
-    virtual void DoFit() = 0;
-    virtual void DoDraw(wxGraphicsContext &gc) = 0;
-	virtual void Resize(const wxSize &size) = 0;
-	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) = 0;
+    virtual wxChart& GetChart() = 0;
 
     void OnPaint(wxPaintEvent &evt);
 	void OnSize(wxSizeEvent &evt);
 	void OnMouseOver(wxMouseEvent &evt);
-
-protected:
-    bool m_needsFit;
-
-private:
-	wxSharedPtr<wxVector<const wxChartElement*> > m_activeElements;
 
 	DECLARE_EVENT_TABLE();
 };

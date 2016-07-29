@@ -25,8 +25,38 @@
 #ifndef _WX_CHARTS_WXCHART_H_
 #define _WX_CHARTS_WXCHART_H_
 
+#include "wxchartoptions.h"
+#include "wxchartelement.h"
+#include <wx/sharedptr.h>
+
 class wxChart
 {
+public:
+    wxChart();
+
+    /// Gets the options for the chart. Derived classes
+    /// would typically change the signature of this method
+    /// to return a class derived from wxChartOptions.
+    /// @return The options.
+    virtual const wxChartOptions& GetOptions() const = 0;
+
+    void SetSize(const wxSize &size);
+    void Draw(wxGraphicsContext &gc);
+    void ActivateElementsAt(const wxPoint &point);
+
+protected:
+    void Fit();
+    void DrawTooltips(wxGraphicsContext &gc);
+
+private:
+    virtual void DoSetSize(const wxSize &size) = 0;
+    virtual void DoFit() = 0;
+    virtual void DoDraw(wxGraphicsContext &gc) = 0;
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) = 0;
+
+private:
+    bool m_needsFit;
+    wxSharedPtr<wxVector<const wxChartElement*> > m_activeElements;
 };
 
 #endif
