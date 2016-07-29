@@ -21,3 +21,64 @@
 */
 
 #include "wxchart.h"
+#include "wxcharttooltip.h"
+#include "wxchartmultitooltip.h"
+
+wxChart::wxChart()
+    : m_needsFit(true),
+    m_activeElements(new wxVector<const wxChartElement*>())
+{
+}
+
+void wxChart::SetSize(const wxSize &size)
+{
+    DoSetSize(size);
+    m_needsFit = true;
+}
+
+void wxChart::Draw(wxGraphicsContext &gc)
+{
+    DoDraw(gc);
+    DrawTooltips(gc);
+}
+
+void wxChart::ActivateElementsAt(const wxPoint &point)
+{
+    m_activeElements = GetActiveElements(point);
+}
+
+void wxChart::Fit()
+{
+    if (!m_needsFit)
+    {
+        return;
+    }
+
+    DoFit();
+
+    m_needsFit = false;
+}
+
+void wxChart::DrawTooltips(wxGraphicsContext &gc)
+{
+    if (m_activeElements->size() == 1)
+    {
+        // If only one element is active draw a normal tooltip
+        wxChartTooltip tooltip((*m_activeElements)[0]->GetTooltipPosition(),
+            (*m_activeElements)[0]->GetTooltipProvider()->GetTooltipText());
+        tooltip.Draw(gc);
+    }
+    else if (m_activeElements->size() > 1)
+    {
+        // If more than one element is active draw a multi-tooltip
+        wxChartMultiTooltip multiTooltip((*m_activeElements)[0]->GetTooltipProvider()->GetTooltipTitle(),
+            GetOptions().GetMultiTooltipOptions());
+        for (size_t j = 0; j < m_activeElements->size(); ++j)
+        {
+            wxChartTooltip tooltip((*m_activeElements)[j]->GetTooltipPosition(),
+                (*m_activeElements)[j]->GetTooltipProvider());
+            multiTooltip.AddTooltip(tooltip);
+        }
+        multiTooltip.Draw(gc);
+    }
+}

@@ -21,8 +21,6 @@
 */
 
 #include "wxchartctrl.h"
-#include "wxcharttooltip.h"
-#include "wxchartmultitooltip.h"
 #include <wx/dcbuffer.h>
 
 wxChartCtrl::wxChartCtrl(wxWindow *parent,
@@ -30,48 +28,10 @@ wxChartCtrl::wxChartCtrl(wxWindow *parent,
 						 const wxPoint &pos,
 						 const wxSize &size,
 						 long style)
-	: wxControl(parent, id, pos, size, style),
-    m_needsFit(true),
-	m_activeElements(new wxVector<const wxChartElement*>())
+	: wxControl(parent, id, pos, size, style)
 {
 	SetBackgroundStyle(wxBG_STYLE_PAINT);
 	SetBackgroundColour(*wxWHITE);
-}
-
-void wxChartCtrl::Fit()
-{
-    if (!m_needsFit)
-    {
-        return;
-    }
-
-    DoFit();
-
-    m_needsFit = false;
-}
-
-void wxChartCtrl::DrawTooltips(wxGraphicsContext &gc)
-{
-	if (m_activeElements->size() == 1)
-	{
-		// If only one element is active draw a normal tooltip
-		wxChartTooltip tooltip((*m_activeElements)[0]->GetTooltipPosition(), 
-			(*m_activeElements)[0]->GetTooltipProvider()->GetTooltipText());
-		tooltip.Draw(gc);
-	}
-	else if (m_activeElements->size() > 1)
-	{
-		// If more than one element is active draw a multi-tooltip
-		wxChartMultiTooltip multiTooltip((*m_activeElements)[0]->GetTooltipProvider()->GetTooltipTitle(),
-            GetOptions().GetMultiTooltipOptions());
-		for (size_t j = 0; j < m_activeElements->size(); ++j)
-		{
-			wxChartTooltip tooltip((*m_activeElements)[j]->GetTooltipPosition(),
-				(*m_activeElements)[j]->GetTooltipProvider());
-			multiTooltip.AddTooltip(tooltip);
-		}
-		multiTooltip.Draw(gc);
-	}
 }
 
 void wxChartCtrl::OnPaint(wxPaintEvent &evt)
@@ -82,26 +42,25 @@ void wxChartCtrl::OnPaint(wxPaintEvent &evt)
     wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
     if (gc)
     {
-        DoDraw(*gc);
-        DrawTooltips(*gc);
+        GetChart().Draw(*gc);
         delete gc;
     }
 }
 
 void wxChartCtrl::OnSize(wxSizeEvent &evt)
 {
-	if (GetOptions().IsResponsive())
+	if (GetChart().GetOptions().IsResponsive())
 	{
-		Resize(evt.GetSize());
+        GetChart().SetSize(evt.GetSize());
 		Refresh();
 	}
 }
 
 void wxChartCtrl::OnMouseOver(wxMouseEvent &evt)
 {
-	if (GetOptions().ShowTooltips())
+	if (GetChart().GetOptions().ShowTooltips())
 	{
-		m_activeElements = GetActiveElements(evt.GetPosition());
+		GetChart().ActivateElementsAt(evt.GetPosition());
 		Refresh();
 	}
 }
