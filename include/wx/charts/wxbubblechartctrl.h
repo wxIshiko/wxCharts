@@ -26,64 +26,7 @@
 #define _WX_CHARTS_WXBUBBLECHARTCTRL_H_
 
 #include "wxchartctrl.h"
-#include "wxbubblechartoptions.h"
-#include "wxchartgrid.h"
-#include "wxchartcircle.h"
-
-class wxDoubleTriplet
-{
-public:
-    wxDoubleTriplet(wxDouble x, wxDouble y, wxDouble z);
-
-    wxDouble m_x;
-    wxDouble m_y;
-    wxDouble m_z;
-};
-
-class wxBubbleChartDataset
-{
-public:
-    /// Smart pointer typedef.
-    typedef wxSharedPtr<wxBubbleChartDataset> ptr;
-
-    /// Constructs a wxBubbleChartDataset instance.
-    /// @param data The list of values.
-    wxBubbleChartDataset(const wxColor& fillColor, const wxColor& outlineColor,
-        wxVector<wxDoubleTriplet> &data);
-
-    const wxColor& GetFillColor() const;
-    unsigned int GetOutlineWidth() const;
-    const wxColor& GetOutlineColor() const;
-    unsigned int GetMinRadius() const;
-    unsigned int GetMaxRadius() const;
-
-    const wxVector<wxDoubleTriplet>& GetData() const;
-
-private:
-    wxColor m_fillColor;
-    unsigned int m_outlineWidth;
-    wxColor m_outlineColor;
-    unsigned int m_minRadius;
-    unsigned int m_maxRadius;
-    wxVector<wxDoubleTriplet> m_data;
-};
-
-/// Data for the wxBubbleChartCtrl control.
-class wxBubbleChartData
-{
-public:
-	/// Constructs a wxBubbleChartData instance.
-	wxBubbleChartData();
-
-    /// Adds a dataset.
-    /// @param dataset The dataset to add.
-    void AddDataset(wxBubbleChartDataset::ptr dataset);
-
-    const wxVector<wxBubbleChartDataset::ptr>& GetDatasets() const;
-
-private:
-	wxVector<wxBubbleChartDataset::ptr> m_datasets;
-};
+#include "wxbubblechart.h"
 
 /// A control that displays a bubble chart.
 class wxBubbleChartCtrl : public wxChartCtrl
@@ -106,64 +49,11 @@ public:
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
 
-	virtual const wxBubbleChartOptions& GetOptions() const;
+private:
+    virtual wxBubbleChart& GetChart() wxOVERRIDE;
 
 private:
-    void Initialize(const wxBubbleChartData &data);
-
-    static wxDouble GetMinXValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
-    static wxDouble GetMaxXValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
-    static wxDouble GetMinYValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
-    static wxDouble GetMaxYValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
-    static wxDouble GetMinZValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
-    static wxDouble GetMaxZValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
-
-    virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-	virtual void Resize(const wxSize &size) wxOVERRIDE;
-	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
-  
-private:
-    class Circle : public wxChartCircle
-    {
-    public:
-        typedef wxSharedPtr<Circle> ptr;
-
-        Circle(wxDoubleTriplet value, wxDouble x, wxDouble y, wxDouble radius,
-            const wxChartTooltipProvider::ptr tooltipProvider,
-            const wxChartCircleOptions &options);
-
-        wxDoubleTriplet GetValue() const;
-
-    private:
-        wxDoubleTriplet m_value;
-    };
-
-    class Dataset
-    {
-    public:
-        typedef wxSharedPtr<Dataset> ptr;
-
-        Dataset(unsigned int minRadius, unsigned int maxRadius);
-
-        const wxVector<Circle::ptr>& GetCircles() const;
-        void AppendCircle(Circle::ptr circle);
-
-        unsigned int GetMinRadius() const;
-        unsigned int GetMaxRadius() const;
-
-    private:
-        unsigned int m_minRadius;
-        unsigned int m_maxRadius;
-        wxVector<Circle::ptr> m_circles;
-    };
-
-private:
-	wxBubbleChartOptions m_options;
-	wxChartGrid m_grid;
-    wxVector<Dataset::ptr> m_datasets;
-    wxDouble m_minZValue;
-    wxDouble m_maxZValue;
+    wxBubbleChart m_bubbleChart;
 };
 
 #endif
