@@ -37,11 +37,7 @@
 #define _WX_CHARTS_WXCOLUMNCHARTCTRL_H_
 
 #include "wxchartctrl.h"
-#include "wxbarchartdata.h"
-#include "wxcolumnchartoptions.h"
-#include "wxchartgrid.h"
-#include "wxchartrectangle.h"
-#include <wx/sharedptr.h>
+#include "wxcolumnchart.h"
 
 /// A control that displays a column chart.
 class wxColumnChartCtrl : public wxChartCtrl
@@ -64,55 +60,11 @@ public:
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
 
-	virtual const wxColumnChartOptions& GetOptions() const;
+private:
+    virtual wxColumnChart& GetChart() wxOVERRIDE;
 
 private:
-	static wxDouble GetMinValue(const wxVector<wxBarChartDataset::ptr>& datasets);
-	static wxDouble GetMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets);
-
-    virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-	virtual void Resize(const wxSize &size) wxOVERRIDE;
-	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
-
-	wxDouble GetColumnWidth() const;
-
-private:
-	class Column : public wxChartRectangle
-	{
-	public:
-		typedef wxSharedPtr<Column> ptr;
-
-		Column(wxDouble value, 
-			const wxChartTooltipProvider::ptr tooltipProvider, 
-			wxDouble x, wxDouble y,
-			const wxColor &fillColor, const wxColor &strokeColor,
-			int directions);
-
-		wxDouble GetValue() const;
-
-	private:
-		wxDouble m_value;
-	};
-
-	struct Dataset
-	{
-	public:
-		typedef wxSharedPtr<Dataset> ptr;
-
-		Dataset();
-
-		const wxVector<Column::ptr>& GetColumns() const;
-		void AppendColumn(Column::ptr column);
-
-	private:
-		wxVector<Column::ptr> m_columns;
-	};
-
-private:
-	wxColumnChartOptions m_options;
-	wxChartGrid m_grid;
-	wxVector<Dataset::ptr> m_datasets;
+    wxColumnChart m_columnChart;
 };
 
 #endif

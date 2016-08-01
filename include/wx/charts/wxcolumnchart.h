@@ -37,10 +37,67 @@
 #define _WX_CHARTS_WXCOLUMNCHART_H_
 
 #include "wxchart.h"
+#include "wxbarchartdata.h"
+#include "wxcolumnchartoptions.h"
+#include "wxchartgrid.h"
+#include "wxchartrectangle.h"
+#include <wx/sharedptr.h>
 
 /// A column chart.
 class wxColumnChart : public wxChart
 {
+public:
+    wxColumnChart(const wxBarChartData &data, const wxSize &size);
+
+    virtual const wxColumnChartOptions& GetOptions() const wxOVERRIDE;
+
+private:
+    static wxDouble GetMinValue(const wxVector<wxBarChartDataset::ptr>& datasets);
+    static wxDouble GetMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets);
+
+    virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
+    virtual void DoFit() wxOVERRIDE;
+    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
+
+    wxDouble GetColumnWidth() const;
+
+private:
+    class Column : public wxChartRectangle
+    {
+    public:
+        typedef wxSharedPtr<Column> ptr;
+
+        Column(wxDouble value,
+            const wxChartTooltipProvider::ptr tooltipProvider,
+            wxDouble x, wxDouble y,
+            const wxColor &fillColor, const wxColor &strokeColor,
+            int directions);
+
+        wxDouble GetValue() const;
+
+    private:
+        wxDouble m_value;
+    };
+
+    struct Dataset
+    {
+    public:
+        typedef wxSharedPtr<Dataset> ptr;
+
+        Dataset();
+
+        const wxVector<Column::ptr>& GetColumns() const;
+        void AppendColumn(Column::ptr column);
+
+    private:
+        wxVector<Column::ptr> m_columns;
+    };
+
+private:
+    wxColumnChartOptions m_options;
+    wxChartGrid m_grid;
+    wxVector<Dataset::ptr> m_datasets;
 };
 
 #endif
