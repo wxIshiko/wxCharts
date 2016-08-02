@@ -106,6 +106,7 @@ library wxcharts
         ../../include/wx/charts/wxpiechartoptions.h
         ../../include/wx/charts/wxpiechartctrl.h
         ../../include/wx/charts/wxpolarareachartoptions.h
+        ../../include/wx/charts/wxpolarareachart.h
         ../../include/wx/charts/wxpolarareachartctrl.h
         ../../include/wx/charts/wxradarchartoptions.h
         ../../include/wx/charts/wxradarchartctrl.h
@@ -186,6 +187,7 @@ library wxcharts
         ../../src/wxpiechartoptions.cpp
         ../../src/wxpiechartctrl.cpp
         ../../src/wxpolarareachartoptions.cpp
+        ../../src/wxpolarareachart.cpp
         ../../src/wxpolarareachartctrl.cpp
         ../../src/wxradarchartoptions.cpp
         ../../src/wxradarchartctrl.cpp

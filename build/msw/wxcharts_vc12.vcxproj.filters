@@ -224,6 +224,9 @@
     <ClInclude Include="..\..\include\wx\charts\wxpolarareachartoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\charts\wxpolarareachart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxpolarareachartctrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -452,6 +455,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxpolarareachartoptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wxpolarareachart.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxpolarareachartctrl.cpp">
