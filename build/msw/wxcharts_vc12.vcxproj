@@ -154,6 +154,7 @@
     <ClCompile Include="..\..\src\wxpolarareachart.cpp" />
     <ClCompile Include="..\..\src\wxpolarareachartctrl.cpp" />
     <ClCompile Include="..\..\src\wxradarchartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxradarchart.cpp" />
     <ClCompile Include="..\..\src\wxradarchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxscatterplotoptions.cpp" />
     <ClCompile Include="..\..\src\wxscatterplotctrl.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="..\..\include\wx\charts\wxpolarareachart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxpolarareachartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxradarchartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxradarchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxradarchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxscatterplotoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxscatterplotctrl.h" />
