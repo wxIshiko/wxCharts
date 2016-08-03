@@ -37,24 +37,7 @@
 #define _WX_CHARTS_WXPOLARAREACHARTCTRL_H_
 
 #include "wxchartctrl.h"
-#include "wxchartslicedata.h"
-#include "wxpolarareachartoptions.h"
-#include "wxchartradialgrid.h"
-#include "wxchartarc.h"
-
-/// Data for the wxPolarAreaChartCtrl control.
-class wxPolarAreaChartData
-{
-public:
-	wxPolarAreaChartData();
-
-	void AppendSlice(const wxChartSliceData &slice);
-
-	const wxVector<wxChartSliceData>& GetSlices() const;
-
-private:
-	wxVector<wxChartSliceData> m_slices;
-};
+#include "wxpolarareachart.h"
 
 /// A control that displays a polar area chart.
 class wxPolarAreaChartCtrl : public wxChartCtrl
@@ -80,41 +63,11 @@ public:
         const wxPolarAreaChartOptions &options, const wxPoint &pos = wxDefaultPosition, 
         const wxSize &size = wxDefaultSize, long style = 0);
 
-	virtual const wxPolarAreaChartOptions& GetOptions() const;
+private:
+    virtual wxPolarAreaChart& GetChart() wxOVERRIDE;
 
 private:
-	void Add(const wxChartSliceData &slice);
-	void Add(const wxChartSliceData &slice, size_t index);
-	
-	static wxDouble GetMinValue(const wxVector<wxChartSliceData> &slices);
-	static wxDouble GetMaxValue(const wxVector<wxChartSliceData> &slices);
-
-    virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-	virtual void Resize(const wxSize &size) wxOVERRIDE;
-	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
-
-private:
-    class SliceArc : public wxChartArc
-    {
-    public:
-        typedef wxSharedPtr<SliceArc> ptr;
-
-        SliceArc(const wxChartSliceData &slice, wxDouble x, wxDouble y,
-            wxDouble startAngle, wxDouble endAngle, wxDouble radius);
-
-        void Resize(const wxSize &size);
-
-        wxDouble GetValue() const;
-
-    private:
-        wxDouble m_value;
-    };
-
-private:
-	wxPolarAreaChartOptions m_options;
-	wxChartRadialGrid m_grid;
-	wxVector<SliceArc::ptr> m_slices;
+    wxPolarAreaChart m_polarAreaChart;
 };
 
 #endif

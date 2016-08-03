@@ -32,3 +32,184 @@
 */
 
 #include "wxpolarareachart.h"
+
+wxPolarAreaChartData::wxPolarAreaChartData()
+{
+}
+
+void wxPolarAreaChartData::AppendSlice(const wxChartSliceData &slice)
+{
+    m_slices.push_back(slice);
+}
+
+const wxVector<wxChartSliceData>& wxPolarAreaChartData::GetSlices() const
+{
+    return m_slices;
+}
+
+wxPolarAreaChart::SliceArc::SliceArc(const wxChartSliceData &slice,
+                                     wxDouble x,
+                                     wxDouble y,
+                                     wxDouble startAngle,
+                                     wxDouble endAngle,
+                                     wxDouble radius)
+    : wxChartArc(x, y, startAngle, endAngle, radius, 0,
+        slice.GetTooltipText(), wxChartArcOptions(2, slice.GetColor())),
+    m_value(slice.GetValue())
+{
+}
+
+void wxPolarAreaChart::SliceArc::Resize(const wxSize &size)
+{
+    wxDouble x = (size.GetX() / 2);
+    wxDouble y = (size.GetY() / 2);
+    wxDouble radius = ((x < y) ? x : y);
+
+    SetCenter(x, y);
+}
+
+wxDouble wxPolarAreaChart::SliceArc::GetValue() const
+{
+    return m_value;
+}
+
+wxPolarAreaChart::wxPolarAreaChart(const wxPolarAreaChartData &data,
+                                   const wxSize &size)
+    : m_grid(size, GetMinValue(data.GetSlices()), GetMaxValue(data.GetSlices()),
+        m_options.GetGridOptions())
+{
+    const wxVector<wxChartSliceData>& slices = data.GetSlices();
+    for (size_t i = 0; i < slices.size(); ++i)
+    {
+        Add(slices[i], size);
+    }
+}
+
+wxPolarAreaChart::wxPolarAreaChart(const wxPolarAreaChartData &data,
+                                   const wxPolarAreaChartOptions &options,
+                                   const wxSize &size)
+    : m_options(options),
+    m_grid(size, GetMinValue(data.GetSlices()), GetMaxValue(data.GetSlices()),
+        m_options.GetGridOptions())
+{
+    const wxVector<wxChartSliceData>& slices = data.GetSlices();
+    for (size_t i = 0; i < slices.size(); ++i)
+    {
+        Add(slices[i], size);
+    }
+}
+
+const wxPolarAreaChartOptions& wxPolarAreaChart::GetOptions() const
+{
+    return m_options;
+}
+
+void wxPolarAreaChart::Add(const wxChartSliceData &slice,
+                           const wxSize &size)
+{
+    Add(slice, m_slices.size(), size);
+}
+
+void wxPolarAreaChart::Add(const wxChartSliceData &slice, 
+                           size_t index,
+                           const wxSize &size)
+{
+    wxDouble x = (size.GetX() / 2);
+    wxDouble y = (size.GetY() / 2);
+    wxDouble radius = ((x < y) ? x : y);
+
+    SliceArc::ptr newSlice = SliceArc::ptr(new SliceArc(slice,
+        x, y, 0, 0, radius));
+    m_slices.insert(m_slices.begin() + index, newSlice);
+}
+
+wxDouble wxPolarAreaChart::GetMinValue(const wxVector<wxChartSliceData> &slices)
+{
+    wxDouble result = 0;
+    if (slices.size() > 0)
+    {
+        result = slices[0].GetValue();
+    }
+    for (size_t i = 1; i < slices.size(); ++i)
+    {
+        wxDouble v = slices[i].GetValue();
+        if (v < result)
+        {
+            result = v;
+        }
+    }
+    return result;
+}
+
+wxDouble wxPolarAreaChart::GetMaxValue(const wxVector<wxChartSliceData> &slices)
+{
+    wxDouble result = 0;
+    if (slices.size() > 0)
+    {
+        result = slices[0].GetValue();
+    }
+    for (size_t i = 1; i < slices.size(); ++i)
+    {
+        wxDouble v = slices[i].GetValue();
+        if (v > result)
+        {
+            result = v;
+        }
+    }
+    return result;
+}
+
+void wxPolarAreaChart::DoSetSize(const wxSize &size)
+{
+    wxSize newSize(
+        size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
+        size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+        );
+
+    m_grid.Resize(newSize);
+    for (size_t i = 0; i < m_slices.size(); ++i)
+    {
+        m_slices[i]->Resize(newSize);
+    }
+}
+
+void wxPolarAreaChart::DoFit()
+{
+    wxDouble startAngle = m_options.GetStartAngle();
+    wxDouble angleIncrement = ((2 * M_PI) / m_slices.size());
+
+    for (size_t i = 0; i < m_slices.size(); ++i)
+    {
+        SliceArc& currentSlice = *m_slices[i];
+
+        wxDouble endAngle = startAngle + angleIncrement;
+        currentSlice.SetAngles(startAngle, endAngle);
+        currentSlice.SetRadiuses(m_grid.GetRadius(currentSlice.GetValue()), 0);
+        startAngle = endAngle;
+    }
+}
+
+void wxPolarAreaChart::DoDraw(wxGraphicsContext &gc)
+{
+    Fit();
+
+    for (size_t i = 0; i < m_slices.size(); ++i)
+    {
+        m_slices[i]->Draw(gc);
+    }
+
+    m_grid.Draw(gc);
+}
+
+wxSharedPtr<wxVector<const wxChartElement*> > wxPolarAreaChart::GetActiveElements(const wxPoint &point)
+{
+    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    for (size_t i = 0; i < m_slices.size(); ++i)
+    {
+        if (m_slices[i]->HitTest(point))
+        {
+            activeElements->push_back(m_slices[i].get());
+        }
+    }
+    return activeElements;
+}
