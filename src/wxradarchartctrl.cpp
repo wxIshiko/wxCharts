@@ -33,60 +33,17 @@
 
 #include "wxradarchartctrl.h"
 
-wxRadarChartData::wxRadarChartData(const wxVector<wxString> &labels)
-	: m_labels(labels)
-{
-}
-
-const wxVector<wxString>& wxRadarChartData::GetLabels() const
-{
-	return m_labels;
-};
-
 wxRadarChartCtrl::wxRadarChartCtrl(wxWindow *parent,
 								   wxWindowID id,
 								   const wxPoint &pos,
 								   const wxSize &size,
 								   long style)
 	: wxChartCtrl(parent, id, pos, size, style),
-	m_grid(size, GetMinValue(), GetMaxValue(),
-	m_options.GetGridOptions())
+    m_radarChart(size)
 {
 }
 
-const wxRadarChartOptions& wxRadarChartCtrl::GetOptions() const
+wxRadarChart& wxRadarChartCtrl::GetChart()
 {
-	return m_options;
-}
-
-wxDouble wxRadarChartCtrl::GetMinValue()
-{
-	wxDouble result = 0;
-	return result;
-}
-
-wxDouble wxRadarChartCtrl::GetMaxValue()
-{
-	wxDouble result = 0;
-	return result;
-}
-
-void wxRadarChartCtrl::DoFit()
-{
-}
-
-void wxRadarChartCtrl::DoDraw(wxGraphicsContext &gc)
-{
-    m_grid.Draw(gc);
-}
-
-void wxRadarChartCtrl::Resize(const wxSize &size)
-{
-	m_grid.Resize(size);
-}
-
-wxSharedPtr<wxVector<const wxChartElement*> > wxRadarChartCtrl::GetActiveElements(const wxPoint &point)
-{
-	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
-	return activeElements;
+    return m_radarChart;
 }

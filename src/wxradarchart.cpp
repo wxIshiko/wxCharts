@@ -32,3 +32,56 @@
 */
 
 #include "wxradarchart.h"
+
+wxRadarChartData::wxRadarChartData(const wxVector<wxString> &labels)
+    : m_labels(labels)
+{
+}
+
+const wxVector<wxString>& wxRadarChartData::GetLabels() const
+{
+    return m_labels;
+};
+
+wxRadarChart::wxRadarChart(const wxSize &size)
+    : m_grid(size, GetMinValue(), GetMaxValue(),
+        m_options.GetGridOptions())
+{
+}
+
+const wxRadarChartOptions& wxRadarChart::GetOptions() const
+{
+    return m_options;
+}
+
+wxDouble wxRadarChart::GetMinValue()
+{
+    wxDouble result = 0;
+    return result;
+}
+
+wxDouble wxRadarChart::GetMaxValue()
+{
+    wxDouble result = 0;
+    return result;
+}
+
+void wxRadarChart::DoSetSize(const wxSize &size)
+{
+    m_grid.Resize(size);
+}
+
+void wxRadarChart::DoFit()
+{
+}
+
+void wxRadarChart::DoDraw(wxGraphicsContext &gc)
+{
+    m_grid.Draw(gc);
+}
+
+wxSharedPtr<wxVector<const wxChartElement*> > wxRadarChart::GetActiveElements(const wxPoint &point)
+{
+    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    return activeElements;
+}

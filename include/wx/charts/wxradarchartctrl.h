@@ -37,24 +37,7 @@
 #define _WX_CHARTS_WXRADARCHARTCTRL_H_
 
 #include "wxchartctrl.h"
-#include "wxradarchartoptions.h"
-#include "wxchartradialgrid.h"
-
-/// Data for the wxRadarChartCtrl control.
-class wxRadarChartData
-{
-public:
-	/// Constructs a wxRadarChartData instance.
-	wxRadarChartData(const wxVector<wxString> &labels);
-
-	/// Gets the labels of the X axis.
-	/// @return A vector containing the labels of the
-	/// X axis.
-	const wxVector<wxString>& GetLabels() const;
-
-private:
-	wxVector<wxString> m_labels;
-};
+#include "wxradarchart.h"
 
 /// A control that displays a radar chart.
 class wxRadarChartCtrl : public wxChartCtrl
@@ -76,20 +59,11 @@ public:
 		const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
 		long style = 0);
 
-	virtual const wxRadarChartOptions& GetOptions() const;
+private:
+    virtual wxRadarChart& GetChart() wxOVERRIDE;
 
 private:
-	static wxDouble GetMinValue();
-	static wxDouble GetMaxValue();
-
-    virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-	virtual void Resize(const wxSize &size) wxOVERRIDE;
-	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
-
-private:
-	wxRadarChartOptions m_options;
-	wxChartRadialGrid m_grid;
+    wxRadarChart m_radarChart;
 };
 
 #endif
