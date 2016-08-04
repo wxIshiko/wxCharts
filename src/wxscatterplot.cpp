@@ -23,3 +23,291 @@
 /// @file
 
 #include "wxscatterplot.h"
+#include <sstream>
+
+wxScatterPlotDataset::wxScatterPlotDataset(const wxColor& fillColor,
+                                           const wxColor& strokeColor,
+                                           wxVector<wxPoint2DDouble> &data)
+    : m_fillColor(fillColor), m_strokeColor(strokeColor), m_data(data)
+{
+}
+
+const wxColor& wxScatterPlotDataset::GetFillColor() const
+{
+    return m_fillColor;
+}
+
+const wxColor& wxScatterPlotDataset::GetStrokeColor() const
+{
+    return m_strokeColor;
+}
+
+const wxVector<wxPoint2DDouble>& wxScatterPlotDataset::GetData() const
+{
+    return m_data;
+}
+
+wxScatterPlotData::wxScatterPlotData()
+{
+}
+
+void wxScatterPlotData::AddDataset(wxScatterPlotDataset::ptr dataset)
+{
+    m_datasets.push_back(dataset);
+}
+
+const wxVector<wxScatterPlotDataset::ptr>& wxScatterPlotData::GetDatasets() const
+{
+    return m_datasets;
+}
+
+wxScatterPlot::Point::Point(wxPoint2DDouble value,
+                            const wxChartTooltipProvider::ptr tooltipProvider,
+                            wxDouble x,
+                            wxDouble y,
+                            const wxChartPointOptions &options)
+    : wxChartPoint(x, y, 5, 20, tooltipProvider, options), m_value(value)
+{
+}
+
+wxPoint2DDouble wxScatterPlot::Point::GetTooltipPosition() const
+{
+    wxPoint2DDouble position = wxChartPoint::GetTooltipPosition();
+    position.m_y -= 10;
+    return position;
+}
+
+wxPoint2DDouble wxScatterPlot::Point::GetValue() const
+{
+    return m_value;
+}
+
+wxScatterPlot::Dataset::Dataset()
+{
+}
+
+const wxVector<wxScatterPlot::Point::ptr>& wxScatterPlot::Dataset::GetPoints() const
+{
+    return m_points;
+}
+
+void wxScatterPlot::Dataset::AppendPoint(Point::ptr point)
+{
+    m_points.push_back(point);
+}
+
+wxScatterPlot::wxScatterPlot(const wxScatterPlotData &data,
+                             const wxSize &size)
+    : m_grid(
+        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+        size,
+        GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
+        GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
+        m_options.GetGridOptions()
+        )
+{
+    Initialize(data);
+}
+
+wxScatterPlot::wxScatterPlot(const wxScatterPlotData &data,
+                             const wxScatterPlotOptions &options, 
+                             const wxSize &size)
+    : m_options(options),
+    m_grid(
+        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+        size,
+        GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
+        GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
+        m_options.GetGridOptions()
+        )
+{
+    Initialize(data);
+}
+
+const wxScatterPlotOptions& wxScatterPlot::GetOptions() const
+{
+    return m_options;
+}
+
+void wxScatterPlot::Initialize(const wxScatterPlotData &data)
+{
+    const wxVector<wxScatterPlotDataset::ptr>& datasets = data.GetDatasets();
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        Dataset::ptr newDataset(new Dataset());
+
+        const wxVector<wxPoint2DDouble>& datasetData = datasets[i]->GetData();
+        for (size_t j = 0; j < datasetData.size(); ++j)
+        {
+            std::stringstream tooltip;
+            tooltip << "(" << datasetData[j].m_x << "," << datasetData[j].m_y << ")";
+            wxChartTooltipProvider::ptr tooltipProvider(
+                new wxChartTooltipProviderStatic("", tooltip.str(), datasets[i]->GetFillColor())
+                );
+
+            Point::ptr point(
+                new Point(datasetData[j], tooltipProvider, 20 + j * 10, 0,
+                    wxChartPointOptions(2, datasets[i]->GetStrokeColor(), datasets[i]->GetFillColor()))
+                );
+
+            newDataset->AppendPoint(point);
+        }
+
+        m_datasets.push_back(newDataset);
+    }
+}
+
+wxDouble wxScatterPlot::GetMinXValue(const wxVector<wxScatterPlotDataset::ptr>& datasets)
+{
+    wxDouble result = 0;
+    bool foundValue = false;
+
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
+        for (size_t j = 0; j < values.size(); ++j)
+        {
+            if (!foundValue)
+            {
+                result = values[j].m_x;
+                foundValue = true;
+            }
+            else if (result > values[j].m_x)
+            {
+                result = values[j].m_x;
+            }
+        }
+    }
+
+    return result;
+}
+
+wxDouble wxScatterPlot::GetMaxXValue(const wxVector<wxScatterPlotDataset::ptr>& datasets)
+{
+    wxDouble result = 0;
+    bool foundValue = false;
+
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
+        for (size_t j = 0; j < values.size(); ++j)
+        {
+            if (!foundValue)
+            {
+                result = values[j].m_x;
+                foundValue = true;
+            }
+            else if (result < values[j].m_x)
+            {
+                result = values[j].m_x;
+            }
+        }
+    }
+
+    return result;
+}
+
+wxDouble wxScatterPlot::GetMinYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets)
+{
+    wxDouble result = 0;
+    bool foundValue = false;
+
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
+        for (size_t j = 0; j < values.size(); ++j)
+        {
+            if (!foundValue)
+            {
+                result = values[j].m_y;
+                foundValue = true;
+            }
+            else if (result > values[j].m_y)
+            {
+                result = values[j].m_y;
+            }
+        }
+    }
+
+    return result;
+}
+
+wxDouble wxScatterPlot::GetMaxYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets)
+{
+    wxDouble result = 0;
+    bool foundValue = false;
+
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
+        for (size_t j = 0; j < values.size(); ++j)
+        {
+            if (!foundValue)
+            {
+                result = values[j].m_y;
+                foundValue = true;
+            }
+            else if (result < values[j].m_y)
+            {
+                result = values[j].m_y;
+            }
+        }
+    }
+
+    return result;
+}
+
+void wxScatterPlot::DoSetSize(const wxSize &size)
+{
+    wxSize newSize(
+        size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
+        size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+        );
+    m_grid.Resize(newSize);
+}
+
+void wxScatterPlot::DoFit()
+{
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();
+        for (size_t j = 0; j < points.size(); ++j)
+        {
+            const Point::ptr& point = points[j];
+            point->SetPosition(m_grid.GetMapping().GetWindowPosition(point->GetValue().m_x, point->GetValue().m_y));
+        }
+    }
+}
+
+void wxScatterPlot::DoDraw(wxGraphicsContext &gc)
+{
+    m_grid.Draw(gc);
+
+    Fit();
+
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();
+        for (size_t j = 0; j < points.size(); ++j)
+        {
+            points[j]->Draw(gc);
+        }
+    }
+}
+
+wxSharedPtr<wxVector<const wxChartElement*> > wxScatterPlot::GetActiveElements(const wxPoint &point)
+{
+    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();
+        for (size_t j = 0; j < points.size(); ++j)
+        {
+            if (points[j]->HitTest(point))
+            {
+                activeElements->push_back(points[j].get());
+            }
+        }
+    }
+    return activeElements;
+}

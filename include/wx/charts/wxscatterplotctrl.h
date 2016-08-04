@@ -26,48 +26,7 @@
 #define _WX_CHARTS_WXSCATTERPLOTCTRL_H_
 
 #include "wxchartctrl.h"
-#include "wxscatterplotoptions.h"
-#include "wxchartgrid.h"
-#include "wxchartpoint.h"
-
-class wxScatterPlotDataset
-{
-public:
-    /// Smart pointer typedef.
-    typedef wxSharedPtr<wxScatterPlotDataset> ptr;
-
-    /// Constructs a wxScatterPlotDataset instance.
-    /// @param data The list of values.
-    wxScatterPlotDataset(const wxColor& fillColor, const wxColor& strokeColor,
-        wxVector<wxPoint2DDouble> &data);
-
-    const wxColor& GetFillColor() const;
-    const wxColor& GetStrokeColor() const;
-
-    const wxVector<wxPoint2DDouble>& GetData() const;
-
-private:
-    wxColor m_fillColor;
-    wxColor m_strokeColor;
-    wxVector<wxPoint2DDouble> m_data;
-};
-
-/// Data for the wxScatterPlotCtrl control.
-class wxScatterPlotData
-{
-public:
-    /// Constructs a wxScatterPlotData instance.
-    wxScatterPlotData();
-
-    /// Adds a dataset.
-    /// @param dataset The dataset to add.
-    void AddDataset(wxScatterPlotDataset::ptr dataset);
-
-    const wxVector<wxScatterPlotDataset::ptr>& GetDatasets() const;
-
-private:
-    wxVector<wxScatterPlotDataset::ptr> m_datasets;
-};
+#include "wxscatterplot.h"
 
 /// A control that displays a scatter plot.
 class wxScatterPlotCtrl : public wxChartCtrl
@@ -93,58 +52,11 @@ public:
         const wxScatterPlotOptions &options, const wxPoint &pos = wxDefaultPosition,
         const wxSize &size = wxDefaultSize, long style = 0);
 
-	virtual const wxScatterPlotOptions& GetOptions() const;
+private:
+    virtual wxScatterPlot& GetChart() wxOVERRIDE;
 
 private:
-    void Initialize(const wxScatterPlotData &data);
-
-    static wxDouble GetMinXValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
-    static wxDouble GetMaxXValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
-    static wxDouble GetMinYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
-    static wxDouble GetMaxYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
-
-    virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-	virtual void Resize(const wxSize &size) wxOVERRIDE;
-	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
-
-private:
-    class Point : public wxChartPoint
-    {
-    public:
-        typedef wxSharedPtr<Point> ptr;
-
-        Point(wxPoint2DDouble value,
-            const wxChartTooltipProvider::ptr tooltipProvider,
-            wxDouble x, wxDouble y, 
-            const wxChartPointOptions &options);
-
-        virtual wxPoint2DDouble GetTooltipPosition() const;
-
-        wxPoint2DDouble GetValue() const;
-
-    private:
-        wxPoint2DDouble m_value;
-    };
-
-    class Dataset
-    {
-    public:
-        typedef wxSharedPtr<Dataset> ptr;
-
-        Dataset();
-
-        const wxVector<Point::ptr>& GetPoints() const;
-        void AppendPoint(Point::ptr point);
-
-    private:
-        wxVector<Point::ptr> m_points;
-    };
-
-private:
-	wxScatterPlotOptions m_options;
-	wxChartGrid m_grid;
-    wxVector<Dataset::ptr> m_datasets;
+    wxScatterPlot m_scatterPlot;
 };
 
 #endif
