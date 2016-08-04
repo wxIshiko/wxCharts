@@ -242,6 +242,9 @@
     <ClInclude Include="..\..\include\wx\charts\wxscatterplotoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\charts\wxscatterplot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxscatterplotctrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -476,6 +479,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxscatterplotoptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wxscatterplot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxscatterplotctrl.cpp">

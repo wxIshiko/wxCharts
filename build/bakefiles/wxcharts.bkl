@@ -112,6 +112,7 @@ library wxcharts
         ../../include/wx/charts/wxradarchart.h
         ../../include/wx/charts/wxradarchartctrl.h
         ../../include/wx/charts/wxscatterplotoptions.h
+        ../../include/wx/charts/wxscatterplot.h
         ../../include/wx/charts/wxscatterplotctrl.h
         ../../include/wx/charts/wxbubblechartoptions.h
         ../../include/wx/charts/wxbubblechart.h
@@ -194,6 +195,7 @@ library wxcharts
         ../../src/wxradarchart.cpp
         ../../src/wxradarchartctrl.cpp
         ../../src/wxscatterplotoptions.cpp
+        ../../src/wxscatterplot.cpp
         ../../src/wxscatterplotctrl.cpp
         ../../src/wxbubblechartoptions.cpp
         ../../src/wxbubblechart.cpp
