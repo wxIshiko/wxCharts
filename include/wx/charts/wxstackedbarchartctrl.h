@@ -26,10 +26,7 @@
 #define _WX_CHARTS_WXSTACKEDBARCHARTCTRL_H_
 
 #include "wxchartctrl.h"
-#include "wxbarchartdata.h"
-#include "wxstackedbarchartoptions.h"
-#include "wxchartgrid.h"
-#include "wxchartrectangle.h"
+#include "wxstackedbarchart.h"
 
 /// A control that displays a stacked bar chart.
 class wxStackedBarChartCtrl : public wxChartCtrl
@@ -55,55 +52,11 @@ public:
 		const wxStackedBarChartOptions &options, const wxPoint &pos = wxDefaultPosition,
 		const wxSize &size = wxDefaultSize, long style = 0);
 
-	virtual const wxStackedBarChartOptions& GetOptions() const;
+private:
+    virtual wxStackedBarChart& GetChart() wxOVERRIDE;
 
 private:
-	static wxDouble GetCumulativeMinValue(const wxVector<wxBarChartDataset::ptr>& datasets);
-	static wxDouble GetCumulativeMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets);
-
-    virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-	virtual void Resize(const wxSize &size) wxOVERRIDE;
-	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
-
-private:
-	class Bar : public wxChartRectangle
-	{
-	public:
-		typedef wxSharedPtr<Bar> ptr;
-
-		Bar(wxDouble value,
-			const wxChartTooltipProvider::ptr tooltipProvider,
-			wxDouble x, wxDouble y,
-			const wxColor &fillColor, const wxColor &strokeColor,
-			int directions);
-
-		virtual bool HitTest(const wxPoint &point) const;
-
-		wxDouble GetValue() const;
-
-	private:
-		wxDouble m_value;
-	};
-
-	class Dataset
-	{
-	public:
-		typedef wxSharedPtr<Dataset> ptr;
-
-		Dataset();
-
-		const wxVector<Bar::ptr>& GetBars() const;
-		void AppendBar(Bar::ptr bar);
-
-	private:
-		wxVector<Bar::ptr> m_bars;
-	};
-
-private:
-	wxStackedBarChartOptions m_options;
-	wxChartGrid m_grid;
-	wxVector<Dataset::ptr> m_datasets;
+    wxStackedBarChart m_stackedBarChart;
 };
 
 #endif
