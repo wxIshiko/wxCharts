@@ -99,11 +99,13 @@ library wxcharts
         ../../include/wx/charts/wxdoughnutandpiechartoptionsbase.h
         ../../include/wx/charts/wxdoughnutandpiechartbase.h
         ../../include/wx/charts/wxdoughnutchartoptions.h
+        ../../include/wx/charts/wxdoughnutchart.h
         ../../include/wx/charts/wxdoughnutchartctrl.h
         ../../include/wx/charts/wxohlcchartoptions.h
         ../../include/wx/charts/wxohlcchart.h
         ../../include/wx/charts/wxohlcchartctrl.h
         ../../include/wx/charts/wxpiechartoptions.h
+        ../../include/wx/charts/wxpiechart.h
         ../../include/wx/charts/wxpiechartctrl.h
         ../../include/wx/charts/wxpolarareachartoptions.h
         ../../include/wx/charts/wxpolarareachart.h
@@ -182,11 +184,13 @@ library wxcharts
         ../../src/wxdoughnutandpiechartoptionsbase.cpp
         ../../src/wxdoughnutandpiechartbase.cpp
         ../../src/wxdoughnutchartoptions.cpp
+        ../../src/wxdoughnutchart.cpp
         ../../src/wxdoughnutchartctrl.cpp
         ../../src/wxohlcchartoptions.cpp
         ../../src/wxohlcchart.cpp
         ../../src/wxohlcchartctrl.cpp
         ../../src/wxpiechartoptions.cpp
+        ../../src/wxpiechart.cpp
         ../../src/wxpiechartctrl.cpp
         ../../src/wxpolarareachartoptions.cpp
         ../../src/wxpolarareachart.cpp

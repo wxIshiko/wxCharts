@@ -144,11 +144,13 @@
     <ClCompile Include="..\..\src\wxdoughnutandpiechartoptionsbase.cpp" />
     <ClCompile Include="..\..\src\wxdoughnutandpiechartbase.cpp" />
     <ClCompile Include="..\..\src\wxdoughnutchartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxdoughnutchart.cpp" />
     <ClCompile Include="..\..\src\wxdoughnutchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxohlcchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxohlcchart.cpp" />
     <ClCompile Include="..\..\src\wxohlcchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxpiechartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxpiechart.cpp" />
     <ClCompile Include="..\..\src\wxpiechartctrl.cpp" />
     <ClCompile Include="..\..\src\wxpolarareachartoptions.cpp" />
     <ClCompile Include="..\..\src\wxpolarareachart.cpp" />
@@ -226,11 +228,13 @@
     <ClInclude Include="..\..\include\wx\charts\wxdoughnutandpiechartoptionsbase.h" />
     <ClInclude Include="..\..\include\wx\charts\wxdoughnutandpiechartbase.h" />
     <ClInclude Include="..\..\include\wx\charts\wxdoughnutchartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxdoughnutchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxdoughnutchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxohlcchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxohlcchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxohlcchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxpiechartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxpiechart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxpiechartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxpolarareachartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxpolarareachart.h" />
