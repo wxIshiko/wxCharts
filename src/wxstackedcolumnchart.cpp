@@ -32,3 +32,227 @@
 */
 
 #include "wxstackedcolumnchart.h"
+#include <sstream>
+
+wxStackedColumnChart::Column::Column(wxDouble value,
+                                     const wxChartTooltipProvider::ptr tooltipProvider,
+                                     wxDouble x,
+                                     wxDouble y,
+                                     const wxColor &fillColor,
+                                     const wxColor &strokeColor,
+                                     int directions)
+    : wxChartRectangle(x, y, tooltipProvider, wxChartRectangleOptions(fillColor, strokeColor, directions)),
+    m_value(value)
+{
+}
+
+bool wxStackedColumnChart::Column::HitTest(const wxPoint &point) const
+{
+    return ((point.x >= GetPosition().m_x) &&
+        (point.x <= (GetPosition().m_x + GetWidth())));
+}
+
+wxDouble wxStackedColumnChart::Column::GetValue() const
+{
+    return m_value;
+}
+
+wxStackedColumnChart::Dataset::Dataset()
+{
+}
+
+const wxVector<wxStackedColumnChart::Column::ptr>& wxStackedColumnChart::Dataset::GetColumns() const
+{
+    return m_columns;
+}
+
+void wxStackedColumnChart::Dataset::AppendColumn(Column::ptr column)
+{
+    m_columns.push_back(column);
+}
+
+wxStackedColumnChart::wxStackedColumnChart(const wxBarChartData &data,
+                                           const wxSize &size)
+    : m_grid(
+        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+        size, data.GetLabels(), GetCumulativeMinValue(data.GetDatasets()),
+        GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions()
+        )
+{
+    const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
+    for (size_t i = 0; i < datasets.size(); ++i)
+    {
+        const wxBarChartDataset& dataset = *datasets[i];
+        Dataset::ptr newDataset(new Dataset());
+
+        int border = wxLEFT | wxRIGHT;
+        if (i == (datasets.size() - 1))
+        {
+            border |= wxTOP;
+        }
+
+        const wxVector<wxDouble>& datasetData = dataset.GetData();
+        for (size_t j = 0; j < datasetData.size(); ++j)
+        {
+            std::stringstream tooltip;
+            tooltip << datasetData[j];
+            wxChartTooltipProvider::ptr tooltipProvider(
+                new wxChartTooltipProviderStatic(data.GetLabels()[j], tooltip.str(), dataset.GetFillColor())
+                );
+
+            newDataset->AppendColumn(Column::ptr(new Column(
+                datasetData[j],
+                tooltipProvider,
+                25, 50,
+                dataset.GetFillColor(), dataset.GetStrokeColor(),
+                border
+                )));
+        }
+
+        m_datasets.push_back(newDataset);
+    }
+}
+
+const wxStackedColumnChartOptions& wxStackedColumnChart::GetOptions() const
+{
+    return m_options;
+}
+
+wxDouble wxStackedColumnChart::GetCumulativeMinValue(const wxVector<wxBarChartDataset::ptr>& datasets)
+{
+    wxDouble result = 0;
+
+    size_t i = 0;
+    while (true)
+    {
+        wxDouble sum = 0;
+        bool stop = true;
+        for (size_t j = 0; j < datasets.size(); ++j)
+        {
+            const wxBarChartDataset& dataset = *datasets[j];
+            if (i < dataset.GetData().size())
+            {
+                sum += dataset.GetData()[i];
+                stop = false;
+            }
+        }
+        if (sum < result)
+        {
+            result = sum;
+        }
+        if (stop)
+        {
+            break;
+        }
+        ++i;
+    }
+
+    return result;
+}
+
+wxDouble wxStackedColumnChart::GetCumulativeMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets)
+{
+    wxDouble result = 0;
+
+    size_t i = 0;
+    while (true)
+    {
+        wxDouble sum = 0;
+        bool stop = true;
+        for (size_t j = 0; j < datasets.size(); ++j)
+        {
+            const wxBarChartDataset& dataset = *datasets[j];
+            if (i < dataset.GetData().size())
+            {
+                sum += dataset.GetData()[i];
+                stop = false;
+            }
+        }
+        if (sum > result)
+        {
+            result = sum;
+        }
+        if (stop)
+        {
+            break;
+        }
+        ++i;
+    }
+
+    return result;
+}
+
+void wxStackedColumnChart::DoSetSize(const wxSize &size)
+{
+    m_grid.Resize(size);
+}
+
+void wxStackedColumnChart::DoFit()
+{
+    wxVector<wxDouble> heightOfPreviousDatasets;
+    for (size_t i = 0; i < m_datasets[0]->GetColumns().size(); ++i)
+    {
+        heightOfPreviousDatasets.push_back(0);
+    }
+
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        Dataset& currentDataset = *m_datasets[i];
+        for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
+        {
+            Column& column = *(currentDataset.GetColumns()[j]);
+
+            wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j, column.GetValue());
+            upperLeftCornerPosition.m_x += m_options.GetColumnSpacing();
+            upperLeftCornerPosition.m_y -= heightOfPreviousDatasets[j];
+            wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j + 1, column.GetValue());
+            upperRightCornerPosition.m_x -= m_options.GetColumnSpacing();
+            upperRightCornerPosition.m_y -= heightOfPreviousDatasets[j];
+
+            wxPoint2DDouble bottomLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j);
+
+            column.SetPosition(upperLeftCornerPosition);
+            column.SetSize(upperRightCornerPosition.m_x - upperLeftCornerPosition.m_x,
+                (bottomLeftCornerPosition.m_y - heightOfPreviousDatasets[j]) - upperLeftCornerPosition.m_y);
+
+            heightOfPreviousDatasets[j] = bottomLeftCornerPosition.m_y - upperLeftCornerPosition.m_y;
+        }
+    }
+}
+
+void wxStackedColumnChart::DoDraw(wxGraphicsContext &gc)
+{
+    m_grid.Draw(gc);
+
+    Fit();
+
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+    {
+        Dataset& currentDataset = *m_datasets[i];
+        for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
+        {
+            currentDataset.GetColumns()[j]->Draw(gc);
+        }
+    }
+}
+
+wxSharedPtr<wxVector<const wxChartElement*> > wxStackedColumnChart::GetActiveElements(const wxPoint &point)
+{
+    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+
+    // Dataset are iterated in reverse order so that the tooltip items
+    // are in the same order as the stacked columns
+    for (int i = m_datasets.size() - 1; i >= 0; --i)
+    {
+        const wxVector<Column::ptr>& columns = m_datasets[i]->GetColumns();
+        for (size_t j = 0; j < columns.size(); ++j)
+        {
+            if (columns[j]->HitTest(point))
+            {
+                activeElements->push_back(columns[j].get());
+            }
+        }
+    }
+
+    return activeElements;
+}

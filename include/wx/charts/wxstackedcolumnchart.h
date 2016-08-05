@@ -37,10 +37,66 @@
 #define _WX_CHARTS_WXSTACKEDCOLUMNCHART_H_
 
 #include "wxchart.h"
+#include "wxbarchartdata.h"
+#include "wxstackedcolumnchartoptions.h"
+#include "wxchartgrid.h"
+#include "wxchartrectangle.h"
 
 /// A stacked column chart.
 class wxStackedColumnChart : public wxChart
 {
+public:
+    wxStackedColumnChart(const wxBarChartData &data, const wxSize &size);
+
+    virtual const wxStackedColumnChartOptions& GetOptions() const wxOVERRIDE;
+
+private:
+    static wxDouble GetCumulativeMinValue(const wxVector<wxBarChartDataset::ptr>& datasets);
+    static wxDouble GetCumulativeMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets);
+
+    virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
+    virtual void DoFit() wxOVERRIDE;
+    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
+
+private:
+    class Column : public wxChartRectangle
+    {
+    public:
+        typedef wxSharedPtr<Column> ptr;
+
+        Column(wxDouble value,
+            const wxChartTooltipProvider::ptr tooltipProvider,
+            wxDouble x, wxDouble y,
+            const wxColor &fillColor, const wxColor &strokeColor,
+            int directions);
+
+        virtual bool HitTest(const wxPoint &point) const;
+
+        wxDouble GetValue() const;
+
+    private:
+        wxDouble m_value;
+    };
+
+    class Dataset
+    {
+    public:
+        typedef wxSharedPtr<Dataset> ptr;
+
+        Dataset();
+
+        const wxVector<Column::ptr>& GetColumns() const;
+        void AppendColumn(Column::ptr column);
+
+    private:
+        wxVector<Column::ptr> m_columns;
+    };
+
+private:
+    wxStackedColumnChartOptions m_options;
+    wxChartGrid m_grid;
+    wxVector<Dataset::ptr> m_datasets;
 };
 
 #endif
