@@ -25,25 +25,11 @@
 #ifndef _WX_CHARTS_WXDOUGHNUTCHARTCTRL_H_
 #define _WX_CHARTS_WXDOUGHNUTCHARTCTRL_H_
 
-#include "wxdoughnutandpiechartbase.h"
-#include "wxdoughnutchartoptions.h"
-
-/// Data for the wxDoughnutChartCtrl control.
-class wxDoughnutChartData
-{
-public:
-	wxDoughnutChartData();
-
-	void AppendSlice(const wxChartSliceData &slice);
-
-	const wxVector<wxChartSliceData>& GetSlices() const;
-
-private:
-	wxVector<wxChartSliceData> m_slices;
-};
+#include "wxchartctrl.h"
+#include "wxdoughnutchart.h"
 
 /// A control that displays a doughnut chart.
-class wxDoughnutChartCtrl : public wxDoughnutAndPieChartBase
+class wxDoughnutChartCtrl : public wxChartCtrl
 {
 public:
 	wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, const wxDoughnutChartData &data,
@@ -54,11 +40,10 @@ public:
 		const wxSize &size = wxDefaultSize, long style = 0);
 
 private:
-	virtual const wxDoughnutAndPieChartOptionsBase& GetOptions() const;
-	void Initialize(const wxDoughnutChartData &data);
+    virtual wxDoughnutChart& GetChart() wxOVERRIDE;
 
 private:
-	wxDougnutChartOptions m_options;
+    wxDoughnutChart m_doughnutChart;
 };
 
 #endif

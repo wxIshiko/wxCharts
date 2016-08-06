@@ -64,26 +64,25 @@ wxDouble wxDoughnutAndPieChartBase::SliceArc::GetValue() const
 	return m_value;
 }
 
-wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(wxWindow *parent,
-													 wxWindowID id,
-													 const wxPoint &pos,
-													 const wxSize &size,
-													 long style)
-	: wxChartCtrl(parent, id, pos, size, style), m_total(0)
+wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase()
+	: m_total(0)
 {
 }
 
-void wxDoughnutAndPieChartBase::Add(const wxChartSliceData &slice)
+void wxDoughnutAndPieChartBase::Add(const wxChartSliceData &slice,
+                                    const wxSize &size)
 {
-	Add(slice, m_slices.size());
+	Add(slice, m_slices.size(), size);
 }
 
-void wxDoughnutAndPieChartBase::Add(const wxChartSliceData &slice, size_t index)
+void wxDoughnutAndPieChartBase::Add(const wxChartSliceData &slice, 
+                                    size_t index,
+                                    const wxSize &size)
 {
 	m_total += slice.GetValue();
 
-	wxDouble x = (GetSize().GetX() / 2) - 2;
-	wxDouble y = (GetSize().GetY() / 2) - 2;
+	wxDouble x = (size.GetX() / 2) - 2;
+	wxDouble y = (size.GetY() / 2) - 2;
 	wxDouble outerRadius = ((x < y) ? x : y) - (GetOptions().GetSliceStrokeWidth() / 2);
 	wxDouble innerRadius = outerRadius * ((wxDouble)GetOptions().GetPercentageInnerCutout()) / 100;
 
@@ -92,14 +91,19 @@ void wxDoughnutAndPieChartBase::Add(const wxChartSliceData &slice, size_t index)
 	m_slices.insert(m_slices.begin() + index, newSlice);
 }
 
+void wxDoughnutAndPieChartBase::DoSetSize(const wxSize &size)
+{
+    m_size = size;
+}
+
 void wxDoughnutAndPieChartBase::DoFit()
 {
     for (size_t i = 0; i < m_slices.size(); ++i)
     {
-        m_slices[i]->Resize(GetSize(), GetOptions());
+        m_slices[i]->Resize(m_size, GetOptions());
     }
 
-   wxDouble startAngle = 0.0;
+    wxDouble startAngle = 0.0;
     for (size_t i = 0; i < m_slices.size(); ++i)
     {
         SliceArc& currentSlice = *m_slices[i];
@@ -120,25 +124,20 @@ void wxDoughnutAndPieChartBase::DoDraw(wxGraphicsContext &gc)
     }
 }
 
-void wxDoughnutAndPieChartBase::Resize(const wxSize &size)
-{
-    m_needsFit = true;
-}
-
 wxSharedPtr<wxVector<const wxChartElement*> > wxDoughnutAndPieChartBase::GetActiveElements(const wxPoint &point)
 {
-	wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
-	for (size_t i = 0; i < m_slices.size(); ++i)
-	{
-		if (m_slices[i]->HitTest(point))
-		{
-			activeElements->push_back(m_slices[i].get());
-		}
-	}
-	return activeElements;
+    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    for (size_t i = 0; i < m_slices.size(); ++i)
+    {
+        if (m_slices[i]->HitTest(point))
+        {
+            activeElements->push_back(m_slices[i].get());
+        }
+    }
+    return activeElements;
 }
 
-double wxDoughnutAndPieChartBase::CalculateCircumference(wxDouble value)
+wxDouble wxDoughnutAndPieChartBase::CalculateCircumference(wxDouble value)
 {
 	if (m_total > 0)
 	{

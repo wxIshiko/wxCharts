@@ -21,3 +21,46 @@
 */
 
 #include "wxpiechart.h"
+
+wxPieChartData::wxPieChartData()
+{
+}
+
+void wxPieChartData::AppendSlice(const wxChartSliceData &slice)
+{
+    m_slices.push_back(slice);
+}
+
+const wxVector<wxChartSliceData>& wxPieChartData::GetSlices() const
+{
+    return m_slices;
+}
+
+wxPieChart::wxPieChart(const wxPieChartData &data,
+                       const wxSize &size)
+{
+    Initialize(data, size);
+}
+
+wxPieChart::wxPieChart(const wxPieChartData &data,
+                       const wxPieChartOptions &options,
+                       const wxSize &size)
+    : m_options(options)
+{
+    Initialize(data, size);
+}
+
+const wxPieChartOptions& wxPieChart::GetOptions() const
+{
+    return m_options;
+}
+
+void wxPieChart::Initialize(const wxPieChartData &data,
+                            const wxSize &size)
+{
+    const wxVector<wxChartSliceData>& slices = data.GetSlices();
+    for (size_t i = 0; i < slices.size(); ++i)
+    {
+        Add(slices[i], size);
+    }
+}

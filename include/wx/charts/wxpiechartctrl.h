@@ -25,25 +25,11 @@
 #ifndef _WX_CHARTS_WXPIECHARTCTRL_H_
 #define _WX_CHARTS_WXPIECHARTCTRL_H_
 
-#include "wxdoughnutandpiechartbase.h"
-#include "wxpiechartoptions.h"
-
-/// Data for the wxPieChartCtrl control.
-class wxPieChartData
-{
-public:
-	wxPieChartData();
-
-	void AppendSlice(const wxChartSliceData &slice);
-
-	const wxVector<wxChartSliceData>& GetSlices() const;
-
-private:
-	wxVector<wxChartSliceData> m_slices;
-};
+#include "wxchartctrl.h"
+#include "wxpiechart.h"
 
 /// A control that displays a pie chart.
-class wxPieChartCtrl : public wxDoughnutAndPieChartBase
+class wxPieChartCtrl : public wxChartCtrl
 {
 public:
 	/// Constructs a wxPieChartCtrl control.
@@ -82,11 +68,10 @@ public:
 		const wxSize &size = wxDefaultSize, long style = 0);
 
 private:
-	virtual const wxDoughnutAndPieChartOptionsBase& GetOptions() const;
-	void Initialize(const wxPieChartData &data);
+    virtual wxPieChart& GetChart() wxOVERRIDE;
 
 private:
-	wxPieChartOptions m_options;
+    wxPieChart m_pieChart;
 };
 
 #endif

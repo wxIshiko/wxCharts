@@ -22,29 +22,15 @@
 
 #include "wxdoughnutchartctrl.h"
 
-wxDoughnutChartData::wxDoughnutChartData()
-{
-}
-
-void wxDoughnutChartData::AppendSlice(const wxChartSliceData &slice)
-{
-	m_slices.push_back(slice);
-}
-
-const wxVector<wxChartSliceData>& wxDoughnutChartData::GetSlices() const
-{
-	return m_slices;
-}
-
 wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
 										 wxWindowID id,
 										 const wxDoughnutChartData &data,
 										 const wxPoint &pos,
 										 const wxSize &size, 
 										 long style)
-	: wxDoughnutAndPieChartBase(parent, id, pos, size, style)
+	: wxChartCtrl(parent, id, pos, size, style),
+    m_doughnutChart(data, size)
 {
-	Initialize(data);
 }
 
 wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent, 
@@ -54,22 +40,12 @@ wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
 										 const wxPoint &pos,
 										 const wxSize &size, 
 										 long style)
-	: wxDoughnutAndPieChartBase(parent, id, pos, size, style),
-	m_options(options)
+	: wxChartCtrl(parent, id, pos, size, style),
+    m_doughnutChart(data, options, size)
 {
-	Initialize(data);
 }
 
-const wxDoughnutAndPieChartOptionsBase& wxDoughnutChartCtrl::GetOptions() const
+wxDoughnutChart& wxDoughnutChartCtrl::GetChart()
 {
-	return m_options;
-}
-
-void wxDoughnutChartCtrl::Initialize(const wxDoughnutChartData &data)
-{
-	const wxVector<wxChartSliceData>& slices = data.GetSlices();
-	for (size_t i = 0; i < slices.size(); ++i)
-	{
-		Add(slices[i]);
-	}
+    return m_doughnutChart;
 }

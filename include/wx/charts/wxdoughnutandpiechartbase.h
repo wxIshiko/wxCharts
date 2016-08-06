@@ -36,47 +36,37 @@
 #ifndef _WX_CHARTS_WXDOUGHNUTANDPIECHARTBASE_H_
 #define _WX_CHARTS_WXDOUGHNUTANDPIECHARTBASE_H_
 
-#include "wxchartctrl.h"
+#include "wxchart.h"
 #include "wxchartslicedata.h"
 #include "wxdoughnutandpiechartoptionsbase.h"
 #include "wxchartarc.h"
 #include <wx/control.h>
 #include <wx/sharedptr.h>
 
-/// Common base class for the wxDoughnutChartCtrl and wxPieChartCtrl controls.
+/// Common base class for the wxDoughnutChart and wxPieChart charts.
 
 /// The doughnut and pie charts are very similar so we use
 /// a common base class. It would actually be possible to
 /// only have the doughnut classes but I usually favor
 /// ease of use over ease of implementation.
-class wxDoughnutAndPieChartBase : public wxChartCtrl
+class wxDoughnutAndPieChartBase : public wxChart
 {
 public:
-	/// Constructs a wxDoughnutAndPieChartBase control.
-	/// @param parent Pointer to a parent window.
-	/// @param id Control identifier. If wxID_ANY, will automatically
-	/// create an identifier.
-	/// @param pos Control position. wxDefaultPosition indicates that 
-	/// wxWidgets should generate a default position for the control.
-	/// @param size Control size. wxDefaultSize indicates that wxWidgets
-	/// should generate a default size for the window. If no suitable 
-	/// size can  be found, the window will be sized to 20x20 pixels 
-	/// so that the window is visible but obviously not correctly sized.
-	/// @param style Control style. For generic window styles, please 
-	/// see wxWindow.
-	wxDoughnutAndPieChartBase(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,
-		const wxSize &size = wxDefaultSize, long style = 0);
+	/// Constructs a wxDoughnutAndPieChartBase
+    /// instance.
+	wxDoughnutAndPieChartBase();
 
 protected:
-	void Add(const wxChartSliceData &slice);
-	void Add(const wxChartSliceData &slice, size_t index);
+	void Add(const wxChartSliceData &slice, const wxSize &size);
+	void Add(const wxChartSliceData &slice, size_t index,
+        const wxSize &size);
 	
 private:
+    virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
     virtual void DoFit() wxOVERRIDE;
     virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-	virtual void Resize(const wxSize &size) wxOVERRIDE;
-	virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
-
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
+    
 	wxDouble CalculateCircumference(double value);
 	
 private:
@@ -101,6 +91,7 @@ private:
 	};
 
 private:
+    wxSize m_size;
 	wxVector<SliceArc::ptr> m_slices;
 	wxDouble m_total;
 };

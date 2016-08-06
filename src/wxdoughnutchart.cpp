@@ -21,3 +21,46 @@
 */
 
 #include "wxdoughnutchart.h"
+
+wxDoughnutChartData::wxDoughnutChartData()
+{
+}
+
+void wxDoughnutChartData::AppendSlice(const wxChartSliceData &slice)
+{
+    m_slices.push_back(slice);
+}
+
+const wxVector<wxChartSliceData>& wxDoughnutChartData::GetSlices() const
+{
+    return m_slices;
+}
+
+wxDoughnutChart::wxDoughnutChart(const wxDoughnutChartData &data,
+                                 const wxSize &size)
+{
+    Initialize(data, size);
+}
+
+wxDoughnutChart::wxDoughnutChart(const wxDoughnutChartData &data,
+                                 const wxDougnutChartOptions &options,
+                                 const wxSize &size)
+    : m_options(options)
+{
+    Initialize(data, size);
+}
+
+const wxDougnutChartOptions& wxDoughnutChart::GetOptions() const
+{
+    return m_options;
+}
+
+void wxDoughnutChart::Initialize(const wxDoughnutChartData &data,
+                                 const wxSize &size)
+{
+    const wxVector<wxChartSliceData>& slices = data.GetSlices();
+    for (size_t i = 0; i < slices.size(); ++i)
+    {
+        Add(slices[i], size);
+    }
+}
