@@ -41,11 +41,12 @@ wxLineChartDataset::wxLineChartDataset(const wxString &label,
     const wxColor &dotColor,
     const wxColor &dotStrokeColor,
     const wxColor &fillColor,
-    const wxVector<wxDouble> &data)
+    const wxVector<wxDouble> &data,
+    const wxLineType &lineType)
     : m_label(label), m_showDots(true), m_dotColor(dotColor),
     m_dotStrokeColor(dotStrokeColor), m_showLine(true),
     m_lineColor(dotColor), m_fill(true), m_fillColor(fillColor),
-    m_data(data)
+    m_data(data),m_type(lineType)
 {
 }
 
@@ -67,6 +68,11 @@ const wxColor& wxLineChartDataset::GetDotColor() const
 const wxColor& wxLineChartDataset::GetDotStrokeColor() const
 {
     return m_dotStrokeColor;
+}
+
+const wxLineType& wxLineChartDataset::GetType() const
+{
+    return m_type;
 }
 
 bool wxLineChartDataset::ShowLine() const
@@ -147,9 +153,11 @@ wxLineChart::Dataset::Dataset(bool showDots,
     bool showLine,
     const wxColor &lineColor,
     bool fill,
-    const wxColor &fillColor)
+    const wxColor &fillColor,
+    const wxLineType &lineType)
     : m_showDots(showDots), m_showLine(showLine),
-    m_lineColor(lineColor), m_fill(fill), m_fillColor(fillColor)
+    m_lineColor(lineColor), m_fill(fill),
+    m_fillColor(fillColor), m_type(lineType)
 {
 }
 
@@ -178,6 +186,11 @@ const wxColor& wxLineChart::Dataset::GetFillColor() const
     return m_fillColor;
 }
 
+const wxLineType& wxLineChart::Dataset::GetType() const
+{
+     return m_type;
+}
+
 const wxVector<wxLineChart::Point::ptr>& wxLineChart::Dataset::GetPoints() const
 {
     return m_points;
@@ -188,7 +201,7 @@ void wxLineChart::Dataset::AppendPoint(Point::ptr point)
     m_points.push_back(point);
 }
 
-wxLineChart::wxLineChart(const wxLineChartData &data, 
+wxLineChart::wxLineChart(const wxLineChartData &data,
                          const wxSize &size)
     : m_grid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
@@ -199,10 +212,10 @@ wxLineChart::wxLineChart(const wxLineChartData &data,
     Initialize(data);
 }
 
-wxLineChart::wxLineChart(const wxLineChartData &data, 
+wxLineChart::wxLineChart(const wxLineChartData &data,
                          const wxLineChartOptions &options,
                          const wxSize &size)
-    : m_options(options), 
+    : m_options(options),
     m_grid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
         size, data.GetLabels(), GetMinValue(data.GetDatasets()),
@@ -217,7 +230,7 @@ const wxLineChartOptions& wxLineChart::GetOptions() const
     return m_options;
 }
 
-void wxLineChart::Save(const wxString &filename, 
+void wxLineChart::Save(const wxString &filename,
                        const wxBitmapType &type,
                        const wxSize &size)
 {
@@ -240,7 +253,8 @@ void wxLineChart::Initialize(const wxLineChartData &data)
     {
         Dataset::ptr newDataset(new Dataset(datasets[i]->ShowDots(),
             datasets[i]->ShowLine(), datasets[i]->GetLineColor(),
-            datasets[i]->Fill(), datasets[i]->GetFillColor()));
+            datasets[i]->Fill(), datasets[i]->GetFillColor(),
+            datasets[i]->GetType()));
 
         const wxVector<wxDouble>& datasetData = datasets[i]->GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
@@ -349,6 +363,11 @@ void wxLineChart::DoDraw(wxGraphicsContext &gc)
             {
                 const Point::ptr& point = points[j];
                 lastPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j, point->GetValue());
+                if(m_datasets[i]->GetType()==wxLINETYPE_STEPPEDLINE)
+                 {
+                     wxPoint2DDouble temp = m_grid.GetMapping().GetWindowPositionAtTickMark(j, points[j-1]->GetValue());
+                     path.AddLineToPoint(temp);
+                 }
                 path.AddLineToPoint(lastPosition);
             }
 
