@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2015-2017 Xavier Leclercq
+    Copyright (c) 2016-2017 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,35 +20,42 @@
     IN THE SOFTWARE.
 */
 
-/// @file
+#include "wxmath2dplotoptions.h"
 
-#ifndef _WX_CHARTS_WXCHARTS_H_
-#define _WX_CHARTS_WXCHARTS_H_
+wxMath2DPlotOptions::wxMath2DPlotOptions()
+    : m_dotRadius(4), m_dotStrokeWidth(1),
+    m_lineWidth(2), m_hitDetectionRange(24)
+{
+    GetMultiTooltipOptions().SetShowTitle(false);
+    GetMultiTooltipOptions().SetAlignment(wxALIGN_TOP);
+}
 
-#include "wxbarchartctrl.h"
-#include "wxstackedbarchartctrl.h"
-#include "wxcolumnchartctrl.h"
-#include "wxstackedcolumnchartctrl.h"
-#include "wxlinechartctrl.h"
-#include "wxdoughnutchartctrl.h"
-#include "wxpiechartctrl.h"
-#include "wxpolarareachartctrl.h"
-#include "wxradarchartctrl.h"
-#include "wxscatterplotctrl.h"
-#include "wxmath2dplotctrl.h"
-#include "wxbubblechartctrl.h"
-#include "wxcandlestickchartctrl.h"
-#include "wxohlcchartctrl.h"
-#include "wxchartlegendctrl.h"
+const wxChartGridOptions& wxMath2DPlotOptions::GetGridOptions() const
+{
+    return m_gridOptions;
+}
 
-#ifdef _MSC_VER
+wxChartGridOptions& wxMath2DPlotOptions::GetGridOptions()
+{
+    return m_gridOptions;
+}
 
-#ifdef _DEBUG
-#pragma comment(lib, "wxchartsd.lib")
-#else
-#pragma comment(lib, "wxcharts.lib")
-#endif
+wxDouble wxMath2DPlotOptions::GetDotRadius() const
+{
+    return m_dotRadius;
+}
 
-#endif
+unsigned int wxMath2DPlotOptions::GetDotStrokeWidth() const
+{
+    return m_dotStrokeWidth;
+}
 
-#endif
+unsigned int wxMath2DPlotOptions::GetLineWidth() const
+{
+    return m_lineWidth;
+}
+
+wxDouble wxMath2DPlotOptions::GetHitDetectionRange() const
+{
+    return m_hitDetectionRange;
+}
