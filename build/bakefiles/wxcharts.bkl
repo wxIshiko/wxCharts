@@ -119,6 +119,9 @@ library wxcharts
         ../../include/wx/charts/wxbubblechartoptions.h
         ../../include/wx/charts/wxbubblechart.h
         ../../include/wx/charts/wxbubblechartctrl.h
+        ../../include/wx/charts/wxmath2dplotoptions.h
+        ../../include/wx/charts/wxmath2dplot.h
+        ../../include/wx/charts/wxmath2dplotctrl.h
     }
 
     sources
@@ -204,5 +207,8 @@ library wxcharts
         ../../src/wxbubblechartoptions.cpp
         ../../src/wxbubblechart.cpp
         ../../src/wxbubblechartctrl.cpp
+        ../../src/wxmath2dplotoptions.cpp
+        ../../src/wxmath2dplot.cpp
+        ../../src/wxmath2dplotctrl.cpp
     }
 }
