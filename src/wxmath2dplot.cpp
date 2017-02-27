@@ -38,10 +38,11 @@
 wxMath2DPlotDataset::wxMath2DPlotDataset(
     const wxColor &dotColor,
     const wxColor &dotStrokeColor,
-    wxVector<wxPoint2DDouble> &data)
+    wxVector<wxPoint2DDouble> &data,
+    const wxChartType &chartType)
     : m_showDots(true), m_dotColor(dotColor),
     m_dotStrokeColor(dotStrokeColor), m_showLine(true),
-    m_lineColor(dotColor),m_data(data)
+    m_lineColor(dotColor),m_data(data),m_type(chartType)
 {
 }
 
@@ -58,6 +59,11 @@ const wxColor& wxMath2DPlotDataset::GetDotColor() const
 const wxColor& wxMath2DPlotDataset::GetDotStrokeColor() const
 {
     return m_dotStrokeColor;
+}
+
+const wxChartType& wxMath2DPlotDataset::GetType() const
+{
+    return m_type;
 }
 
 bool wxMath2DPlotDataset::ShowLine() const
@@ -128,9 +134,10 @@ wxPoint2DDouble wxMath2DPlot::Point::GetValue() const
 
 wxMath2DPlot::Dataset::Dataset(bool showDots,
     bool showLine,
-    const wxColor &lineColor)
+    const wxColor &lineColor,
+    const wxChartType &chartType)
     : m_showDots(showDots), m_showLine(showLine),
-    m_lineColor(lineColor)
+    m_lineColor(lineColor), m_type(chartType)
 {
 }
 
@@ -147,6 +154,11 @@ bool wxMath2DPlot::Dataset::ShowLine() const
 const wxColor& wxMath2DPlot::Dataset::GetLineColor() const
 {
     return m_lineColor;
+}
+
+const wxChartType& wxMath2DPlot::Dataset::GetType() const
+{
+     return m_type;
 }
 
 const wxVector<wxMath2DPlot::Point::ptr>& wxMath2DPlot::Dataset::GetPoints() const
@@ -212,8 +224,8 @@ void wxMath2DPlot::Initialize(const wxMath2DPlotData &data)
     for (size_t i = 0; i < datasets.size(); ++i)
     {
 
-        Dataset::ptr newDataset(new Dataset(datasets[i]->ShowDots(),
-                        datasets[i]->ShowLine(), datasets[i]->GetLineColor()));
+        Dataset::ptr newDataset(new Dataset(datasets[i]->ShowDots(),datasets[i]->ShowLine(),
+            datasets[i]->GetLineColor(),datasets[i]->GetType()));
 
         const wxVector<wxPoint2DDouble>& datasetData = datasets[i]->GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
@@ -384,7 +396,32 @@ void wxMath2DPlot::DoDraw(wxGraphicsContext &gc)
                 const Point::ptr& point = points[j];
                 value = point->GetValue();
                 lastPosition =  m_grid.GetMapping().GetWindowPosition(value.m_x,value.m_y );
-                path.AddLineToPoint(lastPosition);
+
+                if(m_datasets[i]->GetType()==wxCHARTTYPE_STEPPED)
+                {
+                    wxDouble y = value.m_y;
+                    value = points[j-1]->GetValue();
+                    value = m_grid.GetMapping().GetWindowPosition(value.m_x,y);
+                    path.AddLineToPoint(value);
+                }
+
+                if(m_datasets[i]->GetType()==wxCHARTTYPE_STEM)
+                {
+                    value = points[j-1]->GetValue();
+                    value = m_grid.GetMapping().GetWindowPosition(value.m_x,0);
+                    path.AddLineToPoint(value);
+                    path.MoveToPoint(lastPosition);
+                    if(j+1==points.size())
+                    {
+                        value = points[j]->GetValue();
+                        value = m_grid.GetMapping().GetWindowPosition(value.m_x,0);
+                        path.AddLineToPoint(value);
+                    }
+                }
+                else
+                {
+                    path.AddLineToPoint(lastPosition);
+                }
             }
 
             if (m_datasets[i]->ShowLine())
