@@ -41,6 +41,13 @@
 #include "wxchartgrid.h"
 #include "wxchartpoint.h"
 
+enum wxChartType
+{
+    wxCHARTTYPE_STANDART,
+    wxCHARTTYPE_STEPPED,
+    wxCHARTTYPE_STEM
+};
+
 class wxMath2DPlotDataset
 {
 public:
@@ -55,7 +62,8 @@ public:
     wxMath2DPlotDataset(
         const wxColor &dotColor,
         const wxColor &dotStrokeColor,
-        wxVector<wxPoint2DDouble> &data);
+        wxVector<wxPoint2DDouble> &data,
+        const wxChartType &chartType=wxCHARTTYPE_STANDART);
 
     /// Whether to show the points on the chart.
     /// @retval true Show the points.
@@ -69,6 +77,7 @@ public:
     bool ShowLine() const;
     const wxColor& GetLineColor() const;
     const wxVector<wxPoint2DDouble>& GetData() const;
+    const wxChartType& GetType() const;
 
 private:
     bool m_showDots;
@@ -77,6 +86,7 @@ private:
     bool m_showLine;
     wxColor m_lineColor;
     wxVector<wxPoint2DDouble> m_data;
+    wxChartType m_type;
 };
 
 /// Data for the wxMath2DPlotCtrl control.
@@ -150,11 +160,13 @@ private:
 
         Dataset(
             bool showDots, bool showLine,
-            const wxColor &lineColor);
+            const wxColor &lineColor,
+            const wxChartType &chartType=wxCHARTTYPE_STANDART);
 
         bool ShowDots() const;
         bool ShowLine() const;
         const wxColor& GetLineColor() const;
+        const wxChartType& GetType() const;
 
         const wxVector<Point::ptr>& GetPoints() const;
         void AppendPoint(Point::ptr point);
@@ -163,6 +175,7 @@ private:
         bool m_showDots;
         bool m_showLine;
         wxColor m_lineColor;
+        wxChartType m_type;
         wxVector<Point::ptr> m_points;
     };
 
