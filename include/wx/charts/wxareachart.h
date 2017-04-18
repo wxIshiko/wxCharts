@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2017 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -33,98 +33,83 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXMATH2DPLOT_H_
-#define _WX_CHARTS_WXMATH2DPLOT_H_
+#ifndef _WX_CHARTS_WXAREACHART_H_
+#define _WX_CHARTS_WXAREACHART_H_
 
 #include "wxchart.h"
-#include "wxmath2dplotoptions.h"
+#include "wxareachartoptions.h"
 #include "wxchartgrid.h"
 #include "wxchartpoint.h"
 
-enum wxChartType
-{
-    wxCHARTTYPE_LINE,
-    wxCHARTTYPE_STEPPED,
-    wxCHARTTYPE_STEM
-};
-
-class wxMath2DPlotDataset
+class wxAreaChartDataset
 {
 public:
     /// Smart pointer typedef.
-    typedef wxSharedPtr<wxMath2DPlotDataset> ptr;
+    typedef wxSharedPtr<wxAreaChartDataset> ptr;
 
-    /// Constructs a Math2DPlot instance.
+    /// Constructs a AreaChart instance.
     /// @param dotColor The color of the points.
-    /// @param dotStrokeColor The color of the pen
-    /// used to draw the outline of the points.
     /// @param data The list of values.
-    wxMath2DPlotDataset(
+    wxAreaChartDataset(
         const wxColor &dotColor,
-        const wxColor &dotStrokeColor,
-        wxVector<wxPoint2DDouble> &data,
-        const wxChartType &chartType=wxCHARTTYPE_LINE);
+        wxVector<wxPoint2DDouble> &data);
 
     /// Whether to show the points on the chart.
     /// @retval true Show the points.
     /// @retval false Don't show the points.
     bool ShowDots() const;
     const wxColor& GetDotColor() const;
-    const wxColor& GetDotStrokeColor() const;
     /// Whether to show the line on the chart.
     /// @retval true Show the line.
     /// @retval false Don't show the line.
     bool ShowLine() const;
     const wxColor& GetLineColor() const;
     const wxVector<wxPoint2DDouble>& GetData() const;
-    const wxChartType& GetType() const;
 
 private:
     bool m_showDots;
     wxColor m_dotColor;
-    wxColor m_dotStrokeColor;
     bool m_showLine;
     wxColor m_lineColor;
     wxVector<wxPoint2DDouble> m_data;
-    wxChartType m_type;
 };
 
-/// Data for the wxMath2DPlotCtrl control.
-class wxMath2DPlotData
+/// Data for the wxAreaChartCtrl control.
+class wxAreaChartData
 {
 public:
-    /// Constructs a wxMath2DPlotData instance.
-    wxMath2DPlotData();
+    /// Constructs a wxAreaChartData instance.
+    wxAreaChartData();
 
     /// Adds a dataset.
     /// @param dataset The dataset to add.
-    void AddDataset(wxMath2DPlotDataset::ptr dataset);
+    void AddDataset(wxAreaChartDataset::ptr dataset);
 
-    const wxVector<wxMath2DPlotDataset::ptr>& GetDatasets() const;
+    const wxVector<wxAreaChartDataset::ptr>& GetDatasets() const;
 
 private:
-    wxVector<wxMath2DPlotDataset::ptr> m_datasets;
+    wxVector<wxAreaChartDataset::ptr> m_datasets;
 };
 
 /// A wxMath2D plot.
-class wxMath2DPlot : public wxChart
+class wxAreaChart : public wxChart
 {
 public:
-    wxMath2DPlot(const wxMath2DPlotData &data, const wxSize &size);
-    wxMath2DPlot(const wxMath2DPlotData &data,
-        const wxMath2DPlotOptions &options, const wxSize &size);
+    wxAreaChart(const wxAreaChartData &data, const wxSize &size);
+    wxAreaChart(const wxAreaChartData &data,
+        const wxAreaChartOptions &options, const wxSize &size);
 
-    virtual const wxMath2DPlotOptions& GetOptions() const wxOVERRIDE;
+    virtual const wxAreaChartOptions& GetOptions() const wxOVERRIDE;
 
     void Save(const wxString &filename, const wxBitmapType &type,
         const wxSize &size);
 
 private:
-    void Initialize(const wxMath2DPlotData &data);
-    static wxDouble GetMinXValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets);
-    static wxDouble GetMaxXValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets);
-    static wxDouble GetMinYValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets);
-    static wxDouble GetMaxYValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets);
+    void Initialize(const wxAreaChartData &data);
+    static wxDouble GetMinXValue(const wxVector<wxAreaChartDataset::ptr>& datasets);
+    static wxDouble GetMaxXValue(const wxVector<wxAreaChartDataset::ptr>& datasets);
+    static wxDouble GetMinYValue(const wxVector<wxAreaChartDataset::ptr>& datasets);
+    static wxDouble GetMaxYValue(const wxVector<wxAreaChartDataset::ptr>& datasets);
 
     virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
     virtual void DoFit() wxOVERRIDE;
@@ -140,8 +125,8 @@ private:
         Point(wxPoint2DDouble value,
             const wxChartTooltipProvider::ptr tooltipProvider,
             wxDouble x, wxDouble y,wxDouble radius,
-            unsigned int strokeWidth, const wxColor &strokeColor,
-            const wxColor &fillColor, wxDouble hitDetectionRange);
+            unsigned int strokeWidth,const wxColor &fillColor,
+            wxDouble hitDetectionRange);
 
         virtual wxPoint2DDouble GetTooltipPosition() const;
         virtual bool HitTest(const wxPoint &point) const;
@@ -158,15 +143,12 @@ private:
     public:
         typedef wxSharedPtr<Dataset> ptr;
 
-        Dataset(
-            bool showDots, bool showLine,
-            const wxColor &lineColor,
-            const wxChartType &chartType=wxCHARTTYPE_LINE);
+        Dataset(bool showDots, bool showLine,
+            const wxColor &lineColor);
 
         bool ShowDots() const;
         bool ShowLine() const;
         const wxColor& GetLineColor() const;
-        const wxChartType& GetType() const;
 
         const wxVector<Point::ptr>& GetPoints() const;
         void AppendPoint(Point::ptr point);
@@ -175,12 +157,11 @@ private:
         bool m_showDots;
         bool m_showLine;
         wxColor m_lineColor;
-        wxChartType m_type;
         wxVector<Point::ptr> m_points;
     };
 
 private:
-    wxMath2DPlotOptions m_options;
+    wxAreaChartOptions m_options;
     wxChartGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };
