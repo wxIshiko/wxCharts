@@ -167,6 +167,9 @@
     <ClCompile Include="..\..\src\wxmath2dplotoptions.cpp" />
     <ClCompile Include="..\..\src\wxmath2dplot.cpp" />
     <ClCompile Include="..\..\src\wxmath2dplotctrl.cpp" />
+    <ClCompile Include="..\..\src\wxareachartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxareachart.cpp" />
+    <ClCompile Include="..\..\src\wxareachartctrl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h" />
@@ -254,6 +257,9 @@
     <ClInclude Include="..\..\include\wx\charts\wxmath2dplotoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxmath2dplot.h" />
     <ClInclude Include="..\..\include\wx\charts\wxmath2dplotctrl.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxareachartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxareachart.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxareachartctrl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

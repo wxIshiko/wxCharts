@@ -122,6 +122,9 @@ library wxcharts
         ../../include/wx/charts/wxmath2dplotoptions.h
         ../../include/wx/charts/wxmath2dplot.h
         ../../include/wx/charts/wxmath2dplotctrl.h
+        ../../include/wx/charts/wxareachartoptions.h
+        ../../include/wx/charts/wxareachart.h
+        ../../include/wx/charts/wxareachartctrl.h
     }
 
     sources
@@ -210,5 +213,8 @@ library wxcharts
         ../../src/wxmath2dplotoptions.cpp
         ../../src/wxmath2dplot.cpp
         ../../src/wxmath2dplotctrl.cpp
+        ../../src/wxareachartoptions.cpp
+        ../../src/wxareachart.cpp
+        ../../src/wxareachartctrl.cpp
     }
 }
