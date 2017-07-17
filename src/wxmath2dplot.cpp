@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2017 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -41,8 +41,8 @@ wxMath2DPlotDataset::wxMath2DPlotDataset(
     wxVector<wxPoint2DDouble> &data,
     const wxChartType &chartType)
     : m_showDots(true), m_dotColor(dotColor),
-    m_dotStrokeColor(dotStrokeColor), m_showLine(true),
-    m_lineColor(dotColor),m_data(data),m_type(chartType)
+      m_dotStrokeColor(dotStrokeColor), m_showLine(true),
+      m_lineColor(dotColor),m_data(data),m_type(chartType)
 {
 }
 
@@ -106,7 +106,7 @@ wxMath2DPlot::Point::Point(
     const wxColor &fillColor,
     wxDouble hitDetectionRange)
     : wxChartPoint(x, y, radius, tooltipProvider, wxChartPointOptions(strokeWidth, strokeColor, fillColor)),
-    m_value(value), m_hitDetectionRange(hitDetectionRange)
+      m_value(value), m_hitDetectionRange(hitDetectionRange)
 {
 }
 
@@ -133,11 +133,11 @@ wxPoint2DDouble wxMath2DPlot::Point::GetValue() const
 }
 
 wxMath2DPlot::Dataset::Dataset(bool showDots,
-    bool showLine,
-    const wxColor &lineColor,
-    const wxChartType &chartType)
+                               bool showLine,
+                               const wxColor &lineColor,
+                               const wxChartType &chartType)
     : m_showDots(showDots), m_showLine(showLine),
-    m_lineColor(lineColor), m_type(chartType)
+      m_lineColor(lineColor), m_type(chartType)
 {
 }
 
@@ -158,7 +158,7 @@ const wxColor& wxMath2DPlot::Dataset::GetLineColor() const
 
 const wxChartType& wxMath2DPlot::Dataset::GetType() const
 {
-     return m_type;
+    return m_type;
 }
 
 const wxVector<wxMath2DPlot::Point::ptr>& wxMath2DPlot::Dataset::GetPoints() const
@@ -174,25 +174,25 @@ void wxMath2DPlot::Dataset::AppendPoint(Point::ptr point)
 wxMath2DPlot::wxMath2DPlot(const wxMath2DPlotData &data,
                            const wxSize &size)
     : m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
-        size,
-        GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
-        GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
-        m_options.GetGridOptions())
+          wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+          size,
+          GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
+          GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
+          m_options.GetGridOptions())
 {
     Initialize(data);
 }
 
 wxMath2DPlot::wxMath2DPlot(const wxMath2DPlotData &data,
-                             const wxMath2DPlotOptions &options,
-                             const wxSize &size)
+                           const wxMath2DPlotOptions &options,
+                           const wxSize &size)
     : m_options(options),
-    m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
-        size,
-        GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
-        GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
-        m_options.GetGridOptions())
+      m_grid(
+          wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+          size,
+          GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
+          GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
+          m_options.GetGridOptions())
 {
     Initialize(data);
 }
@@ -203,8 +203,8 @@ const wxMath2DPlotOptions& wxMath2DPlot::GetOptions() const
 }
 
 void wxMath2DPlot::Save(const wxString &filename,
-                       const wxBitmapType &type,
-                       const wxSize &size)
+                        const wxBitmapType &type,
+                        const wxSize &size)
 {
     wxBitmap bmp(size.GetWidth(), size.GetHeight());
     wxMemoryDC mdc(bmp);
@@ -218,14 +218,25 @@ void wxMath2DPlot::Save(const wxString &filename,
     }
 }
 
+bool wxMath2DPlot::Scale(int coeff)
+{
+    return m_grid.Scale(coeff);
+}
+
+void wxMath2DPlot::Shift(double dx,double dy)
+{
+    m_grid.Shift(dx,-dy);
+}
+
 void wxMath2DPlot::Initialize(const wxMath2DPlotData &data)
 {
+
     const wxVector<wxMath2DPlotDataset::ptr>& datasets = data.GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
 
         Dataset::ptr newDataset(new Dataset(datasets[i]->ShowDots(),datasets[i]->ShowLine(),
-            datasets[i]->GetLineColor(),datasets[i]->GetType()));
+                                            datasets[i]->GetLineColor(),datasets[i]->GetType()));
 
         const wxVector<wxPoint2DDouble>& datasetData = datasets[i]->GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
@@ -234,13 +245,13 @@ void wxMath2DPlot::Initialize(const wxMath2DPlotData &data)
             tooltip << "(" << datasetData[j].m_x << "," << datasetData[j].m_y << ")";
             wxChartTooltipProvider::ptr tooltipProvider(
                 new wxChartTooltipProviderStatic("", tooltip.str(), datasets[i]->GetLineColor())
-                );
+            );
 
             Point::ptr point(
                 new Point(datasetData[j], tooltipProvider, 20 + j * 10, 0,
-                    m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
-                    datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor(),
-                    m_options.GetHitDetectionRange()));
+                          m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
+                          datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor(),
+                          m_options.GetHitDetectionRange()));
 
             newDataset->AppendPoint(point);
         }
@@ -354,7 +365,7 @@ void wxMath2DPlot::DoSetSize(const wxSize &size)
     wxSize newSize(
         size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
         size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
-        );
+    );
     m_grid.Resize(newSize);
 }
 
@@ -373,6 +384,7 @@ void wxMath2DPlot::DoFit()
 
 void wxMath2DPlot::DoDraw(wxGraphicsContext &gc)
 {
+
     m_grid.Draw(gc);
     Fit();
 
@@ -387,7 +399,7 @@ void wxMath2DPlot::DoDraw(wxGraphicsContext &gc)
             const Point::ptr& point = points[0];
             auto value = point->GetValue();
 
-            wxPoint2DDouble firstPosition = m_grid.GetMapping().GetWindowPosition(value.m_x,value.m_y );
+            wxPoint2DDouble firstPosition = m_grid.GetMapping().GetWindowPosition(value.m_x,value.m_y);
             path.MoveToPoint(firstPosition);
 
             wxPoint2DDouble lastPosition;
