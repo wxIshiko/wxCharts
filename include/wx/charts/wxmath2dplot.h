@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2017 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -118,6 +118,9 @@ public:
 
     void Save(const wxString &filename, const wxBitmapType &type,
         const wxSize &size);
+
+    bool Scale(int coeff);
+    void Shift(double dx,double dy);
 
 private:
     void Initialize(const wxMath2DPlotData &data);

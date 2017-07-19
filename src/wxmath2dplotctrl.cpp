@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2017 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -43,7 +43,7 @@ wxMath2DPlotCtrl::wxMath2DPlotCtrl(wxWindow *parent,
                                    const wxSize &size,
                                    long style)
     : wxChartCtrl(parent, id, pos, size, style),
-    m_math2dPlot(data, size)
+      m_math2dPlot(data, size)
 {
     CreateContextMenu();
 }
@@ -56,7 +56,7 @@ wxMath2DPlotCtrl::wxMath2DPlotCtrl(wxWindow *parent,
                                    const wxSize &size,
                                    long style)
     : wxChartCtrl(parent, id, pos, size, style),
-    m_math2dPlot(data, options, size)
+      m_math2dPlot(data, options, size)
 {
     CreateContextMenu();
 }
@@ -68,48 +68,122 @@ wxMath2DPlot& wxMath2DPlotCtrl::GetChart()
 
 void wxMath2DPlotCtrl::CreateContextMenu()
 {
+    m_posX = 0;
+    m_posY = 0;
     m_contextMenu.Append(wxID_SAVEAS, wxString("Save as"));
+    m_subMenu = new wxMenu;
+    m_subMenu->Append(wxID_DEFAULT, wxString("Set default zoom"));
+    m_subMenu->Append(wxID_UP, wxString("Zoom +"));
+    m_subMenu->Append(wxID_DOWN, wxString("Zoom -"));
 
+    m_contextMenu.AppendSubMenu(m_subMenu,wxString("Zoom"));
     Bind(wxEVT_CONTEXT_MENU,
-        [this](wxContextMenuEvent& evt)
-        {
-            PopupMenu(&m_contextMenu, ScreenToClient(evt.GetPosition()));
-        }
+         [this](wxContextMenuEvent& evt)
+    {
+        PopupMenu(&m_contextMenu, ScreenToClient(evt.GetPosition()));
+    }
         );
+    m_contextMenu.Bind(wxEVT_MENU,
+                       [this](wxCommandEvent &)
+    {
+        m_contextMenu.Enable(wxID_DOWN,true);
+        m_contextMenu.Enable(wxID_UP,true);
+        m_math2dPlot.Scale(0);
+        auto parent = this->GetParent();
+        if(parent)
+            parent->Layout();
+    },wxID_DEFAULT);
+    m_contextMenu.Bind(wxEVT_MENU,
+                       [this](wxCommandEvent &)
+    {
+
+        if(!m_math2dPlot.Scale(2))
+            m_contextMenu.Enable(wxID_UP,false);
+        auto parent = this->GetParent();
+        if(parent)
+            parent->Layout();
+    },wxID_UP);
+    m_contextMenu.Bind(wxEVT_MENU,
+                       [this](wxCommandEvent &)
+    {
+        if(!m_math2dPlot.Scale(-2))
+            m_contextMenu.Enable(wxID_DOWN,false);
+        auto parent = this->GetParent();
+        if(parent)
+            parent->Layout();
+    },wxID_DOWN);
 
     m_contextMenu.Bind(wxEVT_MENU,
-        [this](wxCommandEvent &)
+                       [this](wxCommandEvent &)
+    {
+        wxFileDialog saveFileDialog(this, _("Save file"), "", "",
+                                    "JPEG files (*.jpg;*.jpeg)|*.jpg;*.jpeg|PNG files (*.png)|*.png",
+                                    wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+        if (saveFileDialog.ShowModal() == wxID_CANCEL)
+            return;
+
+        wxString filename = saveFileDialog.GetPath();
+
+        wxBitmapType type = wxBitmapType::wxBITMAP_TYPE_INVALID;
+        switch (saveFileDialog.GetFilterIndex())
         {
-            wxFileDialog saveFileDialog(this, _("Save file"), "", "",
-                "JPEG files (*.jpg;*.jpeg)|*.jpg;*.jpeg|PNG files (*.png)|*.png",
-                wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
-            if (saveFileDialog.ShowModal() == wxID_CANCEL)
-                return;
-
-            wxString filename = saveFileDialog.GetPath();
-
-            wxBitmapType type = wxBitmapType::wxBITMAP_TYPE_INVALID;
-            switch (saveFileDialog.GetFilterIndex())
+        case 0:
+            type = wxBitmapType::wxBITMAP_TYPE_JPEG;
+            if (wxImage::FindHandler(wxBitmapType::wxBITMAP_TYPE_JPEG) == 0)
             {
-            case 0:
-                type = wxBitmapType::wxBITMAP_TYPE_JPEG;
-                if (wxImage::FindHandler(wxBitmapType::wxBITMAP_TYPE_JPEG) == 0)
-                {
-                    wxImage::AddHandler(new wxJPEGHandler());
-                }
-                break;
-
-            case 1:
-                type = wxBitmapType::wxBITMAP_TYPE_PNG;
-                if (wxImage::FindHandler(wxBitmapType::wxBITMAP_TYPE_PNG) == 0)
-                {
-                    wxImage::AddHandler(new wxPNGHandler());
-                }
-                break;
+                wxImage::AddHandler(new wxJPEGHandler());
             }
+            break;
 
-            m_math2dPlot.Save(filename, type, GetSize());
-        },
-        wxID_SAVEAS
-        );
+        case 1:
+            type = wxBitmapType::wxBITMAP_TYPE_PNG;
+            if (wxImage::FindHandler(wxBitmapType::wxBITMAP_TYPE_PNG) == 0)
+            {
+                wxImage::AddHandler(new wxPNGHandler());
+            }
+            break;
+        }
+
+        m_math2dPlot.Save(filename, type, GetSize());
+    },
+    wxID_SAVEAS
+                      );
+
+    this->Bind(wxEVT_LEFT_DOWN,
+               [this](wxMouseEvent&  evt)
+    {
+        m_posX = evt.m_x;
+        m_posY = evt.m_y;
+        this->SetCursor(wxCURSOR_HAND);
+        evt.Skip();
+    });
+    this->Bind(wxEVT_LEFT_UP,
+               [this](wxMouseEvent&  evt)
+    {
+        this->SetCursor(wxCURSOR_ARROW);
+        evt.Skip();
+    });
+    this->Bind(wxEVT_MOTION,
+               [this](wxMouseEvent& evt)
+    {
+        evt.Skip();
+
+        if(evt.ButtonIsDown(wxMouseButton::wxMOUSE_BTN_LEFT))
+        {
+            double dx = m_posX-evt.m_x;
+            double dy = m_posY-evt.m_y;
+            if( std::abs(dx) > 5 || std::abs(dy) > 5)
+            {
+                auto parent = this->GetParent();
+                if(parent)
+                {
+                    auto Size = parent->GetSize();
+                    m_math2dPlot.Shift(dx/Size.GetX(),dy/Size.GetY());
+                    m_posX = evt.m_x;
+                    m_posY = evt.m_y;
+                    parent->Layout();
+                }
+            }
+        }
+    });
 }

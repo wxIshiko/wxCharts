@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2017 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -72,6 +72,9 @@ private:
 private:
     wxMath2DPlot m_math2dPlot;
     wxMenu m_contextMenu;
+    wxMenu *m_subMenu;
+    int m_posX;
+    int m_posY;
 };
 
 #endif
