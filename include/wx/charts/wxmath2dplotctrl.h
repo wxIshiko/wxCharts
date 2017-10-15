@@ -64,6 +64,11 @@ public:
         const wxMath2DPlotOptions &options, const wxPoint &pos = wxDefaultPosition,
         const wxSize &size = wxDefaultSize, long style = 0);
 
+    bool UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> &points);
+    bool AddData(std::size_t index,const wxVector<wxPoint2DDouble> &points);
+    bool RemoveDataset(std::size_t index);
+    void AddDataset(const wxMath2DPlotDataset::ptr &newset);
+
 private:
     virtual wxMath2DPlot& GetChart() wxOVERRIDE;
 

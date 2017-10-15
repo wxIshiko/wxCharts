@@ -34,6 +34,7 @@
 #include "wxmath2dplot.h"
 #include <wx/dcmemory.h>
 #include <sstream>
+#include <limits>
 
 wxMath2DPlotDataset::wxMath2DPlotDataset(
     const wxColor &dotColor,
@@ -135,9 +136,11 @@ wxPoint2DDouble wxMath2DPlot::Point::GetValue() const
 wxMath2DPlot::Dataset::Dataset(bool showDots,
                                bool showLine,
                                const wxColor &lineColor,
+                               const wxColor &dotStrokeColor,
                                const wxChartType &chartType)
     : m_showDots(showDots), m_showLine(showLine),
-      m_lineColor(lineColor), m_type(chartType)
+      m_lineColor(lineColor), m_dotStrokeColor(dotStrokeColor),
+      m_dotColor(lineColor), m_type(chartType)
 {
 }
 
@@ -154,6 +157,16 @@ bool wxMath2DPlot::Dataset::ShowLine() const
 const wxColor& wxMath2DPlot::Dataset::GetLineColor() const
 {
     return m_lineColor;
+}
+
+const wxColor& wxMath2DPlot::Dataset::GetDotColor() const
+{
+    return m_dotColor;
+}
+
+const wxColor& wxMath2DPlot::Dataset::GetDotStrokeColor() const
+{
+    return m_dotStrokeColor;
 }
 
 const wxChartType& wxMath2DPlot::Dataset::GetType() const
@@ -228,36 +241,136 @@ void wxMath2DPlot::Shift(double dx,double dy)
     m_grid.Shift(dx,-dy);
 }
 
-void wxMath2DPlot::Initialize(const wxMath2DPlotData &data)
+bool wxMath2DPlot::UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> &points)
 {
+    if(index > m_datasets.size())
+        return false;
 
-    const wxVector<wxMath2DPlotDataset::ptr>& datasets = data.GetDatasets();
-    for (size_t i = 0; i < datasets.size(); ++i)
-    {
+    Dataset::ptr newDataset(new Dataset(m_datasets[index]->ShowDots(),
+        m_datasets[index]->ShowLine(),m_datasets[index]->GetLineColor(),
+        m_datasets[index]->GetDotStrokeColor(),m_datasets[index]->GetType()));
 
-        Dataset::ptr newDataset(new Dataset(datasets[i]->ShowDots(),datasets[i]->ShowLine(),
-                                            datasets[i]->GetLineColor(),datasets[i]->GetType()));
-
-        const wxVector<wxPoint2DDouble>& datasetData = datasets[i]->GetData();
-        for (size_t j = 0; j < datasetData.size(); ++j)
+    for (size_t j = 0; j < points.size(); ++j)
         {
-            std::stringstream tooltip;
-            tooltip << "(" << datasetData[j].m_x << "," << datasetData[j].m_y << ")";
-            wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic("", tooltip.str(), datasets[i]->GetLineColor())
+        std::stringstream tooltip;
+        tooltip << "(" << points[j].m_x << "," << points[j].m_y << ")";
+        wxChartTooltipProvider::ptr tooltipProvider(
+            new wxChartTooltipProviderStatic("", tooltip.str(), m_datasets[index]->GetLineColor())
             );
 
-            Point::ptr point(
-                new Point(datasetData[j], tooltipProvider, 20 + j * 10, 0,
-                          m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
-                          datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor(),
-                          m_options.GetHitDetectionRange()));
+        Point::ptr point(
+            new Point(points[j], tooltipProvider, 20 + j * 10, 0,
+            m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
+            m_datasets[index]->GetDotStrokeColor(), m_datasets[index]->GetDotColor(),
+            m_options.GetHitDetectionRange()));
 
-            newDataset->AppendPoint(point);
+        newDataset->AppendPoint(point);
         }
+    m_datasets[index] = newDataset;
+    Update();
+    return true;
+}
 
-        m_datasets.push_back(newDataset);
-    }
+bool wxMath2DPlot::AddData(std::size_t index,const wxVector<wxPoint2DDouble> &points)
+{
+    if(index > m_datasets.size())
+        return false;
+
+    auto shift = m_datasets[index]->GetPoints().size();
+
+    for (size_t j = 0; j < points.size(); ++j)
+        {
+        std::stringstream tooltip;
+        tooltip << "(" << points[j].m_x << "," << points[j].m_y << ")";
+        wxChartTooltipProvider::ptr tooltipProvider(
+            new wxChartTooltipProviderStatic("", tooltip.str(), m_datasets[index]->GetLineColor())
+            );
+
+        Point::ptr point(
+            new Point(points[j], tooltipProvider, 20 + (shift+j)* 10, 0,
+            m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
+            m_datasets[index]->GetDotStrokeColor(), m_datasets[index]->GetDotColor(),
+            m_options.GetHitDetectionRange()));
+
+        m_datasets[index]->AppendPoint(point);
+        }
+    Update();
+    return true;
+}
+
+void wxMath2DPlot::AddDataset(const wxMath2DPlotDataset::ptr &newset,bool is_new)
+{
+    Dataset::ptr newDataset(new Dataset(newset->ShowDots(),newset->ShowLine(),
+        newset->GetLineColor(),newset->GetDotStrokeColor(),newset->GetType()));
+
+    const wxVector<wxPoint2DDouble>& datasetData = newset->GetData();
+    for (size_t j = 0; j < datasetData.size(); ++j)
+        {
+        std::stringstream tooltip;
+        tooltip << "(" << datasetData[j].m_x << "," << datasetData[j].m_y << ")";
+        wxChartTooltipProvider::ptr tooltipProvider(
+            new wxChartTooltipProviderStatic("", tooltip.str(), newset->GetLineColor())
+            );
+
+        Point::ptr point(
+            new Point(datasetData[j], tooltipProvider, 20 + j * 10, 0,
+            m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
+            newset->GetDotStrokeColor(), newset->GetDotColor(),
+            m_options.GetHitDetectionRange()));
+
+        newDataset->AppendPoint(point);
+        }
+    m_datasets.push_back(newDataset);
+
+    if(is_new)
+        Update();
+}
+
+bool wxMath2DPlot::RemoveDataset(std::size_t index)
+{
+    if(index > m_datasets.size())
+        return false;
+    m_datasets.erase(m_datasets.begin()+index);
+    Update();
+    return true;
+}
+
+void wxMath2DPlot::Update()
+{
+    wxDouble minX = std::numeric_limits<wxDouble>::max();
+    wxDouble maxX = std::numeric_limits<wxDouble>::min();
+    wxDouble minY = minX;
+    wxDouble maxY = maxX;
+    for (size_t i = 0; i < m_datasets.size(); ++i)
+        {
+        for (const auto &el : m_datasets[i]->GetPoints())
+            {
+            auto value = el->GetValue();
+            if (maxX < value.m_x)
+                maxX = value.m_x;
+            if (minX > value.m_x)
+                minX = value.m_x;
+            if (maxY < value.m_y)
+                maxY = value.m_y;
+            if (minY > value.m_y)
+                minY = value.m_y;
+            }
+        }
+    if (maxX == std::numeric_limits<wxDouble>::min())
+            maxX = 0;
+    if (minX == std::numeric_limits<wxDouble>::max())
+            minX = 0;
+    if (maxY == std::numeric_limits<wxDouble>::min())
+            maxY = 0;
+    if (minY == std::numeric_limits<wxDouble>::max())
+            minY = 0;
+    m_grid.ChangeCorners(minX,maxX,minY,maxY);
+}
+
+void wxMath2DPlot::Initialize(const wxMath2DPlotData &data)
+{
+    for (const auto &el : data.GetDatasets())
+        AddDataset(el,false);
 }
 
 wxDouble wxMath2DPlot::GetMinXValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets)

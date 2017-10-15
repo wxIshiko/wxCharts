@@ -121,9 +121,14 @@ public:
 
     bool Scale(int coeff);
     void Shift(double dx,double dy);
+    bool UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> &points);
+    bool AddData(std::size_t index,const wxVector<wxPoint2DDouble> &points);
+    bool RemoveDataset(std::size_t index);
+    void AddDataset(const wxMath2DPlotDataset::ptr &newset,bool is_new = true);
 
 private:
     void Initialize(const wxMath2DPlotData &data);
+    void Update();
     static wxDouble GetMinXValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets);
     static wxDouble GetMaxXValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets);
     static wxDouble GetMinYValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets);
@@ -164,11 +169,14 @@ private:
         Dataset(
             bool showDots, bool showLine,
             const wxColor &lineColor,
+            const wxColor &dotStrokeColor,
             const wxChartType &chartType=wxCHARTTYPE_LINE);
 
         bool ShowDots() const;
         bool ShowLine() const;
         const wxColor& GetLineColor() const;
+        const wxColor& GetDotColor() const;
+        const wxColor& GetDotStrokeColor() const;
         const wxChartType& GetType() const;
 
         const wxVector<Point::ptr>& GetPoints() const;
@@ -178,6 +186,8 @@ private:
         bool m_showDots;
         bool m_showLine;
         wxColor m_lineColor;
+        wxColor m_dotColor;
+        wxColor m_dotStrokeColor;
         wxChartType m_type;
         wxVector<Point::ptr> m_points;
     };

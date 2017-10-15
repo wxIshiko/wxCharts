@@ -66,6 +66,44 @@ wxMath2DPlot& wxMath2DPlotCtrl::GetChart()
     return m_math2dPlot;
 }
 
+bool wxMath2DPlotCtrl::UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> &points)
+{
+    if (!m_math2dPlot.UpdateData(index,points))
+        return false;
+    auto parent = this->GetParent();
+    if(parent)
+        parent->Layout();
+    return true;
+}
+
+bool wxMath2DPlotCtrl::AddData(std::size_t index,const wxVector<wxPoint2DDouble> &points)
+{
+    if (!m_math2dPlot.AddData(index,points))
+        return false;
+    auto parent = this->GetParent();
+    if(parent)
+        parent->Layout();
+    return true;
+}
+
+void wxMath2DPlotCtrl::AddDataset(const wxMath2DPlotDataset::ptr &newset)
+{
+    m_math2dPlot.AddDataset(newset);
+    auto parent = this->GetParent();
+    if(parent)
+        parent->Layout();
+}
+
+bool wxMath2DPlotCtrl::RemoveDataset(std::size_t index)
+{
+    if (!m_math2dPlot.RemoveDataset(index))
+        return false;
+    auto parent = this->GetParent();
+    if(parent)
+        parent->Layout();
+    return true;
+}
+
 void wxMath2DPlotCtrl::CreateContextMenu()
 {
     m_posX = 0;
