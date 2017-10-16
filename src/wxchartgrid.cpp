@@ -169,6 +169,22 @@ void wxChartGrid::Shift(double dx,double dy)
     Update();
 }
 
+void wxChartGrid::ChangeCorners(wxDouble minX,wxDouble maxX,
+                                wxDouble minY,wxDouble maxY)
+{
+    m_origAxisLimits.MinX = minX;
+    m_origAxisLimits.MaxX = maxX;
+    m_origAxisLimits.MinY = minY;
+    m_origAxisLimits.MaxY = maxY;
+
+    m_curAxisLimits.MinX = minX;
+    m_curAxisLimits.MaxX = maxX;
+    m_curAxisLimits.MinY = minY;
+    m_curAxisLimits.MaxY = maxY;
+
+    Update();
+}
+
 void wxChartGrid::Update()
 {
     m_XAxis = CreateNumericalAxis(m_curAxisLimits.MinX,

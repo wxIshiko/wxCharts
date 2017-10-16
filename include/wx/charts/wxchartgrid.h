@@ -127,6 +127,8 @@ public:
 
     bool Scale(int coeff);
     void Shift(double dx,double dy);
+    void ChangeCorners(wxDouble minX,wxDouble maxX,
+        wxDouble minY,wxDouble maxY);
 
 private:
     static wxChartAxis::ptr CreateNumericalAxis(wxDouble minValue, wxDouble maxValue,
