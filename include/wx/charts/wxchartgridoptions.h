@@ -1,23 +1,23 @@
 /*
-	Copyright (c) 2016 Xavier Leclercq
+    Copyright (c) 2016-2017 Xavier Leclercq
 
-	Permission is hereby granted, free of charge, to any person obtaining a
-	copy of this software and associated documentation files (the "Software"),
-	to deal in the Software without restriction, including without limitation
-	the rights to use, copy, modify, merge, publish, distribute, sublicense,
-	and/or sell copies of the Software, and to permit persons to whom the
-	Software is furnished to do so, subject to the following conditions:
+    Permission is hereby granted, free of charge, to any person obtaining a
+    copy of this software and associated documentation files (the "Software"),
+    to deal in the Software without restriction, including without limitation
+    the rights to use, copy, modify, merge, publish, distribute, sublicense,
+    and/or sell copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following conditions:
 
-	The above copyright notice and this permission notice shall be included in
-	all copies or substantial portions of the Software.
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
 
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-	THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-	FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-	IN THE SOFTWARE.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+    IN THE SOFTWARE.
 */
 
 /// @file
@@ -83,29 +83,29 @@ private:
 class wxChartGridOptions
 {
 public:
-	/// Constructs a wxChartGridOptions instance with
-	/// default options for the X and Y axes.
-	wxChartGridOptions();
-	/// Constructs a wxChartGridOptions instance with
-	/// the options for the X and Y axes passed in as
-	/// arguments.
-	/// @param xAxisOptions The options for the X axis.
-	/// @param yAxisOptions The options for the Y axis.
-	wxChartGridOptions(const wxChartAxisOptions &xAxisOptions,
-		const wxChartAxisOptions &yAxisOptions);
+    /// Constructs a wxChartGridOptions instance with
+    /// default options for the X and Y axes.
+    wxChartGridOptions();
+    /// Constructs a wxChartGridOptions instance with
+    /// the options for the X and Y axes passed in as
+    /// arguments.
+    /// @param xAxisOptions The options for the X axis.
+    /// @param yAxisOptions The options for the Y axis.
+    wxChartGridOptions(const wxChartAxisOptions &xAxisOptions,
+        const wxChartAxisOptions &yAxisOptions);
 
-	/// Gets the options for the X axis.
-	/// @return The options for the X axis.
-	const wxChartAxisOptions& GetXAxisOptions() const;
-	/// Gets the options for the X axis.
-	/// @return The options for the X axis.
-	wxChartAxisOptions& GetXAxisOptions();
-	/// Gets the options for the Y axis.
-	/// @return The options for the Y axis.
-	const wxChartAxisOptions& GetYAxisOptions() const;
+    /// Gets the options for the X axis.
+    /// @return The options for the X axis.
+    const wxChartAxisOptions& GetXAxisOptions() const;
+    /// Gets the options for the X axis.
+    /// @return The options for the X axis.
+    wxChartAxisOptions& GetXAxisOptions();
     /// Gets the options for the Y axis.
     /// @return The options for the Y axis.
-	wxChartAxisOptions& GetYAxisOptions();
+    const wxChartAxisOptions& GetYAxisOptions() const;
+    /// Gets the options for the Y axis.
+    /// @return The options for the Y axis.
+    wxChartAxisOptions& GetYAxisOptions();
 
     /// Gets the options for the horizontal grid lines.
     /// @return The options for the horizontal grid lines.
@@ -121,8 +121,8 @@ public:
     wxChartGridLineOptions& GetVerticalGridLineOptions();
 
 private:
-	wxChartAxisOptions m_XAxisOptions;
-	wxChartAxisOptions m_YAxisOptions;
+    wxChartAxisOptions m_XAxisOptions;
+    wxChartAxisOptions m_YAxisOptions;
     wxChartGridLineOptions m_horizontalGridLineOptions;
     wxChartGridLineOptions m_verticalGridLinesOptions;
 };

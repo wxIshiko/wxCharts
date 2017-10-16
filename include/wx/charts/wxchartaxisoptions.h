@@ -1,23 +1,23 @@
 /*
-	Copyright (c) 2016 Xavier Leclercq
+    Copyright (c) 2016-2017 Xavier Leclercq
 
-	Permission is hereby granted, free of charge, to any person obtaining a
-	copy of this software and associated documentation files (the "Software"),
-	to deal in the Software without restriction, including without limitation
-	the rights to use, copy, modify, merge, publish, distribute, sublicense,
-	and/or sell copies of the Software, and to permit persons to whom the
-	Software is furnished to do so, subject to the following conditions:
+    Permission is hereby granted, free of charge, to any person obtaining a
+    copy of this software and associated documentation files (the "Software"),
+    to deal in the Software without restriction, including without limitation
+    the rights to use, copy, modify, merge, publish, distribute, sublicense,
+    and/or sell copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following conditions:
 
-	The above copyright notice and this permission notice shall be included in
-	all copies or substantial portions of the Software.
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
 
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-	THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-	FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-	IN THE SOFTWARE.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+    IN THE SOFTWARE.
 */
 
 /// @file
@@ -33,18 +33,18 @@
 /// and markers.
 enum wxChartAxisPosition
 {
-	/// The axis is on the left of the chart. Markers
-	/// and labels should be drawn on the left of the axis.
-	wxCHARTAXISPOSITION_LEFT = 0,
-	/// The axis is on the right of the chart. Markers
-	/// and labels should be drawn on the right of the axis.
-	wxCHARTAXISPOSITION_RIGHT = 1,
-	/// The axis is at the top of the chart. Markers
-	/// and labels should be drawn above the axis.
-	wxCHARTAXISPOSITION_BOTTOM = 2,
-	/// The axis is at the bottom of the chart. Markers
-	/// and labels should be drawn below the axis.
-	wxCHARTAXISPOSITION_TOP = 3
+    /// The axis is on the left of the chart. Markers
+    /// and labels should be drawn on the left of the axis.
+    wxCHARTAXISPOSITION_LEFT = 0,
+    /// The axis is on the right of the chart. Markers
+    /// and labels should be drawn on the right of the axis.
+    wxCHARTAXISPOSITION_RIGHT = 1,
+    /// The axis is at the top of the chart. Markers
+    /// and labels should be drawn above the axis.
+    wxCHARTAXISPOSITION_BOTTOM = 2,
+    /// The axis is at the bottom of the chart. Markers
+    /// and labels should be drawn below the axis.
+    wxCHARTAXISPOSITION_TOP = 3
 };
 
 /// Label types for the wxChartAxis class.
@@ -67,13 +67,13 @@ enum wxChartAxisPosition
 /// have its own issues.
 enum wxChartAxisLabelType
 {
-	/// The labels represent specific points on the 
-	/// axis. Grid lines are drawn at these points.
-	wxCHARTAXISLABELTYPE_POINT = 0,
-	/// The labels represent portions of the axis.
-	/// The start and end of each portion are marked
-	/// by the grid lines.
-	wxCHARTAXISLABELTYPE_RANGE = 1
+    /// The labels represent specific points on the 
+    /// axis. Grid lines are drawn at these points.
+    wxCHARTAXISLABELTYPE_POINT = 0,
+    /// The labels represent portions of the axis.
+    /// The start and end of each portion are marked
+    /// by the grid lines.
+    wxCHARTAXISLABELTYPE_RANGE = 1
 };
 
 /// Margin types for the gap between the first label and the start
@@ -98,32 +98,32 @@ enum wxChartAxisMarginType
 
 enum wxChartAxisValueMode
 {
-	wxCHARTAXISVALUEMODE_AUTO = 0,
-	wxCHARTAXISVALUEMODE_EXPLICIT = 1
+    wxCHARTAXISVALUEMODE_AUTO = 0,
+    wxCHARTAXISVALUEMODE_EXPLICIT = 1
 };
 
 /// The options for the wxChartAxis element.
 class wxChartAxisOptions
 {
 public:
-	/// Constructs a new wxChartAxisOptions
-	/// instance. The axis will use the wxCHARTAXISLABELTYPE_POINT type
+    /// Constructs a new wxChartAxisOptions
+    /// instance. The axis will use the wxCHARTAXISLABELTYPE_POINT type
     /// as label type.
     /// @param position The position of the axis.
-	wxChartAxisOptions(wxChartAxisPosition position);
+    wxChartAxisOptions(wxChartAxisPosition position);
     /// Constructs a new wxChartAxisOptions
     /// instance.
     /// @param position The position of the axis.
     /// @param labelType The type of labels.
-	wxChartAxisOptions(wxChartAxisPosition position, wxChartAxisLabelType labelType);
+    wxChartAxisOptions(wxChartAxisPosition position, wxChartAxisLabelType labelType);
 
     /// Gets the position of the axis.
     /// @return The position of the axis.
-	wxChartAxisPosition GetPosition() const;
+    wxChartAxisPosition GetPosition() const;
 
-	/// Gets the label type.
-	/// @return The label type.
-	wxChartAxisLabelType GetLabelType() const;
+    /// Gets the label type.
+    /// @return The label type.
+    wxChartAxisLabelType GetLabelType() const;
 
     /// Gets the start margin type.
     /// @return The start margin type.
@@ -138,42 +138,42 @@ public:
     /// @param type The margin type.
     void SetEndMarginType(wxChartAxisMarginType type);
 
-	wxChartAxisValueMode GetStartValueMode() const;
-	wxDouble GetStartValue() const;
-	void SetExplicitStartValue(wxDouble startValue);
-	wxChartAxisValueMode GetEndValueMode() const;
-	wxDouble GetEndValue() const;
-	void SetExplicitEndValue(wxDouble endValue);
+    wxChartAxisValueMode GetStartValueMode() const;
+    wxDouble GetStartValue() const;
+    void SetExplicitStartValue(wxDouble startValue);
+    wxChartAxisValueMode GetEndValueMode() const;
+    wxDouble GetEndValue() const;
+    void SetExplicitEndValue(wxDouble endValue);
 
-	/// Gets the width of the line.
-	/// @return The width of the line.
-	unsigned int GetLineWidth() const;
-	/// Gets the color of the line.
-	/// @return The color of the line.
-	const wxColor& GetLineColor() const;
+    /// Gets the width of the line.
+    /// @return The width of the line.
+    unsigned int GetLineWidth() const;
+    /// Gets the color of the line.
+    /// @return The color of the line.
+    const wxColor& GetLineColor() const;
 
-	/// Gets the amount by which the axis is drawn
-	/// past the last tick mark.
-	/// @return The overhang.
-	wxDouble GetOverhang() const;
+    /// Gets the amount by which the axis is drawn
+    /// past the last tick mark.
+    /// @return The overhang.
+    wxDouble GetOverhang() const;
 
     /// Gets the font options for the labels.
     /// @return The font options for the labels.
-	const wxChartFontOptions& GetFontOptions() const;
+    const wxChartFontOptions& GetFontOptions() const;
 
 private:
-	wxChartAxisPosition m_position;
-	wxChartAxisLabelType m_labelType;
+    wxChartAxisPosition m_position;
+    wxChartAxisLabelType m_labelType;
     wxChartAxisMarginType m_startMarginType;
     wxChartAxisMarginType m_endMarginType;
-	wxChartAxisValueMode m_startValueMode;
-	wxDouble m_startValue;
-	wxChartAxisValueMode m_endValueMode;
-	wxDouble m_endValue;
-	unsigned int m_lineWidth;
-	wxColor m_lineColor;
-	wxDouble m_overhang;
-	wxChartFontOptions m_fontOptions;
+    wxChartAxisValueMode m_startValueMode;
+    wxDouble m_startValue;
+    wxChartAxisValueMode m_endValueMode;
+    wxDouble m_endValue;
+    unsigned int m_lineWidth;
+    wxColor m_lineColor;
+    wxDouble m_overhang;
+    wxChartFontOptions m_fontOptions;
 };
 
 #endif

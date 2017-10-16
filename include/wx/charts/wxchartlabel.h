@@ -1,23 +1,23 @@
 /*
-	Copyright (c) 2016 Xavier Leclercq
+    Copyright (c) 2016-2017 Xavier Leclercq
 
-	Permission is hereby granted, free of charge, to any person obtaining a
-	copy of this software and associated documentation files (the "Software"),
-	to deal in the Software without restriction, including without limitation
-	the rights to use, copy, modify, merge, publish, distribute, sublicense,
-	and/or sell copies of the Software, and to permit persons to whom the
-	Software is furnished to do so, subject to the following conditions:
+    Permission is hereby granted, free of charge, to any person obtaining a
+    copy of this software and associated documentation files (the "Software"),
+    to deal in the Software without restriction, including without limitation
+    the rights to use, copy, modify, merge, publish, distribute, sublicense,
+    and/or sell copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following conditions:
 
-	The above copyright notice and this permission notice shall be included in
-	all copies or substantial portions of the Software.
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
 
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-	THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-	FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-	IN THE SOFTWARE.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+    IN THE SOFTWARE.
 */
 
 /// @file
@@ -42,54 +42,54 @@
 class wxChartLabel : public wxChartElement
 {
 public:
-	/// Constructs a wxChartLabel element. The width
-	/// and height are set to 0.
-	/// @param text The text to display.
+    /// Constructs a wxChartLabel element. The width
+    /// and height are set to 0.
+    /// @param text The text to display.
     /// @param options The settings to be used for the label.
-	wxChartLabel(const wxString &text, const wxChartLabelOptions &options);
-	/// Constructs a wxChartLabel element.
-	/// @param text The text to display.
-	/// @param width The width of the label.
-	/// @param height The height of the label.
+    wxChartLabel(const wxString &text, const wxChartLabelOptions &options);
+    /// Constructs a wxChartLabel element.
+    /// @param text The text to display.
+    /// @param width The width of the label.
+    /// @param height The height of the label.
     /// @param options The settings to be used for the label.
-	wxChartLabel(const wxString &text, wxDouble width,
-		wxDouble height, const wxChartLabelOptions &options);
+    wxChartLabel(const wxString &text, wxDouble width,
+        wxDouble height, const wxChartLabelOptions &options);
 
-	virtual bool HitTest(const wxPoint &point) const;
+    virtual bool HitTest(const wxPoint &point) const;
 
-	virtual wxPoint2DDouble GetTooltipPosition() const;
+    virtual wxPoint2DDouble GetTooltipPosition() const;
 
-	/// Draws the label.
-	/// @param gc The graphics context.
-	void Draw(wxGraphicsContext &gc) const;
+    /// Draws the label.
+    /// @param gc The graphics context.
+    void Draw(wxGraphicsContext &gc) const;
 
-	/// Gets the text of the label.
-	/// @return The text of the label.
-	const wxString& GetText() const;
-	/// Gets the position of the label. The position
-	/// must have been set by the 
-	/// SetPosition(wxDouble x, wxDouble y) function.
-	/// @return The position of the label.
-	const wxPoint2DDouble& GetPosition() const;
-	void SetPosition(const wxPoint2DDouble &position);
-	/// Sets the position of the label.
-	/// @param x The X coordinate of the label.
-	/// @param y The Y coordinate of the label.
-	void SetPosition(wxDouble x, wxDouble y);
-	/// Gets the size of the label. The size must
-	/// have been set at construction or by one of
-	/// the functions that set the size.
-	/// @return The size of the label.
-	/// @see SetSize(const wxSize &size)
-	/// @see SetSize(wxDouble width, wxDouble height)
+    /// Gets the text of the label.
+    /// @return The text of the label.
+    const wxString& GetText() const;
+    /// Gets the position of the label. The position
+    /// must have been set by the 
+    /// SetPosition(wxDouble x, wxDouble y) function.
+    /// @return The position of the label.
+    const wxPoint2DDouble& GetPosition() const;
+    void SetPosition(const wxPoint2DDouble &position);
+    /// Sets the position of the label.
+    /// @param x The X coordinate of the label.
+    /// @param y The Y coordinate of the label.
+    void SetPosition(wxDouble x, wxDouble y);
+    /// Gets the size of the label. The size must
+    /// have been set at construction or by one of
+    /// the functions that set the size.
+    /// @return The size of the label.
+    /// @see SetSize(const wxSize &size)
+    /// @see SetSize(wxDouble width, wxDouble height)
     /// @see UpdateSize(wxGraphicsContext &gc)
-	const wxSize& GetSize() const;
-	/// Sets the size of the label.
-	/// @param size The new size.
-	void SetSize(const wxSize &size);
-	/// Sets the size of the label.
-	/// @param width The new width.
-	/// @param height The new height.
+    const wxSize& GetSize() const;
+    /// Sets the size of the label.
+    /// @param size The new size.
+    void SetSize(const wxSize &size);
+    /// Sets the size of the label.
+    /// @param width The new width.
+    /// @param height The new height.
     void SetSize(wxDouble width, wxDouble height);
     void UpdateSize(wxGraphicsContext &gc);
     const wxChartPadding& GetPadding() const;
@@ -97,9 +97,9 @@ public:
 
 private:
     wxChartLabelOptions m_options;
-	wxString m_text;
-	wxPoint2DDouble m_position;
-	wxSize m_size;
+    wxString m_text;
+    wxPoint2DDouble m_position;
+    wxSize m_size;
     wxChartPadding m_padding;
 };
 
