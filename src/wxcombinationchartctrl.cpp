@@ -21,3 +21,17 @@
 */
 
 #include "wxcombinationchartctrl.h"
+
+wxCombinationChartCtrl::wxCombinationChartCtrl(wxWindow *parent,
+							                   wxWindowID id,
+							                   const wxPoint &pos,
+							                   const wxSize &size,
+							                   long style)
+	: wxChartCtrl(parent, id, pos, size, style)
+{
+}
+
+wxCombinationChart& wxCombinationChartCtrl::GetChart()
+{
+    return m_combinationChart;
+}

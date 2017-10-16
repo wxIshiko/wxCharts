@@ -25,4 +25,20 @@
 #ifndef _WX_CHARTS_WXCOMBINATIONCHARTCTRL_H_
 #define _WX_CHARTS_WXCOMBINATIONCHARTCTRL_H_
 
+#include "wxchartctrl.h"
+#include "wxcombinationchart.h"
+
+class wxCombinationChartCtrl : public wxChartCtrl
+{
+public:
+    wxCombinationChartCtrl(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,
+        const wxSize &size = wxDefaultSize, long style = 0);
+
+private:
+    virtual wxCombinationChart& GetChart() wxOVERRIDE;
+
+private:
+    wxCombinationChart m_combinationChart;
+};
+
 #endif

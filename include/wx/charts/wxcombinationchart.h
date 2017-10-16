@@ -25,4 +25,22 @@
 #ifndef _WX_CHARTS_WXCOMBINATIONCHART_H_
 #define _WX_CHARTS_WXCOMBINATIONCHART_H_
 
+#include "wxchart.h"
+#include "wxcombinationchartoptions.h"
+
+class wxCombinationChart : public wxChart
+{
+public:
+    virtual const wxCombinationChartOptions& GetOptions() const wxOVERRIDE;
+
+private:
+    virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
+    virtual void DoFit() wxOVERRIDE;
+    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
+
+private:
+    wxCombinationChartOptions m_options;
+};
+
 #endif

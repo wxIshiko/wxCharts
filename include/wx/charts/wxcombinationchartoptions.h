@@ -25,4 +25,11 @@
 #ifndef _WX_CHARTS_WXCOMBINATIONCHARTOPTIONS_H_
 #define _WX_CHARTS_WXCOMBINATIONCHARTOPTIONS_H_
 
+#include "wxchartoptions.h"
+
+/// The options for the wxCombinationChartCtrl control.
+class wxCombinationChartOptions : public wxChartOptions
+{
+};
+
 #endif

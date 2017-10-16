@@ -40,6 +40,7 @@
 #include "wxbubblechartctrl.h"
 #include "wxcandlestickchartctrl.h"
 #include "wxohlcchartctrl.h"
+#include "wxcombinationchartctrl.h"
 #include "wxchartlegendctrl.h"
 
 #ifdef _MSC_VER

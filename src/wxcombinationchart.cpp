@@ -21,3 +21,26 @@
 */
 
 #include "wxcombinationchart.h"
+
+const wxCombinationChartOptions& wxCombinationChart::GetOptions() const
+{
+    return m_options;
+}
+
+void wxCombinationChart::DoSetSize(const wxSize &size)
+{
+}
+
+void wxCombinationChart::DoFit()
+{
+}
+
+void wxCombinationChart::DoDraw(wxGraphicsContext &gc)
+{
+}
+
+wxSharedPtr<wxVector<const wxChartElement*> > wxCombinationChart::GetActiveElements(const wxPoint &point)
+{
+    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    return activeElements;
+}
