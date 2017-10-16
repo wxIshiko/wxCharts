@@ -34,6 +34,8 @@ public:
     wxCombinationChartCtrl(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,
         const wxSize &size = wxDefaultSize, long style = 0);
 
+    void AddBarChart(const wxBarChartData &data);
+
 private:
     virtual wxCombinationChart& GetChart() wxOVERRIDE;
 

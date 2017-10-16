@@ -34,6 +34,35 @@ WxCombinationChartFrame::WxCombinationChartFrame(const wxString& title)
     // Create the combination chart widget
     wxCombinationChartCtrl* combinationChartCtrl = new wxCombinationChartCtrl(panel, wxID_ANY);
 
+    // Create the data for the bar chart widget
+    wxVector<wxString> labels;
+    labels.push_back("January");
+    labels.push_back("February");
+    labels.push_back("March");
+    labels.push_back("April");
+    labels.push_back("May");
+    labels.push_back("June");
+    labels.push_back("July");
+    wxBarChartData chartData(labels);
+
+    // Add the first dataset
+    wxVector<wxDouble> points1;
+    points1.push_back(3);
+    points1.push_back(2.5);
+    points1.push_back(1.2);
+    points1.push_back(3);
+    points1.push_back(6);
+    points1.push_back(5);
+    points1.push_back(1);
+    wxBarChartDataset::ptr dataset1(
+        new wxBarChartDataset(
+            wxColor(220, 220, 220, 0x7F),
+            wxColor(220, 220, 220, 0xCC),
+            points1)
+    );
+    chartData.AddDataset(dataset1);
+    combinationChartCtrl->AddBarChart(chartData);
+
     // Set up the sizer for the panel
     wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
     panelSizer->Add(combinationChartCtrl, 1, wxEXPAND);

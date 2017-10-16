@@ -22,6 +22,19 @@
 
 #include "wxcombinationchart.h"
 
+wxCombinationChart::wxCombinationChart()
+{
+}
+
+void wxCombinationChart::AddBarChart(const wxBarChartData &data)
+{
+    m_grid = new wxChartGrid(
+        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+        wxSize(100, 100), data.GetLabels(), 0,
+        200, wxChartGridOptions()
+    );
+}
+
 const wxCombinationChartOptions& wxCombinationChart::GetOptions() const
 {
     return m_options;
@@ -37,6 +50,10 @@ void wxCombinationChart::DoFit()
 
 void wxCombinationChart::DoDraw(wxGraphicsContext &gc)
 {
+    if (m_grid)
+    {
+        m_grid->Draw(gc);
+    }
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxCombinationChart::GetActiveElements(const wxPoint &point)

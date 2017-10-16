@@ -27,10 +27,16 @@
 
 #include "wxchart.h"
 #include "wxcombinationchartoptions.h"
+#include "wxbarchartdata.h"
+#include "wxchartgrid.h"
 
 class wxCombinationChart : public wxChart
 {
 public:
+    wxCombinationChart();
+
+    void AddBarChart(const wxBarChartData &data);
+
     virtual const wxCombinationChartOptions& GetOptions() const wxOVERRIDE;
 
 private:
@@ -41,6 +47,7 @@ private:
 
 private:
     wxCombinationChartOptions m_options;
+    wxChartGrid::ptr m_grid;
 };
 
 #endif
