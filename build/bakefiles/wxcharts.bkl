@@ -125,6 +125,9 @@ library wxcharts
         ../../include/wx/charts/wxareachartoptions.h
         ../../include/wx/charts/wxareachart.h
         ../../include/wx/charts/wxareachartctrl.h
+        ../../include/wx/charts/wxcombinationchartoptions.h
+        ../../include/wx/charts/wxcombinationchart.h
+        ../../include/wx/charts/wxcombinationchartctrl.h
     }
 
     sources
@@ -216,5 +219,8 @@ library wxcharts
         ../../src/wxareachartoptions.cpp
         ../../src/wxareachart.cpp
         ../../src/wxareachartctrl.cpp
+        ../../src/wxcombinationchartoptions.cpp
+        ../../src/wxcombinationchart.cpp
+        ../../src/wxcombinationchartctrl.cpp
     }
 }
