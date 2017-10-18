@@ -41,6 +41,8 @@ library wxcharts
 
         ../../include/wx/charts/wxchartscategoricaldata.h
 
+        ../../include/wx/charts/wxchartstheme.h
+
         ../../include/wx/charts/wxchartutilities.h
         ../../include/wx/charts/wxchartpadding.h
         ../../include/wx/charts/wxchartelement.h
@@ -135,6 +137,8 @@ library wxcharts
     sources
     {
         ../../src/wxchartscategoricaldata.cpp
+
+        ../../src/wxchartstheme.cpp
 
         ../../src/wxchartutilities.cpp
         ../../src/wxchartpadding.cpp
