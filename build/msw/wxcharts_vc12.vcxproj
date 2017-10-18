@@ -83,6 +83,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\wxchartcategoricaldata.cpp" />
     <ClCompile Include="..\..\src\wxchartutilities.cpp" />
     <ClCompile Include="..\..\src\wxchartpadding.cpp" />
     <ClCompile Include="..\..\src\wxchartelement.cpp" />
@@ -122,7 +123,6 @@
     <ClCompile Include="..\..\src\wxchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxchart.cpp" />
     <ClCompile Include="..\..\src\wxchartctrl.cpp" />
-    <ClCompile Include="..\..\src\wxbarchartdata.cpp" />
     <ClCompile Include="..\..\src\wxbarchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxbarchart.cpp" />
     <ClCompile Include="..\..\src\wxbarchartctrl.cpp" />
@@ -176,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartcategoricaldata.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartutilities.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartpadding.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartelement.h" />
@@ -215,7 +216,6 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartctrl.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxbarchartdata.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartctrl.h" />

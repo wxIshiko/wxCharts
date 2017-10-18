@@ -38,6 +38,9 @@ library wxcharts
     headers
     {
         ../../include/wx/charts/wxcharts.h
+
+        ../../include/wx/charts/wxchartcategoricaldata.h
+
         ../../include/wx/charts/wxchartutilities.h
         ../../include/wx/charts/wxchartpadding.h
         ../../include/wx/charts/wxchartelement.h
@@ -77,7 +80,6 @@ library wxcharts
         ../../include/wx/charts/wxchartoptions.h
         ../../include/wx/charts/wxchart.h
         ../../include/wx/charts/wxchartctrl.h
-        ../../include/wx/charts/wxbarchartdata.h
         ../../include/wx/charts/wxbarchartoptions.h
         ../../include/wx/charts/wxbarchart.h
         ../../include/wx/charts/wxbarchartctrl.h
@@ -132,6 +134,8 @@ library wxcharts
 
     sources
     {
+        ../../src/wxchartcategoricaldata.cpp
+
         ../../src/wxchartutilities.cpp
         ../../src/wxchartpadding.cpp
         ../../src/wxchartelement.cpp
@@ -171,7 +175,6 @@ library wxcharts
         ../../src/wxchartoptions.cpp
         ../../src/wxchart.cpp
         ../../src/wxchartctrl.cpp
-        ../../src/wxbarchartdata.cpp
         ../../src/wxbarchartoptions.cpp
         ../../src/wxbarchart.cpp
         ../../src/wxbarchartctrl.cpp
