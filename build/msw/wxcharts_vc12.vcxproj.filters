@@ -20,7 +20,7 @@
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxchartcategoricaldata.h">
+    <ClInclude Include="..\..\include\wx\charts\wxchartscategoricaldata.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxchartutilities.h">
@@ -292,7 +292,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\wxchartcategoricaldata.cpp">
+    <ClCompile Include="..\..\src\wxchartscategoricaldata.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchartutilities.cpp">

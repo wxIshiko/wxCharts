@@ -39,7 +39,7 @@ library wxcharts
     {
         ../../include/wx/charts/wxcharts.h
 
-        ../../include/wx/charts/wxchartcategoricaldata.h
+        ../../include/wx/charts/wxchartscategoricaldata.h
 
         ../../include/wx/charts/wxchartutilities.h
         ../../include/wx/charts/wxchartpadding.h
@@ -134,7 +134,7 @@ library wxcharts
 
     sources
     {
-        ../../src/wxchartcategoricaldata.cpp
+        ../../src/wxchartscategoricaldata.cpp
 
         ../../src/wxchartutilities.cpp
         ../../src/wxchartpadding.cpp
