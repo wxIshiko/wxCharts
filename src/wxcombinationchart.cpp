@@ -26,7 +26,7 @@ wxCombinationChart::wxCombinationChart()
 {
 }
 
-void wxCombinationChart::AddBarChart(const wxBarChartData &data)
+void wxCombinationChart::AddColumnChart(const wxBarChartData &data)
 {
     m_grid = new wxChartGrid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),

@@ -31,9 +31,9 @@ wxCombinationChartCtrl::wxCombinationChartCtrl(wxWindow *parent,
 {
 }
 
-void wxCombinationChartCtrl::AddBarChart(const wxBarChartData &data)
+void wxCombinationChartCtrl::AddColumnChart(const wxBarChartData &data)
 {
-    m_combinationChart.AddBarChart(data);
+    m_combinationChart.AddColumnChart(data);
 }
 
 wxCombinationChart& wxCombinationChartCtrl::GetChart()

@@ -35,7 +35,7 @@ class wxCombinationChart : public wxChart
 public:
     wxCombinationChart();
 
-    void AddBarChart(const wxBarChartData &data);
+    void AddColumnChart(const wxBarChartData &data);
 
     virtual const wxCombinationChartOptions& GetOptions() const wxOVERRIDE;
 
