@@ -22,8 +22,8 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXBARCHARTDATA_H_
-#define _WX_CHARTS_WXBARCHARTDATA_H_
+#ifndef _WX_CHARTS_WXCHARTSCATEGORICALDATA_H_
+#define _WX_CHARTS_WXCHARTSCATEGORICALDATA_H_
 
 #include <wx/colour.h>
 #include <wx/sharedptr.h>
@@ -67,12 +67,12 @@ private:
 /// Data for one of the bar chart controls.
 
 /// The wxBarChartCtrl, wxColumnChartCtrl, wxStackedBarChartCtrl and wxStackedColumnChartCtrl use this class.
-class wxBarChartData
+class wxChartsCategoricalData
 {
 public:
     /// Constructs a wxBarChartData instance.
     /// @param labels The labels of the X axis.
-    wxBarChartData(const wxVector<wxString> &labels);
+    wxChartsCategoricalData(const wxVector<wxString> &labels);
 
     /// Adds a dataset.
     /// @param dataset The dataset to add.

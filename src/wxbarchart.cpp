@@ -65,7 +65,7 @@ void wxBarChart::Dataset::AppendBar(Bar::ptr bar)
     m_bars.push_back(bar);
 }
 
-wxBarChart::wxBarChart(const wxBarChartData &data,
+wxBarChart::wxBarChart(const wxChartsCategoricalData &data,
                        const wxSize &size)
     : m_grid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
@@ -76,7 +76,7 @@ wxBarChart::wxBarChart(const wxBarChartData &data,
     Initialize(data);
 }
 
-wxBarChart::wxBarChart(const wxBarChartData &data, 
+wxBarChart::wxBarChart(const wxChartsCategoricalData &data,
                        const wxBarChartOptions &options,
                        const wxSize &size)
     : m_options(options),
@@ -94,7 +94,7 @@ const wxBarChartOptions& wxBarChart::GetOptions() const
     return m_options;
 }
 
-void wxBarChart::Initialize(const wxBarChartData &data)
+void wxBarChart::Initialize(const wxChartsCategoricalData &data)
 {
     const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)

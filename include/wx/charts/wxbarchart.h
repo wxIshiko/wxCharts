@@ -37,7 +37,7 @@
 #define _WX_CHARTS_WXBARCHART_H_
 
 #include "wxchart.h"
-#include "wxbarchartdata.h"
+#include "wxchartscategoricaldata.h"
 #include "wxbarchartoptions.h"
 #include "wxchartgrid.h"
 #include "wxchartrectangle.h"
@@ -46,14 +46,14 @@
 class wxBarChart : public wxChart
 {
 public:
-    wxBarChart(const wxBarChartData &data, const wxSize &size);
-    wxBarChart(const wxBarChartData &data, const wxBarChartOptions &options,
+    wxBarChart(const wxChartsCategoricalData &data, const wxSize &size);
+    wxBarChart(const wxChartsCategoricalData &data, const wxBarChartOptions &options,
         const wxSize &size);
 
     virtual const wxBarChartOptions& GetOptions() const wxOVERRIDE;
 
 private:
-    void Initialize(const wxBarChartData &data);
+    void Initialize(const wxChartsCategoricalData &data);
     static wxDouble GetMinValue(const wxVector<wxBarChartDataset::ptr>& datasets);
     static wxDouble GetMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets);
 

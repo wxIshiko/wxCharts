@@ -27,7 +27,7 @@
 
 #include "wxchart.h"
 #include "wxcombinationchartoptions.h"
-#include "wxbarchartdata.h"
+#include "wxchartscategoricaldata.h"
 #include "wxchartgrid.h"
 
 class wxCombinationChart : public wxChart
@@ -35,7 +35,7 @@ class wxCombinationChart : public wxChart
 public:
     wxCombinationChart();
 
-    void AddColumnChart(const wxBarChartData &data);
+    void AddColumnChart(const wxChartsCategoricalData &data);
 
     virtual const wxCombinationChartOptions& GetOptions() const wxOVERRIDE;
 

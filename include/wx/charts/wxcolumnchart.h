@@ -37,7 +37,7 @@
 #define _WX_CHARTS_WXCOLUMNCHART_H_
 
 #include "wxchart.h"
-#include "wxbarchartdata.h"
+#include "wxchartscategoricaldata.h"
 #include "wxcolumnchartoptions.h"
 #include "wxchartgrid.h"
 #include "wxchartrectangle.h"
@@ -47,7 +47,7 @@
 class wxColumnChart : public wxChart
 {
 public:
-    wxColumnChart(const wxBarChartData &data, const wxSize &size);
+    wxColumnChart(const wxChartsCategoricalData &data, const wxSize &size);
 
     virtual const wxColumnChartOptions& GetOptions() const wxOVERRIDE;
 

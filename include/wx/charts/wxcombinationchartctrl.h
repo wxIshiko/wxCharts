@@ -34,7 +34,7 @@ public:
     wxCombinationChartCtrl(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,
         const wxSize &size = wxDefaultSize, long style = 0);
 
-    void AddColumnChart(const wxBarChartData &data);
+    void AddColumnChart(const wxChartsCategoricalData &data);
 
 private:
     virtual wxCombinationChart& GetChart() wxOVERRIDE;
