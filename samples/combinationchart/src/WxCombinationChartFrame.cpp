@@ -61,7 +61,7 @@ WxCombinationChartFrame::WxCombinationChartFrame(const wxString& title)
             points1)
     );
     chartData.AddDataset(dataset1);
-    combinationChartCtrl->AddBarChart(chartData);
+    combinationChartCtrl->AddColumnChart(chartData);
 
     // Set up the sizer for the panel
     wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
