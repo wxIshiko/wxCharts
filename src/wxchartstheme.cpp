@@ -24,4 +24,14 @@
 
 #include "wxchartstheme.h"
 
-wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme;
+wxChartsTheme::wxChartsTheme()
+    : m_barChartOptions(new wxBarChartOptions())
+{
+}
+
+wxSharedPtr<wxBarChartOptions> wxChartsTheme::GetBarChartOptions()
+{
+    return m_barChartOptions;
+}
+
+wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme(new wxChartsTheme());

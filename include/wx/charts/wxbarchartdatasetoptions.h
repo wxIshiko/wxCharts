@@ -25,4 +25,8 @@
 #ifndef _WX_CHARTS_WXBARCHARTDATASETOPTIONS_H_
 #define _WX_CHARTS_WXBARCHARTDATASETOPTIONS_H_
 
+class wxBarChartDataSetOptions
+{
+};
+
 #endif

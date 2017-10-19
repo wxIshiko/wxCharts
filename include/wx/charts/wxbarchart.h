@@ -41,13 +41,14 @@
 #include "wxbarchartoptions.h"
 #include "wxchartgrid.h"
 #include "wxchartrectangle.h"
+#include <wx/sharedptr.h>
 
 /// A bar chart.
 class wxBarChart : public wxChart
 {
 public:
     wxBarChart(const wxChartsCategoricalData &data, const wxSize &size);
-    wxBarChart(const wxChartsCategoricalData &data, const wxBarChartOptions &options,
+    wxBarChart(const wxChartsCategoricalData &data, wxSharedPtr<wxBarChartOptions> options,
         const wxSize &size);
 
     virtual const wxBarChartOptions& GetOptions() const wxOVERRIDE;
@@ -97,7 +98,7 @@ private:
     };
 
 private:
-    wxBarChartOptions m_options;
+    wxSharedPtr<wxBarChartOptions> m_options;
     wxChartGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };

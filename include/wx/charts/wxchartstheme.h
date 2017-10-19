@@ -25,10 +25,18 @@
 #ifndef _WX_CHARTS_WXCHARTSTHEME_H_
 #define _WX_CHARTS_WXCHARTSTHEME_H_
 
+#include "wxbarchartoptions.h"
 #include <wx/sharedptr.h>
 
 class wxChartsTheme
 {
+public:
+    wxChartsTheme();
+
+    wxSharedPtr<wxBarChartOptions> GetBarChartOptions();
+
+private:
+    wxSharedPtr<wxBarChartOptions> m_barChartOptions;
 };
 
 extern wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme;

@@ -40,7 +40,7 @@ WxColumnFrame::WxColumnFrame(const wxString& title)
 	labels.push_back("May");
 	labels.push_back("June");
 	labels.push_back("July");
-	wxBarChartData chartData(labels);
+	wxChartsCategoricalData chartData(labels);
 
 	// Add the first dataset
 	wxVector<wxDouble> points1;

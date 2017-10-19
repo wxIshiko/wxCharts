@@ -47,7 +47,7 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent, 
                                wxWindowID id,
                                const wxChartsCategoricalData &data,
-                               const wxBarChartOptions &options, 
+                               wxSharedPtr<wxBarChartOptions> options,
                                const wxPoint &pos,
                                const wxSize &size, 
                                long style)

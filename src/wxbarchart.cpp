@@ -32,6 +32,7 @@
 */
 
 #include "wxbarchart.h"
+#include "wxchartstheme.h"
 #include <sstream>
 
 wxBarChart::Bar::Bar(wxDouble value,
@@ -67,23 +68,24 @@ void wxBarChart::Dataset::AppendBar(Bar::ptr bar)
 
 wxBarChart::wxBarChart(const wxChartsCategoricalData &data,
                        const wxSize &size)
-    : m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+    : m_options(wxChartsDefaultTheme->GetBarChartOptions()),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size, data.GetLabels(), GetMinValue(data.GetDatasets()),
-        GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
+        GetMaxValue(data.GetDatasets()), m_options->GetGridOptions()
         )
 {
     Initialize(data);
 }
 
 wxBarChart::wxBarChart(const wxChartsCategoricalData &data,
-                       const wxBarChartOptions &options,
+                       wxSharedPtr<wxBarChartOptions> options,
                        const wxSize &size)
     : m_options(options),
     m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size, data.GetLabels(), GetMinValue(data.GetDatasets()),
-        GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
+        GetMaxValue(data.GetDatasets()), m_options->GetGridOptions()
         )
 {
     Initialize(data);
@@ -91,7 +93,7 @@ wxBarChart::wxBarChart(const wxChartsCategoricalData &data,
 
 const wxBarChartOptions& wxBarChart::GetOptions() const
 {
-    return m_options;
+    return *m_options;
 }
 
 void wxBarChart::Initialize(const wxChartsCategoricalData &data)
@@ -174,8 +176,8 @@ wxDouble wxBarChart::GetMaxValue(const wxVector<wxBarChartDataset::ptr>& dataset
 void wxBarChart::DoSetSize(const wxSize &size)
 {
     wxSize newSize(
-        size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
-        size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+        size.GetWidth() - m_options->GetPadding().GetTotalHorizontalPadding(),
+        size.GetHeight() - m_options->GetPadding().GetTotalVerticalPadding()
         );
     m_grid.Resize(newSize);
 }
@@ -192,7 +194,7 @@ void wxBarChart::DoFit()
             Bar& bar = *(currentDataset.GetBars()[j]);
 
             wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j + 1);
-            upperLeftCornerPosition.m_y += m_options.GetBarSpacing() + (i * (barHeight + m_options.GetDatasetSpacing()));
+            upperLeftCornerPosition.m_y += m_options->GetBarSpacing() + (i * (barHeight + m_options->GetDatasetSpacing()));
 
             wxPoint2DDouble bottomLeftCornerPosition = upperLeftCornerPosition;
             bottomLeftCornerPosition.m_y += barHeight;
@@ -247,6 +249,6 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxBarChart::GetActiveElements(cons
 wxDouble wxBarChart::GetBarHeight() const
 {
     wxDouble availableHeight = m_grid.GetMapping().GetXAxis().GetDistanceBetweenTickMarks() -
-        (2 * m_options.GetBarSpacing()) - ((m_datasets.size() - 1) * m_options.GetDatasetSpacing());
+        (2 * m_options->GetBarSpacing()) - ((m_datasets.size() - 1) * m_options->GetDatasetSpacing());
     return (availableHeight / m_datasets.size());
 }
