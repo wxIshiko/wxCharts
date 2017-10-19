@@ -1,34 +1,34 @@
 /*
-	Copyright (c) 2016 Xavier Leclercq
+    Copyright (c) 2016-2017 Xavier Leclercq
 
-	Permission is hereby granted, free of charge, to any person obtaining a
-	copy of this software and associated documentation files (the "Software"),
-	to deal in the Software without restriction, including without limitation
-	the rights to use, copy, modify, merge, publish, distribute, sublicense,
-	and/or sell copies of the Software, and to permit persons to whom the
-	Software is furnished to do so, subject to the following conditions:
+    Permission is hereby granted, free of charge, to any person obtaining a
+    copy of this software and associated documentation files (the "Software"),
+    to deal in the Software without restriction, including without limitation
+    the rights to use, copy, modify, merge, publish, distribute, sublicense,
+    and/or sell copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following conditions:
 
-	The above copyright notice and this permission notice shall be included in
-	all copies or substantial portions of the Software.
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
 
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-	THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-	FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-	IN THE SOFTWARE.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+    IN THE SOFTWARE.
 */
 
 /*
-	Part of this file were copied from the Chart.js project (http://chartjs.org/)
-	and translated into C++.
+    Part of this file were copied from the Chart.js project (http://chartjs.org/)
+    and translated into C++.
 
-	The files of the Chart.js project have the following copyright and license.
+    The files of the Chart.js project have the following copyright and license.
 
-	Copyright (c) 2013-2016 Nick Downie
-	Released under the MIT license
-	https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
+    Copyright (c) 2013-2016 Nick Downie
+    Released under the MIT license
+    https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
 #include "wxchartarc.h"
@@ -36,17 +36,17 @@
 #include <wx/brush.h>
 
 wxChartArc::wxChartArc(wxDouble x,
-					   wxDouble y, 
-					   wxDouble startAngle,
-					   wxDouble endAngle,
-					   wxDouble outerRadius,
-					   wxDouble innerRadius,
-					   const wxString &tooltip,
-					   const wxChartArcOptions &options)
-	: wxChartElement(tooltip), m_x(x), m_y(y), 
-	m_startAngle(startAngle), m_endAngle(endAngle), 
-	m_outerRadius(outerRadius), m_innerRadius(innerRadius), 
-	m_options(options)
+                       wxDouble y, 
+                       wxDouble startAngle,
+                       wxDouble endAngle,
+                       wxDouble outerRadius,
+                       wxDouble innerRadius,
+                       const wxString &tooltip,
+                       const wxChartArcOptions &options)
+    : wxChartElement(tooltip), m_x(x), m_y(y), 
+    m_startAngle(startAngle), m_endAngle(endAngle), 
+    m_outerRadius(outerRadius), m_innerRadius(innerRadius), 
+    m_options(options)
 {
     if (m_startAngle > (2 * M_PI))
     {
@@ -60,17 +60,17 @@ wxChartArc::wxChartArc(wxDouble x,
 
 bool wxChartArc::HitTest(const wxPoint &point) const
 {
-	wxDouble distanceFromXCenter = point.x - m_x;
-	wxDouble distanceFromYCenter = point.y - m_y;
-	wxDouble radialDistanceFromCenter = sqrt((distanceFromXCenter * distanceFromXCenter) + (distanceFromYCenter * distanceFromYCenter));
+    wxDouble distanceFromXCenter = point.x - m_x;
+    wxDouble distanceFromYCenter = point.y - m_y;
+    wxDouble radialDistanceFromCenter = sqrt((distanceFromXCenter * distanceFromXCenter) + (distanceFromYCenter * distanceFromYCenter));
 
-	wxDouble angle = atan2(distanceFromYCenter, distanceFromXCenter);
-	if (angle < 0)
-	{
-		angle += 2 * M_PI;
-	}
+    wxDouble angle = atan2(distanceFromYCenter, distanceFromXCenter);
+    if (angle < 0)
+    {
+        angle += 2 * M_PI;
+    }
 
-	// Calculate wether the angle is between the start and the end angle
+    // Calculate wether the angle is between the start and the end angle
     bool betweenAngles = false;
     if (m_startAngle <= m_endAngle)
     {
@@ -86,61 +86,61 @@ bool wxChartArc::HitTest(const wxPoint &point) const
             );
     }
 
-	// Ensure within the outside of the arc centre, but inside arc outer
-	bool withinRadius = ((radialDistanceFromCenter >= m_innerRadius) && (radialDistanceFromCenter <= m_outerRadius));
+    // Ensure within the outside of the arc centre, but inside arc outer
+    bool withinRadius = ((radialDistanceFromCenter >= m_innerRadius) && (radialDistanceFromCenter <= m_outerRadius));
 
-	return (betweenAngles && withinRadius);
+    return (betweenAngles && withinRadius);
 }
 
 wxPoint2DDouble wxChartArc::GetTooltipPosition() const
 {
-	wxDouble centreAngle = m_startAngle + (m_endAngle - m_startAngle) / 2;
-	wxDouble rangeFromCentre = m_innerRadius + (m_outerRadius - m_innerRadius) / 2;
-	wxDouble x = m_x + cos(centreAngle) * rangeFromCentre;
-	wxDouble y = m_y + sin(centreAngle) * rangeFromCentre;
-	return wxPoint2DDouble(x, y);
+    wxDouble centreAngle = m_startAngle + (m_endAngle - m_startAngle) / 2;
+    wxDouble rangeFromCentre = m_innerRadius + (m_outerRadius - m_innerRadius) / 2;
+    wxDouble x = m_x + cos(centreAngle) * rangeFromCentre;
+    wxDouble y = m_y + sin(centreAngle) * rangeFromCentre;
+    return wxPoint2DDouble(x, y);
 }
 
 void wxChartArc::Draw(wxGraphicsContext &gc)
 {
-	wxGraphicsPath path = gc.CreatePath();
+    wxGraphicsPath path = gc.CreatePath();
 
-	if (m_innerRadius > 0)
-	{
-		path.AddArc(m_x, m_y, m_innerRadius, m_startAngle, m_endAngle, true);
-		path.AddArc(m_x, m_y, m_outerRadius, m_endAngle, m_startAngle, false);
-	}
-	else
-	{
-		path.AddArc(m_x, m_y, m_outerRadius, m_endAngle, m_startAngle, false);
-		path.AddLineToPoint(m_x, m_y);
-	}
+    if (m_innerRadius > 0)
+    {
+        path.AddArc(m_x, m_y, m_innerRadius, m_startAngle, m_endAngle, true);
+        path.AddArc(m_x, m_y, m_outerRadius, m_endAngle, m_startAngle, false);
+    }
+    else
+    {
+        path.AddArc(m_x, m_y, m_outerRadius, m_endAngle, m_startAngle, false);
+        path.AddLineToPoint(m_x, m_y);
+    }
 
-	path.CloseSubpath();
+    path.CloseSubpath();
 
-	wxBrush brush(m_options.GetFillColor());
-	gc.SetBrush(brush);
-	gc.FillPath(path);
+    wxBrush brush(m_options.GetFillColor());
+    gc.SetBrush(brush);
+    gc.FillPath(path);
 
-	wxPen pen(*wxWHITE, m_options.GetOutlineWidth());
-	gc.SetPen(pen);
-	gc.StrokePath(path);
+    wxPen pen(*wxWHITE, m_options.GetOutlineWidth());
+    gc.SetPen(pen);
+    gc.StrokePath(path);
 }
 
 void wxChartArc::SetCenter(wxDouble x, wxDouble y)
 {
-	m_x = x;
-	m_y = y;
+    m_x = x;
+    m_y = y;
 }
 
 void wxChartArc::SetAngles(wxDouble startAngle, wxDouble endAngle)
 {
-	m_startAngle = startAngle;
+    m_startAngle = startAngle;
     if (m_startAngle > (2 * M_PI))
     {
         m_startAngle -= 2 * M_PI;
     }
-	m_endAngle = endAngle;
+    m_endAngle = endAngle;
     if (m_endAngle > (2 * M_PI))
     {
         m_endAngle -= 2 * M_PI;
@@ -149,11 +149,11 @@ void wxChartArc::SetAngles(wxDouble startAngle, wxDouble endAngle)
 
 void wxChartArc::SetRadiuses(wxDouble outerRadius, wxDouble innerRadius)
 {
-	m_outerRadius = outerRadius;
-	m_innerRadius = innerRadius;
+    m_outerRadius = outerRadius;
+    m_innerRadius = innerRadius;
 }
 
 const wxChartArcOptions& wxChartArc::GetOptions() const
 {
-	return m_options;
+    return m_options;
 }
