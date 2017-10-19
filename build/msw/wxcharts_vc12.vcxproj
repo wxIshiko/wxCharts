@@ -85,6 +85,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\wxchartsdatasetid.cpp" />
     <ClCompile Include="..\..\src\wxchartsdataset.cpp" />
+    <ClCompile Include="..\..\src\wxchartsdoubledataset.cpp" />
     <ClCompile Include="..\..\src\wxchartscategoricaldata.cpp" />
     <ClCompile Include="..\..\src\wxchartstheme.cpp" />
     <ClCompile Include="..\..\src\wxchartutilities.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsdatasetid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsdataset.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsdoubledataset.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartscategoricaldata.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartstheme.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartutilities.h" />

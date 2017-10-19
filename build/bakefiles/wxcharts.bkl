@@ -41,6 +41,7 @@ library wxcharts
 
         ../../include/wx/charts/wxchartsdatasetid.h
         ../../include/wx/charts/wxchartsdataset.h
+        ../../include/wx/charts/wxchartsdoubledataset.h
         ../../include/wx/charts/wxchartscategoricaldata.h
 
         ../../include/wx/charts/wxchartstheme.h
@@ -141,6 +142,7 @@ library wxcharts
     {
         ../../src/wxchartsdatasetid.cpp
         ../../src/wxchartsdataset.cpp
+        ../../src/wxchartsdoubledataset.cpp
         ../../src/wxchartscategoricaldata.cpp
 
         ../../src/wxchartstheme.cpp
