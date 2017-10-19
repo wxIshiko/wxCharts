@@ -39,6 +39,7 @@ library wxcharts
     {
         ../../include/wx/charts/wxcharts.h
 
+        ../../include/wx/charts/wxchartsdataset.h
         ../../include/wx/charts/wxchartscategoricaldata.h
 
         ../../include/wx/charts/wxchartstheme.h
@@ -137,6 +138,7 @@ library wxcharts
 
     sources
     {
+        ../../src/wxchartsdataset.cpp
         ../../src/wxchartscategoricaldata.cpp
 
         ../../src/wxchartstheme.cpp

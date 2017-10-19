@@ -83,6 +83,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\wxchartsdataset.cpp" />
     <ClCompile Include="..\..\src\wxchartscategoricaldata.cpp" />
     <ClCompile Include="..\..\src\wxchartstheme.cpp" />
     <ClCompile Include="..\..\src\wxchartutilities.cpp" />
@@ -178,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsdataset.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartscategoricaldata.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartstheme.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartutilities.h" />
