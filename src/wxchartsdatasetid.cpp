@@ -22,11 +22,4 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTSDATASET_H_
-#define _WX_CHARTS_WXCHARTSDATASET_H_
-
-class wxChartsDataset
-{
-};
-
-#endif
+#include "wxchartsdatasetid.h"

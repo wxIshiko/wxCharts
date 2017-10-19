@@ -22,11 +22,7 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTSDATASET_H_
-#define _WX_CHARTS_WXCHARTSDATASET_H_
-
-class wxChartsDataset
-{
-};
+#ifndef _WX_CHARTS_WXCHARTSDATASETID_H_
+#define _WX_CHARTS_WXCHARTSDATASETID_H_
 
 #endif

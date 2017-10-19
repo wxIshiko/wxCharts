@@ -20,6 +20,9 @@
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\charts\wxchartsdatasetid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxchartsdataset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -301,6 +304,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\wxchartsdatasetid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\wxchartsdataset.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
