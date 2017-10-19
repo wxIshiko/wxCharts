@@ -23,3 +23,5 @@
 /// @file
 
 #include "wxchartstheme.h"
+
+wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme;

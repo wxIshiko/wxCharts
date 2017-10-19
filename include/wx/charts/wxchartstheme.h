@@ -25,4 +25,12 @@
 #ifndef _WX_CHARTS_WXCHARTSTHEME_H_
 #define _WX_CHARTS_WXCHARTSTHEME_H_
 
+#include <wx/sharedptr.h>
+
+class wxChartsTheme
+{
+};
+
+extern wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme;
+
 #endif
