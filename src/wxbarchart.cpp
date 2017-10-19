@@ -98,10 +98,10 @@ const wxBarChartOptions& wxBarChart::GetOptions() const
 
 void wxBarChart::Initialize(const wxChartsCategoricalData &data)
 {
-    const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
+    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data.GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxBarChartDataset& dataset = *datasets[i];
+        const wxChartsDoubleDataset& dataset = *datasets[i];
         Dataset::ptr newDataset(new Dataset());
 
         const wxVector<wxDouble>& datasetData = dataset.GetData();
@@ -123,7 +123,7 @@ void wxBarChart::Initialize(const wxChartsCategoricalData &data)
     }
 }
 
-wxDouble wxBarChart::GetMinValue(const wxVector<wxBarChartDataset::ptr>& datasets)
+wxDouble wxBarChart::GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     wxDouble result = 0;
     bool foundValue = false;
@@ -148,7 +148,7 @@ wxDouble wxBarChart::GetMinValue(const wxVector<wxBarChartDataset::ptr>& dataset
     return result;
 }
 
-wxDouble wxBarChart::GetMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets)
+wxDouble wxBarChart::GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     wxDouble result = 0;
     bool foundValue = false;

@@ -55,8 +55,8 @@ public:
 
 private:
     void Initialize(const wxChartsCategoricalData &data);
-    static wxDouble GetMinValue(const wxVector<wxBarChartDataset::ptr>& datasets);
-    static wxDouble GetMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets);
+    static wxDouble GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
+    static wxDouble GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
 
     virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
     virtual void DoFit() wxOVERRIDE;

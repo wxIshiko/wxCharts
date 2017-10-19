@@ -68,10 +68,10 @@ wxStackedBarChart::wxStackedBarChart(const wxChartsCategoricalData &data,
         GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions()
         )
 {
-    const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
+    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data.GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxBarChartDataset& dataset = *datasets[i];
+        const wxChartsDoubleDataset& dataset = *datasets[i];
         Dataset::ptr newDataset(new Dataset());
 
         int border = wxTOP | wxBOTTOM;
@@ -112,10 +112,10 @@ wxStackedBarChart::wxStackedBarChart(const wxChartsCategoricalData &data,
         GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions()
         )
 {
-    const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
+    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data.GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxBarChartDataset& dataset = *datasets[i];
+        const wxChartsDoubleDataset& dataset = *datasets[i];
         Dataset::ptr newDataset(new Dataset());
 
         int border = wxTOP | wxBOTTOM;
@@ -151,7 +151,7 @@ const wxStackedBarChartOptions& wxStackedBarChart::GetOptions() const
     return m_options;
 }
 
-wxDouble wxStackedBarChart::GetCumulativeMinValue(const wxVector<wxBarChartDataset::ptr>& datasets)
+wxDouble wxStackedBarChart::GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     wxDouble result = 0;
 
@@ -162,7 +162,7 @@ wxDouble wxStackedBarChart::GetCumulativeMinValue(const wxVector<wxBarChartDatas
         bool stop = true;
         for (size_t j = 0; j < datasets.size(); ++j)
         {
-            const wxBarChartDataset& dataset = *datasets[j];
+            const wxChartsDoubleDataset& dataset = *datasets[j];
             if (i < dataset.GetData().size())
             {
                 sum += dataset.GetData()[i];
@@ -183,7 +183,7 @@ wxDouble wxStackedBarChart::GetCumulativeMinValue(const wxVector<wxBarChartDatas
     return result;
 }
 
-wxDouble wxStackedBarChart::GetCumulativeMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets)
+wxDouble wxStackedBarChart::GetCumulativeMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     wxDouble result = 0;
 
@@ -194,7 +194,7 @@ wxDouble wxStackedBarChart::GetCumulativeMaxValue(const wxVector<wxBarChartDatas
         bool stop = true;
         for (size_t j = 0; j < datasets.size(); ++j)
         {
-            const wxBarChartDataset& dataset = *datasets[j];
+            const wxChartsDoubleDataset& dataset = *datasets[j];
             if (i < dataset.GetData().size())
             {
                 sum += dataset.GetData()[i];

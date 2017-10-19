@@ -51,8 +51,8 @@ public:
     virtual const wxStackedColumnChartOptions& GetOptions() const wxOVERRIDE;
 
 private:
-    static wxDouble GetCumulativeMinValue(const wxVector<wxBarChartDataset::ptr>& datasets);
-    static wxDouble GetCumulativeMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets);
+    static wxDouble GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
+    static wxDouble GetCumulativeMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
 
     virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
     virtual void DoFit() wxOVERRIDE;

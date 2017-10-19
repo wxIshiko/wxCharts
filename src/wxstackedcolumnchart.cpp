@@ -79,10 +79,10 @@ wxStackedColumnChart::wxStackedColumnChart(const wxChartsCategoricalData &data,
         GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions()
         )
 {
-    const wxVector<wxBarChartDataset::ptr>& datasets = data.GetDatasets();
+    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data.GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxBarChartDataset& dataset = *datasets[i];
+        const wxChartsDoubleDataset& dataset = *datasets[i];
         Dataset::ptr newDataset(new Dataset());
 
         int border = wxLEFT | wxRIGHT;
@@ -118,7 +118,7 @@ const wxStackedColumnChartOptions& wxStackedColumnChart::GetOptions() const
     return m_options;
 }
 
-wxDouble wxStackedColumnChart::GetCumulativeMinValue(const wxVector<wxBarChartDataset::ptr>& datasets)
+wxDouble wxStackedColumnChart::GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     wxDouble result = 0;
 
@@ -129,7 +129,7 @@ wxDouble wxStackedColumnChart::GetCumulativeMinValue(const wxVector<wxBarChartDa
         bool stop = true;
         for (size_t j = 0; j < datasets.size(); ++j)
         {
-            const wxBarChartDataset& dataset = *datasets[j];
+            const wxChartsDoubleDataset& dataset = *datasets[j];
             if (i < dataset.GetData().size())
             {
                 sum += dataset.GetData()[i];
@@ -150,7 +150,7 @@ wxDouble wxStackedColumnChart::GetCumulativeMinValue(const wxVector<wxBarChartDa
     return result;
 }
 
-wxDouble wxStackedColumnChart::GetCumulativeMaxValue(const wxVector<wxBarChartDataset::ptr>& datasets)
+wxDouble wxStackedColumnChart::GetCumulativeMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     wxDouble result = 0;
 
@@ -161,7 +161,7 @@ wxDouble wxStackedColumnChart::GetCumulativeMaxValue(const wxVector<wxBarChartDa
         bool stop = true;
         for (size_t j = 0; j < datasets.size(); ++j)
         {
-            const wxBarChartDataset& dataset = *datasets[j];
+            const wxChartsDoubleDataset& dataset = *datasets[j];
             if (i < dataset.GetData().size())
             {
                 sum += dataset.GetData()[i];
