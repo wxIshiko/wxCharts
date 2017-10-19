@@ -25,8 +25,17 @@
 #ifndef _WX_CHARTS_WXCHARTSDATASET_H_
 #define _WX_CHARTS_WXCHARTSDATASET_H_
 
+#include "wxchartsdatasetid.h"
+
 class wxChartsDataset
 {
+public:
+    wxChartsDataset();
+
+    const wxChartsDatasetId& GetId() const;
+
+private:
+    wxChartsDatasetId m_id;
 };
 
 #endif

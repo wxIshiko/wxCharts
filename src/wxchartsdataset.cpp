@@ -23,3 +23,12 @@
 /// @file
 
 #include "wxchartsdataset.h"
+
+wxChartsDataset::wxChartsDataset()
+{
+}
+
+const wxChartsDatasetId& wxChartsDataset::GetId() const
+{
+    return m_id;
+}

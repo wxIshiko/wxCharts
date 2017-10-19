@@ -23,3 +23,7 @@
 /// @file
 
 #include "wxchartsdatasetid.h"
+
+wxChartsDatasetId::wxChartsDatasetId()
+{
+}

@@ -25,4 +25,10 @@
 #ifndef _WX_CHARTS_WXCHARTSDATASETID_H_
 #define _WX_CHARTS_WXCHARTSDATASETID_H_
 
+class wxChartsDatasetId
+{
+public:
+    wxChartsDatasetId();
+};
+
 #endif
