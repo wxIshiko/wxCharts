@@ -1,23 +1,23 @@
 /*
-	Copyright (c) 2016 Xavier Leclercq
+    Copyright (c) 2016-2017 Xavier Leclercq
 
-	Permission is hereby granted, free of charge, to any person obtaining a
-	copy of this software and associated documentation files (the "Software"),
-	to deal in the Software without restriction, including without limitation
-	the rights to use, copy, modify, merge, publish, distribute, sublicense,
-	and/or sell copies of the Software, and to permit persons to whom the
-	Software is furnished to do so, subject to the following conditions:
+    Permission is hereby granted, free of charge, to any person obtaining a
+    copy of this software and associated documentation files (the "Software"),
+    to deal in the Software without restriction, including without limitation
+    the rights to use, copy, modify, merge, publish, distribute, sublicense,
+    and/or sell copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following conditions:
 
-	The above copyright notice and this permission notice shall be included in
-	all copies or substantial portions of the Software.
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
 
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-	THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-	FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-	IN THE SOFTWARE.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+    IN THE SOFTWARE.
 */
 
 #include "wxchartlabel.h"
@@ -26,28 +26,28 @@
 
 wxChartLabel::wxChartLabel(const wxString &text,
                            const wxChartLabelOptions &options)
-	: m_options(options), m_text(text), m_position(0, 0),
+    : m_options(options), m_text(text), m_position(0, 0),
     m_size(0, 0)
 {
 }
 
 wxChartLabel::wxChartLabel(const wxString &text,
-						   wxDouble width,
-						   wxDouble height,
+                           wxDouble width,
+                           wxDouble height,
                            const wxChartLabelOptions &options)
-	: m_options(options), m_text(text), m_position(0, 0),
-	m_size(width, height)
+    : m_options(options), m_text(text), m_position(0, 0),
+    m_size(width, height)
 {
 }
 
 bool wxChartLabel::HitTest(const wxPoint &point) const
 {
-	return false;
+    return false;
 }
 
 wxPoint2DDouble wxChartLabel::GetTooltipPosition() const
 {
-	return wxPoint2DDouble(0, 0);
+    return wxPoint2DDouble(0, 0);
 }
 
 void wxChartLabel::Draw(wxGraphicsContext &gc) const
@@ -64,45 +64,45 @@ void wxChartLabel::Draw(wxGraphicsContext &gc) const
 
     wxFont font = m_options.GetFontOptions().GetFont();
     gc.SetFont(font, m_options.GetFontOptions().GetColor());
-	gc.DrawText(m_text, m_position.m_x, m_position.m_y);
+    gc.DrawText(m_text, m_position.m_x, m_position.m_y);
 }
 
 const wxString& wxChartLabel::GetText() const
 {
-	return m_text;
+    return m_text;
 }
 
 const wxPoint2DDouble& wxChartLabel::GetPosition() const
 {
-	return m_position;
+    return m_position;
 }
 
 void wxChartLabel::SetPosition(const wxPoint2DDouble &position)
 {
-	m_position = position;
+    m_position = position;
 }
 
 void wxChartLabel::SetPosition(wxDouble x,
-							   wxDouble y)
+                               wxDouble y)
 {
-	m_position.m_x = x;
-	m_position.m_y = y;
+    m_position.m_x = x;
+    m_position.m_y = y;
 }
 
 const wxSize& wxChartLabel::GetSize() const
 {
-	return m_size;
+    return m_size;
 }
 
 void wxChartLabel::SetSize(const wxSize &size)
 {
-	m_size = size;
+    m_size = size;
 }
 
 void wxChartLabel::SetSize(wxDouble width, wxDouble height)
 {
-	m_size.x = width;
-	m_size.y = height;
+    m_size.x = width;
+    m_size.y = height;
 }
 
 void wxChartLabel::UpdateSize(wxGraphicsContext &gc)
