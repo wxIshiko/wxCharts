@@ -25,5 +25,11 @@
 #include "wxchartsdatasetid.h"
 
 wxChartsDatasetId::wxChartsDatasetId()
+    : m_implicitId(-1)
 {
+}
+
+bool wxChartsDatasetId::IsUndefined() const
+{
+    return ((m_implicitId == -1) && (m_explicitId.IsEmpty()));
 }

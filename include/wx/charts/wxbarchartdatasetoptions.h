@@ -25,8 +25,27 @@
 #ifndef _WX_CHARTS_WXBARCHARTDATASETOPTIONS_H_
 #define _WX_CHARTS_WXBARCHARTDATASETOPTIONS_H_
 
+#include <wx/colour.h>
+
 class wxBarChartDataSetOptions
 {
+public:
+    wxBarChartDataSetOptions(const wxColor &fillColor, const wxColor &strokeColor);
+
+    /// Gets the color of the brush used to fill the
+    /// bar.
+    /// @return The color of the brush used to fill the
+    /// bar.
+    const wxColor& GetFillColor() const;
+    /// Gets the color of the pen used to draw the outline
+    /// of the bar.
+    /// @return The color of the pen used to draw the 
+    /// outline of the bar.
+    const wxColor& GetStrokeColor() const;
+
+private:
+    wxColor m_fillColor;
+    wxColor m_strokeColor;
 };
 
 #endif

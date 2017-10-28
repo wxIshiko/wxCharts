@@ -21,3 +21,19 @@
 */
 
 #include "wxbarchartdatasetoptions.h"
+
+wxBarChartDataSetOptions::wxBarChartDataSetOptions(const wxColor &fillColor,
+                                                   const wxColor &strokeColor)
+    : m_fillColor(fillColor), m_strokeColor(strokeColor)
+{
+}
+
+const wxColor& wxBarChartDataSetOptions::GetFillColor() const
+{
+    return m_fillColor;
+}
+
+const wxColor& wxBarChartDataSetOptions::GetStrokeColor() const
+{
+    return m_strokeColor;
+}

@@ -25,10 +25,18 @@
 #ifndef _WX_CHARTS_WXCHARTSDATASETID_H_
 #define _WX_CHARTS_WXCHARTSDATASETID_H_
 
+#include <wx/string.h>
+
 class wxChartsDatasetId
 {
 public:
     wxChartsDatasetId();
+
+    bool IsUndefined() const;
+
+private:
+    int m_implicitId;
+    wxString m_explicitId;
 };
 
 #endif
