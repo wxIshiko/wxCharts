@@ -118,9 +118,9 @@ wxPoint2DDouble wxMath2DPlot::Point::GetTooltipPosition() const
     return position;
 }
 
-bool wxMath2DPlot::Point::HitTest(const wxPoint &point) const
+bool wxMath2DPlot::Point::HitTest(const wxPoint &point,const AxisFunc &F) const
 {
-    wxDouble distance = (point.x - GetPosition().m_x);
+    wxDouble distance = (F(point.x) - F(GetPosition().m_x));
     if (distance < 0)
     {
         distance = -distance;
@@ -189,8 +189,10 @@ wxMath2DPlot::wxMath2DPlot(const wxMath2DPlotData &data,
     : m_grid(
           wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
           size,
-          GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
-          GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
+          GetMinXValue(data.GetDatasets(),m_options.GetAxisFuncX()),
+          GetMaxXValue(data.GetDatasets(),m_options.GetAxisFuncX()),
+          GetMinYValue(data.GetDatasets(),m_options.GetAxisFuncY()),
+          GetMaxYValue(data.GetDatasets(),m_options.GetAxisFuncY()),
           m_options.GetGridOptions())
 {
     Initialize(data);
@@ -203,8 +205,10 @@ wxMath2DPlot::wxMath2DPlot(const wxMath2DPlotData &data,
       m_grid(
           wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
           size,
-          GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
-          GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
+          GetMinXValue(data.GetDatasets(),m_options.GetAxisFuncX()),
+          GetMaxXValue(data.GetDatasets(),m_options.GetAxisFuncX()),
+          GetMinYValue(data.GetDatasets(),m_options.GetAxisFuncY()),
+          GetMaxYValue(data.GetDatasets(),m_options.GetAxisFuncY()),
           m_options.GetGridOptions())
 {
     Initialize(data);
@@ -246,6 +250,8 @@ bool wxMath2DPlot::UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> 
     if(index > m_datasets.size())
         return false;
 
+    auto transformX = m_options.GetAxisFuncX();
+    auto transformY = m_options.GetAxisFuncY();
     Dataset::ptr newDataset(new Dataset(m_datasets[index]->ShowDots(),
         m_datasets[index]->ShowLine(),m_datasets[index]->GetLineColor(),
         m_datasets[index]->GetDotStrokeColor(),m_datasets[index]->GetType()));
@@ -253,7 +259,7 @@ bool wxMath2DPlot::UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> 
     for (size_t j = 0; j < points.size(); ++j)
         {
         std::stringstream tooltip;
-        tooltip << "(" << points[j].m_x << "," << points[j].m_y << ")";
+        tooltip << "(" << transformX(points[j].m_x) << "," << transformY(points[j].m_y) << ")";
         wxChartTooltipProvider::ptr tooltipProvider(
             new wxChartTooltipProviderStatic("", tooltip.str(), m_datasets[index]->GetLineColor())
             );
@@ -276,12 +282,14 @@ bool wxMath2DPlot::AddData(std::size_t index,const wxVector<wxPoint2DDouble> &po
     if(index > m_datasets.size())
         return false;
 
+    auto transformX = m_options.GetAxisFuncX();
+    auto transformY = m_options.GetAxisFuncY();
     auto shift = m_datasets[index]->GetPoints().size();
 
     for (size_t j = 0; j < points.size(); ++j)
         {
         std::stringstream tooltip;
-        tooltip << "(" << points[j].m_x << "," << points[j].m_y << ")";
+        tooltip << "(" << transformX(points[j].m_x) << "," << transformY(points[j].m_y) << ")";
         wxChartTooltipProvider::ptr tooltipProvider(
             new wxChartTooltipProviderStatic("", tooltip.str(), m_datasets[index]->GetLineColor())
             );
@@ -300,6 +308,9 @@ bool wxMath2DPlot::AddData(std::size_t index,const wxVector<wxPoint2DDouble> &po
 
 void wxMath2DPlot::AddDataset(const wxMath2DPlotDataset::ptr &newset,bool is_new)
 {
+    auto transformX = m_options.GetAxisFuncX();
+    auto transformY = m_options.GetAxisFuncY();
+
     Dataset::ptr newDataset(new Dataset(newset->ShowDots(),newset->ShowLine(),
         newset->GetLineColor(),newset->GetDotStrokeColor(),newset->GetType()));
 
@@ -307,7 +318,7 @@ void wxMath2DPlot::AddDataset(const wxMath2DPlotDataset::ptr &newset,bool is_new
     for (size_t j = 0; j < datasetData.size(); ++j)
         {
         std::stringstream tooltip;
-        tooltip << "(" << datasetData[j].m_x << "," << datasetData[j].m_y << ")";
+        tooltip << "(" << transformX(datasetData[j].m_x) << "," << transformY(datasetData[j].m_y) << ")";
         wxChartTooltipProvider::ptr tooltipProvider(
             new wxChartTooltipProviderStatic("", tooltip.str(), newset->GetLineColor())
             );
@@ -341,29 +352,33 @@ void wxMath2DPlot::Update()
     wxDouble maxX = std::numeric_limits<wxDouble>::min();
     wxDouble minY = minX;
     wxDouble maxY = maxX;
+    auto transformX = m_options.GetAxisFuncX();
+    auto transformY = m_options.GetAxisFuncY();
     for (size_t i = 0; i < m_datasets.size(); ++i)
         {
         for (const auto &el : m_datasets[i]->GetPoints())
             {
             auto value = el->GetValue();
-            if (maxX < value.m_x)
-                maxX = value.m_x;
-            if (minX > value.m_x)
-                minX = value.m_x;
-            if (maxY < value.m_y)
-                maxY = value.m_y;
-            if (minY > value.m_y)
-                minY = value.m_y;
+            auto tX = transformX(value.m_x);
+            auto tY = transformY(value.m_y);
+            if (maxX < tX)
+                maxX = tX;
+            if (minX > tX)
+                minX = tX;
+            if (maxY < tY)
+                maxY = tY;
+            if (minY > tY)
+                minY = tY;
             }
         }
     if (maxX == std::numeric_limits<wxDouble>::min())
-            maxX = 0;
+            maxX = transformX(0);
     if (minX == std::numeric_limits<wxDouble>::max())
-            minX = 0;
+            minX = transformX(0);
     if (maxY == std::numeric_limits<wxDouble>::min())
-            maxY = 0;
+            maxY = transformY(0);
     if (minY == std::numeric_limits<wxDouble>::max())
-            minY = 0;
+            minY = transformY(0);
     m_grid.ChangeCorners(minX,maxX,minY,maxY);
 }
 
@@ -373,11 +388,10 @@ void wxMath2DPlot::Initialize(const wxMath2DPlotData &data)
         AddDataset(el,false);
 }
 
-wxDouble wxMath2DPlot::GetMinXValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets)
+wxDouble wxMath2DPlot::GetMinXValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets,const AxisFunc &F)
 {
     wxDouble result = 0;
     bool foundValue = false;
-
     for (size_t i = 0; i < datasets.size(); ++i)
     {
         const wxVector<wxPoint2DDouble>& values = datasets[i]->GetData();
@@ -385,12 +399,12 @@ wxDouble wxMath2DPlot::GetMinXValue(const wxVector<wxMath2DPlotDataset::ptr>& da
         {
             if (!foundValue)
             {
-                result = values[j].m_x;
+                result = F(values[j].m_x);
                 foundValue = true;
             }
-            else if (result > values[j].m_x)
+            else if (result > F(values[j].m_x))
             {
-                result = values[j].m_x;
+                result = F(values[j].m_x);
             }
         }
     }
@@ -398,7 +412,7 @@ wxDouble wxMath2DPlot::GetMinXValue(const wxVector<wxMath2DPlotDataset::ptr>& da
     return result;
 }
 
-wxDouble wxMath2DPlot::GetMaxXValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets)
+wxDouble wxMath2DPlot::GetMaxXValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets,const AxisFunc &F)
 {
     wxDouble result = 0;
     bool foundValue = false;
@@ -410,12 +424,12 @@ wxDouble wxMath2DPlot::GetMaxXValue(const wxVector<wxMath2DPlotDataset::ptr>& da
         {
             if (!foundValue)
             {
-                result = values[j].m_x;
+                result = F(values[j].m_x);
                 foundValue = true;
             }
-            else if (result < values[j].m_x)
+            else if (result < F(values[j].m_x))
             {
-                result = values[j].m_x;
+                result = F(values[j].m_x);
             }
         }
     }
@@ -423,7 +437,7 @@ wxDouble wxMath2DPlot::GetMaxXValue(const wxVector<wxMath2DPlotDataset::ptr>& da
     return result;
 }
 
-wxDouble wxMath2DPlot::GetMinYValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets)
+wxDouble wxMath2DPlot::GetMinYValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets,const AxisFunc &F)
 {
     wxDouble result = 0;
     bool foundValue = false;
@@ -435,12 +449,12 @@ wxDouble wxMath2DPlot::GetMinYValue(const wxVector<wxMath2DPlotDataset::ptr>& da
         {
             if (!foundValue)
             {
-                result = values[j].m_y;
+                result = F(values[j].m_y);
                 foundValue = true;
             }
-            else if (result > values[j].m_y)
+            else if (result > F(values[j].m_y))
             {
-                result = values[j].m_y;
+                result = F(values[j].m_y);
             }
         }
     }
@@ -448,7 +462,7 @@ wxDouble wxMath2DPlot::GetMinYValue(const wxVector<wxMath2DPlotDataset::ptr>& da
     return result;
 }
 
-wxDouble wxMath2DPlot::GetMaxYValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets)
+wxDouble wxMath2DPlot::GetMaxYValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets,const AxisFunc &F)
 {
     wxDouble result = 0;
     bool foundValue = false;
@@ -460,12 +474,12 @@ wxDouble wxMath2DPlot::GetMaxYValue(const wxVector<wxMath2DPlotDataset::ptr>& da
         {
             if (!foundValue)
             {
-                result = values[j].m_y;
+                result = F(values[j].m_y);
                 foundValue = true;
             }
-            else if (result < values[j].m_y)
+            else if (result < F(values[j].m_y))
             {
-                result = values[j].m_y;
+                result = F(values[j].m_y);
             }
         }
     }
@@ -484,13 +498,17 @@ void wxMath2DPlot::DoSetSize(const wxSize &size)
 
 void wxMath2DPlot::DoFit()
 {
+
+    auto transformX = m_options.GetAxisFuncX();
+    auto transformY = m_options.GetAxisFuncY();
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
         const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();
         for (size_t j = 0; j < points.size(); ++j)
         {
             const Point::ptr& point = points[j];
-            point->SetPosition(m_grid.GetMapping().GetWindowPosition(point->GetValue().m_x, point->GetValue().m_y));
+            point->SetPosition(m_grid.GetMapping().GetWindowPosition(
+                transformX(point->GetValue().m_x), transformY(point->GetValue().m_y)));
         }
     }
 }
@@ -500,6 +518,9 @@ void wxMath2DPlot::DoDraw(wxGraphicsContext &gc)
 
     m_grid.Draw(gc);
     Fit();
+
+    auto transformX = m_options.GetAxisFuncX();
+    auto transformY = m_options.GetAxisFuncY();
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
@@ -512,7 +533,7 @@ void wxMath2DPlot::DoDraw(wxGraphicsContext &gc)
             const Point::ptr& point = points[0];
             auto value = point->GetValue();
 
-            wxPoint2DDouble firstPosition = m_grid.GetMapping().GetWindowPosition(value.m_x,value.m_y);
+            wxPoint2DDouble firstPosition = m_grid.GetMapping().GetWindowPosition(transformX(value.m_x),transformY(value.m_y));
             path.MoveToPoint(firstPosition);
 
             wxPoint2DDouble lastPosition;
@@ -520,26 +541,26 @@ void wxMath2DPlot::DoDraw(wxGraphicsContext &gc)
             {
                 const Point::ptr& point = points[j];
                 value = point->GetValue();
-                lastPosition =  m_grid.GetMapping().GetWindowPosition(value.m_x,value.m_y );
+                lastPosition =  m_grid.GetMapping().GetWindowPosition(transformX(value.m_x),transformY(value.m_y));
 
                 if(m_datasets[i]->GetType()==wxCHARTTYPE_STEPPED)
                 {
-                    wxDouble y = value.m_y;
+                    wxDouble y = transformY(value.m_y);
                     value = points[j-1]->GetValue();
-                    value = m_grid.GetMapping().GetWindowPosition(value.m_x,y);
+                    value = m_grid.GetMapping().GetWindowPosition(transformX(value.m_x),y);
                     path.AddLineToPoint(value);
                 }
 
                 if(m_datasets[i]->GetType()==wxCHARTTYPE_STEM)
                 {
                     value = points[j-1]->GetValue();
-                    value = m_grid.GetMapping().GetWindowPosition(value.m_x,0);
+                    value = m_grid.GetMapping().GetWindowPosition(transformX(value.m_x),transformY(0));
                     path.AddLineToPoint(value);
                     path.MoveToPoint(lastPosition);
                     if(j+1==points.size())
                     {
                         value = points[j]->GetValue();
-                        value = m_grid.GetMapping().GetWindowPosition(value.m_x,0);
+                        value = m_grid.GetMapping().GetWindowPosition(transformX(value.m_x),transformY(0));
                         path.AddLineToPoint(value);
                     }
                 }
@@ -580,7 +601,7 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxMath2DPlot::GetActiveElements(co
         const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();
         for (size_t j = 0; j < points.size(); ++j)
         {
-            if (points[j]->HitTest(point))
+            if (points[j]->HitTest(point,m_options.GetAxisFuncX()))
             {
                 activeElements->push_back(points[j].get());
             }
