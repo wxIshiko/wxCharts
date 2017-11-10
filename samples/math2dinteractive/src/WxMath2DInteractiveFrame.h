@@ -23,12 +23,21 @@
 #ifndef _SAMPLES_MATH2DINTERACTIVE_WXMATH2DINTERACTIVEFRAME_H_
 #define _SAMPLES_MATH2DINTERACTIVE_WXMATH2DINTERACTIVEFRAME_H_
 
+#include <wx/charts/wxcharts.h>
 #include <wx/frame.h>
+#include <wx/timer.h>
+#include <random>
 
 class WxMath2DInteractiveFrame : public wxFrame
 {
 public:
     WxMath2DInteractiveFrame(const wxString& title);
+
+private:
+    wxMath2DPlotCtrl* math2dPlotCtrl;
+    wxTimer *m_timer;
+    int m_c;
+    std::default_random_engine m_generator;
 };
 
 #endif
