@@ -23,11 +23,13 @@
 #include "WxMath2DInteractiveFrame.h"
 #include <wx/panel.h>
 #include <wx/sizer.h>
-#include <wx/charts/wxcharts.h>
 #include <cmath>
+#include <chrono>
+
 
 WxMath2DInteractiveFrame::WxMath2DInteractiveFrame(const wxString& title)
-    : wxFrame(NULL, wxID_ANY, title)
+    : wxFrame(NULL, wxID_ANY, title), m_c(1),
+    m_generator(std::chrono::system_clock::now().time_since_epoch().count())
 {
     wxPanel* panel = new wxPanel(this, wxID_ANY);
 
@@ -35,46 +37,41 @@ WxMath2DInteractiveFrame::WxMath2DInteractiveFrame(const wxString& title)
     wxMath2DPlotOptions options;
     options.SetShowTooltips(false);
 
-    wxVector<wxPoint2DDouble> points1,points2,points3;
-    auto pi = 3.1415926535897;
-    auto tstart = -2*pi;
-    for(auto i = 0u;i<100;i++)
-    {
-        auto x = tstart+0.1*i;
-        points1.push_back(wxPoint2DDouble(x,cos(x)*sin(x)));
-        points2.push_back(wxPoint2DDouble(x,cos(x)+sin(x)));
-        points3.push_back(wxPoint2DDouble(x,cos(x)-sin(x)));
-    }
-
     wxMath2DPlotDataset::ptr dataset1(
         new wxMath2DPlotDataset(
             wxColor(250, 20, 20, 0x78),
             wxColor(0, 0, 0, 0xB8),
-            points1,wxCHARTTYPE_STEM)
+            wxVector<wxPoint2DDouble>())
         );
     chartData.AddDataset(dataset1);
 
-     wxMath2DPlotDataset::ptr dataset2(
+    wxMath2DPlotDataset::ptr dataset2(
         new wxMath2DPlotDataset(
             wxColor(0, 70, 140, 0x78),
             wxColor(50, 210, 105, 0xB8),
-            points2,wxCHARTTYPE_STEPPED)
+            wxVector<wxPoint2DDouble>())
         );
     chartData.AddDataset(dataset2);
 
-     wxMath2DPlotDataset::ptr dataset3(
-        new wxMath2DPlotDataset(
-            wxColor(28, 200, 10, 0x78),
-            wxColor(230, 125, 60, 0x33),points3));
-    chartData.AddDataset(dataset3);
-
-    wxMath2DPlotCtrl* math2dPlotCtrl = new wxMath2DPlotCtrl(panel, wxID_ANY, chartData,options);
+    math2dPlotCtrl = new wxMath2DPlotCtrl(panel, wxID_ANY, chartData,options);
 
     wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
     panelSizer->Add(math2dPlotCtrl, 1, wxEXPAND);
     panel->SetSizer(panelSizer);
 
-    wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     topSizer->Add(panel, 1, wxEXPAND);
     SetSizerAndFit(topSizer);
+
+    m_timer = new wxTimer(this,wxID_EXECUTE);
+    m_timer->Start(1500);
+    this->Bind(wxEVT_TIMER, [&](wxTimerEvent& )
+    {
+        std::uniform_real_distribution<double> distribution (0,100.0);
+        wxVector<wxPoint2DDouble> t1,t2;
+        t1.push_back(wxPoint2DDouble(++m_c,distribution(m_generator)));
+        t2.push_back(wxPoint2DDouble(++m_c,distribution(m_generator)));
+        math2dPlotCtrl->AddData(0,t1);
+        math2dPlotCtrl->AddData(1,t2);
+    },wxID_EXECUTE);
 }
