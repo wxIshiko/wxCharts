@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2017 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,6 +26,9 @@ wxMath2DPlotOptions::wxMath2DPlotOptions()
     : m_dotRadius(4), m_dotStrokeWidth(1),
     m_lineWidth(2), m_hitDetectionRange(24)
 {
+    auto temp = [](wxDouble x){return x;};
+    m_axisFuncX = temp;
+    m_axisFuncY = temp;
     GetMultiTooltipOptions().SetShowTitle(false);
     GetMultiTooltipOptions().SetAlignment(wxALIGN_TOP);
 }
@@ -58,4 +61,24 @@ unsigned int wxMath2DPlotOptions::GetLineWidth() const
 wxDouble wxMath2DPlotOptions::GetHitDetectionRange() const
 {
     return m_hitDetectionRange;
+}
+
+const AxisFunc& wxMath2DPlotOptions::GetAxisFuncX() const
+{
+    return m_axisFuncX;
+}
+
+const AxisFunc& wxMath2DPlotOptions::GetAxisFuncY() const
+{
+    return m_axisFuncY;
+}
+
+void wxMath2DPlotOptions::SetAxisFuncX(const AxisFunc &newfunc)
+{
+    m_axisFuncX = newfunc;
+}
+
+void wxMath2DPlotOptions::SetAxisFuncY(const AxisFunc &newfunc)
+{
+    m_axisFuncY = newfunc;
 }

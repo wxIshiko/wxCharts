@@ -129,10 +129,10 @@ public:
 private:
     void Initialize(const wxMath2DPlotData &data);
     void Update();
-    static wxDouble GetMinXValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets);
-    static wxDouble GetMaxXValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets);
-    static wxDouble GetMinYValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets);
-    static wxDouble GetMaxYValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets);
+    static wxDouble GetMinXValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets,const AxisFunc &F);
+    static wxDouble GetMaxXValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets,const AxisFunc &F);
+    static wxDouble GetMinYValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets,const AxisFunc &F);
+    static wxDouble GetMaxYValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets,const AxisFunc &F);
 
     virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
     virtual void DoFit() wxOVERRIDE;
@@ -152,7 +152,7 @@ private:
             const wxColor &fillColor, wxDouble hitDetectionRange);
 
         virtual wxPoint2DDouble GetTooltipPosition() const;
-        virtual bool HitTest(const wxPoint &point) const;
+        virtual bool HitTest(const wxPoint &point,const AxisFunc &F) const;
 
         wxPoint2DDouble GetValue() const;
 

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2017 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -27,6 +27,10 @@
 
 #include "wxchartoptions.h"
 #include "wxchartgridoptions.h"
+
+#include <functional>
+
+typedef std::function<wxDouble(wxDouble)> AxisFunc;
 
 /// The options for the wxMath2DPlotCtrl control.
 class wxMath2DPlotOptions : public wxChartOptions
@@ -66,12 +70,19 @@ public:
     /// @return The hit detection range.
     wxDouble GetHitDetectionRange() const;
 
+    const AxisFunc& GetAxisFuncX() const;
+    const AxisFunc& GetAxisFuncY() const;
+    void SetAxisFuncX(const AxisFunc &newfunc);
+    void SetAxisFuncY(const AxisFunc &newfunc);
+
 private:
     wxChartGridOptions m_gridOptions;
     wxDouble m_dotRadius;
     unsigned int m_dotStrokeWidth;
     unsigned int m_lineWidth;
     wxDouble m_hitDetectionRange;
+    AxisFunc m_axisFuncX;
+    AxisFunc m_axisFuncY;
 };
 
 #endif
