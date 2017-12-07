@@ -43,7 +43,7 @@
 
 enum wxChartAxisType
 {
-    wxCHARTAXISTYPE_GENERIC = 0,
+    wxCHARTAXISTYPE_CATEGORICAL = 0,
     wxCHARTAXISTYPE_NUMERICAL = 1
 };
 

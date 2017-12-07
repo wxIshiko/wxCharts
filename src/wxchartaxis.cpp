@@ -247,7 +247,7 @@ wxChartAxis::wxChartAxis(wxChartAxisType type,
 
 wxChartAxis::wxChartAxis(const wxVector<wxString> &labels,
                          const wxChartAxisOptions &options)
-    : m_type(wxCHARTAXISTYPE_GENERIC), m_options(options),
+    : m_type(wxCHARTAXISTYPE_CATEGORICAL), m_options(options),
     m_startPoint(0, 0), m_endPoint(0, 0)
 {
     for (size_t i = 0; i < labels.size(); ++i)
