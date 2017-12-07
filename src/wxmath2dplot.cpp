@@ -247,7 +247,7 @@ void wxMath2DPlot::Shift(double dx,double dy)
 
 bool wxMath2DPlot::UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> &points)
 {
-    if(index > m_datasets.size())
+    if(index >= m_datasets.size())
         return false;
 
     auto transformX = m_options.GetAxisFuncX();
@@ -279,7 +279,7 @@ bool wxMath2DPlot::UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> 
 
 bool wxMath2DPlot::AddData(std::size_t index,const wxVector<wxPoint2DDouble> &points)
 {
-    if(index > m_datasets.size())
+    if(index >= m_datasets.size())
         return false;
 
     auto transformX = m_options.GetAxisFuncX();
@@ -339,7 +339,7 @@ void wxMath2DPlot::AddDataset(const wxMath2DPlotDataset::ptr &newset,bool is_new
 
 bool wxMath2DPlot::RemoveDataset(std::size_t index)
 {
-    if(index > m_datasets.size())
+    if(index >= m_datasets.size())
         return false;
     m_datasets.erase(m_datasets.begin()+index);
     Update();
