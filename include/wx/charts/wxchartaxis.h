@@ -41,12 +41,6 @@
 #include "wxchartlabelgroup.h"
 #include <wx/graphics.h>
 
-enum wxChartAxisType
-{
-    wxCHARTAXISTYPE_CATEGORICAL = 0,
-    wxCHARTAXISTYPE_NUMERICAL = 1
-};
-
 /// This class represents an axis.
 class wxChartAxis : public wxChartElement
 {
@@ -70,7 +64,6 @@ public:
     void Fit(wxPoint2DDouble startPoint, wxPoint2DDouble endPoint);
     void UpdateLabelPositions();
 
-    wxChartAxisType GetType() const;
     /// Gets the labels.
     /// @return The list of labels.
     const wxChartLabelGroup& GetLabels() const;
@@ -86,9 +79,8 @@ public:
 
 protected:
     /// Construcs a wxChartAxis element.
-    /// @param type The type of axis.
     /// @param options The settings to be used for the axis.
-    wxChartAxis(wxChartAxisType type, const wxChartAxisOptions &options);
+    wxChartAxis(const wxChartAxisOptions &options);
     /// Constructs a wxChartAxis element.
     /// @param labels The labels to display along the axis.
     /// @param options The settings to be used for the axis.
@@ -98,7 +90,6 @@ private:
     void DrawTickMarks(wxGraphicsContext &gc);
 
 private:
-    wxChartAxisType m_type;
     wxChartAxisOptions m_options;
     wxPoint2DDouble m_startPoint;
     wxPoint2DDouble m_endPoint;

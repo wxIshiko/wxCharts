@@ -87,11 +87,6 @@ void wxChartAxis::UpdateLabelPositions()
     }
 }
 
-wxChartAxisType wxChartAxis::GetType() const
-{
-    return m_type;
-}
-
 const wxChartLabelGroup& wxChartAxis::GetLabels() const
 {
     return m_labels;
@@ -238,16 +233,14 @@ const wxChartAxisOptions& wxChartAxis::GetOptions() const
     return m_options;
 }
 
-wxChartAxis::wxChartAxis(wxChartAxisType type, 
-                         const wxChartAxisOptions &options)
-    : m_type(type), m_options(options),
-    m_startPoint(0, 0), m_endPoint(0, 0)
+wxChartAxis::wxChartAxis(const wxChartAxisOptions &options)
+    : m_options(options), m_startPoint(0, 0), m_endPoint(0, 0)
 {
 }
 
 wxChartAxis::wxChartAxis(const wxVector<wxString> &labels,
                          const wxChartAxisOptions &options)
-    : m_type(wxCHARTAXISTYPE_CATEGORICAL), m_options(options),
+    : m_options(options),
     m_startPoint(0, 0), m_endPoint(0, 0)
 {
     for (size_t i = 0; i < labels.size(); ++i)
