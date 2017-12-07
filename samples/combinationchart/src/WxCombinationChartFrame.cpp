@@ -43,7 +43,7 @@ WxCombinationChartFrame::WxCombinationChartFrame(const wxString& title)
     labels.push_back("May");
     labels.push_back("June");
     labels.push_back("July");
-    wxBarChartData chartData(labels);
+    wxChartsCategoricalData chartData(labels);
 
     // Add the first dataset
     wxVector<wxDouble> points1;
@@ -54,8 +54,8 @@ WxCombinationChartFrame::WxCombinationChartFrame(const wxString& title)
     points1.push_back(6);
     points1.push_back(5);
     points1.push_back(1);
-    wxBarChartDataset::ptr dataset1(
-        new wxBarChartDataset(
+    wxChartsDoubleDataset::ptr dataset1(
+        new wxChartsDoubleDataset(
             wxColor(220, 220, 220, 0x7F),
             wxColor(220, 220, 220, 0xCC),
             points1)

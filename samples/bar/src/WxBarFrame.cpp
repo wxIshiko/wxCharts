@@ -51,8 +51,8 @@ WxBarFrame::WxBarFrame(const wxString& title)
 	points1.push_back(6);
 	points1.push_back(5);
 	points1.push_back(1);
-	wxBarChartDataset::ptr dataset1(
-		new wxBarChartDataset(
+    wxChartsDoubleDataset::ptr dataset1(
+		new wxChartsDoubleDataset(
 			wxColor(220, 220, 220, 0x7F),
 			wxColor(220, 220, 220, 0xCC),
 			points1)
@@ -68,7 +68,7 @@ WxBarFrame::WxBarFrame(const wxString& title)
 	points2.push_back(3);
 	points2.push_back(1.8);
 	points2.push_back(0.4);
-	wxBarChartDataset::ptr dataset2(new wxBarChartDataset(
+    wxChartsDoubleDataset::ptr dataset2(new wxChartsDoubleDataset(
 		wxColor(151, 187, 205, 0x7F),
 		wxColor(151, 187, 205, 0xFF),
 		points2));
