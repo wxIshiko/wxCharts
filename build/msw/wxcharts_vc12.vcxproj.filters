@@ -68,6 +68,9 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartaxisoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\charts\wxchartcategoricalaxis.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxchartnumericalaxis.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -353,6 +356,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchartaxisoptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wxchartcategoricalaxis.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchartnumericalaxis.cpp">
