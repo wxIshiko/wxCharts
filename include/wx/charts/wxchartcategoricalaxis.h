@@ -36,4 +36,13 @@
 #ifndef _WX_CHARTS_WXCHARTCATEGORICALAXIS_H_
 #define _WX_CHARTS_WXCHARTCATEGORICALAXIS_H_
 
+#include "wxchartaxis.h"
+
+class wxChartCategoricalAxis : public wxChartAxis
+{
+public:
+    wxChartCategoricalAxis(const wxVector<wxString> &labels, 
+        const wxChartAxisOptions &options);
+};
+
 #endif

@@ -34,6 +34,9 @@
 class wxChartsCategoricalData
 {
 public:
+    /// Smart pointer typedef.
+    typedef wxSharedPtr<wxChartsCategoricalData> ptr;
+
     /// Constructs a wxBarChartData instance.
     /// @param labels The labels of the X axis.
     wxChartsCategoricalData(const wxVector<wxString> &labels);

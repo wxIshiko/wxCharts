@@ -54,15 +54,6 @@ public:
     /// Smart pointer typedef.
     typedef wxSharedPtr<wxChartAxis> ptr;
 
-    /// Construcs a wxChartAxis element.
-    /// @param type The type of axis.
-    /// @param options The settings to be used for the axis.
-    wxChartAxis(wxChartAxisType type, const wxChartAxisOptions &options);
-    /// Constructs a wxChartAxis element.
-    /// @param labels The labels to display along the axis.
-    /// @param options The settings to be used for the axis.
-    wxChartAxis(const wxVector<wxString> &labels, const wxChartAxisOptions &options);
-
     virtual bool HitTest(const wxPoint &point) const;
 
     virtual wxPoint2DDouble GetTooltipPosition() const;
@@ -92,6 +83,16 @@ public:
     wxPoint2DDouble GetPosition(wxDouble relativeValue) const;
 
     const wxChartAxisOptions& GetOptions() const;
+
+protected:
+    /// Construcs a wxChartAxis element.
+    /// @param type The type of axis.
+    /// @param options The settings to be used for the axis.
+    wxChartAxis(wxChartAxisType type, const wxChartAxisOptions &options);
+    /// Constructs a wxChartAxis element.
+    /// @param labels The labels to display along the axis.
+    /// @param options The settings to be used for the axis.
+    wxChartAxis(const wxVector<wxString> &labels, const wxChartAxisOptions &options);
 
 private:
     void DrawTickMarks(wxGraphicsContext &gc);

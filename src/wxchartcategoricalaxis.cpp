@@ -32,3 +32,9 @@
 */
 
 #include "wxchartcategoricalaxis.h"
+
+wxChartCategoricalAxis::wxChartCategoricalAxis(const wxVector<wxString> &labels, 
+                                               const wxChartAxisOptions &options)
+    : wxChartAxis(labels, options)
+{
+}
