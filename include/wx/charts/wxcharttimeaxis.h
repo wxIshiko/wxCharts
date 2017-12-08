@@ -25,4 +25,12 @@
 #ifndef _WX_CHARTS_WXCHARTTIMEAXIS_H_
 #define _WX_CHARTS_WXCHARTTIMEAXIS_H_
 
+#include "wxchartaxis.h"
+
+class wxChartTimeAxis : public wxChartAxis
+{
+public:
+    wxChartTimeAxis(const wxChartAxisOptions &options);
+};
+
 #endif

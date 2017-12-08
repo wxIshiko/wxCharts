@@ -21,3 +21,8 @@
 */
 
 #include "wxcharttimeaxis.h"
+
+wxChartTimeAxis::wxChartTimeAxis(const wxChartAxisOptions &options)
+    : wxChartAxis(options)
+{
+}
