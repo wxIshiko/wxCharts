@@ -47,7 +47,8 @@ enum wxChartAxisScale
 class wxChartNumericalAxis : public wxChartAxis
 {
 public:
-    wxChartNumericalAxis(const wxChartAxisOptions &options);
+    wxChartNumericalAxis(wxDouble minValue, wxDouble maxValue, 
+        const wxChartAxisOptions &options);
 
     wxDouble GetMinValue() const;
     void SetMinValue(wxDouble minValue);

@@ -68,6 +68,9 @@ class wxChartGrid : public wxChartElement
 public:
     typedef wxSharedPtr<wxChartGrid> ptr;
 
+    wxChartGrid(const wxPoint2DDouble &position, const wxSize &size,
+        wxChartAxis::ptr xAxis, wxChartAxis::ptr yAxis,
+        const wxChartGridOptions& options);
     /// Constructs a wxChartGrid element. The tick marks on the
     /// X axis are specified explicitly by the labels parameter. The
     /// tick marks on the Y axis are computed automatically using the
