@@ -106,6 +106,9 @@ library wxcharts
         ../../include/wx/charts/wxlinechartoptions.h
         ../../include/wx/charts/wxlinechart.h
         ../../include/wx/charts/wxlinechartctrl.h
+        ../../include/wx/charts/wxtimeserieschartoptions.h
+        ../../include/wx/charts/wxtimeserieschart.h
+        ../../include/wx/charts/wxtimeserieschartctrl.h
         ../../include/wx/charts/wxdoughnutandpiechartoptionsbase.h
         ../../include/wx/charts/wxdoughnutandpiechartbase.h
         ../../include/wx/charts/wxdoughnutchartoptions.h
@@ -209,6 +212,9 @@ library wxcharts
         ../../src/wxlinechartoptions.cpp
         ../../src/wxlinechart.cpp
         ../../src/wxlinechartctrl.cpp
+        ../../src/wxtimeserieschartoptions.cpp
+        ../../src/wxtimeserieschart.cpp
+        ../../src/wxtimeserieschartctrl.cpp
         ../../src/wxdoughnutandpiechartoptionsbase.cpp
         ../../src/wxdoughnutandpiechartbase.cpp
         ../../src/wxdoughnutchartoptions.cpp
