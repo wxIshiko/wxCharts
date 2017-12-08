@@ -1,6 +1,7 @@
 # wxCharts
 
 [![Join the chat at https://gitter.im/wxIshiko/wxCharts](https://badges.gitter.im/wxIshiko/wxCharts.svg)](https://gitter.im/wxIshiko/wxCharts?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![CircleCI](https://circleci.com/gh/wxIshiko/wxCharts.svg?style=svg)](https://circleci.com/gh/wxIshiko/wxCharts)
 
 A library to create charts in wxWidgets applications
 
