@@ -59,6 +59,7 @@ library wxcharts
         ../../include/wx/charts/wxchartaxisoptions.h
         ../../include/wx/charts/wxchartcategoricalaxis.h
         ../../include/wx/charts/wxchartnumericalaxis.h
+        ../../include/wx/charts/wxcharttimeaxis.h
         ../../include/wx/charts/wxchartgridmapping.h
         ../../include/wx/charts/wxchartgridoptions.h
         ../../include/wx/charts/wxchartgrid.h
@@ -161,6 +162,7 @@ library wxcharts
         ../../src/wxchartaxisoptions.cpp
         ../../src/wxchartcategoricalaxis.cpp
         ../../src/wxchartnumericalaxis.cpp
+        ../../src/wxcharttimeaxis.cpp
         ../../src/wxchartgridmapping.cpp
         ../../src/wxchartgridoptions.cpp
         ../../src/wxchartgrid.cpp

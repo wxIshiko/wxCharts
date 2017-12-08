@@ -101,6 +101,7 @@
     <ClCompile Include="..\..\src\wxchartaxisoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartcategoricalaxis.cpp" />
     <ClCompile Include="..\..\src\wxchartnumericalaxis.cpp" />
+    <ClCompile Include="..\..\src\wxcharttimeaxis.cpp" />
     <ClCompile Include="..\..\src\wxchartgridmapping.cpp" />
     <ClCompile Include="..\..\src\wxchartgridoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartgrid.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartaxisoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartcategoricalaxis.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartnumericalaxis.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxcharttimeaxis.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartgridmapping.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartgridoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartgrid.h" />
