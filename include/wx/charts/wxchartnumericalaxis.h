@@ -50,9 +50,6 @@ public:
     wxChartNumericalAxis(wxDouble minValue, wxDouble maxValue, 
         const wxChartAxisOptions &options);
 
-    static wxChartAxis::ptr CreateNumericalAxis(wxDouble minValue, wxDouble maxValue,
-        const wxChartAxisOptions &options);
-
     wxDouble GetMinValue() const;
     void SetMinValue(wxDouble minValue);
     wxDouble GetMaxValue() const;

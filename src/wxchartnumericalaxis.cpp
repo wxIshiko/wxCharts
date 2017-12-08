@@ -40,15 +40,6 @@ wxChartNumericalAxis::wxChartNumericalAxis(wxDouble minValue,
     : wxChartAxis(options),
     m_minValue(minValue), m_maxValue(maxValue)
 {
-}
-
-wxChartAxis::ptr wxChartNumericalAxis::CreateNumericalAxis(wxDouble minValue,
-                                                           wxDouble maxValue,
-                                                           const wxChartAxisOptions &options)
-{
-    wxChartNumericalAxis* numericalAxis = new wxChartNumericalAxis(0, 1, options);
-    wxSharedPtr<wxChartAxis> axis(numericalAxis);
-
     wxDouble effectiveMinXValue = minValue;
     if (options.GetStartValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
     {
@@ -68,19 +59,17 @@ wxChartAxis::ptr wxChartNumericalAxis::CreateNumericalAxis(wxDouble minValue,
     wxChartUtilities::CalculateGridRange(effectiveMinXValue, effectiveMaxXValue,
         graphMinXValue, graphMaxXValue, xValueRange, steps, stepValue);
 
-    numericalAxis->SetMinValue(graphMinXValue);
-    numericalAxis->SetMaxValue(graphMaxXValue);
+    SetMinValue(graphMinXValue);
+    SetMaxValue(graphMaxXValue);
 
     wxVector<wxChartLabel> xLabels;
     wxChartUtilities::BuildNumericalLabels(
-        numericalAxis->GetMinValue(),
+        GetMinValue(),
         steps,
         stepValue,
         wxChartLabelOptions(options.GetFontOptions(), false, wxChartBackgroundOptions(*wxWHITE, 0)),
         xLabels);
-    numericalAxis->SetLabels(xLabels);
-
-    return axis;
+    SetLabels(xLabels);
 }
 
 wxDouble wxChartNumericalAxis::GetMinValue() const
