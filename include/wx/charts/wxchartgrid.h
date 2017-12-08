@@ -136,8 +136,6 @@ public:
         wxDouble minY,wxDouble maxY);
 
 private:
-    static wxChartAxis::ptr CreateNumericalAxis(wxDouble minValue, wxDouble maxValue,
-        const wxChartAxisOptions &options);
     void Fit(wxGraphicsContext &gc);
     void Update();
     void CalculatePadding(const wxChartAxis &xAxis,

@@ -34,7 +34,6 @@
 #include "wxchartgrid.h"
 #include "wxchartnumericalaxis.h"
 #include "wxchartcategoricalaxis.h"
-#include "wxchartutilities.h"
 #include <wx/pen.h>
 
 static const wxDouble MinDistance = 1.0e-3;
@@ -60,7 +59,7 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
                          const wxChartGridOptions& options)
     : m_options(options), m_position(position),
       m_XAxis(new wxChartCategoricalAxis(labels, options.GetXAxisOptions())),
-      m_YAxis(CreateNumericalAxis(minYValue, maxYValue, options.GetYAxisOptions())),
+      m_YAxis(wxChartNumericalAxis::CreateNumericalAxis(minYValue, maxYValue, options.GetYAxisOptions())),
       m_mapping(size, m_XAxis, m_YAxis),
       m_needsFit(true)
 {
@@ -74,8 +73,8 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
                          wxDouble maxYValue,
                          const wxChartGridOptions& options)
     : m_options(options), m_position(position),
-      m_XAxis(CreateNumericalAxis(minXValue, maxXValue, options.GetXAxisOptions())),
-      m_YAxis(CreateNumericalAxis(minYValue, maxYValue, options.GetYAxisOptions())),
+      m_XAxis(wxChartNumericalAxis::CreateNumericalAxis(minXValue, maxXValue, options.GetXAxisOptions())),
+      m_YAxis(wxChartNumericalAxis::CreateNumericalAxis(minYValue, maxYValue, options.GetYAxisOptions())),
       m_mapping(size, m_XAxis, m_YAxis),
       m_needsFit(true),
       m_origAxisLimits(minXValue,maxXValue,minYValue,maxYValue),
@@ -200,53 +199,12 @@ void wxChartGrid::ChangeCorners(wxDouble minX,wxDouble maxX,
 
 void wxChartGrid::Update()
 {
-    m_XAxis = CreateNumericalAxis(m_curAxisLimits.MinX,
+    m_XAxis = wxChartNumericalAxis::CreateNumericalAxis(m_curAxisLimits.MinX,
                                   m_curAxisLimits.MaxX,m_options.GetXAxisOptions());
-    m_YAxis = CreateNumericalAxis(m_curAxisLimits.MinY,
+    m_YAxis = wxChartNumericalAxis::CreateNumericalAxis(m_curAxisLimits.MinY,
                                   m_curAxisLimits.MaxY, m_options.GetYAxisOptions());
     m_mapping = wxChartGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
     m_needsFit = true;
-}
-
-wxChartAxis::ptr wxChartGrid::CreateNumericalAxis(wxDouble minValue,
-                                                  wxDouble maxValue,
-                                                  const wxChartAxisOptions &options)
-{
-    wxChartNumericalAxis* numericalAxis = new wxChartNumericalAxis(0, 1, options);
-    wxSharedPtr<wxChartAxis> axis(numericalAxis);
-
-    wxDouble effectiveMinXValue = minValue;
-    if (options.GetStartValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
-    {
-        effectiveMinXValue = options.GetStartValue();
-    }
-    wxDouble effectiveMaxXValue = maxValue;
-    if (options.GetEndValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
-    {
-        effectiveMaxXValue = options.GetEndValue();
-    }
-
-    wxDouble graphMinXValue;
-    wxDouble graphMaxXValue;
-    wxDouble xValueRange = 0;
-    size_t steps = 0;
-    wxDouble stepValue = 0;
-    wxChartUtilities::CalculateGridRange(effectiveMinXValue, effectiveMaxXValue,
-                                         graphMinXValue, graphMaxXValue, xValueRange, steps, stepValue);
-
-    numericalAxis->SetMinValue(graphMinXValue);
-    numericalAxis->SetMaxValue(graphMaxXValue);
-
-    wxVector<wxChartLabel> xLabels;
-    wxChartUtilities::BuildNumericalLabels(
-        numericalAxis->GetMinValue(),
-        steps,
-        stepValue,
-        wxChartLabelOptions(options.GetFontOptions(), false, wxChartBackgroundOptions(*wxWHITE, 0)),
-        xLabels);
-    numericalAxis->SetLabels(xLabels);
-
-    return axis;
 }
 
 void wxChartGrid::Fit(wxGraphicsContext &gc)

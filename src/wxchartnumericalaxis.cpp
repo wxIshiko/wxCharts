@@ -32,6 +32,7 @@
 */
 
 #include "wxchartnumericalaxis.h"
+#include "wxchartutilities.h"
 
 wxChartNumericalAxis::wxChartNumericalAxis(wxDouble minValue,
                                            wxDouble maxValue,
@@ -39,6 +40,47 @@ wxChartNumericalAxis::wxChartNumericalAxis(wxDouble minValue,
     : wxChartAxis(options),
     m_minValue(minValue), m_maxValue(maxValue)
 {
+}
+
+wxChartAxis::ptr wxChartNumericalAxis::CreateNumericalAxis(wxDouble minValue,
+                                                           wxDouble maxValue,
+                                                           const wxChartAxisOptions &options)
+{
+    wxChartNumericalAxis* numericalAxis = new wxChartNumericalAxis(0, 1, options);
+    wxSharedPtr<wxChartAxis> axis(numericalAxis);
+
+    wxDouble effectiveMinXValue = minValue;
+    if (options.GetStartValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
+    {
+        effectiveMinXValue = options.GetStartValue();
+    }
+    wxDouble effectiveMaxXValue = maxValue;
+    if (options.GetEndValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
+    {
+        effectiveMaxXValue = options.GetEndValue();
+    }
+
+    wxDouble graphMinXValue;
+    wxDouble graphMaxXValue;
+    wxDouble xValueRange = 0;
+    size_t steps = 0;
+    wxDouble stepValue = 0;
+    wxChartUtilities::CalculateGridRange(effectiveMinXValue, effectiveMaxXValue,
+        graphMinXValue, graphMaxXValue, xValueRange, steps, stepValue);
+
+    numericalAxis->SetMinValue(graphMinXValue);
+    numericalAxis->SetMaxValue(graphMaxXValue);
+
+    wxVector<wxChartLabel> xLabels;
+    wxChartUtilities::BuildNumericalLabels(
+        numericalAxis->GetMinValue(),
+        steps,
+        stepValue,
+        wxChartLabelOptions(options.GetFontOptions(), false, wxChartBackgroundOptions(*wxWHITE, 0)),
+        xLabels);
+    numericalAxis->SetLabels(xLabels);
+
+    return axis;
 }
 
 wxDouble wxChartNumericalAxis::GetMinValue() const
