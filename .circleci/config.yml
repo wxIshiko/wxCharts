@@ -10,4 +10,4 @@ jobs:
           command: ls
       - run:
           name: Build
-          command: make .
+          command: make
