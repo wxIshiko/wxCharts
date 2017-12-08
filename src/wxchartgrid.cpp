@@ -42,6 +42,18 @@ static const wxDouble MaxDistance = 1.0e3;
 
 wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
                          const wxSize &size,
+                         wxChartAxis::ptr xAxis,
+                         wxChartAxis::ptr yAxis,
+                         const wxChartGridOptions& options)
+    : m_options(options), m_position(position),
+    m_XAxis(xAxis), m_YAxis(yAxis),
+    m_mapping(size, m_XAxis, m_YAxis),
+    m_needsFit(true)
+{
+}
+
+wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
+                         const wxSize &size,
                          const wxVector<wxString> &labels,
                          wxDouble minYValue,
                          wxDouble maxYValue,
@@ -197,10 +209,10 @@ void wxChartGrid::Update()
 }
 
 wxChartAxis::ptr wxChartGrid::CreateNumericalAxis(wxDouble minValue,
-        wxDouble maxValue,
-        const wxChartAxisOptions &options)
+                                                  wxDouble maxValue,
+                                                  const wxChartAxisOptions &options)
 {
-    wxChartNumericalAxis* numericalAxis = new wxChartNumericalAxis(options);
+    wxChartNumericalAxis* numericalAxis = new wxChartNumericalAxis(0, 1, options);
     wxSharedPtr<wxChartAxis> axis(numericalAxis);
 
     wxDouble effectiveMinXValue = minValue;
