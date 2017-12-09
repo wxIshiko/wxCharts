@@ -64,7 +64,7 @@ public:
         const wxSize &size = wxDefaultSize, long style = 0);
 
 private:
-    virtual wxBarChart& GetChart() wxOVERRIDE;
+    virtual wxBarChart& GetChart();
 
 private:
     wxBarChart m_barChart;

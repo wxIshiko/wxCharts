@@ -50,7 +50,7 @@ public:
         long style = 0);
 
 private:
-    virtual wxBubbleChart& GetChart() wxOVERRIDE;
+    virtual wxBubbleChart& GetChart();
 
 private:
     wxBubbleChart m_bubbleChart;
