@@ -70,7 +70,7 @@ private:
     static wxDouble GetMaxValue(const wxCandlestickChartData &data);
 
     virtual void DoSetSize(const wxSize &size);
-    virtual void DoFit() wxOVERRIDE;
+    virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc);
     virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
