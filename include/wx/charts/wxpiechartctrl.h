@@ -68,7 +68,7 @@ public:
         const wxSize &size = wxDefaultSize, long style = 0);
 
 private:
-    virtual wxPieChart& GetChart() wxOVERRIDE;
+    virtual wxPieChart& GetChart();
 
 private:
     wxPieChart m_pieChart;

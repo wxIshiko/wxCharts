@@ -40,7 +40,7 @@ public:
         const wxSize &size = wxDefaultSize, long style = 0);
 
 private:
-    virtual wxDoughnutChart& GetChart() wxOVERRIDE;
+    virtual wxDoughnutChart& GetChart();
 
 private:
     wxDoughnutChart m_doughnutChart;

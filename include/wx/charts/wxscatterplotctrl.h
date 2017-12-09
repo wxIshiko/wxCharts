@@ -53,7 +53,7 @@ public:
         const wxSize &size = wxDefaultSize, long style = 0);
 
 private:
-    virtual wxScatterPlot& GetChart() wxOVERRIDE;
+    virtual wxScatterPlot& GetChart();
 
 private:
     wxScatterPlot m_scatterPlot;

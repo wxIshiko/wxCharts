@@ -77,7 +77,7 @@ public:
     wxScatterPlot(const wxScatterPlotData &data, 
         const wxScatterPlotOptions &options, const wxSize &size);
 
-    virtual const wxScatterPlotOptions& GetOptions() const wxOVERRIDE;
+    virtual const wxScatterPlotOptions& GetOptions() const;
 
 private:
     void Initialize(const wxScatterPlotData &data);
@@ -86,10 +86,10 @@ private:
     static wxDouble GetMinYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
     static wxDouble GetMaxYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
 
-    virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
-    virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
+    virtual void DoSetSize(const wxSize &size);
+    virtual void DoFit();
+    virtual void DoDraw(wxGraphicsContext &gc);
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 private:
     class Point : public wxChartPoint
