@@ -91,7 +91,7 @@ class wxBubbleChart : public wxChart
 public:
     wxBubbleChart(const wxBubbleChartData &data, const wxSize &size);
 
-    virtual const wxBubbleChartOptions& GetOptions() const wxOVERRIDE;
+    virtual const wxBubbleChartOptions& GetOptions() const;
 
 private:
     void Initialize(const wxBubbleChartData &data);
@@ -102,10 +102,10 @@ private:
     static wxDouble GetMinZValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
     static wxDouble GetMaxZValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
 
-    virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
-    virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
+    virtual void DoSetSize(const wxSize &size);
+    virtual void DoFit();
+    virtual void DoDraw(wxGraphicsContext &gc);
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 private:
     class Circle : public wxChartCircle
