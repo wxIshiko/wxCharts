@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: gcc:latest
+      - image: wxishiko/ubuntu-wxwidgets-build:latest
     steps:
       - checkout
       - run:
