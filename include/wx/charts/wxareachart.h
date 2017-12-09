@@ -99,7 +99,7 @@ public:
     wxAreaChart(const wxAreaChartData &data,
         const wxAreaChartOptions &options, const wxSize &size);
 
-    virtual const wxAreaChartOptions& GetOptions() const wxOVERRIDE;
+    virtual const wxAreaChartOptions& GetOptions() const;
 
     void Save(const wxString &filename, const wxBitmapType &type,
         const wxSize &size);
@@ -111,10 +111,10 @@ private:
     static wxDouble GetMinYValue(const wxVector<wxAreaChartDataset::ptr>& datasets);
     static wxDouble GetMaxYValue(const wxVector<wxAreaChartDataset::ptr>& datasets);
 
-    virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
-    virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
+    virtual void DoSetSize(const wxSize &size);
+    virtual void DoFit();
+    virtual void DoDraw(wxGraphicsContext &gc);
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 private:
     class Point : public wxChartPoint

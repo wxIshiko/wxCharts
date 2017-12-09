@@ -65,7 +65,7 @@ public:
         const wxSize &size = wxDefaultSize, long style = 0);
 
 private:
-    virtual wxAreaChart& GetChart() wxOVERRIDE;
+    virtual wxAreaChart& GetChart();
 
     void CreateContextMenu();
 
