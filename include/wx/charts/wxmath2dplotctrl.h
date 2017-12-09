@@ -70,7 +70,7 @@ public:
     void AddDataset(const wxMath2DPlotDataset::ptr &newset);
 
 private:
-    virtual wxMath2DPlot& GetChart() wxOVERRIDE;
+    virtual wxMath2DPlot& GetChart();
 
     void CreateContextMenu();
 

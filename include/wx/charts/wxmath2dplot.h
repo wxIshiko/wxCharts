@@ -114,7 +114,7 @@ public:
     wxMath2DPlot(const wxMath2DPlotData &data,
         const wxMath2DPlotOptions &options, const wxSize &size);
 
-    virtual const wxMath2DPlotOptions& GetOptions() const wxOVERRIDE;
+    virtual const wxMath2DPlotOptions& GetOptions() const;
 
     void Save(const wxString &filename, const wxBitmapType &type,
         const wxSize &size);
@@ -134,10 +134,10 @@ private:
     static wxDouble GetMinYValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets,const AxisFunc &F);
     static wxDouble GetMaxYValue(const wxVector<wxMath2DPlotDataset::ptr>& datasets,const AxisFunc &F);
 
-    virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
-    virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
+    virtual void DoSetSize(const wxSize &size);
+    virtual void DoFit();
+    virtual void DoDraw(wxGraphicsContext &gc);
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 private:
     class Point : public wxChartPoint
