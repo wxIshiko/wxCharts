@@ -53,7 +53,7 @@ public:
         const wxSize &size = wxDefaultSize, long style = 0);
 
 private:
-    virtual wxStackedBarChart& GetChart() wxOVERRIDE;
+    virtual wxStackedBarChart& GetChart();
 
 private:
     wxStackedBarChart m_stackedBarChart;

@@ -39,16 +39,16 @@ public:
     wxStackedBarChart(const wxChartsCategoricalData &data,
         const wxStackedBarChartOptions &options, const wxSize &size);
 
-    virtual const wxStackedBarChartOptions& GetOptions() const wxOVERRIDE;
+    virtual const wxStackedBarChartOptions& GetOptions() const;
 
 private:
     static wxDouble GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
     static wxDouble GetCumulativeMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
 
-    virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
-    virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
+    virtual void DoSetSize(const wxSize &size);
+    virtual void DoFit();
+    virtual void DoDraw(wxGraphicsContext &gc);
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 private:
     class Bar : public wxChartRectangle
