@@ -27,7 +27,7 @@ library wxcharts
     }
     if ($(toolset) == gnu)
     {
-        cxx-compiler-options = "`wx-config --cxxflags --libs`";
+        cxx-compiler-options = "-std=c++11 `wx-config --cxxflags --libs`";
     }
 
     if ($(config) == Debug)
