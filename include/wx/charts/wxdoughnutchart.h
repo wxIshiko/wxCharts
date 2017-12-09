@@ -50,7 +50,7 @@ public:
     wxDoughnutChart(const wxDoughnutChartData &data,
         const wxDougnutChartOptions &options, const wxSize &size);
 
-    virtual const wxDougnutChartOptions& GetOptions() const wxOVERRIDE;
+    virtual const wxDougnutChartOptions& GetOptions() const;
 
 private:
     void Initialize(const wxDoughnutChartData &data, const wxSize &size);
