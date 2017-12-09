@@ -37,7 +37,7 @@ public:
     void AddColumnChart(const wxChartsCategoricalData &data);
 
 private:
-    virtual wxCombinationChart& GetChart() wxOVERRIDE;
+    virtual wxCombinationChart& GetChart();
 
 private:
     wxCombinationChart m_combinationChart;
