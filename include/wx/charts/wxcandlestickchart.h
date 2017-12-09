@@ -63,16 +63,16 @@ class wxCandlestickChart : public wxChart
 public:
     wxCandlestickChart(const wxCandlestickChartData &data, const wxSize &size);
 
-    virtual const wxCandlestickChartOptions& GetOptions() const wxOVERRIDE;
+    virtual const wxCandlestickChartOptions& GetOptions() const;
 
 private:
     static wxDouble GetMinValue(const wxCandlestickChartData &data);
     static wxDouble GetMaxValue(const wxCandlestickChartData &data);
 
-    virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
+    virtual void DoSetSize(const wxSize &size);
     virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
+    virtual void DoDraw(wxGraphicsContext &gc);
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 private:
     class Candlestick : public wxChartElement

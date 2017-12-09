@@ -50,7 +50,7 @@ public:
         long style = 0);
 
 private:
-    virtual wxCandlestickChart& GetChart() wxOVERRIDE;
+    virtual wxCandlestickChart& GetChart();
 
 private:
     wxCandlestickChart m_candlestickChart;
