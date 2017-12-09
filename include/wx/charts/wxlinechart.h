@@ -40,7 +40,6 @@
 #include "wxlinechartoptions.h"
 #include "wxchartgrid.h"
 #include "wxchartpoint.h"
-#include <wx/defs.h>
 
 enum wxLineType
 {
@@ -142,7 +141,7 @@ public:
     wxLineChart(const wxLineChartData &data, const wxLineChartOptions &options,
         const wxSize &size);
 
-    virtual const wxLineChartOptions& GetOptions() const wxOVERRIDE;
+    virtual const wxLineChartOptions& GetOptions() const;
 
     void Save(const wxString &filename, const wxBitmapType &type,
         const wxSize &size);
@@ -152,10 +151,10 @@ private:
     static wxDouble GetMinValue(const wxVector<wxLineChartDataset::ptr>& datasets);
     static wxDouble GetMaxValue(const wxVector<wxLineChartDataset::ptr>& datasets);
 
-    virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
-    virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
+    virtual void DoSetSize(const wxSize &size);
+    virtual void DoFit();
+    virtual void DoDraw(wxGraphicsContext &gc);
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 private:
     class Point : public wxChartPoint
