@@ -62,16 +62,16 @@ class wxRadarChart : public wxChart
 public:
     wxRadarChart(const wxSize &size);
 
-    virtual const wxRadarChartOptions& GetOptions() const wxOVERRIDE;
+    virtual const wxRadarChartOptions& GetOptions() const;
 
 private:
     static wxDouble GetMinValue();
     static wxDouble GetMaxValue();
 
-    virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
-    virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
+    virtual void DoSetSize(const wxSize &size);
+    virtual void DoFit();
+    virtual void DoDraw(wxGraphicsContext &gc);
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 private:
     wxRadarChartOptions m_options;

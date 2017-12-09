@@ -60,7 +60,7 @@ public:
         long style = 0);
 
 private:
-    virtual wxRadarChart& GetChart() wxOVERRIDE;
+    virtual wxRadarChart& GetChart();
 
 private:
     wxRadarChart m_radarChart;
