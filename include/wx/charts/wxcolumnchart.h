@@ -49,16 +49,16 @@ class wxColumnChart : public wxChart
 public:
     wxColumnChart(const wxChartsCategoricalData &data, const wxSize &size);
 
-    virtual const wxColumnChartOptions& GetOptions() const wxOVERRIDE;
+    virtual const wxColumnChartOptions& GetOptions() const;
 
 private:
     static wxDouble GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
     static wxDouble GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
 
-    virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
-    virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
+    virtual void DoSetSize(const wxSize &size);
+    virtual void DoFit();
+    virtual void DoDraw(wxGraphicsContext &gc);
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
     wxDouble GetColumnWidth() const;
 

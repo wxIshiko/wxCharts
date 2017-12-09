@@ -61,7 +61,7 @@ public:
         long style = 0);
 
 private:
-    virtual wxColumnChart& GetChart() wxOVERRIDE;
+    virtual wxColumnChart& GetChart();
 
 private:
     wxColumnChart m_columnChart;
