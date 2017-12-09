@@ -51,17 +51,17 @@ public:
     wxBarChart(const wxChartsCategoricalData &data, wxSharedPtr<wxBarChartOptions> options,
         const wxSize &size);
 
-    virtual const wxBarChartOptions& GetOptions() const wxOVERRIDE;
+    virtual const wxBarChartOptions& GetOptions() const;
 
 private:
     void Initialize(const wxChartsCategoricalData &data);
     static wxDouble GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
     static wxDouble GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
 
-    virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
-    virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
+    virtual void DoSetSize(const wxSize &size);
+    virtual void DoFit();
+    virtual void DoDraw(wxGraphicsContext &gc);
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
     wxDouble GetBarHeight() const;
 
