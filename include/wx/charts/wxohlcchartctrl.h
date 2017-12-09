@@ -50,7 +50,7 @@ public:
         long style = 0);
 
 private:
-    virtual wxOHLCChart& GetChart() wxOVERRIDE;
+    virtual wxOHLCChart& GetChart();
 
 private:
     wxOHLCChart m_ohlcChart;

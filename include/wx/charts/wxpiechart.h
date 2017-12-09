@@ -50,7 +50,7 @@ public:
     wxPieChart(const wxPieChartData &data,
         const wxPieChartOptions &options, const wxSize &size);
 
-    virtual const wxPieChartOptions& GetOptions() const wxOVERRIDE;
+    virtual const wxPieChartOptions& GetOptions() const;
 
 private:
     void Initialize(const wxPieChartData &data, const wxSize &size);

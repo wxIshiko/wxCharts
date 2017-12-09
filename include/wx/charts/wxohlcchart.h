@@ -63,16 +63,16 @@ class wxOHLCChart : public wxChart
 public:
     wxOHLCChart(const wxOHLCChartData &data, const wxSize &size);
 
-    virtual const wxOHLCChartOptions& GetOptions() const wxOVERRIDE;
+    virtual const wxOHLCChartOptions& GetOptions() const;
 
 private:
     static wxDouble GetMinValue(const wxOHLCChartData &data);
     static wxDouble GetMaxValue(const wxOHLCChartData &data);
 
-    virtual void DoSetSize(const wxSize &size) wxOVERRIDE;
-    virtual void DoFit() wxOVERRIDE;
-    virtual void DoDraw(wxGraphicsContext &gc) wxOVERRIDE;
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) wxOVERRIDE;
+    virtual void DoSetSize(const wxSize &size);
+    virtual void DoFit();
+    virtual void DoDraw(wxGraphicsContext &gc);
+    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
 private:
     class OHLDCLines : public wxChartElement
