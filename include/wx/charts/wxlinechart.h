@@ -40,6 +40,7 @@
 #include "wxlinechartoptions.h"
 #include "wxchartgrid.h"
 #include "wxchartpoint.h"
+#include <wx/defs.h>
 
 enum wxLineType
 {
