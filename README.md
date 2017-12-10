@@ -1,15 +1,12 @@
 # wxCharts
 
 [![Join the chat at https://gitter.im/wxIshiko/wxCharts](https://badges.gitter.im/wxIshiko/wxCharts.svg)](https://gitter.im/wxIshiko/wxCharts?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![CircleCI](https://circleci.com/gh/wxIshiko/wxCharts.svg?style=svg)](https://circleci.com/gh/wxIshiko/wxCharts)
 
 A library to create charts in wxWidgets applications
 
-## Installation
-
-
 ## Usage
 
+For setup and usage please visit the [wxCharts website](http://www.wxishiko.com/wxCharts/).
 
 ## Contributing
 
@@ -22,6 +19,12 @@ A library to create charts in wxWidgets applications
 wxCharts tries to comply with the coding conventions of the main
 wxWidgets project. Contributions should broadly follow these 
 conventions too.
+
+## Continuous integration
+
+We use [CircleCI](https://circleci.com/) to run a continuous build of the master branch of the wxCharts project.
+
+Build status: [![CircleCI](https://circleci.com/gh/wxIshiko/wxCharts.svg?style=svg)](https://circleci.com/gh/wxIshiko/wxCharts)
 
 ## Credits
 
