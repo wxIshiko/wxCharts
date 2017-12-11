@@ -38,6 +38,12 @@ public:
     wxTimeSeriesChartCtrl(wxWindow *parent, wxWindowID id,
         const wxTimeSeriesChartOptions &options, const wxPoint &pos = wxDefaultPosition,
         const wxSize &size = wxDefaultSize, long style = 0);
+
+private:
+    virtual wxTimeSeriesChart& GetChart();
+
+private:
+    wxTimeSeriesChart m_timeSeriesChart;
 };
 
 #endif

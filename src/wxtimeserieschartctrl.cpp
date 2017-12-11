@@ -27,7 +27,8 @@ wxTimeSeriesChartCtrl::wxTimeSeriesChartCtrl(wxWindow *parent,
                                              const wxPoint &pos,
                                              const wxSize &size,
                                              long style)
-    : wxChartCtrl(parent, id, pos, size, style)
+    : wxChartCtrl(parent, id, pos, size, style),
+    m_timeSeriesChart(size)
 {
 }
 
@@ -37,6 +38,12 @@ wxTimeSeriesChartCtrl::wxTimeSeriesChartCtrl(wxWindow *parent,
                                              const wxPoint &pos,
                                              const wxSize &size,
                                              long style)
-    : wxChartCtrl(parent, id, pos, size, style)
+    : wxChartCtrl(parent, id, pos, size, style),
+    m_timeSeriesChart(size)
 {
+}
+
+wxTimeSeriesChart& wxTimeSeriesChartCtrl::GetChart()
+{
+    return m_timeSeriesChart;
 }

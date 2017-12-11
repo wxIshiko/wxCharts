@@ -31,3 +31,26 @@ wxTimeSeriesChart::wxTimeSeriesChart(const wxTimeSeriesChartOptions &options,
     : m_options(options)
 {
 }
+
+const wxTimeSeriesChartOptions& wxTimeSeriesChart::GetOptions() const
+{
+    return m_options;
+}
+
+void wxTimeSeriesChart::DoSetSize(const wxSize &size)
+{
+}
+
+void wxTimeSeriesChart::DoFit()
+{
+}
+
+void wxTimeSeriesChart::DoDraw(wxGraphicsContext &gc)
+{
+}
+
+wxSharedPtr<wxVector<const wxChartElement*> > wxTimeSeriesChart::GetActiveElements(const wxPoint &point)
+{
+    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    return activeElements;
+}

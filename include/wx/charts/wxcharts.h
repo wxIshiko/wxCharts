@@ -30,6 +30,7 @@
 #include "wxcolumnchartctrl.h"
 #include "wxstackedcolumnchartctrl.h"
 #include "wxlinechartctrl.h"
+#include "wxtimeserieschartctrl.h"
 #include "wxdoughnutchartctrl.h"
 #include "wxpiechartctrl.h"
 #include "wxpolarareachartctrl.h"
