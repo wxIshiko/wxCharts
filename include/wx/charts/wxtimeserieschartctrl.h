@@ -25,4 +25,19 @@
 #ifndef _WX_CHARTS_WXTIMESERIESCHARTCTRL_H_
 #define _WX_CHARTS_WXTIMESERIESCHARTCTRL_H_
 
+#include "wxchartctrl.h"
+#include "wxtimeserieschart.h"
+
+/// A control that displays a time series chart.
+class wxTimeSeriesChartCtrl : public wxChartCtrl
+{
+public:
+    wxTimeSeriesChartCtrl(wxWindow *parent, wxWindowID id,
+        const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
+        long style = 0);
+    wxTimeSeriesChartCtrl(wxWindow *parent, wxWindowID id,
+        const wxTimeSeriesChartOptions &options, const wxPoint &pos = wxDefaultPosition,
+        const wxSize &size = wxDefaultSize, long style = 0);
+};
+
 #endif

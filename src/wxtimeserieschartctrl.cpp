@@ -21,3 +21,22 @@
 */
 
 #include "wxtimeserieschartctrl.h"
+
+wxTimeSeriesChartCtrl::wxTimeSeriesChartCtrl(wxWindow *parent,
+                                             wxWindowID id,
+                                             const wxPoint &pos,
+                                             const wxSize &size,
+                                             long style)
+    : wxChartCtrl(parent, id, pos, size, style)
+{
+}
+
+wxTimeSeriesChartCtrl::wxTimeSeriesChartCtrl(wxWindow *parent,
+                                             wxWindowID id,
+                                             const wxTimeSeriesChartOptions &options,
+                                             const wxPoint &pos,
+                                             const wxSize &size,
+                                             long style)
+    : wxChartCtrl(parent, id, pos, size, style)
+{
+}
