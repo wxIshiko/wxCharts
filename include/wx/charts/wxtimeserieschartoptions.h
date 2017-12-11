@@ -25,4 +25,14 @@
 #ifndef _WX_CHARTS_WXTIMESERIESCHART_H_
 #define _WX_CHARTS_WXTIMESERIESCHART_H_
 
+#include "wxchartoptions.h"
+#include "wxchartgridoptions.h"
+
+class wxTimeSeriesChartOptions : public wxChartOptions
+{
+public:
+    /// Constructs a wxTimeSeriesChartOptions instance.
+    wxTimeSeriesChartOptions();
+};
+
 #endif

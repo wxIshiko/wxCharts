@@ -21,3 +21,13 @@
 */
 
 #include "wxtimeserieschart.h"
+
+wxTimeSeriesChart::wxTimeSeriesChart(const wxSize &size)
+{
+}
+
+wxTimeSeriesChart::wxTimeSeriesChart(const wxTimeSeriesChartOptions &options,
+                                     const wxSize &size)
+    : m_options(options)
+{
+}

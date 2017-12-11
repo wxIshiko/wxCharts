@@ -25,4 +25,18 @@
 #ifndef _WX_CHARTS_WXTIMESERIESCHARTOPTIONS_H_
 #define _WX_CHARTS_WXTIMESERIESCHARTOPTIONS_H_
 
+#include "wxchart.h"
+#include "wxtimeserieschartoptions.h"
+
+class wxTimeSeriesChart : public wxChart
+{
+public:
+    wxTimeSeriesChart(const wxSize &size);
+    wxTimeSeriesChart(const wxTimeSeriesChartOptions &options,
+        const wxSize &size);
+
+private:
+    wxTimeSeriesChartOptions m_options;
+};
+
 #endif

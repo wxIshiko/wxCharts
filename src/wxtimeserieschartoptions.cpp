@@ -21,3 +21,7 @@
 */
 
 #include "wxtimeserieschartoptions.h"
+
+wxTimeSeriesChartOptions::wxTimeSeriesChartOptions()
+{
+}
