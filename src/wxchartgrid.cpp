@@ -51,22 +51,6 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 {
 }
 
-/*
-wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
-                         const wxSize &size,
-                         const wxVector<wxString> &labels,
-                         wxDouble minYValue,
-                         wxDouble maxYValue,
-                         const wxChartGridOptions& options)
-    : m_options(options), m_position(position),
-      m_XAxis(new wxChartCategoricalAxis(labels, options.GetXAxisOptions())),
-      m_YAxis(new wxChartNumericalAxis(minYValue, maxYValue, options.GetYAxisOptions())),
-      m_mapping(size, m_XAxis, m_YAxis),
-      m_needsFit(true)
-{
-}
-*/
-
 wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
                          const wxSize &size,
                          wxDouble minXValue,

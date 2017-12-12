@@ -47,6 +47,16 @@ enum wxChartAxisScale
 class wxChartNumericalAxis : public wxChartAxis
 {
 public:
+    /// Constructs a wxChartNumericalAxis axis. The
+    /// tick marks on the axis are computed automatically 
+    /// using the minimum and maximum values that need to
+    /// be displayed on the grid.
+    /// @param minYValue The minimum of the values that
+    /// will be shown on the axis.
+    /// @param maxYValue The maximum of the values that
+    /// will be shown on the axis.
+    /// @param options The settings to be used for the
+    /// axis.
     wxChartNumericalAxis(wxDouble minValue, wxDouble maxValue, 
         const wxChartAxisOptions &options);
     static ptr make_shared(wxDouble minValue, wxDouble maxValue,

@@ -68,28 +68,18 @@ class wxChartGrid : public wxChartElement
 public:
     typedef wxSharedPtr<wxChartGrid> ptr;
 
-    wxChartGrid(const wxPoint2DDouble &position, const wxSize &size,
-        wxChartAxis::ptr xAxis, wxChartAxis::ptr yAxis,
-        const wxChartGridOptions& options);
-    /// Constructs a wxChartGrid element. The tick marks on the
-    /// X axis are specified explicitly by the labels parameter. The
-    /// tick marks on the Y axis are computed automatically using the
-    /// minimum and maximum values that need to be displayed on the grid.
+    /// Constructs a wxChartGrid element.
     /// @param position The position of the top left corner
     /// of the chart.
     /// @param size The size of the area where the grid
     /// will be displayed.
-    /// @param labels The labels of the X axis.
-    /// @param minYValue The minimum of the values that
-    /// will be shown on the chart for the Y coordinate.
-    /// @param maxYValue The maximum of the values that
-    /// will be shown on the chart for the Y coordinate.
+    /// @param xAxis The X axis.
+    /// @param yAxis The Y axis.
     /// @param options The settings to be used for the
     /// grid.
-    /*wxChartGrid(const wxPoint2DDouble &position, const wxSize &size,
-        const wxVector<wxString> &labels,
-        wxDouble minYValue, wxDouble maxYValue,
-        const wxChartGridOptions& options);*/
+    wxChartGrid(const wxPoint2DDouble &position, const wxSize &size,
+        wxChartAxis::ptr xAxis, wxChartAxis::ptr yAxis,
+        const wxChartGridOptions& options);
     /// Constructs a wxChartGrid element. The tick marks on the X and
     /// Y axes are computed automatically using the
     /// minimum and maximum values that need to be displayed on the grid.

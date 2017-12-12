@@ -41,6 +41,11 @@
 class wxChartCategoricalAxis : public wxChartAxis
 {
 public:
+    /// Constructs a wxChartCategoricalAxis axis. The tick marks
+    /// on the axis are specified explicitly by the labels parameter.
+    /// @param labels The labels of the axis.
+    /// @param options The settings to be used for the
+    /// axis.
     wxChartCategoricalAxis(const wxVector<wxString> &labels, 
         const wxChartAxisOptions &options);
     static ptr make_shared(const wxVector<wxString> &labels,
