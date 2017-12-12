@@ -92,6 +92,15 @@ void  wxMath2DPlotCtrl::SetChartOptions(const wxMath2DPlotOptions& opt)
         parent->Layout();
 }
 
+void wxMath2DPlotCtrl::SetChartType(std::size_t index,const wxChartType &type)
+{
+    if(!m_math2dPlot.SetChartType(index,type))
+        return;
+    auto parent = this->GetParent();
+    if(parent)
+        parent->Layout();
+}
+
 bool wxMath2DPlotCtrl::UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> &points)
 {
     if (!m_math2dPlot.UpdateData(index,points))

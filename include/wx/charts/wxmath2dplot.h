@@ -130,6 +130,7 @@ public:
     void  SetGridOptions(const wxChartGridOptions& opt);
     const wxMath2DPlotOptions& GetChartOptions() const;
     void  SetChartOptions(const wxMath2DPlotOptions& opt);
+    bool  SetChartType(std::size_t index,const wxChartType &type);
 
 private:
     void Initialize(const wxMath2DPlotData &data);
@@ -183,6 +184,7 @@ private:
         const wxColor& GetDotColor() const;
         const wxColor& GetDotStrokeColor() const;
         const wxChartType& GetType() const;
+        void SetType(const wxChartType &chartType);
 
         const wxVector<Point::ptr>& GetPoints() const;
         void AppendPoint(Point::ptr point);

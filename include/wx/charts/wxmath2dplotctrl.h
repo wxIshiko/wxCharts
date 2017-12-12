@@ -73,6 +73,7 @@ public:
     void  SetGridOptions(const wxChartGridOptions& opt);
     const wxMath2DPlotOptions& GetChartOptions() const;
     void  SetChartOptions(const wxMath2DPlotOptions& opt);
+    void  SetChartType(std::size_t index,const wxChartType &type);
 
 private:
     virtual wxMath2DPlot& GetChart();
