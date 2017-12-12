@@ -219,6 +219,26 @@ const wxMath2DPlotOptions& wxMath2DPlot::GetOptions() const
     return m_options;
 }
 
+const wxChartGridOptions& wxMath2DPlot::GetGridOptions() const
+{
+    return m_grid.GetOptions();
+}
+
+void wxMath2DPlot::SetGridOptions(const wxChartGridOptions& opt)
+{
+    m_grid.SetOptions(opt);
+}
+
+const wxMath2DPlotOptions& wxMath2DPlot::GetChartOptions() const
+{
+    return m_options;
+}
+
+void wxMath2DPlot::SetChartOptions(const wxMath2DPlotOptions& opt)
+{
+    m_options = opt;
+}
+
 void wxMath2DPlot::Save(const wxString &filename,
                         const wxBitmapType &type,
                         const wxSize &size)

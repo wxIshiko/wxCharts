@@ -119,3 +119,12 @@ wxChartGridLineOptions& wxChartGridOptions::GetVerticalGridLineOptions()
 {
     return m_verticalGridLinesOptions;
 }
+
+void wxChartGridOptions::SetShowGrid(bool show)
+{
+    if(m_horizontalGridLineOptions.ShowGridLines() != show)
+        m_horizontalGridLineOptions.SetShowGridLines(show);
+
+    if(m_verticalGridLinesOptions.ShowGridLines() != show)
+        m_verticalGridLinesOptions.SetShowGridLines(show);
+}

@@ -142,6 +142,16 @@ const wxChartGridMapping& wxChartGrid::GetMapping() const
     return m_mapping;
 }
 
+void wxChartGrid::SetOptions(const wxChartGridOptions& opt)
+{
+    m_options = opt;
+}
+
+const wxChartGridOptions& wxChartGrid::GetOptions() const
+{
+    return m_options;
+}
+
 bool wxChartGrid::Scale(int c)
 {
     if(c)
