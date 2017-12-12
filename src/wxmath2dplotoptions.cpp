@@ -24,7 +24,8 @@
 
 wxMath2DPlotOptions::wxMath2DPlotOptions()
     : m_dotRadius(4), m_dotStrokeWidth(1),
-    m_lineWidth(2), m_hitDetectionRange(24)
+    m_lineWidth(2), m_hitDetectionRange(24),
+    m_needsFit(false)
 {
     auto temp = [](wxDouble x){return x;};
     m_axisFuncX = temp;
@@ -76,9 +77,21 @@ const AxisFunc& wxMath2DPlotOptions::GetAxisFuncY() const
 void wxMath2DPlotOptions::SetAxisFuncX(const AxisFunc &newfunc)
 {
     m_axisFuncX = newfunc;
+    m_needsFit = true;
 }
 
 void wxMath2DPlotOptions::SetAxisFuncY(const AxisFunc &newfunc)
 {
     m_axisFuncY = newfunc;
+    m_needsFit = true;
+}
+
+bool wxMath2DPlotOptions::isNeedsFit() const
+{
+    return m_needsFit;
+}
+
+void wxMath2DPlotOptions::Reset()
+{
+    m_needsFit = false;
 }

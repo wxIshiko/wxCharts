@@ -74,6 +74,8 @@ public:
     const AxisFunc& GetAxisFuncY() const;
     void SetAxisFuncX(const AxisFunc &newfunc);
     void SetAxisFuncY(const AxisFunc &newfunc);
+    bool isNeedsFit() const;
+    void Reset();
 
 private:
     wxChartGridOptions m_gridOptions;
@@ -83,6 +85,7 @@ private:
     wxDouble m_hitDetectionRange;
     AxisFunc m_axisFuncX;
     AxisFunc m_axisFuncY;
+    bool m_needsFit;
 };
 
 #endif

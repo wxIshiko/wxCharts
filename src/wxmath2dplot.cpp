@@ -237,6 +237,11 @@ const wxMath2DPlotOptions& wxMath2DPlot::GetChartOptions() const
 void wxMath2DPlot::SetChartOptions(const wxMath2DPlotOptions& opt)
 {
     m_options = opt;
+    if(m_options.isNeedsFit())
+    {
+        Update();
+        m_options.Reset();
+    }
 }
 
 void wxMath2DPlot::Save(const wxString &filename,
