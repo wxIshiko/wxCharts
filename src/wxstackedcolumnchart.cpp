@@ -32,6 +32,8 @@
 */
 
 #include "wxstackedcolumnchart.h"
+#include "wxchartcategoricalaxis.h"
+#include "wxchartnumericalaxis.h"
 #include <sstream>
 
 wxStackedColumnChart::Column::Column(wxDouble value,
@@ -75,8 +77,10 @@ wxStackedColumnChart::wxStackedColumnChart(const wxChartsCategoricalData &data,
                                            const wxSize &size)
     : m_grid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
-        size, data.GetLabels(), GetCumulativeMinValue(data.GetDatasets()),
-        GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions()
+        size,
+        wxChartCategoricalAxis::make_shared(data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared(GetCumulativeMinValue(data.GetDatasets()), GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
+        m_options.GetGridOptions()
         )
 {
     const wxVector<wxChartsDoubleDataset::ptr>& datasets = data.GetDatasets();

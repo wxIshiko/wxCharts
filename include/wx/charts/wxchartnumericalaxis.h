@@ -49,6 +49,8 @@ class wxChartNumericalAxis : public wxChartAxis
 public:
     wxChartNumericalAxis(wxDouble minValue, wxDouble maxValue, 
         const wxChartAxisOptions &options);
+    static ptr make_shared(wxDouble minValue, wxDouble maxValue,
+        const wxChartAxisOptions &options);
 
     wxDouble GetMinValue() const;
     void SetMinValue(wxDouble minValue);

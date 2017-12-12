@@ -43,6 +43,8 @@ class wxChartCategoricalAxis : public wxChartAxis
 public:
     wxChartCategoricalAxis(const wxVector<wxString> &labels, 
         const wxChartAxisOptions &options);
+    static ptr make_shared(const wxVector<wxString> &labels,
+        const wxChartAxisOptions &options);
 };
 
 #endif

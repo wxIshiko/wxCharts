@@ -51,6 +51,7 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 {
 }
 
+/*
 wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
                          const wxSize &size,
                          const wxVector<wxString> &labels,
@@ -64,6 +65,7 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
       m_needsFit(true)
 {
 }
+*/
 
 wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
                          const wxSize &size,

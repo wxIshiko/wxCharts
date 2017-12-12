@@ -23,6 +23,8 @@
 /// @file
 
 #include "wxohlcchart.h"
+#include "wxchartcategoricalaxis.h"
+#include "wxchartnumericalaxis.h"
 #include <wx/brush.h>
 #include <wx/pen.h>
 #include <sstream>
@@ -134,7 +136,10 @@ wxOHLCChart::wxOHLCChart(const wxOHLCChartData &data,
                          const wxSize &size)
     : m_grid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
-        size, data.GetLabels(), GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions()
+        size,
+        wxChartCategoricalAxis::make_shared(data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared(GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions().GetYAxisOptions()),
+        m_options.GetGridOptions()
         )
 {
     for (size_t i = 0; i < data.GetData().size(); ++i)

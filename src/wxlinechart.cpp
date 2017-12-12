@@ -32,6 +32,8 @@
 */
 
 #include "wxlinechart.h"
+#include "wxchartcategoricalaxis.h"
+#include "wxchartnumericalaxis.h"
 #include <wx/brush.h>
 #include <wx/pen.h>
 #include <wx/dcmemory.h>
@@ -205,8 +207,10 @@ wxLineChart::wxLineChart(const wxLineChartData &data,
                          const wxSize &size)
     : m_grid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
-        size, data.GetLabels(), GetMinValue(data.GetDatasets()),
-        GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
+        size,
+        wxChartCategoricalAxis::make_shared(data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared(GetMinValue(data.GetDatasets()), GetMaxValue(data.GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
+        m_options.GetGridOptions()
         )
 {
     Initialize(data);
@@ -218,8 +222,10 @@ wxLineChart::wxLineChart(const wxLineChartData &data,
     : m_options(options),
     m_grid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
-        size, data.GetLabels(), GetMinValue(data.GetDatasets()),
-        GetMaxValue(data.GetDatasets()), m_options.GetGridOptions()
+        size,
+        wxChartCategoricalAxis::make_shared(data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared(GetMinValue(data.GetDatasets()), GetMaxValue(data.GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
+        m_options.GetGridOptions()
         )
 {
     Initialize(data);

@@ -72,6 +72,13 @@ wxChartNumericalAxis::wxChartNumericalAxis(wxDouble minValue,
     SetLabels(xLabels);
 }
 
+wxChartNumericalAxis::ptr wxChartNumericalAxis::make_shared(wxDouble minValue,
+                                                            wxDouble maxValue,
+                                                            const wxChartAxisOptions &options)
+{
+    return ptr(new wxChartNumericalAxis(minValue, maxValue, options));
+}
+
 wxDouble wxChartNumericalAxis::GetMinValue() const
 {
     return m_minValue;

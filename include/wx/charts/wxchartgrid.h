@@ -86,10 +86,10 @@ public:
     /// will be shown on the chart for the Y coordinate.
     /// @param options The settings to be used for the
     /// grid.
-    wxChartGrid(const wxPoint2DDouble &position, const wxSize &size,
+    /*wxChartGrid(const wxPoint2DDouble &position, const wxSize &size,
         const wxVector<wxString> &labels,
         wxDouble minYValue, wxDouble maxYValue,
-        const wxChartGridOptions& options);
+        const wxChartGridOptions& options);*/
     /// Constructs a wxChartGrid element. The tick marks on the X and
     /// Y axes are computed automatically using the
     /// minimum and maximum values that need to be displayed on the grid.

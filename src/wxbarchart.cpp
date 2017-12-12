@@ -33,6 +33,8 @@
 
 #include "wxbarchart.h"
 #include "wxchartstheme.h"
+#include "wxchartcategoricalaxis.h"
+#include "wxchartnumericalaxis.h"
 #include <sstream>
 
 wxBarChart::Bar::Bar(wxDouble value,
@@ -71,9 +73,11 @@ wxBarChart::wxBarChart(const wxChartsCategoricalData &data,
     : m_options(wxChartsDefaultTheme->GetBarChartOptions()),
     m_grid(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
-        size, data.GetLabels(), GetMinValue(data.GetDatasets()),
-        GetMaxValue(data.GetDatasets()), m_options->GetGridOptions()
-        )
+        size,
+        wxChartCategoricalAxis::make_shared(data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared(GetMinValue(data.GetDatasets()), GetMaxValue(data.GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
+    )
 {
     Initialize(data);
 }
@@ -84,8 +88,10 @@ wxBarChart::wxBarChart(const wxChartsCategoricalData &data,
     : m_options(options),
     m_grid(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
-        size, data.GetLabels(), GetMinValue(data.GetDatasets()),
-        GetMaxValue(data.GetDatasets()), m_options->GetGridOptions()
+        size,
+        wxChartCategoricalAxis::make_shared(data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared(GetMinValue(data.GetDatasets()), GetMaxValue(data.GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
         )
 {
     Initialize(data);

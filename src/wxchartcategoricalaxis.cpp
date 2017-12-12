@@ -38,3 +38,9 @@ wxChartCategoricalAxis::wxChartCategoricalAxis(const wxVector<wxString> &labels,
     : wxChartAxis(labels, options)
 {
 }
+
+wxChartCategoricalAxis::ptr wxChartCategoricalAxis::make_shared(const wxVector<wxString> &labels,
+                                                                const wxChartAxisOptions &options)
+{
+    return ptr(new wxChartCategoricalAxis(labels, options));
+}
