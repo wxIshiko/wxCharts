@@ -120,7 +120,7 @@ public:
     /// @return The options for the vertical grid lines.
     wxChartGridLineOptions& GetVerticalGridLineOptions();
 
-    void SetShowGrid(bool show);
+    void SetShowGridLines(bool show);
 
 private:
     wxChartAxisOptions m_XAxisOptions;
