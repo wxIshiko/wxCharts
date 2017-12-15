@@ -242,11 +242,7 @@ const wxMath2DPlotOptions& wxMath2DPlot::GetChartOptions() const
 void wxMath2DPlot::SetChartOptions(const wxMath2DPlotOptions& opt)
 {
     m_options = opt;
-    if(m_options.isNeedsFit())
-    {
-        Update();
-        m_options.Reset();
-    }
+    Update();
 }
 
 bool wxMath2DPlot::SetChartType(std::size_t index,const wxChartType &type)
