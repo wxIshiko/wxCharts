@@ -126,6 +126,12 @@ public:
     bool RemoveDataset(std::size_t index);
     void AddDataset(const wxMath2DPlotDataset::ptr &newset,bool is_new = true);
 
+    const wxChartGridOptions& GetGridOptions() const;
+    void  SetGridOptions(const wxChartGridOptions& opt);
+    const wxMath2DPlotOptions& GetChartOptions() const;
+    void  SetChartOptions(const wxMath2DPlotOptions& opt);
+    bool  SetChartType(std::size_t index,const wxChartType &type);
+
 private:
     void Initialize(const wxMath2DPlotData &data);
     void Update();
@@ -178,6 +184,7 @@ private:
         const wxColor& GetDotColor() const;
         const wxColor& GetDotStrokeColor() const;
         const wxChartType& GetType() const;
+        void SetType(const wxChartType &chartType);
 
         const wxVector<Point::ptr>& GetPoints() const;
         void AppendPoint(Point::ptr point);

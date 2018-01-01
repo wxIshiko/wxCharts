@@ -120,6 +120,9 @@ public:
     /// @return The grid mapping.
     const wxChartGridMapping& GetMapping() const;
 
+    const wxChartGridOptions& GetOptions() const;
+    void  SetOptions(const wxChartGridOptions& opt);
+
     bool Scale(int coeff);
     void Shift(double dx,double dy);
     void ChangeCorners(wxDouble minX,wxDouble maxX,

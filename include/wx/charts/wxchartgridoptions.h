@@ -32,7 +32,7 @@
 class wxChartGridLineOptions
 {
 public:
-    /// Constructs a wxChartGridOptions 
+    /// Constructs a wxChartGridOptions
     /// instance.
     wxChartGridLineOptions();
 
@@ -42,7 +42,7 @@ public:
     /// @retval false Don't show grid lines.
     bool ShowGridLines() const;
     /// Sets whether grid lines should be shown.
-    /// @param show True if grid lines should be shown, false 
+    /// @param show True if grid lines should be shown, false
     /// otherwise.
     void SetShowGridLines(bool show);
 
@@ -119,6 +119,8 @@ public:
     /// Gets the options for the vertical grid lines.
     /// @return The options for the vertical grid lines.
     wxChartGridLineOptions& GetVerticalGridLineOptions();
+
+    void SetShowGridLines(bool show);
 
 private:
     wxChartAxisOptions m_XAxisOptions;

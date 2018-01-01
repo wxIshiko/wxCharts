@@ -66,6 +66,41 @@ wxMath2DPlot& wxMath2DPlotCtrl::GetChart()
     return m_math2dPlot;
 }
 
+const wxChartGridOptions& wxMath2DPlotCtrl::GetGridOptions() const
+{
+    return m_math2dPlot.GetGridOptions();
+}
+
+void wxMath2DPlotCtrl::SetGridOptions(const wxChartGridOptions& opt)
+{
+    m_math2dPlot.SetGridOptions(opt);
+    auto parent = this->GetParent();
+    if(parent)
+        parent->Layout();
+}
+
+const wxMath2DPlotOptions& wxMath2DPlotCtrl::GetChartOptions() const
+{
+    return m_math2dPlot.GetChartOptions();
+}
+
+void  wxMath2DPlotCtrl::SetChartOptions(const wxMath2DPlotOptions& opt)
+{
+    m_math2dPlot.SetChartOptions(opt);
+    auto parent = this->GetParent();
+    if(parent)
+        parent->Layout();
+}
+
+void wxMath2DPlotCtrl::SetChartType(std::size_t index,const wxChartType &type)
+{
+    if(!m_math2dPlot.SetChartType(index,type))
+        return;
+    auto parent = this->GetParent();
+    if(parent)
+        parent->Layout();
+}
+
 bool wxMath2DPlotCtrl::UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> &points)
 {
     if (!m_math2dPlot.UpdateData(index,points))

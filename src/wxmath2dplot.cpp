@@ -174,6 +174,11 @@ const wxChartType& wxMath2DPlot::Dataset::GetType() const
     return m_type;
 }
 
+void wxMath2DPlot::Dataset::SetType(const wxChartType &chartType)
+{
+    m_type = chartType;
+}
+
 const wxVector<wxMath2DPlot::Point::ptr>& wxMath2DPlot::Dataset::GetPoints() const
 {
     return m_points;
@@ -217,6 +222,36 @@ wxMath2DPlot::wxMath2DPlot(const wxMath2DPlotData &data,
 const wxMath2DPlotOptions& wxMath2DPlot::GetOptions() const
 {
     return m_options;
+}
+
+const wxChartGridOptions& wxMath2DPlot::GetGridOptions() const
+{
+    return m_grid.GetOptions();
+}
+
+void wxMath2DPlot::SetGridOptions(const wxChartGridOptions& opt)
+{
+    m_grid.SetOptions(opt);
+}
+
+const wxMath2DPlotOptions& wxMath2DPlot::GetChartOptions() const
+{
+    return m_options;
+}
+
+void wxMath2DPlot::SetChartOptions(const wxMath2DPlotOptions& opt)
+{
+    m_options = opt;
+    Update();
+}
+
+bool wxMath2DPlot::SetChartType(std::size_t index,const wxChartType &type)
+{
+    if(index >= m_datasets.size() || type == m_datasets[index]->GetType())
+        return false;
+
+    m_datasets[index]->SetType(type);
+    return true;
 }
 
 void wxMath2DPlot::Save(const wxString &filename,
