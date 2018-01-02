@@ -79,6 +79,7 @@ private:
     virtual wxMath2DPlot& GetChart();
 
     void CreateContextMenu();
+    void Update();
 
 private:
     wxMath2DPlot m_math2dPlot;
