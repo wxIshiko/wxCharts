@@ -74,9 +74,7 @@ const wxChartGridOptions& wxMath2DPlotCtrl::GetGridOptions() const
 void wxMath2DPlotCtrl::SetGridOptions(const wxChartGridOptions& opt)
 {
     m_math2dPlot.SetGridOptions(opt);
-    auto parent = this->GetParent();
-    if(parent)
-        parent->Layout();
+    Update();
 }
 
 const wxMath2DPlotOptions& wxMath2DPlotCtrl::GetChartOptions() const
@@ -87,27 +85,21 @@ const wxMath2DPlotOptions& wxMath2DPlotCtrl::GetChartOptions() const
 void  wxMath2DPlotCtrl::SetChartOptions(const wxMath2DPlotOptions& opt)
 {
     m_math2dPlot.SetChartOptions(opt);
-    auto parent = this->GetParent();
-    if(parent)
-        parent->Layout();
+    Update();
 }
 
 void wxMath2DPlotCtrl::SetChartType(std::size_t index,const wxChartType &type)
 {
     if(!m_math2dPlot.SetChartType(index,type))
         return;
-    auto parent = this->GetParent();
-    if(parent)
-        parent->Layout();
+    Update();
 }
 
 bool wxMath2DPlotCtrl::UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> &points)
 {
     if (!m_math2dPlot.UpdateData(index,points))
         return false;
-    auto parent = this->GetParent();
-    if(parent)
-        parent->Layout();
+    Update();
     return true;
 }
 
@@ -115,28 +107,29 @@ bool wxMath2DPlotCtrl::AddData(std::size_t index,const wxVector<wxPoint2DDouble>
 {
     if (!m_math2dPlot.AddData(index,points))
         return false;
-    auto parent = this->GetParent();
-    if(parent)
-        parent->Layout();
+    Update();
     return true;
 }
 
 void wxMath2DPlotCtrl::AddDataset(const wxMath2DPlotDataset::ptr &newset)
 {
     m_math2dPlot.AddDataset(newset);
-    auto parent = this->GetParent();
-    if(parent)
-        parent->Layout();
+    Update();
 }
 
 bool wxMath2DPlotCtrl::RemoveDataset(std::size_t index)
 {
     if (!m_math2dPlot.RemoveDataset(index))
         return false;
+    Update();
+    return true;
+}
+
+void wxMath2DPlotCtrl::Update()
+{
     auto parent = this->GetParent();
     if(parent)
         parent->Layout();
-    return true;
 }
 
 void wxMath2DPlotCtrl::CreateContextMenu()

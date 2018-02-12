@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2017-2018 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -24,11 +24,23 @@
 #define _SAMPLES_MATH2D_WXMATH2DFRAME_H_
 
 #include <wx/frame.h>
+#include <wx/charts/wxcharts.h>
 
 class WxMath2DFrame : public wxFrame
 {
 public:
     WxMath2DFrame(const wxString& title);
+
+protected:
+    wxMenuBar* m_menubar;
+    wxMenu* m_typeMenu;
+    wxMenu* m_axisMenu;
+    wxMenu* m_gridMenu;
+
+private:
+    wxMath2DPlotCtrl* math2dPlotCtrl;
+
+    void Binds();
 };
 
 #endif

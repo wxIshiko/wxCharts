@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2015-2017 Xavier Leclercq
+    Copyright (c) 2017-2018 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,49 +26,75 @@
 #include <wx/charts/wxcharts.h>
 #include <cmath>
 
+const int ID_LineChart = 1;
+const int ID_StemChart = 2;
+const int ID_StepChart = 3;
+const int ID_CustomXAxis = 4;
+const int ID_CustomYAxis = 5;
+const int ID_Grid = 6;
+
 WxMath2DFrame::WxMath2DFrame(const wxString& title)
     : wxFrame(NULL, wxID_ANY, title)
 {
+    m_menubar = new wxMenuBar( 0 );
+    m_typeMenu = new wxMenu();
+    wxMenuItem* m_line = new wxMenuItem( m_typeMenu, ID_LineChart, wxString( wxT("Line") ), wxEmptyString, wxITEM_RADIO );
+    m_typeMenu->Append( m_line );
+
+    wxMenuItem* m_stem = new wxMenuItem( m_typeMenu, ID_StemChart, wxString( wxT("Stem") ), wxEmptyString, wxITEM_RADIO );
+    m_typeMenu->Append( m_stem );
+
+    wxMenuItem* m_step = new wxMenuItem( m_typeMenu, ID_StepChart, wxString( wxT("Step") ), wxEmptyString, wxITEM_RADIO );
+    m_typeMenu->Append( m_step );
+
+    m_menubar->Append( m_typeMenu, wxT("ChartType") );
+
+    m_axisMenu = new wxMenu();
+
+    wxMenuItem* m_customX = new wxMenuItem( m_axisMenu, ID_CustomXAxis, wxString( wxT("CustomX(exp)") ), wxEmptyString, wxITEM_CHECK );
+    m_axisMenu->Append( m_customX );
+
+    wxMenuItem* m_customY = new wxMenuItem( m_axisMenu, ID_CustomYAxis, wxString( wxT("CustomY(exp)") ), wxEmptyString, wxITEM_CHECK );
+    m_axisMenu->Append( m_customY );
+
+    m_menubar->Append( m_axisMenu, wxT("AxisType") );
+
+    m_gridMenu = new wxMenu();
+    wxMenuItem* m_grid = new wxMenuItem( m_gridMenu, ID_Grid, wxString( wxT("Grid") ), wxEmptyString, wxITEM_CHECK );
+    m_grid->Check( true );
+    m_gridMenu->Append( m_grid );
+
+    m_menubar->Append( m_gridMenu, wxT("Grid") );
+    this->SetMenuBar( m_menubar );
+
     wxPanel* panel = new wxPanel(this, wxID_ANY);
 
     wxMath2DPlotData chartData;
     wxMath2DPlotOptions options;
     options.SetShowTooltips(false);
 
-    wxVector<wxPoint2DDouble> points1,points2,points3;
+    wxVector<wxPoint2DDouble> points;
     auto pi = 3.1415926535897;
     auto tstart = -2*pi;
-    for(auto i = 0u;i<100;i++)
+    for(auto i = 0u; i<100; i++)
     {
         auto x = tstart+0.1*i;
-        points1.push_back(wxPoint2DDouble(x,cos(x)*sin(x)));
-        points2.push_back(wxPoint2DDouble(x,cos(x)+sin(x)));
-        points3.push_back(wxPoint2DDouble(x,cos(x)-sin(x)));
+        points.push_back(wxPoint2DDouble(x,cos(x)*sin(x)));
     }
 
-    wxMath2DPlotDataset::ptr dataset1(
+    wxMath2DPlotDataset::ptr dataset(
         new wxMath2DPlotDataset(
             wxColor(250, 20, 20, 0x78),
             wxColor(0, 0, 0, 0xB8),
-            points1,wxCHARTTYPE_STEM)
-        );
-    chartData.AddDataset(dataset1);
+            points)
+    );
+    chartData.AddDataset(dataset);
 
-     wxMath2DPlotDataset::ptr dataset2(
-        new wxMath2DPlotDataset(
-            wxColor(0, 70, 140, 0x78),
-            wxColor(50, 210, 105, 0xB8),
-            points2,wxCHARTTYPE_STEPPED)
-        );
-    chartData.AddDataset(dataset2);
-
-     wxMath2DPlotDataset::ptr dataset3(
-        new wxMath2DPlotDataset(
-            wxColor(28, 200, 10, 0x78),
-            wxColor(230, 125, 60, 0x33),points3));
-    chartData.AddDataset(dataset3);
-
-    wxMath2DPlotCtrl* math2dPlotCtrl = new wxMath2DPlotCtrl(panel, wxID_ANY, chartData,options);
+    math2dPlotCtrl = new wxMath2DPlotCtrl(panel, wxID_ANY, chartData,options);
+    wxChartGridOptions opt = math2dPlotCtrl->GetGridOptions();
+    opt.GetHorizontalGridLineOptions().SetMajorGridLineColor(wxColour("Grey"));
+    opt.GetVerticalGridLineOptions().SetMajorGridLineColor(wxColour("Grey"));
+    math2dPlotCtrl->SetGridOptions(opt);
 
     wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
     panelSizer->Add(math2dPlotCtrl, 1, wxEXPAND);
@@ -77,4 +103,47 @@ WxMath2DFrame::WxMath2DFrame(const wxString& title)
     wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
     topSizer->Add(panel, 1, wxEXPAND);
     SetSizerAndFit(topSizer);
+
+    Binds();
+}
+
+void WxMath2DFrame::Binds()
+{
+    m_gridMenu->Bind(wxEVT_COMMAND_MENU_SELECTED,[&](wxCommandEvent &)
+    {
+        auto opt = math2dPlotCtrl->GetGridOptions();
+        opt.SetShowGridLines(m_gridMenu->IsChecked(ID_Grid));
+        math2dPlotCtrl->SetGridOptions(opt);
+    }, ID_Grid);
+
+    m_axisMenu->Bind(wxEVT_COMMAND_MENU_SELECTED,[&](wxCommandEvent &)
+    {
+        auto opt = math2dPlotCtrl->GetChartOptions();
+        if (m_axisMenu->IsChecked(ID_CustomXAxis))
+            opt.SetAxisFuncX([](wxDouble x){return std::exp(x);});
+        else
+            opt.SetAxisFuncX([](wxDouble x){return x;});
+        math2dPlotCtrl->SetChartOptions(opt);
+    }, ID_CustomXAxis);
+    m_axisMenu->Bind(wxEVT_COMMAND_MENU_SELECTED,[&](wxCommandEvent &)
+    {
+        auto opt = math2dPlotCtrl->GetChartOptions();
+        if (m_axisMenu->IsChecked(ID_CustomYAxis))
+            opt.SetAxisFuncY([](wxDouble x){return std::exp(x);});
+        else
+            opt.SetAxisFuncY([](wxDouble x){return x;});
+        math2dPlotCtrl->SetChartOptions(opt);
+    }, ID_CustomYAxis);
+    m_typeMenu->Bind(wxEVT_COMMAND_MENU_SELECTED,[&](wxCommandEvent &)
+    {
+        math2dPlotCtrl->SetChartType(0,wxCHARTTYPE_LINE);
+    }, ID_LineChart);
+    m_typeMenu->Bind(wxEVT_COMMAND_MENU_SELECTED,[&](wxCommandEvent &)
+    {
+        math2dPlotCtrl->SetChartType(0,wxCHARTTYPE_STEPPED);
+    }, ID_StepChart);
+    m_typeMenu->Bind(wxEVT_COMMAND_MENU_SELECTED,[&](wxCommandEvent &)
+    {
+        math2dPlotCtrl->SetChartType(0,wxCHARTTYPE_STEM);
+    }, ID_StemChart);
 }
