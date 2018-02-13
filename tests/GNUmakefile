@@ -65,8 +65,8 @@ WXWIDGETS_ROOT ?= $(WXWIN)
 
 all: $(_builddir)wxchartstests
 
-$(_builddir)wxchartstests: $(_builddir)wxchartstests_wxchartstestsapp.o $(_builddir)wxchartstests_wxchartstestsframe.o $(_builddir)wxchartstests_wxchartstestsmenubar.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxchartstests_wxchartstestsapp.o $(_builddir)wxchartstests_wxchartstestsframe.o $(_builddir)wxchartstests_wxchartstestsmenubar.o -pthread
+$(_builddir)wxchartstests: $(_builddir)wxchartstests_wxchartstestsapp.o $(_builddir)wxchartstests_wxchartstestsframe.o $(_builddir)wxchartstests_wxchartstestsmenubar.o $(_builddir)wxchartstests_wxcolumnchartpanel.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxchartstests_wxchartstestsapp.o $(_builddir)wxchartstests_wxchartstestsframe.o $(_builddir)wxchartstests_wxchartstestsmenubar.o $(_builddir)wxchartstests_wxcolumnchartpanel.o -pthread
 
 $(_builddir)wxchartstests_wxchartstestsapp.o: src/wxchartstestsapp.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread `wx-config --cxxflags --libs` src/wxchartstestsapp.cpp
@@ -76,6 +76,9 @@ $(_builddir)wxchartstests_wxchartstestsframe.o: src/wxchartstestsframe.cpp
 
 $(_builddir)wxchartstests_wxchartstestsmenubar.o: src/wxchartstestsmenubar.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread `wx-config --cxxflags --libs` src/wxchartstestsmenubar.cpp
+
+$(_builddir)wxchartstests_wxcolumnchartpanel.o: src/wxcolumnchartpanel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread `wx-config --cxxflags --libs` src/wxcolumnchartpanel.cpp
 
 clean:
 	rm -f $(_builddir)*.o

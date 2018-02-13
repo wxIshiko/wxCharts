@@ -22,6 +22,7 @@
 
 #include "wxchartstestsframe.h"
 #include "wxchartstestsmenubar.h"
+#include "wxchartstestswindowids.h"
 
 WxChartsTestsFrame::WxChartsTestsFrame(const wxString& title)
     : wxFrame(NULL, wxID_ANY, title)
@@ -34,6 +35,11 @@ void WxChartsTestsFrame::OnExit(wxCommandEvent& evt)
     Close();
 }
 
+void WxChartsTestsFrame::OnColumnChart(wxCommandEvent& evt)
+{
+}
+
 wxBEGIN_EVENT_TABLE(WxChartsTestsFrame, wxFrame)
     EVT_MENU(wxID_EXIT, WxChartsTestsFrame::OnExit)
+    EVT_MENU(wxID_COLUMN_CHART, WxChartsTestsFrame::OnColumnChart)
 wxEND_EVENT_TABLE()

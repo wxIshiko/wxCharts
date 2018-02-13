@@ -20,21 +20,4 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _TESTS_WX_CHARTS_WXCHARTSTESTSFRAME_H_
-#define _TESTS_WX_CHARTS_WXCHARTSTESTSFRAME_H_
-
-#include <wx/frame.h>
-
-class WxChartsTestsFrame : public wxFrame
-{
-public:
-    WxChartsTestsFrame(const wxString& title);
-
-private:
-    void OnExit(wxCommandEvent& evt);
-    void OnColumnChart(wxCommandEvent& evt);
-
-    wxDECLARE_EVENT_TABLE();
-};
-
-#endif
+#include "wxcolumnchartpanel.h"
