@@ -20,16 +20,11 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartstestsmenubar.h"
-#include "wxchartstestswindowids.h"
+#ifndef _TESTS_WX_CHARTS_WXCHARTSTESTSWINDOWIDS_H_
+#define _TESTS_WX_CHARTS_WXCHARTSTESTSWINDOWIDS_H_
 
-WxChartsTestsMenuBar::WxChartsTestsMenuBar()
-{
-    wxMenu* menuFile = new wxMenu;
-    menuFile->Append(wxID_EXIT, "Exit\tAlt+F4");
-    Append(menuFile, "&File");
+#include <wx/defs.h>
 
-    wxMenu* menuCharts = new wxMenu;
-    menuCharts->Append(wxID_COLUMN_CHART, "Column Chart");
-    Append(menuCharts, "&Charts");
-}
+const wxWindowID wxID_COLUMN_CHART = wxID_HIGHEST + 1;
+
+#endif
