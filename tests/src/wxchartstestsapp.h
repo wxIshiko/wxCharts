@@ -23,4 +23,12 @@
 #ifndef _TESTS_WX_CHARTS_WXCHARTSTESTSAPP_H_
 #define _TESTS_WX_CHARTS_WXCHARTSTESTSAPP_H_
 
+#include <wx/app.h>
+
+class WxChartsTestsApp : public wxApp
+{
+public:
+    virtual bool OnInit();
+};
+
 #endif

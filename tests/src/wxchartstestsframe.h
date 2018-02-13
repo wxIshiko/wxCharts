@@ -23,4 +23,12 @@
 #ifndef _TESTS_WX_CHARTS_WXCHARTSTESTSFRAME_H_
 #define _TESTS_WX_CHARTS_WXCHARTSTESTSFRAME_H_
 
+#include <wx/frame.h>
+
+class WxChartsTestsFrame : public wxFrame
+{
+public:
+    WxChartsTestsFrame(const wxString& title);
+};
+
 #endif

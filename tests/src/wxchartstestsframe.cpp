@@ -21,3 +21,8 @@
 */
 
 #include "wxchartstestsframe.h"
+
+WxChartsTestsFrame::WxChartsTestsFrame(const wxString& title)
+    : wxFrame(NULL, wxID_ANY, title)
+{
+}

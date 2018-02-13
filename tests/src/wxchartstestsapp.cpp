@@ -21,3 +21,13 @@
 */
 
 #include "wxchartstestsapp.h"
+#include "wxchartstestsframe.h"
+
+wxIMPLEMENT_APP(WxChartsTestsApp);
+
+bool WxChartsTestsApp::OnInit()
+{
+    WxChartsTestsFrame* frame = new WxChartsTestsFrame("wxCharts Tests");
+    frame->Show(true);
+    return true;
+}
