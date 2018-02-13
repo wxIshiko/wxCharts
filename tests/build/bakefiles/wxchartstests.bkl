@@ -17,6 +17,8 @@ program wxchartstests
  
     if (($(toolset) == vs2015) || ($(toolset) == vs2013))
     {
+        win32-subsystem = windows;
+
         includedirs += $(WXWIDGETS_ROOT)/include;
         includedirs += $(WXWIDGETS_ROOT)/include/msvc;
         libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
@@ -28,12 +30,13 @@ program wxchartstests
 
     headers
     {
-        ../../src/wxchartstestapp.h
+        ../../src/wxchartstestsapp.h
+        ../../src/wxchartstestsframe.h
     }
 
     sources
     {
-        ../../src/main.cpp
-        ../../src/wxchartstestapp.cpp
+        ../../src/wxchartstestsapp.cpp
+        ../../src/wxchartstestsframe.cpp
     }
 }

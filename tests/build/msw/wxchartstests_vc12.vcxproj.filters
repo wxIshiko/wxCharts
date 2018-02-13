@@ -17,15 +17,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\wxchartstestapp.h">
+    <ClInclude Include="..\..\src\wxchartstestsapp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\wxchartstestsframe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\main.cpp">
+    <ClCompile Include="..\..\src\wxchartstestsapp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartstestapp.cpp">
+    <ClCompile Include="..\..\src\wxchartstestsframe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

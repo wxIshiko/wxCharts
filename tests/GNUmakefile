@@ -65,14 +65,14 @@ WXWIDGETS_ROOT ?= $(WXWIN)
 
 all: $(_builddir)wxchartstests
 
-$(_builddir)wxchartstests: $(_builddir)wxchartstests_main.o $(_builddir)wxchartstests_wxchartstestapp.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxchartstests_main.o $(_builddir)wxchartstests_wxchartstestapp.o -pthread
+$(_builddir)wxchartstests: $(_builddir)wxchartstests_wxchartstestsapp.o $(_builddir)wxchartstests_wxchartstestsframe.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxchartstests_wxchartstestsapp.o $(_builddir)wxchartstests_wxchartstestsframe.o -pthread
 
-$(_builddir)wxchartstests_main.o: src/main.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread `wx-config --cxxflags --libs` src/main.cpp
+$(_builddir)wxchartstests_wxchartstestsapp.o: src/wxchartstestsapp.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread `wx-config --cxxflags --libs` src/wxchartstestsapp.cpp
 
-$(_builddir)wxchartstests_wxchartstestapp.o: src/wxchartstestapp.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread `wx-config --cxxflags --libs` src/wxchartstestapp.cpp
+$(_builddir)wxchartstests_wxchartstestsframe.o: src/wxchartstestsframe.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread `wx-config --cxxflags --libs` src/wxchartstestsframe.cpp
 
 clean:
 	rm -f $(_builddir)*.o
