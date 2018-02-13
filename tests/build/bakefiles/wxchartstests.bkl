@@ -32,11 +32,13 @@ program wxchartstests
     {
         ../../src/wxchartstestsapp.h
         ../../src/wxchartstestsframe.h
+        ../../src/wxchartstestsmenubar.h
     }
 
     sources
     {
         ../../src/wxchartstestsapp.cpp
         ../../src/wxchartstestsframe.cpp
+        ../../src/wxchartstestsmenubar.cpp
     }
 }

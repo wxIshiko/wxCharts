@@ -23,12 +23,18 @@
     <ClInclude Include="..\..\src\wxchartstestsframe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\wxchartstestsmenubar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\wxchartstestsapp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchartstestsframe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wxchartstestsmenubar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -86,10 +86,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\wxchartstestsapp.cpp" />
     <ClCompile Include="..\..\src\wxchartstestsframe.cpp" />
+    <ClCompile Include="..\..\src\wxchartstestsmenubar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\wxchartstestsapp.h" />
     <ClInclude Include="..\..\src\wxchartstestsframe.h" />
+    <ClInclude Include="..\..\src\wxchartstestsmenubar.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
