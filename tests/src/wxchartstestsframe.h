@@ -29,6 +29,11 @@ class WxChartsTestsFrame : public wxFrame
 {
 public:
     WxChartsTestsFrame(const wxString& title);
+
+private:
+    void OnExit(wxCommandEvent& evt);
+
+    wxDECLARE_EVENT_TABLE();
 };
 
 #endif

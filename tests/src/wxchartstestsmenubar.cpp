@@ -21,3 +21,10 @@
 */
 
 #include "wxchartstestsmenubar.h"
+
+WxChartsTestsMenuBar::WxChartsTestsMenuBar()
+{
+    wxMenu* menuFile = new wxMenu;
+    menuFile->Append(wxID_EXIT, "Exit\tAlt+F4");
+    Append(menuFile, "&File");
+}

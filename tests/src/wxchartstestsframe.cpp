@@ -21,8 +21,19 @@
 */
 
 #include "wxchartstestsframe.h"
+#include "wxchartstestsmenubar.h"
 
 WxChartsTestsFrame::WxChartsTestsFrame(const wxString& title)
     : wxFrame(NULL, wxID_ANY, title)
 {
+    SetMenuBar(new WxChartsTestsMenuBar());
 }
+
+void WxChartsTestsFrame::OnExit(wxCommandEvent& evt)
+{
+    Close();
+}
+
+wxBEGIN_EVENT_TABLE(WxChartsTestsFrame, wxFrame)
+    EVT_MENU(wxID_EXIT, WxChartsTestsFrame::OnExit)
+wxEND_EVENT_TABLE()

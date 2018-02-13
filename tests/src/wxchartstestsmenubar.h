@@ -23,4 +23,12 @@
 #ifndef _TESTS_WX_CHARTS_WXCHARTSTESTSMENUBAR_H_
 #define _TESTS_WX_CHARTS_WXCHARTSTESTSMENUBAR_H_
 
+#include <wx/menu.h>
+
+class WxChartsTestsMenuBar : public wxMenuBar
+{
+public:
+    WxChartsTestsMenuBar();
+};
+
 #endif
