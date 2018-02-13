@@ -33,6 +33,7 @@ program wxchartstests
         ../../src/wxchartstestsapp.h
         ../../src/wxchartstestsframe.h
         ../../src/wxchartstestsmenubar.h
+        ../../src/wxchartstestswindowids.h
     }
 
     sources

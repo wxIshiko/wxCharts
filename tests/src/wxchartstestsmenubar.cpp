@@ -27,4 +27,7 @@ WxChartsTestsMenuBar::WxChartsTestsMenuBar()
     wxMenu* menuFile = new wxMenu;
     menuFile->Append(wxID_EXIT, "Exit\tAlt+F4");
     Append(menuFile, "&File");
+
+    wxMenu* menuCharts = new wxMenu;
+    Append(menuCharts, "&Charts");
 }

@@ -92,6 +92,7 @@
     <ClInclude Include="..\..\src\wxchartstestsapp.h" />
     <ClInclude Include="..\..\src\wxchartstestsframe.h" />
     <ClInclude Include="..\..\src\wxchartstestsmenubar.h" />
+    <ClInclude Include="..\..\src\wxchartstestswindowids.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
