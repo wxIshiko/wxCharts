@@ -23,12 +23,16 @@
 #ifndef _TESTS_WX_CHARTS_WXPIECHARTPANEL_H_
 #define _TESTS_WX_CHARTS_WXPIECHARTPANEL_H_
 
+#include <wx/charts/wxcharts.h>
 #include <wx/panel.h>
 
 class wxPieChartPanel : public wxPanel
 {
 public:
     wxPieChartPanel(wxWindow* parent);
+
+private:
+    wxPieChartCtrl* m_pieChart;
 };
 
 #endif
