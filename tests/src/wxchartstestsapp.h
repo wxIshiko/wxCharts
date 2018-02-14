@@ -25,7 +25,7 @@
 
 #include <wx/app.h>
 
-class WxChartsTestsApp : public wxApp
+class wxChartsTestsApp : public wxApp
 {
 public:
     virtual bool OnInit();

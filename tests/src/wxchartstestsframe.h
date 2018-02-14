@@ -24,15 +24,22 @@
 #define _TESTS_WX_CHARTS_WXCHARTSTESTSFRAME_H_
 
 #include <wx/frame.h>
+#include <wx/panel.h>
 
-class WxChartsTestsFrame : public wxFrame
+class wxChartsTestsFrame : public wxFrame
 {
 public:
-    WxChartsTestsFrame(const wxString& title);
+    wxChartsTestsFrame(const wxString& title);
 
 private:
     void OnExit(wxCommandEvent& evt);
     void OnColumnChart(wxCommandEvent& evt);
+    void OnPieChart(wxCommandEvent& evt);
+
+private:
+    wxPanel* m_currentPanel;
+    wxPanel* m_columnChartPanel;
+    wxPanel* m_pieChartPanel;
 
     wxDECLARE_EVENT_TABLE();
 };

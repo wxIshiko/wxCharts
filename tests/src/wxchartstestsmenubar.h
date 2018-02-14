@@ -25,10 +25,10 @@
 
 #include <wx/menu.h>
 
-class WxChartsTestsMenuBar : public wxMenuBar
+class wxChartsTestsMenuBar : public wxMenuBar
 {
 public:
-    WxChartsTestsMenuBar();
+    wxChartsTestsMenuBar();
 };
 
 #endif

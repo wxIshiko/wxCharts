@@ -23,7 +23,7 @@
 #include "wxchartstestsmenubar.h"
 #include "wxchartstestswindowids.h"
 
-WxChartsTestsMenuBar::WxChartsTestsMenuBar()
+wxChartsTestsMenuBar::wxChartsTestsMenuBar()
 {
     wxMenu* menuFile = new wxMenu;
     menuFile->Append(wxID_EXIT, "Exit\tAlt+F4");
@@ -31,5 +31,6 @@ WxChartsTestsMenuBar::WxChartsTestsMenuBar()
 
     wxMenu* menuCharts = new wxMenu;
     menuCharts->Append(wxID_COLUMN_CHART, "Column Chart");
+    menuCharts->Append(wxID_PIE_CHART, "Pie Chart");
     Append(menuCharts, "&Charts");
 }

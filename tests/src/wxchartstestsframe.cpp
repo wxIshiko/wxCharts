@@ -23,23 +23,55 @@
 #include "wxchartstestsframe.h"
 #include "wxchartstestsmenubar.h"
 #include "wxchartstestswindowids.h"
+#include "wxcolumnchartpanel.h"
+#include "wxpiechartpanel.h"
+#include <wx/sizer.h>
 
-WxChartsTestsFrame::WxChartsTestsFrame(const wxString& title)
-    : wxFrame(NULL, wxID_ANY, title)
+wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
+    : wxFrame(NULL, wxID_ANY, title), m_currentPanel(0),
+    m_columnChartPanel(0), m_pieChartPanel(0)
 {
-    SetMenuBar(new WxChartsTestsMenuBar());
+    SetMenuBar(new wxChartsTestsMenuBar());
+
+    wxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
+
+    m_columnChartPanel = new wxColumnChartPanel(this);
+    sizer->Add(m_columnChartPanel);
+    m_columnChartPanel->Hide();
+
+    m_pieChartPanel = new wxPieChartPanel(this);
+    sizer->Add(m_pieChartPanel);
+    m_pieChartPanel->Hide();
+
+    m_currentPanel = m_columnChartPanel;
+    m_currentPanel->Show();
+
+    SetSizer(sizer);
 }
 
-void WxChartsTestsFrame::OnExit(wxCommandEvent& evt)
+void wxChartsTestsFrame::OnExit(wxCommandEvent& evt)
 {
     Close();
 }
 
-void WxChartsTestsFrame::OnColumnChart(wxCommandEvent& evt)
+void wxChartsTestsFrame::OnColumnChart(wxCommandEvent& evt)
 {
+    m_currentPanel->Hide();
+    m_currentPanel = m_columnChartPanel;
+    m_currentPanel->Show();
+    Layout();
 }
 
-wxBEGIN_EVENT_TABLE(WxChartsTestsFrame, wxFrame)
-    EVT_MENU(wxID_EXIT, WxChartsTestsFrame::OnExit)
-    EVT_MENU(wxID_COLUMN_CHART, WxChartsTestsFrame::OnColumnChart)
+void wxChartsTestsFrame::OnPieChart(wxCommandEvent& evt)
+{
+    m_currentPanel->Hide();
+    m_currentPanel = m_pieChartPanel;
+    m_currentPanel->Show();
+    Layout();
+}
+
+wxBEGIN_EVENT_TABLE(wxChartsTestsFrame, wxFrame)
+    EVT_MENU(wxID_EXIT, wxChartsTestsFrame::OnExit)
+    EVT_MENU(wxID_COLUMN_CHART, wxChartsTestsFrame::OnColumnChart)
+    EVT_MENU(wxID_PIE_CHART, wxChartsTestsFrame::OnPieChart)
 wxEND_EVENT_TABLE()
