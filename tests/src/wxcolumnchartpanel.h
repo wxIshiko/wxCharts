@@ -23,4 +23,12 @@
 #ifndef _TESTS_WX_CHARTS_WXCOLUMNCHARTPANEL_H_
 #define _TESTS_WX_CHARTS_WXCOLUMNCHARTPANEL_H_
 
+#include <wx/panel.h>
+
+class wxColumnChartPanel : public wxPanel
+{
+public:
+    wxColumnChartPanel(wxWindow* parent);
+};
+
 #endif

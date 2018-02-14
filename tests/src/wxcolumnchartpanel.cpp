@@ -21,3 +21,13 @@
 */
 
 #include "wxcolumnchartpanel.h"
+#include <wx/choice.h>
+
+wxColumnChartPanel::wxColumnChartPanel(wxWindow* parent)
+    : wxPanel(parent)
+{
+    wxArrayString str;
+    str.Add("first");
+    str.Add("second");
+    wxChoice* choice = new wxChoice(this, -1, wxDefaultPosition, wxDefaultSize, str);
+}
