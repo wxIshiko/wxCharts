@@ -35,6 +35,7 @@ program wxchartstests
         ../../src/wxchartstestsmenubar.h
         ../../src/wxchartstestswindowids.h
         ../../src/wxcolumnchartpanel.h
+        ../../src/wxpiechartpanel.h
     }
 
     sources
@@ -43,5 +44,6 @@ program wxchartstests
         ../../src/wxchartstestsframe.cpp
         ../../src/wxchartstestsmenubar.cpp
         ../../src/wxcolumnchartpanel.cpp
+        ../../src/wxpiechartpanel.cpp
     }
 }
