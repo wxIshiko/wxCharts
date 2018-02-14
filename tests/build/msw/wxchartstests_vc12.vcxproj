@@ -88,6 +88,8 @@
     <ClCompile Include="..\..\src\wxchartstestsframe.cpp" />
     <ClCompile Include="..\..\src\wxchartstestsmenubar.cpp" />
     <ClCompile Include="..\..\src\wxchartrectanglepanel.cpp" />
+    <ClCompile Include="..\..\src\wxchartcategoricalaxispanel.cpp" />
+    <ClCompile Include="..\..\src\wxchartnumericalaxispanel.cpp" />
     <ClCompile Include="..\..\src\wxchartgridpanel.cpp" />
     <ClCompile Include="..\..\src\wxcolumnchartpanel.cpp" />
     <ClCompile Include="..\..\src\wxpiechartpanel.cpp" />
@@ -98,6 +100,8 @@
     <ClInclude Include="..\..\src\wxchartstestsmenubar.h" />
     <ClInclude Include="..\..\src\wxchartstestswindowids.h" />
     <ClInclude Include="..\..\src\wxchartrectanglepanel.h" />
+    <ClInclude Include="..\..\src\wxchartcategoricalaxispanel.h" />
+    <ClInclude Include="..\..\src\wxchartnumericalaxispanel.h" />
     <ClInclude Include="..\..\src\wxchartgridpanel.h" />
     <ClInclude Include="..\..\src\wxcolumnchartpanel.h" />
     <ClInclude Include="..\..\src\wxpiechartpanel.h" />
