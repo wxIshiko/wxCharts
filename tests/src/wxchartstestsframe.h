@@ -34,13 +34,19 @@ public:
 private:
     void OnExit(wxCommandEvent& evt);
     void OnChartRectangleElement(wxCommandEvent& evt);
+    void OnChartCategoricalAxisElement(wxCommandEvent& evt);
+    void OnChartNumericalAxisElement(wxCommandEvent& evt);
     void OnChartGridElement(wxCommandEvent& evt);
     void OnColumnChart(wxCommandEvent& evt);
     void OnPieChart(wxCommandEvent& evt);
 
+    void SwitchPanel(wxPanel* newPanel);
+
 private:
     wxPanel* m_currentPanel;
     wxPanel* m_chartRectanglePanel;
+    wxPanel* m_chartCategoricalAxisPanel;
+    wxPanel* m_chartNumericalAxisPanel;
     wxPanel* m_chartGridPanel;
     wxPanel* m_columnChartPanel;
     wxPanel* m_pieChartPanel;

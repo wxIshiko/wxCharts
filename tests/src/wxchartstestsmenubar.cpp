@@ -30,12 +30,14 @@ wxChartsTestsMenuBar::wxChartsTestsMenuBar()
     Append(menuFile, "&File");
 
     wxMenu* menuElements = new wxMenu;
-    menuElements->Append(wxID_RECTANGLE_ELEMENT, "Rectangle");
-    menuElements->Append(wxID_GRID_ELEMENT, "Grid");
+    menuElements->Append(wxID_RECTANGLE_ELEMENT, "wxChartRectangle");
+    menuElements->Append(wxID_CATEGORICALAXIS_ELEMENT, "wxChartCategoricalAxis");
+    menuElements->Append(wxID_NUMERICALAXIS_ELEMENT, "wxChartNumericalAxis");
+    menuElements->Append(wxID_GRID_ELEMENT, "wxChartGrid");
     Append(menuElements, "&Elements");
 
     wxMenu* menuCharts = new wxMenu;
-    menuCharts->Append(wxID_COLUMN_CHART, "Column Chart");
-    menuCharts->Append(wxID_PIE_CHART, "Pie Chart");
+    menuCharts->Append(wxID_COLUMN_CHART, "wxColumnChartCtrl");
+    menuCharts->Append(wxID_PIE_CHART, "wxPieChartCtrl");
     Append(menuCharts, "&Charts");
 }
