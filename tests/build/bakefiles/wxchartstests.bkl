@@ -43,6 +43,7 @@ program wxchartstests
         ../../src/wxchartstestsframe.h
         ../../src/wxchartstestsmenubar.h
         ../../src/wxchartstestswindowids.h
+        ../../src/wxchartrectanglepanel.h
         ../../src/wxcolumnchartpanel.h
         ../../src/wxpiechartpanel.h
     }
@@ -52,6 +53,7 @@ program wxchartstests
         ../../src/wxchartstestsapp.cpp
         ../../src/wxchartstestsframe.cpp
         ../../src/wxchartstestsmenubar.cpp
+        ../../src/wxchartrectanglepanel.cpp
         ../../src/wxcolumnchartpanel.cpp
         ../../src/wxpiechartpanel.cpp
     }

@@ -87,6 +87,7 @@
     <ClCompile Include="..\..\src\wxchartstestsapp.cpp" />
     <ClCompile Include="..\..\src\wxchartstestsframe.cpp" />
     <ClCompile Include="..\..\src\wxchartstestsmenubar.cpp" />
+    <ClCompile Include="..\..\src\wxchartrectanglepanel.cpp" />
     <ClCompile Include="..\..\src\wxcolumnchartpanel.cpp" />
     <ClCompile Include="..\..\src\wxpiechartpanel.cpp" />
   </ItemGroup>
@@ -95,6 +96,7 @@
     <ClInclude Include="..\..\src\wxchartstestsframe.h" />
     <ClInclude Include="..\..\src\wxchartstestsmenubar.h" />
     <ClInclude Include="..\..\src\wxchartstestswindowids.h" />
+    <ClInclude Include="..\..\src\wxchartrectanglepanel.h" />
     <ClInclude Include="..\..\src\wxcolumnchartpanel.h" />
     <ClInclude Include="..\..\src\wxpiechartpanel.h" />
   </ItemGroup>
