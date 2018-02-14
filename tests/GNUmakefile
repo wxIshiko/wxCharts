@@ -38,6 +38,7 @@ endif
 # settings:
 #
 #      WXWIDGETS_ROOT  Path to the wxWidgets installation
+#      WXCHARTS_ROOT   Path to the wxCharts installation
 
 # Use "make RANLIB=''" for platforms without ranlib.
 RANLIB ?= ranlib
@@ -60,28 +61,30 @@ endif
 
 # Path to the wxWidgets installation
 WXWIDGETS_ROOT ?= $(WXWIN)
+# Path to the wxCharts installation
+WXCHARTS_ROOT ?= $(WXCHARTS)
 
 # ------------
 
 all: $(_builddir)wxchartstests
 
 $(_builddir)wxchartstests: $(_builddir)wxchartstests_wxchartstestsapp.o $(_builddir)wxchartstests_wxchartstestsframe.o $(_builddir)wxchartstests_wxchartstestsmenubar.o $(_builddir)wxchartstests_wxcolumnchartpanel.o $(_builddir)wxchartstests_wxpiechartpanel.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxchartstests_wxchartstestsapp.o $(_builddir)wxchartstests_wxchartstestsframe.o $(_builddir)wxchartstests_wxchartstestsmenubar.o $(_builddir)wxchartstests_wxcolumnchartpanel.o $(_builddir)wxchartstests_wxpiechartpanel.o -pthread
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxchartstests_wxchartstestsapp.o $(_builddir)wxchartstests_wxchartstestsframe.o $(_builddir)wxchartstests_wxchartstestsmenubar.o $(_builddir)wxchartstests_wxcolumnchartpanel.o $(_builddir)wxchartstests_wxpiechartpanel.o -L$(WXCHARTS_ROOT)/lib/vc_lib -pthread
 
 $(_builddir)wxchartstests_wxchartstestsapp.o: src/wxchartstestsapp.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread `wx-config --cxxflags --libs` src/wxchartstestsapp.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include `wx-config --cxxflags --libs` src/wxchartstestsapp.cpp
 
 $(_builddir)wxchartstests_wxchartstestsframe.o: src/wxchartstestsframe.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread `wx-config --cxxflags --libs` src/wxchartstestsframe.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include `wx-config --cxxflags --libs` src/wxchartstestsframe.cpp
 
 $(_builddir)wxchartstests_wxchartstestsmenubar.o: src/wxchartstestsmenubar.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread `wx-config --cxxflags --libs` src/wxchartstestsmenubar.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include `wx-config --cxxflags --libs` src/wxchartstestsmenubar.cpp
 
 $(_builddir)wxchartstests_wxcolumnchartpanel.o: src/wxcolumnchartpanel.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread `wx-config --cxxflags --libs` src/wxcolumnchartpanel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include `wx-config --cxxflags --libs` src/wxcolumnchartpanel.cpp
 
 $(_builddir)wxchartstests_wxpiechartpanel.o: src/wxpiechartpanel.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread `wx-config --cxxflags --libs` src/wxpiechartpanel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include `wx-config --cxxflags --libs` src/wxpiechartpanel.cpp
 
 clean:
 	rm -f $(_builddir)*.o

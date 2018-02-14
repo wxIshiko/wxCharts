@@ -10,15 +10,24 @@ setting WXWIDGETS_ROOT
     default = '$(WXWIN)';
 }
 
+setting WXCHARTS_ROOT
+{
+    help = "Path to the wxCharts installation";
+    default = '$(WXCHARTS)';
+}
+
 program wxchartstests
 {
     vs2015.projectfile = ../msw/wxchartstests_vc14.vcxproj;
     vs2013.projectfile = ../msw/wxchartstests_vc12.vcxproj;
  
+    includedirs += $(WXCHARTS_ROOT)/include;
+    libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
+
     if (($(toolset) == vs2015) || ($(toolset) == vs2013))
     {
         win32-subsystem = windows;
-
+        
         includedirs += $(WXWIDGETS_ROOT)/include;
         includedirs += $(WXWIDGETS_ROOT)/include/msvc;
         libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
