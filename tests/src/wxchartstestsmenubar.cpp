@@ -29,6 +29,11 @@ wxChartsTestsMenuBar::wxChartsTestsMenuBar()
     menuFile->Append(wxID_EXIT, "Exit\tAlt+F4");
     Append(menuFile, "&File");
 
+    wxMenu* menuElements = new wxMenu;
+    menuElements->Append(wxID_RECTANGLE_ELEMENT, "Rectangle");
+    menuElements->Append(wxID_GRID_ELEMENT, "Grid");
+    Append(menuElements, "&Elements");
+
     wxMenu* menuCharts = new wxMenu;
     menuCharts->Append(wxID_COLUMN_CHART, "Column Chart");
     menuCharts->Append(wxID_PIE_CHART, "Pie Chart");

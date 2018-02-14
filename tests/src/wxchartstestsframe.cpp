@@ -23,17 +23,28 @@
 #include "wxchartstestsframe.h"
 #include "wxchartstestsmenubar.h"
 #include "wxchartstestswindowids.h"
+#include "wxchartrectanglepanel.h"
+#include "wxchartgridpanel.h"
 #include "wxcolumnchartpanel.h"
 #include "wxpiechartpanel.h"
 #include <wx/sizer.h>
 
 wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
     : wxFrame(NULL, wxID_ANY, title), m_currentPanel(0),
+    m_chartRectanglePanel(0), m_chartGridPanel(0),
     m_columnChartPanel(0), m_pieChartPanel(0)
 {
     SetMenuBar(new wxChartsTestsMenuBar());
 
     wxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
+
+    m_chartRectanglePanel = new wxChartRectanglePanel(this);
+    sizer->Add(m_chartRectanglePanel);
+    m_chartRectanglePanel->Hide();
+
+    m_chartGridPanel = new wxChartGridPanel(this);
+    sizer->Add(m_chartGridPanel);
+    m_chartGridPanel->Hide();
 
     m_columnChartPanel = new wxColumnChartPanel(this);
     sizer->Add(m_columnChartPanel);
@@ -54,6 +65,22 @@ void wxChartsTestsFrame::OnExit(wxCommandEvent& evt)
     Close();
 }
 
+void wxChartsTestsFrame::OnChartRectangleElement(wxCommandEvent& evt)
+{
+    m_currentPanel->Hide();
+    m_currentPanel = m_chartRectanglePanel;
+    m_currentPanel->Show();
+    Layout();
+}
+
+void wxChartsTestsFrame::OnChartGridElement(wxCommandEvent& evt)
+{
+    m_currentPanel->Hide();
+    m_currentPanel = m_chartGridPanel;
+    m_currentPanel->Show();
+    Layout();
+}
+
 void wxChartsTestsFrame::OnColumnChart(wxCommandEvent& evt)
 {
     m_currentPanel->Hide();
@@ -72,6 +99,8 @@ void wxChartsTestsFrame::OnPieChart(wxCommandEvent& evt)
 
 wxBEGIN_EVENT_TABLE(wxChartsTestsFrame, wxFrame)
     EVT_MENU(wxID_EXIT, wxChartsTestsFrame::OnExit)
+    EVT_MENU(wxID_RECTANGLE_ELEMENT, wxChartsTestsFrame::OnChartRectangleElement)
+    EVT_MENU(wxID_GRID_ELEMENT, wxChartsTestsFrame::OnChartGridElement)
     EVT_MENU(wxID_COLUMN_CHART, wxChartsTestsFrame::OnColumnChart)
     EVT_MENU(wxID_PIE_CHART, wxChartsTestsFrame::OnPieChart)
 wxEND_EVENT_TABLE()

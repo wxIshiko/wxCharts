@@ -25,7 +25,10 @@
 
 #include <wx/defs.h>
 
-const wxWindowID wxID_COLUMN_CHART = wxID_HIGHEST + 1;
+const wxWindowID wxID_RECTANGLE_ELEMENT = wxID_HIGHEST + 1;
+const wxWindowID wxID_GRID_ELEMENT = wxID_RECTANGLE_ELEMENT + 1;
+
+const wxWindowID wxID_COLUMN_CHART = wxID_GRID_ELEMENT + 1;
 const wxWindowID wxID_PIE_CHART = wxID_COLUMN_CHART + 1;
 
 #endif
