@@ -21,8 +21,21 @@
 */
 
 #include "wxchartcategoricalaxispanel.h"
+#include <wx/sizer.h>
 
 wxChartCategoricalAxisPanel::wxChartCategoricalAxisPanel(wxWindow* parent)
-    : wxPanel(parent)
+    : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(200, 200))
 {
+    wxVector<wxString> labels;
+    labels.push_back("January");
+    wxChartAxisOptions options(wxCHARTAXISPOSITION_BOTTOM);
+    m_axis = new wxChartCategoricalAxis(labels, options);
+
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+
+    m_canvas = new ElementCanvasWindow(this, wxSize(200, 200));
+    m_canvas->setElement(m_axis);
+    sizer->Add(m_canvas);
+
+    SetSizer(sizer);
 }

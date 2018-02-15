@@ -23,12 +23,18 @@
 #ifndef _TESTS_WX_CHARTS_WXCHARTNUMERICALAXISPANEL_H_
 #define _TESTS_WX_CHARTS_WXCHARTNUMERICALAXISPANEL_H_
 
+#include "elementcanvaswindow.h"
+#include <wx/charts/wxcharts.h>
 #include <wx/panel.h>
 
 class wxChartNumericalAxisPanel : public wxPanel
 {
 public:
     wxChartNumericalAxisPanel(wxWindow* parent);
+
+private:
+    ElementCanvasWindow* m_canvas;
+    wxChartNumericalAxis* m_axis;
 };
 
 #endif

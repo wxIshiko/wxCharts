@@ -21,8 +21,18 @@
 */
 
 #include "wxchartnumericalaxispanel.h"
+#include <wx/sizer.h>
 
 wxChartNumericalAxisPanel::wxChartNumericalAxisPanel(wxWindow* parent)
     : wxPanel(parent)
 {
+    m_axis = new wxChartNumericalAxis(0, 100, wxChartAxisOptions(wxCHARTAXISPOSITION_LEFT));
+
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+
+    m_canvas = new ElementCanvasWindow(this, wxSize(200, 200));
+    m_canvas->setElement(m_axis);
+    sizer->Add(m_canvas);
+
+    SetSizer(sizer);
 }
