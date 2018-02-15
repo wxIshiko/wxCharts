@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -58,6 +58,32 @@ wxChartArc::wxChartArc(wxDouble x,
     }
 }
 
+void wxChartArc::Draw(wxGraphicsContext &gc) const
+{
+    wxGraphicsPath path = gc.CreatePath();
+
+    if (m_innerRadius > 0)
+    {
+        path.AddArc(m_x, m_y, m_innerRadius, m_startAngle, m_endAngle, true);
+        path.AddArc(m_x, m_y, m_outerRadius, m_endAngle, m_startAngle, false);
+    }
+    else
+    {
+        path.AddArc(m_x, m_y, m_outerRadius, m_endAngle, m_startAngle, false);
+        path.AddLineToPoint(m_x, m_y);
+    }
+
+    path.CloseSubpath();
+
+    wxBrush brush(m_options.GetFillColor());
+    gc.SetBrush(brush);
+    gc.FillPath(path);
+
+    wxPen pen(*wxWHITE, m_options.GetOutlineWidth());
+    gc.SetPen(pen);
+    gc.StrokePath(path);
+}
+
 bool wxChartArc::HitTest(const wxPoint &point) const
 {
     wxDouble distanceFromXCenter = point.x - m_x;
@@ -99,32 +125,6 @@ wxPoint2DDouble wxChartArc::GetTooltipPosition() const
     wxDouble x = m_x + cos(centreAngle) * rangeFromCentre;
     wxDouble y = m_y + sin(centreAngle) * rangeFromCentre;
     return wxPoint2DDouble(x, y);
-}
-
-void wxChartArc::Draw(wxGraphicsContext &gc)
-{
-    wxGraphicsPath path = gc.CreatePath();
-
-    if (m_innerRadius > 0)
-    {
-        path.AddArc(m_x, m_y, m_innerRadius, m_startAngle, m_endAngle, true);
-        path.AddArc(m_x, m_y, m_outerRadius, m_endAngle, m_startAngle, false);
-    }
-    else
-    {
-        path.AddArc(m_x, m_y, m_outerRadius, m_endAngle, m_startAngle, false);
-        path.AddLineToPoint(m_x, m_y);
-    }
-
-    path.CloseSubpath();
-
-    wxBrush brush(m_options.GetFillColor());
-    gc.SetBrush(brush);
-    gc.FillPath(path);
-
-    wxPen pen(*wxWHITE, m_options.GetOutlineWidth());
-    gc.SetPen(pen);
-    gc.StrokePath(path);
 }
 
 void wxChartArc::SetCenter(wxDouble x, wxDouble y)

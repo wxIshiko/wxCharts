@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -72,13 +72,13 @@ const wxVector<wxChartOHLCData>& wxOHLCChartData::GetData() const
     return m_data;
 }
 
-wxOHLCChart::OHLDCLines::OHLDCLines(const wxChartOHLCData &data,
-                                    unsigned int lineWidth,
-                                    const wxColor& upLineColor,
-                                    const wxColor& downLineColor,
-                                    unsigned int openLineLength,
-                                    unsigned int closeLineLength,
-                                    const wxChartTooltipProvider::ptr tooltipProvider)
+wxOHLCChart::OHLCLines::OHLCLines(const wxChartOHLCData &data,
+                                  unsigned int lineWidth,
+                                  const wxColor& upLineColor,
+                                  const wxColor& downLineColor,
+                                  unsigned int openLineLength,
+                                  unsigned int closeLineLength,
+                                  const wxChartTooltipProvider::ptr tooltipProvider)
     : wxChartElement(tooltipProvider), m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
     m_openPoint(0, 0), m_closePoint(0, 0), m_lineWidth(lineWidth),
     m_upLineColor(upLineColor), m_downLineColor(downLineColor),
@@ -86,19 +86,7 @@ wxOHLCChart::OHLDCLines::OHLDCLines(const wxChartOHLCData &data,
 {
 }
 
-bool wxOHLCChart::OHLDCLines::HitTest(const wxPoint &point) const
-{
-    return ((point.y <= m_lowPoint.m_y) && (point.y >= m_highPoint.m_y) &&
-        (point.x >= (m_lowPoint.m_x - m_openLineLength)) &&
-        (point.x <= (m_lowPoint.m_x + m_closeLineLength)));
-}
-
-wxPoint2DDouble wxOHLCChart::OHLDCLines::GetTooltipPosition() const
-{
-    return wxPoint2DDouble(m_lowPoint.m_x, m_highPoint.m_y + (m_lowPoint.m_y - m_highPoint.m_y) / 2);
-}
-
-void wxOHLCChart::OHLDCLines::Draw(wxGraphicsContext &gc)
+void wxOHLCChart::OHLCLines::Draw(wxGraphicsContext &gc) const
 {
     wxGraphicsPath path = gc.CreatePath();
     path.MoveToPoint(m_highPoint);
@@ -123,8 +111,20 @@ void wxOHLCChart::OHLDCLines::Draw(wxGraphicsContext &gc)
     gc.StrokePath(path);
 }
 
-void wxOHLCChart::OHLDCLines::Update(const wxChartGridMapping& mapping,
-                                     size_t index)
+bool wxOHLCChart::OHLCLines::HitTest(const wxPoint &point) const
+{
+    return ((point.y <= m_lowPoint.m_y) && (point.y >= m_highPoint.m_y) &&
+        (point.x >= (m_lowPoint.m_x - m_openLineLength)) &&
+        (point.x <= (m_lowPoint.m_x + m_closeLineLength)));
+}
+
+wxPoint2DDouble wxOHLCChart::OHLCLines::GetTooltipPosition() const
+{
+    return wxPoint2DDouble(m_lowPoint.m_x, m_highPoint.m_y + (m_lowPoint.m_y - m_highPoint.m_y) / 2);
+}
+
+void wxOHLCChart::OHLCLines::Update(const wxChartGridMapping& mapping,
+                                    size_t index)
 {
     m_lowPoint = mapping.GetWindowPositionAtTickMark(index, m_data.GetLowValue());
     m_highPoint = mapping.GetWindowPositionAtTickMark(index, m_data.GetHighValue());
@@ -153,7 +153,7 @@ wxOHLCChart::wxOHLCChart(const wxOHLCChartData &data,
             new wxChartTooltipProviderStatic(data.GetLabels()[i], tooltip.str(), *wxWHITE)
             );
 
-        OHLDCLines::ptr newOHLCLines(new OHLDCLines(
+        OHLCLines::ptr newOHLCLines(new OHLCLines(
             data.GetData()[i],
             data.GetLineWidth(),
             data.GetUpLineColor(),
@@ -232,7 +232,7 @@ void wxOHLCChart::DoFit()
 
 void wxOHLCChart::DoDraw(wxGraphicsContext &gc)
 {
-    m_grid.Draw(gc);
+    m_grid.Draw1(gc);
 
     Fit();
 
