@@ -74,8 +74,8 @@ public:
     wxDouble GetRadius(wxDouble value) const;
 
 private:
-    void DrawCircular(wxGraphicsContext &gc);
-    void DrawPolygonal(wxGraphicsContext &gc);
+    void DrawCircular(wxGraphicsContext &gc) const;
+    void DrawPolygonal(wxGraphicsContext &gc) const;
     static wxPoint2DDouble CalculateCenter(const wxSize& size);
     static wxDouble CalculateCenterOffset(wxDouble value, 
         wxDouble drawingArea, wxDouble minValue,

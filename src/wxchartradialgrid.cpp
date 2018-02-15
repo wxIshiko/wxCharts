@@ -89,6 +89,22 @@ void wxChartRadialGrid::Fit(wxGraphicsContext &gc)
 
     m_labels.UpdateSizes(gc);
 
+    if (m_options.GetStyle() == wxCHARTRADIALGRIDSTYLE_CIRCULAR)
+    {
+        for (size_t i = 0; i < m_labels.size(); ++i)
+        {
+            wxDouble yCenterOffset = (i + 1) * (m_drawingArea / m_steps);
+            wxDouble yHeight = m_center.m_y - yCenterOffset;
+            if (m_options.ShowLabels())
+            {
+                m_labels[i].SetPosition(
+                    m_center.m_x - (m_labels[i].GetSize().GetX() / 2),
+                    yHeight - (m_labels[i].GetSize().GetY() / 2)
+                );
+            }
+        }
+    }
+
     m_needsFit = false;
 }
 
@@ -104,7 +120,7 @@ wxDouble wxChartRadialGrid::GetRadius(wxDouble value) const
     return (((value - m_graphMinValue) / (m_graphMaxValue - m_graphMinValue)) * m_drawingArea);
 }
 
-void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc)
+void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc) const
 {
     for (size_t i = 0; i < m_labels.size(); ++i)
     {
@@ -118,14 +134,6 @@ void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc)
         wxPen pen(m_options.GetLineColor(), m_options.GetLineWidth());
         gc.SetPen(pen);
         gc.StrokePath(path);
-
-        if (m_options.ShowLabels())
-        {
-            m_labels[i].SetPosition(
-                m_center.m_x - (m_labels[i].GetSize().GetX() / 2), 
-                yHeight - (m_labels[i].GetSize().GetY() / 2)
-                );
-        }
     }
 
     if (m_options.ShowLabels())
@@ -134,7 +142,7 @@ void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc)
     }
 }
 
-void wxChartRadialGrid::DrawPolygonal(wxGraphicsContext &gc)
+void wxChartRadialGrid::DrawPolygonal(wxGraphicsContext &gc) const
 {
     // Don't draw a centre value so start from 1
     for (size_t i = 1; i < m_labels.size(); ++i)
