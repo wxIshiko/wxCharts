@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -56,6 +56,21 @@ wxChartPoint::wxChartPoint(wxDouble x,
 {
 }
 
+void wxChartPoint::Draw(wxGraphicsContext &gc) const
+{
+    wxGraphicsPath path = gc.CreatePath();
+    path.AddArc(m_position.m_x, m_position.m_y, m_radius, 0, 2 * M_PI, false);
+    path.CloseSubpath();
+
+    wxBrush brush(m_options.GetFillColor());
+    gc.SetBrush(brush);
+    gc.FillPath(path);
+
+    wxPen pen(m_options.GetStrokeColor(), m_options.GetStrokeWidth());
+    gc.SetPen(pen);
+    gc.StrokePath(path);
+}
+
 bool wxChartPoint::HitTest(const wxPoint &point) const
 {
     wxDouble distanceFromXCenterSquared = point.x - m_position.m_x;
@@ -69,21 +84,6 @@ bool wxChartPoint::HitTest(const wxPoint &point) const
 wxPoint2DDouble wxChartPoint::GetTooltipPosition() const
 {
     return m_position;
-}
-
-void wxChartPoint::Draw(wxGraphicsContext &gc)
-{
-    wxGraphicsPath path = gc.CreatePath();
-    path.AddArc(m_position.m_x, m_position.m_y, m_radius, 0, 2 * M_PI, false);
-    path.CloseSubpath();
-
-    wxBrush brush(m_options.GetFillColor());
-    gc.SetBrush(brush);
-    gc.FillPath(path);
-
-    wxPen pen(m_options.GetStrokeColor(), m_options.GetStrokeWidth());
-    gc.SetPen(pen);
-    gc.StrokePath(path);
 }
 
 const wxPoint2DDouble& wxChartPoint::GetPosition() const

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -44,19 +44,6 @@ wxChartRectangle::wxChartRectangle(wxDouble x,
 {
 }
 
-bool wxChartRectangle::HitTest(const wxPoint &point) const
-{
-    bool x = ((m_position.m_x <= point.x) && (point.x <= (m_position.m_x + m_width)));
-    bool y = ((m_position.m_y <= point.y) && (point.y <= (m_position.m_y + m_height)));
-    return (x && y);
-}
-
-wxPoint2DDouble wxChartRectangle::GetTooltipPosition() const
-{
-    return wxPoint2DDouble(m_position.m_x + (m_width / 2),
-        m_position.m_y + (m_height / 2));
-}
-
 void wxChartRectangle::Draw(wxGraphicsContext &gc) const
 {
     wxGraphicsPath path = gc.CreatePath();
@@ -99,6 +86,19 @@ void wxChartRectangle::Draw(wxGraphicsContext &gc) const
                 m_position.m_x, m_position.m_y + m_height);
         }
     }
+}
+
+bool wxChartRectangle::HitTest(const wxPoint &point) const
+{
+    bool x = ((m_position.m_x <= point.x) && (point.x <= (m_position.m_x + m_width)));
+    bool y = ((m_position.m_y <= point.y) && (point.y <= (m_position.m_y + m_height)));
+    return (x && y);
+}
+
+wxPoint2DDouble wxChartRectangle::GetTooltipPosition() const
+{
+    return wxPoint2DDouble(m_position.m_x + (m_width / 2),
+        m_position.m_y + (m_height / 2));
 }
 
 const wxPoint2DDouble& wxChartRectangle::GetPosition() const

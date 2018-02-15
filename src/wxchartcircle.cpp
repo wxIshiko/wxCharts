@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -34,21 +34,7 @@ wxChartCircle::wxChartCircle(wxDouble x,
 {
 }
 
-bool wxChartCircle::HitTest(const wxPoint &point) const
-{
-    wxDouble distanceFromXCenter = point.x - m_x;
-    wxDouble distanceFromYCenter = point.y - m_y;
-    wxDouble radialDistanceFromCenter = sqrt((distanceFromXCenter * distanceFromXCenter) + (distanceFromYCenter * distanceFromYCenter));
-
-    return (radialDistanceFromCenter <= m_radius);
-}
-
-wxPoint2DDouble wxChartCircle::GetTooltipPosition() const
-{
-    return wxPoint2DDouble(m_x, m_y);
-}
-
-void wxChartCircle::Draw(wxGraphicsContext &gc)
+void wxChartCircle::Draw(wxGraphicsContext &gc) const
 {
     wxGraphicsPath path = gc.CreatePath();
     
@@ -61,6 +47,20 @@ void wxChartCircle::Draw(wxGraphicsContext &gc)
     wxPen pen(m_options.GetOutlineColor(), m_options.GetOutlineWidth());
     gc.SetPen(pen);
     gc.StrokePath(path);
+}
+
+bool wxChartCircle::HitTest(const wxPoint &point) const
+{
+    wxDouble distanceFromXCenter = point.x - m_x;
+    wxDouble distanceFromYCenter = point.y - m_y;
+    wxDouble radialDistanceFromCenter = sqrt((distanceFromXCenter * distanceFromXCenter) + (distanceFromYCenter * distanceFromYCenter));
+
+    return (radialDistanceFromCenter <= m_radius);
+}
+
+wxPoint2DDouble wxChartCircle::GetTooltipPosition() const
+{
+    return wxPoint2DDouble(m_x, m_y);
 }
 
 void wxChartCircle::SetCenter(wxDouble x, wxDouble y)
