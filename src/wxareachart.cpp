@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2017-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -351,6 +351,7 @@ void wxAreaChart::DoFit()
 
 void wxAreaChart::DoDraw(wxGraphicsContext &gc)
 {
+    m_grid.Fit(gc);
     m_grid.Draw(gc);
     Fit();
 

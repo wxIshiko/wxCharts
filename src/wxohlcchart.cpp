@@ -232,7 +232,8 @@ void wxOHLCChart::DoFit()
 
 void wxOHLCChart::DoDraw(wxGraphicsContext &gc)
 {
-    m_grid.Draw1(gc);
+    m_grid.Fit(gc);
+    m_grid.Draw(gc);
 
     Fit();
 

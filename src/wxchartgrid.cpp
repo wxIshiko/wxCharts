@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2018 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -69,20 +69,8 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 
 }
 
-bool wxChartGrid::HitTest(const wxPoint &point) const
+void wxChartGrid::Draw(wxGraphicsContext &gc) const
 {
-    return false;
-}
-
-wxPoint2DDouble wxChartGrid::GetTooltipPosition() const
-{
-    return wxPoint2DDouble(0, 0);
-}
-
-void wxChartGrid::Draw(wxGraphicsContext &gc)
-{
-    Fit(gc);
-
     const wxChartAxis* verticalAxis = 0;
     if (m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
     {
@@ -115,6 +103,54 @@ void wxChartGrid::Draw(wxGraphicsContext &gc)
 
     m_XAxis->Draw(gc);
     m_YAxis->Draw(gc);
+}
+
+bool wxChartGrid::HitTest(const wxPoint &point) const
+{
+    return false;
+}
+
+wxPoint2DDouble wxChartGrid::GetTooltipPosition() const
+{
+    return wxPoint2DDouble(0, 0);
+}
+
+void wxChartGrid::Fit(wxGraphicsContext &gc)
+{
+    if (!m_needsFit)
+    {
+        return;
+    }
+
+    wxDouble startPoint = m_mapping.GetSize().GetHeight() - (m_YAxis->GetOptions().GetFontOptions().GetSize() + 15) - 5; // -5 to pad labels
+    wxDouble endPoint = m_YAxis->GetOptions().GetFontOptions().GetSize();
+
+    // Apply padding settings to the start and end point.
+    //this.startPoint += this.padding;
+    //this.endPoint -= this.padding;
+
+    m_YAxis->UpdateLabelSizes(gc);
+    m_XAxis->UpdateLabelSizes(gc);
+
+    wxDouble leftPadding = 0;
+    wxDouble rightPadding = 0;
+    CalculatePadding(*m_XAxis, *m_YAxis, leftPadding, rightPadding);
+
+    if (m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+    {
+        m_XAxis->Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(m_mapping.GetSize().GetWidth() - rightPadding, startPoint));
+        m_YAxis->Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(leftPadding, endPoint));
+    }
+    else if (m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
+    {
+        m_XAxis->Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(leftPadding, endPoint));
+        m_YAxis->Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(m_mapping.GetSize().GetWidth() - rightPadding, startPoint));
+    }
+
+    m_XAxis->UpdateLabelPositions();
+    m_YAxis->UpdateLabelPositions();
+
+    m_needsFit = false;
 }
 
 void wxChartGrid::Resize(const wxSize &size)
@@ -201,44 +237,6 @@ void wxChartGrid::Update()
                                   m_curAxisLimits.MaxY, m_options.GetYAxisOptions());
     m_mapping = wxChartGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
     m_needsFit = true;
-}
-
-void wxChartGrid::Fit(wxGraphicsContext &gc)
-{
-    if (!m_needsFit)
-    {
-        return;
-    }
-
-    wxDouble startPoint = m_mapping.GetSize().GetHeight() - (m_YAxis->GetOptions().GetFontOptions().GetSize() + 15) - 5; // -5 to pad labels
-    wxDouble endPoint = m_YAxis->GetOptions().GetFontOptions().GetSize();
-
-    // Apply padding settings to the start and end point.
-    //this.startPoint += this.padding;
-    //this.endPoint -= this.padding;
-
-    m_YAxis->UpdateLabelSizes(gc);
-    m_XAxis->UpdateLabelSizes(gc);
-
-    wxDouble leftPadding = 0;
-    wxDouble rightPadding = 0;
-    CalculatePadding(*m_XAxis, *m_YAxis, leftPadding, rightPadding);
-
-    if (m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
-    {
-        m_XAxis->Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(m_mapping.GetSize().GetWidth() - rightPadding, startPoint));
-        m_YAxis->Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(leftPadding, endPoint));
-    }
-    else if (m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
-    {
-        m_XAxis->Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(leftPadding, endPoint));
-        m_YAxis->Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(m_mapping.GetSize().GetWidth() - rightPadding, startPoint));
-    }
-
-    m_XAxis->UpdateLabelPositions();
-    m_YAxis->UpdateLabelPositions();
-
-    m_needsFit = false;
 }
 
 void wxChartGrid::CalculatePadding(const wxChartAxis &xAxis,

@@ -42,6 +42,7 @@ wxColumnChartCtrl::wxColumnChartCtrl(wxWindow *parent,
     : wxChartCtrl(parent, id, pos, size, style), 
     m_columnChart(data, size)
 {
+    SetMinSize(wxSize(300, 150));
 }
 
 wxColumnChart& wxColumnChartCtrl::GetChart()

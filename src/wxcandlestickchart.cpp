@@ -264,7 +264,8 @@ void wxCandlestickChart::DoFit()
 
 void wxCandlestickChart::DoDraw(wxGraphicsContext &gc)
 {
-    m_grid.Draw1(gc);
+    m_grid.Fit(gc);
+    m_grid.Draw(gc);
 
     Fit();
 

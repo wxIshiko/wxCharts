@@ -31,6 +31,7 @@ wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
     : wxChartCtrl(parent, id, pos, size, style),
     m_pieChart(data, size)
 {
+    SetMinSize(wxSize(100, 100));
 }
 
 wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
