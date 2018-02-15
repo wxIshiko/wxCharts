@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -85,19 +85,7 @@ wxCandlestickChart::Candlestick::Candlestick(const wxChartOHLCData &data,
 {
 }
 
-bool wxCandlestickChart::Candlestick::HitTest(const wxPoint &point) const
-{
-    return ((point.y <= m_lowPoint.m_y) && (point.y >= m_highPoint.m_y) &&
-        (point.x >= (m_lowPoint.m_x - (m_rectangleWidth / 2))) &&
-        (point.x <= (m_lowPoint.m_x + (m_rectangleWidth / 2))));
-}
-
-wxPoint2DDouble wxCandlestickChart::Candlestick::GetTooltipPosition() const
-{
-    return wxPoint2DDouble(m_lowPoint.m_x, m_highPoint.m_y + (m_lowPoint.m_y - m_highPoint.m_y) / 2);
-}
-
-void wxCandlestickChart::Candlestick::Draw(wxGraphicsContext &gc)
+void wxCandlestickChart::Candlestick::Draw(wxGraphicsContext &gc) const
 {
     if (m_data.GetCloseValue() >= m_data.GetOpenValue())
     {
@@ -153,6 +141,18 @@ void wxCandlestickChart::Candlestick::Draw(wxGraphicsContext &gc)
 
         gc.StrokePath(path);
     }
+}
+
+bool wxCandlestickChart::Candlestick::HitTest(const wxPoint &point) const
+{
+    return ((point.y <= m_lowPoint.m_y) && (point.y >= m_highPoint.m_y) &&
+        (point.x >= (m_lowPoint.m_x - (m_rectangleWidth / 2))) &&
+        (point.x <= (m_lowPoint.m_x + (m_rectangleWidth / 2))));
+}
+
+wxPoint2DDouble wxCandlestickChart::Candlestick::GetTooltipPosition() const
+{
+    return wxPoint2DDouble(m_lowPoint.m_x, m_highPoint.m_y + (m_lowPoint.m_y - m_highPoint.m_y) / 2);
 }
 
 void wxCandlestickChart::Candlestick::Update(const wxChartGridMapping& mapping,
@@ -264,7 +264,7 @@ void wxCandlestickChart::DoFit()
 
 void wxCandlestickChart::DoDraw(wxGraphicsContext &gc)
 {
-    m_grid.Draw(gc);
+    m_grid.Draw1(gc);
 
     Fit();
 

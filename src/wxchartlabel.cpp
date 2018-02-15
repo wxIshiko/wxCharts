@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -40,16 +40,6 @@ wxChartLabel::wxChartLabel(const wxString &text,
 {
 }
 
-bool wxChartLabel::HitTest(const wxPoint &point) const
-{
-    return false;
-}
-
-wxPoint2DDouble wxChartLabel::GetTooltipPosition() const
-{
-    return wxPoint2DDouble(0, 0);
-}
-
 void wxChartLabel::Draw(wxGraphicsContext &gc) const
 {
     if (m_options.HasBackground())
@@ -65,6 +55,16 @@ void wxChartLabel::Draw(wxGraphicsContext &gc) const
     wxFont font = m_options.GetFontOptions().GetFont();
     gc.SetFont(font, m_options.GetFontOptions().GetColor());
     gc.DrawText(m_text, m_position.m_x, m_position.m_y);
+}
+
+bool wxChartLabel::HitTest(const wxPoint &point) const
+{
+    return false;
+}
+
+wxPoint2DDouble wxChartLabel::GetTooltipPosition() const
+{
+    return wxPoint2DDouble(0, 0);
 }
 
 const wxString& wxChartLabel::GetText() const

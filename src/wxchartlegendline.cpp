@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -34,17 +34,7 @@ wxChartLegendLine::wxChartLegendLine(const wxColor &color,
 {
 }
 
-bool wxChartLegendLine::HitTest(const wxPoint &point) const
-{
-    return false;
-}
-
-wxPoint2DDouble wxChartLegendLine::GetTooltipPosition() const
-{
-    return wxPoint2DDouble(0, 0);
-}
-
-void wxChartLegendLine::Draw(wxGraphicsContext &gc)
+void wxChartLegendLine::Draw(wxGraphicsContext &gc) const
 {
     wxFont font = m_options.GetFontOptions().GetFont();
     gc.SetFont(font, m_options.GetFontOptions().GetColor());
@@ -64,6 +54,16 @@ void wxChartLegendLine::Draw(wxGraphicsContext &gc)
     gc.FillPath(path);
 
     gc.DrawText(m_text, m_position.m_x + 20, m_position.m_y);
+}
+
+bool wxChartLegendLine::HitTest(const wxPoint &point) const
+{
+    return false;
+}
+
+wxPoint2DDouble wxChartLegendLine::GetTooltipPosition() const
+{
+    return wxPoint2DDouble(0, 0);
 }
 
 const wxPoint2DDouble& wxChartLegendLine::GetPosition() const

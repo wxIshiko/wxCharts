@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -55,13 +55,11 @@ public:
     wxChartLabel(const wxString &text, wxDouble width,
         wxDouble height, const wxChartLabelOptions &options);
 
+    virtual void Draw(wxGraphicsContext &gc) const;
+
     virtual bool HitTest(const wxPoint &point) const;
 
     virtual wxPoint2DDouble GetTooltipPosition() const;
-
-    /// Draws the label.
-    /// @param gc The graphics context.
-    void Draw(wxGraphicsContext &gc) const;
 
     /// Gets the text of the label.
     /// @return The text of the label.

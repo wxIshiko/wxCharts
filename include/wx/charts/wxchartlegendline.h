@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -44,13 +44,11 @@ public:
     wxChartLegendLine(const wxColor &color, const wxString &text, 
         const wxChartLegendLineOptions& options);
 
+    virtual void Draw(wxGraphicsContext &gc) const;
+    
     virtual bool HitTest(const wxPoint &point) const;
 
     virtual wxPoint2DDouble GetTooltipPosition() const;
-
-    /// Draws the legend line.
-    /// @param gc The graphics context.
-    void Draw(wxGraphicsContext &gc);
 
     const wxPoint2DDouble& GetPosition() const;
     void SetPosition(wxDouble x, wxDouble y);
