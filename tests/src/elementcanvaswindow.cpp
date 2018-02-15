@@ -21,3 +21,37 @@
 */
 
 #include "elementcanvaswindow.h"
+#include <wx/dcbuffer.h>
+
+ElementCanvasWindow::ElementCanvasWindow(wxWindow* parent,
+                                         const wxSize &size)
+    : wxWindow(parent, wxID_ANY, wxDefaultPosition, size), m_element(0)
+{
+    SetBackgroundStyle(wxBG_STYLE_PAINT);
+    SetBackgroundColour(*wxWHITE);
+}
+
+void ElementCanvasWindow::setElement(const wxChartElement* element)
+{
+    m_element = element;
+}
+
+void ElementCanvasWindow::OnPaint(wxPaintEvent &evt)
+{
+    wxAutoBufferedPaintDC dc(this);
+    dc.Clear();
+
+    wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+    if (gc)
+    {
+        if (m_element)
+        {
+            m_element->Draw(*gc);
+        }
+        delete gc;
+    }
+}
+
+BEGIN_EVENT_TABLE(ElementCanvasWindow, wxWindow)
+    EVT_PAINT(ElementCanvasWindow::OnPaint)
+END_EVENT_TABLE()

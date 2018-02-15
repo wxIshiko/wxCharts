@@ -27,12 +27,13 @@
 wxPieChartPanel::wxPieChartPanel(wxWindow* parent)
     : wxPanel(parent)
 {
-    wxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
     wxArrayString str;
     str.Add("three");
     str.Add("four");
     wxChoice* choice = new wxChoice(this, -1, wxDefaultPosition, wxDefaultSize, str);
+    sizer->Add(choice);
 
     // Create the data for the pie chart widget
     wxPieChartData chartData;

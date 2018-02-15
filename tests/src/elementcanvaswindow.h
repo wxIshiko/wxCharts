@@ -23,4 +23,23 @@
 #ifndef _TESTS_WX_CHARTS_ELEMENTCANVASWINDOW_H_
 #define _TESTS_WX_CHARTS_ELEMENTCANVASWINDOW_H_
 
+#include <wx/charts/wxcharts.h>
+#include <wx/window.h>
+
+class ElementCanvasWindow : public wxWindow
+{
+public:
+    ElementCanvasWindow(wxWindow* parent, const wxSize &size);
+
+    void setElement(const wxChartElement* element);
+
+private:
+    void OnPaint(wxPaintEvent &evt);
+
+private:
+    const wxChartElement* m_element;
+
+    DECLARE_EVENT_TABLE();
+};
+
 #endif
