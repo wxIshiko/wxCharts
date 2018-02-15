@@ -21,3 +21,24 @@
 */
 
 #include "wxchartrectanglepanel.h"
+#include <wx/sizer.h>
+
+wxChartRectanglePanel::wxChartRectanglePanel(wxWindow* parent)
+    : wxPanel(parent)
+{
+    wxChartRectangleOptions options(*wxRED, *wxBLACK, 0);
+    m_rectangle = new wxChartRectangle(
+        0, 0,
+        wxChartTooltipProvider::ptr(),
+        options
+    );
+    m_rectangle->SetSize(100, 20);
+
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+
+    m_canvas = new ElementCanvasWindow(this, wxSize(200, 200));
+    m_canvas->setElement(m_rectangle);
+    sizer->Add(m_canvas);
+
+    SetSizer(sizer);
+}

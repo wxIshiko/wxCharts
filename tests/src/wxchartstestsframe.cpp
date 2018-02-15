@@ -32,7 +32,8 @@
 #include <wx/sizer.h>
 
 wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
-    : wxFrame(NULL, wxID_ANY, title), m_currentPanel(0),
+    : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(1280, 720)), 
+    m_currentPanel(0),
     m_chartRectanglePanel(0), m_chartGridPanel(0),
     m_chartCategoricalAxisPanel(0), m_chartNumericalAxisPanel(0),
     m_columnChartPanel(0), m_pieChartPanel(0)

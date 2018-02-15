@@ -23,4 +23,18 @@
 #ifndef _TESTS_WX_CHARTS_WXCHARTRECTANGLEPANEL_H_
 #define _TESTS_WX_CHARTS_WXCHARTRECTANGLEPANEL_H_
 
+#include "elementcanvaswindow.h"
+#include <wx/charts/wxcharts.h>
+#include <wx/panel.h>
+
+class wxChartRectanglePanel : public wxPanel
+{
+public:
+    wxChartRectanglePanel(wxWindow* parent);
+
+private:
+    ElementCanvasWindow* m_canvas;
+    wxChartRectangle* m_rectangle;
+};
+
 #endif
