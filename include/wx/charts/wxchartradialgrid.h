@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -61,20 +61,19 @@ public:
     wxChartRadialGrid(const wxSize &size, wxDouble minValue,
         wxDouble maxValue, const wxChartRadialGridOptions& options);
 
+    virtual void Draw(wxGraphicsContext &gc) const;
+
     virtual bool HitTest(const wxPoint &point) const;
 
     virtual wxPoint2DDouble GetTooltipPosition() const;
 
-    /// Draws the radial grid.
-    /// @param gc The graphics context.
-    void Draw(wxGraphicsContext &gc);
+    void Fit(wxGraphicsContext &gc);
 
     void Resize(const wxSize &size);
 
     wxDouble GetRadius(wxDouble value) const;
 
 private:
-    void Fit(wxGraphicsContext &gc);
     void DrawCircular(wxGraphicsContext &gc);
     void DrawPolygonal(wxGraphicsContext &gc);
     static wxPoint2DDouble CalculateCenter(const wxSize& size);

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -48,13 +48,11 @@ public:
     /// Smart pointer typedef.
     typedef wxSharedPtr<wxChartAxis> ptr;
 
+    virtual void Draw(wxGraphicsContext &gc) const;
+
     virtual bool HitTest(const wxPoint &point) const;
 
     virtual wxPoint2DDouble GetTooltipPosition() const;
-
-    /// Draws the axis.
-    /// @param gc The graphics context.
-    void Draw(wxGraphicsContext &gc);
 
     /// Updates the size of each label using the 
     /// font details specified in the axis options
@@ -87,7 +85,7 @@ protected:
     wxChartAxis(const wxVector<wxString> &labels, const wxChartAxisOptions &options);
 
 private:
-    void DrawTickMarks(wxGraphicsContext &gc);
+    void DrawTickMarks(wxGraphicsContext &gc) const;
 
 private:
     wxChartAxisOptions m_options;

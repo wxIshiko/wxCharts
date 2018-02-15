@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -34,17 +34,7 @@
 #include "wxchartaxis.h"
 #include <wx/pen.h>
 
-bool wxChartAxis::HitTest(const wxPoint &point) const
-{
-    return false;
-}
-
-wxPoint2DDouble wxChartAxis::GetTooltipPosition() const
-{
-    return wxPoint2DDouble(0, 0);
-}
-
-void wxChartAxis::Draw(wxGraphicsContext &gc)
+void wxChartAxis::Draw(wxGraphicsContext &gc) const
 {
     wxPen pen(m_options.GetLineColor(), m_options.GetLineWidth());
     gc.SetPen(pen);
@@ -65,6 +55,16 @@ void wxChartAxis::Draw(wxGraphicsContext &gc)
 
     DrawTickMarks(gc);	// Draw the little lines corresponding to the labels
     m_labels.Draw(gc);
+}
+
+bool wxChartAxis::HitTest(const wxPoint &point) const
+{
+    return false;
+}
+
+wxPoint2DDouble wxChartAxis::GetTooltipPosition() const
+{
+    return wxPoint2DDouble(0, 0);
 }
 
 void wxChartAxis::Fit(wxPoint2DDouble startPoint,
@@ -254,7 +254,7 @@ wxChartAxis::wxChartAxis(const wxVector<wxString> &labels,
     }
 }
 
-void wxChartAxis::DrawTickMarks(wxGraphicsContext &gc)
+void wxChartAxis::DrawTickMarks(wxGraphicsContext &gc) const
 {
     if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
     {

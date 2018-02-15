@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -56,20 +56,8 @@ wxChartRadialGrid::wxChartRadialGrid(const wxSize &size,
     }
 }
 
-bool wxChartRadialGrid::HitTest(const wxPoint &point) const
+void wxChartRadialGrid::Draw(wxGraphicsContext &gc) const
 {
-    return false;
-}
-
-wxPoint2DDouble wxChartRadialGrid::GetTooltipPosition() const
-{
-    return wxPoint2DDouble(0, 0);
-}
-
-void wxChartRadialGrid::Draw(wxGraphicsContext &gc)
-{
-    Fit(gc);
-
     switch (m_options.GetStyle())
     {
     case wxCHARTRADIALGRIDSTYLE_CIRCULAR:
@@ -82,16 +70,14 @@ void wxChartRadialGrid::Draw(wxGraphicsContext &gc)
     }
 }
 
-void wxChartRadialGrid::Resize(const wxSize &size)
+bool wxChartRadialGrid::HitTest(const wxPoint &point) const
 {
-    m_size = size;
-    m_drawingArea = (size.x < size.y) ? size.x / 2 : size.y / 2;
-    m_center = CalculateCenter(size);
+    return false;
 }
 
-wxDouble wxChartRadialGrid::GetRadius(wxDouble value) const
+wxPoint2DDouble wxChartRadialGrid::GetTooltipPosition() const
 {
-    return (((value - m_graphMinValue) / (m_graphMaxValue - m_graphMinValue)) * m_drawingArea);
+    return wxPoint2DDouble(0, 0);
 }
 
 void wxChartRadialGrid::Fit(wxGraphicsContext &gc)
@@ -104,6 +90,18 @@ void wxChartRadialGrid::Fit(wxGraphicsContext &gc)
     m_labels.UpdateSizes(gc);
 
     m_needsFit = false;
+}
+
+void wxChartRadialGrid::Resize(const wxSize &size)
+{
+    m_size = size;
+    m_drawingArea = (size.x < size.y) ? size.x / 2 : size.y / 2;
+    m_center = CalculateCenter(size);
+}
+
+wxDouble wxChartRadialGrid::GetRadius(wxDouble value) const
+{
+    return (((value - m_graphMinValue) / (m_graphMaxValue - m_graphMinValue)) * m_drawingArea);
 }
 
 void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc)
