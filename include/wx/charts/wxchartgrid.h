@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2018 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -102,13 +102,13 @@ public:
         wxDouble minYValue, wxDouble maxYValue,
         const wxChartGridOptions& options);
 
+    virtual void Draw(wxGraphicsContext &gc) const;
+
     virtual bool HitTest(const wxPoint &point) const;
 
     virtual wxPoint2DDouble GetTooltipPosition() const;
 
-    /// Draws the grid.
-    /// @param gc The graphics context.
-    void Draw(wxGraphicsContext &gc);
+    void Fit(wxGraphicsContext &gc);
 
     /// Resizes the grid.
     /// @param size The new size of the area where the grid
@@ -129,7 +129,6 @@ public:
         wxDouble minY,wxDouble maxY);
 
 private:
-    void Fit(wxGraphicsContext &gc);
     void Update();
     void CalculatePadding(const wxChartAxis &xAxis,
         const wxChartAxis &yAxis, wxDouble &left, wxDouble &right);
