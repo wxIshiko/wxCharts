@@ -94,6 +94,7 @@
     <ClCompile Include="..\..\src\wxchartgridpanel.cpp" />
     <ClCompile Include="..\..\src\wxcolumnchartpanel.cpp" />
     <ClCompile Include="..\..\src\wxpiechartpanel.cpp" />
+    <ClCompile Include="..\..\src\elementpanel.cpp" />
     <ClCompile Include="..\..\src\elementcanvaswindow.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +109,7 @@
     <ClInclude Include="..\..\src\wxchartgridpanel.h" />
     <ClInclude Include="..\..\src\wxcolumnchartpanel.h" />
     <ClInclude Include="..\..\src\wxpiechartpanel.h" />
+    <ClInclude Include="..\..\src\elementpanel.h" />
     <ClInclude Include="..\..\src\elementcanvaswindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
