@@ -23,9 +23,8 @@
 #include "elementcanvaswindow.h"
 #include <wx/dcbuffer.h>
 
-ElementCanvasWindow::ElementCanvasWindow(wxWindow* parent,
-                                         const wxSize &size)
-    : wxWindow(parent, wxID_ANY, wxDefaultPosition, size), m_element(0)
+ElementCanvasWindow::ElementCanvasWindow(wxWindow* parent)
+    : wxWindow(parent, wxID_ANY), m_element(0)
 {
     SetBackgroundStyle(wxBG_STYLE_PAINT);
     SetBackgroundColour(*wxWHITE);
@@ -44,11 +43,23 @@ void ElementCanvasWindow::OnPaint(wxPaintEvent &evt)
     wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
     if (gc)
     {
+        DrawGrid(*gc);
+
         if (m_element)
         {
             m_element->Draw(*gc);
         }
         delete gc;
+    }
+}
+
+void ElementCanvasWindow::DrawGrid(wxGraphicsContext &gc)
+{
+    wxPen pen(wxColor(0x7F, 0x7F, 0x7F), 1);
+    gc.SetPen(pen);
+    for (size_t i = 0; i < 20; i += 10)
+    {
+        gc.StrokeLine(i, 0, i, 20);
     }
 }
 

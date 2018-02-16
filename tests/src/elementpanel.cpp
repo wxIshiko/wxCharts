@@ -21,3 +21,20 @@
 */
 
 #include "elementpanel.h"
+#include <wx/sizer.h>
+
+ElementPanel::ElementPanel(wxWindow* parent)
+    : wxPanel(parent)
+{
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+
+    m_canvas = new ElementCanvasWindow(this);
+    sizer->Add(m_canvas, 1, wxEXPAND);
+
+    SetSizer(sizer);
+}
+
+void ElementPanel::setElement(const wxChartElement* element)
+{
+    m_canvas->setElement(element);
+}

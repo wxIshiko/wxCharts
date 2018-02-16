@@ -21,3 +21,21 @@
 */
 
 #include "wxchartlabelpanel.h"
+#include <wx/sizer.h>
+
+wxChartLabelPanel::wxChartLabelPanel(wxWindow* parent)
+    : wxPanel(parent)
+{
+    m_label = new wxChartLabel(
+        "labeltext1",
+        wxChartLabelOptions(wxChartFontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666), false, wxChartBackgroundOptions(*wxWHITE, 1))
+    );
+
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+
+    m_elementPanel = new ElementPanel(this);
+    m_elementPanel->setElement(m_label);
+    sizer->Add(m_elementPanel, 1, wxEXPAND);
+
+    SetSizer(sizer);
+}

@@ -23,4 +23,18 @@
 #ifndef _TESTS_WX_CHARTS_ELEMENTPANEL_H_
 #define _TESTS_WX_CHARTS_ELEMENTPANEL_H_
 
+#include "elementcanvaswindow.h"
+#include <wx/panel.h>
+
+class ElementPanel : public wxPanel
+{
+public:
+    ElementPanel(wxWindow* parent);
+
+    void setElement(const wxChartElement* element);
+
+private:
+    ElementCanvasWindow* m_canvas;
+};
+
 #endif

@@ -29,12 +29,13 @@
 class ElementCanvasWindow : public wxWindow
 {
 public:
-    ElementCanvasWindow(wxWindow* parent, const wxSize &size);
+    ElementCanvasWindow(wxWindow* parent);
 
     void setElement(const wxChartElement* element);
 
 private:
     void OnPaint(wxPaintEvent &evt);
+    void DrawGrid(wxGraphicsContext &gc);
 
 private:
     const wxChartElement* m_element;

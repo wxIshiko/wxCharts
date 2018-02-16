@@ -23,4 +23,18 @@
 #ifndef _TESTS_WX_CHARTS_WXCHARTLABELPANEL_H_
 #define _TESTS_WX_CHARTS_WXCHARTLABELPANEL_H_
 
+#include "elementpanel.h"
+#include <wx/charts/wxcharts.h>
+#include <wx/panel.h>
+
+class wxChartLabelPanel : public wxPanel
+{
+public:
+    wxChartLabelPanel(wxWindow* parent);
+
+private:
+    ElementPanel* m_elementPanel;
+    wxChartLabel* m_label;
+};
+
 #endif
