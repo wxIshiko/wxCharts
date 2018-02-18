@@ -50,7 +50,6 @@ program wxchartstests
         ../../src/wxchartgridpanel.h
         ../../src/wxcolumnchartpanel.h
         ../../src/wxpiechartpanel.h
-        ../../src/elementpanel.h
         ../../src/elementcanvaswindow.h
     }
 
@@ -66,7 +65,6 @@ program wxchartstests
         ../../src/wxchartgridpanel.cpp
         ../../src/wxcolumnchartpanel.cpp
         ../../src/wxpiechartpanel.cpp
-        ../../src/elementpanel.cpp
         ../../src/elementcanvaswindow.cpp
     }
 }
