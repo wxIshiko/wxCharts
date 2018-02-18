@@ -24,6 +24,7 @@
 #include "wxchartstestsmenubar.h"
 #include "wxchartstestswindowids.h"
 #include "wxchartrectanglepanel.h"
+#include "wxchartlabelpanel.h"
 #include "wxchartcategoricalaxispanel.h"
 #include "wxchartnumericalaxispanel.h"
 #include "wxchartgridpanel.h"
@@ -40,30 +41,34 @@ wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
 {
     SetMenuBar(new wxChartsTestsMenuBar());
 
-    wxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
     m_chartRectanglePanel = new wxChartRectanglePanel(this);
-    sizer->Add(m_chartRectanglePanel);
+    sizer->Add(m_chartRectanglePanel, 1, wxEXPAND);
     m_chartRectanglePanel->Hide();
 
+    m_chartLabelPanel = new wxChartLabelPanel(this);
+    sizer->Add(m_chartLabelPanel, 1, wxEXPAND);
+    m_chartLabelPanel->Hide();
+
     m_chartCategoricalAxisPanel = new wxChartCategoricalAxisPanel(this);
-    sizer->Add(m_chartCategoricalAxisPanel);
+    sizer->Add(m_chartCategoricalAxisPanel, 1, wxEXPAND);
     m_chartCategoricalAxisPanel->Hide();
 
     m_chartNumericalAxisPanel = new wxChartNumericalAxisPanel(this);
-    sizer->Add(m_chartNumericalAxisPanel);
+    sizer->Add(m_chartNumericalAxisPanel, 1, wxEXPAND);
     m_chartNumericalAxisPanel->Hide();
 
     m_chartGridPanel = new wxChartGridPanel(this);
-    sizer->Add(m_chartGridPanel);
+    sizer->Add(m_chartGridPanel, 1, wxEXPAND);
     m_chartGridPanel->Hide();
 
     m_columnChartPanel = new wxColumnChartPanel(this);
-    sizer->Add(m_columnChartPanel);
+    sizer->Add(m_columnChartPanel, 1, wxEXPAND);
     m_columnChartPanel->Hide();
 
     m_pieChartPanel = new wxPieChartPanel(this);
-    sizer->Add(m_pieChartPanel);
+    sizer->Add(m_pieChartPanel, 1, wxEXPAND);
     m_pieChartPanel->Hide();
 
     m_currentPanel = m_columnChartPanel;
@@ -80,6 +85,11 @@ void wxChartsTestsFrame::OnExit(wxCommandEvent& evt)
 void wxChartsTestsFrame::OnChartRectangleElement(wxCommandEvent& evt)
 {
     SwitchPanel(m_chartRectanglePanel);
+}
+
+void wxChartsTestsFrame::OnChartLabelElement(wxCommandEvent& evt)
+{
+    SwitchPanel(m_chartLabelPanel);
 }
 
 void wxChartsTestsFrame::OnChartCategoricalAxisElement(wxCommandEvent& evt)
@@ -118,6 +128,7 @@ void wxChartsTestsFrame::SwitchPanel(wxPanel* newPanel)
 wxBEGIN_EVENT_TABLE(wxChartsTestsFrame, wxFrame)
     EVT_MENU(wxID_EXIT, wxChartsTestsFrame::OnExit)
     EVT_MENU(wxID_RECTANGLE_ELEMENT, wxChartsTestsFrame::OnChartRectangleElement)
+    EVT_MENU(wxID_LABEL_ELEMENT, wxChartsTestsFrame::OnChartLabelElement)
     EVT_MENU(wxID_CATEGORICALAXIS_ELEMENT, wxChartsTestsFrame::OnChartCategoricalAxisElement)
     EVT_MENU(wxID_NUMERICALAXIS_ELEMENT, wxChartsTestsFrame::OnChartNumericalAxisElement)
     EVT_MENU(wxID_GRID_ELEMENT, wxChartsTestsFrame::OnChartGridElement)
