@@ -22,7 +22,9 @@
 
 #include "wxchartlabelpanel.h"
 #include <wx/sizer.h>
+#include <wx/stattext.h>
 #include <wx/textctrl.h>
+#include <wx/button.h>
 #include <wx/dcclient.h>
 #include <sstream>
 
@@ -36,13 +38,21 @@ wxChartLabelPanel::wxChartLabelPanel(wxWindow* parent)
 
     wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
-    wxTextCtrl* labelWidthInfo = new wxTextCtrl(this, wxID_ANY, "?");
-    labelWidthInfo->Disable();
-    sizer->Add(labelWidthInfo);
+    wxSizer* labelSizeSizer = new wxBoxSizer(wxHORIZONTAL);
+    wxStaticText* labelSizeLabel = new wxStaticText(this, wxID_ANY, "Size:");
+    labelSizeSizer->Add(labelSizeLabel);
+    wxTextCtrl* labelSizeInfo = new wxTextCtrl(this, wxID_ANY, "?");
+    labelSizeInfo->Disable();
+    labelSizeSizer->Add(labelSizeInfo);
+
+    sizer->Add(labelSizeSizer);
 
     m_canvas = new ElementCanvasWindow(this);
     m_canvas->setElement(m_label);
     sizer->Add(m_canvas, 1, wxEXPAND);
+
+    wxButton* button = new wxButton(this, wxID_ANY, L"Change font...");
+    sizer->Add(button);
 
     wxClientDC dc(this);
     wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
@@ -52,8 +62,8 @@ wxChartLabelPanel::wxChartLabelPanel(wxWindow* parent)
     }
 
     std::stringstream widthString;
-    widthString << m_label->GetSize().GetWidth();
-    labelWidthInfo->SetLabel(widthString.str());
+    widthString << "(" << m_label->GetSize().GetWidth() << "," << m_label->GetSize().GetHeight() << ")";
+    labelSizeInfo->SetLabel(widthString.str());
 
     SetSizer(sizer);
 }
