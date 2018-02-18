@@ -23,12 +23,18 @@
 #ifndef _TESTS_WX_CHARTS_WXCHARTGRIDPANEL_H_
 #define _TESTS_WX_CHARTS_WXCHARTGRIDPANEL_H_
 
+#include "elementcanvaswindow.h"
+#include <wx/charts/wxcharts.h>
 #include <wx/panel.h>
 
 class wxChartGridPanel : public wxPanel
 {
 public:
     wxChartGridPanel(wxWindow* parent);
+
+private:
+    ElementCanvasWindow* m_canvas;
+    wxChartGrid* m_grid;
 };
 
 #endif

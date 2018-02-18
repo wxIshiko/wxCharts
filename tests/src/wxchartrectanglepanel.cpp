@@ -36,9 +36,9 @@ wxChartRectanglePanel::wxChartRectanglePanel(wxWindow* parent)
 
     wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
-    m_canvas = new ElementCanvasWindow(this, wxSize(200, 200));
+    m_canvas = new ElementCanvasWindow(this);
     m_canvas->setElement(m_rectangle);
-    sizer->Add(m_canvas);
+    sizer->Add(m_canvas, 1, wxEXPAND);
 
     SetSizer(sizer);
 }

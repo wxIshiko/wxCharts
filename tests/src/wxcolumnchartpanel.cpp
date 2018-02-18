@@ -27,14 +27,13 @@
 wxColumnChartPanel::wxColumnChartPanel(wxWindow* parent)
     : wxPanel(parent)
 {
-    wxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
-    /*
     wxArrayString str;
     str.Add("first");
     str.Add("second");
     wxChoice* choice = new wxChoice(this, -1, wxDefaultPosition, wxDefaultSize, str);
-    */
+    sizer->Add(choice);
 
     // Create the data for the column chart widget
     wxVector<wxString> labels;

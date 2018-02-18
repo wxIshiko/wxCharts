@@ -24,7 +24,7 @@
 #include <wx/sizer.h>
 
 wxChartCategoricalAxisPanel::wxChartCategoricalAxisPanel(wxWindow* parent)
-    : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(200, 200))
+    : wxPanel(parent)
 {
     wxVector<wxString> labels;
     labels.push_back("January");
@@ -33,9 +33,9 @@ wxChartCategoricalAxisPanel::wxChartCategoricalAxisPanel(wxWindow* parent)
 
     wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
-    m_canvas = new ElementCanvasWindow(this, wxSize(200, 200));
+    m_canvas = new ElementCanvasWindow(this);
     m_canvas->setElement(m_axis);
-    sizer->Add(m_canvas);
+    sizer->Add(m_canvas, 1, wxEXPAND);
 
     SetSizer(sizer);
 }

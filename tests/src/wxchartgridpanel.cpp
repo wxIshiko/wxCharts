@@ -21,8 +21,26 @@
 */
 
 #include "wxchartgridpanel.h"
+#include <wx/sizer.h>
 
 wxChartGridPanel::wxChartGridPanel(wxWindow* parent)
     : wxPanel(parent)
 {
+    wxVector<wxString> labels;
+    labels.push_back("January");
+    m_grid = new wxChartGrid(
+        wxPoint2DDouble(0, 0),
+        wxSize(200, 100),
+        wxChartCategoricalAxis::make_shared(labels, wxChartAxisOptions(wxCHARTAXISPOSITION_BOTTOM)),
+        wxChartNumericalAxis::make_shared(0, 100, wxChartAxisOptions(wxCHARTAXISPOSITION_LEFT)),
+        wxChartGridOptions()
+    );
+
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+
+    m_canvas = new ElementCanvasWindow(this);
+    m_canvas->setElement(m_grid);
+    sizer->Add(m_canvas, 1, wxEXPAND);
+
+    SetSizer(sizer);
 }
