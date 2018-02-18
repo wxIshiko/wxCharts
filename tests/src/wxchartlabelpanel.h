@@ -23,7 +23,7 @@
 #ifndef _TESTS_WX_CHARTS_WXCHARTLABELPANEL_H_
 #define _TESTS_WX_CHARTS_WXCHARTLABELPANEL_H_
 
-#include "elementpanel.h"
+#include "elementcanvaswindow.h"
 #include <wx/charts/wxcharts.h>
 #include <wx/panel.h>
 
@@ -33,7 +33,7 @@ public:
     wxChartLabelPanel(wxWindow* parent);
 
 private:
-    ElementPanel* m_elementPanel;
+    ElementCanvasWindow* m_canvas;
     wxChartLabel* m_label;
 };
 

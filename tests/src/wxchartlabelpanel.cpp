@@ -22,6 +22,9 @@
 
 #include "wxchartlabelpanel.h"
 #include <wx/sizer.h>
+#include <wx/textctrl.h>
+#include <wx/dcclient.h>
+#include <sstream>
 
 wxChartLabelPanel::wxChartLabelPanel(wxWindow* parent)
     : wxPanel(parent)
@@ -33,9 +36,24 @@ wxChartLabelPanel::wxChartLabelPanel(wxWindow* parent)
 
     wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
-    m_elementPanel = new ElementPanel(this);
-    m_elementPanel->setElement(m_label);
-    sizer->Add(m_elementPanel, 1, wxEXPAND);
+    wxTextCtrl* labelWidthInfo = new wxTextCtrl(this, wxID_ANY, "?");
+    labelWidthInfo->Disable();
+    sizer->Add(labelWidthInfo);
+
+    m_canvas = new ElementCanvasWindow(this);
+    m_canvas->setElement(m_label);
+    sizer->Add(m_canvas, 1, wxEXPAND);
+
+    wxClientDC dc(this);
+    wxGraphicsContext* gc = wxGraphicsContext::Create(dc);
+    if (gc)
+    {
+        m_label->UpdateSize(*gc);
+    }
+
+    std::stringstream widthString;
+    widthString << m_label->GetSize().GetWidth();
+    labelWidthInfo->SetLabel(widthString.str());
 
     SetSizer(sizer);
 }
