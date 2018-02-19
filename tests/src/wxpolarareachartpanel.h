@@ -20,19 +20,19 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _TESTS_WX_CHARTS_WXCHARTSTESTSWINDOWIDS_H_
-#define _TESTS_WX_CHARTS_WXCHARTSTESTSWINDOWIDS_H_
+#ifndef _TESTS_WX_CHARTS_WXPOLARAREACHARTPANEL_H_
+#define _TESTS_WX_CHARTS_WXPOLARAREACHARTPANEL_H_
 
-#include <wx/defs.h>
+#include <wx/charts/wxcharts.h>
+#include <wx/panel.h>
 
-const wxWindowID wxID_RECTANGLE_ELEMENT = wxID_HIGHEST + 1;
-const wxWindowID wxID_LABEL_ELEMENT = wxID_RECTANGLE_ELEMENT + 1;
-const wxWindowID wxID_CATEGORICALAXIS_ELEMENT = wxID_LABEL_ELEMENT + 1;
-const wxWindowID wxID_NUMERICALAXIS_ELEMENT = wxID_CATEGORICALAXIS_ELEMENT + 1;
-const wxWindowID wxID_GRID_ELEMENT = wxID_NUMERICALAXIS_ELEMENT + 1;
+class wxPolarAreaChartPanel : public wxPanel
+{
+public:
+    wxPolarAreaChartPanel(wxWindow* parent);
 
-const wxWindowID wxID_COLUMN_CHART = wxID_GRID_ELEMENT + 1;
-const wxWindowID wxID_PIE_CHART = wxID_COLUMN_CHART + 1;
-const wxWindowID wxID_POLARAREA_CHART = wxID_PIE_CHART + 1;
+private:
+    wxPolarAreaChartCtrl* m_polarAreaChart;
+};
 
 #endif

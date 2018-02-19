@@ -40,5 +40,6 @@ wxChartsTestsMenuBar::wxChartsTestsMenuBar()
     wxMenu* menuCharts = new wxMenu;
     menuCharts->Append(wxID_COLUMN_CHART, "wxColumnChartCtrl");
     menuCharts->Append(wxID_PIE_CHART, "wxPieChartCtrl");
+    menuCharts->Append(wxID_POLARAREA_CHART, "wxPolarAreaChartCtrl");
     Append(menuCharts, "&Charts");
 }

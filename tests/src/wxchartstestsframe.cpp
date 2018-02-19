@@ -30,6 +30,7 @@
 #include "wxchartgridpanel.h"
 #include "wxcolumnchartpanel.h"
 #include "wxpiechartpanel.h"
+#include "wxpolarareachartpanel.h"
 #include <wx/sizer.h>
 
 wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
@@ -70,6 +71,10 @@ wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
     m_pieChartPanel = new wxPieChartPanel(this);
     sizer->Add(m_pieChartPanel, 1, wxEXPAND);
     m_pieChartPanel->Hide();
+
+    m_polarAreaChartPanel = new wxPolarAreaChartPanel(this);
+    sizer->Add(m_polarAreaChartPanel, 1, wxEXPAND);
+    m_polarAreaChartPanel->Hide();
 
     m_currentPanel = m_columnChartPanel;
     m_currentPanel->Show();
@@ -117,6 +122,11 @@ void wxChartsTestsFrame::OnPieChart(wxCommandEvent& evt)
     SwitchPanel(m_pieChartPanel);
 }
 
+void wxChartsTestsFrame::OnPolarAreaChart(wxCommandEvent& evt)
+{
+    SwitchPanel(m_polarAreaChartPanel);
+}
+
 void wxChartsTestsFrame::SwitchPanel(wxPanel* newPanel)
 {
     m_currentPanel->Hide();
@@ -134,4 +144,5 @@ wxBEGIN_EVENT_TABLE(wxChartsTestsFrame, wxFrame)
     EVT_MENU(wxID_GRID_ELEMENT, wxChartsTestsFrame::OnChartGridElement)
     EVT_MENU(wxID_COLUMN_CHART, wxChartsTestsFrame::OnColumnChart)
     EVT_MENU(wxID_PIE_CHART, wxChartsTestsFrame::OnPieChart)
+    EVT_MENU(wxID_POLARAREA_CHART, wxChartsTestsFrame::OnPolarAreaChart)
 wxEND_EVENT_TABLE()

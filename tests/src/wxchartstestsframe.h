@@ -40,6 +40,7 @@ private:
     void OnChartGridElement(wxCommandEvent& evt);
     void OnColumnChart(wxCommandEvent& evt);
     void OnPieChart(wxCommandEvent& evt);
+    void OnPolarAreaChart(wxCommandEvent& evt);
 
     void SwitchPanel(wxPanel* newPanel);
 
@@ -52,6 +53,7 @@ private:
     wxPanel* m_chartGridPanel;
     wxPanel* m_columnChartPanel;
     wxPanel* m_pieChartPanel;
+    wxPanel* m_polarAreaChartPanel;
 
     wxDECLARE_EVENT_TABLE();
 };
