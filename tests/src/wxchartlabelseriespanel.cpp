@@ -21,8 +21,22 @@
 */
 
 #include "wxchartlabelseriespanel.h"
+#include "wxchartlabelpanel.h"
+#include <wx/splitter.h>
+#include <wx/sizer.h>
 
 wxChartLabelSeriesPanel::wxChartLabelSeriesPanel(wxWindow* parent)
     : wxPanel(parent)
 {
+    wxSplitterWindow* splitterWindow = new wxSplitterWindow(this, wxID_ANY);
+    splitterWindow->SetMinimumPaneSize(50);
+
+    wxPanel* panel1 = new wxChartLabelPanel(splitterWindow);
+    wxPanel* panel2 = new wxChartLabelPanel(splitterWindow);
+
+    splitterWindow->SplitVertically(panel1, panel2);
+
+    wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
+    topSizer->Add(splitterWindow, 1, wxEXPAND);
+    SetSizer(topSizer);
 }
