@@ -26,6 +26,7 @@
 #include <wx/textctrl.h>
 #include <wx/button.h>
 #include <wx/dcclient.h>
+#include <wx/fontdlg.h>
 #include <sstream>
 
 wxChartLabelPanel::wxChartLabelPanel(wxWindow* parent)
@@ -52,6 +53,7 @@ wxChartLabelPanel::wxChartLabelPanel(wxWindow* parent)
     sizer->Add(m_canvas, 1, wxEXPAND);
 
     wxButton* button = new wxButton(this, wxID_ANY, L"Change font...");
+    button->Bind(wxEVT_BUTTON, &wxChartLabelPanel::OnFontSelection, this);
     sizer->Add(button);
 
     wxClientDC dc(this);
@@ -66,4 +68,15 @@ wxChartLabelPanel::wxChartLabelPanel(wxWindow* parent)
     labelSizeInfo->SetLabel(widthString.str());
 
     SetSizer(sizer);
+}
+
+void wxChartLabelPanel::OnFontSelection(wxCommandEvent &evt)
+{
+    wxFontDialog* fontDialog = new wxFontDialog(this);
+
+    if (fontDialog->ShowModal() == wxID_OK)
+    {
+    }
+
+    fontDialog->Destroy();
 }

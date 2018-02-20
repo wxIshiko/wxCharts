@@ -33,6 +33,9 @@ public:
     wxChartLabelPanel(wxWindow* parent);
 
 private:
+    void OnFontSelection(wxCommandEvent &evt);
+
+private:
     ElementCanvasWindow* m_canvas;
     wxChartLabel* m_label;
 };
