@@ -21,3 +21,54 @@
 */
 
 #include "wxbubblechartpanel.h"
+#include <wx/sizer.h>
+#include <wx/choice.h>
+
+wxBubbleChartPanel::wxBubbleChartPanel(wxWindow* parent)
+    : wxPanel(parent)
+{
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+
+    // Create the data for the bubble chart widget
+    wxBubbleChartData chartData;
+
+    // Add the first dataset
+    wxVector<wxDoubleTriplet> points1;
+    points1.push_back(wxDoubleTriplet(-0.2, 3.5, 1));
+    points1.push_back(wxDoubleTriplet(0.5, 2.5, 1));
+    points1.push_back(wxDoubleTriplet(1.2, 0.1, 1));
+    points1.push_back(wxDoubleTriplet(1.5, 1.6, 2));
+    points1.push_back(wxDoubleTriplet(2, 1.8, 2));
+    points1.push_back(wxDoubleTriplet(2.2, 2.1, 3));
+    points1.push_back(wxDoubleTriplet(2.7, 2, 3));
+    wxBubbleChartDataset::ptr dataset1(
+        new wxBubbleChartDataset(
+            wxColor(250, 20, 20, 0x78),
+            *wxWHITE,
+            points1)
+    );
+    chartData.AddDataset(dataset1);
+
+    // Add the second dataset
+    wxVector<wxDoubleTriplet> points2;
+    points2.push_back(wxDoubleTriplet(-0.3, 6.5, 0.5));
+    points2.push_back(wxDoubleTriplet(0.2, -1.5, 0.5));
+    points2.push_back(wxDoubleTriplet(1.6, 0.7, 1));
+    points2.push_back(wxDoubleTriplet(1.5, 4.1, 1));
+    points2.push_back(wxDoubleTriplet(1.8, 2.7, 2));
+    points2.push_back(wxDoubleTriplet(2.1, 2, 2));
+    points2.push_back(wxDoubleTriplet(2.3, 6, 5));
+    wxBubbleChartDataset::ptr dataset2(
+        new wxBubbleChartDataset(
+            wxColor(20, 20, 20, 0x58),
+            *wxWHITE,
+            points2)
+    );
+    chartData.AddDataset(dataset2);
+
+    // Create the bubble chart widget
+    m_bubbleChart = new wxBubbleChartCtrl(this, wxID_ANY, chartData);
+    sizer->Add(m_bubbleChart);
+
+    SetSizer(sizer);
+}

@@ -28,6 +28,8 @@
 #include "wxchartcategoricalaxispanel.h"
 #include "wxchartnumericalaxispanel.h"
 #include "wxchartgridpanel.h"
+#include "wxbarchartpanel.h"
+#include "wxbubblechartpanel.h"
 #include "wxcolumnchartpanel.h"
 #include "wxpiechartpanel.h"
 #include "wxpolarareachartpanel.h"
@@ -63,6 +65,14 @@ wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
     m_chartGridPanel = new wxChartGridPanel(this);
     sizer->Add(m_chartGridPanel, 1, wxEXPAND);
     m_chartGridPanel->Hide();
+
+    m_barChartPanel = new wxBarChartPanel(this);
+    sizer->Add(m_barChartPanel, 1, wxEXPAND);
+    m_barChartPanel->Hide();
+
+    m_bubbleChartPanel = new wxBubbleChartPanel(this);
+    sizer->Add(m_bubbleChartPanel, 1, wxEXPAND);
+    m_bubbleChartPanel->Hide();
 
     m_columnChartPanel = new wxColumnChartPanel(this);
     sizer->Add(m_columnChartPanel, 1, wxEXPAND);
@@ -112,6 +122,16 @@ void wxChartsTestsFrame::OnChartGridElement(wxCommandEvent& evt)
     SwitchPanel(m_chartGridPanel);
 }
 
+void wxChartsTestsFrame::OnBarChart(wxCommandEvent& evt)
+{
+    SwitchPanel(m_barChartPanel);
+}
+
+void wxChartsTestsFrame::OnBubbleChart(wxCommandEvent& evt)
+{
+    SwitchPanel(m_bubbleChartPanel);
+}
+
 void wxChartsTestsFrame::OnColumnChart(wxCommandEvent& evt)
 {
     SwitchPanel(m_columnChartPanel);
@@ -142,6 +162,8 @@ wxBEGIN_EVENT_TABLE(wxChartsTestsFrame, wxFrame)
     EVT_MENU(wxID_CATEGORICALAXIS_ELEMENT, wxChartsTestsFrame::OnChartCategoricalAxisElement)
     EVT_MENU(wxID_NUMERICALAXIS_ELEMENT, wxChartsTestsFrame::OnChartNumericalAxisElement)
     EVT_MENU(wxID_GRID_ELEMENT, wxChartsTestsFrame::OnChartGridElement)
+    EVT_MENU(wxID_BAR_CHART, wxChartsTestsFrame::OnBarChart)
+    EVT_MENU(wxID_BUBBLE_CHART, wxChartsTestsFrame::OnBubbleChart)
     EVT_MENU(wxID_COLUMN_CHART, wxChartsTestsFrame::OnColumnChart)
     EVT_MENU(wxID_PIE_CHART, wxChartsTestsFrame::OnPieChart)
     EVT_MENU(wxID_POLARAREA_CHART, wxChartsTestsFrame::OnPolarAreaChart)

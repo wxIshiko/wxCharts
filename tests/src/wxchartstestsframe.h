@@ -38,6 +38,8 @@ private:
     void OnChartCategoricalAxisElement(wxCommandEvent& evt);
     void OnChartNumericalAxisElement(wxCommandEvent& evt);
     void OnChartGridElement(wxCommandEvent& evt);
+    void OnBarChart(wxCommandEvent& evt);
+    void OnBubbleChart(wxCommandEvent& evt);
     void OnColumnChart(wxCommandEvent& evt);
     void OnPieChart(wxCommandEvent& evt);
     void OnPolarAreaChart(wxCommandEvent& evt);
@@ -51,6 +53,8 @@ private:
     wxPanel* m_chartCategoricalAxisPanel;
     wxPanel* m_chartNumericalAxisPanel;
     wxPanel* m_chartGridPanel;
+    wxPanel* m_barChartPanel;
+    wxPanel* m_bubbleChartPanel;
     wxPanel* m_columnChartPanel;
     wxPanel* m_pieChartPanel;
     wxPanel* m_polarAreaChartPanel;

@@ -23,4 +23,16 @@
 #ifndef _TESTS_WX_CHARTS_WXBUBBLECHARTPANEL_H_
 #define _TESTS_WX_CHARTS_WXBUBBLECHARTPANEL_H_
 
+#include <wx/charts/wxcharts.h>
+#include <wx/panel.h>
+
+class wxBubbleChartPanel : public wxPanel
+{
+public:
+    wxBubbleChartPanel(wxWindow* parent);
+
+private:
+    wxBubbleChartCtrl* m_bubbleChart;
+};
+
 #endif
