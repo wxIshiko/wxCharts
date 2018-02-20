@@ -49,8 +49,10 @@ program wxchartstests
         ../../src/wxchartcategoricalaxispanel.h
         ../../src/wxchartnumericalaxispanel.h
         ../../src/wxchartgridpanel.h
+        ../../src/wxareachartpanel.h
         ../../src/wxbarchartpanel.h
         ../../src/wxbubblechartpanel.h
+        ../../src/wxcandlestickchartpanel.h
         ../../src/wxcolumnchartpanel.h
         ../../src/wxpiechartpanel.h
         ../../src/wxpolarareachartpanel.h
@@ -68,8 +70,10 @@ program wxchartstests
         ../../src/wxchartcategoricalaxispanel.cpp
         ../../src/wxchartnumericalaxispanel.cpp
         ../../src/wxchartgridpanel.cpp
+        ../../src/wxareachartpanel.cpp
         ../../src/wxbarchartpanel.cpp
         ../../src/wxbubblechartpanel.cpp
+        ../../src/wxcandlestickchartpanel.cpp
         ../../src/wxcolumnchartpanel.cpp
         ../../src/wxpiechartpanel.cpp
         ../../src/wxpolarareachartpanel.cpp

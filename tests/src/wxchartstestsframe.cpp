@@ -28,8 +28,10 @@
 #include "wxchartcategoricalaxispanel.h"
 #include "wxchartnumericalaxispanel.h"
 #include "wxchartgridpanel.h"
+#include "wxareachartpanel.h"
 #include "wxbarchartpanel.h"
 #include "wxbubblechartpanel.h"
+#include "wxcandlestickchartpanel.h"
 #include "wxcolumnchartpanel.h"
 #include "wxpiechartpanel.h"
 #include "wxpolarareachartpanel.h"
@@ -66,6 +68,10 @@ wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
     sizer->Add(m_chartGridPanel, 1, wxEXPAND);
     m_chartGridPanel->Hide();
 
+    m_areaChartPanel = new wxAreaChartPanel(this);
+    sizer->Add(m_areaChartPanel, 1, wxEXPAND);
+    m_areaChartPanel->Hide();
+
     m_barChartPanel = new wxBarChartPanel(this);
     sizer->Add(m_barChartPanel, 1, wxEXPAND);
     m_barChartPanel->Hide();
@@ -73,6 +79,10 @@ wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
     m_bubbleChartPanel = new wxBubbleChartPanel(this);
     sizer->Add(m_bubbleChartPanel, 1, wxEXPAND);
     m_bubbleChartPanel->Hide();
+
+    m_candlestickChartPanel = new wxCandlestickChartPanel(this);
+    sizer->Add(m_candlestickChartPanel, 1, wxEXPAND);
+    m_candlestickChartPanel->Hide();
 
     m_columnChartPanel = new wxColumnChartPanel(this);
     sizer->Add(m_columnChartPanel, 1, wxEXPAND);
@@ -122,6 +132,11 @@ void wxChartsTestsFrame::OnChartGridElement(wxCommandEvent& evt)
     SwitchPanel(m_chartGridPanel);
 }
 
+void wxChartsTestsFrame::OnAreaChart(wxCommandEvent& evt)
+{
+    SwitchPanel(m_areaChartPanel);
+}
+
 void wxChartsTestsFrame::OnBarChart(wxCommandEvent& evt)
 {
     SwitchPanel(m_barChartPanel);
@@ -130,6 +145,11 @@ void wxChartsTestsFrame::OnBarChart(wxCommandEvent& evt)
 void wxChartsTestsFrame::OnBubbleChart(wxCommandEvent& evt)
 {
     SwitchPanel(m_bubbleChartPanel);
+}
+
+void wxChartsTestsFrame::OnCandlestickChart(wxCommandEvent& evt)
+{
+    SwitchPanel(m_candlestickChartPanel);
 }
 
 void wxChartsTestsFrame::OnColumnChart(wxCommandEvent& evt)
@@ -162,8 +182,10 @@ wxBEGIN_EVENT_TABLE(wxChartsTestsFrame, wxFrame)
     EVT_MENU(wxID_CATEGORICALAXIS_ELEMENT, wxChartsTestsFrame::OnChartCategoricalAxisElement)
     EVT_MENU(wxID_NUMERICALAXIS_ELEMENT, wxChartsTestsFrame::OnChartNumericalAxisElement)
     EVT_MENU(wxID_GRID_ELEMENT, wxChartsTestsFrame::OnChartGridElement)
+    EVT_MENU(wxID_AREA_CHART, wxChartsTestsFrame::OnAreaChart)
     EVT_MENU(wxID_BAR_CHART, wxChartsTestsFrame::OnBarChart)
     EVT_MENU(wxID_BUBBLE_CHART, wxChartsTestsFrame::OnBubbleChart)
+    EVT_MENU(wxID_CANDLESTICK_CHART, wxChartsTestsFrame::OnCandlestickChart)
     EVT_MENU(wxID_COLUMN_CHART, wxChartsTestsFrame::OnColumnChart)
     EVT_MENU(wxID_PIE_CHART, wxChartsTestsFrame::OnPieChart)
     EVT_MENU(wxID_POLARAREA_CHART, wxChartsTestsFrame::OnPolarAreaChart)

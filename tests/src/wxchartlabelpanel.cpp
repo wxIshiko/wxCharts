@@ -76,6 +76,7 @@ void wxChartLabelPanel::OnFontSelection(wxCommandEvent &evt)
 
     if (fontDialog->ShowModal() == wxID_OK)
     {
+        //m_label->GetOptions().
     }
 
     fontDialog->Destroy();

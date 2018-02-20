@@ -20,23 +20,13 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _TESTS_WX_CHARTS_WXCHARTSTESTSWINDOWIDS_H_
-#define _TESTS_WX_CHARTS_WXCHARTSTESTSWINDOWIDS_H_
+#include "wxareachartpanel.h"
+#include <wx/sizer.h>
 
-#include <wx/defs.h>
+wxAreaChartPanel::wxAreaChartPanel(wxWindow* parent)
+    : wxPanel(parent)
+{
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
-const wxWindowID wxID_RECTANGLE_ELEMENT = wxID_HIGHEST + 1;
-const wxWindowID wxID_LABEL_ELEMENT = wxID_RECTANGLE_ELEMENT + 1;
-const wxWindowID wxID_CATEGORICALAXIS_ELEMENT = wxID_LABEL_ELEMENT + 1;
-const wxWindowID wxID_NUMERICALAXIS_ELEMENT = wxID_CATEGORICALAXIS_ELEMENT + 1;
-const wxWindowID wxID_GRID_ELEMENT = wxID_NUMERICALAXIS_ELEMENT + 1;
-
-const wxWindowID wxID_AREA_CHART = wxID_GRID_ELEMENT + 1;
-const wxWindowID wxID_BAR_CHART = wxID_AREA_CHART + 1;
-const wxWindowID wxID_BUBBLE_CHART = wxID_BAR_CHART + 1;
-const wxWindowID wxID_CANDLESTICK_CHART = wxID_BUBBLE_CHART + 1;
-const wxWindowID wxID_COLUMN_CHART = wxID_CANDLESTICK_CHART + 1;
-const wxWindowID wxID_PIE_CHART = wxID_COLUMN_CHART + 1;
-const wxWindowID wxID_POLARAREA_CHART = wxID_PIE_CHART + 1;
-
-#endif
+    SetSizer(sizer);
+}
