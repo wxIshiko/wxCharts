@@ -23,4 +23,15 @@
 #ifndef _TESTS_WX_CHARTS_TESTS_WXCHARTFONTOPTIONSTESTS_H_
 #define _TESTS_WX_CHARTS_TESTS_WXCHARTFONTOPTIONSTESTS_H_
 
+#include "cppunit/TestCase.h"
+
+class wxChartFontOptionsTests : public CppUnit::TestCase
+{
+public:
+    static CppUnit::Test* suite();
+
+private:
+    void testConstructor();
+};
+
 #endif

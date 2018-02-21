@@ -21,9 +21,12 @@
 */
 
 #include "testsuite.h"
+#include "wxchartfontoptionstests.h"
 
 TestSuite::TestSuite()
 {
+    m_controller.addListener(&m_result);
+    m_runner.addTest(wxChartFontOptionsTests::suite());
 }
 
 void TestSuite::run()
