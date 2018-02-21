@@ -45,6 +45,7 @@ private:
     void OnColumnChart(wxCommandEvent& evt);
     void OnPieChart(wxCommandEvent& evt);
     void OnPolarAreaChart(wxCommandEvent& evt);
+    void OnRunAllTests(wxCommandEvent& evt);
 
     void SwitchPanel(wxPanel* newPanel);
 

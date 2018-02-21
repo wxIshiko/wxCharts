@@ -23,4 +23,8 @@
 #ifndef _TESTS_WX_CHARTS_TESTS_TESTSUITE_H_
 #define _TESTS_WX_CHARTS_TESTS_TESTSUITE_H_
 
+class TestSuite
+{
+};
+
 #endif

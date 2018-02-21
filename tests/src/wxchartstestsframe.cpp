@@ -167,6 +167,10 @@ void wxChartsTestsFrame::OnPolarAreaChart(wxCommandEvent& evt)
     SwitchPanel(m_polarAreaChartPanel);
 }
 
+void wxChartsTestsFrame::OnRunAllTests(wxCommandEvent& evt)
+{
+}
+
 void wxChartsTestsFrame::SwitchPanel(wxPanel* newPanel)
 {
     m_currentPanel->Hide();
@@ -189,4 +193,5 @@ wxBEGIN_EVENT_TABLE(wxChartsTestsFrame, wxFrame)
     EVT_MENU(wxID_COLUMN_CHART, wxChartsTestsFrame::OnColumnChart)
     EVT_MENU(wxID_PIE_CHART, wxChartsTestsFrame::OnPieChart)
     EVT_MENU(wxID_POLARAREA_CHART, wxChartsTestsFrame::OnPolarAreaChart)
+    EVT_MENU(wxID_ALL_TESTS, wxChartsTestsFrame::OnRunAllTests)
 wxEND_EVENT_TABLE()

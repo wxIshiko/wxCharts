@@ -39,4 +39,6 @@ const wxWindowID wxID_COLUMN_CHART = wxID_CANDLESTICK_CHART + 1;
 const wxWindowID wxID_PIE_CHART = wxID_COLUMN_CHART + 1;
 const wxWindowID wxID_POLARAREA_CHART = wxID_PIE_CHART + 1;
 
+const wxWindowID wxID_ALL_TESTS = wxID_POLARAREA_CHART + 1;
+
 #endif

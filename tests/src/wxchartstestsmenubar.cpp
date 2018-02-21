@@ -46,4 +46,8 @@ wxChartsTestsMenuBar::wxChartsTestsMenuBar()
     menuCharts->Append(wxID_PIE_CHART, "wxPieChartCtrl");
     menuCharts->Append(wxID_POLARAREA_CHART, "wxPolarAreaChartCtrl");
     Append(menuCharts, "&Charts");
+
+    wxMenu* menuTests = new wxMenu;
+    menuTests->Append(wxID_ALL_TESTS, "Run all tests");
+    Append(menuTests, "&Tests");
 }
