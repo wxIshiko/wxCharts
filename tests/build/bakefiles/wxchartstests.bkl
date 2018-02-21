@@ -16,13 +16,21 @@ setting WXCHARTS_ROOT
     default = '$(WXCHARTS)';
 }
 
+setting CPPUNIT_ROOT
+{
+    help = "Path to the CppUnit installation";
+    default = '$(CPPUNIT)';
+}
+
 program wxchartstests
 {
     vs2015.projectfile = ../msw/wxchartstests_vc14.vcxproj;
     vs2013.projectfile = ../msw/wxchartstests_vc12.vcxproj;
  
     includedirs += $(WXCHARTS_ROOT)/include;
+    includedirs += $(CPPUNIT_ROOT)/include;
     libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
+    libdirs += $(CPPUNIT_ROOT)/lib;
 
     if (($(toolset) == vs2015) || ($(toolset) == vs2013))
     {
@@ -31,10 +39,20 @@ program wxchartstests
         includedirs += $(WXWIDGETS_ROOT)/include;
         includedirs += $(WXWIDGETS_ROOT)/include/msvc;
         libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+
+        if ($(config) == Debug)
+        {
+            libs += cppunitd;
+        }
+        if ($(config) == Release)
+        {
+            libs += cppunit;
+        }
     }
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "`wx-config --cxxflags --libs`";
+        libs += cppunit;
     }
 
     headers
