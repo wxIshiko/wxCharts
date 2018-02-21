@@ -23,8 +23,19 @@
 #ifndef _TESTS_WX_CHARTS_TESTS_TESTSUITE_H_
 #define _TESTS_WX_CHARTS_TESTS_TESTSUITE_H_
 
+#include "cppunit/TestResult.h"
+#include "cppunit/TestRunner.h"
+
 class TestSuite
 {
+public:
+    TestSuite();
+
+    void run();
+
+private:
+    CppUnit::TestResult m_controller;
+    CppUnit::TestRunner m_runner;
 };
 
 #endif

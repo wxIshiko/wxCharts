@@ -21,3 +21,12 @@
 */
 
 #include "testsuite.h"
+
+TestSuite::TestSuite()
+{
+}
+
+void TestSuite::run()
+{
+    m_runner.run(m_controller);
+}

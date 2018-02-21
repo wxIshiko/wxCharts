@@ -35,6 +35,7 @@
 #include "wxcolumnchartpanel.h"
 #include "wxpiechartpanel.h"
 #include "wxpolarareachartpanel.h"
+#include "tests/testsuite.h"
 #include <wx/sizer.h>
 
 wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
@@ -169,6 +170,8 @@ void wxChartsTestsFrame::OnPolarAreaChart(wxCommandEvent& evt)
 
 void wxChartsTestsFrame::OnRunAllTests(wxCommandEvent& evt)
 {
+    TestSuite tests;
+    tests.run();
 }
 
 void wxChartsTestsFrame::SwitchPanel(wxPanel* newPanel)
