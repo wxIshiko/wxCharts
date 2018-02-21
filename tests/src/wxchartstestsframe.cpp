@@ -37,6 +37,7 @@
 #include "wxpolarareachartpanel.h"
 #include "tests/testsuite.h"
 #include <wx/sizer.h>
+#include <wx/splitter.h>
 
 wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
     : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(1280, 720)), 
@@ -49,53 +50,71 @@ wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
 
     wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
-    m_chartRectanglePanel = new wxChartRectanglePanel(this);
-    sizer->Add(m_chartRectanglePanel, 1, wxEXPAND);
+    wxSplitterWindow* splitterWindow = new wxSplitterWindow(this, wxID_ANY);
+    splitterWindow->SetMinimumPaneSize(50);
+
+    m_mainPanel = new wxPanel(splitterWindow);
+
+    wxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
+    m_mainPanel->SetSizer(mainPanelSizer);
+
+    m_chartRectanglePanel = new wxChartRectanglePanel(m_mainPanel);
+    mainPanelSizer->Add(m_chartRectanglePanel, 1, wxEXPAND);
     m_chartRectanglePanel->Hide();
 
-    m_chartLabelPanel = new wxChartLabelSeriesPanel(this);
-    sizer->Add(m_chartLabelPanel, 1, wxEXPAND);
+    m_chartLabelPanel = new wxChartLabelSeriesPanel(m_mainPanel);
+    mainPanelSizer->Add(m_chartLabelPanel, 1, wxEXPAND);
     m_chartLabelPanel->Hide();
 
-    m_chartCategoricalAxisPanel = new wxChartCategoricalAxisPanel(this);
-    sizer->Add(m_chartCategoricalAxisPanel, 1, wxEXPAND);
+    m_chartCategoricalAxisPanel = new wxChartCategoricalAxisPanel(m_mainPanel);
+    mainPanelSizer->Add(m_chartCategoricalAxisPanel, 1, wxEXPAND);
     m_chartCategoricalAxisPanel->Hide();
 
-    m_chartNumericalAxisPanel = new wxChartNumericalAxisPanel(this);
-    sizer->Add(m_chartNumericalAxisPanel, 1, wxEXPAND);
+    m_chartNumericalAxisPanel = new wxChartNumericalAxisPanel(m_mainPanel);
+    mainPanelSizer->Add(m_chartNumericalAxisPanel, 1, wxEXPAND);
     m_chartNumericalAxisPanel->Hide();
 
-    m_chartGridPanel = new wxChartGridPanel(this);
-    sizer->Add(m_chartGridPanel, 1, wxEXPAND);
+    m_chartGridPanel = new wxChartGridPanel(m_mainPanel);
+    mainPanelSizer->Add(m_chartGridPanel, 1, wxEXPAND);
     m_chartGridPanel->Hide();
 
-    m_areaChartPanel = new wxAreaChartPanel(this);
-    sizer->Add(m_areaChartPanel, 1, wxEXPAND);
+    m_areaChartPanel = new wxAreaChartPanel(m_mainPanel);
+    mainPanelSizer->Add(m_areaChartPanel, 1, wxEXPAND);
     m_areaChartPanel->Hide();
 
-    m_barChartPanel = new wxBarChartPanel(this);
-    sizer->Add(m_barChartPanel, 1, wxEXPAND);
+    m_barChartPanel = new wxBarChartPanel(m_mainPanel);
+    mainPanelSizer->Add(m_barChartPanel, 1, wxEXPAND);
     m_barChartPanel->Hide();
 
-    m_bubbleChartPanel = new wxBubbleChartPanel(this);
-    sizer->Add(m_bubbleChartPanel, 1, wxEXPAND);
+    m_bubbleChartPanel = new wxBubbleChartPanel(m_mainPanel);
+    mainPanelSizer->Add(m_bubbleChartPanel, 1, wxEXPAND);
     m_bubbleChartPanel->Hide();
 
-    m_candlestickChartPanel = new wxCandlestickChartPanel(this);
-    sizer->Add(m_candlestickChartPanel, 1, wxEXPAND);
+    m_candlestickChartPanel = new wxCandlestickChartPanel(m_mainPanel);
+    mainPanelSizer->Add(m_candlestickChartPanel, 1, wxEXPAND);
     m_candlestickChartPanel->Hide();
 
-    m_columnChartPanel = new wxColumnChartPanel(this);
-    sizer->Add(m_columnChartPanel, 1, wxEXPAND);
+    m_columnChartPanel = new wxColumnChartPanel(m_mainPanel);
+    mainPanelSizer->Add(m_columnChartPanel, 1, wxEXPAND);
     m_columnChartPanel->Hide();
 
-    m_pieChartPanel = new wxPieChartPanel(this);
-    sizer->Add(m_pieChartPanel, 1, wxEXPAND);
+    m_pieChartPanel = new wxPieChartPanel(m_mainPanel);
+    mainPanelSizer->Add(m_pieChartPanel, 1, wxEXPAND);
     m_pieChartPanel->Hide();
 
-    m_polarAreaChartPanel = new wxPolarAreaChartPanel(this);
-    sizer->Add(m_polarAreaChartPanel, 1, wxEXPAND);
+    m_polarAreaChartPanel = new wxPolarAreaChartPanel(m_mainPanel);
+    mainPanelSizer->Add(m_polarAreaChartPanel, 1, wxEXPAND);
     m_polarAreaChartPanel->Hide();
+
+    wxPanel* outputPanel = new wxPanel(splitterWindow);
+    wxSizer* outputPanelSizer = new wxBoxSizer(wxVERTICAL);
+    outputPanel->SetSizer(outputPanelSizer);
+
+    m_output = new wxTextCtrl(outputPanel, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE);
+    outputPanelSizer->Add(m_output, 1, wxEXPAND);
+
+    splitterWindow->SplitHorizontally(m_mainPanel, outputPanel);
+    sizer->Add(splitterWindow, 1, wxEXPAND);
 
     m_currentPanel = m_columnChartPanel;
     m_currentPanel->Show();
@@ -170,6 +189,8 @@ void wxChartsTestsFrame::OnPolarAreaChart(wxCommandEvent& evt)
 
 void wxChartsTestsFrame::OnRunAllTests(wxCommandEvent& evt)
 {
+    wxStreamToTextRedirector redirect(m_output);
+
     TestSuite tests;
     tests.run();
 }
@@ -179,7 +200,7 @@ void wxChartsTestsFrame::SwitchPanel(wxPanel* newPanel)
     m_currentPanel->Hide();
     m_currentPanel = newPanel;
     m_currentPanel->Show();
-    Layout();
+    m_mainPanel->Layout();
 }
 
 wxBEGIN_EVENT_TABLE(wxChartsTestsFrame, wxFrame)

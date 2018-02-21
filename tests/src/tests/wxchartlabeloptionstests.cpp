@@ -21,3 +21,30 @@
 */
 
 #include "wxchartlabeloptionstests.h"
+#include "cppunit/TestSuite.h"
+#include "cppunit/TestCaller.h"
+
+wxChartLabelOptionsTests::wxChartLabelOptionsTests()
+    : CppUnit::TestCase("wxChartLabelOptions tests")
+{
+}
+
+CppUnit::Test* wxChartLabelOptionsTests::suite()
+{
+    CppUnit::TestSuite* suite = new CppUnit::TestSuite("wxChartLabelOptions tests");
+
+    suite->addTest(new CppUnit::TestCaller<wxChartLabelOptionsTests>("testConstructor", &wxChartLabelOptionsTests::testConstructor));
+    suite->addTest(new CppUnit::TestCaller<wxChartLabelOptionsTests>("testCopyConstructor", &wxChartLabelOptionsTests::testCopyConstructor));
+
+    return suite;
+}
+
+void wxChartLabelOptionsTests::testConstructor()
+{
+    CPPUNIT_ASSERT(false);
+}
+
+void wxChartLabelOptionsTests::testCopyConstructor()
+{
+    CPPUNIT_ASSERT(false);
+}

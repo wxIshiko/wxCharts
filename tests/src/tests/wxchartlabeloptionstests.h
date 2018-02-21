@@ -23,4 +23,18 @@
 #ifndef _TESTS_WX_CHARTS_TESTS_WXCHARTLABELOPTIONSTESTS_H_
 #define _TESTS_WX_CHARTS_TESTS_WXCHARTLABELOPTIONSTESTS_H_
 
+#include "cppunit/TestCase.h"
+
+class wxChartLabelOptionsTests : public CppUnit::TestCase
+{
+public:
+    wxChartLabelOptionsTests();
+
+    static CppUnit::Test* suite();
+
+private:
+    void testConstructor();
+    void testCopyConstructor();
+};
+
 #endif

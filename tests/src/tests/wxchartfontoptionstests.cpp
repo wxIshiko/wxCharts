@@ -24,16 +24,27 @@
 #include "cppunit/TestSuite.h"
 #include "cppunit/TestCaller.h"
 
+wxChartFontOptionsTests::wxChartFontOptionsTests()
+    : CppUnit::TestCase("wxChartFontOptions tests")
+{
+}
+
 CppUnit::Test* wxChartFontOptionsTests::suite()
 {
     CppUnit::TestSuite* suite = new CppUnit::TestSuite("wxChartFontOptions tests");
 
     suite->addTest(new CppUnit::TestCaller<wxChartFontOptionsTests>("testConstructor", &wxChartFontOptionsTests::testConstructor));
+    suite->addTest(new CppUnit::TestCaller<wxChartFontOptionsTests>("testCopyConstructor", &wxChartFontOptionsTests::testCopyConstructor));
 
     return suite;
 }
 
 void wxChartFontOptionsTests::testConstructor()
 {
-    CppUnit::assertEquals<int>(0, 1, CppUnit::SourceLine(), "ju");
+    CPPUNIT_ASSERT(false);
+}
+
+void wxChartFontOptionsTests::testCopyConstructor()
+{
+    CPPUNIT_ASSERT(false);
 }

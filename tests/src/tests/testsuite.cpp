@@ -22,14 +22,20 @@
 
 #include "testsuite.h"
 #include "wxchartfontoptionstests.h"
+#include "wxchartlabeloptionstests.h"
+#include <cppunit/CompilerOutputter.h>
 
 TestSuite::TestSuite()
 {
     m_controller.addListener(&m_result);
     m_runner.addTest(wxChartFontOptionsTests::suite());
+    m_runner.addTest(wxChartLabelOptionsTests::suite());
 }
 
 void TestSuite::run()
 {
     m_runner.run(m_controller);
+
+    CppUnit::CompilerOutputter outputter(&m_result, std::cout);
+    outputter.write();
 }

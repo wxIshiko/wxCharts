@@ -25,6 +25,7 @@
 
 #include <wx/frame.h>
 #include <wx/panel.h>
+#include <wx/textctrl.h>
 
 class wxChartsTestsFrame : public wxFrame
 {
@@ -50,6 +51,9 @@ private:
     void SwitchPanel(wxPanel* newPanel);
 
 private:
+    wxPanel* m_mainPanel;
+    wxTextCtrl* m_output;
+
     wxPanel* m_currentPanel;
     wxPanel* m_chartRectanglePanel;
     wxPanel* m_chartLabelPanel;

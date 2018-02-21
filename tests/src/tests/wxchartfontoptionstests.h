@@ -28,10 +28,13 @@
 class wxChartFontOptionsTests : public CppUnit::TestCase
 {
 public:
+    wxChartFontOptionsTests();
+
     static CppUnit::Test* suite();
 
 private:
     void testConstructor();
+    void testCopyConstructor();
 };
 
 #endif
