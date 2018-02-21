@@ -75,6 +75,10 @@ program wxchartstests
         ../../src/wxpiechartpanel.h
         ../../src/wxpolarareachartpanel.h
         ../../src/elementcanvaswindow.h
+
+        ../../src/tests/testsuite.h
+        ../../src/tests/wxchartfontoptionstests.h
+        ../../src/tests/wxchartlabeloptionstests.h
     }
 
     sources
@@ -96,5 +100,9 @@ program wxchartstests
         ../../src/wxpiechartpanel.cpp
         ../../src/wxpolarareachartpanel.cpp
         ../../src/elementcanvaswindow.cpp
+
+        ../../src/tests/testsuite.cpp
+        ../../src/tests/wxchartfontoptionstests.cpp
+        ../../src/tests/wxchartlabeloptionstests.cpp
     }
 }

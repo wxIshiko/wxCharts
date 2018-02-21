@@ -71,8 +71,8 @@ CPPUNIT_ROOT ?= $(CPPUNIT)
 
 all: $(_builddir)wxchartstests
 
-$(_builddir)wxchartstests: $(_builddir)wxchartstests_wxchartstestsapp.o $(_builddir)wxchartstests_wxchartstestsframe.o $(_builddir)wxchartstests_wxchartstestsmenubar.o $(_builddir)wxchartstests_wxchartrectanglepanel.o $(_builddir)wxchartstests_wxchartlabelpanel.o $(_builddir)wxchartstests_wxchartlabelseriespanel.o $(_builddir)wxchartstests_wxchartcategoricalaxispanel.o $(_builddir)wxchartstests_wxchartnumericalaxispanel.o $(_builddir)wxchartstests_wxchartgridpanel.o $(_builddir)wxchartstests_wxareachartpanel.o $(_builddir)wxchartstests_wxbarchartpanel.o $(_builddir)wxchartstests_wxbubblechartpanel.o $(_builddir)wxchartstests_wxcandlestickchartpanel.o $(_builddir)wxchartstests_wxcolumnchartpanel.o $(_builddir)wxchartstests_wxpiechartpanel.o $(_builddir)wxchartstests_wxpolarareachartpanel.o $(_builddir)wxchartstests_elementcanvaswindow.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxchartstests_wxchartstestsapp.o $(_builddir)wxchartstests_wxchartstestsframe.o $(_builddir)wxchartstests_wxchartstestsmenubar.o $(_builddir)wxchartstests_wxchartrectanglepanel.o $(_builddir)wxchartstests_wxchartlabelpanel.o $(_builddir)wxchartstests_wxchartlabelseriespanel.o $(_builddir)wxchartstests_wxchartcategoricalaxispanel.o $(_builddir)wxchartstests_wxchartnumericalaxispanel.o $(_builddir)wxchartstests_wxchartgridpanel.o $(_builddir)wxchartstests_wxareachartpanel.o $(_builddir)wxchartstests_wxbarchartpanel.o $(_builddir)wxchartstests_wxbubblechartpanel.o $(_builddir)wxchartstests_wxcandlestickchartpanel.o $(_builddir)wxchartstests_wxcolumnchartpanel.o $(_builddir)wxchartstests_wxpiechartpanel.o $(_builddir)wxchartstests_wxpolarareachartpanel.o $(_builddir)wxchartstests_elementcanvaswindow.o -L$(WXCHARTS_ROOT)/lib/vc_lib -L$(CPPUNIT_ROOT)/lib -lcppunit -pthread
+$(_builddir)wxchartstests: $(_builddir)wxchartstests_wxchartstestsapp.o $(_builddir)wxchartstests_wxchartstestsframe.o $(_builddir)wxchartstests_wxchartstestsmenubar.o $(_builddir)wxchartstests_wxchartrectanglepanel.o $(_builddir)wxchartstests_wxchartlabelpanel.o $(_builddir)wxchartstests_wxchartlabelseriespanel.o $(_builddir)wxchartstests_wxchartcategoricalaxispanel.o $(_builddir)wxchartstests_wxchartnumericalaxispanel.o $(_builddir)wxchartstests_wxchartgridpanel.o $(_builddir)wxchartstests_wxareachartpanel.o $(_builddir)wxchartstests_wxbarchartpanel.o $(_builddir)wxchartstests_wxbubblechartpanel.o $(_builddir)wxchartstests_wxcandlestickchartpanel.o $(_builddir)wxchartstests_wxcolumnchartpanel.o $(_builddir)wxchartstests_wxpiechartpanel.o $(_builddir)wxchartstests_wxpolarareachartpanel.o $(_builddir)wxchartstests_elementcanvaswindow.o $(_builddir)wxchartstests_testsuite.o $(_builddir)wxchartstests_wxchartfontoptionstests.o $(_builddir)wxchartstests_wxchartlabeloptionstests.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxchartstests_wxchartstestsapp.o $(_builddir)wxchartstests_wxchartstestsframe.o $(_builddir)wxchartstests_wxchartstestsmenubar.o $(_builddir)wxchartstests_wxchartrectanglepanel.o $(_builddir)wxchartstests_wxchartlabelpanel.o $(_builddir)wxchartstests_wxchartlabelseriespanel.o $(_builddir)wxchartstests_wxchartcategoricalaxispanel.o $(_builddir)wxchartstests_wxchartnumericalaxispanel.o $(_builddir)wxchartstests_wxchartgridpanel.o $(_builddir)wxchartstests_wxareachartpanel.o $(_builddir)wxchartstests_wxbarchartpanel.o $(_builddir)wxchartstests_wxbubblechartpanel.o $(_builddir)wxchartstests_wxcandlestickchartpanel.o $(_builddir)wxchartstests_wxcolumnchartpanel.o $(_builddir)wxchartstests_wxpiechartpanel.o $(_builddir)wxchartstests_wxpolarareachartpanel.o $(_builddir)wxchartstests_elementcanvaswindow.o $(_builddir)wxchartstests_testsuite.o $(_builddir)wxchartstests_wxchartfontoptionstests.o $(_builddir)wxchartstests_wxchartlabeloptionstests.o -L$(WXCHARTS_ROOT)/lib/vc_lib -L$(CPPUNIT_ROOT)/lib -lcppunit -pthread
 
 $(_builddir)wxchartstests_wxchartstestsapp.o: src/wxchartstestsapp.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CPPUNIT_ROOT)/include `wx-config --cxxflags --libs` src/wxchartstestsapp.cpp
@@ -124,6 +124,15 @@ $(_builddir)wxchartstests_wxpolarareachartpanel.o: src/wxpolarareachartpanel.cpp
 
 $(_builddir)wxchartstests_elementcanvaswindow.o: src/elementcanvaswindow.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CPPUNIT_ROOT)/include `wx-config --cxxflags --libs` src/elementcanvaswindow.cpp
+
+$(_builddir)wxchartstests_testsuite.o: src/tests/testsuite.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CPPUNIT_ROOT)/include `wx-config --cxxflags --libs` src/tests/testsuite.cpp
+
+$(_builddir)wxchartstests_wxchartfontoptionstests.o: src/tests/wxchartfontoptionstests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CPPUNIT_ROOT)/include `wx-config --cxxflags --libs` src/tests/wxchartfontoptionstests.cpp
+
+$(_builddir)wxchartstests_wxchartlabeloptionstests.o: src/tests/wxchartlabeloptionstests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CPPUNIT_ROOT)/include `wx-config --cxxflags --libs` src/tests/wxchartlabeloptionstests.cpp
 
 clean:
 	rm -f $(_builddir)*.o
