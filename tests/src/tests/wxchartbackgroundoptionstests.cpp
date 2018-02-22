@@ -20,33 +20,32 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartlabeloptionstests.h"
+#include "wxchartbackgroundoptionstests.h"
 #include <wx/charts/wxcharts.h>
 #include "cppunit/TestSuite.h"
 #include "cppunit/TestCaller.h"
 
-wxChartLabelOptionsTests::wxChartLabelOptionsTests()
-    : CppUnit::TestCase("wxChartLabelOptions tests")
+wxChartBackgroundOptionsTests::wxChartBackgroundOptionsTests()
+    : CppUnit::TestCase("wxChartBackgroundOptions tests")
 {
 }
 
-CppUnit::Test* wxChartLabelOptionsTests::suite()
+CppUnit::Test* wxChartBackgroundOptionsTests::suite()
 {
-    CppUnit::TestSuite* suite = new CppUnit::TestSuite("wxChartLabelOptions tests");
+    CppUnit::TestSuite* suite = new CppUnit::TestSuite("wxChartBackgroundOptions tests");
 
-    suite->addTest(new CppUnit::TestCaller<wxChartLabelOptionsTests>("testConstructor", &wxChartLabelOptionsTests::testConstructor));
-    suite->addTest(new CppUnit::TestCaller<wxChartLabelOptionsTests>("testCopyConstructor", &wxChartLabelOptionsTests::testCopyConstructor));
+    suite->addTest(new CppUnit::TestCaller<wxChartBackgroundOptionsTests>("testConstructor", &wxChartBackgroundOptionsTests::testConstructor));
+    suite->addTest(new CppUnit::TestCaller<wxChartBackgroundOptionsTests>("testCopyConstructor", &wxChartBackgroundOptionsTests::testCopyConstructor));
 
     return suite;
 }
 
-void wxChartLabelOptionsTests::testConstructor()
+void wxChartBackgroundOptionsTests::testConstructor()
 {
-    //wxChartLabelOptions options;
     CPPUNIT_ASSERT(false);
 }
 
-void wxChartLabelOptionsTests::testCopyConstructor()
+void wxChartBackgroundOptionsTests::testCopyConstructor()
 {
     CPPUNIT_ASSERT(false);
 }

@@ -20,33 +20,21 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartlabeloptionstests.h"
-#include <wx/charts/wxcharts.h>
-#include "cppunit/TestSuite.h"
-#include "cppunit/TestCaller.h"
+#ifndef _TESTS_WX_CHARTS_TESTS_WXCHARTBACKGROUNDOPTIONSTESTS_H_
+#define _TESTS_WX_CHARTS_TESTS_WXCHARTBACKGROUNDOPTIONSTESTS_H_
 
-wxChartLabelOptionsTests::wxChartLabelOptionsTests()
-    : CppUnit::TestCase("wxChartLabelOptions tests")
+#include "cppunit/TestCase.h"
+
+class wxChartBackgroundOptionsTests : public CppUnit::TestCase
 {
-}
+public:
+    wxChartBackgroundOptionsTests();
 
-CppUnit::Test* wxChartLabelOptionsTests::suite()
-{
-    CppUnit::TestSuite* suite = new CppUnit::TestSuite("wxChartLabelOptions tests");
+    static CppUnit::Test* suite();
 
-    suite->addTest(new CppUnit::TestCaller<wxChartLabelOptionsTests>("testConstructor", &wxChartLabelOptionsTests::testConstructor));
-    suite->addTest(new CppUnit::TestCaller<wxChartLabelOptionsTests>("testCopyConstructor", &wxChartLabelOptionsTests::testCopyConstructor));
+private:
+    void testConstructor();
+    void testCopyConstructor();
+};
 
-    return suite;
-}
-
-void wxChartLabelOptionsTests::testConstructor()
-{
-    //wxChartLabelOptions options;
-    CPPUNIT_ASSERT(false);
-}
-
-void wxChartLabelOptionsTests::testCopyConstructor()
-{
-    CPPUNIT_ASSERT(false);
-}
+#endif

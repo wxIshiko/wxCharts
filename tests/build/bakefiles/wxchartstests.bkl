@@ -77,6 +77,7 @@ program wxchartstests
         ../../src/elementcanvaswindow.h
 
         ../../src/tests/testsuite.h
+        ../../src/tests/wxchartbackgroundoptionstests.h
         ../../src/tests/wxchartfontoptionstests.h
         ../../src/tests/wxchartlabeloptionstests.h
     }
@@ -102,6 +103,7 @@ program wxchartstests
         ../../src/elementcanvaswindow.cpp
 
         ../../src/tests/testsuite.cpp
+        ../../src/tests/wxchartbackgroundoptionstests.cpp
         ../../src/tests/wxchartfontoptionstests.cpp
         ../../src/tests/wxchartlabeloptionstests.cpp
     }

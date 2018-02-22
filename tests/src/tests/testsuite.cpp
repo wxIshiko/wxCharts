@@ -21,6 +21,7 @@
 */
 
 #include "testsuite.h"
+#include "wxchartbackgroundoptionstests.h"
 #include "wxchartfontoptionstests.h"
 #include "wxchartlabeloptionstests.h"
 #include <cppunit/CompilerOutputter.h>
@@ -28,6 +29,7 @@
 TestSuite::TestSuite()
 {
     m_controller.addListener(&m_result);
+    m_runner.addTest(wxChartBackgroundOptionsTests::suite());
     m_runner.addTest(wxChartFontOptionsTests::suite());
     m_runner.addTest(wxChartLabelOptionsTests::suite());
 }
