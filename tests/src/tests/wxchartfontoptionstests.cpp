@@ -54,7 +54,7 @@ void wxChartFontOptionsTests::testConstructor()
 void wxChartFontOptionsTests::testCopyConstructor()
 {
     wxChartFontOptions options(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666);
-    wxChartFontOptions optionsCopy(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666);
+    wxChartFontOptions optionsCopy(options);
 
     CPPUNIT_ASSERT(optionsCopy.GetFamily() == wxFONTFAMILY_SWISS);
     CPPUNIT_ASSERT(optionsCopy.GetSize() == 12);

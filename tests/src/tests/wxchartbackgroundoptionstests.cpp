@@ -42,10 +42,17 @@ CppUnit::Test* wxChartBackgroundOptionsTests::suite()
 
 void wxChartBackgroundOptionsTests::testConstructor()
 {
-    CPPUNIT_ASSERT(false);
+    wxChartBackgroundOptions options(0x12345678, 0.2);
+
+    CPPUNIT_ASSERT(options.GetColor() == 0x12345678);
+    CPPUNIT_ASSERT(options.GetCornerRadius() == 0.2);
 }
 
 void wxChartBackgroundOptionsTests::testCopyConstructor()
 {
-    CPPUNIT_ASSERT(false);
+    wxChartBackgroundOptions options(0x12345678, 0.2);
+    wxChartBackgroundOptions optionsCopy(options);
+
+    CPPUNIT_ASSERT(optionsCopy.GetColor() == 0x12345678);
+    CPPUNIT_ASSERT(optionsCopy.GetCornerRadius() == 0.2);
 }

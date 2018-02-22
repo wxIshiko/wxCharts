@@ -42,11 +42,33 @@ CppUnit::Test* wxChartLabelOptionsTests::suite()
 
 void wxChartLabelOptionsTests::testConstructor()
 {
-    //wxChartLabelOptions options;
-    CPPUNIT_ASSERT(false);
+    wxChartFontOptions fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666);
+    wxChartBackgroundOptions backgroundOptions(0x12345678, 0.2);
+    wxChartLabelOptions options(fontOptions, true, backgroundOptions);
+
+    CPPUNIT_ASSERT(options.GetFontOptions().GetFamily() == wxFONTFAMILY_SWISS);
+    CPPUNIT_ASSERT(options.GetFontOptions().GetSize() == 12);
+    CPPUNIT_ASSERT(options.GetFontOptions().GetStyle() == wxFONTSTYLE_NORMAL);
+    CPPUNIT_ASSERT(options.GetFontOptions().GetWeight() == wxFONTWEIGHT_NORMAL);
+    CPPUNIT_ASSERT(options.GetFontOptions().GetColor() == 0x666666);
+    CPPUNIT_ASSERT(options.HasBackground() == true);
+    CPPUNIT_ASSERT(options.GetBackgroundOptions().GetColor() == 0x12345678);
+    CPPUNIT_ASSERT(options.GetBackgroundOptions().GetCornerRadius() == 0.2);
 }
 
 void wxChartLabelOptionsTests::testCopyConstructor()
 {
-    CPPUNIT_ASSERT(false);
+    wxChartFontOptions fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666);
+    wxChartBackgroundOptions backgroundOptions(0x12345678, 0.2);
+    wxChartLabelOptions options(fontOptions, true, backgroundOptions);
+    wxChartLabelOptions optionsCopy(options);
+
+    CPPUNIT_ASSERT(optionsCopy.GetFontOptions().GetFamily() == wxFONTFAMILY_SWISS);
+    CPPUNIT_ASSERT(optionsCopy.GetFontOptions().GetSize() == 12);
+    CPPUNIT_ASSERT(optionsCopy.GetFontOptions().GetStyle() == wxFONTSTYLE_NORMAL);
+    CPPUNIT_ASSERT(optionsCopy.GetFontOptions().GetWeight() == wxFONTWEIGHT_NORMAL);
+    CPPUNIT_ASSERT(optionsCopy.GetFontOptions().GetColor() == 0x666666);
+    CPPUNIT_ASSERT(optionsCopy.HasBackground() == true);
+    CPPUNIT_ASSERT(optionsCopy.GetBackgroundOptions().GetColor() == 0x12345678);
+    CPPUNIT_ASSERT(optionsCopy.GetBackgroundOptions().GetCornerRadius() == 0.2);
 }
