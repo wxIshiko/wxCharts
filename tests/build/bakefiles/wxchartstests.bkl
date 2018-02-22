@@ -80,6 +80,8 @@ program wxchartstests
         ../../src/tests/wxchartbackgroundoptionstests.h
         ../../src/tests/wxchartfontoptionstests.h
         ../../src/tests/wxchartlabeloptionstests.h
+        ../../src/tests/wxchartaxisoptionstests.h
+        ../../src/tests/wxchartgridoptionstests.h
     }
 
     sources
@@ -106,5 +108,7 @@ program wxchartstests
         ../../src/tests/wxchartbackgroundoptionstests.cpp
         ../../src/tests/wxchartfontoptionstests.cpp
         ../../src/tests/wxchartlabeloptionstests.cpp
+        ../../src/tests/wxchartaxisoptionstests.cpp
+        ../../src/tests/wxchartgridoptionstests.cpp
     }
 }

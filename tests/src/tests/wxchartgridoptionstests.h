@@ -20,28 +20,21 @@
     IN THE SOFTWARE.
 */
 
-#include "testsuite.h"
-#include "wxchartbackgroundoptionstests.h"
-#include "wxchartfontoptionstests.h"
-#include "wxchartlabeloptionstests.h"
-#include "wxchartaxisoptionstests.h"
-#include "wxchartgridoptionstests.h"
-#include <cppunit/CompilerOutputter.h>
+#ifndef _TESTS_WX_CHARTS_TESTS_WXCHARTGRIDOPTIONSTESTS_H_
+#define _TESTS_WX_CHARTS_TESTS_WXCHARTGRIDOPTIONSTESTS_H_
 
-TestSuite::TestSuite()
+#include "cppunit/TestCase.h"
+
+class wxChartGridOptionsTests : public CppUnit::TestCase
 {
-    m_controller.addListener(&m_result);
-    m_runner.addTest(wxChartBackgroundOptionsTests::suite());
-    m_runner.addTest(wxChartFontOptionsTests::suite());
-    m_runner.addTest(wxChartLabelOptionsTests::suite());
-    m_runner.addTest(wxChartAxisOptionsTests::suite());
-    m_runner.addTest(wxChartGridOptionsTests::suite());
-}
+public:
+    wxChartGridOptionsTests();
 
-void TestSuite::run()
-{
-    m_runner.run(m_controller);
+    static CppUnit::Test* suite();
 
-    CppUnit::CompilerOutputter outputter(&m_result, std::cout);
-    outputter.write();
-}
+private:
+    void testConstructor();
+    void testCopyConstructor();
+};
+
+#endif

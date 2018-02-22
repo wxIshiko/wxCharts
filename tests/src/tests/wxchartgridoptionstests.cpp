@@ -20,28 +20,32 @@
     IN THE SOFTWARE.
 */
 
-#include "testsuite.h"
-#include "wxchartbackgroundoptionstests.h"
-#include "wxchartfontoptionstests.h"
-#include "wxchartlabeloptionstests.h"
-#include "wxchartaxisoptionstests.h"
 #include "wxchartgridoptionstests.h"
-#include <cppunit/CompilerOutputter.h>
+#include <wx/charts/wxcharts.h>
+#include "cppunit/TestSuite.h"
+#include "cppunit/TestCaller.h"
 
-TestSuite::TestSuite()
+wxChartGridOptionsTests::wxChartGridOptionsTests()
+    : CppUnit::TestCase("wxChartGridOptions tests")
 {
-    m_controller.addListener(&m_result);
-    m_runner.addTest(wxChartBackgroundOptionsTests::suite());
-    m_runner.addTest(wxChartFontOptionsTests::suite());
-    m_runner.addTest(wxChartLabelOptionsTests::suite());
-    m_runner.addTest(wxChartAxisOptionsTests::suite());
-    m_runner.addTest(wxChartGridOptionsTests::suite());
 }
 
-void TestSuite::run()
+CppUnit::Test* wxChartGridOptionsTests::suite()
 {
-    m_runner.run(m_controller);
+    CppUnit::TestSuite* suite = new CppUnit::TestSuite("wxChartGridOptions tests");
 
-    CppUnit::CompilerOutputter outputter(&m_result, std::cout);
-    outputter.write();
+    suite->addTest(new CppUnit::TestCaller<wxChartGridOptionsTests>("testConstructor", &wxChartGridOptionsTests::testConstructor));
+    suite->addTest(new CppUnit::TestCaller<wxChartGridOptionsTests>("testCopyConstructor", &wxChartGridOptionsTests::testCopyConstructor));
+
+    return suite;
+}
+
+void wxChartGridOptionsTests::testConstructor()
+{
+    CPPUNIT_ASSERT(false);
+}
+
+void wxChartGridOptionsTests::testCopyConstructor()
+{
+    CPPUNIT_ASSERT(false);
 }
