@@ -20,32 +20,32 @@
     IN THE SOFTWARE.
 */
 
-#include "testsuite.h"
-#include "wxchartbackgroundoptionstests.h"
-#include "wxchartfontoptionstests.h"
-#include "wxchartlabeloptionstests.h"
-#include "wxchartaxisoptionstests.h"
-#include "wxchartgridoptionstests.h"
 #include "wxcolumnchartoptionstests.h"
-#include "wxpiechartoptionstests.h"
-#include <cppunit/CompilerOutputter.h>
+#include <wx/charts/wxcharts.h>
+#include "cppunit/TestSuite.h"
+#include "cppunit/TestCaller.h"
 
-TestSuite::TestSuite()
+wxColumnChartOptionsTests::wxColumnChartOptionsTests()
+    : CppUnit::TestCase("wxColumnChartOptions tests")
 {
-    m_controller.addListener(&m_result);
-    m_runner.addTest(wxChartBackgroundOptionsTests::suite());
-    m_runner.addTest(wxChartFontOptionsTests::suite());
-    m_runner.addTest(wxChartLabelOptionsTests::suite());
-    m_runner.addTest(wxChartAxisOptionsTests::suite());
-    m_runner.addTest(wxChartGridOptionsTests::suite());
-    m_runner.addTest(wxColumnChartOptionsTests::suite());
-    m_runner.addTest(wxPieChartOptionsTests::suite());
 }
 
-void TestSuite::run()
+CppUnit::Test* wxColumnChartOptionsTests::suite()
 {
-    m_runner.run(m_controller);
+    CppUnit::TestSuite* suite = new CppUnit::TestSuite("wxColumnChartOptions tests");
 
-    CppUnit::CompilerOutputter outputter(&m_result, std::cout);
-    outputter.write();
+    suite->addTest(new CppUnit::TestCaller<wxColumnChartOptionsTests>("testConstructor", &wxColumnChartOptionsTests::testConstructor));
+    suite->addTest(new CppUnit::TestCaller<wxColumnChartOptionsTests>("testCopyConstructor", &wxColumnChartOptionsTests::testCopyConstructor));
+
+    return suite;
+}
+
+void wxColumnChartOptionsTests::testConstructor()
+{
+    CPPUNIT_ASSERT(false);
+}
+
+void wxColumnChartOptionsTests::testCopyConstructor()
+{
+    CPPUNIT_ASSERT(false);
 }

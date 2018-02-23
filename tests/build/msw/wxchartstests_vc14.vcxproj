@@ -109,6 +109,8 @@
     <ClCompile Include="..\..\src\tests\wxchartlabeloptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartaxisoptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartgridoptionstests.cpp" />
+    <ClCompile Include="..\..\src\tests\wxcolumnchartoptionstests.cpp" />
+    <ClCompile Include="..\..\src\tests\wxpiechartoptionstests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\wxchartstestsapp.h" />
@@ -135,6 +137,8 @@
     <ClInclude Include="..\..\src\tests\wxchartlabeloptionstests.h" />
     <ClInclude Include="..\..\src\tests\wxchartaxisoptionstests.h" />
     <ClInclude Include="..\..\src\tests\wxchartgridoptionstests.h" />
+    <ClInclude Include="..\..\src\tests\wxcolumnchartoptionstests.h" />
+    <ClInclude Include="..\..\src\tests\wxpiechartoptionstests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

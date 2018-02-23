@@ -89,6 +89,12 @@
     <ClInclude Include="..\..\src\tests\wxchartgridoptionstests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\tests\wxcolumnchartoptionstests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tests\wxpiechartoptionstests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\wxchartstestsapp.cpp">
@@ -158,6 +164,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\tests\wxchartgridoptionstests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\wxcolumnchartoptionstests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\wxpiechartoptionstests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

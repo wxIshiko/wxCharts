@@ -82,6 +82,8 @@ program wxchartstests
         ../../src/tests/wxchartlabeloptionstests.h
         ../../src/tests/wxchartaxisoptionstests.h
         ../../src/tests/wxchartgridoptionstests.h
+        ../../src/tests/wxcolumnchartoptionstests.h
+        ../../src/tests/wxpiechartoptionstests.h
     }
 
     sources
@@ -110,5 +112,7 @@ program wxchartstests
         ../../src/tests/wxchartlabeloptionstests.cpp
         ../../src/tests/wxchartaxisoptionstests.cpp
         ../../src/tests/wxchartgridoptionstests.cpp
+        ../../src/tests/wxcolumnchartoptionstests.cpp
+        ../../src/tests/wxpiechartoptionstests.cpp
     }
 }
