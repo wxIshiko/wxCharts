@@ -42,10 +42,17 @@ CppUnit::Test* wxPieChartOptionsTests::suite()
 
 void wxPieChartOptionsTests::testConstructor()
 {
-    CPPUNIT_ASSERT(false);
+    wxPieChartOptions options;
+
+    CPPUNIT_ASSERT(options.GetSliceStrokeWidth() == 2);
+    CPPUNIT_ASSERT(options.GetPercentageInnerCutout() == 0);
 }
 
 void wxPieChartOptionsTests::testCopyConstructor()
 {
-    CPPUNIT_ASSERT(false);
+    wxPieChartOptions options;
+    wxPieChartOptions optionsCopy(options);
+
+    CPPUNIT_ASSERT(optionsCopy.GetSliceStrokeWidth() == 2);
+    CPPUNIT_ASSERT(optionsCopy.GetPercentageInnerCutout() == 0);
 }

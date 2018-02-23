@@ -42,10 +42,17 @@ CppUnit::Test* wxColumnChartOptionsTests::suite()
 
 void wxColumnChartOptionsTests::testConstructor()
 {
-    CPPUNIT_ASSERT(false);
+    wxColumnChartOptions options;
+
+    CPPUNIT_ASSERT(options.GetGridOptions().GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM);
+    CPPUNIT_ASSERT(options.GetGridOptions().GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_RANGE);
 }
 
 void wxColumnChartOptionsTests::testCopyConstructor()
 {
-    CPPUNIT_ASSERT(false);
+    wxColumnChartOptions options;
+    wxColumnChartOptions optionsCopy(options);
+
+    CPPUNIT_ASSERT(optionsCopy.GetGridOptions().GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM);
+    CPPUNIT_ASSERT(optionsCopy.GetGridOptions().GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_RANGE);
 }
