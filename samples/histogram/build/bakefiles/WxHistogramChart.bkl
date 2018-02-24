@@ -1,0 +1,43 @@
+toolsets = vs2015 vs2013;
+
+vs2015.solutionfile = ../msw/WxHistogramChart_vc14.sln;
+vs2013.solutionfile = ../msw/WxHistogramChart_vc12.sln;
+
+setting WXWIDGETS_ROOT
+{
+    help = "Path to the wxWidgets installation";
+    default = '$(WXWIN)';
+}
+
+setting WXCHARTS_ROOT
+{
+    help = "Path to the wxCharts installation";
+    default = '$(WXCHARTS)';
+}
+
+program WxHistogramChart
+{
+    vs2015.projectfile = ../msw/WxHistogramChart_vc14.vcxproj;
+    vs2013.projectfile = ../msw/WxHistogramChart_vc12.vcxproj;
+
+    win32-subsystem = windows;
+
+    includedirs += $(WXCHARTS_ROOT)/include;
+    libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
+
+    includedirs += $(WXWIDGETS_ROOT)/include;
+    includedirs += $(WXWIDGETS_ROOT)/include/msvc;
+    libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+
+    headers
+    {
+        ../../src/WxHistogramChartApp.h
+        ../../src/WxHistogramChartFrame.h
+    }
+
+    sources
+    {
+        ../../src/WxHistogramChartApp.cpp
+        ../../src/WxHistogramChartFrame.cpp
+    }
+}
