@@ -114,13 +114,19 @@ void wxDoughnutAndPieChartBase::DoFit()
     }
 }
 
-void wxDoughnutAndPieChartBase::DoDraw(wxGraphicsContext &gc)
+void wxDoughnutAndPieChartBase::DoDraw(wxGraphicsContext &gc,
+                                       bool suppressTooltips)
 {
     Fit();
 
     for (size_t i = 0; i < m_slices.size(); ++i)
     {
         m_slices[i]->Draw(gc);
+    }
+
+    if (!suppressTooltips)
+    {
+        DrawTooltips(gc);
     }
 }
 

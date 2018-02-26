@@ -214,7 +214,8 @@ void wxBarChart::DoFit()
     }
 }
 
-void wxBarChart::DoDraw(wxGraphicsContext &gc)
+void wxBarChart::DoDraw(wxGraphicsContext &gc,
+                        bool suppressTooltips)
 {
     m_grid.Fit(gc);
     m_grid.Draw(gc);
@@ -228,6 +229,11 @@ void wxBarChart::DoDraw(wxGraphicsContext &gc)
         {
             currentDataset.GetBars()[j]->Draw(gc);
         }
+    }
+
+    if (!suppressTooltips)
+    {
+        DrawTooltips(gc);
     }
 }
 

@@ -342,7 +342,8 @@ void wxBubbleChart::DoFit()
     }
 }
 
-void wxBubbleChart::DoDraw(wxGraphicsContext &gc)
+void wxBubbleChart::DoDraw(wxGraphicsContext &gc,
+                           bool suppressTooltips)
 {
     m_grid.Fit(gc);
     m_grid.Draw(gc);
@@ -357,6 +358,11 @@ void wxBubbleChart::DoDraw(wxGraphicsContext &gc)
             const Circle::ptr& circle = circles[j];
             circle->Draw(gc);
         }
+    }
+
+    if (!suppressTooltips)
+    {
+        DrawTooltips(gc);
     }
 }
 

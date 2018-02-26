@@ -262,7 +262,8 @@ void wxCandlestickChart::DoFit()
     }
 }
 
-void wxCandlestickChart::DoDraw(wxGraphicsContext &gc)
+void wxCandlestickChart::DoDraw(wxGraphicsContext &gc,
+                                bool suppressTooltips)
 {
     m_grid.Fit(gc);
     m_grid.Draw(gc);
@@ -272,6 +273,11 @@ void wxCandlestickChart::DoDraw(wxGraphicsContext &gc)
     for (size_t i = 0; i < m_data.size(); ++i)
     {
         m_data[i]->Draw(gc);
+    }
+
+    if (!suppressTooltips)
+    {
+        DrawTooltips(gc);
     }
 }
 
