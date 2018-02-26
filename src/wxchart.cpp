@@ -38,8 +38,7 @@ void wxChart::SetSize(const wxSize &size)
 
 void wxChart::Draw(wxGraphicsContext &gc)
 {
-    DoDraw(gc);
-    DrawTooltips(gc);
+    DoDraw(gc, false);
 }
 
 void wxChart::ActivateElementsAt(const wxPoint &point)

@@ -224,7 +224,8 @@ void wxStackedColumnChart::DoFit()
     }
 }
 
-void wxStackedColumnChart::DoDraw(wxGraphicsContext &gc)
+void wxStackedColumnChart::DoDraw(wxGraphicsContext &gc,
+                                  bool suppressTooltips)
 {
     m_grid.Fit(gc);
     m_grid.Draw(gc);
@@ -238,6 +239,11 @@ void wxStackedColumnChart::DoDraw(wxGraphicsContext &gc)
         {
             currentDataset.GetColumns()[j]->Draw(gc);
         }
+    }
+
+    if (!suppressTooltips)
+    {
+        DrawTooltips(gc);
     }
 }
 

@@ -51,7 +51,7 @@ protected:
 private:
     virtual void DoSetSize(const wxSize &size) = 0;
     virtual void DoFit() = 0;
-    virtual void DoDraw(wxGraphicsContext &gc) = 0;
+    virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips) = 0;
     virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) = 0;
 
 private:

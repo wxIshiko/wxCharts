@@ -52,12 +52,18 @@ void wxCombinationChart::DoFit()
 {
 }
 
-void wxCombinationChart::DoDraw(wxGraphicsContext &gc)
+void wxCombinationChart::DoDraw(wxGraphicsContext &gc,
+                                bool suppressTooltips)
 {
     if (m_grid)
     {
         m_grid->Fit(gc);
         m_grid->Draw(gc);
+    }
+
+    if (!suppressTooltips)
+    {
+        DrawTooltips(gc);
     }
 }
 
