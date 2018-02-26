@@ -264,7 +264,8 @@ void wxStackedBarChart::DoFit()
     }
 }
 
-void wxStackedBarChart::DoDraw(wxGraphicsContext &gc)
+void wxStackedBarChart::DoDraw(wxGraphicsContext &gc,
+                               bool suppressTooltips)
 {
     m_grid.Fit(gc);
     m_grid.Draw(gc);
@@ -278,6 +279,11 @@ void wxStackedBarChart::DoDraw(wxGraphicsContext &gc)
         {
             currentDataset.GetBars()[j]->Draw(gc);
         }
+    }
+
+    if (!suppressTooltips)
+    {
+        DrawTooltips(gc);
     }
 }
 

@@ -279,7 +279,8 @@ void wxScatterPlot::DoFit()
     }
 }
 
-void wxScatterPlot::DoDraw(wxGraphicsContext &gc)
+void wxScatterPlot::DoDraw(wxGraphicsContext &gc,
+                           bool suppressTooltips)
 {
     m_grid.Fit(gc);
     m_grid.Draw(gc);
@@ -293,6 +294,11 @@ void wxScatterPlot::DoDraw(wxGraphicsContext &gc)
         {
             points[j]->Draw(gc);
         }
+    }
+
+    if (!suppressTooltips)
+    {
+        DrawTooltips(gc);
     }
 }
 

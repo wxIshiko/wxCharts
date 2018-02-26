@@ -45,8 +45,13 @@ void wxTimeSeriesChart::DoFit()
 {
 }
 
-void wxTimeSeriesChart::DoDraw(wxGraphicsContext &gc)
+void wxTimeSeriesChart::DoDraw(wxGraphicsContext &gc,
+                               bool suppressTooltips)
 {
+    if (!suppressTooltips)
+    {
+        DrawTooltips(gc);
+    }
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxTimeSeriesChart::GetActiveElements(const wxPoint &point)
