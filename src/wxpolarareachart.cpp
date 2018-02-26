@@ -189,7 +189,8 @@ void wxPolarAreaChart::DoFit()
     }
 }
 
-void wxPolarAreaChart::DoDraw(wxGraphicsContext &gc)
+void wxPolarAreaChart::DoDraw(wxGraphicsContext &gc,
+                              bool suppressTooltips)
 {
     Fit();
 
@@ -200,6 +201,11 @@ void wxPolarAreaChart::DoDraw(wxGraphicsContext &gc)
 
     m_grid.Fit(gc);
     m_grid.Draw(gc);
+
+    if (!suppressTooltips)
+    {
+        DrawTooltips(gc);
+    }
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxPolarAreaChart::GetActiveElements(const wxPoint &point)

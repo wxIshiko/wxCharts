@@ -75,10 +75,16 @@ void wxRadarChart::DoFit()
 {
 }
 
-void wxRadarChart::DoDraw(wxGraphicsContext &gc)
+void wxRadarChart::DoDraw(wxGraphicsContext &gc,
+                          bool suppressTooltips)
 {
     m_grid.Fit(gc);
     m_grid.Draw(gc);
+
+    if (!suppressTooltips)
+    {
+        DrawTooltips(gc);
+    }
 }
 
 wxSharedPtr<wxVector<const wxChartElement*> > wxRadarChart::GetActiveElements(const wxPoint &point)
