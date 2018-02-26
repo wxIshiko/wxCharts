@@ -57,7 +57,7 @@ private:
 
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
-    virtual void DoDraw(wxGraphicsContext &gc);
+    virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
     virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
 
     wxDouble GetColumnWidth() const;

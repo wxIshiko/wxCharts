@@ -187,7 +187,7 @@ void wxHistogramChart::Save(const wxString &filename,
     wxGraphicsContext* gc = wxGraphicsContext::Create(mdc);
     if (gc)
     {
-        DoDraw(*gc);
+        DoDraw(*gc, true);
         bmp.SaveFile(filename, type);
         delete gc;
     }
@@ -206,7 +206,8 @@ void wxHistogramChart::DoFit()
 {
 }
 
-void wxHistogramChart::DoDraw(wxGraphicsContext &gc)
+void wxHistogramChart::DoDraw(wxGraphicsContext &gc,
+                              bool suppressTooltips)
 {
     m_grid.Draw(gc);
     Fit();
@@ -238,6 +239,11 @@ void wxHistogramChart::DoDraw(wxGraphicsContext &gc)
             gc.SetBrush(wxBrush(m_dataset->GetFillColor()));
 
         gc.FillPath(path);
+    }
+
+    if (!suppressTooltips)
+    {
+        DrawTooltips(gc);
     }
 }
 

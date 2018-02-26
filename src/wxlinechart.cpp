@@ -246,7 +246,7 @@ void wxLineChart::Save(const wxString &filename,
     wxGraphicsContext* gc = wxGraphicsContext::Create(mdc);
     if (gc)
     {
-        DoDraw(*gc);
+        DoDraw(*gc, true);
         bmp.SaveFile(filename, type);
         delete gc;
     }
@@ -348,7 +348,8 @@ void wxLineChart::DoFit()
 {
 }
 
-void wxLineChart::DoDraw(wxGraphicsContext &gc)
+void wxLineChart::DoDraw(wxGraphicsContext &gc,
+                         bool suppressTooltips)
 {
     m_grid.Fit(gc);
     m_grid.Draw(gc);
@@ -410,6 +411,11 @@ void wxLineChart::DoDraw(wxGraphicsContext &gc)
                 point->Draw(gc);
             }
         }
+    }
+
+    if (!suppressTooltips)
+    {
+        DrawTooltips(gc);
     }
 }
 

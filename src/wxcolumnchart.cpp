@@ -183,7 +183,8 @@ void wxColumnChart::DoFit()
     }
 }
 
-void wxColumnChart::DoDraw(wxGraphicsContext &gc)
+void wxColumnChart::DoDraw(wxGraphicsContext &gc,
+                           bool suppressTooltips)
 {
     m_grid.Fit(gc);
     m_grid.Draw(gc);
@@ -197,6 +198,11 @@ void wxColumnChart::DoDraw(wxGraphicsContext &gc)
         {
             currentDataset.GetColumns()[j]->Draw(gc);
         }
+    }
+
+    if (!suppressTooltips)
+    {
+        DrawTooltips(gc);
     }
 }
 
