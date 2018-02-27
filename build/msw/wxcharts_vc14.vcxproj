@@ -127,7 +127,7 @@
     <ClCompile Include="..\..\src\wxchartslicedata.cpp" />
     <ClCompile Include="..\..\src\wxchartohlcdata.cpp" />
     <ClCompile Include="..\..\src\wxchartoptions.cpp" />
-    <ClCompile Include="..\..\include\wx\charts\wxchartcommonoptions.cpp" />
+    <ClCompile Include="..\..\src\wxchartcommonoptions.cpp" />
     <ClCompile Include="..\..\src\wxchart.cpp" />
     <ClCompile Include="..\..\src\wxchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxbarchartdatasetoptions.cpp" />

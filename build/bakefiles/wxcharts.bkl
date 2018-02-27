@@ -195,7 +195,7 @@ library wxcharts
         ../../src/wxchartslicedata.cpp
         ../../src/wxchartohlcdata.cpp
         ../../src/wxchartoptions.cpp
-        ../../include/wx/charts/wxchartcommonoptions.cpp
+        ../../src/wxchartcommonoptions.cpp
         ../../src/wxchart.cpp
         ../../src/wxchartctrl.cpp
         ../../src/wxbarchartdatasetoptions.cpp

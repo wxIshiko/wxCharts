@@ -466,7 +466,7 @@
     <ClCompile Include="..\..\src\wxchartoptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\include\wx\charts\wxchartcommonoptions.cpp">
+    <ClCompile Include="..\..\src\wxchartcommonoptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchart.cpp">

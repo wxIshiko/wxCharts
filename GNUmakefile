@@ -207,8 +207,8 @@ $(_builddir)wxcharts_wxchartohlcdata.o: src/wxchartohlcdata.cpp
 $(_builddir)wxcharts_wxchartoptions.o: src/wxchartoptions.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -std=c++11 `wx-config --cxxflags --libs` src/wxchartoptions.cpp
 
-$(_builddir)wxcharts_wxchartcommonoptions.o: include/wx/charts/wxchartcommonoptions.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -std=c++11 `wx-config --cxxflags --libs` include/wx/charts/wxchartcommonoptions.cpp
+$(_builddir)wxcharts_wxchartcommonoptions.o: src/wxchartcommonoptions.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -std=c++11 `wx-config --cxxflags --libs` src/wxchartcommonoptions.cpp
 
 $(_builddir)wxcharts_wxchart.o: src/wxchart.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -Iinclude/wx/charts -std=c++11 `wx-config --cxxflags --libs` src/wxchart.cpp
