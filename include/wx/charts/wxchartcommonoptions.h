@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -24,5 +24,27 @@
 
 #ifndef _WX_CHARTS_WXCHARTCOMMONOPTIONS_H_
 #define _WX_CHARTS_WXCHARTCOMMONOPTIONS_H_
+
+#include "wxchartmultitooltipoptions.h"
+
+/// Options that are common between the various
+/// chart types.
+class wxChartCommonOptions
+{
+public:
+    /// Constructs a wxChartCommonOptions
+    /// instance.
+    wxChartCommonOptions();
+
+    /// Gets the options for the multi-tooltips (const version).
+    /// @return The options for the multi-tooltips.
+    const wxChartMultiTooltipOptions& GetMultiTooltipOptions() const;
+    /// Gets the options for the multi-tooltips (non-const version).
+    /// @return The options for the multi-tooltips.
+    wxChartMultiTooltipOptions& GetMultiTooltipOptions();
+
+private:
+    wxChartMultiTooltipOptions m_multiTooltipOptions;
+};
 
 #endif
