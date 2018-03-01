@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -23,74 +23,6 @@
 #include "wxchartlegendctrl.h"
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
-
-wxChartLegendItem::wxChartLegendItem(const wxColor &color, 
-                                     const wxString &label)
-    : m_color(color), m_label(label)
-{
-}
-
-wxChartLegendItem::wxChartLegendItem(const wxChartSliceData &slice)
-    : m_color(slice.GetColor()), m_label(slice.GetLabel())
-{
-}
-
-wxChartLegendItem::wxChartLegendItem(const wxLineChartDataset &dataset)
-    : m_color(*wxWHITE), m_label(dataset.GetLabel())
-{
-    if (dataset.ShowDots())
-    {
-        m_color = dataset.GetDotColor();
-    }
-    else if (dataset.ShowLine())
-    {
-        m_color = dataset.GetLineColor();
-    }
-    else if (dataset.Fill())
-    {
-        m_color = dataset.GetFillColor();
-    }
-}
-
-const wxColor& wxChartLegendItem::GetColor() const
-{
-    return m_color;
-}
-
-const wxString& wxChartLegendItem::GetLabel() const
-{
-    return m_label;
-}
-
-wxChartLegendData::wxChartLegendData()
-{
-}
-
-wxChartLegendData::wxChartLegendData(const wxVector<wxChartSliceData>& slices)
-{
-    for (size_t i = 0; i < slices.size(); ++i)
-    {
-        m_items.push_back(wxChartLegendItem(slices[i]));
-    }
-}
-
-wxChartLegendData::wxChartLegendData(const wxVector<wxLineChartDataset::ptr>& datasets)
-{
-    for (size_t i = 0; i < datasets.size(); ++i)
-    {
-        m_items.push_back(wxChartLegendItem(*datasets[i]));
-    }
-}
-
-void wxChartLegendData::Append(const wxChartLegendItem &item)
-{
-    m_items.push_back(item);
-}
-
-const wxVector<wxChartLegendItem>& wxChartLegendData::GetItems() const
-{
-    return m_items;
-}
 
 wxChartLegendCtrl::wxChartLegendCtrl(wxWindow *parent,
                                      wxWindowID id,
