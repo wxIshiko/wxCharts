@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -23,8 +23,18 @@
 #include "wxchartoptions.h"
 
 wxChartOptions::wxChartOptions()
-    : m_responsive(true), m_showTooltips(true), m_enableSaveAsMenu(true)
+    : m_enableSaveAsMenu(true)
 {
+}
+
+const wxChartCommonOptions& wxChartOptions::GetCommonOptions() const
+{
+    return m_commonOptions;
+}
+
+wxChartCommonOptions& wxChartOptions::GetCommonOptions()
+{
+    return m_commonOptions;
 }
 
 const wxChartPadding& wxChartOptions::GetPadding() const
@@ -35,32 +45,6 @@ const wxChartPadding& wxChartOptions::GetPadding() const
 void wxChartOptions::SetPadding(const wxChartPadding &padding)
 {
     m_padding = padding;
-}
-
-bool wxChartOptions::IsResponsive() const
-{
-    return m_responsive;
-}
-
-bool wxChartOptions::ShowTooltips() const
-{
-    return m_showTooltips;
-}
-
-void wxChartOptions::SetShowTooltips(bool show)
-{
-    m_showTooltips = show;
-}
-
-
-const wxChartMultiTooltipOptions& wxChartOptions::GetMultiTooltipOptions() const
-{
-    return m_multiTooltipOptions;
-}
-
-wxChartMultiTooltipOptions& wxChartOptions::GetMultiTooltipOptions()
-{
-    return m_multiTooltipOptions;
 }
 
 bool wxChartOptions::IsSaveAsMenuEnabled() const

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTOPTIONS_H_
 #define _WX_CHARTS_WXCHARTOPTIONS_H_
 
+#include "wxchartcommonoptions.h"
 #include "wxchartpadding.h"
-#include "wxchartmultitooltipoptions.h"
 
 /// Options for the wxChartCtrl control.
 class wxChartOptions
@@ -36,32 +36,13 @@ public:
     /// instance.
     wxChartOptions();
 
+    const wxChartCommonOptions& GetCommonOptions() const;
+    wxChartCommonOptions& GetCommonOptions();
+
     /// Gets the padding options.
     /// @return The padding options.
     const wxChartPadding& GetPadding() const;
     void SetPadding(const wxChartPadding &padding);
-
-    /// Whether the chart automatically resizes 
-    /// when the control size changes.
-    /// @retval true Resize the chart when control
-    /// size changes.
-    /// @retval false Don't automatically resize
-    /// the chart when the control size changes.
-    bool IsResponsive() const;
-
-    /// Whether to display tooltips.
-    /// @retval true Display tooltips.
-    /// @retval false Don't display tooltips.
-    bool ShowTooltips() const;
-    /// Enables or disable tooltips.
-    /// @param show True to enable tooltips, false to disable them.
-    void SetShowTooltips(bool show);
-    /// Gets the options for the multi-tooltips (const version).
-    /// @return The options for the multi-tooltips.
-    const wxChartMultiTooltipOptions& GetMultiTooltipOptions() const;
-    /// Gets the options for the multi-tooltips (non-const version).
-    /// @return The options for the multi-tooltips.
-    wxChartMultiTooltipOptions& GetMultiTooltipOptions();
 
     /// Whether a contextual menu that allows the user
     /// to save the graph to file should be provided.
@@ -70,10 +51,8 @@ public:
     bool IsSaveAsMenuEnabled() const;
 
 private:
+    wxChartCommonOptions m_commonOptions;
     wxChartPadding m_padding;
-    bool m_responsive;
-    bool m_showTooltips;
-    wxChartMultiTooltipOptions m_multiTooltipOptions;
     bool m_enableSaveAsMenu;
 };
 

@@ -24,8 +24,9 @@
 
 wxHistogramChartOptions::wxHistogramChartOptions() : m_lineWidth(2)
 {
-    GetMultiTooltipOptions().SetShowTitle(false);
-    GetMultiTooltipOptions().SetAlignment(wxALIGN_TOP);
+    wxChartMultiTooltipOptions& options = GetCommonOptions().GetMultiTooltipOptions();
+    options.SetShowTitle(false);
+    options.SetAlignment(wxALIGN_TOP);
 }
 
 const wxChartGridOptions& wxHistogramChartOptions::GetGridOptions() const

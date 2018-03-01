@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2017-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,8 +26,9 @@ wxAreaChartOptions::wxAreaChartOptions()
     : m_dotRadius(4), m_dotStrokeWidth(1),
     m_lineWidth(2), m_hitDetectionRange(24)
 {
-    GetMultiTooltipOptions().SetShowTitle(false);
-    GetMultiTooltipOptions().SetAlignment(wxALIGN_TOP);
+    wxChartMultiTooltipOptions& options = GetCommonOptions().GetMultiTooltipOptions();
+    options.SetShowTitle(false);
+    options.SetAlignment(wxALIGN_TOP);
 }
 
 const wxChartGridOptions& wxAreaChartOptions::GetGridOptions() const

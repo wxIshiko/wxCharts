@@ -29,8 +29,9 @@ wxMath2DPlotOptions::wxMath2DPlotOptions()
     auto temp = [](wxDouble x){return x;};
     m_axisFuncX = temp;
     m_axisFuncY = temp;
-    GetMultiTooltipOptions().SetShowTitle(false);
-    GetMultiTooltipOptions().SetAlignment(wxALIGN_TOP);
+    wxChartMultiTooltipOptions& options = GetCommonOptions().GetMultiTooltipOptions();
+    options.SetShowTitle(false);
+    options.SetAlignment(wxALIGN_TOP);
 }
 
 const wxChartGridOptions& wxMath2DPlotOptions::GetGridOptions() const

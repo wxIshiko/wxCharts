@@ -36,6 +36,21 @@ public:
     /// instance.
     wxChartCommonOptions();
 
+    /// Whether the chart automatically resizes 
+    /// when the control size changes.
+    /// @retval true Resize the chart when control
+    /// size changes.
+    /// @retval false Don't automatically resize
+    /// the chart when the control size changes.
+    bool IsResponsive() const;
+
+    /// Whether to display tooltips.
+    /// @retval true Display tooltips.
+    /// @retval false Don't display tooltips.
+    bool ShowTooltips() const;
+    /// Enables or disable tooltips.
+    /// @param show True to enable tooltips, false to disable them.
+    void SetShowTooltips(bool show);
     /// Gets the options for the multi-tooltips (const version).
     /// @return The options for the multi-tooltips.
     const wxChartMultiTooltipOptions& GetMultiTooltipOptions() const;
@@ -44,6 +59,8 @@ public:
     wxChartMultiTooltipOptions& GetMultiTooltipOptions();
 
 private:
+    bool m_responsive;
+    bool m_showTooltips;
     wxChartMultiTooltipOptions m_multiTooltipOptions;
 };
 

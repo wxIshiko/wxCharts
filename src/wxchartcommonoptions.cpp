@@ -23,7 +23,23 @@
 #include "wxchartcommonoptions.h"
 
 wxChartCommonOptions::wxChartCommonOptions()
+    : m_responsive(true), m_showTooltips(true)
 {
+}
+
+bool wxChartCommonOptions::IsResponsive() const
+{
+    return m_responsive;
+}
+
+bool wxChartCommonOptions::ShowTooltips() const
+{
+    return m_showTooltips;
+}
+
+void wxChartCommonOptions::SetShowTooltips(bool show)
+{
+    m_showTooltips = show;
 }
 
 const wxChartMultiTooltipOptions& wxChartCommonOptions::GetMultiTooltipOptions() const
