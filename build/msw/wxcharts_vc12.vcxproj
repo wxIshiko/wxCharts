@@ -83,6 +83,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\wxchartlegenditem.cpp" />
     <ClCompile Include="..\..\src\wxchartsdatasetid.cpp" />
     <ClCompile Include="..\..\src\wxchartsdataset.cpp" />
     <ClCompile Include="..\..\src\wxchartsdoubledataset.cpp" />
@@ -189,6 +190,7 @@
     <ClCompile Include="..\..\src\wxcombinationchartctrl.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\wx\charts\wxchartlegenditem.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsdatasetid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsdataset.h" />
