@@ -177,9 +177,9 @@ wxAreaChart::wxAreaChart(const wxAreaChartData &data,
     Initialize(data);
 }
 
-const wxAreaChartOptions& wxAreaChart::GetOptions() const
+const wxChartCommonOptions& wxAreaChart::GetCommonOptions() const
 {
-    return m_options;
+    return m_options.GetCommonOptions();
 }
 
 void wxAreaChart::Save(const wxString &filename,

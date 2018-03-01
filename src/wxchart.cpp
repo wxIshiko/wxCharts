@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -71,7 +71,7 @@ void wxChart::DrawTooltips(wxGraphicsContext &gc)
     {
         // If more than one element is active draw a multi-tooltip
         wxChartMultiTooltip multiTooltip((*m_activeElements)[0]->GetTooltipProvider()->GetTooltipTitle(),
-            GetOptions().GetMultiTooltipOptions());
+            GetCommonOptions().GetMultiTooltipOptions());
         for (size_t j = 0; j < m_activeElements->size(); ++j)
         {
             wxChartTooltip tooltip((*m_activeElements)[j]->GetTooltipPosition(),

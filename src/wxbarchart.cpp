@@ -97,9 +97,9 @@ wxBarChart::wxBarChart(const wxChartsCategoricalData &data,
     Initialize(data);
 }
 
-const wxBarChartOptions& wxBarChart::GetOptions() const
+const wxChartCommonOptions& wxBarChart::GetCommonOptions() const
 {
-    return *m_options;
+    return m_options->GetCommonOptions();
 }
 
 void wxBarChart::Initialize(const wxChartsCategoricalData &data)

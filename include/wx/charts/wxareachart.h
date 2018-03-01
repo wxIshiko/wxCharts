@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2017-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -99,7 +99,7 @@ public:
     wxAreaChart(const wxAreaChartData &data,
         const wxAreaChartOptions &options, const wxSize &size);
 
-    virtual const wxAreaChartOptions& GetOptions() const;
+    virtual const wxChartCommonOptions& GetCommonOptions() const;
 
     void Save(const wxString &filename, const wxBitmapType &type,
         const wxSize &size);

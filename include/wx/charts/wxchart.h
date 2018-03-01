@@ -25,7 +25,7 @@
 #ifndef _WX_CHARTS_WXCHART_H_
 #define _WX_CHARTS_WXCHART_H_
 
-#include "wxchartoptions.h"
+#include "wxchartcommonoptions.h"
 #include "wxchartelement.h"
 #include <wx/sharedptr.h>
 
@@ -34,11 +34,9 @@ class wxChart
 public:
     wxChart();
 
-    /// Gets the options for the chart. Derived classes
-    /// would typically change the signature of this method
-    /// to return a class derived from wxChartOptions.
+    /// Gets the common options for the chart.
     /// @return The options.
-    virtual const wxChartOptions& GetOptions() const = 0;
+    virtual const wxChartCommonOptions& GetCommonOptions() const = 0;
 
     void SetSize(const wxSize &size);
     void Draw(wxGraphicsContext &gc);
