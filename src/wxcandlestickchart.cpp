@@ -198,9 +198,9 @@ wxCandlestickChart::wxCandlestickChart(const wxCandlestickChartData &data,
     }
 }
 
-const wxCandlestickChartOptions& wxCandlestickChart::GetOptions() const
+const wxChartCommonOptions& wxCandlestickChart::GetCommonOptions() const
 {
-    return m_options;
+    return m_options.GetCommonOptions();
 }
 
 wxDouble wxCandlestickChart::GetMinValue(const wxCandlestickChartData &data)

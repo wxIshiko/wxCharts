@@ -63,7 +63,7 @@ class wxCandlestickChart : public wxChart
 public:
     wxCandlestickChart(const wxCandlestickChartData &data, const wxSize &size);
 
-    virtual const wxCandlestickChartOptions& GetOptions() const;
+    virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
     static wxDouble GetMinValue(const wxCandlestickChartData &data);

@@ -139,9 +139,9 @@ wxBubbleChart::wxBubbleChart(const wxBubbleChartData &data,
     Initialize(data);
 }
 
-const wxBubbleChartOptions& wxBubbleChart::GetOptions() const
+const wxChartCommonOptions& wxBubbleChart::GetCommonOptions() const
 {
-    return m_options;
+    return m_options.GetCommonOptions();
 }
 
 void wxBubbleChart::Initialize(const wxBubbleChartData &data)

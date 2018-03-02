@@ -102,9 +102,9 @@ wxColumnChart::wxColumnChart(const wxChartsCategoricalData &data,
     }
 }
 
-const wxColumnChartOptions& wxColumnChart::GetOptions() const
+const wxChartCommonOptions& wxColumnChart::GetCommonOptions() const
 {
-    return m_options;
+    return m_options.GetCommonOptions();
 }
 
 wxDouble wxColumnChart::GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
