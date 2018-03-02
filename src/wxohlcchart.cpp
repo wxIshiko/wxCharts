@@ -166,9 +166,9 @@ wxOHLCChart::wxOHLCChart(const wxOHLCChartData &data,
     }
 }
 
-const wxOHLCChartOptions& wxOHLCChart::GetOptions() const
+const wxChartCommonOptions& wxOHLCChart::GetCommonOptions() const
 {
-    return m_options;
+    return m_options.GetCommonOptions();
 }
 
 wxDouble wxOHLCChart::GetMinValue(const wxOHLCChartData &data)

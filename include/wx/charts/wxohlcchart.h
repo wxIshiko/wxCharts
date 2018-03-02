@@ -63,7 +63,7 @@ class wxOHLCChart : public wxChart
 public:
     wxOHLCChart(const wxOHLCChartData &data, const wxSize &size);
 
-    virtual const wxOHLCChartOptions& GetOptions() const;
+    virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
     static wxDouble GetMinValue(const wxOHLCChartData &data);
