@@ -49,7 +49,7 @@ void wxChartCtrl::OnPaint(wxPaintEvent &evt)
 
 void wxChartCtrl::OnSize(wxSizeEvent &evt)
 {
-    if (GetChart().GetOptions().IsResponsive())
+    if (GetChart().GetCommonOptions().IsResponsive())
     {
         GetChart().SetSize(evt.GetSize());
         Refresh();
@@ -58,7 +58,7 @@ void wxChartCtrl::OnSize(wxSizeEvent &evt)
 
 void wxChartCtrl::OnMouseOver(wxMouseEvent &evt)
 {
-    if (GetChart().GetOptions().ShowTooltips())
+    if (GetChart().GetCommonOptions().ShowTooltips())
     {
         GetChart().ActivateElementsAt(evt.GetPosition());
         Refresh();

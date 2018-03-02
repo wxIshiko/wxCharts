@@ -219,9 +219,9 @@ wxMath2DPlot::wxMath2DPlot(const wxMath2DPlotData &data,
     Initialize(data);
 }
 
-const wxMath2DPlotOptions& wxMath2DPlot::GetOptions() const
+const wxChartCommonOptions& wxMath2DPlot::GetCommonOptions() const
 {
-    return m_options;
+    return m_options.GetCommonOptions();
 }
 
 const wxChartGridOptions& wxMath2DPlot::GetGridOptions() const
