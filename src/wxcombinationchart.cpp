@@ -39,9 +39,9 @@ void wxCombinationChart::AddColumnChart(const wxChartsCategoricalData &data)
     );
 }
 
-const wxCombinationChartOptions& wxCombinationChart::GetOptions() const
+const wxChartCommonOptions& wxCombinationChart::GetCommonOptions() const
 {
-    return m_options;
+    return m_options.GetCommonOptions();
 }
 
 void wxCombinationChart::DoSetSize(const wxSize &size)

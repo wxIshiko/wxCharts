@@ -99,9 +99,9 @@ wxPolarAreaChart::wxPolarAreaChart(const wxPolarAreaChartData &data,
     }
 }
 
-const wxPolarAreaChartOptions& wxPolarAreaChart::GetOptions() const
+const wxChartCommonOptions& wxPolarAreaChart::GetCommonOptions() const
 {
-    return m_options;
+    return m_options.GetCommonOptions();
 }
 
 void wxPolarAreaChart::Add(const wxChartSliceData &slice,
