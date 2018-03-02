@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -50,9 +50,9 @@ wxPieChart::wxPieChart(const wxPieChartData &data,
     Initialize(data, size);
 }
 
-const wxPieChartOptions& wxPieChart::GetOptions() const
+const wxChartCommonOptions& wxPieChart::GetCommonOptions() const
 {
-    return m_options;
+    return m_options.GetCommonOptions();
 }
 
 void wxPieChart::Initialize(const wxPieChartData &data,
@@ -63,4 +63,9 @@ void wxPieChart::Initialize(const wxPieChartData &data,
     {
         Add(slices[i], size);
     }
+}
+
+const wxDoughnutAndPieChartOptionsBase& wxPieChart::GetOptions() const
+{
+    return m_options;
 }

@@ -99,7 +99,7 @@ public:
     wxHistogramChart(const wxHistogramChartData &data,
         const wxHistogramChartOptions &options, const wxSize &size);
 
-    virtual const wxHistogramChartOptions& GetOptions() const;
+    virtual const wxChartCommonOptions& GetCommonOptions() const;
 
     void Save(const wxString &filename, const wxBitmapType &type,
         const wxSize &size);

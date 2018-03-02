@@ -172,9 +172,9 @@ void wxHistogramChart::Initialize(const wxHistogramChartData &data)
     m_grid.ChangeCorners(*minmax.first,*minmax.second,0,maxY->m_count);
 }
 
-const wxHistogramChartOptions& wxHistogramChart::GetOptions() const
+const wxChartCommonOptions& wxHistogramChart::GetCommonOptions() const
 {
-    return m_options;
+    return m_options.GetCommonOptions();
 }
 
 void wxHistogramChart::Save(const wxString &filename,

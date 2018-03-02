@@ -231,9 +231,9 @@ wxLineChart::wxLineChart(const wxLineChartData &data,
     Initialize(data);
 }
 
-const wxLineChartOptions& wxLineChart::GetOptions() const
+const wxChartCommonOptions& wxLineChart::GetCommonOptions() const
 {
-    return m_options;
+    return m_options.GetCommonOptions();
 }
 
 void wxLineChart::Save(const wxString &filename,
