@@ -49,9 +49,9 @@ wxRadarChart::wxRadarChart(const wxSize &size)
 {
 }
 
-const wxRadarChartOptions& wxRadarChart::GetOptions() const
+const wxChartCommonOptions& wxRadarChart::GetCommonOptions() const
 {
-    return m_options;
+    return m_options.GetCommonOptions();
 }
 
 wxDouble wxRadarChart::GetMinValue()

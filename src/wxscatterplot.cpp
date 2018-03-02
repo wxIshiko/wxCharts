@@ -124,9 +124,9 @@ wxScatterPlot::wxScatterPlot(const wxScatterPlotData &data,
     Initialize(data);
 }
 
-const wxScatterPlotOptions& wxScatterPlot::GetOptions() const
+const wxChartCommonOptions& wxScatterPlot::GetCommonOptions() const
 {
-    return m_options;
+    return m_options.GetCommonOptions();
 }
 
 void wxScatterPlot::Initialize(const wxScatterPlotData &data)

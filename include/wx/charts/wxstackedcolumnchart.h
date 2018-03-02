@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -48,7 +48,7 @@ class wxStackedColumnChart : public wxChart
 public:
     wxStackedColumnChart(const wxChartsCategoricalData &data, const wxSize &size);
 
-    virtual const wxStackedColumnChartOptions& GetOptions() const;
+    virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
     static wxDouble GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);

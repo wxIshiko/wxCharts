@@ -152,9 +152,9 @@ wxStackedBarChart::wxStackedBarChart(const wxChartsCategoricalData &data,
     }
 }
 
-const wxStackedBarChartOptions& wxStackedBarChart::GetOptions() const
+const wxChartCommonOptions& wxStackedBarChart::GetCommonOptions() const
 {
-    return m_options;
+    return m_options.GetCommonOptions();
 }
 
 wxDouble wxStackedBarChart::GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)

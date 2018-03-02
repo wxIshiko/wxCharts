@@ -62,7 +62,7 @@ class wxRadarChart : public wxChart
 public:
     wxRadarChart(const wxSize &size);
 
-    virtual const wxRadarChartOptions& GetOptions() const;
+    virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
     static wxDouble GetMinValue();

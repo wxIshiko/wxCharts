@@ -77,7 +77,7 @@ public:
     wxScatterPlot(const wxScatterPlotData &data, 
         const wxScatterPlotOptions &options, const wxSize &size);
 
-    virtual const wxScatterPlotOptions& GetOptions() const;
+    virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
     void Initialize(const wxScatterPlotData &data);
