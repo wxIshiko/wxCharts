@@ -1,4 +1,4 @@
-# wxCharts
+# wxCharts [![Join the chat at https://gitter.im/wxIshiko/wxCharts](https://badges.gitter.im/wxIshiko/wxCharts.svg)](https://gitter.im/wxIshiko/wxCharts?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 A library to create charts in wxWidgets applications.
 
@@ -14,7 +14,7 @@ For setup and usage please visit the [wxCharts website](http://www.wxishiko.com/
 
 ## Support
 
-For all questions about this project you can raise an issue on GitHub or join the chat [![Join the chat at https://gitter.im/wxIshiko/wxCharts](https://badges.gitter.im/wxIshiko/wxCharts.svg)](https://gitter.im/wxIshiko/wxCharts?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+For all questions about this project you can raise an issue on GitHub or join our [Gitter chat](https://gitter.im/wxIshiko/wxCharts?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge).
 
 ## Contributing
 
