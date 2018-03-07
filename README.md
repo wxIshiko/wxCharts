@@ -7,9 +7,9 @@ A library to create charts in wxWidgets applications.
 Here is a small sample of the charts that can be created with the wxCharts library. For a more complete list see the 
 [wxCharts website](http://www.wxishiko.com/wxCharts).
 
-| [Line Chart](http://www.wxishiko.com/wxCharts/linechart.html) | Column Chart | [Pie Chart](http://www.wxishiko.com/wxCharts/piechart.html) |
+| [Line Chart](http://www.wxishiko.com/wxCharts/linechart.html) | [Column Chart](http://www.wxishiko.com/wxCharts/columnchart.html) | [Pie Chart](http://www.wxishiko.com/wxCharts/piechart.html) |
 | --- | --- | --- |
-| [![Line Chart](http://www.wxishiko.com/images/linechart1.png)](http://www.wxishiko.com/wxCharts/linechart.html) | ![Column Chart](http://www.wxishiko.com/images/columnchart1.png) | [![Pie Chart](http://www.wxishiko.com/images/piechart1.png)](http://www.wxishiko.com/wxCharts/piechart.html) |
+| [![Line Chart](http://www.wxishiko.com/images/linechart1.png)](http://www.wxishiko.com/wxCharts/linechart.html) | [![Column Chart](http://www.wxishiko.com/images/columnchart1.png)](http://www.wxishiko.com/wxCharts/columnchart.html) | [![Pie Chart](http://www.wxishiko.com/images/piechart1.png)](http://www.wxishiko.com/wxCharts/piechart.html) |
 
 ## Usage
 
