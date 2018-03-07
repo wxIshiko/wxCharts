@@ -84,6 +84,7 @@ library wxcharts
         ../../include/wx/charts/wxchartlegenditem.h
         ../../include/wx/charts/wxchartlegendctrl.h
         ../../include/wx/charts/wxchartslicedata.h
+        ../../include/wx/charts/wxchartobservers.h
         ../../include/wx/charts/wxchartohlcdata.h
         ../../include/wx/charts/wxchartoptions.h
         ../../include/wx/charts/wxchartcommonoptions.h

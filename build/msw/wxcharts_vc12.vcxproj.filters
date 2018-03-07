@@ -335,6 +335,9 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartlegenditem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\charts\wxchartobservers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\wxchartsdatasetid.cpp">
