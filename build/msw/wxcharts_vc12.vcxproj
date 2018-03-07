@@ -191,6 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\wx\charts\wxchartlegenditem.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartobservers.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsdatasetid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsdataset.h" />
