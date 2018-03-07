@@ -4,6 +4,10 @@
 
 A library to create charts in wxWidgets applications
 
+## Overview
+
+![Line Chart](http://www.wxishiko.com/images/piechart1.png)
+
 ## Usage
 
 For setup and usage please visit the [wxCharts website](http://www.wxishiko.com/wxCharts/).
