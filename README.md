@@ -13,6 +13,12 @@ Here is a small sample of the charts that can be created with the wxCharts libra
 
 ## Project Status
 
+This project is in its development phase. 
+
+Many of the charts are ready to be used but others still need to be implemented. For the charts that have been implemented it is likely that you will need features that have not been implemented yet. Please let us know if this is the case and we will work on them. You can also of course fork the project and make any customization you require.
+
+Also documentation is currently lacking and mostly limited to the samples available in this repository.
+
 ## Usage
 
 For setup and usage please visit the [wxCharts website](http://www.wxishiko.com/wxCharts/).
