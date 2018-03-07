@@ -20,17 +20,6 @@
     IN THE SOFTWARE.
 */
 
-/*
-    Part of this file were copied from the Chart.js project (http://chartjs.org/)
-    and translated into C++.
-
-    The files of the Chart.js project have the following copyright and license.
-
-    Copyright (c) 2013-2016 Nick Downie
-    Released under the MIT license
-    https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
-*/
-
 /// @file
 
 #ifndef _WX_CHARTS_WXCHARTOBSERVERS_H_
@@ -42,7 +31,7 @@ template<typename T>
 class wxChartValueObserver
 {
 public:
-    virtual void update(const T &value) = 0;
+    virtual void OnUpdate(const T &value) = 0;
 };
 
 template<typename T>
@@ -52,12 +41,12 @@ public:
     wxChartObservableValue() {};
     virtual ~wxChartObservableValue() {};
 
-    void AddHandler(wxChartValueObserver<T> *observer)
+    void AddObserver(wxChartValueObserver<T> *observer)
     {
         m_observers.push_back(observer);
     }
 
-    void RemoveHandler(wxChartValueObserver<T> *observer)
+    void RemoveObserver(wxChartValueObserver<T> *observer)
     {
         m_observers.erase(
             std::remove(m_observers.begin(), m_observers.end(), observer),
