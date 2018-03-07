@@ -11,6 +11,8 @@ Here is a small sample of the charts that can be created with the wxCharts libra
 | --- | --- | --- |
 | [![Line Chart](http://www.wxishiko.com/images/linechart1.png)](http://www.wxishiko.com/wxCharts/linechart.html) | [![Column Chart](http://www.wxishiko.com/images/columnchart1.png)](http://www.wxishiko.com/wxCharts/columnchart.html) | [![Pie Chart](http://www.wxishiko.com/images/piechart1.png)](http://www.wxishiko.com/wxCharts/piechart.html) |
 
+## Project Status
+
 ## Usage
 
 For setup and usage please visit the [wxCharts website](http://www.wxishiko.com/wxCharts/).
@@ -31,7 +33,7 @@ wxCharts tries to comply with the coding conventions of the main
 wxWidgets project. Contributions should broadly follow these 
 conventions too.
 
-## Continuous integration
+## Continuous Integration
 
 We use [CircleCI](https://circleci.com/) to run a continuous build of the master branch of the wxCharts project.
 
