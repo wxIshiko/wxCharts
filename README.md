@@ -7,8 +7,8 @@ A library to create charts in wxWidgets applications.
 Here is a small sample of the charts that can be created with the wxCharts library. For a more complete list see the 
 [wxCharts website](http://www.wxishiko.com/wxCharts).
 
-![Line Chart](http://www.wxishiko.com/images/linechart1.png)
-![Pie Chart](http://www.wxishiko.com/images/piechart1.png)
+| Line Chart | Pie Chart |
+| ![Line Chart](http://www.wxishiko.com/images/linechart1.png) | ![Pie Chart](http://www.wxishiko.com/images/piechart1.png) |
 
 ## Usage
 
