@@ -9,7 +9,7 @@ Here is a small sample of the charts that can be created with the wxCharts libra
 
 | Line Chart | Pie Chart |
 | --- | --- |
-| ![Line Chart](http://www.wxishiko.com/images/linechart1.png) | ![Pie Chart](http://www.wxishiko.com/images/piechart1.png) |
+| [![Line Chart](http://www.wxishiko.com/images/linechart1.png)](http://www.wxishiko.com/wxCharts/linechart.html) | ![Pie Chart](http://www.wxishiko.com/images/piechart1.png) |
 
 ## Usage
 
