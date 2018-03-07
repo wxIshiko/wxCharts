@@ -1,8 +1,9 @@
 # wxCharts
 
-[![Join the chat at https://gitter.im/wxIshiko/wxCharts](https://badges.gitter.im/wxIshiko/wxCharts.svg)](https://gitter.im/wxIshiko/wxCharts?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+A library to create charts in wxWidgets applications.
 
-A library to create charts in wxWidgets applications
+Here is a small sample of the charts that can be created with the wxCharts library. For a more complete list see the 
+[wxCharts website](https://circleci.com/gh/wxIshiko/wxCharts).
 
 ![Line Chart](http://www.wxishiko.com/images/linechart1.png)
 ![Pie Chart](http://www.wxishiko.com/images/piechart1.png)
@@ -10,6 +11,10 @@ A library to create charts in wxWidgets applications
 ## Usage
 
 For setup and usage please visit the [wxCharts website](http://www.wxishiko.com/wxCharts/).
+
+## Support
+
+[![Join the chat at https://gitter.im/wxIshiko/wxCharts](https://badges.gitter.im/wxIshiko/wxCharts.svg)](https://gitter.im/wxIshiko/wxCharts?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Contributing
 
