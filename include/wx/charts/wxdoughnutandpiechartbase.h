@@ -40,6 +40,7 @@
 #include "wxchartslicedata.h"
 #include "wxdoughnutandpiechartoptionsbase.h"
 #include "wxchartarc.h"
+#include "wxchartobservers.h"
 #include <wx/control.h>
 #include <wx/sharedptr.h>
 
@@ -60,15 +61,15 @@ protected:
     void Add(const wxChartSliceData &slice, const wxSize &size);
     void Add(const wxChartSliceData &slice, size_t index,
         const wxSize &size);
-    
+
 private:
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
     virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
-    
+
     wxDouble CalculateCircumference(double value);
-    
+
 private:
     virtual const wxDoughnutAndPieChartOptionsBase& GetOptions() const = 0;
 

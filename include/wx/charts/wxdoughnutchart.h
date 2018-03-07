@@ -29,17 +29,14 @@
 #include "wxdoughnutchartoptions.h"
 
 /// Data for the wxDoughnutChartCtrl control.
-class wxDoughnutChartData
+class wxDoughnutChartData : public wxChartObservableValue<wxVector<wxChartSliceData>>
 {
 public:
     wxDoughnutChartData();
 
     void AppendSlice(const wxChartSliceData &slice);
-
-    const wxVector<wxChartSliceData>& GetSlices() const;
-
-private:
-    wxVector<wxChartSliceData> m_slices;
+    void UpdateData(const wxVector<wxChartSliceData> &data);
+    void AddData(const wxVector<wxChartSliceData> &data);
 };
 
 /// A doughnut chart.

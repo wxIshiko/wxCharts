@@ -29,17 +29,14 @@
 #include "wxpiechartoptions.h"
 
 /// Data for the wxPieChartCtrl control.
-class wxPieChartData
+class wxPieChartData : public wxChartObservableValue<wxVector<wxChartSliceData>>
 {
 public:
     wxPieChartData();
 
     void AppendSlice(const wxChartSliceData &slice);
-
-    const wxVector<wxChartSliceData>& GetSlices() const;
-
-private:
-    wxVector<wxChartSliceData> m_slices;
+    void UpdateData(const wxVector<wxChartSliceData> &data);
+    void AddData(const wxVector<wxChartSliceData> &data);
 };
 
 /// A pie chart.

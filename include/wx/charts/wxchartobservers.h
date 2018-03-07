@@ -56,7 +56,7 @@ public:
     void Notify()
     {
         for(auto &observer : m_observers)
-            observer->update(m_value);
+            observer->OnUpdate(m_value);
     }
 
     T GetValue() const
