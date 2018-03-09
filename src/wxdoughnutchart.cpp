@@ -26,11 +26,15 @@ wxDoughnutChartData::wxDoughnutChartData()
 {
 }
 
+const wxVector<wxChartSliceData>& wxDoughnutChartData::GetSlices() const
+{
+    return m_value;
+}
+
 void wxDoughnutChartData::AppendSlice(const wxChartSliceData &slice)
 {
-    auto value = GetValue();
-    value.push_back(slice);
-    SetValue(value);
+    m_value.push_back(slice);
+    Notify();
 }
 
 void wxDoughnutChartData::UpdateData(const wxVector<wxChartSliceData> &data)
@@ -40,12 +44,10 @@ void wxDoughnutChartData::UpdateData(const wxVector<wxChartSliceData> &data)
 
 void wxDoughnutChartData::AddData(const wxVector<wxChartSliceData> &data)
 {
-    auto value = GetValue();
-
     for(const auto &slice : data)
-        value.push_back(slice);
+        m_value.push_back(slice);
 
-    SetValue(value);
+    Notify();
 }
 
 wxDoughnutChart::wxDoughnutChart(const wxDoughnutChartData &data,
@@ -70,7 +72,7 @@ const wxChartCommonOptions& wxDoughnutChart::GetCommonOptions() const
 void wxDoughnutChart::Initialize(const wxDoughnutChartData &data,
                                  const wxSize &size)
 {
-    const wxVector<wxChartSliceData>& slices = data.GetValue();
+    const wxVector<wxChartSliceData>& slices = data.GetSlices();
     for (size_t i = 0; i < slices.size(); ++i)
     {
         Add(slices[i], size);

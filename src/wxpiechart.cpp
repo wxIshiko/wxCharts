@@ -26,11 +26,15 @@ wxPieChartData::wxPieChartData()
 {
 }
 
+const wxVector<wxChartSliceData>& wxPieChartData::GetSlices() const
+{
+    return m_value;
+}
+
 void wxPieChartData::AppendSlice(const wxChartSliceData &slice)
 {
-    auto value = GetValue();
-    value.push_back(slice);
-    SetValue(value);
+    m_value.push_back(slice);
+    Notify();
 }
 
 void wxPieChartData::UpdateData(const wxVector<wxChartSliceData> &data)
@@ -40,12 +44,10 @@ void wxPieChartData::UpdateData(const wxVector<wxChartSliceData> &data)
 
 void wxPieChartData::AddData(const wxVector<wxChartSliceData> &data)
 {
-    auto value = GetValue();
-
     for(const auto &slice : data)
-        value.push_back(slice);
+        m_value.push_back(slice);
 
-    SetValue(value);
+    Notify();
 }
 
 wxPieChart::wxPieChart(const wxPieChartData &data,
@@ -70,7 +72,7 @@ const wxChartCommonOptions& wxPieChart::GetCommonOptions() const
 void wxPieChart::Initialize(const wxPieChartData &data,
                             const wxSize &size)
 {
-    const wxVector<wxChartSliceData>& slices = data.GetValue();
+    const wxVector<wxChartSliceData>& slices = data.GetSlices();
     for (size_t i = 0; i < slices.size(); ++i)
     {
         Add(slices[i], size);

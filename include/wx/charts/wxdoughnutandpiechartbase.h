@@ -40,7 +40,6 @@
 #include "wxchartslicedata.h"
 #include "wxdoughnutandpiechartoptionsbase.h"
 #include "wxchartarc.h"
-#include "wxchartobservers.h"
 #include <wx/control.h>
 #include <wx/sharedptr.h>
 

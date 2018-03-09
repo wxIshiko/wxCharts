@@ -27,6 +27,7 @@
 
 #include "wxdoughnutandpiechartbase.h"
 #include "wxpiechartoptions.h"
+#include "wxchartobservers.h"
 
 /// Data for the wxPieChartCtrl control.
 class wxPieChartData : public wxChartObservableValue<wxVector<wxChartSliceData>>
@@ -34,6 +35,7 @@ class wxPieChartData : public wxChartObservableValue<wxVector<wxChartSliceData>>
 public:
     wxPieChartData();
 
+    const wxVector<wxChartSliceData>& GetSlices() const;
     void AppendSlice(const wxChartSliceData &slice);
     void UpdateData(const wxVector<wxChartSliceData> &data);
     void AddData(const wxVector<wxChartSliceData> &data);
