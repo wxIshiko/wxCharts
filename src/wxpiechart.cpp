@@ -37,14 +37,14 @@ void wxPieChartData::AppendSlice(const wxChartSliceData &slice)
     Notify();
 }
 
-void wxPieChartData::UpdateData(const wxVector<wxChartSliceData> &data)
+void wxPieChartData::UpdateSlices(const wxVector<wxChartSliceData> &slices)
 {
-    SetValue(data);
+    SetValue(slices);
 }
 
-void wxPieChartData::AddData(const wxVector<wxChartSliceData> &data)
+void wxPieChartData::AddSlices(const wxVector<wxChartSliceData> &slices)
 {
-    for(const auto &slice : data)
+    for(const auto &slice : slices)
         m_value.push_back(slice);
 
     Notify();

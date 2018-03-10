@@ -37,8 +37,8 @@ public:
 
     const wxVector<wxChartSliceData>& GetSlices() const;
     void AppendSlice(const wxChartSliceData &slice);
-    void UpdateData(const wxVector<wxChartSliceData> &data);
-    void AddData(const wxVector<wxChartSliceData> &data);
+    void UpdateSlices(const wxVector<wxChartSliceData> &slices);
+    void AddSlices(const wxVector<wxChartSliceData> &slices);
 };
 
 /// A pie chart.
