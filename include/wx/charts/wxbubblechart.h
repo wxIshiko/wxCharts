@@ -40,6 +40,7 @@ public:
     wxDouble m_z;
 };
 
+/// \ingroup dataclasses
 class wxBubbleChartDataset
 {
 public:
@@ -69,6 +70,8 @@ private:
 };
 
 /// Data for the wxBubbleChartCtrl control.
+
+/// \ingroup dataclasses
 class wxBubbleChartData
 {
 public:

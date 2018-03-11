@@ -48,6 +48,8 @@ enum wxLineType
 };
 
 /// Stores the information about a dataset to be shown on a wxLineChartCtrl.
+
+/// \ingroup dataclasses
 class wxLineChartDataset
 {
 public:
@@ -111,6 +113,8 @@ private:
 };
 
 /// Data for the wxLineChartCtrl control.
+
+/// \ingroup dataclasses
 class wxLineChartData
 {
 public:
@@ -134,6 +138,8 @@ private:
 };
 
 /// A line chart.
+
+/// \ingroup chartclasses
 class wxLineChart : public wxChart
 {
 public:

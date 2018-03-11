@@ -43,6 +43,7 @@
 
 #include <wx/scopedptr.h>
 
+/// \ingroup dataclasses
 class wxHistogramChartDataset
 {
 public:
@@ -77,6 +78,8 @@ private:
 };
 
 /// Data for the wxHistogramChartCtrl control.
+
+/// \ingroup dataclasses
 class wxHistogramChartData
 {
 public:
@@ -92,6 +95,8 @@ private:
 };
 
 /// A wxHistogramChart.
+
+/// \ingroup chartclasses
 class wxHistogramChart : public wxChart
 {
 public:

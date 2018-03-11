@@ -29,6 +29,8 @@
 #include "wxchartgridoptions.h"
 
 /// The options for the wxHistogramChartCtrl control.
+
+/// \ingroup chartclasses
 class wxHistogramChartOptions : public wxChartOptions
 {
 public:

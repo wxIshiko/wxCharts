@@ -63,6 +63,7 @@
 /// functions can be used to control the visibility of grid lines.
 ///
 /// @see wxChartGridOptions
+/// \ingroup elementclasses
 class wxChartGrid : public wxChartElement
 {
 public:

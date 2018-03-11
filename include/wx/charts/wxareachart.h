@@ -41,6 +41,7 @@
 #include "wxchartgrid.h"
 #include "wxchartpoint.h"
 
+/// \ingroup dataclasses
 class wxAreaChartDataset
 {
 public:
@@ -75,6 +76,8 @@ private:
 };
 
 /// Data for the wxAreaChartCtrl control.
+
+/// \ingroup dataclasses
 class wxAreaChartData
 {
 public:

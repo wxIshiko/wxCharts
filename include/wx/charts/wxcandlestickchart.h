@@ -31,6 +31,8 @@
 #include "wxchartgrid.h"
 
 /// Data for the wxCandlestickChartCtrl control.
+
+/// \ingroup dataclasses
 class wxCandlestickChartData
 {
 public:

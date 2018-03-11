@@ -41,6 +41,8 @@
 #include <wx/graphics.h>
 
 /// This class is used to draw one of the segments of a circular chart e.g. a pie chart or a doughnut chart.
+
+/// \ingroup elementclasses
 class wxChartArc : public wxChartElement
 {
 public:

@@ -41,6 +41,8 @@
 #include <wx/menu.h>
 
 /// A control that displays a math2d plot.
+
+/// \ingroup chartclasses
 class wxHistogramChartCtrl : public wxChartCtrl
 {
 public:
