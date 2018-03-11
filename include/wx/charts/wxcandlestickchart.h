@@ -58,6 +58,8 @@ private:
 };
 
 /// A candlestick chart.
+
+/// \ingroup chartclasses
 class wxCandlestickChart : public wxChart
 {
 public:

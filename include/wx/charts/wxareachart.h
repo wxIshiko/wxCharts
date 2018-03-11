@@ -91,7 +91,9 @@ private:
     wxVector<wxAreaChartDataset::ptr> m_datasets;
 };
 
-/// A wxMath2D plot.
+/// An area chart.
+
+/// \ingroup chartclasses
 class wxAreaChart : public wxChart
 {
 public:

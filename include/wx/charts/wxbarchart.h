@@ -44,6 +44,8 @@
 #include <wx/sharedptr.h>
 
 /// A bar chart.
+
+/// \ingroup chartclasses
 class wxBarChart : public wxChart
 {
 public:

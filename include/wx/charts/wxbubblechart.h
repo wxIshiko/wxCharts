@@ -86,6 +86,8 @@ private:
 };
 
 /// A bubble chart.
+
+/// \ingroup chartclasses
 class wxBubbleChart : public wxChart
 {
 public:

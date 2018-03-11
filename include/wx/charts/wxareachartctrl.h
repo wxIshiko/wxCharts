@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2017-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -40,7 +40,9 @@
 #include "wxareachart.h"
 #include <wx/menu.h>
 
-/// A control that displays a math2d plot.
+/// A control that displays an area chart.
+
+/// \ingroup chartclasses
 class wxAreaChartCtrl : public wxChartCtrl
 {
 public:
