@@ -58,6 +58,8 @@ private:
 };
 
 /// An open-high-low-close chart.
+
+/// \ingroup chartclasses
 class wxOHLCChart : public wxChart
 {
 public:

@@ -44,6 +44,8 @@
 #include <wx/sharedptr.h>
 
 /// A column chart.
+
+/// \ingroup chartclasses
 class wxColumnChart : public wxChart
 {
 public:

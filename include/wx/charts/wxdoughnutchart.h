@@ -42,6 +42,8 @@ public:
 };
 
 /// A doughnut chart.
+
+/// \ingroup chartclasses
 class wxDoughnutChart : public wxDoughnutAndPieChartBase
 {
 public:

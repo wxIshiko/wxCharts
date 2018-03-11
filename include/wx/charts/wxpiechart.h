@@ -42,6 +42,8 @@ public:
 };
 
 /// A pie chart.
+
+/// \ingroup chartclasses
 class wxPieChart : public wxDoughnutAndPieChartBase
 {
 public:
