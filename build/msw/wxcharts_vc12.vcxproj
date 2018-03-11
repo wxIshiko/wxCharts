@@ -83,7 +83,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\wxchartlegenditem.cpp" />
     <ClCompile Include="..\..\src\wxchartsdatasetid.cpp" />
     <ClCompile Include="..\..\src\wxchartsdataset.cpp" />
     <ClCompile Include="..\..\src\wxchartsdoubledataset.cpp" />
@@ -125,13 +124,13 @@
     <ClCompile Include="..\..\src\wxchartlegendline.cpp" />
     <ClCompile Include="..\..\src\wxchartlegendoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartlegendctrl.cpp" />
+    <ClCompile Include="..\..\src\wxchartlegenditem.cpp" />
     <ClCompile Include="..\..\src\wxchartslicedata.cpp" />
     <ClCompile Include="..\..\src\wxchartohlcdata.cpp" />
     <ClCompile Include="..\..\src\wxchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartcommonoptions.cpp" />
     <ClCompile Include="..\..\src\wxchart.cpp" />
     <ClCompile Include="..\..\src\wxchartctrl.cpp" />
-    <ClCompile Include="..\..\src\wxbarchartdatasetoptions.cpp" />
     <ClCompile Include="..\..\src\wxbarchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxbarchart.cpp" />
     <ClCompile Include="..\..\src\wxbarchartctrl.cpp" />
@@ -190,8 +189,6 @@
     <ClCompile Include="..\..\src\wxcombinationchartctrl.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\wx\charts\wxchartlegenditem.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartobservers.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsdatasetid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsdataset.h" />
@@ -233,14 +230,15 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartlegendlineoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartlegendline.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartlegendoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartlegenditem.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartlegendctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartslicedata.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartobservers.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartohlcdata.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartcommonoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartctrl.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxbarchartdatasetoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartctrl.h" />

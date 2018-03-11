@@ -140,10 +140,16 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartlegendoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\charts\wxchartlegenditem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxchartlegendctrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxchartslicedata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx\charts\wxchartobservers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxchartohlcdata.h">
@@ -159,9 +165,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxchartctrl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxbarchartdatasetoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxbarchartoptions.h">
@@ -332,12 +335,6 @@
     <ClInclude Include="..\..\include\wx\charts\wxcombinationchartctrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxchartlegenditem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxchartobservers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\wxchartsdatasetid.cpp">
@@ -463,6 +460,9 @@
     <ClCompile Include="..\..\src\wxchartlegendctrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\wxchartlegenditem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\wxchartslicedata.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -479,9 +479,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchartctrl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\wxbarchartdatasetoptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxbarchartoptions.cpp">
@@ -650,9 +647,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxcombinationchartctrl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\wxchartlegenditem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
