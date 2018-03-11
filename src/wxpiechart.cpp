@@ -26,14 +26,28 @@ wxPieChartData::wxPieChartData()
 {
 }
 
-void wxPieChartData::AppendSlice(const wxChartSliceData &slice)
-{
-    m_slices.push_back(slice);
-}
-
 const wxVector<wxChartSliceData>& wxPieChartData::GetSlices() const
 {
-    return m_slices;
+    return m_value;
+}
+
+void wxPieChartData::AppendSlice(const wxChartSliceData &slice)
+{
+    m_value.push_back(slice);
+    Notify();
+}
+
+void wxPieChartData::UpdateSlices(const wxVector<wxChartSliceData> &slices)
+{
+    SetValue(slices);
+}
+
+void wxPieChartData::AddSlices(const wxVector<wxChartSliceData> &slices)
+{
+    for(const auto &slice : slices)
+        m_value.push_back(slice);
+
+    Notify();
 }
 
 wxPieChart::wxPieChart(const wxPieChartData &data,

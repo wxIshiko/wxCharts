@@ -56,7 +56,7 @@ public:
     void Notify()
     {
         for(auto &observer : m_observers)
-            observer->update(m_value);
+            observer->OnUpdate(m_value);
     }
 
     T GetValue() const
@@ -70,9 +70,11 @@ public:
         Notify();
     }
 
+protected:
+    T m_value;
+
 private:
     wxVector<wxChartValueObserver<T>*> m_observers;
-    T m_value;
 };
 
 #endif

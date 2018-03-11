@@ -26,14 +26,28 @@ wxDoughnutChartData::wxDoughnutChartData()
 {
 }
 
-void wxDoughnutChartData::AppendSlice(const wxChartSliceData &slice)
-{
-    m_slices.push_back(slice);
-}
-
 const wxVector<wxChartSliceData>& wxDoughnutChartData::GetSlices() const
 {
-    return m_slices;
+    return m_value;
+}
+
+void wxDoughnutChartData::AppendSlice(const wxChartSliceData &slice)
+{
+    m_value.push_back(slice);
+    Notify();
+}
+
+void wxDoughnutChartData::UpdateSlices(const wxVector<wxChartSliceData> &slices)
+{
+    SetValue(slices);
+}
+
+void wxDoughnutChartData::AddSlices(const wxVector<wxChartSliceData> &slices)
+{
+    for(const auto &slice : slices)
+        m_value.push_back(slice);
+
+    Notify();
 }
 
 wxDoughnutChart::wxDoughnutChart(const wxDoughnutChartData &data,
