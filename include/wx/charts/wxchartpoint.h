@@ -30,6 +30,8 @@
 #include <wx/graphics.h>
 
 /// This class is used to display a point on a chart.
+
+/// \ingroup elementclasses
 class wxChartPoint : public wxChartElement
 {
 public:

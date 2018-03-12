@@ -46,6 +46,7 @@
 /// It represents the radial grid displayed in the
 /// background of some of the chart controls like for instance 
 /// the polar area chart.
+/// \ingroup elementclasses
 class wxChartRadialGrid : public wxChartElement
 {
 public:

@@ -29,12 +29,15 @@
 #include <wx/sharedptr.h>
 #include <wx/graphics.h>
 
+/// \defgroup elementclasses
+
 /// This is the base class for chart elements.
 
 /// Chart elements are building blocks (arc, rectangles, labels...)
 /// that can be used to build charts. These are not visible to
 /// users of the charts, they are there for people implementing
 /// charts.
+/// \ingroup elementclasses
 class wxChartElement
 {
 public:

@@ -29,6 +29,8 @@
 #include "wxchartcircleoptions.h"
 
 /// This class is used to draw a circle on the chart.
+
+/// \ingroup elementclasses
 class wxChartCircle : public wxChartElement
 {
 public:

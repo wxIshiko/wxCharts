@@ -33,6 +33,7 @@
 /// The fact that all charts derive from wxChartCtrl is probably
 /// of little use for users of these classes. The base class
 /// is there to make implementation of chart controls easier.
+/// \ingroup chartclasses
 class wxChartCtrl : public wxControl
 {
 public:

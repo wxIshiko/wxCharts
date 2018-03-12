@@ -42,6 +42,8 @@
 #include <wx/graphics.h>
 
 /// This class represents an axis.
+
+/// \ingroup elementclasses
 class wxChartAxis : public wxChartElement
 {
 public:
