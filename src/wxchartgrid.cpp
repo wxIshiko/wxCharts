@@ -229,6 +229,45 @@ void wxChartGrid::ChangeCorners(wxDouble minX,wxDouble maxX,
     Update();
 }
 
+void wxChartGrid::ChangeCorners(wxDouble min,wxDouble max,bool is_X)
+{
+    if(is_X)
+    {
+        m_origAxisLimits.MinX = min;
+        m_origAxisLimits.MaxX = max;
+
+        m_curAxisLimits.MinX = min;
+        m_curAxisLimits.MaxX = max;
+
+        m_XAxis = new wxChartNumericalAxis(m_curAxisLimits.MinX,
+                                           m_curAxisLimits.MaxX,m_options.GetXAxisOptions());
+    }
+    else
+    {
+        m_origAxisLimits.MinY = min;
+        m_origAxisLimits.MaxY = max;
+
+        m_curAxisLimits.MinY = min;
+        m_curAxisLimits.MaxY = max;
+        m_YAxis = new wxChartNumericalAxis(m_curAxisLimits.MinY,
+                                           m_curAxisLimits.MaxY, m_options.GetYAxisOptions());
+    }
+    m_mapping = wxChartGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
+    m_needsFit = true;
+}
+
+void wxChartGrid::ChangeLabels(const wxVector<wxString> &labels,
+                               wxChartAxisOptions options, bool is_X)
+{
+    if(is_X)
+        m_XAxis = wxChartCategoricalAxis::make_shared(labels,options);
+    else
+        m_YAxis = wxChartCategoricalAxis::make_shared(labels,options);
+
+    m_mapping = wxChartGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
+    m_needsFit = true;
+}
+
 void wxChartGrid::Update()
 {
     m_XAxis = new wxChartNumericalAxis(m_curAxisLimits.MinX,
