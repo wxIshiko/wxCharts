@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -33,14 +33,16 @@
 
 #include "wxchartcategoricalaxis.h"
 
-wxChartCategoricalAxis::wxChartCategoricalAxis(const wxVector<wxString> &labels, 
+wxChartCategoricalAxis::wxChartCategoricalAxis(const std::string &id, 
+                                               const wxVector<wxString> &labels,
                                                const wxChartAxisOptions &options)
-    : wxChartAxis(labels, options)
+    : wxChartAxis(id, labels, options)
 {
 }
 
-wxChartCategoricalAxis::ptr wxChartCategoricalAxis::make_shared(const wxVector<wxString> &labels,
+wxChartCategoricalAxis::ptr wxChartCategoricalAxis::make_shared(const std::string &id, 
+                                                                const wxVector<wxString> &labels,
                                                                 const wxChartAxisOptions &options)
 {
-    return ptr(new wxChartCategoricalAxis(labels, options));
+    return ptr(new wxChartCategoricalAxis(id, labels, options));
 }

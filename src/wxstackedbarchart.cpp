@@ -67,8 +67,8 @@ wxStackedBarChart::wxStackedBarChart(const wxChartsCategoricalData &data,
     : m_grid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
         size,
-        wxChartCategoricalAxis::make_shared(data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared(GetCumulativeMinValue(data.GetDatasets()), GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
+        wxChartCategoricalAxis::make_shared("x", data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared("y", GetCumulativeMinValue(data.GetDatasets()), GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
         m_options.GetGridOptions()
         )
 {
@@ -113,8 +113,8 @@ wxStackedBarChart::wxStackedBarChart(const wxChartsCategoricalData &data,
     m_grid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
         size,
-        wxChartCategoricalAxis::make_shared(data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared(GetCumulativeMinValue(data.GetDatasets()), GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
+        wxChartCategoricalAxis::make_shared("x", data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared("y", GetCumulativeMinValue(data.GetDatasets()), GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
         m_options.GetGridOptions()
         )
 {

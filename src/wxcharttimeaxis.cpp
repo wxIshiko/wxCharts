@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2017-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,7 +22,8 @@
 
 #include "wxcharttimeaxis.h"
 
-wxChartTimeAxis::wxChartTimeAxis(const wxChartAxisOptions &options)
-    : wxChartAxis(options)
+wxChartTimeAxis::wxChartTimeAxis(const std::string &id,
+                                 const wxChartAxisOptions &options)
+    : wxChartAxis(id, options)
 {
 }

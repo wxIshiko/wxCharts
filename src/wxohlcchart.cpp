@@ -137,8 +137,8 @@ wxOHLCChart::wxOHLCChart(const wxOHLCChartData &data,
     : m_grid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
         size,
-        wxChartCategoricalAxis::make_shared(data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared(GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions().GetYAxisOptions()),
+        wxChartCategoricalAxis::make_shared("x", data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions().GetYAxisOptions()),
         m_options.GetGridOptions()
         )
 {
