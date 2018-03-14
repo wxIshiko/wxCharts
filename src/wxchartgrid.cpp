@@ -59,8 +59,8 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
                          wxDouble maxYValue,
                          const wxChartGridOptions& options)
     : m_options(options), m_position(position),
-      m_XAxis(new wxChartNumericalAxis(minXValue, maxXValue, options.GetXAxisOptions())),
-      m_YAxis(new wxChartNumericalAxis(minYValue, maxYValue, options.GetYAxisOptions())),
+      m_XAxis(new wxChartNumericalAxis("x", minXValue, maxXValue, options.GetXAxisOptions())),
+      m_YAxis(new wxChartNumericalAxis("y", minYValue, maxYValue, options.GetYAxisOptions())),
       m_mapping(size, m_XAxis, m_YAxis),
       m_needsFit(true),
       m_origAxisLimits(minXValue,maxXValue,minYValue,maxYValue),
@@ -231,10 +231,10 @@ void wxChartGrid::ChangeCorners(wxDouble minX,wxDouble maxX,
 
 void wxChartGrid::Update()
 {
-    m_XAxis = new wxChartNumericalAxis(m_curAxisLimits.MinX,
-                                  m_curAxisLimits.MaxX,m_options.GetXAxisOptions());
-    m_YAxis = new wxChartNumericalAxis(m_curAxisLimits.MinY,
-                                  m_curAxisLimits.MaxY, m_options.GetYAxisOptions());
+    m_XAxis = new wxChartNumericalAxis("x", m_curAxisLimits.MinX,
+        m_curAxisLimits.MaxX,m_options.GetXAxisOptions());
+    m_YAxis = new wxChartNumericalAxis("y", m_curAxisLimits.MinY,
+        m_curAxisLimits.MaxY, m_options.GetYAxisOptions());
     m_mapping = wxChartGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
     m_needsFit = true;
 }

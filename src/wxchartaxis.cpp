@@ -228,19 +228,27 @@ wxPoint2DDouble wxChartAxis::GetPosition(wxDouble relativeValue) const
     return wxPoint2DDouble(0, 0);
 }
 
+const std::string& wxChartAxis::GetId() const
+{
+    return m_id;
+}
+
 const wxChartAxisOptions& wxChartAxis::GetOptions() const
 {
     return m_options;
 }
 
-wxChartAxis::wxChartAxis(const wxChartAxisOptions &options)
-    : m_options(options), m_startPoint(0, 0), m_endPoint(0, 0)
+wxChartAxis::wxChartAxis(const std::string &id, 
+                         const wxChartAxisOptions &options)
+    : m_options(options), m_id(id), 
+    m_startPoint(0, 0), m_endPoint(0, 0)
 {
 }
 
-wxChartAxis::wxChartAxis(const wxVector<wxString> &labels,
+wxChartAxis::wxChartAxis(const std::string &id, 
+                         const wxVector<wxString> &labels,
                          const wxChartAxisOptions &options)
-    : m_options(options),
+    : m_options(options), m_id(id),
     m_startPoint(0, 0), m_endPoint(0, 0)
 {
     for (size_t i = 0; i < labels.size(); ++i)

@@ -47,9 +47,9 @@ public:
     /// @param labels The labels of the axis.
     /// @param options The settings to be used for the
     /// axis.
-    wxChartCategoricalAxis(const wxVector<wxString> &labels, 
+    wxChartCategoricalAxis(const std::string &id, const wxVector<wxString> &labels,
         const wxChartAxisOptions &options);
-    static ptr make_shared(const wxVector<wxString> &labels,
+    static ptr make_shared(const std::string &id, const wxVector<wxString> &labels,
         const wxChartAxisOptions &options);
 };
 

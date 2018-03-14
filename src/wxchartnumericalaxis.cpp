@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -34,10 +34,11 @@
 #include "wxchartnumericalaxis.h"
 #include "wxchartutilities.h"
 
-wxChartNumericalAxis::wxChartNumericalAxis(wxDouble minValue,
+wxChartNumericalAxis::wxChartNumericalAxis(const std::string &id, 
+                                           wxDouble minValue,
                                            wxDouble maxValue,
                                            const wxChartAxisOptions &options)
-    : wxChartAxis(options),
+    : wxChartAxis(id, options),
     m_minValue(minValue), m_maxValue(maxValue)
 {
     wxDouble effectiveMinXValue = minValue;
@@ -72,11 +73,12 @@ wxChartNumericalAxis::wxChartNumericalAxis(wxDouble minValue,
     SetLabels(xLabels);
 }
 
-wxChartNumericalAxis::ptr wxChartNumericalAxis::make_shared(wxDouble minValue,
+wxChartNumericalAxis::ptr wxChartNumericalAxis::make_shared(const std::string &id, 
+                                                            wxDouble minValue,
                                                             wxDouble maxValue,
                                                             const wxChartAxisOptions &options)
 {
-    return ptr(new wxChartNumericalAxis(minValue, maxValue, options));
+    return ptr(new wxChartNumericalAxis(id, minValue, maxValue, options));
 }
 
 wxDouble wxChartNumericalAxis::GetMinValue() const

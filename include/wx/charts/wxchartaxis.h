@@ -75,22 +75,25 @@ public:
     wxPoint2DDouble GetTickMarkPosition(size_t index) const;
     wxPoint2DDouble GetPosition(wxDouble relativeValue) const;
 
+    const std::string& GetId() const;
     const wxChartAxisOptions& GetOptions() const;
 
 protected:
     /// Construcs a wxChartAxis element.
     /// @param options The settings to be used for the axis.
-    wxChartAxis(const wxChartAxisOptions &options);
+    wxChartAxis(const std::string &id, const wxChartAxisOptions &options);
     /// Constructs a wxChartAxis element.
     /// @param labels The labels to display along the axis.
     /// @param options The settings to be used for the axis.
-    wxChartAxis(const wxVector<wxString> &labels, const wxChartAxisOptions &options);
+    wxChartAxis(const std::string &id, const wxVector<wxString> &labels,
+        const wxChartAxisOptions &options);
 
 private:
     void DrawTickMarks(wxGraphicsContext &gc) const;
 
 private:
     wxChartAxisOptions m_options;
+    std::string m_id;
     wxPoint2DDouble m_startPoint;
     wxPoint2DDouble m_endPoint;
     wxChartLabelGroup m_labels;
