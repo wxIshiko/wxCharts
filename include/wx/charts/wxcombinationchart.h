@@ -30,6 +30,7 @@
 #include "wxchartscategoricaldata.h"
 #include "wxchartgrid.h"
 
+/// \ingroup chartclasses
 class wxCombinationChart : public wxChart
 {
 public:

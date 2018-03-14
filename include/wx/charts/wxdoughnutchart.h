@@ -30,6 +30,8 @@
 #include "wxchartobservers.h"
 
 /// Data for the wxDoughnutChartCtrl control.
+
+/// \ingroup dataclasses
 class wxDoughnutChartData : public wxChartObservableValue<wxVector<wxChartSliceData>>
 {
 public:

@@ -30,6 +30,8 @@
 #include <wx/graphics.h>
 
 /// This class is used to display a rectangle on a chart.
+
+/// \ingroup elementclasses
 class wxChartRectangle : public wxChartElement
 {
 public:

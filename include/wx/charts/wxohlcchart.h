@@ -31,6 +31,8 @@
 #include "wxchartgrid.h"
 
 /// Data for the wxOHLCChartCtrl control.
+
+/// \ingroup dataclasses
 class wxOHLCChartData
 {
 public:
