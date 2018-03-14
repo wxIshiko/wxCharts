@@ -43,6 +43,8 @@
 #include "wxchartrectangle.h"
 
 /// A stacked column chart.
+
+/// \ingroup chartclasses
 class wxStackedColumnChart : public wxChart
 {
 public:

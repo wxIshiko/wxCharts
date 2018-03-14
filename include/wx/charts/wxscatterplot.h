@@ -70,6 +70,8 @@ private:
 };
 
 /// A scatter plot.
+
+/// \ingroup chartclasses
 class wxScatterPlot : public wxChart
 {
 public:

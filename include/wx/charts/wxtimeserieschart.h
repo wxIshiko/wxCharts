@@ -28,6 +28,7 @@
 #include "wxchart.h"
 #include "wxtimeserieschartoptions.h"
 
+/// \ingroup chartclasses
 class wxTimeSeriesChart : public wxChart
 {
 public:

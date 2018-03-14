@@ -32,6 +32,8 @@
 #include "wxchartrectangle.h"
 
 /// A stacked bar chart.
+
+/// \ingroup chartclasses
 class wxStackedBarChart : public wxChart
 {
 public:
