@@ -29,6 +29,8 @@
 #include "wxchartpadding.h"
 
 /// Options for the wxChartCtrl control.
+
+/// \ingroup chartclasses
 class wxChartOptions
 {
 public:

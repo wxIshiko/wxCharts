@@ -27,8 +27,9 @@
 
 #include "wxchartmultitooltipoptions.h"
 
-/// Options that are common between the various
-/// chart types.
+/// Options that are common between the various chart types.
+
+/// \ingroup chartclasses
 class wxChartCommonOptions
 {
 public:

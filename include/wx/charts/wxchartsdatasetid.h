@@ -27,6 +27,9 @@
 
 #include <wx/string.h>
 
+/// Identifier for a dataset.
+
+/// \ingroup dataclasses
 class wxChartsDatasetId
 {
 public:

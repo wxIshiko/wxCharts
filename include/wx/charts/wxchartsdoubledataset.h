@@ -33,6 +33,7 @@
 /// Stores the information about a dataset to be shown on one of the bar chart controls.
 
 /// The wxBarChartCtrl, wxColumnChartCtrl, wxStackedBarChartCtrl and wxStackedColumnChartCtrl use this class.
+/// \ingroup dataclasses
 class wxChartsDoubleDataset : public wxChartsDataset
 {
 public:

@@ -27,6 +27,11 @@
 
 #include "wxchartsdatasetid.h"
 
+/// \defgroup dataclasses
+
+/// Base class for the dataset classes.
+
+/// \ingroup dataclasses
 class wxChartsDataset
 {
 public:

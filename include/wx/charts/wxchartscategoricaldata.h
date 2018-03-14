@@ -31,6 +31,7 @@
 /// Data for one of the bar chart controls.
 
 /// The wxBarChartCtrl, wxColumnChartCtrl, wxStackedBarChartCtrl and wxStackedColumnChartCtrl use this class.
+/// \ingroup dataclasses
 class wxChartsCategoricalData
 {
 public:
