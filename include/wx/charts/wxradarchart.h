@@ -57,6 +57,8 @@ private:
 };
 
 /// A radar chart.
+
+/// \ingroup chartclasses
 class wxRadarChart : public wxChart
 {
 public:

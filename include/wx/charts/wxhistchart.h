@@ -94,7 +94,7 @@ private:
     std::size_t m_nbins;
 };
 
-/// A wxHistogramChart.
+/// A histogram.
 
 /// \ingroup chartclasses
 class wxHistogramChart : public wxChart

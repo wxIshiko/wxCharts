@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2018 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -33,6 +33,8 @@
 typedef std::function<wxDouble(wxDouble)> AxisFunc;
 
 /// The options for the wxMath2DPlotCtrl control.
+
+/// \ingroup chartclasses
 class wxMath2DPlotOptions : public wxChartOptions
 {
 public:

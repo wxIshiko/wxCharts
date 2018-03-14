@@ -57,6 +57,8 @@ private:
 };
 
 /// A polar area chart.
+
+/// \ingroup chartclasses
 class wxPolarAreaChart : public wxChart
 {
 public:

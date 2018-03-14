@@ -107,6 +107,8 @@ private:
 };
 
 /// A wxMath2D plot.
+
+/// \ingroup chartclasses
 class wxMath2DPlot : public wxChart
 {
 public:

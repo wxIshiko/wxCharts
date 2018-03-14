@@ -47,7 +47,7 @@ enum wxLineType
     wxLINETYPE_STEPPEDLINE
 };
 
-/// Stores the information about a dataset to be shown on a wxLineChartCtrl.
+/// Stores the information about a dataset to be shown on a wxLineChart.
 
 /// \ingroup dataclasses
 class wxLineChartDataset
