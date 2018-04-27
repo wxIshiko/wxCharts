@@ -128,9 +128,8 @@ public:
     void Shift(double dx,double dy);
     void ChangeCorners(wxDouble minX,wxDouble maxX,
         wxDouble minY,wxDouble maxY);
-    void ChangeCorners(wxDouble min,wxDouble max,bool is_X = true);
-    void ChangeLabels(const wxVector<wxString> &labels,
-        wxChartAxisOptions options, bool is_X = true);
+    void UpdateAxisLimit(const std::string& axisId, wxDouble min, wxDouble max);
+    void ChangeLabels(const std::string& axisId, const wxVector<wxString> &labels, wxChartAxisOptions options);
 
 private:
     void Update();
