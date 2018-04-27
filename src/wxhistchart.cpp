@@ -169,7 +169,8 @@ void wxHistogramChart::Initialize(const wxHistogramChartData &data)
         return a.m_count < b.m_count;
     });
 
-    m_grid.ChangeCorners(*minmax.first,*minmax.second,0,maxY->m_count);
+    m_grid.UpdateAxisLimit("x",*minmax.first,*minmax.second);
+    m_grid.UpdateAxisLimit("y",0,maxY->m_count);
 }
 
 const wxChartCommonOptions& wxHistogramChart::GetCommonOptions() const

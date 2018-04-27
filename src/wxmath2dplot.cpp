@@ -414,7 +414,8 @@ void wxMath2DPlot::Update()
             maxY = transformY(0);
     if (minY == std::numeric_limits<wxDouble>::max())
             minY = transformY(0);
-    m_grid.ChangeCorners(minX,maxX,minY,maxY);
+    m_grid.UpdateAxisLimit("x",minX,maxX);
+    m_grid.UpdateAxisLimit("y",minY,maxY);
 }
 
 void wxMath2DPlot::Initialize(const wxMath2DPlotData &data)
