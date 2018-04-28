@@ -43,6 +43,7 @@ public:
         const wxString &label);
 
     wxDouble GetValue() const;
+    void SetValue(wxDouble value);
     const wxColor& GetColor() const;
     const wxString& GetLabel() const;
 

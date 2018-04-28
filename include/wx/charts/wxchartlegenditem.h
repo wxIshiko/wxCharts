@@ -31,6 +31,8 @@
 #include <wx/colour.h>
 #include <wx/string.h>
 
+#include <unordered_map>
+
 /// Class that represents items of the wxChartLegendData class.
 class wxChartLegendItem
 {
@@ -70,15 +72,15 @@ typedef wxVector<wxChartLegendItem> wxChartLegendItems;
 class wxChartLegendData
 {
 public:
-    /// Constructs a wxChartLegendData 
+    /// Constructs a wxChartLegendData
     /// instance.
     wxChartLegendData();
     /// Constructs a wxChartLegendData instance from
     /// a list of slices. This can be used to build
-    /// a legend for the wxPieChartCtrl and 
+    /// a legend for the wxPieChartCtrl and
     /// wxDoughnutChartCtrl controls for instance.
     /// @param slices List of slices.
-    wxChartLegendData(const wxVector<wxChartSliceData>& slices);
+    wxChartLegendData(const std::unordered_map<wxString,wxChartSliceData>& slices);
     /// Constructs a wxChartLegendData instance from
     /// a list of datasets. This can be used to build
     /// a legend for the wxLineChartCtrl control.

@@ -64,11 +64,11 @@ wxChartLegendData::wxChartLegendData()
 {
 }
 
-wxChartLegendData::wxChartLegendData(const wxVector<wxChartSliceData>& slices)
+wxChartLegendData::wxChartLegendData(const std::unordered_map<wxString,wxChartSliceData>& slices)
 {
-    for (size_t i = 0; i < slices.size(); ++i)
+    for (const auto &slice : slices)
     {
-        m_items.push_back(wxChartLegendItem(slices[i]));
+        m_items.push_back(wxChartLegendItem(slice.second));
     }
 }
 

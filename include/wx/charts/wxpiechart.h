@@ -29,16 +29,21 @@
 #include "wxpiechartoptions.h"
 #include "wxchartobservers.h"
 
+#include <unordered_map>
+
 /// Data for the wxPieChartCtrl control.
-class wxPieChartData : public wxChartObservableValue<wxVector<wxChartSliceData>>
+class wxPieChartData : public wxChartObservableValue<std::unordered_map<wxString,wxChartSliceData>>
 {
 public:
     wxPieChartData();
 
-    const wxVector<wxChartSliceData>& GetSlices() const;
+    const std::unordered_map<wxString,wxChartSliceData>& GetSlices() const;
     void AppendSlice(const wxChartSliceData &slice);
     void UpdateSlices(const wxVector<wxChartSliceData> &slices);
     void AddSlices(const wxVector<wxChartSliceData> &slices);
+
+private:
+    void Add(const wxChartSliceData &slice);
 };
 
 /// A pie chart.
