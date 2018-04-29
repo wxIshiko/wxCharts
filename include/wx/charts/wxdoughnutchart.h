@@ -29,18 +29,23 @@
 #include "wxdoughnutchartoptions.h"
 #include "wxchartobservers.h"
 
+#include <unordered_map>
+
 /// Data for the wxDoughnutChartCtrl control.
 
 /// \ingroup dataclasses
-class wxDoughnutChartData : public wxChartObservableValue<wxVector<wxChartSliceData>>
+class wxDoughnutChartData : public wxChartObservableValue<std::unordered_map<wxString,wxChartSliceData>>
 {
 public:
     wxDoughnutChartData();
 
-    const wxVector<wxChartSliceData>& GetSlices() const;
+    const std::unordered_map<wxString,wxChartSliceData>& GetSlices() const;
     void AppendSlice(const wxChartSliceData &slice);
     void UpdateSlices(const wxVector<wxChartSliceData> &slices);
     void AddSlices(const wxVector<wxChartSliceData> &slices);
+
+private:
+    void Add(const wxChartSliceData &slice);
 };
 
 /// A doughnut chart.

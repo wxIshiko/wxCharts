@@ -26,28 +26,39 @@ wxDoughnutChartData::wxDoughnutChartData()
 {
 }
 
-const wxVector<wxChartSliceData>& wxDoughnutChartData::GetSlices() const
+const std::unordered_map<wxString,wxChartSliceData>& wxDoughnutChartData::GetSlices() const
 {
     return m_value;
 }
 
 void wxDoughnutChartData::AppendSlice(const wxChartSliceData &slice)
 {
-    m_value.push_back(slice);
+    Add(slice);
     Notify();
 }
 
 void wxDoughnutChartData::UpdateSlices(const wxVector<wxChartSliceData> &slices)
 {
-    SetValue(slices);
+    m_value.clear();
+    AddSlices(slices);
 }
 
 void wxDoughnutChartData::AddSlices(const wxVector<wxChartSliceData> &slices)
 {
     for(const auto &slice : slices)
-        m_value.push_back(slice);
+        Add(slice);
 
     Notify();
+}
+
+void wxDoughnutChartData::Add(const wxChartSliceData &slice)
+{
+    auto key = slice.GetLabel();
+    auto it = m_value.find(key);
+    if(it == m_value.end())
+        m_value.insert(std::make_pair(key,slice));
+    else
+        it->second.SetValue(it->second.GetValue()+slice.GetValue());
 }
 
 wxDoughnutChart::wxDoughnutChart(const wxDoughnutChartData &data,
@@ -72,11 +83,8 @@ const wxChartCommonOptions& wxDoughnutChart::GetCommonOptions() const
 void wxDoughnutChart::Initialize(const wxDoughnutChartData &data,
                                  const wxSize &size)
 {
-    const wxVector<wxChartSliceData>& slices = data.GetSlices();
-    for (size_t i = 0; i < slices.size(); ++i)
-    {
-        Add(slices[i], size);
-    }
+    for (const auto &slice : data.GetSlices())
+        Add(slice.second, size);
 }
 
 const wxDoughnutAndPieChartOptionsBase& wxDoughnutChart::GetOptions() const
