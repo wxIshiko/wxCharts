@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -24,28 +24,38 @@
 
 wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
                                          wxWindowID id,
-                                         const wxDoughnutChartData &data,
+                                         wxDoughnutChartData &data,
                                          const wxPoint &pos,
-                                         const wxSize &size, 
+                                         const wxSize &size,
                                          long style)
     : wxChartCtrl(parent, id, pos, size, style),
     m_doughnutChart(data, size)
 {
+    data.AddObserver(this);
 }
 
-wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent, 
-                                         wxWindowID id, 
-                                         const wxDoughnutChartData &data,
+wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
+                                         wxWindowID id,
+                                         wxDoughnutChartData &data,
                                          const wxDougnutChartOptions &options,
                                          const wxPoint &pos,
-                                         const wxSize &size, 
+                                         const wxSize &size,
                                          long style)
     : wxChartCtrl(parent, id, pos, size, style),
     m_doughnutChart(data, options, size)
 {
+    data.AddObserver(this);
 }
 
 wxDoughnutChart& wxDoughnutChartCtrl::GetChart()
 {
     return m_doughnutChart;
+}
+
+void wxDoughnutChartCtrl::OnUpdate(const std::unordered_map<wxString,wxChartSliceData> &data)
+{
+    m_doughnutChart.SetData(data);
+    auto parent = this->GetParent();
+    if(parent)
+        parent->Layout();
 }

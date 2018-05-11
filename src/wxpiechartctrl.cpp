@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -24,7 +24,7 @@
 
 wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
                                wxWindowID id,
-                               const wxPieChartData &data,
+                               wxPieChartData &data,
                                const wxPoint &pos,
                                const wxSize &size, 
                                long style)
@@ -32,11 +32,12 @@ wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
     m_pieChart(data, size)
 {
     SetMinSize(wxSize(100, 100));
+	data.AddObserver(this);
 }
 
 wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
                                wxWindowID id,
-                               const wxPieChartData &data,
+                               wxPieChartData &data,
                                const wxPieChartOptions &options,
                                const wxPoint &pos,
                                const wxSize &size,
@@ -44,9 +45,18 @@ wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
     : wxChartCtrl(parent, id, pos, size, style),
     m_pieChart(data, options, size)
 {
+    data.AddObserver(this);
 }
 
 wxPieChart& wxPieChartCtrl::GetChart()
 {
     return m_pieChart;
+}
+
+void wxPieChartCtrl::OnUpdate(const std::unordered_map<wxString,wxChartSliceData> &data)
+{
+    m_pieChart.SetData(data);
+    auto parent = this->GetParent();
+    if(parent)
+        parent->Layout();
 }

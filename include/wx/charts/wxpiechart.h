@@ -59,7 +59,7 @@ public:
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
-    void Initialize(const wxPieChartData &data, const wxSize &size);
+    void Initialize(const wxPieChartData &data);
 
     virtual const wxDoughnutAndPieChartOptionsBase& GetOptions() const;
 

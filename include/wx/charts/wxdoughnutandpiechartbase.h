@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -43,6 +43,8 @@
 #include <wx/control.h>
 #include <wx/sharedptr.h>
 
+#include <unordered_map>
+
 /// Common base class for the wxDoughnutChart and wxPieChart charts.
 
 /// The doughnut and pie charts are very similar so we use
@@ -55,11 +57,8 @@ public:
     /// Constructs a wxDoughnutAndPieChartBase
     /// instance.
     wxDoughnutAndPieChartBase();
-
-protected:
-    void Add(const wxChartSliceData &slice, const wxSize &size);
-    void Add(const wxChartSliceData &slice, size_t index,
-        const wxSize &size);
+    wxDoughnutAndPieChartBase(const wxSize &size);
+    void SetData(const std::unordered_map<wxString,wxChartSliceData> &data);
 
 private:
     virtual void DoSetSize(const wxSize &size);
