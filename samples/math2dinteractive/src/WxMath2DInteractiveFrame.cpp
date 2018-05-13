@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2017-2018 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -35,7 +35,7 @@ WxMath2DInteractiveFrame::WxMath2DInteractiveFrame(const wxString& title)
 
     wxMath2DPlotData chartData;
     wxMath2DPlotOptions options;
-    options.SetShowTooltips(false);
+    options.GetCommonOptions().SetShowTooltips(false);
 
     wxMath2DPlotDataset::ptr dataset1(
         new wxMath2DPlotDataset(
