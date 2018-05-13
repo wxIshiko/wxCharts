@@ -19,7 +19,7 @@ library wxcharts
 
     includedirs += ../../include/wx/charts;
 
-    if (($(toolset) == vs2015) || ($(toolset) == vs2013))
+    if (($(toolset) == vs2017) || ($(toolset) == vs2015) || ($(toolset) == vs2013))
     {
         includedirs += $(WXWIDGETS_ROOT)/include;
         includedirs += $(WXWIDGETS_ROOT)/include/msvc;
