@@ -1,6 +1,7 @@
-toolsets = gnu vs2015 vs2013;
+toolsets = gnu vs2017 vs2015 vs2013;
 
 gnu.makefile = ../../GNUmakefile;
+vs2017.solutionfile = ../msw/wxcharts_vc15.sln;
 vs2015.solutionfile = ../msw/wxcharts_vc14.sln;
 vs2013.solutionfile = ../msw/wxcharts_vc12.sln;
 
@@ -12,6 +13,7 @@ setting WXWIDGETS_ROOT
 
 library wxcharts
 {
+    vs2017.projectfile = ../msw/wxcharts_vc15.vcxproj;
     vs2015.projectfile = ../msw/wxcharts_vc14.vcxproj;
     vs2013.projectfile = ../msw/wxcharts_vc12.vcxproj;
 
