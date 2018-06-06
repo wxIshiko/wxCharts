@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -31,7 +31,7 @@
 /// A control that displays a pie chart.
 
 /// \ingroup chartclasses
-class wxPieChartCtrl : public wxChartCtrl, public wxChartValueObserver<std::unordered_map<wxString,wxChartSliceData>>
+class wxPieChartCtrl : public wxChartCtrl, public wxChartValueObserver<std::map<wxString, wxChartSliceData>>
 {
 public:
     /// Constructs a wxPieChartCtrl control.
@@ -71,7 +71,7 @@ public:
 
 private:
     virtual wxPieChart& GetChart();
-    void OnUpdate(const std::unordered_map<wxString,wxChartSliceData> &data) override;
+    void OnUpdate(const std::map<wxString,wxChartSliceData> &data) override;
 
 private:
     wxPieChart m_pieChart;

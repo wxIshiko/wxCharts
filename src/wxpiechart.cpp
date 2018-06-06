@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,7 +26,7 @@ wxPieChartData::wxPieChartData()
 {
 }
 
-const std::unordered_map<wxString,wxChartSliceData>& wxPieChartData::GetSlices() const
+const std::map<wxString,wxChartSliceData>& wxPieChartData::GetSlices() const
 {
     return m_value;
 }

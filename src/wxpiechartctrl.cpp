@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -53,7 +53,8 @@ wxPieChart& wxPieChartCtrl::GetChart()
     return m_pieChart;
 }
 
-void wxPieChartCtrl::OnUpdate(const std::unordered_map<wxString,wxChartSliceData> &data)
+void wxPieChartCtrl::OnUpdate(const std::map<wxString,
+	                          wxChartSliceData> &data)
 {
     m_pieChart.SetData(data);
     auto parent = this->GetParent();

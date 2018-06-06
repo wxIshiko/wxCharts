@@ -74,7 +74,7 @@ wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(const wxSize &size)
 {
 }
 
-void wxDoughnutAndPieChartBase::SetData(const std::unordered_map<wxString,wxChartSliceData> &data)
+void wxDoughnutAndPieChartBase::SetData(const std::map<wxString, wxChartSliceData> &data)
 {
     m_slices.resize(data.size());
     m_total = 0;

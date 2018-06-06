@@ -26,7 +26,7 @@ wxDoughnutChartData::wxDoughnutChartData()
 {
 }
 
-const std::unordered_map<wxString,wxChartSliceData>& wxDoughnutChartData::GetSlices() const
+const std::map<wxString,wxChartSliceData>& wxDoughnutChartData::GetSlices() const
 {
     return m_value;
 }

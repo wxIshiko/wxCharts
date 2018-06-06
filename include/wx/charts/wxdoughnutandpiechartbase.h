@@ -42,8 +42,7 @@
 #include "wxchartarc.h"
 #include <wx/control.h>
 #include <wx/sharedptr.h>
-
-#include <unordered_map>
+#include <map>
 
 /// Common base class for the wxDoughnutChart and wxPieChart charts.
 
@@ -58,7 +57,7 @@ public:
     /// instance.
     wxDoughnutAndPieChartBase();
     wxDoughnutAndPieChartBase(const wxSize &size);
-    void SetData(const std::unordered_map<wxString,wxChartSliceData> &data);
+    void SetData(const std::map<wxString, wxChartSliceData> &data);
 
 private:
     virtual void DoSetSize(const wxSize &size);
