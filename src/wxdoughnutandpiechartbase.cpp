@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -69,26 +69,31 @@ wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase()
 {
 }
 
-void wxDoughnutAndPieChartBase::Add(const wxChartSliceData &slice,
-                                    const wxSize &size)
+wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(const wxSize &size)
+    : m_size(size), m_total(0)
 {
-    Add(slice, m_slices.size(), size);
 }
 
-void wxDoughnutAndPieChartBase::Add(const wxChartSliceData &slice, 
-                                    size_t index,
-                                    const wxSize &size)
+void wxDoughnutAndPieChartBase::SetData(const std::unordered_map<wxString,wxChartSliceData> &data)
 {
-    m_total += slice.GetValue();
+    m_slices.resize(data.size());
+    m_total = 0;
+	size_t i = 0;
+    for(const auto &pair : data)
+    {
+        auto slice = pair.second;
 
-    wxDouble x = (size.GetX() / 2) - 2;
-    wxDouble y = (size.GetY() / 2) - 2;
-    wxDouble outerRadius = ((x < y) ? x : y) - (GetOptions().GetSliceStrokeWidth() / 2);
-    wxDouble innerRadius = outerRadius * ((wxDouble)GetOptions().GetPercentageInnerCutout()) / 100;
+        m_total += slice.GetValue();
+        wxDouble x = (m_size.GetX() / 2) - 2;
+        wxDouble y = (m_size.GetY() / 2) - 2;
+        wxDouble outerRadius = ((x < y) ? x : y) - (GetOptions().GetSliceStrokeWidth() / 2);
+        wxDouble innerRadius = outerRadius * ((wxDouble)GetOptions().GetPercentageInnerCutout()) / 100;
 
-    SliceArc::ptr newSlice = SliceArc::ptr(new SliceArc(slice,
-        x, y, 0, 0, outerRadius, innerRadius, GetOptions().GetSliceStrokeWidth()));
-    m_slices.insert(m_slices.begin() + index, newSlice);
+        SliceArc::ptr newSlice = SliceArc::ptr(new SliceArc(slice,
+                                               x, y, 0, 0, outerRadius, innerRadius, GetOptions().GetSliceStrokeWidth()));
+        m_slices[i++] = newSlice;
+    }
+    
 }
 
 void wxDoughnutAndPieChartBase::DoSetSize(const wxSize &size)
