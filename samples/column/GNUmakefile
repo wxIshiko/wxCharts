@@ -69,7 +69,7 @@ WXCHARTS_ROOT ?= $(WXCHARTS)
 all: $(_builddir)WxColumn
 
 $(_builddir)WxColumn: $(_builddir)WxColumn_WxColumnApp.o $(_builddir)WxColumn_WxColumnFrame.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)WxColumn_WxColumnApp.o $(_builddir)WxColumn_WxColumnFrame.o -L$(WXCHARTS_ROOT)/lib/vc_lib `wx-config --libs` -pthread
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)WxColumn_WxColumnApp.o $(_builddir)WxColumn_WxColumnFrame.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
 
 $(_builddir)WxColumn_WxColumnApp.o: src/WxColumnApp.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxColumnApp.cpp

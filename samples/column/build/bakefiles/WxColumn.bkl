@@ -24,7 +24,6 @@ program WxColumn
     vs2013.projectfile = ../msw/WxColumn_vc12.vcxproj;
 
     includedirs += $(WXCHARTS_ROOT)/include;
-    libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
 
     if (($(toolset) == vs2017) || ($(toolset) == vs2015) || ($(toolset) == vs2013))
     {
@@ -32,12 +31,15 @@ program WxColumn
     
         includedirs += $(WXWIDGETS_ROOT)/include;
         includedirs += $(WXWIDGETS_ROOT)/include/msvc;
+        libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
         libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
     }
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++11 `wx-config --cxxflags`";
         link-options = "`wx-config --libs`";
+        libdirs += $(WXCHARTS_ROOT);
+        libs += wxcharts;
     }
 
     headers
