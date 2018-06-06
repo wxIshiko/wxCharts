@@ -14,4 +14,4 @@ jobs:
       - run:
           name: wxColumn sample build
           command: make
-          working_directory: wxIshiko/wxCharts/samples/column
+          working_directory: samples/column
