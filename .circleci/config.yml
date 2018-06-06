@@ -6,6 +6,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Set WXCHARTS_ROOT environment variable
+          command: setenv WXCHARTS_ROOT /include
+      - run:
           name: Build
           command: make
       - run:
