@@ -1,5 +1,7 @@
-toolsets = vs2015 vs2013;
+toolsets = gnu vs2017 vs2015 vs2013;
 
+gnu.makefile = ../../GNUmakefile;
+vs2017.solutionfile = ../msw/WxColumn_vc15.sln;
 vs2015.solutionfile = ../msw/WxColumn_vc14.sln;
 vs2013.solutionfile = ../msw/WxColumn_vc12.sln;
 
@@ -17,6 +19,7 @@ setting WXCHARTS_ROOT
 
 program WxColumn
 {
+    vs2017.projectfile = ../msw/WxColumn_vc15.vcxproj;
     vs2015.projectfile = ../msw/WxColumn_vc14.vcxproj;
     vs2013.projectfile = ../msw/WxColumn_vc12.vcxproj;
 
