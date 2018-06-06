@@ -6,12 +6,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Set WXCHARTS_ROOT environment variable
-          command: set WXCHARTS_ROOT ~/project
-      - run:
           name: Build
           command: make
       - run:
           name: wxColumn sample build
           command: make
           working_directory: samples/column
+          environment:
+            WXCHARTS_ROOT: ~/project
