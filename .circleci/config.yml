@@ -13,4 +13,4 @@ jobs:
           command: make
           working_directory: samples/column
           environment:
-            WXCHARTS_ROOT: ~/project
+            WXCHARTS_ROOT: ../..
