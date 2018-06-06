@@ -23,14 +23,21 @@ program WxColumn
     vs2015.projectfile = ../msw/WxColumn_vc14.vcxproj;
     vs2013.projectfile = ../msw/WxColumn_vc12.vcxproj;
 
-    win32-subsystem = windows;
-
     includedirs += $(WXCHARTS_ROOT)/include;
     libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
 
-    includedirs += $(WXWIDGETS_ROOT)/include;
-    includedirs += $(WXWIDGETS_ROOT)/include/msvc;
-    libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+    if (($(toolset) == vs2017) || ($(toolset) == vs2015) || ($(toolset) == vs2013))
+    {
+        win32-subsystem = windows;
+    
+        includedirs += $(WXWIDGETS_ROOT)/include;
+        includedirs += $(WXWIDGETS_ROOT)/include/msvc;
+        libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+    }
+    if ($(toolset) == gnu)
+    {
+        cxx-compiler-options = "-std=c++11 `wx-config --cxxflags --libs`";
+    }
 
     headers
     {
