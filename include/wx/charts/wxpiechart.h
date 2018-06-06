@@ -32,7 +32,7 @@
 #include <unordered_map>
 
 /// Data for the wxPieChartCtrl control.
-class wxPieChartData : public wxChartObservableValue<std::unordered_map<wxString,wxChartSliceData>>
+class wxPieChartData : public wxChartObservableValue<std::unordered_map<wxString, wxChartSliceData, std::hash<wxString>>>
 {
 public:
     wxPieChartData();

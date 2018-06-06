@@ -34,7 +34,7 @@
 /// Data for the wxDoughnutChartCtrl control.
 
 /// \ingroup dataclasses
-class wxDoughnutChartData : public wxChartObservableValue<std::unordered_map<wxString,wxChartSliceData>>
+class wxDoughnutChartData : public wxChartObservableValue<std::unordered_map<wxString, wxChartSliceData, std::hash<wxString>>>
 {
 public:
     wxDoughnutChartData();
