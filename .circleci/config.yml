@@ -1,6 +1,5 @@
 version: 2
 jobs:
-  working_directory: wxIshiko/wxCharts
   build:
     docker:
       - image: wxishiko/ubuntu-wxwidgets-build:latest
@@ -8,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Set WXCHARTS_ROOT environment variable
-          command: set WXCHARTS_ROOT wxIshiko/wxCharts
+          command: set WXCHARTS_ROOT ~/project
       - run:
           name: Build
           command: make
