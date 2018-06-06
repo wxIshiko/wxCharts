@@ -10,4 +10,5 @@ jobs:
           command: make
       - run:
           name: wxColumn sample build
+          command: make
           working_directory: samples/column
