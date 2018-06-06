@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -64,7 +64,7 @@ wxChartLegendData::wxChartLegendData()
 {
 }
 
-wxChartLegendData::wxChartLegendData(const std::unordered_map<wxString,wxChartSliceData>& slices)
+wxChartLegendData::wxChartLegendData(const std::map<wxString, wxChartSliceData>& slices)
 {
     for (const auto &slice : slices)
     {

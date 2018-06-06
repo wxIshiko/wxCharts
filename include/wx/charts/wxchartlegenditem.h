@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -30,8 +30,7 @@
 #include <wx/vector.h>
 #include <wx/colour.h>
 #include <wx/string.h>
-
-#include <unordered_map>
+#include <map>
 
 /// Class that represents items of the wxChartLegendData class.
 class wxChartLegendItem
@@ -80,7 +79,7 @@ public:
     /// a legend for the wxPieChartCtrl and
     /// wxDoughnutChartCtrl controls for instance.
     /// @param slices List of slices.
-    wxChartLegendData(const std::unordered_map<wxString,wxChartSliceData>& slices);
+    wxChartLegendData(const std::map<wxString, wxChartSliceData>& slices);
     /// Constructs a wxChartLegendData instance from
     /// a list of datasets. This can be used to build
     /// a legend for the wxLineChartCtrl control.
