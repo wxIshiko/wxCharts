@@ -15,6 +15,12 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
+          name: wxBar sample build
+          command: make
+          working_directory: samples/bar
+          environment:
+            WXCHARTS_ROOT: ../..
+      - run:
           name: wxColumn sample build
           command: make
           working_directory: samples/column
