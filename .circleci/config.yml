@@ -9,6 +9,12 @@ jobs:
           name: Build
           command: make
       - run:
+          name: wxAreaChart sample build
+          command: make
+          working_directory: samples/areachart
+          environment:
+            WXCHARTS_ROOT: ../..
+      - run:
           name: wxColumn sample build
           command: make
           working_directory: samples/column
