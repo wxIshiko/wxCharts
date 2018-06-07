@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -39,10 +39,38 @@ wxChartLegendCtrl::wxChartLegendCtrl(wxWindow *parent,
     for (size_t i = 0; i < items.size(); ++i)
     {
         m_lines.push_back(
-            wxChartLegendLine(items[i].GetColor(), items[i].GetLabel(), 
+            wxChartLegendLine(items[i].GetColor(), items[i].GetLabel(),
                 m_options.GetLegendLineOptions())
             );
     }
+}
+
+wxChartLegendCtrl::wxChartLegendCtrl(wxWindow *parent,
+                                     wxWindowID id,
+                                     wxChartObservableValue<std::map<wxString, wxChartSliceData>> &data,
+                                     const wxPoint &pos,
+                                     const wxSize &size,
+                                     long style)
+    : wxControl(parent, id, pos, size, style)
+{
+    SetBackgroundStyle(wxBG_STYLE_PAINT);
+    SetBackgroundColour(*wxWHITE);
+    OnUpdate(data.GetValue());
+    data.AddObserver(this);
+}
+
+void wxChartLegendCtrl::OnUpdate(const std::map<wxString,wxChartSliceData> &data)
+{
+    m_lines.clear();
+    auto options = m_options.GetLegendLineOptions();
+    for(const auto &item : data)
+    {
+        auto label = item.first;
+        auto color = item.second.GetColor();
+        m_lines.push_back(wxChartLegendLine(color,label,options));
+    }
+    Update();
+    Refresh();
 }
 
 void wxChartLegendCtrl::OnPaint(wxPaintEvent &evt)
