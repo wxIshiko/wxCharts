@@ -38,3 +38,9 @@ jobs:
           working_directory: samples/column
           environment:
             WXCHARTS_ROOT: ../..
+      - run:
+          name: wxCombinationChart sample build
+          command: make
+          working_directory: samples/combinationchart
+          environment:
+            WXCHARTS_ROOT: ../..
