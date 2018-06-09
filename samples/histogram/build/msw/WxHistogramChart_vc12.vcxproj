@@ -13,7 +13,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{96387CD1-18A3-5F43-96A7-932DE59AC8BA}</ProjectGuid>
+    <ProjectGuid>{D503D665-3471-5BBC-AE29-2FF085843DE1}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>WxHistogramChart</RootNamespace>
     <ProjectName>WxHistogramChart</ProjectName>
