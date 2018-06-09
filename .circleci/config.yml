@@ -21,6 +21,12 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
+          name: wxBubble sample build
+          command: make
+          working_directory: samples/bubble
+          environment:
+            WXCHARTS_ROOT: ../..
+      - run:
           name: wxColumn sample build
           command: make
           working_directory: samples/column
