@@ -56,3 +56,9 @@ jobs:
           working_directory: samples/histogram
           environment:
             WXCHARTS_ROOT: ../..
+      - run:
+          name: wxLine sample build
+          command: make
+          working_directory: samples/line
+          environment:
+            WXCHARTS_ROOT: ../..
