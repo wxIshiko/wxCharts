@@ -44,3 +44,9 @@ jobs:
           working_directory: samples/combinationchart
           environment:
             WXCHARTS_ROOT: ../..
+      - run:
+          name: wxDoughnut sample build
+          command: make
+          working_directory: samples/doughnut
+          environment:
+            WXCHARTS_ROOT: ../..
