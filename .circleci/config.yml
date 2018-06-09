@@ -68,3 +68,9 @@ jobs:
           working_directory: samples/math2d
           environment:
             WXCHARTS_ROOT: ../..
+      - run:
+          name: wxMath2DInteractive sample build
+          command: make
+          working_directory: samples/math2dinteractive
+          environment:
+            WXCHARTS_ROOT: ../..
