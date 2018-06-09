@@ -27,6 +27,12 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
+          name: wxCandlestick sample build
+          command: make
+          working_directory: samples/candlestick
+          environment:
+            WXCHARTS_ROOT: ../..
+      - run:
           name: wxColumn sample build
           command: make
           working_directory: samples/column
