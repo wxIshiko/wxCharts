@@ -69,7 +69,7 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxMath2DInteractive sample build
+          name: wxMath2D interactive sample build
           command: make
           working_directory: samples/math2dinteractive
           environment:
@@ -78,5 +78,11 @@ jobs:
           name: wxOHLC sample build
           command: make
           working_directory: samples/ohlc
+          environment:
+            WXCHARTS_ROOT: ../..
+      - run:
+          name: wxPie sample build
+          command: make
+          working_directory: samples/pie
           environment:
             WXCHARTS_ROOT: ../..
