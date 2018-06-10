@@ -74,3 +74,9 @@ jobs:
           working_directory: samples/math2dinteractive
           environment:
             WXCHARTS_ROOT: ../..
+      - run:
+          name: wxOHLC sample build
+          command: make
+          working_directory: samples/ohlc
+          environment:
+            WXCHARTS_ROOT: ../..
