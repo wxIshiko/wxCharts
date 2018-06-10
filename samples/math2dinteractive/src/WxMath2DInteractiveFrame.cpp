@@ -37,19 +37,21 @@ WxMath2DInteractiveFrame::WxMath2DInteractiveFrame(const wxString& title)
     wxMath2DPlotOptions options;
     options.GetCommonOptions().SetShowTooltips(false);
 
+	wxVector<wxPoint2DDouble> data1;
     wxMath2DPlotDataset::ptr dataset1(
         new wxMath2DPlotDataset(
             wxColor(250, 20, 20, 0x78),
             wxColor(0, 0, 0, 0xB8),
-            wxVector<wxPoint2DDouble>())
+            data1)
         );
     chartData.AddDataset(dataset1);
 
+	wxVector<wxPoint2DDouble> data2;
     wxMath2DPlotDataset::ptr dataset2(
         new wxMath2DPlotDataset(
             wxColor(0, 70, 140, 0x78),
             wxColor(50, 210, 105, 0xB8),
-            wxVector<wxPoint2DDouble>())
+            data2)
         );
     chartData.AddDataset(dataset2);
 
