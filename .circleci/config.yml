@@ -110,3 +110,9 @@ jobs:
           working_directory: samples/stackedbar
           environment:
             WXCHARTS_ROOT: ../..
+      - run:
+          name: wxStackedColumn sample build
+          command: make
+          working_directory: samples/stackedcolumn
+          environment:
+            WXCHARTS_ROOT: ../..
