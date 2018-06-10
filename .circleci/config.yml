@@ -116,3 +116,9 @@ jobs:
           working_directory: samples/stackedcolumn
           environment:
             WXCHARTS_ROOT: ../..
+      - run:
+          name: wxTimeSeriesChart sample build
+          command: make
+          working_directory: samples/timeseries
+          environment:
+            WXCHARTS_ROOT: ../..
