@@ -1,5 +1,7 @@
-toolsets = vs2015 vs2013;
+toolsets = gnu vs2017 vs2015 vs2013;
 
+gnu.makefile = ../../GNUmakefile;
+vs2017.solutionfile = ../msw/WxRadar_vc15.sln;
 vs2015.solutionfile = ../msw/WxRadar_vc14.sln;
 vs2013.solutionfile = ../msw/WxRadar_vc12.sln;
 
@@ -17,17 +19,28 @@ setting WXCHARTS_ROOT
 
 program WxRadar
 {
+    vs2017.projectfile = ../msw/WxRadar_vc15.vcxproj;
     vs2015.projectfile = ../msw/WxRadar_vc14.vcxproj;
     vs2013.projectfile = ../msw/WxRadar_vc12.vcxproj;
 
-    win32-subsystem = windows;
-
     includedirs += $(WXCHARTS_ROOT)/include;
-    libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
 
-    includedirs += $(WXWIDGETS_ROOT)/include;
-    includedirs += $(WXWIDGETS_ROOT)/include/msvc;
-    libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+    if (($(toolset) == vs2017) || ($(toolset) == vs2015) || ($(toolset) == vs2013))
+    {
+        win32-subsystem = windows;
+
+        includedirs += $(WXWIDGETS_ROOT)/include;
+        includedirs += $(WXWIDGETS_ROOT)/include/msvc;
+        libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
+        libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+    }
+    if ($(toolset) == gnu)
+    {
+        cxx-compiler-options = "-std=c++11 `wx-config --cxxflags`";
+        link-options = "`wx-config --libs`";
+        libdirs += $(WXCHARTS_ROOT);
+        libs += wxcharts;
+    }
 
     headers
     {
