@@ -104,3 +104,9 @@ jobs:
           working_directory: samples/scatterplot
           environment:
             WXCHARTS_ROOT: ../..
+      - run:
+          name: wxStackedBar sample build
+          command: make
+          working_directory: samples/stackedbar
+          environment:
+            WXCHARTS_ROOT: ../..
