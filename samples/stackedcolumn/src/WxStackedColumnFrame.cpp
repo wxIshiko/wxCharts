@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2016 Xavier Leclercq
+	Copyright (c) 2016-2018 Xavier Leclercq
 
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
@@ -40,7 +40,7 @@ WxStackedColumnFrame::WxStackedColumnFrame(const wxString& title)
 	labels.push_back("May");
 	labels.push_back("June");
 	labels.push_back("July");
-	wxBarChartData chartData(labels);
+	wxChartsCategoricalData chartData(labels);
 
 	// Add the first dataset
 	wxVector<wxDouble> points1;
@@ -51,7 +51,7 @@ WxStackedColumnFrame::WxStackedColumnFrame(const wxString& title)
 	points1.push_back(4);
 	points1.push_back(5);
 	points1.push_back(1);
-	wxBarChartDataset::ptr dataset1(new wxBarChartDataset(
+	wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset(
 		wxColor(96, 83, 77, 0x3F),
 		wxColor(96, 83, 77, 0x6C),
 		points1));
@@ -66,7 +66,7 @@ WxStackedColumnFrame::WxStackedColumnFrame(const wxString& title)
 	points2.push_back(3);
 	points2.push_back(1.8);
 	points2.push_back(0.4);
-	wxBarChartDataset::ptr dataset2(new wxBarChartDataset(
+	wxChartsDoubleDataset::ptr dataset2(new wxChartsDoubleDataset(
 		wxColor(220, 220, 220, 0x7F),
 		wxColor(200, 200, 200, 0xFF),
 		points2));
@@ -81,7 +81,7 @@ WxStackedColumnFrame::WxStackedColumnFrame(const wxString& title)
 	points3.push_back(1);
 	points3.push_back(0.5);
 	points3.push_back(0.4);
-	wxBarChartDataset::ptr dataset3(new wxBarChartDataset(
+	wxChartsDoubleDataset::ptr dataset3(new wxChartsDoubleDataset(
 		wxColor(151, 187, 205, 0x7F),
 		wxColor(151, 187, 205, 0xCC),
 		points3));
