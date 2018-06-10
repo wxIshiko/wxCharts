@@ -86,3 +86,9 @@ jobs:
           working_directory: samples/pie
           environment:
             WXCHARTS_ROOT: ../..
+      - run:
+          name: wxPolarArea sample build
+          command: make
+          working_directory: samples/polararea
+          environment:
+            WXCHARTS_ROOT: ../..
