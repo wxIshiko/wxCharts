@@ -5,6 +5,8 @@ jobs:
       - image: wxishiko/ubuntu-wxwidgets-build:latest
     steps:
       - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
       - run:
           name: wxCharts library build
           command: make
