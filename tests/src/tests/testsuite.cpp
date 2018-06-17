@@ -21,25 +21,17 @@
 */
 
 #include "testsuite.h"
-#include "wxchartgridoptionstests.h"
-#include "wxcolumnchartoptionstests.h"
-#include "wxpiechartoptionstests.h"
 
 #define CATCH_CONFIG_RUNNER
 #include "catch.hpp"
 
 TestSuite::TestSuite()
 {
-	/*
-    m_runner.addTest(wxChartGridOptionsTests::suite());
-    m_runner.addTest(wxColumnChartOptionsTests::suite());
-    m_runner.addTest(wxPieChartOptionsTests::suite());
-	*/
 }
 
 void TestSuite::run()
 {
-	int argc = 1;
-	char* argv[1] = { "wxchartstests" };
-	int result = Catch::Session().run(argc, argv);
+    int argc = 1;
+    char* argv[1] = { "wxchartstests" };
+    int result = Catch::Session().run(argc, argv);
 }

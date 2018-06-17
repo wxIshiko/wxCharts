@@ -20,55 +20,38 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartlabeloptionstests.h"
 #include <wx/charts/wxcharts.h>
-#include "cppunit/TestSuite.h"
-#include "cppunit/TestCaller.h"
+#include <catch.hpp>
 
-wxChartLabelOptionsTests::wxChartLabelOptionsTests()
-    : CppUnit::TestCase("wxChartLabelOptions tests")
+TEST_CASE("wxChartLabelOptions constructor")
 {
+	wxChartFontOptions fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666);
+	wxChartBackgroundOptions backgroundOptions(0x12345678, 0.2);
+	wxChartLabelOptions options(fontOptions, true, backgroundOptions);
+
+	REQUIRE(options.GetFontOptions().GetFamily() == wxFONTFAMILY_SWISS);
+	REQUIRE(options.GetFontOptions().GetSize() == 12);
+	REQUIRE(options.GetFontOptions().GetStyle() == wxFONTSTYLE_NORMAL);
+	REQUIRE(options.GetFontOptions().GetWeight() == wxFONTWEIGHT_NORMAL);
+	REQUIRE(options.GetFontOptions().GetColor() == 0x666666);
+	REQUIRE(options.HasBackground() == true);
+	REQUIRE(options.GetBackgroundOptions().GetColor() == 0x12345678);
+	REQUIRE(options.GetBackgroundOptions().GetCornerRadius() == 0.2);
 }
 
-CppUnit::Test* wxChartLabelOptionsTests::suite()
+TEST_CASE("wxChartLabelOptions copy constructor")
 {
-    CppUnit::TestSuite* suite = new CppUnit::TestSuite("wxChartLabelOptions tests");
+	wxChartFontOptions fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666);
+	wxChartBackgroundOptions backgroundOptions(0x12345678, 0.2);
+	wxChartLabelOptions options(fontOptions, true, backgroundOptions);
+	wxChartLabelOptions optionsCopy(options);
 
-    suite->addTest(new CppUnit::TestCaller<wxChartLabelOptionsTests>("testConstructor", &wxChartLabelOptionsTests::testConstructor));
-    suite->addTest(new CppUnit::TestCaller<wxChartLabelOptionsTests>("testCopyConstructor", &wxChartLabelOptionsTests::testCopyConstructor));
-
-    return suite;
-}
-
-void wxChartLabelOptionsTests::testConstructor()
-{
-    wxChartFontOptions fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666);
-    wxChartBackgroundOptions backgroundOptions(0x12345678, 0.2);
-    wxChartLabelOptions options(fontOptions, true, backgroundOptions);
-
-    CPPUNIT_ASSERT(options.GetFontOptions().GetFamily() == wxFONTFAMILY_SWISS);
-    CPPUNIT_ASSERT(options.GetFontOptions().GetSize() == 12);
-    CPPUNIT_ASSERT(options.GetFontOptions().GetStyle() == wxFONTSTYLE_NORMAL);
-    CPPUNIT_ASSERT(options.GetFontOptions().GetWeight() == wxFONTWEIGHT_NORMAL);
-    CPPUNIT_ASSERT(options.GetFontOptions().GetColor() == 0x666666);
-    CPPUNIT_ASSERT(options.HasBackground() == true);
-    CPPUNIT_ASSERT(options.GetBackgroundOptions().GetColor() == 0x12345678);
-    CPPUNIT_ASSERT(options.GetBackgroundOptions().GetCornerRadius() == 0.2);
-}
-
-void wxChartLabelOptionsTests::testCopyConstructor()
-{
-    wxChartFontOptions fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666);
-    wxChartBackgroundOptions backgroundOptions(0x12345678, 0.2);
-    wxChartLabelOptions options(fontOptions, true, backgroundOptions);
-    wxChartLabelOptions optionsCopy(options);
-
-    CPPUNIT_ASSERT(optionsCopy.GetFontOptions().GetFamily() == wxFONTFAMILY_SWISS);
-    CPPUNIT_ASSERT(optionsCopy.GetFontOptions().GetSize() == 12);
-    CPPUNIT_ASSERT(optionsCopy.GetFontOptions().GetStyle() == wxFONTSTYLE_NORMAL);
-    CPPUNIT_ASSERT(optionsCopy.GetFontOptions().GetWeight() == wxFONTWEIGHT_NORMAL);
-    CPPUNIT_ASSERT(optionsCopy.GetFontOptions().GetColor() == 0x666666);
-    CPPUNIT_ASSERT(optionsCopy.HasBackground() == true);
-    CPPUNIT_ASSERT(optionsCopy.GetBackgroundOptions().GetColor() == 0x12345678);
-    CPPUNIT_ASSERT(optionsCopy.GetBackgroundOptions().GetCornerRadius() == 0.2);
+	REQUIRE(optionsCopy.GetFontOptions().GetFamily() == wxFONTFAMILY_SWISS);
+	REQUIRE(optionsCopy.GetFontOptions().GetSize() == 12);
+	REQUIRE(optionsCopy.GetFontOptions().GetStyle() == wxFONTSTYLE_NORMAL);
+	REQUIRE(optionsCopy.GetFontOptions().GetWeight() == wxFONTWEIGHT_NORMAL);
+	REQUIRE(optionsCopy.GetFontOptions().GetColor() == 0x666666);
+	REQUIRE(optionsCopy.HasBackground() == true);
+	REQUIRE(optionsCopy.GetBackgroundOptions().GetColor() == 0x12345678);
+	REQUIRE(optionsCopy.GetBackgroundOptions().GetCornerRadius() == 0.2);
 }

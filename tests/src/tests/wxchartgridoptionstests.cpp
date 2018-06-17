@@ -20,39 +20,22 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartgridoptionstests.h"
 #include <wx/charts/wxcharts.h>
-#include "cppunit/TestSuite.h"
-#include "cppunit/TestCaller.h"
+#include <catch.hpp>
 
-wxChartGridOptionsTests::wxChartGridOptionsTests()
-    : CppUnit::TestCase("wxChartGridOptions tests")
-{
-}
-
-CppUnit::Test* wxChartGridOptionsTests::suite()
-{
-    CppUnit::TestSuite* suite = new CppUnit::TestSuite("wxChartGridOptions tests");
-
-    suite->addTest(new CppUnit::TestCaller<wxChartGridOptionsTests>("testConstructor", &wxChartGridOptionsTests::testConstructor));
-    suite->addTest(new CppUnit::TestCaller<wxChartGridOptionsTests>("testCopyConstructor", &wxChartGridOptionsTests::testCopyConstructor));
-
-    return suite;
-}
-
-void wxChartGridOptionsTests::testConstructor()
+TEST_CASE("wxChartGridOptions constructor")
 {
     wxChartGridOptions options;
 
-    CPPUNIT_ASSERT(options.GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM);
-    CPPUNIT_ASSERT(options.GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_POINT);
+    REQUIRE(options.GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM);
+    REQUIRE(options.GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_POINT);
 }
 
-void wxChartGridOptionsTests::testCopyConstructor()
+TEST_CASE("wxChartGridOptions copy constructor")
 {
     wxChartGridOptions options;
     wxChartGridOptions optionsCopy(options);
 
-    CPPUNIT_ASSERT(optionsCopy.GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM);
-    CPPUNIT_ASSERT(optionsCopy.GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_POINT);
+    REQUIRE(optionsCopy.GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM);
+    REQUIRE(optionsCopy.GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_POINT);
 }

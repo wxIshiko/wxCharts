@@ -20,39 +20,22 @@
     IN THE SOFTWARE.
 */
 
-#include "wxcolumnchartoptionstests.h"
 #include <wx/charts/wxcharts.h>
-#include "cppunit/TestSuite.h"
-#include "cppunit/TestCaller.h"
+#include <catch.hpp>
 
-wxColumnChartOptionsTests::wxColumnChartOptionsTests()
-    : CppUnit::TestCase("wxColumnChartOptions tests")
-{
-}
-
-CppUnit::Test* wxColumnChartOptionsTests::suite()
-{
-    CppUnit::TestSuite* suite = new CppUnit::TestSuite("wxColumnChartOptions tests");
-
-    suite->addTest(new CppUnit::TestCaller<wxColumnChartOptionsTests>("testConstructor", &wxColumnChartOptionsTests::testConstructor));
-    suite->addTest(new CppUnit::TestCaller<wxColumnChartOptionsTests>("testCopyConstructor", &wxColumnChartOptionsTests::testCopyConstructor));
-
-    return suite;
-}
-
-void wxColumnChartOptionsTests::testConstructor()
+TEST_CASE("wxColumnChartOptions constructor")
 {
     wxColumnChartOptions options;
 
-    CPPUNIT_ASSERT(options.GetGridOptions().GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM);
-    CPPUNIT_ASSERT(options.GetGridOptions().GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_RANGE);
+    REQUIRE(options.GetGridOptions().GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM);
+    REQUIRE(options.GetGridOptions().GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_RANGE);
 }
 
-void wxColumnChartOptionsTests::testCopyConstructor()
+TEST_CASE("wxColumnChartOptions copy constructor")
 {
     wxColumnChartOptions options;
     wxColumnChartOptions optionsCopy(options);
 
-    CPPUNIT_ASSERT(optionsCopy.GetGridOptions().GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM);
-    CPPUNIT_ASSERT(optionsCopy.GetGridOptions().GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_RANGE);
+    REQUIRE(optionsCopy.GetGridOptions().GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM);
+    REQUIRE(optionsCopy.GetGridOptions().GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_RANGE);
 }

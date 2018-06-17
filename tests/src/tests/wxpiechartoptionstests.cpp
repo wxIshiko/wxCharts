@@ -20,39 +20,22 @@
     IN THE SOFTWARE.
 */
 
-#include "wxpiechartoptionstests.h"
 #include <wx/charts/wxcharts.h>
-#include "cppunit/TestSuite.h"
-#include "cppunit/TestCaller.h"
+#include <catch.hpp>
 
-wxPieChartOptionsTests::wxPieChartOptionsTests()
-    : CppUnit::TestCase("wxPieChartOptions tests")
-{
-}
-
-CppUnit::Test* wxPieChartOptionsTests::suite()
-{
-    CppUnit::TestSuite* suite = new CppUnit::TestSuite("wxPieChartOptions tests");
-
-    suite->addTest(new CppUnit::TestCaller<wxPieChartOptionsTests>("testConstructor", &wxPieChartOptionsTests::testConstructor));
-    suite->addTest(new CppUnit::TestCaller<wxPieChartOptionsTests>("testCopyConstructor", &wxPieChartOptionsTests::testCopyConstructor));
-
-    return suite;
-}
-
-void wxPieChartOptionsTests::testConstructor()
+TEST_CASE("wxPieChartOptions constructor")
 {
     wxPieChartOptions options;
 
-    CPPUNIT_ASSERT(options.GetSliceStrokeWidth() == 2);
-    CPPUNIT_ASSERT(options.GetPercentageInnerCutout() == 0);
+    REQUIRE(options.GetSliceStrokeWidth() == 2);
+    REQUIRE(options.GetPercentageInnerCutout() == 0);
 }
 
-void wxPieChartOptionsTests::testCopyConstructor()
+TEST_CASE("wxPieChartOptions copy constructor")
 {
     wxPieChartOptions options;
     wxPieChartOptions optionsCopy(options);
 
-    CPPUNIT_ASSERT(optionsCopy.GetSliceStrokeWidth() == 2);
-    CPPUNIT_ASSERT(optionsCopy.GetPercentageInnerCutout() == 0);
+    REQUIRE(optionsCopy.GetSliceStrokeWidth() == 2);
+    REQUIRE(optionsCopy.GetPercentageInnerCutout() == 0);
 }
