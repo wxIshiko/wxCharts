@@ -11,12 +11,15 @@ jobs:
       - run:
           name: wxCharts tests build
           command: make
-      - run:
-          name: wxAreaChart sample build
-          command: make
           working_directory: tests
           environment:
             WXCHARTS_ROOT: ..
+      - run:
+          name: wxAreaChart sample build
+          command: make
+          working_directory: samples/areachart
+          environment:
+            WXCHARTS_ROOT: ../..
       - run:
           name: wxBar sample build
           command: make
