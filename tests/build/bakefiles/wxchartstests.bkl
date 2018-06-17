@@ -43,7 +43,10 @@ program wxchartstests
     }
     if ($(toolset) == gnu)
     {
-        cxx-compiler-options = "-std=c++11 `wx-config --cxxflags --libs`";
+        cxx-compiler-options = "-std=c++11 `wx-config --cxxflags`";
+        link-options = "`wx-config --libs`";
+        libdirs += $(WXCHARTS_ROOT);
+        libs += wxcharts;
     }
 
     headers
