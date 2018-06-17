@@ -20,39 +20,22 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartaxisoptionstests.h"
 #include <wx/charts/wxcharts.h>
-#include "cppunit/TestSuite.h"
-#include "cppunit/TestCaller.h"
+#include <catch.hpp>
 
-wxChartAxisOptionsTests::wxChartAxisOptionsTests()
-    : CppUnit::TestCase("wxChartAxisOptions tests")
-{
-}
-
-CppUnit::Test* wxChartAxisOptionsTests::suite()
-{
-    CppUnit::TestSuite* suite = new CppUnit::TestSuite("wxChartAxisOptions tests");
-
-    suite->addTest(new CppUnit::TestCaller<wxChartAxisOptionsTests>("testConstructor", &wxChartAxisOptionsTests::testConstructor));
-    suite->addTest(new CppUnit::TestCaller<wxChartAxisOptionsTests>("testCopyConstructor", &wxChartAxisOptionsTests::testCopyConstructor));
-
-    return suite;
-}
-
-void wxChartAxisOptionsTests::testConstructor()
+TEST_CASE("wxChartAxisOptions constructor")
 {
     wxChartAxisOptions options(wxCHARTAXISPOSITION_LEFT);
 
-    CPPUNIT_ASSERT(options.GetPosition() == wxCHARTAXISPOSITION_LEFT);
-    CPPUNIT_ASSERT(options.GetLabelType() == wxCHARTAXISLABELTYPE_POINT);
+	REQUIRE(options.GetPosition() == wxCHARTAXISPOSITION_LEFT);
+	REQUIRE(options.GetLabelType() == wxCHARTAXISLABELTYPE_POINT);
 }
 
-void wxChartAxisOptionsTests::testCopyConstructor()
+TEST_CASE("wxChartAxisOptions copy constructor")
 {
     wxChartAxisOptions options(wxCHARTAXISPOSITION_LEFT);
     wxChartAxisOptions optionsCopy(options);
 
-    CPPUNIT_ASSERT(optionsCopy.GetPosition() == wxCHARTAXISPOSITION_LEFT);
-    CPPUNIT_ASSERT(optionsCopy.GetLabelType() == wxCHARTAXISLABELTYPE_POINT);
+	REQUIRE(optionsCopy.GetPosition() == wxCHARTAXISPOSITION_LEFT);
+	REQUIRE(optionsCopy.GetLabelType() == wxCHARTAXISLABELTYPE_POINT);
 }

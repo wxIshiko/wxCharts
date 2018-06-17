@@ -20,39 +20,22 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartbackgroundoptionstests.h"
 #include <wx/charts/wxcharts.h>
-#include "cppunit/TestSuite.h"
-#include "cppunit/TestCaller.h"
+#include <catch.hpp>
 
-wxChartBackgroundOptionsTests::wxChartBackgroundOptionsTests()
-    : CppUnit::TestCase("wxChartBackgroundOptions tests")
+TEST_CASE("wxChartBackgroundOptions constructor")
 {
+	wxChartBackgroundOptions options(0x12345678, 0.2);
+
+	REQUIRE(options.GetColor() == 0x12345678);
+	REQUIRE(options.GetCornerRadius() == 0.2);
 }
 
-CppUnit::Test* wxChartBackgroundOptionsTests::suite()
+TEST_CASE("wxChartBackgroundOptions copy constructor")
 {
-    CppUnit::TestSuite* suite = new CppUnit::TestSuite("wxChartBackgroundOptions tests");
+	wxChartBackgroundOptions options(0x12345678, 0.2);
+	wxChartBackgroundOptions optionsCopy(options);
 
-    suite->addTest(new CppUnit::TestCaller<wxChartBackgroundOptionsTests>("testConstructor", &wxChartBackgroundOptionsTests::testConstructor));
-    suite->addTest(new CppUnit::TestCaller<wxChartBackgroundOptionsTests>("testCopyConstructor", &wxChartBackgroundOptionsTests::testCopyConstructor));
-
-    return suite;
-}
-
-void wxChartBackgroundOptionsTests::testConstructor()
-{
-    wxChartBackgroundOptions options(0x12345678, 0.2);
-
-    CPPUNIT_ASSERT(options.GetColor() == 0x12345678);
-    CPPUNIT_ASSERT(options.GetCornerRadius() == 0.2);
-}
-
-void wxChartBackgroundOptionsTests::testCopyConstructor()
-{
-    wxChartBackgroundOptions options(0x12345678, 0.2);
-    wxChartBackgroundOptions optionsCopy(options);
-
-    CPPUNIT_ASSERT(optionsCopy.GetColor() == 0x12345678);
-    CPPUNIT_ASSERT(optionsCopy.GetCornerRadius() == 0.2);
+	REQUIRE(optionsCopy.GetColor() == 0x12345678);
+	REQUIRE(optionsCopy.GetCornerRadius() == 0.2);
 }

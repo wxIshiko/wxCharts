@@ -68,8 +68,6 @@ program wxchartstests
         ../../src/elementcanvaswindow.h
 
         ../../src/tests/testsuite.h
-        ../../src/tests/wxchartlabeloptionstests.h
-        ../../src/tests/wxchartaxisoptionstests.h
         ../../src/tests/wxchartgridoptionstests.h
         ../../src/tests/wxcolumnchartoptionstests.h
         ../../src/tests/wxpiechartoptionstests.h

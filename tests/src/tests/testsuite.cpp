@@ -21,31 +21,25 @@
 */
 
 #include "testsuite.h"
-#include "wxchartbackgroundoptionstests.h"
-#include "wxchartfontoptionstests.h"
-#include "wxchartlabeloptionstests.h"
-#include "wxchartaxisoptionstests.h"
 #include "wxchartgridoptionstests.h"
 #include "wxcolumnchartoptionstests.h"
 #include "wxpiechartoptionstests.h"
-#include <cppunit/CompilerOutputter.h>
+
+#define CATCH_CONFIG_RUNNER
+#include "catch.hpp"
 
 TestSuite::TestSuite()
 {
-    m_controller.addListener(&m_result);
-    m_runner.addTest(wxChartBackgroundOptionsTests::suite());
-    m_runner.addTest(wxChartFontOptionsTests::suite());
-    m_runner.addTest(wxChartLabelOptionsTests::suite());
-    m_runner.addTest(wxChartAxisOptionsTests::suite());
+	/*
     m_runner.addTest(wxChartGridOptionsTests::suite());
     m_runner.addTest(wxColumnChartOptionsTests::suite());
     m_runner.addTest(wxPieChartOptionsTests::suite());
+	*/
 }
 
 void TestSuite::run()
 {
-    m_runner.run(m_controller);
-
-    CppUnit::CompilerOutputter outputter(&m_result, std::cout);
-    outputter.write();
+	int argc = 1;
+	char* argv[1] = { "wxchartstests" };
+	int result = Catch::Session().run(argc, argv);
 }
