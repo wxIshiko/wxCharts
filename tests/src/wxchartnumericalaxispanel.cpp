@@ -26,7 +26,7 @@
 wxChartNumericalAxisPanel::wxChartNumericalAxisPanel(wxWindow* parent)
     : wxPanel(parent)
 {
-    m_axis = new wxChartNumericalAxis(0, 100, wxChartAxisOptions(wxCHARTAXISPOSITION_LEFT));
+    m_axis = new wxChartNumericalAxis("id0", 0, 100, wxChartAxisOptions(wxCHARTAXISPOSITION_LEFT));
 
     wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 

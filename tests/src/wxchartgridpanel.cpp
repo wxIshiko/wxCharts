@@ -31,8 +31,8 @@ wxChartGridPanel::wxChartGridPanel(wxWindow* parent)
     m_grid = new wxChartGrid(
         wxPoint2DDouble(0, 0),
         wxSize(200, 100),
-        wxChartCategoricalAxis::make_shared(labels, wxChartAxisOptions(wxCHARTAXISPOSITION_BOTTOM)),
-        wxChartNumericalAxis::make_shared(0, 100, wxChartAxisOptions(wxCHARTAXISPOSITION_LEFT)),
+        wxChartCategoricalAxis::make_shared("id0", labels, wxChartAxisOptions(wxCHARTAXISPOSITION_BOTTOM)),
+        wxChartNumericalAxis::make_shared("id1", 0, 100, wxChartAxisOptions(wxCHARTAXISPOSITION_LEFT)),
         wxChartGridOptions()
     );
 

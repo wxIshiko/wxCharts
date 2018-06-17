@@ -29,7 +29,7 @@ wxChartCategoricalAxisPanel::wxChartCategoricalAxisPanel(wxWindow* parent)
     wxVector<wxString> labels;
     labels.push_back("January");
     wxChartAxisOptions options(wxCHARTAXISPOSITION_BOTTOM);
-    m_axis = new wxChartCategoricalAxis(labels, options);
+    m_axis = new wxChartCategoricalAxis("id0", labels, options);
 
     wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
