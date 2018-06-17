@@ -25,7 +25,7 @@ setting CPPUNIT_ROOT
 
 program wxchartstests
 {
-    vs2017.projectfile = ../msw/wxchartstests_vc15vcxproj;
+    vs2017.projectfile = ../msw/wxchartstests_vc15.vcxproj;
     vs2015.projectfile = ../msw/wxchartstests_vc14.vcxproj;
     vs2013.projectfile = ../msw/wxchartstests_vc12.vcxproj;
  
