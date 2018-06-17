@@ -74,12 +74,6 @@
     <ClInclude Include="..\..\src\tests\testsuite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\tests\wxchartbackgroundoptionstests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\tests\wxchartfontoptionstests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\tests\wxchartlabeloptionstests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
