@@ -20,45 +20,28 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartfontoptionstests.h"
 #include <wx/charts/wxcharts.h>
-#include "cppunit/TestSuite.h"
-#include "cppunit/TestCaller.h"
+#include <catch.hpp>
 
-wxChartFontOptionsTests::wxChartFontOptionsTests()
-    : CppUnit::TestCase("wxChartFontOptions tests")
-{
-}
-
-CppUnit::Test* wxChartFontOptionsTests::suite()
-{
-    CppUnit::TestSuite* suite = new CppUnit::TestSuite("wxChartFontOptions tests");
-
-    suite->addTest(new CppUnit::TestCaller<wxChartFontOptionsTests>("testConstructor", &wxChartFontOptionsTests::testConstructor));
-    suite->addTest(new CppUnit::TestCaller<wxChartFontOptionsTests>("testCopyConstructor", &wxChartFontOptionsTests::testCopyConstructor));
-
-    return suite;
-}
-
-void wxChartFontOptionsTests::testConstructor()
+TEST_CASE("wxChartFontOptions constructor")
 {
     wxChartFontOptions options(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666);
 
-    CPPUNIT_ASSERT(options.GetFamily() == wxFONTFAMILY_SWISS);
-    CPPUNIT_ASSERT(options.GetSize() == 12);
-    CPPUNIT_ASSERT(options.GetStyle() == wxFONTSTYLE_NORMAL);
-    CPPUNIT_ASSERT(options.GetWeight() == wxFONTWEIGHT_NORMAL);
-    CPPUNIT_ASSERT(options.GetColor() == 0x666666);
+    REQUIRE(options.GetFamily() == wxFONTFAMILY_SWISS);
+    REQUIRE(options.GetSize() == 12);
+    REQUIRE(options.GetStyle() == wxFONTSTYLE_NORMAL);
+    REQUIRE(options.GetWeight() == wxFONTWEIGHT_NORMAL);
+    REQUIRE(options.GetColor() == 0x666666);
 }
 
-void wxChartFontOptionsTests::testCopyConstructor()
+TEST_CASE("wxChartFontOptions copy constructor")
 {
     wxChartFontOptions options(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666);
     wxChartFontOptions optionsCopy(options);
 
-    CPPUNIT_ASSERT(optionsCopy.GetFamily() == wxFONTFAMILY_SWISS);
-    CPPUNIT_ASSERT(optionsCopy.GetSize() == 12);
-    CPPUNIT_ASSERT(optionsCopy.GetStyle() == wxFONTSTYLE_NORMAL);
-    CPPUNIT_ASSERT(optionsCopy.GetWeight() == wxFONTWEIGHT_NORMAL);
-    CPPUNIT_ASSERT(optionsCopy.GetColor() == 0x666666);
+    REQUIRE(optionsCopy.GetFamily() == wxFONTFAMILY_SWISS);
+    REQUIRE(optionsCopy.GetSize() == 12);
+    REQUIRE(optionsCopy.GetStyle() == wxFONTSTYLE_NORMAL);
+    REQUIRE(optionsCopy.GetWeight() == wxFONTWEIGHT_NORMAL);
+    REQUIRE(optionsCopy.GetColor() == 0x666666);
 }

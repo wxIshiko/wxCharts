@@ -25,17 +25,17 @@
 
 TEST_CASE("wxChartBackgroundOptions constructor")
 {
-	wxChartBackgroundOptions options(0x12345678, 0.2);
+    wxChartBackgroundOptions options(0x12345678, 0.2);
 
-	REQUIRE(options.GetColor() == 0x12345678);
-	REQUIRE(options.GetCornerRadius() == 0.2);
+    REQUIRE(options.GetColor() == 0x12345678);
+    REQUIRE(options.GetCornerRadius() == 0.2);
 }
 
 TEST_CASE("wxChartBackgroundOptions copy constructor")
 {
-	wxChartBackgroundOptions options(0x12345678, 0.2);
-	wxChartBackgroundOptions optionsCopy(options);
+    wxChartBackgroundOptions options(0x12345678, 0.2);
+    wxChartBackgroundOptions optionsCopy(options);
 
-	REQUIRE(optionsCopy.GetColor() == 0x12345678);
-	REQUIRE(optionsCopy.GetCornerRadius() == 0.2);
+    REQUIRE(optionsCopy.GetColor() == 0x12345678);
+    REQUIRE(optionsCopy.GetCornerRadius() == 0.2);
 }

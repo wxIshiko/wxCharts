@@ -27,8 +27,8 @@ TEST_CASE("wxChartAxisOptions constructor")
 {
     wxChartAxisOptions options(wxCHARTAXISPOSITION_LEFT);
 
-	REQUIRE(options.GetPosition() == wxCHARTAXISPOSITION_LEFT);
-	REQUIRE(options.GetLabelType() == wxCHARTAXISLABELTYPE_POINT);
+    REQUIRE(options.GetPosition() == wxCHARTAXISPOSITION_LEFT);
+    REQUIRE(options.GetLabelType() == wxCHARTAXISLABELTYPE_POINT);
 }
 
 TEST_CASE("wxChartAxisOptions copy constructor")
@@ -36,6 +36,6 @@ TEST_CASE("wxChartAxisOptions copy constructor")
     wxChartAxisOptions options(wxCHARTAXISPOSITION_LEFT);
     wxChartAxisOptions optionsCopy(options);
 
-	REQUIRE(optionsCopy.GetPosition() == wxCHARTAXISPOSITION_LEFT);
-	REQUIRE(optionsCopy.GetLabelType() == wxCHARTAXISLABELTYPE_POINT);
+    REQUIRE(optionsCopy.GetPosition() == wxCHARTAXISPOSITION_LEFT);
+    REQUIRE(optionsCopy.GetLabelType() == wxCHARTAXISLABELTYPE_POINT);
 }
