@@ -15,7 +15,7 @@ jobs:
           command: make
           working_directory: tests
           environment:
-            WXCHARTS_ROOT: ..
+            WXCHARTS: ..
       - run:
           name: wxAreaChart sample build
           command: make
