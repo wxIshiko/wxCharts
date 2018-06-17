@@ -43,7 +43,7 @@ program wxchartstests
     }
     if ($(toolset) == gnu)
     {
-        cxx-compiler-options = "`wx-config --cxxflags --libs`";
+        cxx-compiler-options = "-std=c++11 `wx-config --cxxflags --libs`";
     }
 
     headers
@@ -68,7 +68,6 @@ program wxchartstests
         ../../src/elementcanvaswindow.h
 
         ../../src/tests/testsuite.h
-        ../../src/tests/wxchartgridoptionstests.h
         ../../src/tests/wxcolumnchartoptionstests.h
         ../../src/tests/wxpiechartoptionstests.h
     }

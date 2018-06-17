@@ -75,79 +75,79 @@ $(_builddir)wxchartstests: $(_builddir)wxchartstests_wxchartstestsapp.o $(_build
 	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxchartstests_wxchartstestsapp.o $(_builddir)wxchartstests_wxchartstestsframe.o $(_builddir)wxchartstests_wxchartstestsmenubar.o $(_builddir)wxchartstests_wxchartrectanglepanel.o $(_builddir)wxchartstests_wxchartlabelpanel.o $(_builddir)wxchartstests_wxchartlabelseriespanel.o $(_builddir)wxchartstests_wxchartcategoricalaxispanel.o $(_builddir)wxchartstests_wxchartnumericalaxispanel.o $(_builddir)wxchartstests_wxchartgridpanel.o $(_builddir)wxchartstests_wxareachartpanel.o $(_builddir)wxchartstests_wxbarchartpanel.o $(_builddir)wxchartstests_wxbubblechartpanel.o $(_builddir)wxchartstests_wxcandlestickchartpanel.o $(_builddir)wxchartstests_wxcolumnchartpanel.o $(_builddir)wxchartstests_wxpiechartpanel.o $(_builddir)wxchartstests_wxpolarareachartpanel.o $(_builddir)wxchartstests_elementcanvaswindow.o $(_builddir)wxchartstests_testsuite.o $(_builddir)wxchartstests_wxchartbackgroundoptionstests.o $(_builddir)wxchartstests_wxchartfontoptionstests.o $(_builddir)wxchartstests_wxchartlabeloptionstests.o $(_builddir)wxchartstests_wxchartaxisoptionstests.o $(_builddir)wxchartstests_wxchartgridoptionstests.o $(_builddir)wxchartstests_wxcolumnchartoptionstests.o $(_builddir)wxchartstests_wxpiechartoptionstests.o -L$(WXCHARTS_ROOT)/lib/vc_lib -pthread
 
 $(_builddir)wxchartstests_wxchartstestsapp.o: src/wxchartstestsapp.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/wxchartstestsapp.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/wxchartstestsapp.cpp
 
 $(_builddir)wxchartstests_wxchartstestsframe.o: src/wxchartstestsframe.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/wxchartstestsframe.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/wxchartstestsframe.cpp
 
 $(_builddir)wxchartstests_wxchartstestsmenubar.o: src/wxchartstestsmenubar.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/wxchartstestsmenubar.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/wxchartstestsmenubar.cpp
 
 $(_builddir)wxchartstests_wxchartrectanglepanel.o: src/wxchartrectanglepanel.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/wxchartrectanglepanel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/wxchartrectanglepanel.cpp
 
 $(_builddir)wxchartstests_wxchartlabelpanel.o: src/wxchartlabelpanel.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/wxchartlabelpanel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/wxchartlabelpanel.cpp
 
 $(_builddir)wxchartstests_wxchartlabelseriespanel.o: src/wxchartlabelseriespanel.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/wxchartlabelseriespanel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/wxchartlabelseriespanel.cpp
 
 $(_builddir)wxchartstests_wxchartcategoricalaxispanel.o: src/wxchartcategoricalaxispanel.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/wxchartcategoricalaxispanel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/wxchartcategoricalaxispanel.cpp
 
 $(_builddir)wxchartstests_wxchartnumericalaxispanel.o: src/wxchartnumericalaxispanel.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/wxchartnumericalaxispanel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/wxchartnumericalaxispanel.cpp
 
 $(_builddir)wxchartstests_wxchartgridpanel.o: src/wxchartgridpanel.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/wxchartgridpanel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/wxchartgridpanel.cpp
 
 $(_builddir)wxchartstests_wxareachartpanel.o: src/wxareachartpanel.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/wxareachartpanel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/wxareachartpanel.cpp
 
 $(_builddir)wxchartstests_wxbarchartpanel.o: src/wxbarchartpanel.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/wxbarchartpanel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/wxbarchartpanel.cpp
 
 $(_builddir)wxchartstests_wxbubblechartpanel.o: src/wxbubblechartpanel.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/wxbubblechartpanel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/wxbubblechartpanel.cpp
 
 $(_builddir)wxchartstests_wxcandlestickchartpanel.o: src/wxcandlestickchartpanel.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/wxcandlestickchartpanel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/wxcandlestickchartpanel.cpp
 
 $(_builddir)wxchartstests_wxcolumnchartpanel.o: src/wxcolumnchartpanel.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/wxcolumnchartpanel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/wxcolumnchartpanel.cpp
 
 $(_builddir)wxchartstests_wxpiechartpanel.o: src/wxpiechartpanel.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/wxpiechartpanel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/wxpiechartpanel.cpp
 
 $(_builddir)wxchartstests_wxpolarareachartpanel.o: src/wxpolarareachartpanel.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/wxpolarareachartpanel.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/wxpolarareachartpanel.cpp
 
 $(_builddir)wxchartstests_elementcanvaswindow.o: src/elementcanvaswindow.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/elementcanvaswindow.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/elementcanvaswindow.cpp
 
 $(_builddir)wxchartstests_testsuite.o: src/tests/testsuite.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/tests/testsuite.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/tests/testsuite.cpp
 
 $(_builddir)wxchartstests_wxchartbackgroundoptionstests.o: src/tests/wxchartbackgroundoptionstests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/tests/wxchartbackgroundoptionstests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/tests/wxchartbackgroundoptionstests.cpp
 
 $(_builddir)wxchartstests_wxchartfontoptionstests.o: src/tests/wxchartfontoptionstests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/tests/wxchartfontoptionstests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/tests/wxchartfontoptionstests.cpp
 
 $(_builddir)wxchartstests_wxchartlabeloptionstests.o: src/tests/wxchartlabeloptionstests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/tests/wxchartlabeloptionstests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/tests/wxchartlabeloptionstests.cpp
 
 $(_builddir)wxchartstests_wxchartaxisoptionstests.o: src/tests/wxchartaxisoptionstests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/tests/wxchartaxisoptionstests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/tests/wxchartaxisoptionstests.cpp
 
 $(_builddir)wxchartstests_wxchartgridoptionstests.o: src/tests/wxchartgridoptionstests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/tests/wxchartgridoptionstests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/tests/wxchartgridoptionstests.cpp
 
 $(_builddir)wxchartstests_wxcolumnchartoptionstests.o: src/tests/wxcolumnchartoptionstests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/tests/wxcolumnchartoptionstests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/tests/wxcolumnchartoptionstests.cpp
 
 $(_builddir)wxchartstests_wxpiechartoptionstests.o: src/tests/wxpiechartoptionstests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include `wx-config --cxxflags --libs` src/tests/wxpiechartoptionstests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -I$(CATCH2_ROOT)/single_include -std=c++11 `wx-config --cxxflags --libs` src/tests/wxpiechartoptionstests.cpp
 
 clean:
 	rm -f $(_builddir)*.o
