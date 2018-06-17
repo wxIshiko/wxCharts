@@ -34,7 +34,7 @@ program wxchartstests
     libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
     libdirs += $(CPPUNIT_ROOT)/lib;
 
-    if (($(toolset) == vs2015) || ($(toolset) == vs2013))
+    if (($(toolset) == vs2017) || ($(toolset) == vs2015) || ($(toolset) == vs2013))
     {
         win32-subsystem = windows;
         
