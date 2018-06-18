@@ -32,6 +32,7 @@
 */
 
 #include "wxcolumnchart.h"
+#include "wxchartstheme.h"
 #include "wxchartcategoricalaxis.h"
 #include "wxchartnumericalaxis.h"
 #include <sstream>
@@ -69,12 +70,13 @@ void wxColumnChart::Dataset::AppendColumn(Column::ptr column)
 
 wxColumnChart::wxColumnChart(const wxChartsCategoricalData &data,
                              const wxSize &size)
-    : m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+    : m_options(wxChartsDefaultTheme->GetColumnChartOptions()), 
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", GetMinValue(data.GetDatasets()), GetMaxValue(data.GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
-        m_options.GetGridOptions()
+        wxChartCategoricalAxis::make_shared("x", data.GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared("y", GetMinValue(data.GetDatasets()), GetMaxValue(data.GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
         )
 {
     const wxVector<wxChartsDoubleDataset::ptr>& datasets = data.GetDatasets();
@@ -89,7 +91,7 @@ wxColumnChart::wxColumnChart(const wxChartsCategoricalData &data,
             std::stringstream tooltip;
             tooltip << datasetData[j];
             wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic(data.GetLabels()[j], tooltip.str(), dataset.GetFillColor())
+                new wxChartTooltipProviderStatic(data.GetCategories()[j], tooltip.str(), dataset.GetFillColor())
                 );
 
             newDataset->AppendColumn(Column::ptr(new Column(
@@ -104,7 +106,7 @@ wxColumnChart::wxColumnChart(const wxChartsCategoricalData &data,
 
 const wxChartCommonOptions& wxColumnChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 wxDouble wxColumnChart::GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
@@ -173,7 +175,7 @@ void wxColumnChart::DoFit()
         {
             Column& column = *(currentDataset.GetColumns()[j]);
             wxPoint2DDouble position = m_grid.GetMapping().GetWindowPositionAtTickMark(j, column.GetValue());
-            position.m_x += m_options.GetColumnSpacing() + (i * (columnWidth + m_options.GetDatasetSpacing()));
+            position.m_x += m_options->GetColumnSpacing() + (i * (columnWidth + m_options->GetDatasetSpacing()));
 
             wxPoint2DDouble bottomLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j);
 
@@ -231,6 +233,6 @@ wxSharedPtr<wxVector<const wxChartElement*> > wxColumnChart::GetActiveElements(c
 wxDouble wxColumnChart::GetColumnWidth() const
 {
     wxDouble availableWidth = m_grid.GetMapping().GetXAxis().GetDistanceBetweenTickMarks() -
-        (2 * m_options.GetColumnSpacing()) - ((m_datasets.size() - 1) * m_options.GetDatasetSpacing());
+        (2 * m_options->GetColumnSpacing()) - ((m_datasets.size() - 1) * m_options->GetDatasetSpacing());
     return (availableWidth / m_datasets.size());
 }

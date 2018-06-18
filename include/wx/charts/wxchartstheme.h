@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2017-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,6 +26,7 @@
 #define _WX_CHARTS_WXCHARTSTHEME_H_
 
 #include "wxbarchartoptions.h"
+#include "wxcolumnchartoptions.h"
 #include <wx/sharedptr.h>
 
 class wxChartsTheme
@@ -34,9 +35,11 @@ public:
     wxChartsTheme();
 
     wxSharedPtr<wxBarChartOptions> GetBarChartOptions();
+    wxSharedPtr<wxColumnChartOptions> GetColumnChartOptions();
 
 private:
     wxSharedPtr<wxBarChartOptions> m_barChartOptions;
+    wxSharedPtr<wxColumnChartOptions> m_columnChartOptions;
 };
 
 extern wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme;

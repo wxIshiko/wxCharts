@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2017-2108 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,13 +25,19 @@
 #include "wxchartstheme.h"
 
 wxChartsTheme::wxChartsTheme()
-    : m_barChartOptions(new wxBarChartOptions())
+    : m_barChartOptions(new wxBarChartOptions()),
+    m_columnChartOptions(new wxColumnChartOptions())
 {
 }
 
 wxSharedPtr<wxBarChartOptions> wxChartsTheme::GetBarChartOptions()
 {
     return m_barChartOptions;
+}
+
+wxSharedPtr<wxColumnChartOptions> wxChartsTheme::GetColumnChartOptions()
+{
+    return m_columnChartOptions;
 }
 
 wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme(new wxChartsTheme());

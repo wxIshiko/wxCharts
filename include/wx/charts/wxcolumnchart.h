@@ -97,7 +97,7 @@ private:
     };
 
 private:
-    wxColumnChartOptions m_options;
+    wxSharedPtr<wxColumnChartOptions> m_options;
     wxChartGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };
