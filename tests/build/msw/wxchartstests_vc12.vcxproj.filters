@@ -151,5 +151,8 @@
     <ClCompile Include="..\..\src\tests\wxpiechartoptionstests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\tests\wxchartsthemetests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

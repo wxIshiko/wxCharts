@@ -109,6 +109,7 @@
     <ClCompile Include="..\..\src\tests\wxchartgridoptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxcolumnchartoptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxpiechartoptionstests.cpp" />
+    <ClCompile Include="..\..\src\tests\wxchartsthemetests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\wxchartstestsapp.h" />

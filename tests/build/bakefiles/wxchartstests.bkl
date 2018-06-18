@@ -101,5 +101,6 @@ program wxchartstests
         ../../src/tests/wxchartgridoptionstests.cpp
         ../../src/tests/wxcolumnchartoptionstests.cpp
         ../../src/tests/wxpiechartoptionstests.cpp
+        ../../src/tests/wxchartsthemetests.cpp
     }
 }
