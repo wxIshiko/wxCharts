@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -24,8 +24,8 @@
 
 #include "wxchartscategoricaldata.h"
 
-wxChartsCategoricalData::wxChartsCategoricalData(const wxVector<wxString> &labels)
-    : m_labels(labels)
+wxChartsCategoricalData::wxChartsCategoricalData(const wxVector<wxString> &categories)
+    : m_categories(categories)
 {
 }
 
@@ -34,9 +34,9 @@ void wxChartsCategoricalData::AddDataset(wxChartsDoubleDataset::ptr dataset)
     m_datasets.push_back(dataset);
 }
 
-const wxVector<wxString>& wxChartsCategoricalData::GetLabels() const
+const wxVector<wxString>& wxChartsCategoricalData::GetCategories() const
 {
-    return m_labels;
+    return m_categories;
 }
 
 const wxVector<wxChartsDoubleDataset::ptr>& wxChartsCategoricalData::GetDatasets() const

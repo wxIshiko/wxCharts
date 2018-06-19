@@ -33,7 +33,7 @@ void wxCombinationChart::AddColumnChart(const wxChartsCategoricalData &data)
     m_grid = new wxChartGrid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
         wxSize(100, 100),
-        wxChartCategoricalAxis::make_shared("x", data.GetLabels(), wxChartGridOptions().GetXAxisOptions()),
+        wxChartCategoricalAxis::make_shared("x", data.GetCategories(), wxChartGridOptions().GetXAxisOptions()),
         wxChartNumericalAxis::make_shared("y", 0, 200, wxChartGridOptions().GetYAxisOptions()),
         wxChartGridOptions()
     );

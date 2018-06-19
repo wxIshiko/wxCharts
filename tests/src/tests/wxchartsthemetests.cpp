@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,45 +20,14 @@
     IN THE SOFTWARE.
 */
 
-/// @file
+#include <wx/charts/wxcharts.h>
+#include <catch.hpp>
 
-#ifndef _WX_CHARTS_WXCOLUMNCHARTOPTIONS_H_
-#define _WX_CHARTS_WXCOLUMNCHARTOPTIONS_H_
-
-#include "wxchartoptions.h"
-#include "wxchartgridoptions.h"
-
-/// The options for the wxColumnChartCtrl control.
-
-/// \ingroup chartclasses
-class wxColumnChartOptions : public wxChartOptions
+TEST_CASE("wxChartsTheme constructor")
 {
-public:
-    /// Constructs a wxColumnChartOptions instance.
-    wxColumnChartOptions();
+    wxChartsTheme theme;
 
-    /// Gets the options for the grid.
-    /// @return The options for the grid.
-    const wxChartGridOptions& GetGridOptions() const;
+    REQUIRE(theme.GetBarChartOptions()->GetBarSpacing() == 15);
 
-    /// Gets the amount of space the columns are separated
-    /// by. The actual space between columns will be twice
-    /// this amount.
-    /// @return The separation between columns.
-    wxDouble GetColumnSpacing() const;
-
-    wxDouble GetDatasetSpacing() const;
-
-private:
-    wxChartGridOptions m_gridOptions;
-    wxDouble m_columnSpacing;
-    wxDouble m_datasetSpacing;
-};
-
-class wxColumnChartDatasetStyle
-{
-public:
-    wxColumnChartDatasetStyle();
-};
-
-#endif
+    REQUIRE(theme.GetColumnChartOptions()->GetColumnSpacing() == 15);
+}

@@ -48,6 +48,8 @@
 #include "wxchartlegendctrl.h"
 #include "wxhistchartctrl.h"
 
+#include "wxchartstheme.h"
+
 #ifdef _MSC_VER
 
 #ifdef _DEBUG

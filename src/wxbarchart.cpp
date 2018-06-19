@@ -74,7 +74,7 @@ wxBarChart::wxBarChart(const wxChartsCategoricalData &data,
     m_grid(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartCategoricalAxis::make_shared("x", data.GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
         wxChartNumericalAxis::make_shared("y", GetMinValue(data.GetDatasets()), GetMaxValue(data.GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
     )
@@ -89,7 +89,7 @@ wxBarChart::wxBarChart(const wxChartsCategoricalData &data,
     m_grid(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartCategoricalAxis::make_shared("x", data.GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
         wxChartNumericalAxis::make_shared("y", GetMinValue(data.GetDatasets()), GetMaxValue(data.GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
         )
@@ -116,7 +116,7 @@ void wxBarChart::Initialize(const wxChartsCategoricalData &data)
             std::stringstream tooltip;
             tooltip << datasetData[j];
             wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic(data.GetLabels()[j], tooltip.str(), dataset.GetFillColor())
+                new wxChartTooltipProviderStatic(data.GetCategories()[j], tooltip.str(), dataset.GetFillColor())
                 );
 
             newDataset->AppendBar(Bar::ptr(new Bar(

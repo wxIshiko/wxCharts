@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -28,9 +28,11 @@
 #include "wxchartsdoubledataset.h"
 #include <wx/vector.h>
 
-/// Data for one of the bar chart controls.
+/// Data organized in a finite number of categories. Each category has one or more values associated with it.
 
-/// The wxBarChartCtrl, wxColumnChartCtrl, wxStackedBarChartCtrl and wxStackedColumnChartCtrl use this class.
+/// Charts that are able to display this type of data are wxBarChart, wxColumnChart, wxStackedBarChart and 
+/// wxStackedColumnChart. The categories are displayed on one the axes and the associated value or values
+/// on the other.
 /// \ingroup dataclasses
 class wxChartsCategoricalData
 {
@@ -38,22 +40,21 @@ public:
     /// Smart pointer typedef.
     typedef wxSharedPtr<wxChartsCategoricalData> ptr;
 
-    /// Constructs a wxBarChartData instance.
-    /// @param labels The labels of the X axis.
-    wxChartsCategoricalData(const wxVector<wxString> &labels);
+    /// Constructs a wxChartsCategoricalData instance.
+    /// @param categories The categories.
+    wxChartsCategoricalData(const wxVector<wxString> &categories);
 
     /// Adds a dataset.
     /// @param dataset The dataset to add.
     void AddDataset(wxChartsDoubleDataset::ptr dataset);
 
-    /// Gets the labels of the X axis.
-    /// @return A vector containing the labels of the
-    /// X axis.
-    const wxVector<wxString>& GetLabels() const;
+    /// Gets the categories.
+    /// @return A vector containing the categories.
+    const wxVector<wxString>& GetCategories() const;
     const wxVector<wxChartsDoubleDataset::ptr>& GetDatasets() const;
 
 private:
-    wxVector<wxString> m_labels;
+    wxVector<wxString> m_categories;
     wxVector<wxChartsDoubleDataset::ptr> m_datasets;
 };
 
