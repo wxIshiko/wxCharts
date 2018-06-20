@@ -113,6 +113,12 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
+          name: Shared wxChartsCategoricalData sample build
+          command: make
+          working_directory: samples/sharedcategoricaldata
+          environment:
+            WXCHARTS_ROOT: ../..
+      - run:
           name: wxStackedBar sample build
           command: make
           working_directory: samples/stackedbar
