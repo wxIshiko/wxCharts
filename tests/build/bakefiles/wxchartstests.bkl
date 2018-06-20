@@ -94,6 +94,7 @@ program wxchartstests
         ../../src/elementcanvaswindow.cpp
 
         ../../src/tests/testsuite.cpp
+        ../../src/tests/wxchartscategoricaldatatests.cpp
         ../../src/tests/wxchartbackgroundoptionstests.cpp
         ../../src/tests/wxchartfontoptionstests.cpp
         ../../src/tests/wxchartlabeloptionstests.cpp
