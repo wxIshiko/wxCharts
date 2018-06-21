@@ -43,6 +43,7 @@ public:
     /// Constructs a wxChartsCategoricalData instance.
     /// @param categories The categories.
     wxChartsCategoricalData(const wxVector<wxString> &categories);
+    static ptr make_shared(const wxVector<wxString> &categories);
 
     /// Adds a dataset.
     /// @param dataset The dataset to add.

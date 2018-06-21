@@ -40,7 +40,7 @@ WxColumnFrame::WxColumnFrame(const wxString& title)
     labels.push_back("May");
     labels.push_back("June");
     labels.push_back("July");
-    wxChartsCategoricalData chartData(labels);
+    wxChartsCategoricalData::ptr chartData = wxChartsCategoricalData::make_shared(labels);
 
     // Add the first dataset
     wxVector<wxDouble> points1;
@@ -57,7 +57,7 @@ WxColumnFrame::WxColumnFrame(const wxString& title)
             wxColor(220, 220, 220, 0xCC),
             points1)
         );
-    chartData.AddDataset(dataset1);
+    chartData->AddDataset(dataset1);
 
     // Add the second dataset
     wxVector<wxDouble> points2;
@@ -72,7 +72,7 @@ WxColumnFrame::WxColumnFrame(const wxString& title)
         wxColor(151, 187, 205, 0x7F),
         wxColor(151, 187, 205, 0xFF),
         points2));
-    chartData.AddDataset(dataset2);
+    chartData->AddDataset(dataset2);
 
     // Create the bar chart widget
     wxColumnChartCtrl* columnChartCtrl = new wxColumnChartCtrl(panel, wxID_ANY, chartData);

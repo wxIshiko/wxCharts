@@ -49,7 +49,7 @@
 class wxColumnChart : public wxChart
 {
 public:
-    wxColumnChart(const wxChartsCategoricalData &data, const wxSize &size);
+    wxColumnChart(wxChartsCategoricalData::ptr &data, const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 

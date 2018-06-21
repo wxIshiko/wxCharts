@@ -68,18 +68,18 @@ void wxColumnChart::Dataset::AppendColumn(Column::ptr column)
     m_columns.push_back(column);
 }
 
-wxColumnChart::wxColumnChart(const wxChartsCategoricalData &data,
+wxColumnChart::wxColumnChart(wxChartsCategoricalData::ptr &data,
                              const wxSize &size)
     : m_options(wxChartsDefaultTheme->GetColumnChartOptions()), 
     m_grid(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data.GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", GetMinValue(data.GetDatasets()), GetMaxValue(data.GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        wxChartCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
         )
 {
-    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data.GetDatasets();
+    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
         const wxChartsDoubleDataset& dataset = *datasets[i];
@@ -91,7 +91,7 @@ wxColumnChart::wxColumnChart(const wxChartsCategoricalData &data,
             std::stringstream tooltip;
             tooltip << datasetData[j];
             wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic(data.GetCategories()[j], tooltip.str(), dataset.GetFillColor())
+                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), dataset.GetFillColor())
                 );
 
             newDataset->AppendColumn(Column::ptr(new Column(

@@ -29,6 +29,11 @@ wxChartsCategoricalData::wxChartsCategoricalData(const wxVector<wxString> &categ
 {
 }
 
+wxChartsCategoricalData::ptr wxChartsCategoricalData::make_shared(const wxVector<wxString> &categories)
+{
+    return ptr(new wxChartsCategoricalData(categories));
+}
+
 void wxChartsCategoricalData::AddDataset(wxChartsDoubleDataset::ptr dataset)
 {
     m_datasets.push_back(dataset);

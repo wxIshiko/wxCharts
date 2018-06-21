@@ -35,7 +35,7 @@
 
 wxColumnChartCtrl::wxColumnChartCtrl(wxWindow *parent,
                                      wxWindowID id,
-                                     const wxChartsCategoricalData &data,
+                                     wxChartsCategoricalData::ptr &data,
                                      const wxPoint &pos,
                                      const wxSize &size,
                                      long style)
