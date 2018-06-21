@@ -21,8 +21,69 @@
 */
 
 #include "frame.h"
+#include <wx/panel.h>
+#include <wx/sizer.h>
+#include <wx/charts/wxcharts.h>
 
 Frame::Frame(const wxString& title)
     : wxFrame(NULL, wxID_ANY, title)
 {
+    // Create a top-level panel to hold all the contents of the frame
+    wxPanel* panel = new wxPanel(this, wxID_ANY);
+
+    // Create the data for the bar chart widget
+    wxVector<wxString> labels;
+    labels.push_back("January");
+    labels.push_back("February");
+    labels.push_back("March");
+    labels.push_back("April");
+    labels.push_back("May");
+    labels.push_back("June");
+    labels.push_back("July");
+    wxChartsCategoricalData::ptr chartData = wxChartsCategoricalData::make_shared(labels);
+
+    // Add the first dataset
+    wxVector<wxDouble> points1;
+    points1.push_back(3);
+    points1.push_back(2.5);
+    points1.push_back(1.2);
+    points1.push_back(3);
+    points1.push_back(6);
+    points1.push_back(5);
+    points1.push_back(1);
+    wxChartsDoubleDataset::ptr dataset1(
+        new wxChartsDoubleDataset(
+            wxColor(220, 220, 220, 0x7F),
+            wxColor(220, 220, 220, 0xCC),
+            points1)
+    );
+    chartData->AddDataset(dataset1);
+
+    // Add the second dataset
+    wxVector<wxDouble> points2;
+    points2.push_back(1);
+    points2.push_back(1.33);
+    points2.push_back(2.5);
+    points2.push_back(2);
+    points2.push_back(3);
+    points2.push_back(1.8);
+    points2.push_back(0.4);
+    wxChartsDoubleDataset::ptr dataset2(new wxChartsDoubleDataset(
+        wxColor(151, 187, 205, 0x7F),
+        wxColor(151, 187, 205, 0xFF),
+        points2));
+    chartData->AddDataset(dataset2);
+
+    // Create the bar chart widget
+    wxColumnChartCtrl* columnChartCtrl = new wxColumnChartCtrl(panel, wxID_ANY, chartData);
+
+    // Set up the sizer for the panel
+    wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
+    panelSizer->Add(columnChartCtrl, 1, wxEXPAND);
+    panel->SetSizer(panelSizer);
+
+    // Set up the sizer for the frame
+    wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
+    topSizer->Add(panel, 1, wxEXPAND);
+    SetSizerAndFit(topSizer);
 }
