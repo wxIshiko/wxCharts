@@ -48,7 +48,7 @@
 class wxStackedColumnChart : public wxChart
 {
 public:
-    wxStackedColumnChart(const wxChartsCategoricalData &data, const wxSize &size);
+    wxStackedColumnChart(wxChartsCategoricalData::ptr &data, const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 

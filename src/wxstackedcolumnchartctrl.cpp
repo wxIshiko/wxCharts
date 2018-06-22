@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -35,7 +35,7 @@
 
 wxStackedColumnChartCtrl::wxStackedColumnChartCtrl(wxWindow *parent,
                                                    wxWindowID id,
-                                                   const wxChartsCategoricalData &data,
+                                                   wxChartsCategoricalData::ptr &data,
                                                    const wxPoint &pos,
                                                    const wxSize &size,
                                                    long style)

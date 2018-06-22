@@ -74,16 +74,28 @@ Frame::Frame(const wxString& title)
         points2));
     chartData->AddDataset(dataset2);
 
-    // Create the column chart widget
+    // Create a column chart widget
     wxColumnChartCtrl* columnChartCtrl = new wxColumnChartCtrl(panel, wxID_ANY, chartData);
 
-    // Create the bar chart widget
+    // Create a bar chart widget
     wxBarChartCtrl* barChartCtrl = new wxBarChartCtrl(panel, wxID_ANY, chartData);
 
+    // Create a stacked bar chart widget
+    wxStackedColumnChartCtrl* stackedColumnChartCtrl = new wxStackedColumnChartCtrl(panel, wxID_ANY, chartData);
+
+    // Set up the sizer for the bar and column charts
+    wxBoxSizer* firstSizer = new wxBoxSizer(wxHORIZONTAL);
+    firstSizer->Add(columnChartCtrl, 1, wxEXPAND);
+    firstSizer->Add(barChartCtrl, 1, wxEXPAND);
+
+    // Set up the sizer for the stacked bar and stacked column charts
+    wxBoxSizer* secondSizer = new wxBoxSizer(wxHORIZONTAL);
+    secondSizer->Add(stackedColumnChartCtrl, 1, wxEXPAND);
+
     // Set up the sizer for the panel
-    wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
-    panelSizer->Add(columnChartCtrl, 1, wxEXPAND);
-    panelSizer->Add(barChartCtrl, 1, wxEXPAND);
+    wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+    panelSizer->Add(firstSizer, 1, wxEXPAND);
+    panelSizer->Add(secondSizer, 1, wxEXPAND);
     panel->SetSizer(panelSizer);
 
     // Set up the sizer for the frame
