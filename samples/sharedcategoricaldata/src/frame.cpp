@@ -74,12 +74,16 @@ Frame::Frame(const wxString& title)
         points2));
     chartData->AddDataset(dataset2);
 
-    // Create the bar chart widget
+    // Create the column chart widget
     wxColumnChartCtrl* columnChartCtrl = new wxColumnChartCtrl(panel, wxID_ANY, chartData);
+
+    // Create the bar chart widget
+    wxBarChartCtrl* barChartCtrl = new wxBarChartCtrl(panel, wxID_ANY, chartData);
 
     // Set up the sizer for the panel
     wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
     panelSizer->Add(columnChartCtrl, 1, wxEXPAND);
+    panelSizer->Add(barChartCtrl, 1, wxEXPAND);
     panel->SetSizer(panelSizer);
 
     // Set up the sizer for the frame
