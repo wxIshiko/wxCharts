@@ -37,8 +37,8 @@
 class wxStackedBarChart : public wxChart
 {
 public:
-    wxStackedBarChart(const wxChartsCategoricalData &data, const wxSize &size);
-    wxStackedBarChart(const wxChartsCategoricalData &data,
+    wxStackedBarChart(wxChartsCategoricalData::ptr &data, const wxSize &size);
+    wxStackedBarChart(wxChartsCategoricalData::ptr &data,
         const wxStackedBarChartOptions &options, const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;

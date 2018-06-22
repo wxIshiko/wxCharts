@@ -24,7 +24,7 @@
 
 wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
                                              wxWindowID id,
-                                             const wxChartsCategoricalData &data,
+                                             wxChartsCategoricalData::ptr &data,
                                              const wxPoint &pos,
                                              const wxSize &size,
                                              long style)
@@ -35,7 +35,7 @@ wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
 
 wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,
                                              wxWindowID id,
-                                             const wxChartsCategoricalData &data,
+                                             wxChartsCategoricalData::ptr &data,
                                              const wxStackedBarChartOptions &options,
                                              const wxPoint &pos,
                                              const wxSize &size,

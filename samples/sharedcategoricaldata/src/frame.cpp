@@ -80,8 +80,11 @@ Frame::Frame(const wxString& title)
     // Create a bar chart widget
     wxBarChartCtrl* barChartCtrl = new wxBarChartCtrl(panel, wxID_ANY, chartData);
 
-    // Create a stacked bar chart widget
+    // Create a stacked column chart widget
     wxStackedColumnChartCtrl* stackedColumnChartCtrl = new wxStackedColumnChartCtrl(panel, wxID_ANY, chartData);
+
+    // Create a stacked bar chart widget
+    wxStackedBarChartCtrl* stackedBarChartCtrl = new wxStackedBarChartCtrl(panel, wxID_ANY, chartData);
 
     // Set up the sizer for the bar and column charts
     wxBoxSizer* firstSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -91,6 +94,7 @@ Frame::Frame(const wxString& title)
     // Set up the sizer for the stacked bar and stacked column charts
     wxBoxSizer* secondSizer = new wxBoxSizer(wxHORIZONTAL);
     secondSizer->Add(stackedColumnChartCtrl, 1, wxEXPAND);
+    secondSizer->Add(stackedBarChartCtrl, 1, wxEXPAND);
 
     // Set up the sizer for the panel
     wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);

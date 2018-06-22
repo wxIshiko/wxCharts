@@ -62,17 +62,17 @@ void wxStackedBarChart::Dataset::AppendBar(Bar::ptr column)
     m_bars.push_back(column);
 }
 
-wxStackedBarChart::wxStackedBarChart(const wxChartsCategoricalData &data,
+wxStackedBarChart::wxStackedBarChart(wxChartsCategoricalData::ptr &data,
                                      const wxSize &size)
     : m_grid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data.GetCategories(), m_options.GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", GetCumulativeMinValue(data.GetDatasets()), GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
+        wxChartCategoricalAxis::make_shared("x", data->GetCategories(), m_options.GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared("y", GetCumulativeMinValue(data->GetDatasets()), GetCumulativeMaxValue(data->GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
         m_options.GetGridOptions()
         )
 {
-    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data.GetDatasets();
+    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
         const wxChartsDoubleDataset& dataset = *datasets[i];
@@ -90,7 +90,7 @@ wxStackedBarChart::wxStackedBarChart(const wxChartsCategoricalData &data,
             std::stringstream tooltip;
             tooltip << datasetData[j];
             wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic(data.GetCategories()[j], tooltip.str(), dataset.GetFillColor())
+                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), dataset.GetFillColor())
                 );
 
             newDataset->AppendBar(Bar::ptr(new Bar(
@@ -106,19 +106,19 @@ wxStackedBarChart::wxStackedBarChart(const wxChartsCategoricalData &data,
     }
 }
 
-wxStackedBarChart::wxStackedBarChart(const wxChartsCategoricalData &data,
+wxStackedBarChart::wxStackedBarChart(wxChartsCategoricalData::ptr &data,
                                      const wxStackedBarChartOptions &options, 
                                      const wxSize &size)
     : m_options(options),
     m_grid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data.GetCategories(), m_options.GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", GetCumulativeMinValue(data.GetDatasets()), GetCumulativeMaxValue(data.GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
+        wxChartCategoricalAxis::make_shared("x", data->GetCategories(), m_options.GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared("y", GetCumulativeMinValue(data->GetDatasets()), GetCumulativeMaxValue(data->GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
         m_options.GetGridOptions()
         )
 {
-    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data.GetDatasets();
+    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
         const wxChartsDoubleDataset& dataset = *datasets[i];
@@ -136,7 +136,7 @@ wxStackedBarChart::wxStackedBarChart(const wxChartsCategoricalData &data,
             std::stringstream tooltip;
             tooltip << datasetData[j];
             wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic(data.GetCategories()[j], tooltip.str(), dataset.GetFillColor())
+                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), dataset.GetFillColor())
                 );
 
             newDataset->AppendBar(Bar::ptr(new Bar(
