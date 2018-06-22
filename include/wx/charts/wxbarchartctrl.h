@@ -58,10 +58,10 @@ public:
     /// so that the window is visible but obviously not correctly sized.
     /// @param style Control style. For generic window styles, please 
     /// see wxWindow.
-    wxBarChartCtrl(wxWindow *parent, wxWindowID id, const wxChartsCategoricalData &data,
+    wxBarChartCtrl(wxWindow *parent, wxWindowID id, wxChartsCategoricalData::ptr &data,
         const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
         long style = 0);
-    wxBarChartCtrl(wxWindow *parent, wxWindowID id, const wxChartsCategoricalData &data,
+    wxBarChartCtrl(wxWindow *parent, wxWindowID id, wxChartsCategoricalData::ptr &data,
         wxSharedPtr<wxBarChartOptions> options, const wxPoint &pos = wxDefaultPosition,
         const wxSize &size = wxDefaultSize, long style = 0);
 

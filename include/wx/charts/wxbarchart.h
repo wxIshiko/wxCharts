@@ -49,14 +49,14 @@
 class wxBarChart : public wxChart
 {
 public:
-    wxBarChart(const wxChartsCategoricalData &data, const wxSize &size);
-    wxBarChart(const wxChartsCategoricalData &data, wxSharedPtr<wxBarChartOptions> options,
+    wxBarChart(wxChartsCategoricalData::ptr &data, const wxSize &size);
+    wxBarChart(wxChartsCategoricalData::ptr &data, wxSharedPtr<wxBarChartOptions> options,
         const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
-    void Initialize(const wxChartsCategoricalData &data);
+    void Initialize(wxChartsCategoricalData::ptr &data);
     static wxDouble GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
     static wxDouble GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
 
