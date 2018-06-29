@@ -48,3 +48,7 @@ const wxVector<wxChartsDoubleDataset::ptr>& wxChartsCategoricalData::GetDatasets
 {
     return m_datasets;
 }
+
+void wxChartsCategoricalData::AddObserver()
+{
+}

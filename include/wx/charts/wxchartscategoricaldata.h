@@ -25,6 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTSCATEGORICALDATA_H_
 #define _WX_CHARTS_WXCHARTSCATEGORICALDATA_H_
 
+#include "wxchartscategoricaldataobserver.h"
 #include "wxchartsdoubledataset.h"
 #include <wx/vector.h>
 
@@ -54,9 +55,12 @@ public:
     const wxVector<wxString>& GetCategories() const;
     const wxVector<wxChartsDoubleDataset::ptr>& GetDatasets() const;
 
+    void AddObserver();
+
 private:
     wxVector<wxString> m_categories;
     wxVector<wxChartsDoubleDataset::ptr> m_datasets;
+    wxVector<wxChartsCategoricalDataObserver*> m_observers;
 };
 
 #endif
