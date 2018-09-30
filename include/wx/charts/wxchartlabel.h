@@ -55,6 +55,8 @@ public:
     wxChartLabel(const wxString &text, wxDouble width,
         wxDouble height, const wxChartLabelOptions &options);
 
+    wxChartLabel &operator=(const wxChartLabel &obj);
+
     virtual void Draw(wxGraphicsContext &gc) const;
 
     virtual bool HitTest(const wxPoint &point) const;
