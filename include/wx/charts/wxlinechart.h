@@ -69,7 +69,9 @@ public:
     wxLineChartDataset(const wxString &label,
         const wxColor &dotColor, const wxColor &dotStrokeColor,
         const wxColor &fillColor, const wxVector<wxDouble> &data,
-        const wxLineType &lineType=wxLINETYPE_STRAIGHTLINE);
+        const wxLineType &lineType=wxLINETYPE_STRAIGHTLINE,
+        bool showLine=true,
+        bool showDots=true);
 
     /// Gets the name of the dataset.
     /// @return The name of the dataset.

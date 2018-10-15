@@ -44,9 +44,11 @@ wxLineChartDataset::wxLineChartDataset(const wxString &label,
     const wxColor &dotStrokeColor,
     const wxColor &fillColor,
     const wxVector<wxDouble> &data,
-    const wxLineType &lineType)
-    : m_label(label), m_showDots(true), m_dotColor(dotColor),
-    m_dotStrokeColor(dotStrokeColor), m_showLine(true),
+    const wxLineType &lineType,
+    bool showLine,
+    bool showDots)
+    : m_label(label), m_showDots(showDots), m_dotColor(dotColor),
+    m_dotStrokeColor(dotStrokeColor), m_showLine(showLine),
     m_lineColor(dotColor), m_fill(true), m_fillColor(fillColor),
     m_data(data),m_type(lineType)
 {
@@ -386,7 +388,9 @@ void wxLineChart::DoDraw(wxGraphicsContext &gc,
             }
             else
             {
-                // TODO : transparent pen
+                static const wxColor transparent(255, 255, 255, 0);
+                wxPen pen(transparent, 0);
+                gc.SetPen(pen);
             }
 
             gc.StrokePath(path);
@@ -409,6 +413,14 @@ void wxLineChart::DoDraw(wxGraphicsContext &gc,
                 const Point::ptr& point = points[j];
                 point->SetPosition(m_grid.GetMapping().GetWindowPositionAtTickMark(j, point->GetValue()));
                 point->Draw(gc);
+            }
+        }
+        else
+        {
+            for (size_t j = 0; j < points.size(); ++j)
+            {
+                const Point::ptr& point = points[j];
+                point->SetPosition(m_grid.GetMapping().GetWindowPositionAtTickMark(j, point->GetValue()));
             }
         }
     }

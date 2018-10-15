@@ -43,6 +43,11 @@ wxDouble wxLineChartOptions::GetDotRadius() const
     return m_dotRadius;
 }
 
+void wxLineChartOptions::SetDotRadius(const wxDouble& rad)
+{
+	m_dotRadius = rad;
+};
+
 unsigned int wxLineChartOptions::GetDotStrokeWidth() const
 {
     return m_dotStrokeWidth;

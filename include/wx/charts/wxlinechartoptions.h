@@ -47,6 +47,10 @@ public:
     /// points on the chart.
     /// @return The radius of the dots.
     wxDouble GetDotRadius() const;
+    /// Sets the radius for the dots representing
+    /// points on the chart.
+    /// @return The radius of the dots.
+    void SetDotRadius(const wxDouble& rad);
     /// Gets the width of the pen used to draw
     /// the outline of the dots.
     /// @return The width of the pen.

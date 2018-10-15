@@ -103,6 +103,13 @@ bool wxMath2DPlotCtrl::UpdateData(std::size_t index,const wxVector<wxPoint2DDoub
     return true;
 }
 
+bool wxMath2DPlotCtrl::UpdateDataPoints(std::size_t index, const wxVector<wxPoint2DDouble> &points) {
+    if (!m_math2dPlot.UpdateDataPoints(index, points))
+        return false;
+    Update();
+    return true;
+};
+
 bool wxMath2DPlotCtrl::AddData(std::size_t index,const wxVector<wxPoint2DDouble> &points)
 {
     if (!m_math2dPlot.AddData(index,points))
@@ -132,11 +139,27 @@ void wxMath2DPlotCtrl::Update()
         parent->Layout();
 }
 
+void wxMath2DPlotCtrl::SetAutoAxesRange()
+{
+    m_math2dPlot.SetAutoAxesRange();
+};
+
+void wxMath2DPlotCtrl::SetFixedAxesRange(const wxPoint2DDouble& min, const wxPoint2DDouble& max)
+{
+    m_math2dPlot.SetFixedAxesRange(min, max);
+};
+
+
 void wxMath2DPlotCtrl::CreateContextMenu()
 {
+	auto &opt = m_math2dPlot.GetChartOptions();
+
     m_posX = 0;
     m_posY = 0;
-    m_contextMenu.Append(wxID_SAVEAS, wxString("Save as"));
+
+    if (opt.IsSaveAsMenuEnabled()) {
+        m_contextMenu.Append(wxID_SAVEAS, wxString("Save as"));
+    }
     m_subMenu = new wxMenu;
     m_subMenu->Append(wxID_DEFAULT, wxString("Set default zoom"));
     m_subMenu->Append(wxID_UP, wxString("Zoom +"));
@@ -144,10 +167,10 @@ void wxMath2DPlotCtrl::CreateContextMenu()
 
     m_contextMenu.AppendSubMenu(m_subMenu,wxString("Zoom"));
     Bind(wxEVT_CONTEXT_MENU,
-         [this](wxContextMenuEvent& evt)
-    {
-        PopupMenu(&m_contextMenu, ScreenToClient(evt.GetPosition()));
-    }
+        [this](wxContextMenuEvent& evt)
+        {
+            PopupMenu(&m_contextMenu, ScreenToClient(evt.GetPosition()));
+        }
         );
     m_contextMenu.Bind(wxEVT_MENU,
                        [this](wxCommandEvent &)
@@ -179,77 +202,83 @@ void wxMath2DPlotCtrl::CreateContextMenu()
             parent->Layout();
     },wxID_DOWN);
 
-    m_contextMenu.Bind(wxEVT_MENU,
-                       [this](wxCommandEvent &)
-    {
-        wxFileDialog saveFileDialog(this, _("Save file"), "", "",
-                                    "JPEG files (*.jpg;*.jpeg)|*.jpg;*.jpeg|PNG files (*.png)|*.png",
-                                    wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
-        if (saveFileDialog.ShowModal() == wxID_CANCEL)
-            return;
-
-        wxString filename = saveFileDialog.GetPath();
-
-        wxBitmapType type = wxBitmapType::wxBITMAP_TYPE_INVALID;
-        switch (saveFileDialog.GetFilterIndex())
+    if (opt.IsSaveAsMenuEnabled()) {
+        m_contextMenu.Bind(wxEVT_MENU,
+        [this](wxCommandEvent &)
         {
-        case 0:
-            type = wxBitmapType::wxBITMAP_TYPE_JPEG;
-            if (wxImage::FindHandler(wxBitmapType::wxBITMAP_TYPE_JPEG) == 0)
+            wxFileDialog saveFileDialog(this, _("Save file"), "", "",
+                "JPEG files (*.jpg;*.jpeg)|*.jpg;*.jpeg|PNG files (*.png)|*.png",
+                wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+            if (saveFileDialog.ShowModal() == wxID_CANCEL)
+                return;
+
+            wxString filename = saveFileDialog.GetPath();
+
+            wxBitmapType type = wxBitmapType::wxBITMAP_TYPE_INVALID;
+            switch (saveFileDialog.GetFilterIndex())
             {
-                wxImage::AddHandler(new wxJPEGHandler());
-            }
-            break;
-
-        case 1:
-            type = wxBitmapType::wxBITMAP_TYPE_PNG;
-            if (wxImage::FindHandler(wxBitmapType::wxBITMAP_TYPE_PNG) == 0)
-            {
-                wxImage::AddHandler(new wxPNGHandler());
-            }
-            break;
-        }
-
-        m_math2dPlot.Save(filename, type, GetSize());
-    },
-    wxID_SAVEAS
-                      );
-
-    this->Bind(wxEVT_LEFT_DOWN,
-               [this](wxMouseEvent&  evt)
-    {
-        m_posX = evt.m_x;
-        m_posY = evt.m_y;
-        this->SetCursor(wxCURSOR_HAND);
-        evt.Skip();
-    });
-    this->Bind(wxEVT_LEFT_UP,
-               [this](wxMouseEvent&  evt)
-    {
-        this->SetCursor(wxCURSOR_ARROW);
-        evt.Skip();
-    });
-    this->Bind(wxEVT_MOTION,
-               [this](wxMouseEvent& evt)
-    {
-        evt.Skip();
-
-        if(evt.ButtonIsDown(wxMouseButton::wxMOUSE_BTN_LEFT))
-        {
-            double dx = m_posX-evt.m_x;
-            double dy = m_posY-evt.m_y;
-            if( std::abs(dx) > 5 || std::abs(dy) > 5)
-            {
-                auto parent = this->GetParent();
-                if(parent)
+            case 0:
+                type = wxBitmapType::wxBITMAP_TYPE_JPEG;
+                if (wxImage::FindHandler(wxBitmapType::wxBITMAP_TYPE_JPEG) == 0)
                 {
-                    auto Size = parent->GetSize();
-                    m_math2dPlot.Shift(dx/Size.GetX(),dy/Size.GetY());
-                    m_posX = evt.m_x;
-                    m_posY = evt.m_y;
-                    parent->Layout();
+                    wxImage::AddHandler(new wxJPEGHandler());
+                }
+                break;
+
+            case 1:
+                type = wxBitmapType::wxBITMAP_TYPE_PNG;
+                if (wxImage::FindHandler(wxBitmapType::wxBITMAP_TYPE_PNG) == 0)
+                {
+                    wxImage::AddHandler(new wxPNGHandler());
+                }
+                break;
+            }
+
+            m_math2dPlot.Save(filename, type, GetSize());
+        },
+        wxID_SAVEAS
+        );
+    }
+
+    if (opt.IsMovingEnabled()) {
+        this->Bind(wxEVT_LEFT_DOWN,
+        [this](wxMouseEvent&  evt)
+        {
+            m_posX = evt.m_x;
+            m_posY = evt.m_y;
+            this->SetCursor(wxCURSOR_HAND);
+            evt.Skip();
+        });
+
+        this->Bind(wxEVT_LEFT_UP,
+        [this](wxMouseEvent&  evt)
+        {
+            this->SetCursor(wxCURSOR_ARROW);
+            evt.Skip();
+        });
+
+        this->Bind(wxEVT_MOTION,
+        [this](wxMouseEvent& evt)
+        {
+            evt.Skip();
+
+            if (evt.ButtonIsDown(wxMouseButton::wxMOUSE_BTN_LEFT))
+            {
+                double dx = m_posX - evt.m_x;
+                double dy = m_posY - evt.m_y;
+                if (std::abs(dx) > 5 || std::abs(dy) > 5)
+                {
+                    auto parent = this->GetParent();
+                    if (parent)
+                    {
+                        auto Size = parent->GetSize();
+                        m_math2dPlot.Shift(dx / Size.GetX(), dy / Size.GetY());
+                        m_posX = evt.m_x;
+                        m_posY = evt.m_y;
+                        parent->Layout();
+                    }
                 }
             }
-        }
-    });
+        });
+    }
 }
