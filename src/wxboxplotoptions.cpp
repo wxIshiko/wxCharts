@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2015-2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,43 +22,23 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTS_H_
-#define _WX_CHARTS_WXCHARTS_H_
+#include "wxboxplotoptions.h"
 
-#include "wxchartcategoricalaxis.h"
-#include "wxchartnumericalaxis.h"
+wxBoxPlotOptions::wxBoxPlotOptions()
+{
+    m_gridOptions.GetXAxisOptions().SetStartMarginType(wxCHARTAXISMARGINTYPE_TICKMARKOFFSET);
+    m_gridOptions.GetXAxisOptions().SetEndMarginType(wxCHARTAXISMARGINTYPE_TICKMARKOFFSET);
+    m_gridOptions.GetHorizontalGridLineOptions().SetMajorGridLineColor(wxColor(0, 0, 0, 0x30));
+    m_gridOptions.GetHorizontalGridLineOptions().SetNumberOfMinorGridLinesBetweenTickMarks(4);
+    m_gridOptions.GetVerticalGridLineOptions().SetMajorGridLineColor(wxColor(0, 0, 0, 0x30));
+}
 
-#include "wxbarchartctrl.h"
-#include "wxstackedbarchartctrl.h"
-#include "wxcolumnchartctrl.h"
-#include "wxstackedcolumnchartctrl.h"
-#include "wxlinechartctrl.h"
-#include "wxtimeserieschartctrl.h"
-#include "wxdoughnutchartctrl.h"
-#include "wxpiechartctrl.h"
-#include "wxpolarareachartctrl.h"
-#include "wxradarchartctrl.h"
-#include "wxscatterplotctrl.h"
-#include "wxmath2dplotctrl.h"
-#include "wxareachartctrl.h"
-#include "wxbubblechartctrl.h"
-#include "wxcandlestickchartctrl.h"
-#include "wxohlcchartctrl.h"
-#include "wxcombinationchartctrl.h"
-#include "wxchartlegendctrl.h"
-#include "wxhistchartctrl.h"
-#include "wxboxplotctrl.h"
+const wxChartGridOptions& wxBoxPlotOptions::GetGridOptions() const
+{
+    return m_gridOptions;
+}
 
-#include "wxchartstheme.h"
-
-#ifdef _MSC_VER
-
-#ifdef _DEBUG
-#pragma comment(lib, "wxchartsd.lib")
-#else
-#pragma comment(lib, "wxcharts.lib")
-#endif
-
-#endif
-
-#endif
+wxChartGridOptions& wxBoxPlotOptions::GetGridOptions()
+{
+    return m_gridOptions;
+}
