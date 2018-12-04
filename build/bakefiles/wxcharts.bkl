@@ -149,6 +149,9 @@ library wxcharts
         ../../include/wx/charts/wxcombinationchartoptions.h
         ../../include/wx/charts/wxcombinationchart.h
         ../../include/wx/charts/wxcombinationchartctrl.h
+        ../../include/wx/charts/wxboxplotoptions.h
+        ../../include/wx/charts/wxboxplot.h
+        ../../include/wx/charts/wxboxplotctrl.h
     }
 
     sources
@@ -260,5 +263,8 @@ library wxcharts
         ../../src/wxcombinationchartoptions.cpp
         ../../src/wxcombinationchart.cpp
         ../../src/wxcombinationchartctrl.cpp
+        ../../src/wxboxplotoptions.cpp
+        ../../src/wxboxplot.cpp
+        ../../src/wxboxplotctrl.cpp
     }
 }
