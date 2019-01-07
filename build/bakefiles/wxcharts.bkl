@@ -13,6 +13,8 @@ setting WXWIDGETS_ROOT
 
 library wxcharts
 {
+    archs = x86 x86_64;
+
     vs2017.projectfile = ../msw/wxcharts_vc15.vcxproj;
     vs2015.projectfile = ../msw/wxcharts_vc14.vcxproj;
     vs2013.projectfile = ../msw/wxcharts_vc12.vcxproj;
