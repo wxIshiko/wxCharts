@@ -19,6 +19,8 @@ setting WXCHARTS_ROOT
 
 program WxMath2D
 {
+    archs = x86 x86_64;
+
     vs2017.projectfile = ../msw/WxMath2D_vc15.vcxproj;
     vs2015.projectfile = ../msw/WxMath2D_vc14.vcxproj;
     vs2013.projectfile = ../msw/WxMath2D_vc12.vcxproj;

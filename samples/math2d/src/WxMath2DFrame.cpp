@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2017-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -84,13 +84,14 @@ WxMath2DFrame::WxMath2DFrame(const wxString& title)
 
     wxMath2DPlotDataset::ptr dataset(
         new wxMath2DPlotDataset(
+            wxColor(255, 255, 255, 0),
             wxColor(250, 20, 20, 0x78),
             wxColor(0, 0, 0, 0xB8),
             points)
     );
     chartData.AddDataset(dataset);
 
-    math2dPlotCtrl = new wxMath2DPlotCtrl(panel, wxID_ANY, chartData,options);
+    math2dPlotCtrl = new wxMath2DPlotCtrl(panel, wxID_ANY, chartData, options);
     wxChartGridOptions opt = math2dPlotCtrl->GetGridOptions();
     opt.GetHorizontalGridLineOptions().SetMajorGridLineColor(wxColour("Grey"));
     opt.GetVerticalGridLineOptions().SetMajorGridLineColor(wxColour("Grey"));
