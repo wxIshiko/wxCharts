@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -55,15 +55,19 @@ public:
     typedef wxSharedPtr<wxMath2DPlotDataset> ptr;
 
     /// Constructs a Math2DPlot instance.
+    /// @param lineColor The color of the line.
     /// @param dotColor The color of the points.
     /// @param dotStrokeColor The color of the pen
     /// used to draw the outline of the points.
     /// @param data The list of values.
     wxMath2DPlotDataset(
+        const wxColor &lineColor,
         const wxColor &dotColor,
         const wxColor &dotStrokeColor,
         wxVector<wxPoint2DDouble> &data,
-        const wxChartType &chartType=wxCHARTTYPE_LINE);
+        const wxChartType &chartType=wxCHARTTYPE_LINE,
+        const bool &showDots = true,
+        const bool &showLine = true);
 
     /// Whether to show the points on the chart.
     /// @retval true Show the points.
