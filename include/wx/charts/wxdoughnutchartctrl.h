@@ -34,10 +34,10 @@
 class wxDoughnutChartCtrl : public wxChartCtrl, public wxChartValueObserver<std::map<wxString, wxChartSliceData>>
 {
 public:
-    wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, wxDoughnutChartData &data,
+    wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, wxPieChartData &data,
         const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
         long style = 0);
-    wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, wxDoughnutChartData &data,
+    wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, wxPieChartData &data,
         const wxDougnutChartOptions &options, const wxPoint &pos = wxDefaultPosition, 
         const wxSize &size = wxDefaultSize, long style = 0);
 
