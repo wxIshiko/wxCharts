@@ -25,9 +25,15 @@ library wxcharts
     {
         includedirs += $(WXWIDGETS_ROOT)/include;
         includedirs += $(WXWIDGETS_ROOT)/include/msvc;
-        libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
 
-        outputdir = ../../lib/vc_lib;
+        if ($(arch) == x86)
+        {
+            outputdir = ../../lib/vc_lib;
+        }
+        if ($(arch) == x86_64)
+        {
+            outputdir = ../../lib/vc_x64_lib;
+        }
     }
     if ($(toolset) == gnu)
     {
