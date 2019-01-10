@@ -41,7 +41,7 @@ public:
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
-    const wxDoughnutAndPieChartOptionsBase& GetOptions() const wxOVERRIDE;
+    const wxDoughnutAndPieChartOptionsBase& GetOptions() const override;
 
 private:
     wxPieChartOptions m_options;
