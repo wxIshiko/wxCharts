@@ -34,16 +34,14 @@
 class wxDoughnutChart : public wxDoughnutAndPieChartBase
 {
 public:
-    wxDoughnutChart(const wxPieChartData &data, const wxSize &size);
-    wxDoughnutChart(const wxPieChartData &data,
+    wxDoughnutChart(wxPieChartData::ptr data, const wxSize &size);
+    wxDoughnutChart(wxPieChartData::ptr data,
         const wxDougnutChartOptions &options, const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
-    void Initialize(const wxPieChartData &data);
-
-    virtual const wxDoughnutAndPieChartOptionsBase& GetOptions() const;
+    const wxDoughnutAndPieChartOptionsBase& GetOptions() const wxOVERRIDE;
 
 private:
     wxDougnutChartOptions m_options;

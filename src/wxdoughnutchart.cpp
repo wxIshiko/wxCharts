@@ -22,29 +22,22 @@
 
 #include "wxdoughnutchart.h"
 
-wxDoughnutChart::wxDoughnutChart(const wxPieChartData &data,
+wxDoughnutChart::wxDoughnutChart(wxPieChartData::ptr data,
                                  const wxSize &size)
-    : wxDoughnutAndPieChartBase(size)
+    : wxDoughnutAndPieChartBase(data, size)
 {
-    Initialize(data);
 }
 
-wxDoughnutChart::wxDoughnutChart(const wxPieChartData &data,
+wxDoughnutChart::wxDoughnutChart(wxPieChartData::ptr data,
                                  const wxDougnutChartOptions &options,
                                  const wxSize &size)
-    : wxDoughnutAndPieChartBase(size), m_options(options)
+    : wxDoughnutAndPieChartBase(data, size), m_options(options)
 {
-    Initialize(data);
 }
 
 const wxChartCommonOptions& wxDoughnutChart::GetCommonOptions() const
 {
     return m_options.GetCommonOptions();
-}
-
-void wxDoughnutChart::Initialize(const wxPieChartData &data)
-{
-    SetData(data.GetSlices());
 }
 
 const wxDoughnutAndPieChartOptionsBase& wxDoughnutChart::GetOptions() const

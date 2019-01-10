@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -34,10 +34,10 @@
 class wxDoughnutChartCtrl : public wxChartCtrl, public wxChartValueObserver<std::map<wxString, wxChartSliceData>>
 {
 public:
-    wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, wxPieChartData &data,
+    wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, wxPieChartData::ptr data,
         const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
         long style = 0);
-    wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, wxPieChartData &data,
+    wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, wxPieChartData::ptr data,
         const wxDougnutChartOptions &options, const wxPoint &pos = wxDefaultPosition, 
         const wxSize &size = wxDefaultSize, long style = 0);
 

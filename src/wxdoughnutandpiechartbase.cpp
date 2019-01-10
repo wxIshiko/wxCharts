@@ -37,6 +37,11 @@ wxPieChartData::wxPieChartData()
 {
 }
 
+wxPieChartData::ptr wxPieChartData::make_shared()
+{
+    return ptr(new wxPieChartData());
+}
+
 const std::map<wxString, wxChartSliceData>& wxPieChartData::GetSlices() const
 {
     return m_value;
@@ -103,13 +108,14 @@ wxDouble wxDoughnutAndPieChartBase::SliceArc::GetValue() const
     return m_value;
 }
 
-wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase()
-    : m_total(0)
+wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(wxPieChartData::ptr data)
+    : m_data(data), m_total(0)
 {
 }
 
-wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(const wxSize &size)
-    : m_size(size), m_total(0)
+wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(const wxPieChartData::ptr data,
+                                                     const wxSize &size)
+    : m_data(data), m_size(size), m_total(0)
 {
 }
 
@@ -118,7 +124,7 @@ void wxDoughnutAndPieChartBase::SetData(const std::map<wxString, wxChartSliceDat
     m_slices.resize(data.size());
     m_total = 0;
 	size_t i = 0;
-    for(const auto &pair : data)
+    for (const auto &pair : data)
     {
         auto slice = pair.second;
 
@@ -132,7 +138,6 @@ void wxDoughnutAndPieChartBase::SetData(const std::map<wxString, wxChartSliceDat
                                                x, y, 0, 0, outerRadius, innerRadius, GetOptions().GetSliceStrokeWidth()));
         m_slices[i++] = newSlice;
     }
-    
 }
 
 void wxDoughnutAndPieChartBase::DoSetSize(const wxSize &size)
@@ -142,6 +147,8 @@ void wxDoughnutAndPieChartBase::DoSetSize(const wxSize &size)
 
 void wxDoughnutAndPieChartBase::DoFit()
 {
+    SetData(m_data->GetSlices());
+
     for (size_t i = 0; i < m_slices.size(); ++i)
     {
         m_slices[i]->Resize(m_size, GetOptions());
