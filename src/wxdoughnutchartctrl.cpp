@@ -24,7 +24,7 @@
 
 wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
                                          wxWindowID id,
-                                         wxDoughnutChartData &data,
+                                         wxPieChartData &data,
                                          const wxPoint &pos,
                                          const wxSize &size,
                                          long style)
@@ -36,7 +36,7 @@ wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
 
 wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
                                          wxWindowID id,
-                                         wxDoughnutChartData &data,
+                                         wxPieChartData &data,
                                          const wxDougnutChartOptions &options,
                                          const wxPoint &pos,
                                          const wxSize &size,

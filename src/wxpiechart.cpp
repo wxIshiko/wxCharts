@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq and the wxCharts contributors
+    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -21,45 +21,6 @@
 */
 
 #include "wxpiechart.h"
-
-wxPieChartData::wxPieChartData()
-{
-}
-
-const std::map<wxString,wxChartSliceData>& wxPieChartData::GetSlices() const
-{
-    return m_value;
-}
-
-void wxPieChartData::AppendSlice(const wxChartSliceData &slice)
-{
-    Add(slice);
-    Notify();
-}
-
-void wxPieChartData::UpdateSlices(const wxVector<wxChartSliceData> &slices)
-{
-    m_value.clear();
-    AddSlices(slices);
-}
-
-void wxPieChartData::AddSlices(const wxVector<wxChartSliceData> &slices)
-{
-    for(const auto &slice : slices)
-        Add(slice);
-
-    Notify();
-}
-
-void wxPieChartData::Add(const wxChartSliceData &slice)
-{
-    auto key = slice.GetLabel();
-	auto it = m_value.find(key);
-    if( it == m_value.end())
-		m_value.insert(std::make_pair(key,slice));
-	else
-		it->second.SetValue(it->second.GetValue()+slice.GetValue());
-}
 
 wxPieChart::wxPieChart(const wxPieChartData &data,
                        const wxSize &size) : wxDoughnutAndPieChartBase(size)

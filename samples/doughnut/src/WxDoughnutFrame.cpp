@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2015-2016 Xavier Leclercq
+	Copyright (c) 2015-2019 Xavier Leclercq
 
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
@@ -32,7 +32,7 @@ WxDoughnutFrame::WxDoughnutFrame(const wxString& title)
 	wxPanel* panel = new wxPanel(this, wxID_ANY);
 
 	// Create the data for the doughnut chart widget
-	wxDoughnutChartData chartData;
+	wxPieChartData chartData;
 	chartData.AppendSlice(wxChartSliceData(300, wxColor(0x4A46F7), "Red"));
 	chartData.AppendSlice(wxChartSliceData(50, wxColor(0xBDBF46), "Green"));
 	chartData.AppendSlice(wxChartSliceData(100, wxColor(0x5CB4FD), "Yellow"));
