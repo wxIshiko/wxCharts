@@ -25,6 +25,8 @@ setting CATCH2_ROOT
 
 program wxchartstests
 {
+    archs = x86 x86_64;
+
     vs2017.projectfile = ../msw/wxchartstests_vc15.vcxproj;
     vs2015.projectfile = ../msw/wxchartstests_vc14.vcxproj;
     vs2013.projectfile = ../msw/wxchartstests_vc12.vcxproj;
