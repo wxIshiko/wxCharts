@@ -168,6 +168,8 @@
     <ClCompile Include="..\..\src\wxcolumnchartpanel.cpp" />
     <ClCompile Include="..\..\src\wxpiechartpanel.cpp" />
     <ClCompile Include="..\..\src\wxpolarareachartpanel.cpp" />
+    <ClCompile Include="..\..\src\wxstackedbarchartpanel.cpp" />
+    <ClCompile Include="..\..\src\wxstackedcolumnchartpanel.cpp" />
     <ClCompile Include="..\..\src\elementcanvaswindow.cpp" />
     <ClCompile Include="..\..\src\tests\testsuite.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartsdatasetidtests.cpp" />
@@ -199,6 +201,8 @@
     <ClInclude Include="..\..\src\wxcolumnchartpanel.h" />
     <ClInclude Include="..\..\src\wxpiechartpanel.h" />
     <ClInclude Include="..\..\src\wxpolarareachartpanel.h" />
+    <ClInclude Include="..\..\src\wxstackedbarchartpanel.h" />
+    <ClInclude Include="..\..\src\wxstackedcolumnchartpanel.h" />
     <ClInclude Include="..\..\src\elementcanvaswindow.h" />
     <ClInclude Include="..\..\src\tests\testsuite.h" />
   </ItemGroup>
