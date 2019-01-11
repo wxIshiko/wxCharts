@@ -24,19 +24,19 @@
 
 wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
                                          wxWindowID id,
-                                         wxPieChartData &data,
+                                         wxPieChartData::ptr data,
                                          const wxPoint &pos,
                                          const wxSize &size,
                                          long style)
     : wxChartCtrl(parent, id, pos, size, style),
     m_doughnutChart(data, size)
 {
-    data.AddObserver(this);
+    data->AddObserver(this);
 }
 
 wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
                                          wxWindowID id,
-                                         wxPieChartData &data,
+                                         wxPieChartData::ptr data,
                                          const wxDougnutChartOptions &options,
                                          const wxPoint &pos,
                                          const wxSize &size,
@@ -44,7 +44,7 @@ wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
     : wxChartCtrl(parent, id, pos, size, style),
     m_doughnutChart(data, options, size)
 {
-    data.AddObserver(this);
+    data->AddObserver(this);
 }
 
 wxDoughnutChart& wxDoughnutChartCtrl::GetChart()

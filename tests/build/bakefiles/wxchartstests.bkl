@@ -25,13 +25,14 @@ setting CATCH2_ROOT
 
 program wxchartstests
 {
+    archs = x86 x86_64;
+
     vs2017.projectfile = ../msw/wxchartstests_vc15.vcxproj;
     vs2015.projectfile = ../msw/wxchartstests_vc14.vcxproj;
     vs2013.projectfile = ../msw/wxchartstests_vc12.vcxproj;
  
     includedirs += $(WXCHARTS_ROOT)/include;
     includedirs += $(CATCH2_ROOT)/single_include;
-    libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
 
     if (($(toolset) == vs2017) || ($(toolset) == vs2015) || ($(toolset) == vs2013))
     {
@@ -39,7 +40,16 @@ program wxchartstests
         
         includedirs += $(WXWIDGETS_ROOT)/include;
         includedirs += $(WXWIDGETS_ROOT)/include/msvc;
-        libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+        if ($(arch) == x86)
+        {
+            libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
+            libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+        }
+        if ($(arch) == x86_64)
+        {
+            libdirs += $(WXCHARTS_ROOT)/lib/vc_x64_lib;
+            libdirs += $(WXWIDGETS_ROOT)/lib/vc_x64_lib;
+        }
     }
     if ($(toolset) == gnu)
     {

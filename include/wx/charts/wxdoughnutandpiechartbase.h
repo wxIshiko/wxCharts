@@ -49,7 +49,11 @@
 class wxPieChartData : public wxChartObservableValue<std::map<wxString, wxChartSliceData>>
 {
 public:
+    /// Smart pointer typedef.
+    typedef wxSharedPtr<wxPieChartData> ptr;
+
     wxPieChartData();
+    static ptr make_shared();
 
     const std::map<wxString, wxChartSliceData>& GetSlices() const;
     void AppendSlice(const wxChartSliceData &slice);
@@ -71,8 +75,8 @@ class wxDoughnutAndPieChartBase : public wxChart
 public:
     /// Constructs a wxDoughnutAndPieChartBase
     /// instance.
-    wxDoughnutAndPieChartBase();
-    wxDoughnutAndPieChartBase(const wxSize &size);
+    wxDoughnutAndPieChartBase(wxPieChartData::ptr data);
+    wxDoughnutAndPieChartBase(wxPieChartData::ptr data, const wxSize &size);
     void SetData(const std::map<wxString, wxChartSliceData> &data);
 
 private:
@@ -105,6 +109,7 @@ private:
     };
 
 private:
+    wxPieChartData::ptr m_data;
     wxSize m_size;
     wxVector<SliceArc::ptr> m_slices;
     wxDouble m_total;
