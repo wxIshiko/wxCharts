@@ -166,6 +166,7 @@
     <ClCompile Include="..\..\src\wxbubblechartpanel.cpp" />
     <ClCompile Include="..\..\src\wxcandlestickchartpanel.cpp" />
     <ClCompile Include="..\..\src\wxcolumnchartpanel.cpp" />
+    <ClCompile Include="..\..\src\wxlinechartpanel.cpp" />
     <ClCompile Include="..\..\src\wxpiechartpanel.cpp" />
     <ClCompile Include="..\..\src\wxpolarareachartpanel.cpp" />
     <ClCompile Include="..\..\src\wxstackedbarchartpanel.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="..\..\src\wxbubblechartpanel.h" />
     <ClInclude Include="..\..\src\wxcandlestickchartpanel.h" />
     <ClInclude Include="..\..\src\wxcolumnchartpanel.h" />
+    <ClInclude Include="..\..\src\wxlinechartpanel.h" />
     <ClInclude Include="..\..\src\wxpiechartpanel.h" />
     <ClInclude Include="..\..\src\wxpolarareachartpanel.h" />
     <ClInclude Include="..\..\src\wxstackedbarchartpanel.h" />

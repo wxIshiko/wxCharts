@@ -20,13 +20,13 @@
     IN THE SOFTWARE.
 */
 
-#include "wxstackedbarchartpanel.h"
+#include "wxlinechartpanel.h"
 #include <wx/sizer.h>
 
-wxStackedBarChartPanel::wxStackedBarChartPanel(wxWindow* parent)
+wxLineChartPanel::wxLineChartPanel(wxWindow* parent)
     : wxPanel(parent)
 {
-    // Create the data for the stacked bar chart widget
+    // Create the data for the line chart widget
     wxVector<wxString> labels;
     labels.push_back("January");
     labels.push_back("February");
@@ -35,59 +35,45 @@ wxStackedBarChartPanel::wxStackedBarChartPanel(wxWindow* parent)
     labels.push_back("May");
     labels.push_back("June");
     labels.push_back("July");
-    wxChartsCategoricalData::ptr chartData = wxChartsCategoricalData::make_shared(labels);
+    wxLineChartData chartData(labels);
 
     // Add the first dataset
     wxVector<wxDouble> points1;
     points1.push_back(3);
-    points1.push_back(2.5);
-    points1.push_back(1.2);
+    points1.push_back(-2.5);
+    points1.push_back(-1.2);
     points1.push_back(3);
-    points1.push_back(4);
+    points1.push_back(6);
     points1.push_back(5);
     points1.push_back(1);
-    wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset(
-        wxColor(96, 83, 77, 0x3F),
-        wxColor(96, 83, 77, 0x6C),
+    wxLineChartDataset::ptr dataset1(new wxLineChartDataset(
+        "My First Dataset", wxColor(220, 220, 220),
+        wxColor(255, 255, 255), wxColor(220, 220, 220, 0x33),
         points1));
-    chartData->AddDataset(dataset1);
+    chartData.AddDataset(dataset1);
 
     // Add the second dataset
     wxVector<wxDouble> points2;
     points2.push_back(1);
-    points2.push_back(1.33);
+    points2.push_back(-1.33);
     points2.push_back(2.5);
-    points2.push_back(2);
+    points2.push_back(7);
     points2.push_back(3);
-    points2.push_back(1.8);
+    points2.push_back(-1.8);
     points2.push_back(0.4);
-    wxChartsDoubleDataset::ptr dataset2(new wxChartsDoubleDataset(
-        wxColor(220, 220, 220, 0x7F),
-        wxColor(200, 200, 200, 0xFF),
+    wxLineChartDataset::ptr dataset2(new wxLineChartDataset(
+        "My Second Dataset", wxColor(151, 187, 205),
+        wxColor(255, 255, 255), wxColor(151, 187, 205, 0x33),
         points2));
-    chartData->AddDataset(dataset2);
+    chartData.AddDataset(dataset2);
 
-    // Add the third dataset
-    wxVector<wxDouble> points3;
-    points3.push_back(2.3);
-    points3.push_back(0.5);
-    points3.push_back(1.5);
-    points3.push_back(4);
-    points3.push_back(1);
-    points3.push_back(0.5);
-    points3.push_back(0.4);
-    wxChartsDoubleDataset::ptr dataset3(new wxChartsDoubleDataset(
-        wxColor(151, 187, 205, 0x7F),
-        wxColor(151, 187, 205, 0xCC),
-        points3));
-    chartData->AddDataset(dataset3);
-
-    // Create the stacked bar chart widget
-    m_stackedBarChart = new wxStackedBarChartCtrl(this, wxID_ANY, chartData);
+    // Create the line chart widget from the constructed data
+    m_lineChart = new wxLineChartCtrl(this, wxID_ANY, chartData,
+        wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
     // Set up the sizer for the panel
     wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
-    sizer->Add(m_stackedBarChart, 1, wxEXPAND);
+    sizer->Add(m_lineChart, 1, wxEXPAND);
 
     SetSizer(sizer);
 }

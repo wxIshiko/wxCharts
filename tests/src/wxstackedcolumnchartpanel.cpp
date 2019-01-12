@@ -21,8 +21,73 @@
 */
 
 #include "wxstackedcolumnchartpanel.h"
+#include <wx/sizer.h>
 
 wxStackedColumnChartPanel::wxStackedColumnChartPanel(wxWindow* parent)
     : wxPanel(parent)
 {
+    // Create the data for the stacked bar chart widget
+    wxVector<wxString> labels;
+    labels.push_back("January");
+    labels.push_back("February");
+    labels.push_back("March");
+    labels.push_back("April");
+    labels.push_back("May");
+    labels.push_back("June");
+    labels.push_back("July");
+    wxChartsCategoricalData::ptr chartData = wxChartsCategoricalData::make_shared(labels);
+
+    // Add the first dataset
+    wxVector<wxDouble> points1;
+    points1.push_back(3);
+    points1.push_back(2.5);
+    points1.push_back(1.2);
+    points1.push_back(3);
+    points1.push_back(4);
+    points1.push_back(5);
+    points1.push_back(1);
+    wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset(
+        wxColor(96, 83, 77, 0x3F),
+        wxColor(96, 83, 77, 0x6C),
+        points1));
+    chartData->AddDataset(dataset1);
+
+    // Add the second dataset
+    wxVector<wxDouble> points2;
+    points2.push_back(1);
+    points2.push_back(1.33);
+    points2.push_back(2.5);
+    points2.push_back(2);
+    points2.push_back(3);
+    points2.push_back(1.8);
+    points2.push_back(0.4);
+    wxChartsDoubleDataset::ptr dataset2(new wxChartsDoubleDataset(
+        wxColor(220, 220, 220, 0x7F),
+        wxColor(200, 200, 200, 0xFF),
+        points2));
+    chartData->AddDataset(dataset2);
+
+    // Add the third dataset
+    wxVector<wxDouble> points3;
+    points3.push_back(2.3);
+    points3.push_back(0.5);
+    points3.push_back(1.5);
+    points3.push_back(4);
+    points3.push_back(1);
+    points3.push_back(0.5);
+    points3.push_back(0.4);
+    wxChartsDoubleDataset::ptr dataset3(new wxChartsDoubleDataset(
+        wxColor(151, 187, 205, 0x7F),
+        wxColor(151, 187, 205, 0xCC),
+        points3));
+    chartData->AddDataset(dataset3);
+
+    // Create the stacked bar chart widget
+    m_stackedColumnChart = new wxStackedColumnChartCtrl(this, wxID_ANY, chartData);
+
+    // Set up the sizer for the panel
+    wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
+    sizer->Add(m_stackedColumnChart, 1, wxEXPAND);
+
+    SetSizer(sizer);
 }

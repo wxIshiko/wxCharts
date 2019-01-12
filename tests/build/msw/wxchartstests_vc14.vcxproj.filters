@@ -62,6 +62,9 @@
     <ClInclude Include="..\..\src\wxcolumnchartpanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\wxlinechartpanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\wxpiechartpanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -122,6 +125,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxcolumnchartpanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wxlinechartpanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxpiechartpanel.cpp">
