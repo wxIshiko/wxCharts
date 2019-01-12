@@ -21,3 +21,8 @@
 */
 
 #include "wxstackedbarchartpanel.h"
+
+wxStackedBarChartPanel::wxStackedBarChartPanel(wxWindow* parent)
+    : wxPanel(parent)
+{
+}

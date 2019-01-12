@@ -21,3 +21,8 @@
 */
 
 #include "wxstackedcolumnchartpanel.h"
+
+wxStackedColumnChartPanel::wxStackedColumnChartPanel(wxWindow* parent)
+    : wxPanel(parent)
+{
+}

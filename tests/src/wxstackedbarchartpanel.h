@@ -23,4 +23,16 @@
 #ifndef _TESTS_WX_CHARTS_WXSTACKEDBARCHARTPANEL_H_
 #define _TESTS_WX_CHARTS_WXSTACKEDBARCHARTPANEL_H_
 
+#include <wx/charts/wxcharts.h>
+#include <wx/panel.h>
+
+class wxStackedBarChartPanel : public wxPanel
+{
+public:
+    wxStackedBarChartPanel(wxWindow* parent);
+
+private:
+    wxStackedBarChartCtrl* m_stackedBarChart;
+};
+
 #endif
