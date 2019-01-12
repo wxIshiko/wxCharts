@@ -23,4 +23,12 @@
 #ifndef _TESTS_WX_CHARTS_WXCHARTSDEFAULTTHEMEPANEL_H_
 #define _TESTS_WX_CHARTS_WXCHARTSDEFAULTTHEMEPANEL_H_
 
+#include <wx/panel.h>
+
+class wxChartsDefaultThemePanel : public wxPanel
+{
+public:
+    wxChartsDefaultThemePanel(wxWindow* parent);
+};
+
 #endif

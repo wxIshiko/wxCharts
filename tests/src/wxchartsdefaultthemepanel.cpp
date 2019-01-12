@@ -21,3 +21,8 @@
 */
 
 #include "wxchartsdefaultthemepanel.h"
+
+wxChartsDefaultThemePanel::wxChartsDefaultThemePanel(wxWindow* parent)
+    : wxPanel(parent)
+{
+}
