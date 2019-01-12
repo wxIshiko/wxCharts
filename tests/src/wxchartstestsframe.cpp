@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -35,6 +35,8 @@
 #include "wxcolumnchartpanel.h"
 #include "wxpiechartpanel.h"
 #include "wxpolarareachartpanel.h"
+#include "wxstackedbarchartpanel.h"
+#include "wxstackedcolumnchartpanel.h"
 #include "tests/testsuite.h"
 #include <wx/sizer.h>
 #include <wx/splitter.h>
@@ -105,6 +107,14 @@ wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
     m_polarAreaChartPanel = new wxPolarAreaChartPanel(m_mainPanel);
     mainPanelSizer->Add(m_polarAreaChartPanel, 1, wxEXPAND);
     m_polarAreaChartPanel->Hide();
+
+    m_stackedBarChartPanel = new wxStackedBarChartPanel(m_mainPanel);
+    mainPanelSizer->Add(m_stackedBarChartPanel, 1, wxEXPAND);
+    m_stackedBarChartPanel->Hide();
+
+    m_stackedColumnChartPanel = new wxStackedColumnChartPanel(m_mainPanel);
+    mainPanelSizer->Add(m_stackedColumnChartPanel, 1, wxEXPAND);
+    m_stackedColumnChartPanel->Hide();
 
     wxPanel* outputPanel = new wxPanel(splitterWindow);
     wxSizer* outputPanelSizer = new wxBoxSizer(wxVERTICAL);
@@ -187,6 +197,16 @@ void wxChartsTestsFrame::OnPolarAreaChart(wxCommandEvent& evt)
     SwitchPanel(m_polarAreaChartPanel);
 }
 
+void wxChartsTestsFrame::OnStackedBarChart(wxCommandEvent& evt)
+{
+    SwitchPanel(m_stackedBarChartPanel);
+}
+
+void wxChartsTestsFrame::OnStackedColumnChart(wxCommandEvent& evt)
+{
+    SwitchPanel(m_stackedColumnChartPanel);
+}
+
 void wxChartsTestsFrame::OnRunAllTests(wxCommandEvent& evt)
 {
     wxStreamToTextRedirector redirect(m_output);
@@ -217,5 +237,7 @@ wxBEGIN_EVENT_TABLE(wxChartsTestsFrame, wxFrame)
     EVT_MENU(wxID_COLUMN_CHART, wxChartsTestsFrame::OnColumnChart)
     EVT_MENU(wxID_PIE_CHART, wxChartsTestsFrame::OnPieChart)
     EVT_MENU(wxID_POLARAREA_CHART, wxChartsTestsFrame::OnPolarAreaChart)
+    EVT_MENU(wxID_STACKEDBAR_CHART, wxChartsTestsFrame::OnStackedBarChart)
+    EVT_MENU(wxID_STACKEDCOLUMN_CHART, wxChartsTestsFrame::OnStackedColumnChart)
     EVT_MENU(wxID_ALL_TESTS, wxChartsTestsFrame::OnRunAllTests)
 wxEND_EVENT_TABLE()

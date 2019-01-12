@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -46,6 +46,8 @@ private:
     void OnColumnChart(wxCommandEvent& evt);
     void OnPieChart(wxCommandEvent& evt);
     void OnPolarAreaChart(wxCommandEvent& evt);
+    void OnStackedBarChart(wxCommandEvent& evt);
+    void OnStackedColumnChart(wxCommandEvent& evt);
     void OnRunAllTests(wxCommandEvent& evt);
 
     void SwitchPanel(wxPanel* newPanel);
@@ -67,6 +69,8 @@ private:
     wxPanel* m_columnChartPanel;
     wxPanel* m_pieChartPanel;
     wxPanel* m_polarAreaChartPanel;
+    wxPanel* m_stackedBarChartPanel;
+    wxPanel* m_stackedColumnChartPanel;
 
     wxDECLARE_EVENT_TABLE();
 };

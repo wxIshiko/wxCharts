@@ -78,6 +78,8 @@ program wxchartstests
         ../../src/wxcolumnchartpanel.h
         ../../src/wxpiechartpanel.h
         ../../src/wxpolarareachartpanel.h
+        ../../src/wxstackedbarchartpanel.h
+        ../../src/wxstackedcolumnchartpanel.h
         ../../src/elementcanvaswindow.h
 
         ../../src/tests/testsuite.h
@@ -101,6 +103,8 @@ program wxchartstests
         ../../src/wxcolumnchartpanel.cpp
         ../../src/wxpiechartpanel.cpp
         ../../src/wxpolarareachartpanel.cpp
+        ../../src/wxstackedbarchartpanel.cpp
+        ../../src/wxstackedcolumnchartpanel.cpp
         ../../src/elementcanvaswindow.cpp
 
         ../../src/tests/testsuite.cpp

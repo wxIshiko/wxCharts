@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -45,6 +45,8 @@ wxChartsTestsMenuBar::wxChartsTestsMenuBar()
     menuCharts->Append(wxID_COLUMN_CHART, "wxColumnChartCtrl");
     menuCharts->Append(wxID_PIE_CHART, "wxPieChartCtrl");
     menuCharts->Append(wxID_POLARAREA_CHART, "wxPolarAreaChartCtrl");
+    menuCharts->Append(wxID_STACKEDBAR_CHART, "wxStackedBarChartCtrl");
+    menuCharts->Append(wxID_STACKEDCOLUMN_CHART, "wxStackedColumnChartCtrl");
     Append(menuCharts, "&Charts");
 
     wxMenu* menuTests = new wxMenu;
