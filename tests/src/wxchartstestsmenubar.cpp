@@ -29,6 +29,10 @@ wxChartsTestsMenuBar::wxChartsTestsMenuBar()
     menuFile->Append(wxID_EXIT, "Exit\tAlt+F4");
     Append(menuFile, "&File");
 
+    wxMenu* menuSettings = new wxMenu;
+    menuSettings->Append(wxID_DEFAULT_THEME, "Default Theme");
+    Append(menuSettings, "&Settings");
+
     wxMenu* menuElements = new wxMenu;
     menuElements->Append(wxID_RECTANGLE_ELEMENT, "wxChartRectangle");
     menuElements->Append(wxID_LABEL_ELEMENT, "wxChartLabel");

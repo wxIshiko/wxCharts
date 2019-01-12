@@ -65,6 +65,7 @@ program wxchartstests
         ../../src/wxchartstestsframe.h
         ../../src/wxchartstestsmenubar.h
         ../../src/wxchartstestswindowids.h
+        ../../src/wxchartsdefaultthemepanel.h
         ../../src/wxchartrectanglepanel.h
         ../../src/wxchartlabelpanel.h
         ../../src/wxchartlabelseriespanel.h
@@ -91,6 +92,7 @@ program wxchartstests
         ../../src/wxchartstestsapp.cpp
         ../../src/wxchartstestsframe.cpp
         ../../src/wxchartstestsmenubar.cpp
+        ../../src/wxchartsdefaultthemepanel.cpp
         ../../src/wxchartrectanglepanel.cpp
         ../../src/wxchartlabelpanel.cpp
         ../../src/wxchartlabelseriespanel.cpp
