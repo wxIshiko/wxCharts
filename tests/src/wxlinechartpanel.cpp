@@ -21,3 +21,8 @@
 */
 
 #include "wxlinechartpanel.h"
+
+wxLineChartPanel::wxLineChartPanel(wxWindow* parent)
+    : wxPanel(parent)
+{
+}

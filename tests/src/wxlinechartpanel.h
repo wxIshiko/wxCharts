@@ -23,4 +23,16 @@
 #ifndef _TESTS_WX_CHARTS_WXLINECHARTPANEL_H_
 #define _TESTS_WX_CHARTS_WXLINECHARTPANEL_H_
 
+#include <wx/charts/wxcharts.h>
+#include <wx/panel.h>
+
+class wxLineChartPanel : public wxPanel
+{
+public:
+    wxLineChartPanel(wxWindow* parent);
+
+private:
+    wxLineChartCtrl* m_lineChart;
+};
+
 #endif

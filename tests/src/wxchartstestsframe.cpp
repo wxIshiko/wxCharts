@@ -33,6 +33,7 @@
 #include "wxbubblechartpanel.h"
 #include "wxcandlestickchartpanel.h"
 #include "wxcolumnchartpanel.h"
+#include "wxlinechartpanel.h"
 #include "wxpiechartpanel.h"
 #include "wxpolarareachartpanel.h"
 #include "wxstackedbarchartpanel.h"
@@ -99,6 +100,10 @@ wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
     m_columnChartPanel = new wxColumnChartPanel(m_mainPanel);
     mainPanelSizer->Add(m_columnChartPanel, 1, wxEXPAND);
     m_columnChartPanel->Hide();
+
+    m_lineChartPanel = new wxLineChartPanel(m_mainPanel);
+    mainPanelSizer->Add(m_lineChartPanel, 1, wxEXPAND);
+    m_lineChartPanel->Hide();
 
     m_pieChartPanel = new wxPieChartPanel(m_mainPanel);
     mainPanelSizer->Add(m_pieChartPanel, 1, wxEXPAND);
@@ -187,6 +192,11 @@ void wxChartsTestsFrame::OnColumnChart(wxCommandEvent& evt)
     SwitchPanel(m_columnChartPanel);
 }
 
+void wxChartsTestsFrame::OnLineChart(wxCommandEvent& evt)
+{
+    SwitchPanel(m_lineChartPanel);
+}
+
 void wxChartsTestsFrame::OnPieChart(wxCommandEvent& evt)
 {
     SwitchPanel(m_pieChartPanel);
@@ -235,6 +245,7 @@ wxBEGIN_EVENT_TABLE(wxChartsTestsFrame, wxFrame)
     EVT_MENU(wxID_BUBBLE_CHART, wxChartsTestsFrame::OnBubbleChart)
     EVT_MENU(wxID_CANDLESTICK_CHART, wxChartsTestsFrame::OnCandlestickChart)
     EVT_MENU(wxID_COLUMN_CHART, wxChartsTestsFrame::OnColumnChart)
+    EVT_MENU(wxID_LINE_CHART, wxChartsTestsFrame::OnLineChart)
     EVT_MENU(wxID_PIE_CHART, wxChartsTestsFrame::OnPieChart)
     EVT_MENU(wxID_POLARAREA_CHART, wxChartsTestsFrame::OnPolarAreaChart)
     EVT_MENU(wxID_STACKEDBAR_CHART, wxChartsTestsFrame::OnStackedBarChart)
