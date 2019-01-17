@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -80,6 +80,9 @@ public:
         const wxScatterPlotOptions &options, const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
+
+    bool Scale(int coeff);
+    void Shift(double dx,double dy);
 
 private:
     void Initialize(const wxScatterPlotData &data);

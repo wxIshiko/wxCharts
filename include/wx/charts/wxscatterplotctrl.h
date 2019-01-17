@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -27,6 +27,7 @@
 
 #include "wxchartctrl.h"
 #include "wxscatterplot.h"
+#include <wx/menu.h>
 
 /// A control that displays a scatter plot.
 
@@ -57,8 +58,14 @@ public:
 private:
     virtual wxScatterPlot& GetChart();
 
+    void CreateContextMenu();
+
 private:
     wxScatterPlot m_scatterPlot;
+    wxMenu m_contextMenu;
+    wxMenu *m_subMenu;
+    int m_posX;
+    int m_posY;
 };
 
 #endif
