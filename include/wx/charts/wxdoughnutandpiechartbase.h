@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -40,9 +40,29 @@
 #include "wxchartslicedata.h"
 #include "wxdoughnutandpiechartoptionsbase.h"
 #include "wxchartarc.h"
+#include "wxchartobservers.h"
 #include <wx/control.h>
 #include <wx/sharedptr.h>
 #include <map>
+
+/// Data for the wxPieChartCtrl control.
+class wxPieChartData : public wxChartObservableValue<std::map<wxString, wxChartSliceData>>
+{
+public:
+    /// Smart pointer typedef.
+    typedef wxSharedPtr<wxPieChartData> ptr;
+
+    wxPieChartData();
+    static ptr make_shared();
+
+    const std::map<wxString, wxChartSliceData>& GetSlices() const;
+    void AppendSlice(const wxChartSliceData &slice);
+    void UpdateSlices(const wxVector<wxChartSliceData> &slices);
+    void AddSlices(const wxVector<wxChartSliceData> &slices);
+
+private:
+    void Add(const wxChartSliceData &slice);
+};
 
 /// Common base class for the wxDoughnutChart and wxPieChart charts.
 
@@ -55,8 +75,8 @@ class wxDoughnutAndPieChartBase : public wxChart
 public:
     /// Constructs a wxDoughnutAndPieChartBase
     /// instance.
-    wxDoughnutAndPieChartBase();
-    wxDoughnutAndPieChartBase(const wxSize &size);
+    wxDoughnutAndPieChartBase(wxPieChartData::ptr data);
+    wxDoughnutAndPieChartBase(wxPieChartData::ptr data, const wxSize &size);
     void SetData(const std::map<wxString, wxChartSliceData> &data);
 
 private:
@@ -89,6 +109,7 @@ private:
     };
 
 private:
+    wxPieChartData::ptr m_data;
     wxSize m_size;
     wxVector<SliceArc::ptr> m_slices;
     wxDouble m_total;

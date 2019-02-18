@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -37,13 +37,16 @@
 #include <limits>
 
 wxMath2DPlotDataset::wxMath2DPlotDataset(
+    const wxColor &lineColor,
     const wxColor &dotColor,
     const wxColor &dotStrokeColor,
     wxVector<wxPoint2DDouble> &data,
-    const wxChartType &chartType)
-    : m_showDots(true), m_dotColor(dotColor),
-      m_dotStrokeColor(dotStrokeColor), m_showLine(true),
-      m_lineColor(dotColor),m_data(data),m_type(chartType)
+    const wxChartType &chartType,
+    const bool &showDots,
+    const bool &showLine)
+    : m_showDots(showDots), m_dotColor(dotColor),
+      m_dotStrokeColor(dotStrokeColor), m_showLine(showLine),
+      m_lineColor(lineColor),m_data(data),m_type(chartType)
 {
 }
 
@@ -606,17 +609,16 @@ void wxMath2DPlot::DoDraw(wxGraphicsContext &gc,
                     path.AddLineToPoint(lastPosition);
                 }
             }
-
+            wxPen pen;
             if (m_datasets[i]->ShowLine())
             {
-                wxPen pen(m_datasets[i]->GetLineColor(), m_options.GetLineWidth());
-                gc.SetPen(pen);
+                pen = wxPen(m_datasets[i]->GetLineColor(), m_options.GetLineWidth());
             }
             else
             {
-                // TODO : transparent pen
+                pen = wxPen(wxColor(255, 255, 255, 0), 0);
             }
-
+            gc.SetPen(pen);
             gc.StrokePath(path);
         }
 

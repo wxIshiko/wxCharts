@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,31 +20,19 @@
     IN THE SOFTWARE.
 */
 
-/// @file
+#ifndef _TESTS_WX_CHARTS_WXSTACKEDCOLUMNCHARTPANEL_H_
+#define _TESTS_WX_CHARTS_WXSTACKEDCOLUMNCHARTPANEL_H_
 
-#ifndef _WX_CHARTS_WXPIECHART_H_
-#define _WX_CHARTS_WXPIECHART_H_
+#include <wx/charts/wxcharts.h>
+#include <wx/panel.h>
 
-#include "wxdoughnutandpiechartbase.h"
-#include "wxpiechartoptions.h"
-
-/// A pie chart.
-
-/// \ingroup chartclasses
-class wxPieChart : public wxDoughnutAndPieChartBase
+class wxStackedColumnChartPanel : public wxPanel
 {
 public:
-    wxPieChart(wxPieChartData::ptr data, const wxSize &size);
-    wxPieChart(wxPieChartData::ptr data,
-        const wxPieChartOptions &options, const wxSize &size);
-
-    virtual const wxChartCommonOptions& GetCommonOptions() const;
+    wxStackedColumnChartPanel(wxWindow* parent);
 
 private:
-    const wxDoughnutAndPieChartOptionsBase& GetOptions() const override;
-
-private:
-    wxPieChartOptions m_options;
+    wxStackedColumnChartCtrl* m_stackedColumnChart;
 };
 
 #endif

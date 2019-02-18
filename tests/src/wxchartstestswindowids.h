@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -36,9 +36,12 @@ const wxWindowID wxID_BAR_CHART = wxID_AREA_CHART + 1;
 const wxWindowID wxID_BUBBLE_CHART = wxID_BAR_CHART + 1;
 const wxWindowID wxID_CANDLESTICK_CHART = wxID_BUBBLE_CHART + 1;
 const wxWindowID wxID_COLUMN_CHART = wxID_CANDLESTICK_CHART + 1;
-const wxWindowID wxID_PIE_CHART = wxID_COLUMN_CHART + 1;
+const wxWindowID wxID_LINE_CHART = wxID_COLUMN_CHART + 1;
+const wxWindowID wxID_PIE_CHART = wxID_LINE_CHART + 1;
 const wxWindowID wxID_POLARAREA_CHART = wxID_PIE_CHART + 1;
+const wxWindowID wxID_STACKEDBAR_CHART = wxID_POLARAREA_CHART + 1;
+const wxWindowID wxID_STACKEDCOLUMN_CHART = wxID_STACKEDBAR_CHART + 1;
 
-const wxWindowID wxID_ALL_TESTS = wxID_POLARAREA_CHART + 1;
+const wxWindowID wxID_ALL_TESTS = wxID_STACKEDCOLUMN_CHART + 1;
 
 #endif

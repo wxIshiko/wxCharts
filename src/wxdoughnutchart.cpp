@@ -22,67 +22,22 @@
 
 #include "wxdoughnutchart.h"
 
-wxDoughnutChartData::wxDoughnutChartData()
+wxDoughnutChart::wxDoughnutChart(wxPieChartData::ptr data,
+                                 const wxSize &size)
+    : wxDoughnutAndPieChartBase(data, size)
 {
 }
 
-const std::map<wxString,wxChartSliceData>& wxDoughnutChartData::GetSlices() const
-{
-    return m_value;
-}
-
-void wxDoughnutChartData::AppendSlice(const wxChartSliceData &slice)
-{
-    Add(slice);
-    Notify();
-}
-
-void wxDoughnutChartData::UpdateSlices(const wxVector<wxChartSliceData> &slices)
-{
-    m_value.clear();
-    AddSlices(slices);
-}
-
-void wxDoughnutChartData::AddSlices(const wxVector<wxChartSliceData> &slices)
-{
-    for(const auto &slice : slices)
-        Add(slice);
-
-    Notify();
-}
-
-void wxDoughnutChartData::Add(const wxChartSliceData &slice)
-{
-    auto key = slice.GetLabel();
-	auto it = m_value.find(key);
-    if( it == m_value.end())
-		m_value.insert(std::make_pair(key,slice));
-	else
-		it->second.SetValue(it->second.GetValue()+slice.GetValue());
-}
-
-wxDoughnutChart::wxDoughnutChart(const wxDoughnutChartData &data,
-                                 const wxSize &size) : wxDoughnutAndPieChartBase(size)
-{
-    Initialize(data);
-}
-
-wxDoughnutChart::wxDoughnutChart(const wxDoughnutChartData &data,
+wxDoughnutChart::wxDoughnutChart(wxPieChartData::ptr data,
                                  const wxDougnutChartOptions &options,
                                  const wxSize &size)
-    : wxDoughnutAndPieChartBase(size), m_options(options)
+    : wxDoughnutAndPieChartBase(data, size), m_options(options)
 {
-    Initialize(data);
 }
 
 const wxChartCommonOptions& wxDoughnutChart::GetCommonOptions() const
 {
     return m_options.GetCommonOptions();
-}
-
-void wxDoughnutChart::Initialize(const wxDoughnutChartData &data)
-{
-    SetData(data.GetSlices());
 }
 
 const wxDoughnutAndPieChartOptionsBase& wxDoughnutChart::GetOptions() const

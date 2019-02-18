@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2017-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -40,6 +40,7 @@ WxMath2DInteractiveFrame::WxMath2DInteractiveFrame(const wxString& title)
     wxVector<wxPoint2DDouble> data1;
     wxMath2DPlotDataset::ptr dataset1(
         new wxMath2DPlotDataset(
+            wxColor(255, 255, 255, 0),
             wxColor(250, 20, 20, 0x78),
             wxColor(0, 0, 0, 0xB8),
             data1)
@@ -49,6 +50,7 @@ WxMath2DInteractiveFrame::WxMath2DInteractiveFrame(const wxString& title)
     wxVector<wxPoint2DDouble> data2;
     wxMath2DPlotDataset::ptr dataset2(
         new wxMath2DPlotDataset(
+            wxColor(255, 255, 255, 0),
             wxColor(0, 70, 140, 0x78),
             wxColor(50, 210, 105, 0xB8),
             data2)
