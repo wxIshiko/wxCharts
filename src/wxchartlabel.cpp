@@ -40,12 +40,16 @@ wxChartLabel::wxChartLabel(const wxString &text,
 {
 }
 
+wxChartLabel::wxChartLabel(const wxChartLabel &obj)
+    : m_options(obj.m_options), m_text(obj.m_text), m_position(obj.m_position), m_size(obj.m_size),
+      m_padding(obj.m_padding) {}
+
 wxChartLabel &wxChartLabel::operator=(const wxChartLabel &obj) {
-    this->m_options=obj.m_options;
-    this->m_text=obj.m_text;
-    this->m_position=obj.m_position;
-    this->m_size=obj.m_size;
-    this->m_padding=obj.m_padding;
+    m_options=obj.m_options;
+    m_text=obj.m_text;
+    m_position=obj.m_position;
+    m_size=obj.m_size;
+    m_padding=obj.m_padding;
     return *this;
 }
 
