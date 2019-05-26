@@ -36,6 +36,9 @@ public:
     wxChartsThemeId();
     wxChartsThemeId(const wxString& id);
 
+    bool operator==(const wxChartsThemeId& other) const;
+    bool operator!=(const wxChartsThemeId& other) const;
+
 private:
     wxString m_id;
 };
