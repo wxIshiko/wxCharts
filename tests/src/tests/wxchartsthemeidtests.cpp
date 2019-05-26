@@ -23,7 +23,12 @@
 #include <wx/charts/wxcharts.h>
 #include <catch.hpp>
 
-TEST_CASE("wxChartsThemeId constructor")
+TEST_CASE("wxChartsThemeId default constructor")
 {
     wxChartsThemeId id;
+}
+
+TEST_CASE("wxChartsThemeId constructor")
+{
+    wxChartsThemeId id("theme1");
 }

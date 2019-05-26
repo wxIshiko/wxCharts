@@ -23,3 +23,13 @@
 /// @file
 
 #include "wxchartsthemeid.h"
+
+wxChartsThemeId::wxChartsThemeId()
+    : m_id("default")
+{
+}
+
+wxChartsThemeId::wxChartsThemeId(const wxString& id)
+    : m_id(id)
+{
+}

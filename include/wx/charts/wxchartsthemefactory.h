@@ -25,4 +25,11 @@
 #ifndef _WX_CHARTS_WXCHARTSTHEMEFACTORY_H_
 #define _WX_CHARTS_WXCHARTSTHEMEFACTORY_H_
 
+/// Factory class to create themes.
+
+/// \ingroup themeclasses
+class wxChartsThemeFactory
+{
+};
+
 #endif

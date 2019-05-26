@@ -25,4 +25,19 @@
 #ifndef _WX_CHARTS_WXCHARTSTHEMEID_H_
 #define _WX_CHARTS_WXCHARTSTHEMEID_H_
 
+#include <wx/string.h>
+
+/// Identifier for a theme.
+
+/// \ingroup themeclasses
+class wxChartsThemeId
+{
+public:
+    wxChartsThemeId();
+    wxChartsThemeId(const wxString& id);
+
+private:
+    wxString m_id;
+};
+
 #endif
