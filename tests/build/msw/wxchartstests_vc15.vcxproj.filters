@@ -181,7 +181,13 @@
     <ClCompile Include="..\..\src\tests\wxpiechartoptionstests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\tests\wxchartsthemeidtests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\tests\wxchartsthemetests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\wxchartsthemefactorytests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -183,7 +183,9 @@
     <ClCompile Include="..\..\src\tests\wxchartgridoptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxcolumnchartoptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxpiechartoptionstests.cpp" />
+    <ClCompile Include="..\..\src\tests\wxchartsthemeidtests.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartsthemetests.cpp" />
+    <ClCompile Include="..\..\src\tests\wxchartsthemefactorytests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\wxchartstestsapp.h" />
