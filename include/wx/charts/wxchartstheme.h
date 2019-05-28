@@ -27,6 +27,7 @@
 
 #include "wxbarchartoptions.h"
 #include "wxcolumnchartoptions.h"
+#include "wxlinechartoptions.h"
 #include "wxstackedbarchartoptions.h"
 #include "wxstackedcolumnchartoptions.h"
 #include <wx/sharedptr.h>
@@ -38,12 +39,14 @@ public:
 
     wxSharedPtr<wxBarChartOptions> GetBarChartOptions();
     wxSharedPtr<wxColumnChartOptions> GetColumnChartOptions();
+    wxSharedPtr<wxLineChartOptions> GetLineChartOptions();
     wxSharedPtr<wxStackedBarChartOptions> GetStackedBarChartOptions();
     wxSharedPtr<wxStackedColumnChartOptions> GetStackedColumnChartOptions();
 
 private:
     wxSharedPtr<wxBarChartOptions> m_barChartOptions;
     wxSharedPtr<wxColumnChartOptions> m_columnChartOptions;
+    wxSharedPtr<wxLineChartOptions> m_lineChartOptions;
     wxSharedPtr<wxStackedBarChartOptions> m_stackedBarChartOptions;
     wxSharedPtr<wxStackedColumnChartOptions> m_stackedColumnChartOptions;
 };
