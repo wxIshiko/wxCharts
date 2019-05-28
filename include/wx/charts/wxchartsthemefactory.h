@@ -25,11 +25,24 @@
 #ifndef _WX_CHARTS_WXCHARTSTHEMEFACTORY_H_
 #define _WX_CHARTS_WXCHARTSTHEMEFACTORY_H_
 
+#include "wxchartsthemeid.h"
+#include "wxchartstheme.h"
+#include <map>
+
 /// Factory class to create themes.
 
 /// \ingroup themeclasses
 class wxChartsThemeFactory
 {
+public:
+    static wxChartsTheme& Get(const wxChartsThemeId& id);
+    static void Register(const wxChartsThemeId& id, wxSharedPtr<wxChartsTheme> theme);
+
+private:
+    static std::map<wxChartsThemeId, wxSharedPtr<wxChartsTheme>>& GetMap();
+
+private:
+    static std::map<wxChartsThemeId, wxSharedPtr<wxChartsTheme>>* m_themes;
 };
 
 #endif

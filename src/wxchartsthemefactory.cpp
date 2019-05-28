@@ -23,3 +23,34 @@
 /// @file
 
 #include "wxchartsthemefactory.h"
+
+std::map<wxChartsThemeId, wxSharedPtr<wxChartsTheme>>* wxChartsThemeFactory::m_themes = 0;
+
+wxChartsTheme& wxChartsThemeFactory::Get(const wxChartsThemeId& id)
+{
+    std::map<wxChartsThemeId, wxSharedPtr<wxChartsTheme>>& themes = GetMap();
+    std::map<wxChartsThemeId, wxSharedPtr<wxChartsTheme>>::const_iterator it = themes.find(id);
+    if (it != themes.end())
+    {
+        return *it->second;
+    }
+    else
+    {
+        return *themes[wxChartsThemeId()];
+    }
+}
+
+void wxChartsThemeFactory::Register(const wxChartsThemeId& id, wxSharedPtr<wxChartsTheme> theme)
+{
+    GetMap()[id] = theme;
+}
+
+std::map<wxChartsThemeId, wxSharedPtr<wxChartsTheme>>& wxChartsThemeFactory::GetMap()
+{
+    if (m_themes == 0)
+    {
+        m_themes = new std::map<wxChartsThemeId, wxSharedPtr<wxChartsTheme>>();
+        (*m_themes)[wxChartsThemeId()] = wxChartsDefaultTheme;
+    }
+    return *m_themes;
+}

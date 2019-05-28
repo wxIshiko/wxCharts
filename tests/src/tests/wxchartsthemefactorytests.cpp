@@ -26,4 +26,15 @@
 TEST_CASE("wxChartsThemeFactory constructor")
 {
     wxChartsThemeFactory factory;
+    wxChartsTheme& defaultTheme = factory.Get(wxChartsThemeId());
+
+    REQUIRE(&defaultTheme == wxChartsDefaultTheme.get());
+}
+
+TEST_CASE("wxChartsThemeFactory Get")
+{
+    wxChartsThemeFactory factory;
+    wxChartsTheme& defaultTheme = factory.Get(wxChartsThemeId("doesnotexist"));
+
+    REQUIRE(&defaultTheme == wxChartsDefaultTheme.get());
 }
