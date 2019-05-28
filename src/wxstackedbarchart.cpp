@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -21,6 +21,7 @@
 */
 
 #include "wxstackedbarchart.h"
+#include "wxchartstheme.h"
 #include "wxchartcategoricalaxis.h"
 #include "wxchartnumericalaxis.h"
 #include <sstream>
@@ -64,12 +65,13 @@ void wxStackedBarChart::Dataset::AppendBar(Bar::ptr column)
 
 wxStackedBarChart::wxStackedBarChart(wxChartsCategoricalData::ptr &data,
                                      const wxSize &size)
-    : m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+    : m_options(wxChartsDefaultTheme->GetStackedBarChartOptions()), 
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data->GetCategories(), m_options.GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", GetCumulativeMinValue(data->GetDatasets()), GetCumulativeMaxValue(data->GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
-        m_options.GetGridOptions()
+        wxChartCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared("y", GetCumulativeMinValue(data->GetDatasets()), GetCumulativeMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
         )
 {
     const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
@@ -109,13 +111,13 @@ wxStackedBarChart::wxStackedBarChart(wxChartsCategoricalData::ptr &data,
 wxStackedBarChart::wxStackedBarChart(wxChartsCategoricalData::ptr &data,
                                      const wxStackedBarChartOptions &options, 
                                      const wxSize &size)
-    : m_options(options),
+    : m_options(new wxStackedBarChartOptions(options)),
     m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data->GetCategories(), m_options.GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", GetCumulativeMinValue(data->GetDatasets()), GetCumulativeMaxValue(data->GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
-        m_options.GetGridOptions()
+        wxChartCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared("y", GetCumulativeMinValue(data->GetDatasets()), GetCumulativeMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
         )
 {
     const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
@@ -154,7 +156,7 @@ wxStackedBarChart::wxStackedBarChart(wxChartsCategoricalData::ptr &data,
 
 const wxChartCommonOptions& wxStackedBarChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 wxDouble wxStackedBarChart::GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
@@ -224,8 +226,8 @@ wxDouble wxStackedBarChart::GetCumulativeMaxValue(const wxVector<wxChartsDoubleD
 void wxStackedBarChart::DoSetSize(const wxSize &size)
 {
     wxSize newSize(
-        size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
-        size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+        size.GetWidth() - m_options->GetPadding().GetTotalHorizontalPadding(),
+        size.GetHeight() - m_options->GetPadding().GetTotalVerticalPadding()
         );
     m_grid.Resize(newSize);
 }
@@ -247,10 +249,10 @@ void wxStackedBarChart::DoFit()
 
             wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j + 1);
             upperLeftCornerPosition.m_x += widthOfPreviousDatasets[j];
-            upperLeftCornerPosition.m_y += m_options.GetBarSpacing();
+            upperLeftCornerPosition.m_y += m_options->GetBarSpacing();
             wxPoint2DDouble bottomLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j);
             bottomLeftCornerPosition.m_x += widthOfPreviousDatasets[j];
-            bottomLeftCornerPosition.m_y -= m_options.GetBarSpacing();
+            bottomLeftCornerPosition.m_y -= m_options->GetBarSpacing();
 
             wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j + 1, bar.GetValue());
             upperRightCornerPosition.m_x += widthOfPreviousDatasets[j];
