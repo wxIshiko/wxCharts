@@ -43,3 +43,13 @@ bool wxChartsThemeId::operator!=(const wxChartsThemeId& other) const
 {
     return (m_id != other.m_id);
 }
+
+bool wxChartsThemeId::operator<(const wxChartsThemeId& other) const
+{
+    return (m_id < other.m_id);
+}
+
+bool wxChartsThemeId::operator>(const wxChartsThemeId& other) const
+{
+    return (m_id > other.m_id);
+}

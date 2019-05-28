@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2108 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,7 +26,9 @@
 
 wxChartsTheme::wxChartsTheme()
     : m_barChartOptions(new wxBarChartOptions()),
-    m_columnChartOptions(new wxColumnChartOptions())
+    m_columnChartOptions(new wxColumnChartOptions()),
+    m_stackedBarChartOptions(new wxStackedBarChartOptions()),
+    m_stackedColumnChartOptions(new wxStackedColumnChartOptions())
 {
 }
 
@@ -38,6 +40,16 @@ wxSharedPtr<wxBarChartOptions> wxChartsTheme::GetBarChartOptions()
 wxSharedPtr<wxColumnChartOptions> wxChartsTheme::GetColumnChartOptions()
 {
     return m_columnChartOptions;
+}
+
+wxSharedPtr<wxStackedBarChartOptions> wxChartsTheme::GetStackedBarChartOptions()
+{
+    return m_stackedBarChartOptions;
+}
+
+wxSharedPtr<wxStackedColumnChartOptions> wxChartsTheme::GetStackedColumnChartOptions()
+{
+    return m_stackedColumnChartOptions;
 }
 
 wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme(new wxChartsTheme());
