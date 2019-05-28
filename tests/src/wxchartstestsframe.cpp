@@ -23,6 +23,7 @@
 #include "wxchartstestsframe.h"
 #include "wxchartstestsmenubar.h"
 #include "wxchartstestswindowids.h"
+#include "wxchartsdefaultthemepanel.h"
 #include "wxchartrectanglepanel.h"
 #include "wxchartlabelseriespanel.h"
 #include "wxchartcategoricalaxispanel.h"
@@ -60,6 +61,10 @@ wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
 
     wxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
     m_mainPanel->SetSizer(mainPanelSizer);
+
+    m_chartsDefaultThemePanel = new wxChartsDefaultThemePanel(m_mainPanel);
+    mainPanelSizer->Add(m_chartsDefaultThemePanel, 1, wxEXPAND);
+    m_chartsDefaultThemePanel->Hide();
 
     m_chartRectanglePanel = new wxChartRectanglePanel(m_mainPanel);
     mainPanelSizer->Add(m_chartRectanglePanel, 1, wxEXPAND);
@@ -140,6 +145,11 @@ wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
 void wxChartsTestsFrame::OnExit(wxCommandEvent& evt)
 {
     Close();
+}
+
+void wxChartsTestsFrame::OnDefaultTheme(wxCommandEvent& evt)
+{
+    SwitchPanel(m_chartsDefaultThemePanel);
 }
 
 void wxChartsTestsFrame::OnChartRectangleElement(wxCommandEvent& evt)
@@ -235,6 +245,7 @@ void wxChartsTestsFrame::SwitchPanel(wxPanel* newPanel)
 
 wxBEGIN_EVENT_TABLE(wxChartsTestsFrame, wxFrame)
     EVT_MENU(wxID_EXIT, wxChartsTestsFrame::OnExit)
+    EVT_MENU(wxID_DEFAULT_THEME, wxChartsTestsFrame::OnDefaultTheme)
     EVT_MENU(wxID_RECTANGLE_ELEMENT, wxChartsTestsFrame::OnChartRectangleElement)
     EVT_MENU(wxID_LABEL_ELEMENT, wxChartsTestsFrame::OnChartLabelElement)
     EVT_MENU(wxID_CATEGORICALAXIS_ELEMENT, wxChartsTestsFrame::OnChartCategoricalAxisElement)

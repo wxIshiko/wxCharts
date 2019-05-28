@@ -22,32 +22,35 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTSTHEME_H_
-#define _WX_CHARTS_WXCHARTSTHEME_H_
+#include "wxchartsthemefactory.h"
 
-#include "wxbarchartoptions.h"
-#include "wxcolumnchartoptions.h"
-#include "wxstackedbarchartoptions.h"
-#include "wxstackedcolumnchartoptions.h"
-#include <wx/sharedptr.h>
+std::map<wxChartsThemeId, wxSharedPtr<wxChartsTheme>>* wxChartsThemeFactory::m_themes = 0;
 
-class wxChartsTheme
+wxChartsTheme& wxChartsThemeFactory::Get(const wxChartsThemeId& id)
 {
-public:
-    wxChartsTheme();
+    std::map<wxChartsThemeId, wxSharedPtr<wxChartsTheme>>& themes = GetMap();
+    std::map<wxChartsThemeId, wxSharedPtr<wxChartsTheme>>::const_iterator it = themes.find(id);
+    if (it != themes.end())
+    {
+        return *it->second;
+    }
+    else
+    {
+        return *themes[wxChartsThemeId()];
+    }
+}
 
-    wxSharedPtr<wxBarChartOptions> GetBarChartOptions();
-    wxSharedPtr<wxColumnChartOptions> GetColumnChartOptions();
-    wxSharedPtr<wxStackedBarChartOptions> GetStackedBarChartOptions();
-    wxSharedPtr<wxStackedColumnChartOptions> GetStackedColumnChartOptions();
+void wxChartsThemeFactory::Register(const wxChartsThemeId& id, wxSharedPtr<wxChartsTheme> theme)
+{
+    GetMap()[id] = theme;
+}
 
-private:
-    wxSharedPtr<wxBarChartOptions> m_barChartOptions;
-    wxSharedPtr<wxColumnChartOptions> m_columnChartOptions;
-    wxSharedPtr<wxStackedBarChartOptions> m_stackedBarChartOptions;
-    wxSharedPtr<wxStackedColumnChartOptions> m_stackedColumnChartOptions;
-};
-
-extern wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme;
-
-#endif
+std::map<wxChartsThemeId, wxSharedPtr<wxChartsTheme>>& wxChartsThemeFactory::GetMap()
+{
+    if (m_themes == 0)
+    {
+        m_themes = new std::map<wxChartsThemeId, wxSharedPtr<wxChartsTheme>>();
+        (*m_themes)[wxChartsThemeId()] = wxChartsDefaultTheme;
+    }
+    return *m_themes;
+}

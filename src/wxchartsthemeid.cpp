@@ -22,32 +22,34 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTSTHEME_H_
-#define _WX_CHARTS_WXCHARTSTHEME_H_
+#include "wxchartsthemeid.h"
 
-#include "wxbarchartoptions.h"
-#include "wxcolumnchartoptions.h"
-#include "wxstackedbarchartoptions.h"
-#include "wxstackedcolumnchartoptions.h"
-#include <wx/sharedptr.h>
-
-class wxChartsTheme
+wxChartsThemeId::wxChartsThemeId()
+    : m_id("default")
 {
-public:
-    wxChartsTheme();
+}
 
-    wxSharedPtr<wxBarChartOptions> GetBarChartOptions();
-    wxSharedPtr<wxColumnChartOptions> GetColumnChartOptions();
-    wxSharedPtr<wxStackedBarChartOptions> GetStackedBarChartOptions();
-    wxSharedPtr<wxStackedColumnChartOptions> GetStackedColumnChartOptions();
+wxChartsThemeId::wxChartsThemeId(const wxString& id)
+    : m_id(id)
+{
+}
 
-private:
-    wxSharedPtr<wxBarChartOptions> m_barChartOptions;
-    wxSharedPtr<wxColumnChartOptions> m_columnChartOptions;
-    wxSharedPtr<wxStackedBarChartOptions> m_stackedBarChartOptions;
-    wxSharedPtr<wxStackedColumnChartOptions> m_stackedColumnChartOptions;
-};
+bool wxChartsThemeId::operator==(const wxChartsThemeId& other) const
+{
+    return (m_id == other.m_id);
+}
 
-extern wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme;
+bool wxChartsThemeId::operator!=(const wxChartsThemeId& other) const
+{
+    return (m_id != other.m_id);
+}
 
-#endif
+bool wxChartsThemeId::operator<(const wxChartsThemeId& other) const
+{
+    return (m_id < other.m_id);
+}
+
+bool wxChartsThemeId::operator>(const wxChartsThemeId& other) const
+{
+    return (m_id > other.m_id);
+}

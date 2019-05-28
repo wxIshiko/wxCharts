@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,32 +22,27 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTSTHEME_H_
-#define _WX_CHARTS_WXCHARTSTHEME_H_
+#ifndef _WX_CHARTS_WXCHARTSTHEMEID_H_
+#define _WX_CHARTS_WXCHARTSTHEMEID_H_
 
-#include "wxbarchartoptions.h"
-#include "wxcolumnchartoptions.h"
-#include "wxstackedbarchartoptions.h"
-#include "wxstackedcolumnchartoptions.h"
-#include <wx/sharedptr.h>
+#include <wx/string.h>
 
-class wxChartsTheme
+/// Identifier for a theme.
+
+/// \ingroup themeclasses
+class wxChartsThemeId
 {
 public:
-    wxChartsTheme();
+    wxChartsThemeId();
+    wxChartsThemeId(const wxString& id);
 
-    wxSharedPtr<wxBarChartOptions> GetBarChartOptions();
-    wxSharedPtr<wxColumnChartOptions> GetColumnChartOptions();
-    wxSharedPtr<wxStackedBarChartOptions> GetStackedBarChartOptions();
-    wxSharedPtr<wxStackedColumnChartOptions> GetStackedColumnChartOptions();
+    bool operator==(const wxChartsThemeId& other) const;
+    bool operator!=(const wxChartsThemeId& other) const;
+    bool operator<(const wxChartsThemeId& other) const;
+    bool operator>(const wxChartsThemeId& other) const;
 
 private:
-    wxSharedPtr<wxBarChartOptions> m_barChartOptions;
-    wxSharedPtr<wxColumnChartOptions> m_columnChartOptions;
-    wxSharedPtr<wxStackedBarChartOptions> m_stackedBarChartOptions;
-    wxSharedPtr<wxStackedColumnChartOptions> m_stackedColumnChartOptions;
+    wxString m_id;
 };
-
-extern wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme;
 
 #endif

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -32,6 +32,7 @@
 */
 
 #include "wxstackedcolumnchart.h"
+#include "wxchartstheme.h"
 #include "wxchartcategoricalaxis.h"
 #include "wxchartnumericalaxis.h"
 #include <sstream>
@@ -75,12 +76,13 @@ void wxStackedColumnChart::Dataset::AppendColumn(Column::ptr column)
 
 wxStackedColumnChart::wxStackedColumnChart(wxChartsCategoricalData::ptr &data,
                                            const wxSize &size)
-    : m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+    : m_options(wxChartsDefaultTheme->GetStackedColumnChartOptions()),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data->GetCategories(), m_options.GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", GetCumulativeMinValue(data->GetDatasets()), GetCumulativeMaxValue(data->GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
-        m_options.GetGridOptions()
+        wxChartCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared("y", GetCumulativeMinValue(data->GetDatasets()), GetCumulativeMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
         )
 {
     const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
@@ -119,7 +121,7 @@ wxStackedColumnChart::wxStackedColumnChart(wxChartsCategoricalData::ptr &data,
 
 const wxChartCommonOptions& wxStackedColumnChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 wxDouble wxStackedColumnChart::GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
@@ -207,10 +209,10 @@ void wxStackedColumnChart::DoFit()
             Column& column = *(currentDataset.GetColumns()[j]);
 
             wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j, column.GetValue());
-            upperLeftCornerPosition.m_x += m_options.GetColumnSpacing();
+            upperLeftCornerPosition.m_x += m_options->GetColumnSpacing();
             upperLeftCornerPosition.m_y -= heightOfPreviousDatasets[j];
             wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j + 1, column.GetValue());
-            upperRightCornerPosition.m_x -= m_options.GetColumnSpacing();
+            upperRightCornerPosition.m_x -= m_options->GetColumnSpacing();
             upperRightCornerPosition.m_y -= heightOfPreviousDatasets[j];
 
             wxPoint2DDouble bottomLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j);

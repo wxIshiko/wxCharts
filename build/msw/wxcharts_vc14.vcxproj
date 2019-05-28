@@ -155,7 +155,9 @@
     <ClCompile Include="..\..\src\wxchartsdoubledataset.cpp" />
     <ClCompile Include="..\..\src\wxchartscategoricaldata.cpp" />
     <ClCompile Include="..\..\src\wxchartscategoricaldataobserver.cpp" />
+    <ClCompile Include="..\..\src\wxchartsthemeid.cpp" />
     <ClCompile Include="..\..\src\wxchartstheme.cpp" />
+    <ClCompile Include="..\..\src\wxchartsthemefactory.cpp" />
     <ClCompile Include="..\..\src\wxchartutilities.cpp" />
     <ClCompile Include="..\..\src\wxchartpadding.cpp" />
     <ClCompile Include="..\..\src\wxchartelement.cpp" />
@@ -263,7 +265,9 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartsdoubledataset.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartscategoricaldata.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartscategoricaldataobserver.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsthemeid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartstheme.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsthemefactory.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartutilities.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartpadding.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartelement.h" />

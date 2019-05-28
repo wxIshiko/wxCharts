@@ -55,7 +55,9 @@ library wxcharts
         ../../include/wx/charts/wxchartscategoricaldata.h
         ../../include/wx/charts/wxchartscategoricaldataobserver.h
 
+        ../../include/wx/charts/wxchartsthemeid.h
         ../../include/wx/charts/wxchartstheme.h
+        ../../include/wx/charts/wxchartsthemefactory.h
 
         ../../include/wx/charts/wxchartutilities.h
         ../../include/wx/charts/wxchartpadding.h
@@ -167,7 +169,9 @@ library wxcharts
         ../../src/wxchartscategoricaldata.cpp
         ../../src/wxchartscategoricaldataobserver.cpp
 
+        ../../src/wxchartsthemeid.cpp
         ../../src/wxchartstheme.cpp
+        ../../src/wxchartsthemefactory.cpp
 
         ../../src/wxchartutilities.cpp
         ../../src/wxchartpadding.cpp

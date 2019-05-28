@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,34 +20,21 @@
     IN THE SOFTWARE.
 */
 
-/// @file
+#include <wx/charts/wxcharts.h>
+#include <catch.hpp>
 
-#ifndef _WX_CHARTS_WXCHARTSTHEME_H_
-#define _WX_CHARTS_WXCHARTSTHEME_H_
-
-#include "wxbarchartoptions.h"
-#include "wxcolumnchartoptions.h"
-#include "wxstackedbarchartoptions.h"
-#include "wxstackedcolumnchartoptions.h"
-#include <wx/sharedptr.h>
-
-class wxChartsTheme
+TEST_CASE("wxChartsThemeFactory constructor")
 {
-public:
-    wxChartsTheme();
+    wxChartsThemeFactory factory;
+    wxChartsTheme& defaultTheme = factory.Get(wxChartsThemeId());
 
-    wxSharedPtr<wxBarChartOptions> GetBarChartOptions();
-    wxSharedPtr<wxColumnChartOptions> GetColumnChartOptions();
-    wxSharedPtr<wxStackedBarChartOptions> GetStackedBarChartOptions();
-    wxSharedPtr<wxStackedColumnChartOptions> GetStackedColumnChartOptions();
+    REQUIRE(&defaultTheme == wxChartsDefaultTheme.get());
+}
 
-private:
-    wxSharedPtr<wxBarChartOptions> m_barChartOptions;
-    wxSharedPtr<wxColumnChartOptions> m_columnChartOptions;
-    wxSharedPtr<wxStackedBarChartOptions> m_stackedBarChartOptions;
-    wxSharedPtr<wxStackedColumnChartOptions> m_stackedColumnChartOptions;
-};
+TEST_CASE("wxChartsThemeFactory Get")
+{
+    wxChartsThemeFactory factory;
+    wxChartsTheme& defaultTheme = factory.Get(wxChartsThemeId("doesnotexist"));
 
-extern wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme;
-
-#endif
+    REQUIRE(&defaultTheme == wxChartsDefaultTheme.get());
+}
