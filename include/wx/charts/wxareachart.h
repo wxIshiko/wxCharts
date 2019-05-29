@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -101,8 +101,8 @@ class wxAreaChart : public wxChart
 {
 public:
     wxAreaChart(const wxAreaChartData &data, const wxSize &size);
-    wxAreaChart(const wxAreaChartData &data,
-        const wxAreaChartOptions &options, const wxSize &size);
+    wxAreaChart(const wxAreaChartData &data, wxSharedPtr<wxAreaChartOptions> &options,
+        const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
@@ -166,7 +166,7 @@ private:
     };
 
 private:
-    wxAreaChartOptions m_options;
+    wxSharedPtr<wxAreaChartOptions> m_options;
     wxChartGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };

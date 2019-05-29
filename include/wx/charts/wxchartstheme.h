@@ -25,6 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTSTHEME_H_
 #define _WX_CHARTS_WXCHARTSTHEME_H_
 
+#include "wxareachartoptions.h"
 #include "wxbarchartoptions.h"
 #include "wxcolumnchartoptions.h"
 #include "wxlinechartoptions.h"
@@ -37,6 +38,7 @@ class wxChartsTheme
 public:
     wxChartsTheme();
 
+    wxSharedPtr<wxAreaChartOptions> GetAreaChartOptions();
     wxSharedPtr<wxBarChartOptions> GetBarChartOptions();
     wxSharedPtr<wxColumnChartOptions> GetColumnChartOptions();
     wxSharedPtr<wxLineChartOptions> GetLineChartOptions();
@@ -44,6 +46,7 @@ public:
     wxSharedPtr<wxStackedColumnChartOptions> GetStackedColumnChartOptions();
 
 private:
+    wxSharedPtr<wxAreaChartOptions> m_areaChartOptions;
     wxSharedPtr<wxBarChartOptions> m_barChartOptions;
     wxSharedPtr<wxColumnChartOptions> m_columnChartOptions;
     wxSharedPtr<wxLineChartOptions> m_lineChartOptions;

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -63,7 +63,7 @@ public:
         const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
         long style = 0);
     wxAreaChartCtrl(wxWindow *parent, wxWindowID id, const wxAreaChartData &data,
-        const wxAreaChartOptions &options, const wxPoint &pos = wxDefaultPosition,
+        wxSharedPtr<wxAreaChartOptions> &options, const wxPoint &pos = wxDefaultPosition,
         const wxSize &size = wxDefaultSize, long style = 0);
 
 private:

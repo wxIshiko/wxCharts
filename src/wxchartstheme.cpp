@@ -25,12 +25,18 @@
 #include "wxchartstheme.h"
 
 wxChartsTheme::wxChartsTheme()
-    : m_barChartOptions(new wxBarChartOptions()),
+    : m_areaChartOptions(new wxAreaChartOptions()),
+    m_barChartOptions(new wxBarChartOptions()),
     m_columnChartOptions(new wxColumnChartOptions()),
     m_lineChartOptions(new wxLineChartOptions()),
     m_stackedBarChartOptions(new wxStackedBarChartOptions()),
     m_stackedColumnChartOptions(new wxStackedColumnChartOptions())
 {
+}
+
+wxSharedPtr<wxAreaChartOptions> wxChartsTheme::GetAreaChartOptions()
+{
+    return m_areaChartOptions;
 }
 
 wxSharedPtr<wxBarChartOptions> wxChartsTheme::GetBarChartOptions()

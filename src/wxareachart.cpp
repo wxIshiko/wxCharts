@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -32,6 +32,7 @@
 */
 
 #include "wxareachart.h"
+#include "wxchartstheme.h"
 #include <wx/dcmemory.h>
 #include <sstream>
 
@@ -152,34 +153,35 @@ void wxAreaChart::Dataset::AppendPoint(Point::ptr point)
 }
 
 wxAreaChart::wxAreaChart(const wxAreaChartData &data,
-                           const wxSize &size)
-    : m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+                         const wxSize &size)
+    : m_options(wxChartsDefaultTheme->GetAreaChartOptions()),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
-        m_options.GetGridOptions())
+        m_options->GetGridOptions())
 {
     Initialize(data);
 }
 
 wxAreaChart::wxAreaChart(const wxAreaChartData &data,
-                             const wxAreaChartOptions &options,
-                             const wxSize &size)
+                         wxSharedPtr<wxAreaChartOptions> &options,
+                         const wxSize &size)
     : m_options(options),
     m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
-        m_options.GetGridOptions())
+        m_options->GetGridOptions())
 {
     Initialize(data);
 }
 
 const wxChartCommonOptions& wxAreaChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 void wxAreaChart::Save(const wxString &filename,
@@ -217,8 +219,8 @@ void wxAreaChart::Initialize(const wxAreaChartData &data)
 
             Point::ptr point(
                 new Point(datasetData[j], tooltipProvider, 20 + j * 10, 0,
-                    m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
-                    datasets[i]->GetDotColor(),m_options.GetHitDetectionRange()));
+                    m_options->GetDotRadius(), m_options->GetDotStrokeWidth(),
+                    datasets[i]->GetDotColor(),m_options->GetHitDetectionRange()));
 
             newDataset->AppendPoint(point);
         }
@@ -330,8 +332,8 @@ wxDouble wxAreaChart::GetMaxYValue(const wxVector<wxAreaChartDataset::ptr>& data
 void wxAreaChart::DoSetSize(const wxSize &size)
 {
     wxSize newSize(
-        size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
-        size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+        size.GetWidth() - m_options->GetPadding().GetTotalHorizontalPadding(),
+        size.GetHeight() - m_options->GetPadding().GetTotalVerticalPadding()
         );
     m_grid.Resize(newSize);
 }
