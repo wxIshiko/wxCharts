@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -109,7 +109,7 @@ private:
     };
 
 private:
-    wxOHLCChartOptions m_options;
+    wxSharedPtr<wxOHLCChartOptions> m_options;
     wxChartGrid m_grid;
     wxVector<OHLCLines::ptr> m_data;
 };

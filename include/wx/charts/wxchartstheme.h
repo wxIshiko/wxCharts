@@ -33,6 +33,9 @@
 #include "wxdoughnutchartoptions.h"
 #include "wxhistogramchartoptions.h"
 #include "wxlinechartoptions.h"
+#include "wxmath2dplotoptions.h"
+#include "wxohlcchartoptions.h"
+#include "wxpiechartoptions.h"
 #include "wxstackedbarchartoptions.h"
 #include "wxstackedcolumnchartoptions.h"
 #include <wx/sharedptr.h>
@@ -50,6 +53,9 @@ public:
     wxSharedPtr<wxDoughnutChartOptions> GetDoughnutChartOptions();
     wxSharedPtr<wxHistogramChartOptions> GetHistogramChartOptions();
     wxSharedPtr<wxLineChartOptions> GetLineChartOptions();
+    wxSharedPtr<wxMath2DPlotOptions> GetMath2DPlotOptions();
+    wxSharedPtr<wxOHLCChartOptions> GetOHLCChartOptions();
+    wxSharedPtr<wxPieChartOptions> GetPieChartOptions();
     wxSharedPtr<wxStackedBarChartOptions> GetStackedBarChartOptions();
     wxSharedPtr<wxStackedColumnChartOptions> GetStackedColumnChartOptions();
 
@@ -62,6 +68,9 @@ private:
     wxSharedPtr<wxDoughnutChartOptions> m_doughnutChartOptions;
     wxSharedPtr<wxHistogramChartOptions> m_histogramChartOptions;
     wxSharedPtr<wxLineChartOptions> m_lineChartOptions;
+    wxSharedPtr<wxMath2DPlotOptions> m_math2DPlotOptions;
+    wxSharedPtr<wxOHLCChartOptions> m_ohlcChartOptions;
+    wxSharedPtr<wxPieChartOptions> m_pieChartOptions;
     wxSharedPtr<wxStackedBarChartOptions> m_stackedBarChartOptions;
     wxSharedPtr<wxStackedColumnChartOptions> m_stackedColumnChartOptions;
 };

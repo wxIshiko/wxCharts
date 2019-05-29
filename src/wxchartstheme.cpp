@@ -33,6 +33,9 @@ wxChartsTheme::wxChartsTheme()
     m_doughnutChartOptions(new wxDoughnutChartOptions()),
     m_histogramChartOptions(new wxHistogramChartOptions()),
     m_lineChartOptions(new wxLineChartOptions()),
+    m_math2DPlotOptions(new wxMath2DPlotOptions()),
+    m_ohlcChartOptions(new wxOHLCChartOptions()),
+    m_pieChartOptions(new wxPieChartOptions()),
     m_stackedBarChartOptions(new wxStackedBarChartOptions()),
     m_stackedColumnChartOptions(new wxStackedColumnChartOptions())
 {
@@ -76,6 +79,21 @@ wxSharedPtr<wxHistogramChartOptions> wxChartsTheme::GetHistogramChartOptions()
 wxSharedPtr<wxLineChartOptions> wxChartsTheme::GetLineChartOptions()
 {
     return m_lineChartOptions;
+}
+
+wxSharedPtr<wxMath2DPlotOptions> wxChartsTheme::GetMath2DPlotOptions()
+{
+    return m_math2DPlotOptions;
+}
+
+wxSharedPtr<wxOHLCChartOptions> wxChartsTheme::GetOHLCChartOptions()
+{
+    return m_ohlcChartOptions;
+}
+
+wxSharedPtr<wxPieChartOptions> wxChartsTheme::GetPieChartOptions()
+{
+    return m_pieChartOptions;
 }
 
 wxSharedPtr<wxStackedBarChartOptions> wxChartsTheme::GetStackedBarChartOptions()

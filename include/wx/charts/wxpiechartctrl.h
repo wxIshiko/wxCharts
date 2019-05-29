@@ -66,7 +66,7 @@ public:
     /// @param style Control style. For generic window styles, please
     /// see wxWindow.
     wxPieChartCtrl(wxWindow *parent, wxWindowID id, wxPieChartData::ptr data,
-        const wxPieChartOptions &options, const wxPoint &pos = wxDefaultPosition,
+        wxSharedPtr<wxPieChartOptions> &options, const wxPoint &pos = wxDefaultPosition,
         const wxSize &size = wxDefaultSize, long style = 0);
 
 private:

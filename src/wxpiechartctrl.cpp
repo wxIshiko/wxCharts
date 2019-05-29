@@ -38,7 +38,7 @@ wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
 wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
                                wxWindowID id,
                                wxPieChartData::ptr data,
-                               const wxPieChartOptions &options,
+                               wxSharedPtr<wxPieChartOptions> &options,
                                const wxPoint &pos,
                                const wxSize &size,
                                long style)
