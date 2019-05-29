@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -30,12 +30,12 @@
 /// The options for the wxDoughnutChartCtrl control.
 
 /// \ingroup chartclasses
-class wxDougnutChartOptions : public wxDoughnutAndPieChartOptionsBase
+class wxDoughnutChartOptions : public wxDoughnutAndPieChartOptionsBase
 {
 public:
     /// Constructs a wxDougnutChartOptions
     /// instance.
-    wxDougnutChartOptions();
+    wxDoughnutChartOptions();
 
     void SetSliceStrokeWidth(unsigned int strokeWidth);
     void SetPercentageInnerCutout(unsigned int cutout);

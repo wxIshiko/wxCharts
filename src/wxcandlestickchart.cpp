@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -23,6 +23,7 @@
 /// @file
 
 #include "wxcandlestickchart.h"
+#include "wxchartstheme.h"
 #include "wxchartcategoricalaxis.h"
 #include "wxchartnumericalaxis.h"
 #include <wx/brush.h>
@@ -166,12 +167,13 @@ void wxCandlestickChart::Candlestick::Update(const wxChartGridMapping& mapping,
 
 wxCandlestickChart::wxCandlestickChart(const wxCandlestickChartData &data,
                                        const wxSize &size)
-    : m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
+    : m_options(wxChartsDefaultTheme->GetCandlestickChartOptions()),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions().GetYAxisOptions()),
-        m_options.GetGridOptions()
+        wxChartCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
         )
 {
     for (size_t i = 0; i < data.GetData().size(); ++i)
@@ -200,7 +202,7 @@ wxCandlestickChart::wxCandlestickChart(const wxCandlestickChartData &data,
 
 const wxChartCommonOptions& wxCandlestickChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 wxDouble wxCandlestickChart::GetMinValue(const wxCandlestickChartData &data)
@@ -248,8 +250,8 @@ wxDouble wxCandlestickChart::GetMaxValue(const wxCandlestickChartData &data)
 void wxCandlestickChart::DoSetSize(const wxSize &size)
 {
     wxSize newSize(
-        size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
-        size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+        size.GetWidth() - m_options->GetPadding().GetTotalHorizontalPadding(),
+        size.GetHeight() - m_options->GetPadding().GetTotalVerticalPadding()
         );
     m_grid.Resize(newSize);
 }

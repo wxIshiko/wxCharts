@@ -57,6 +57,8 @@ library wxcharts
 
         ../../include/wx/charts/wxchartsthemeid.h
         ../../include/wx/charts/wxchartstheme.h
+        ../../include/wx/charts/wxchartspresentationtheme.h
+        ../../include/wx/charts/wxchartsprecisiontheme.h
         ../../include/wx/charts/wxchartsthemefactory.h
 
         ../../include/wx/charts/wxchartutilities.h
@@ -171,6 +173,8 @@ library wxcharts
 
         ../../src/wxchartsthemeid.cpp
         ../../src/wxchartstheme.cpp
+        ../../src/wxchartspresentationtheme.cpp
+        ../../src/wxchartsprecisiontheme.cpp
         ../../src/wxchartsthemefactory.cpp
 
         ../../src/wxchartutilities.cpp

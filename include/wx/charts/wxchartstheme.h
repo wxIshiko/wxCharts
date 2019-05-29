@@ -25,8 +25,13 @@
 #ifndef _WX_CHARTS_WXCHARTSTHEME_H_
 #define _WX_CHARTS_WXCHARTSTHEME_H_
 
+#include "wxareachartoptions.h"
 #include "wxbarchartoptions.h"
+#include "wxbubblechartoptions.h"
+#include "wxcandlestickchartoptions.h"
 #include "wxcolumnchartoptions.h"
+#include "wxdoughnutchartoptions.h"
+#include "wxlinechartoptions.h"
 #include "wxstackedbarchartoptions.h"
 #include "wxstackedcolumnchartoptions.h"
 #include <wx/sharedptr.h>
@@ -36,14 +41,24 @@ class wxChartsTheme
 public:
     wxChartsTheme();
 
+    wxSharedPtr<wxAreaChartOptions> GetAreaChartOptions();
     wxSharedPtr<wxBarChartOptions> GetBarChartOptions();
+    wxSharedPtr<wxBubbleChartOptions> GetBubbleChartOptions();
+    wxSharedPtr<wxCandlestickChartOptions> GetCandlestickChartOptions();
     wxSharedPtr<wxColumnChartOptions> GetColumnChartOptions();
+    wxSharedPtr<wxDoughnutChartOptions> GetDoughnutChartOptions();
+    wxSharedPtr<wxLineChartOptions> GetLineChartOptions();
     wxSharedPtr<wxStackedBarChartOptions> GetStackedBarChartOptions();
     wxSharedPtr<wxStackedColumnChartOptions> GetStackedColumnChartOptions();
 
 private:
+    wxSharedPtr<wxAreaChartOptions> m_areaChartOptions;
     wxSharedPtr<wxBarChartOptions> m_barChartOptions;
+    wxSharedPtr<wxBubbleChartOptions> m_bubbleChartOptions;
+    wxSharedPtr<wxCandlestickChartOptions> m_candlestickChartOptions;
     wxSharedPtr<wxColumnChartOptions> m_columnChartOptions;
+    wxSharedPtr<wxDoughnutChartOptions> m_doughnutChartOptions;
+    wxSharedPtr<wxLineChartOptions> m_lineChartOptions;
     wxSharedPtr<wxStackedBarChartOptions> m_stackedBarChartOptions;
     wxSharedPtr<wxStackedColumnChartOptions> m_stackedColumnChartOptions;
 };

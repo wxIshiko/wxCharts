@@ -25,11 +25,21 @@
 #include "wxchartstheme.h"
 
 wxChartsTheme::wxChartsTheme()
-    : m_barChartOptions(new wxBarChartOptions()),
+    : m_areaChartOptions(new wxAreaChartOptions()),
+    m_barChartOptions(new wxBarChartOptions()),
+    m_bubbleChartOptions(new wxBubbleChartOptions()),
+    m_candlestickChartOptions(new wxCandlestickChartOptions()),
     m_columnChartOptions(new wxColumnChartOptions()),
+    m_doughnutChartOptions(new wxDoughnutChartOptions()),
+    m_lineChartOptions(new wxLineChartOptions()),
     m_stackedBarChartOptions(new wxStackedBarChartOptions()),
     m_stackedColumnChartOptions(new wxStackedColumnChartOptions())
 {
+}
+
+wxSharedPtr<wxAreaChartOptions> wxChartsTheme::GetAreaChartOptions()
+{
+    return m_areaChartOptions;
 }
 
 wxSharedPtr<wxBarChartOptions> wxChartsTheme::GetBarChartOptions()
@@ -37,9 +47,29 @@ wxSharedPtr<wxBarChartOptions> wxChartsTheme::GetBarChartOptions()
     return m_barChartOptions;
 }
 
+wxSharedPtr<wxBubbleChartOptions> wxChartsTheme::GetBubbleChartOptions()
+{
+    return m_bubbleChartOptions;
+}
+
+wxSharedPtr<wxCandlestickChartOptions> wxChartsTheme::GetCandlestickChartOptions()
+{
+    return m_candlestickChartOptions;
+}
+
 wxSharedPtr<wxColumnChartOptions> wxChartsTheme::GetColumnChartOptions()
 {
     return m_columnChartOptions;
+}
+
+wxSharedPtr<wxDoughnutChartOptions> wxChartsTheme::GetDoughnutChartOptions()
+{
+    return m_doughnutChartOptions;
+}
+
+wxSharedPtr<wxLineChartOptions> wxChartsTheme::GetLineChartOptions()
+{
+    return m_lineChartOptions;
 }
 
 wxSharedPtr<wxStackedBarChartOptions> wxChartsTheme::GetStackedBarChartOptions()

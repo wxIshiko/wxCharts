@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,29 +22,15 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXDOUGHNUTCHART_H_
-#define _WX_CHARTS_WXDOUGHNUTCHART_H_
+#ifndef _WX_CHARTS_WXCHARTSPRESENTATIONTHEME_H_
+#define _WX_CHARTS_WXCHARTSPRESENTATIONTHEME_H_
 
-#include "wxdoughnutandpiechartbase.h"
-#include "wxdoughnutchartoptions.h"
+#include "wxchartstheme.h"
 
-/// A doughnut chart.
-
-/// \ingroup chartclasses
-class wxDoughnutChart : public wxDoughnutAndPieChartBase
+class wxChartsPresentationTheme : public wxChartsTheme
 {
 public:
-    wxDoughnutChart(wxPieChartData::ptr data, const wxSize &size);
-    wxDoughnutChart(wxPieChartData::ptr data, wxSharedPtr<wxDoughnutChartOptions> &options,
-        const wxSize &size);
-
-    virtual const wxChartCommonOptions& GetCommonOptions() const;
-
-private:
-    const wxDoughnutAndPieChartOptionsBase& GetOptions() const override;
-
-private:
-    wxSharedPtr<wxDoughnutChartOptions> m_options;
+    wxChartsPresentationTheme();
 };
 
 #endif

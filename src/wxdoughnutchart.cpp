@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -21,15 +21,17 @@
 */
 
 #include "wxdoughnutchart.h"
+#include "wxchartstheme.h"
 
 wxDoughnutChart::wxDoughnutChart(wxPieChartData::ptr data,
                                  const wxSize &size)
-    : wxDoughnutAndPieChartBase(data, size)
+    : wxDoughnutAndPieChartBase(data, size),
+    m_options(wxChartsDefaultTheme->GetDoughnutChartOptions())
 {
 }
 
 wxDoughnutChart::wxDoughnutChart(wxPieChartData::ptr data,
-                                 const wxDougnutChartOptions &options,
+                                 wxSharedPtr<wxDoughnutChartOptions> &options,
                                  const wxSize &size)
     : wxDoughnutAndPieChartBase(data, size), m_options(options)
 {
@@ -37,10 +39,10 @@ wxDoughnutChart::wxDoughnutChart(wxPieChartData::ptr data,
 
 const wxChartCommonOptions& wxDoughnutChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 const wxDoughnutAndPieChartOptionsBase& wxDoughnutChart::GetOptions() const
 {
-    return m_options;
+    return *m_options;
 }

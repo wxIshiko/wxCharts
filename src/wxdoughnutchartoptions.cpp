@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,17 +22,17 @@
 
 #include "wxdoughnutchartoptions.h"
 
-wxDougnutChartOptions::wxDougnutChartOptions()
+wxDoughnutChartOptions::wxDoughnutChartOptions()
     : wxDoughnutAndPieChartOptionsBase(50)
 {
 }
 
-void wxDougnutChartOptions::SetSliceStrokeWidth(unsigned int strokeWidth)
+void wxDoughnutChartOptions::SetSliceStrokeWidth(unsigned int strokeWidth)
 {
     wxDoughnutAndPieChartOptionsBase::SetSliceStrokeWidth(strokeWidth);
 }
 
-void wxDougnutChartOptions::SetPercentageInnerCutout(unsigned int cutout)
+void wxDoughnutChartOptions::SetPercentageInnerCutout(unsigned int cutout)
 {
     wxDoughnutAndPieChartOptionsBase::SetPercentageInnerCutout(cutout);
 }

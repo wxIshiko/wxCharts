@@ -38,7 +38,7 @@ public:
         const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
         long style = 0);
     wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, wxPieChartData::ptr data,
-        const wxDougnutChartOptions &options, const wxPoint &pos = wxDefaultPosition, 
+        wxSharedPtr<wxDoughnutChartOptions> &options, const wxPoint &pos = wxDefaultPosition,
         const wxSize &size = wxDefaultSize, long style = 0);
 
 private:
