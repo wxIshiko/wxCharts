@@ -253,9 +253,9 @@
     <ClCompile Include="..\..\src\wxareachartoptions.cpp" />
     <ClCompile Include="..\..\src\wxareachart.cpp" />
     <ClCompile Include="..\..\src\wxareachartctrl.cpp" />
-    <ClCompile Include="..\..\src\wxhistchartoptions.cpp" />
-    <ClCompile Include="..\..\src\wxhistchart.cpp" />
-    <ClCompile Include="..\..\src\wxhistchartctrl.cpp" />
+    <ClCompile Include="..\..\src\wxhistogramchartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxhistogramchart.cpp" />
+    <ClCompile Include="..\..\src\wxhistogramchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxcombinationchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxcombinationchart.cpp" />
     <ClCompile Include="..\..\src\wxcombinationchartctrl.cpp" />
@@ -366,9 +366,9 @@
     <ClInclude Include="..\..\include\wx\charts\wxareachartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxareachart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxareachartctrl.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxhistchartoptions.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxhistchart.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxhistchartctrl.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxhistogramchartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxhistogramchart.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxhistogramchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcombinationchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcombinationchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcombinationchartctrl.h" />

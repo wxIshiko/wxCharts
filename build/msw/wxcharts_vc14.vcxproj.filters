@@ -332,13 +332,13 @@
     <ClInclude Include="..\..\include\wx\charts\wxareachartctrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxhistchartoptions.h">
+    <ClInclude Include="..\..\include\wx\charts\wxhistogramchartoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxhistchart.h">
+    <ClInclude Include="..\..\include\wx\charts\wxhistogramchart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxhistchartctrl.h">
+    <ClInclude Include="..\..\include\wx\charts\wxhistogramchartctrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxcombinationchartoptions.h">
@@ -661,13 +661,13 @@
     <ClCompile Include="..\..\src\wxareachartctrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxhistchartoptions.cpp">
+    <ClCompile Include="..\..\src\wxhistogramchartoptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxhistchart.cpp">
+    <ClCompile Include="..\..\src\wxhistogramchart.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxhistchartctrl.cpp">
+    <ClCompile Include="..\..\src\wxhistogramchartctrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxcombinationchartoptions.cpp">
