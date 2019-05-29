@@ -46,7 +46,7 @@
 #include "wxohlcchartctrl.h"
 #include "wxcombinationchartctrl.h"
 #include "wxchartlegendctrl.h"
-#include "wxhistchartctrl.h"
+#include "wxhistogramchartctrl.h"
 
 #include "wxchartsthemeid.h"
 #include "wxchartstheme.h"
