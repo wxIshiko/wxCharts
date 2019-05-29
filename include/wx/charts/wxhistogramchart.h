@@ -101,8 +101,8 @@ class wxHistogramChart : public wxChart
 {
 public:
     wxHistogramChart(const wxHistogramChartData &data, const wxSize &size);
-    wxHistogramChart(const wxHistogramChartData &data,
-        const wxHistogramChartOptions &options, const wxSize &size);
+    wxHistogramChart(const wxHistogramChartData &data, wxSharedPtr<wxHistogramChartOptions> &options,
+        const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
@@ -145,7 +145,7 @@ private:
     };
 
 private:
-    wxHistogramChartOptions m_options;
+    wxSharedPtr<wxHistogramChartOptions> m_options;
     wxChartGrid m_grid;
     wxScopedPtr<Dataset> m_dataset;
 };
