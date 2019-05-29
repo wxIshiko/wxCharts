@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -33,11 +33,11 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXHISTCHART_H_
-#define _WX_CHARTS_WXHISTCHART_H_
+#ifndef _WX_CHARTS_WXHISTOGRAMCHART_H_
+#define _WX_CHARTS_WXHISTOGRAMCHART_H_
 
 #include "wxchart.h"
-#include "wxhistchartoptions.h"
+#include "wxhistogramchartoptions.h"
 #include "wxchartgrid.h"
 #include "wxchartpoint.h"
 

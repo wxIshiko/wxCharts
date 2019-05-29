@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -31,7 +31,7 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
-#include "wxhistchart.h"
+#include "wxhistogramchart.h"
 #include <wx/dcmemory.h>
 #include <sstream>
 #include <algorithm>
