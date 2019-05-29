@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -37,7 +37,7 @@ wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
 wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
                                          wxWindowID id,
                                          wxPieChartData::ptr data,
-                                         const wxDougnutChartOptions &options,
+                                         wxSharedPtr<wxDoughnutChartOptions> &options,
                                          const wxPoint &pos,
                                          const wxSize &size,
                                          long style)

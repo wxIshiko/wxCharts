@@ -30,6 +30,7 @@
 #include "wxbubblechartoptions.h"
 #include "wxcandlestickchartoptions.h"
 #include "wxcolumnchartoptions.h"
+#include "wxdoughnutchartoptions.h"
 #include "wxlinechartoptions.h"
 #include "wxstackedbarchartoptions.h"
 #include "wxstackedcolumnchartoptions.h"
@@ -45,6 +46,7 @@ public:
     wxSharedPtr<wxBubbleChartOptions> GetBubbleChartOptions();
     wxSharedPtr<wxCandlestickChartOptions> GetCandlestickChartOptions();
     wxSharedPtr<wxColumnChartOptions> GetColumnChartOptions();
+    wxSharedPtr<wxDoughnutChartOptions> GetDoughnutChartOptions();
     wxSharedPtr<wxLineChartOptions> GetLineChartOptions();
     wxSharedPtr<wxStackedBarChartOptions> GetStackedBarChartOptions();
     wxSharedPtr<wxStackedColumnChartOptions> GetStackedColumnChartOptions();
@@ -55,6 +57,7 @@ private:
     wxSharedPtr<wxBubbleChartOptions> m_bubbleChartOptions;
     wxSharedPtr<wxCandlestickChartOptions> m_candlestickChartOptions;
     wxSharedPtr<wxColumnChartOptions> m_columnChartOptions;
+    wxSharedPtr<wxDoughnutChartOptions> m_doughnutChartOptions;
     wxSharedPtr<wxLineChartOptions> m_lineChartOptions;
     wxSharedPtr<wxStackedBarChartOptions> m_stackedBarChartOptions;
     wxSharedPtr<wxStackedColumnChartOptions> m_stackedColumnChartOptions;
