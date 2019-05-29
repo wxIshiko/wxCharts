@@ -25,4 +25,12 @@
 #ifndef _WX_CHARTS_WXCHARTSPRESENTATIONTHEME_H_
 #define _WX_CHARTS_WXCHARTSPRESENTATIONTHEME_H_
 
+#include "wxchartstheme.h"
+
+class wxChartsPresentationTheme : public wxChartsTheme
+{
+public:
+    wxChartsPresentationTheme();
+};
+
 #endif

@@ -25,4 +25,12 @@
 #ifndef _WX_CHARTS_WXCHARTSPRECISIONTHEME_H_
 #define _WX_CHARTS_WXCHARTSPRECISIONTHEME_H_
 
+#include "wxchartstheme.h"
+
+class wxChartsPrecisionTheme : public wxChartsTheme
+{
+public:
+    wxChartsPrecisionTheme();
+};
+
 #endif

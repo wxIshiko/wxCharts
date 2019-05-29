@@ -23,3 +23,7 @@
 /// @file
 
 #include "wxchartspresentationtheme.h"
+
+wxChartsPresentationTheme::wxChartsPresentationTheme()
+{
+}

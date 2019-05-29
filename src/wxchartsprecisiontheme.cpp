@@ -23,3 +23,7 @@
 /// @file
 
 #include "wxchartsprecisiontheme.h"
+
+wxChartsPrecisionTheme::wxChartsPrecisionTheme()
+{
+}
