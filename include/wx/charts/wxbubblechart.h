@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -148,7 +148,7 @@ private:
     };
 
 private:
-    wxBubbleChartOptions m_options;
+    wxSharedPtr<wxBubbleChartOptions> m_options;
     wxChartGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
     wxDouble m_minZValue;

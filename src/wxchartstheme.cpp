@@ -27,6 +27,7 @@
 wxChartsTheme::wxChartsTheme()
     : m_areaChartOptions(new wxAreaChartOptions()),
     m_barChartOptions(new wxBarChartOptions()),
+    m_bubbleChartOptions(new wxBubbleChartOptions()),
     m_columnChartOptions(new wxColumnChartOptions()),
     m_lineChartOptions(new wxLineChartOptions()),
     m_stackedBarChartOptions(new wxStackedBarChartOptions()),
@@ -42,6 +43,11 @@ wxSharedPtr<wxAreaChartOptions> wxChartsTheme::GetAreaChartOptions()
 wxSharedPtr<wxBarChartOptions> wxChartsTheme::GetBarChartOptions()
 {
     return m_barChartOptions;
+}
+
+wxSharedPtr<wxBubbleChartOptions> wxChartsTheme::GetBubbleChartOptions()
+{
+    return m_bubbleChartOptions;
 }
 
 wxSharedPtr<wxColumnChartOptions> wxChartsTheme::GetColumnChartOptions()

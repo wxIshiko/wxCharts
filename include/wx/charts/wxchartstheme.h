@@ -27,6 +27,7 @@
 
 #include "wxareachartoptions.h"
 #include "wxbarchartoptions.h"
+#include "wxbubblechartoptions.h"
 #include "wxcolumnchartoptions.h"
 #include "wxlinechartoptions.h"
 #include "wxstackedbarchartoptions.h"
@@ -40,6 +41,7 @@ public:
 
     wxSharedPtr<wxAreaChartOptions> GetAreaChartOptions();
     wxSharedPtr<wxBarChartOptions> GetBarChartOptions();
+    wxSharedPtr<wxBubbleChartOptions> GetBubbleChartOptions();
     wxSharedPtr<wxColumnChartOptions> GetColumnChartOptions();
     wxSharedPtr<wxLineChartOptions> GetLineChartOptions();
     wxSharedPtr<wxStackedBarChartOptions> GetStackedBarChartOptions();
@@ -48,6 +50,7 @@ public:
 private:
     wxSharedPtr<wxAreaChartOptions> m_areaChartOptions;
     wxSharedPtr<wxBarChartOptions> m_barChartOptions;
+    wxSharedPtr<wxBubbleChartOptions> m_bubbleChartOptions;
     wxSharedPtr<wxColumnChartOptions> m_columnChartOptions;
     wxSharedPtr<wxLineChartOptions> m_lineChartOptions;
     wxSharedPtr<wxStackedBarChartOptions> m_stackedBarChartOptions;

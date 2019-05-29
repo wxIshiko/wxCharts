@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -23,6 +23,7 @@
 /// @file
 
 #include "wxbubblechart.h"
+#include "wxchartstheme.h"
 #include <sstream>
 #include <cmath>
 
@@ -127,12 +128,13 @@ unsigned int wxBubbleChart::Dataset::GetMaxRadius() const
 
 wxBubbleChart::wxBubbleChart(const wxBubbleChartData &data, 
                              const wxSize &size)
-    : m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+    : m_options(wxChartsDefaultTheme->GetBubbleChartOptions()),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
-        m_options.GetGridOptions()
+        m_options->GetGridOptions()
         ),
     m_minZValue(GetMinZValue(data.GetDatasets())), m_maxZValue(GetMaxZValue(data.GetDatasets()))
 {
@@ -141,7 +143,7 @@ wxBubbleChart::wxBubbleChart(const wxBubbleChartData &data,
 
 const wxChartCommonOptions& wxBubbleChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 void wxBubbleChart::Initialize(const wxBubbleChartData &data)
