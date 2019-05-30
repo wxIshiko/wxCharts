@@ -63,7 +63,7 @@ public:
         const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
         long style = 0);
     wxHistogramChartCtrl(wxWindow *parent, wxWindowID id, const wxHistogramChartData &data,
-        const wxHistogramChartOptions &options, const wxPoint &pos = wxDefaultPosition,
+        wxSharedPtr<wxHistogramChartOptions> &options, const wxPoint &pos = wxDefaultPosition,
         const wxSize &size = wxDefaultSize, long style = 0);
 
 private:

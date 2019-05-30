@@ -32,6 +32,7 @@
 */
 
 #include "wxhistogramchart.h"
+#include "wxchartstheme.h"
 #include <wx/dcmemory.h>
 #include <sstream>
 #include <algorithm>
@@ -130,20 +131,21 @@ void wxHistogramChart::Dataset::AppendValue(wxDouble value)
 
 wxHistogramChart::wxHistogramChart(const wxHistogramChartData &data,
                                    const wxSize &size)
-    : m_grid(
-          wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
-          size,0,0,0,0, m_options.GetGridOptions())
+    : m_options(wxChartsDefaultTheme->GetHistogramChartOptions()),
+    m_grid(
+          wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+          size,0,0,0,0, m_options->GetGridOptions())
 {
     Initialize(data);
 }
 
 wxHistogramChart::wxHistogramChart(const wxHistogramChartData &data,
-                                   const wxHistogramChartOptions &options,
+                                   wxSharedPtr<wxHistogramChartOptions> &options,
                                    const wxSize &size)
     : m_options(options),
       m_grid(
-          wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
-          size,0,0,0,0, m_options.GetGridOptions())
+          wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+          size,0,0,0,0, m_options->GetGridOptions())
 {
     Initialize(data);
 }
@@ -175,7 +177,7 @@ void wxHistogramChart::Initialize(const wxHistogramChartData &data)
 
 const wxChartCommonOptions& wxHistogramChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 void wxHistogramChart::Save(const wxString &filename,
@@ -197,8 +199,8 @@ void wxHistogramChart::Save(const wxString &filename,
 void wxHistogramChart::DoSetSize(const wxSize &size)
 {
     wxSize newSize(
-        size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
-        size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+        size.GetWidth() - m_options->GetPadding().GetTotalHorizontalPadding(),
+        size.GetHeight() - m_options->GetPadding().GetTotalVerticalPadding()
     );
     m_grid.Resize(newSize);
 }
@@ -233,7 +235,7 @@ void wxHistogramChart::DoDraw(wxGraphicsContext &gc,
             path.AddLineToPoint(m_grid.GetMapping().GetWindowPosition(value.m_end, 0));
         }
 
-        wxPen pen(m_dataset->GetLineColor(), m_options.GetLineWidth());
+        wxPen pen(m_dataset->GetLineColor(), m_options->GetLineWidth());
         gc.SetPen(pen);
         gc.StrokePath(path);
         if(m_dataset->Fill())
@@ -248,7 +250,7 @@ void wxHistogramChart::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxHistogramChart::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartElement*>> wxHistogramChart::GetActiveElements(const wxPoint &point)
 {
     return wxSharedPtr<wxVector<const wxChartElement*> >(new wxVector<const wxChartElement*>());
 }

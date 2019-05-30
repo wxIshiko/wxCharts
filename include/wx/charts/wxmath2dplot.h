@@ -117,8 +117,8 @@ class wxMath2DPlot : public wxChart
 {
 public:
     wxMath2DPlot(const wxMath2DPlotData &data, const wxSize &size);
-    wxMath2DPlot(const wxMath2DPlotData &data,
-        const wxMath2DPlotOptions &options, const wxSize &size);
+    wxMath2DPlot(const wxMath2DPlotData &data, wxSharedPtr<wxMath2DPlotOptions> &options,
+        const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
@@ -206,7 +206,7 @@ private:
     };
 
 private:
-    wxMath2DPlotOptions m_options;
+    wxSharedPtr<wxMath2DPlotOptions> m_options;
     wxChartGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };

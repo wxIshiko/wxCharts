@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -76,8 +76,8 @@ class wxScatterPlot : public wxChart
 {
 public:
     wxScatterPlot(const wxScatterPlotData &data, const wxSize &size);
-    wxScatterPlot(const wxScatterPlotData &data, 
-        const wxScatterPlotOptions &options, const wxSize &size);
+    wxScatterPlot(const wxScatterPlotData &data, wxSharedPtr<wxScatterPlotOptions> &options,
+        const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
@@ -127,7 +127,7 @@ private:
     };
 
 private:
-    wxScatterPlotOptions m_options;
+    wxSharedPtr<wxScatterPlotOptions> m_options;
     wxChartGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };

@@ -51,7 +51,7 @@ wxHistogramChartCtrl::wxHistogramChartCtrl(wxWindow *parent,
 wxHistogramChartCtrl::wxHistogramChartCtrl(wxWindow *parent,
                                  wxWindowID id,
                                  const wxHistogramChartData &data,
-                                 const wxHistogramChartOptions &options,
+                                 wxSharedPtr<wxHistogramChartOptions> &options,
                                  const wxPoint &pos,
                                  const wxSize &size,
                                  long style)

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -21,12 +21,14 @@
 */
 
 #include "wxtimeserieschart.h"
+#include "wxchartstheme.h"
 
 wxTimeSeriesChart::wxTimeSeriesChart(const wxSize &size)
+    : m_options(wxChartsDefaultTheme->GetTimeSeriesChartOptions())
 {
 }
 
-wxTimeSeriesChart::wxTimeSeriesChart(const wxTimeSeriesChartOptions &options,
+wxTimeSeriesChart::wxTimeSeriesChart(wxSharedPtr<wxTimeSeriesChartOptions> &options,
                                      const wxSize &size)
     : m_options(options)
 {
@@ -34,7 +36,7 @@ wxTimeSeriesChart::wxTimeSeriesChart(const wxTimeSeriesChartOptions &options,
 
 const wxChartCommonOptions& wxTimeSeriesChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 void wxTimeSeriesChart::DoSetSize(const wxSize &size)

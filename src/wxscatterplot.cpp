@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -23,6 +23,7 @@
 /// @file
 
 #include "wxscatterplot.h"
+#include "wxchartstheme.h"
 #include <sstream>
 
 wxScatterPlotDataset::wxScatterPlotDataset(const wxColor& fillColor,
@@ -98,27 +99,28 @@ void wxScatterPlot::Dataset::AppendPoint(Point::ptr point)
 
 wxScatterPlot::wxScatterPlot(const wxScatterPlotData &data,
                              const wxSize &size)
-    : m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+    : m_options(wxChartsDefaultTheme->GetScatterPlotOptions()),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
-        m_options.GetGridOptions()
+        m_options->GetGridOptions()
         )
 {
     Initialize(data);
 }
 
 wxScatterPlot::wxScatterPlot(const wxScatterPlotData &data,
-                             const wxScatterPlotOptions &options, 
+                             wxSharedPtr<wxScatterPlotOptions> &options, 
                              const wxSize &size)
     : m_options(options),
     m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
-        m_options.GetGridOptions()
+        m_options->GetGridOptions()
         )
 {
     Initialize(data);
@@ -126,7 +128,7 @@ wxScatterPlot::wxScatterPlot(const wxScatterPlotData &data,
 
 const wxChartCommonOptions& wxScatterPlot::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 void wxScatterPlot::Initialize(const wxScatterPlotData &data)
@@ -260,8 +262,8 @@ wxDouble wxScatterPlot::GetMaxYValue(const wxVector<wxScatterPlotDataset::ptr>& 
 void wxScatterPlot::DoSetSize(const wxSize &size)
 {
     wxSize newSize(
-        size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
-        size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+        size.GetWidth() - m_options->GetPadding().GetTotalHorizontalPadding(),
+        size.GetHeight() - m_options->GetPadding().GetTotalVerticalPadding()
         );
     m_grid.Resize(newSize);
 }

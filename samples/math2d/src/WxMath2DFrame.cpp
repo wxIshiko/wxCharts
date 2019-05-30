@@ -70,8 +70,8 @@ WxMath2DFrame::WxMath2DFrame(const wxString& title)
     wxPanel* panel = new wxPanel(this, wxID_ANY);
 
     wxMath2DPlotData chartData;
-    wxMath2DPlotOptions options;
-    options.GetCommonOptions().SetShowTooltips(false);
+    wxSharedPtr<wxMath2DPlotOptions> options(new wxMath2DPlotOptions());
+    options->GetCommonOptions().SetShowTooltips(false);
 
     wxVector<wxPoint2DDouble> points;
     auto pi = 3.1415926535897;

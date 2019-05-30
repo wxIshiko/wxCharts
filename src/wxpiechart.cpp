@@ -21,15 +21,17 @@
 */
 
 #include "wxpiechart.h"
+#include "wxchartstheme.h"
 
 wxPieChart::wxPieChart(wxPieChartData::ptr data,
                        const wxSize &size)
-    : wxDoughnutAndPieChartBase(data, size)
+    : wxDoughnutAndPieChartBase(data, size),
+    m_options(wxChartsDefaultTheme->GetPieChartOptions())
 {
 }
 
 wxPieChart::wxPieChart(const wxPieChartData::ptr data,
-                       const wxPieChartOptions &options,
+                       wxSharedPtr<wxPieChartOptions> &options,
                        const wxSize &size)
     : wxDoughnutAndPieChartBase(data, size), m_options(options)
 {
@@ -37,10 +39,10 @@ wxPieChart::wxPieChart(const wxPieChartData::ptr data,
 
 const wxChartCommonOptions& wxPieChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 const wxDoughnutAndPieChartOptionsBase& wxPieChart::GetOptions() const
 {
-    return m_options;
+    return *m_options;
 }
