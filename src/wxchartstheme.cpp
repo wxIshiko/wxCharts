@@ -36,8 +36,12 @@ wxChartsTheme::wxChartsTheme()
     m_math2DPlotOptions(new wxMath2DPlotOptions()),
     m_ohlcChartOptions(new wxOHLCChartOptions()),
     m_pieChartOptions(new wxPieChartOptions()),
+    m_polarAreaChartOptions(new wxPolarAreaChartOptions()),
+    m_radarChartOptions(new wxRadarChartOptions()),
+    m_scatterPlotOptions(new wxScatterPlotOptions()),
     m_stackedBarChartOptions(new wxStackedBarChartOptions()),
-    m_stackedColumnChartOptions(new wxStackedColumnChartOptions())
+    m_stackedColumnChartOptions(new wxStackedColumnChartOptions()),
+    m_timeSeriesChartOptions(new wxTimeSeriesChartOptions())
 {
 }
 
@@ -96,6 +100,21 @@ wxSharedPtr<wxPieChartOptions> wxChartsTheme::GetPieChartOptions()
     return m_pieChartOptions;
 }
 
+wxSharedPtr<wxPolarAreaChartOptions> wxChartsTheme::GetPolarAreaChartOptions()
+{
+    return m_polarAreaChartOptions;
+}
+
+wxSharedPtr<wxRadarChartOptions> wxChartsTheme::GetRadarChartOptions()
+{
+    return m_radarChartOptions;
+}
+
+wxSharedPtr<wxScatterPlotOptions> wxChartsTheme::GetScatterPlotOptions()
+{
+    return m_scatterPlotOptions;
+}
+
 wxSharedPtr<wxStackedBarChartOptions> wxChartsTheme::GetStackedBarChartOptions()
 {
     return m_stackedBarChartOptions;
@@ -104,6 +123,11 @@ wxSharedPtr<wxStackedBarChartOptions> wxChartsTheme::GetStackedBarChartOptions()
 wxSharedPtr<wxStackedColumnChartOptions> wxChartsTheme::GetStackedColumnChartOptions()
 {
     return m_stackedColumnChartOptions;
+}
+
+wxSharedPtr<wxTimeSeriesChartOptions> wxChartsTheme::GetTimeSeriesChartOptions()
+{
+    return m_timeSeriesChartOptions;
 }
 
 wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme(new wxChartsTheme());

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -63,8 +63,8 @@ class wxPolarAreaChart : public wxChart
 {
 public:
     wxPolarAreaChart(const wxPolarAreaChartData &data, const wxSize &size);
-    wxPolarAreaChart(const wxPolarAreaChartData &data, 
-        const wxPolarAreaChartOptions &options, const wxSize &size);
+    wxPolarAreaChart(const wxPolarAreaChartData &data,  wxSharedPtr<wxPolarAreaChartOptions> &options,
+        const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
@@ -98,7 +98,7 @@ private:
     };
 
 private:
-    wxPolarAreaChartOptions m_options;
+    wxSharedPtr<wxPolarAreaChartOptions> m_options;
     wxChartRadialGrid m_grid;
     wxVector<SliceArc::ptr> m_slices;
 };
