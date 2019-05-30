@@ -34,8 +34,8 @@ WxMath2DInteractiveFrame::WxMath2DInteractiveFrame(const wxString& title)
     wxPanel* panel = new wxPanel(this, wxID_ANY);
 
     wxMath2DPlotData chartData;
-    wxMath2DPlotOptions options;
-    options.GetCommonOptions().SetShowTooltips(false);
+    wxSharedPtr<wxMath2DPlotOptions> options(new wxMath2DPlotOptions());
+    options->GetCommonOptions().SetShowTooltips(false);
 
     wxVector<wxPoint2DDouble> data1;
     wxMath2DPlotDataset::ptr dataset1(
