@@ -43,6 +43,8 @@ wxChartsTheme::wxChartsTheme()
     m_stackedColumnChartOptions(new wxStackedColumnChartOptions()),
     m_timeSeriesChartOptions(new wxTimeSeriesChartOptions())
 {
+    m_datasetThemes[wxChartsDatasetId::CreateImplicitId(0)] = new wxChartsDatasetTheme();
+    m_datasetThemes[wxChartsDatasetId::CreateImplicitId(1)] = new wxChartsDatasetTheme();
 }
 
 wxSharedPtr<wxAreaChartOptions> wxChartsTheme::GetAreaChartOptions()
@@ -128,6 +130,11 @@ wxSharedPtr<wxStackedColumnChartOptions> wxChartsTheme::GetStackedColumnChartOpt
 wxSharedPtr<wxTimeSeriesChartOptions> wxChartsTheme::GetTimeSeriesChartOptions()
 {
     return m_timeSeriesChartOptions;
+}
+
+wxSharedPtr<wxChartsDatasetTheme> wxChartsTheme::GetDatasetTheme(const wxChartsDatasetId& id)
+{
+    return m_datasetThemes[id];
 }
 
 wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme(new wxChartsTheme());

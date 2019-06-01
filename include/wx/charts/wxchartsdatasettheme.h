@@ -25,4 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSDATASETTHEME_H_
 #define _WX_CHARTS_WXCHARTSDATASETTHEME_H_
 
+class wxChartsDatasetTheme
+{
+};
+
 #endif

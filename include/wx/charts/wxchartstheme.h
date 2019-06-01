@@ -42,7 +42,10 @@
 #include "wxstackedbarchartoptions.h"
 #include "wxstackedcolumnchartoptions.h"
 #include "wxtimeserieschart.h"
+#include "wxchartsdatasetid.h"
+#include "wxchartsdatasettheme.h"
 #include <wx/sharedptr.h>
+#include <map>
 
 /// \defgroup themeclasses
 
@@ -72,6 +75,8 @@ public:
     wxSharedPtr<wxStackedColumnChartOptions> GetStackedColumnChartOptions();
     wxSharedPtr<wxTimeSeriesChartOptions> GetTimeSeriesChartOptions();
 
+    wxSharedPtr<wxChartsDatasetTheme> GetDatasetTheme(const wxChartsDatasetId& id);
+
 private:
     wxSharedPtr<wxAreaChartOptions> m_areaChartOptions;
     wxSharedPtr<wxBarChartOptions> m_barChartOptions;
@@ -90,6 +95,7 @@ private:
     wxSharedPtr<wxStackedBarChartOptions> m_stackedBarChartOptions;
     wxSharedPtr<wxStackedColumnChartOptions> m_stackedColumnChartOptions;
     wxSharedPtr<wxTimeSeriesChartOptions> m_timeSeriesChartOptions;
+    std::map<wxChartsDatasetId, wxSharedPtr<wxChartsDatasetTheme>> m_datasetThemes;
 };
 
 extern wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme;
