@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,7 +22,7 @@
 
 #include "wxchartlabel.h"
 #include "wxchartbackground.h"
-#include "wxchartutilities.h"
+#include "wxchartsutilities.h"
 
 wxChartLabel::wxChartLabel(const wxString &text,
                            const wxChartLabelOptions &options)
@@ -115,7 +115,7 @@ void wxChartLabel::UpdateSize(wxGraphicsContext &gc)
     wxFont font = m_options.GetFontOptions().GetFont();
     wxDouble width = 0;
     wxDouble height = 0;
-    wxChartUtilities::GetTextSize(gc, font, m_text, width, height);
+    wxChartsUtilities::GetTextSize(gc, font, m_text, width, height);
     m_size.x = width;
     m_size.y = height;
 }

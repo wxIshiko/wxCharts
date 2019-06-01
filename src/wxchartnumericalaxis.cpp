@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -32,7 +32,7 @@
 */
 
 #include "wxchartnumericalaxis.h"
-#include "wxchartutilities.h"
+#include "wxchartsutilities.h"
 
 wxChartNumericalAxis::wxChartNumericalAxis(const std::string &id, 
                                            wxDouble minValue,
@@ -57,14 +57,14 @@ wxChartNumericalAxis::wxChartNumericalAxis(const std::string &id,
     wxDouble xValueRange = 0;
     size_t steps = 0;
     wxDouble stepValue = 0;
-    wxChartUtilities::CalculateGridRange(effectiveMinXValue, effectiveMaxXValue,
+    wxChartsUtilities::CalculateGridRange(effectiveMinXValue, effectiveMaxXValue,
         graphMinXValue, graphMaxXValue, xValueRange, steps, stepValue);
 
     SetMinValue(graphMinXValue);
     SetMaxValue(graphMaxXValue);
 
     wxVector<wxChartLabel> xLabels;
-    wxChartUtilities::BuildNumericalLabels(
+    wxChartsUtilities::BuildNumericalLabels(
         GetMinValue(),
         steps,
         stepValue,

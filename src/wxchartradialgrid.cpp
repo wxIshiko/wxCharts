@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -32,7 +32,7 @@
 */
 
 #include "wxchartradialgrid.h"
-#include "wxchartutilities.h"
+#include "wxchartsutilities.h"
 #include <wx/pen.h>
 
 wxChartRadialGrid::wxChartRadialGrid(const wxSize &size, 
@@ -45,9 +45,9 @@ wxChartRadialGrid::wxChartRadialGrid(const wxSize &size,
     m_drawingArea = (size.x < size.y) ? size.x / 2 : size.y / 2;
     wxDouble valueRange = 0;
     wxDouble stepValue;
-    wxChartUtilities::CalculateGridRange(minValue, maxValue, 
+    wxChartsUtilities::CalculateGridRange(minValue, maxValue, 
         m_graphMinValue, m_graphMaxValue, valueRange, m_steps, stepValue);
-    wxChartUtilities::BuildNumericalLabels(m_graphMinValue, m_steps, stepValue, options.GetLabelOptions(), m_labels);
+    wxChartsUtilities::BuildNumericalLabels(m_graphMinValue, m_steps, stepValue, options.GetLabelOptions(), m_labels);
     // We don't want to display the label at the center of the grid
     m_labels.erase(m_labels.begin());
     for (size_t i = 0; i < m_labels.size(); ++i)
