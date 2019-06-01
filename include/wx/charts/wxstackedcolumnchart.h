@@ -40,7 +40,7 @@
 #include "wxchartscategoricaldata.h"
 #include "wxstackedcolumnchartoptions.h"
 #include "wxchartgrid.h"
-#include "wxchartrectangle.h"
+#include "wxchartsrectangle.h"
 
 /// A stacked column chart.
 
@@ -62,7 +62,7 @@ private:
     virtual wxSharedPtr<wxVector<const wxChartsElement*> > GetActiveElements(const wxPoint &point);
 
 private:
-    class Column : public wxChartRectangle
+    class Column : public wxChartsRectangle
     {
     public:
         typedef wxSharedPtr<Column> ptr;

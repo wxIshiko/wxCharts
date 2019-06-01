@@ -24,7 +24,7 @@
 #include "wxchartstestsmenubar.h"
 #include "wxchartstestswindowids.h"
 #include "wxchartsdefaultthemepanel.h"
-#include "wxchartrectanglepanel.h"
+#include "wxchartsrectanglepanel.h"
 #include "wxchartlabelseriespanel.h"
 #include "wxchartcategoricalaxispanel.h"
 #include "wxchartnumericalaxispanel.h"
@@ -66,7 +66,7 @@ wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
     mainPanelSizer->Add(m_chartsDefaultThemePanel, 1, wxEXPAND);
     m_chartsDefaultThemePanel->Hide();
 
-    m_chartRectanglePanel = new wxChartRectanglePanel(m_mainPanel);
+    m_chartRectanglePanel = new wxChartsRectanglePanel(m_mainPanel);
     mainPanelSizer->Add(m_chartRectanglePanel, 1, wxEXPAND);
     m_chartRectanglePanel->Hide();
 

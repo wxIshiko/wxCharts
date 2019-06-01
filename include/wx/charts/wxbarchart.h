@@ -40,7 +40,7 @@
 #include "wxchartscategoricaldata.h"
 #include "wxbarchartoptions.h"
 #include "wxchartgrid.h"
-#include "wxchartrectangle.h"
+#include "wxchartsrectangle.h"
 #include <wx/sharedptr.h>
 
 /// A bar chart.
@@ -83,7 +83,7 @@ private:
     wxDouble GetBarHeight() const;
 
 private:
-    class Bar : public wxChartRectangle
+    class Bar : public wxChartsRectangle
     {
     public:
         typedef wxSharedPtr<Bar> ptr;

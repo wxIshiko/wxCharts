@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,21 +20,26 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _TESTS_WX_CHARTS_WXCHARTRECTANGLEPANEL_H_
-#define _TESTS_WX_CHARTS_WXCHARTRECTANGLEPANEL_H_
+#include "wxchartsrectangleoptions.h"
 
-#include "elementcanvaswindow.h"
-#include <wx/charts/wxcharts.h>
-#include <wx/panel.h>
-
-class wxChartRectanglePanel : public wxPanel
+wxChartsRectangleOptions::wxChartsRectangleOptions(const wxChartsBrushOptions &brushOptions,
+                                                   const wxColor &strokeColor, 
+                                                   int borders)
+    : m_brushOptions(brushOptions), m_strokeColor(strokeColor), m_borders(borders)
 {
-public:
-    wxChartRectanglePanel(wxWindow* parent);
+}
 
-private:
-    ElementCanvasWindow* m_canvas;
-    wxChartRectangle* m_rectangle;
-};
+const wxChartsBrushOptions& wxChartsRectangleOptions::GetBrushOptions() const
+{
+    return m_brushOptions;
+}
 
-#endif
+const wxColor& wxChartsRectangleOptions::GetStrokeColor() const
+{
+    return m_strokeColor;
+}
+
+int wxChartsRectangleOptions::GetBorders() const
+{
+    return m_borders;
+}

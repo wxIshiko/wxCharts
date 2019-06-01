@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,25 +20,21 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartrectanglepanel.h"
-#include <wx/sizer.h>
+#ifndef _TESTS_WX_CHARTS_WXCHARTSRECTANGLEPANEL_H_
+#define _TESTS_WX_CHARTS_WXCHARTSRECTANGLEPANEL_H_
 
-wxChartRectanglePanel::wxChartRectanglePanel(wxWindow* parent)
-    : wxPanel(parent)
+#include "elementcanvaswindow.h"
+#include <wx/charts/wxcharts.h>
+#include <wx/panel.h>
+
+class wxChartsRectanglePanel : public wxPanel
 {
-    wxChartRectangleOptions options(*wxRED, *wxBLACK, 0);
-    m_rectangle = new wxChartRectangle(
-        0, 0,
-        wxChartTooltipProvider::ptr(),
-        options
-    );
-    m_rectangle->SetSize(100, 20);
+public:
+    wxChartsRectanglePanel(wxWindow* parent);
 
-    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+private:
+    ElementCanvasWindow* m_canvas;
+    wxChartsRectangle* m_rectangle;
+};
 
-    m_canvas = new ElementCanvasWindow(this);
-    m_canvas->setElement(m_rectangle);
-    sizer->Add(m_canvas, 1, wxEXPAND);
-
-    SetSizer(sizer);
-}
+#endif

@@ -22,20 +22,20 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTRECTANGLE_H_
-#define _WX_CHARTS_WXCHARTRECTANGLE_H_
+#ifndef _WX_CHARTS_WXCHARTSRECTANGLE_H_
+#define _WX_CHARTS_WXCHARTSRECTANGLE_H_
 
 #include "wxchartselement.h"
-#include "wxchartrectangleoptions.h"
+#include "wxchartsrectangleoptions.h"
 #include <wx/graphics.h>
 
 /// This class is used to display a rectangle on a chart.
 
 /// \ingroup elementclasses
-class wxChartRectangle : public wxChartsElement
+class wxChartsRectangle : public wxChartsElement
 {
 public:
-    /// Constructs a wxChartRectangle element.
+    /// Constructs a wxChartsRectangle element.
     /// @param x The X coordinate of the top left
     /// corner of the rectangle.
     /// @param y The Y coordinate of the top left
@@ -43,9 +43,9 @@ public:
     /// @param tooltipProvider The tooltip provider.
     /// @param options The settings to be used for the
     /// rectangle.
-    wxChartRectangle(wxDouble x, wxDouble y, 
+    wxChartsRectangle(wxDouble x, wxDouble y, 
         const wxChartTooltipProvider::ptr tooltipProvider,
-        const wxChartRectangleOptions &options);
+        const wxChartsRectangleOptions &options);
 
     virtual void Draw(wxGraphicsContext &gc) const;
 
@@ -73,7 +73,7 @@ public:
     void SetSize(wxDouble width, wxDouble height);
 
 private:
-    wxChartRectangleOptions m_options;
+    wxChartsRectangleOptions m_options;
     wxPoint2DDouble m_position;
     wxDouble m_width;
     wxDouble m_height;

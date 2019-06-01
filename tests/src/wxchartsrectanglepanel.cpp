@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,26 +20,25 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartrectangleoptions.h"
+#include "wxchartsrectanglepanel.h"
+#include <wx/sizer.h>
 
-wxChartRectangleOptions::wxChartRectangleOptions(const wxChartsBrushOptions &brushOptions,
-                                                 const wxColor &strokeColor, 
-                                                 int borders)
-    : m_brushOptions(brushOptions), m_strokeColor(strokeColor), m_borders(borders)
+wxChartsRectanglePanel::wxChartsRectanglePanel(wxWindow* parent)
+    : wxPanel(parent)
 {
-}
+    wxChartsRectangleOptions options(*wxRED, *wxBLACK, 0);
+    m_rectangle = new wxChartsRectangle(
+        0, 0,
+        wxChartTooltipProvider::ptr(),
+        options
+    );
+    m_rectangle->SetSize(100, 20);
 
-const wxChartsBrushOptions& wxChartRectangleOptions::GetBrushOptions() const
-{
-    return m_brushOptions;
-}
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
-const wxColor& wxChartRectangleOptions::GetStrokeColor() const
-{
-    return m_strokeColor;
-}
+    m_canvas = new ElementCanvasWindow(this);
+    m_canvas->setElement(m_rectangle);
+    sizer->Add(m_canvas, 1, wxEXPAND);
 
-int wxChartRectangleOptions::GetBorders() const
-{
-    return m_borders;
+    SetSizer(sizer);
 }

@@ -44,14 +44,14 @@ public:
     /// Smart pointer typedef.
     typedef wxSharedPtr<wxChartsElement> ptr;
 
-    /// Constructs a wxChartElement instance with no
+    /// Constructs a wxChartsElement instance with no
     /// tooltip.
     wxChartsElement();
-    /// Constructs a wxChartElement instance with a static
+    /// Constructs a wxChartsElement instance with a static
     /// tooltip.
     /// @param tooltip The tooltip text.
     wxChartsElement(const wxString &tooltip);
-    /// Constructs a wxChartElement instance.
+    /// Constructs a wxChartsElement instance.
     /// @param tooltipProvider The tooltip provider.
     wxChartsElement(const wxChartTooltipProvider::ptr tooltipProvider);
     virtual ~wxChartsElement();
