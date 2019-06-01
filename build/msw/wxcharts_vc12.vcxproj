@@ -158,6 +158,7 @@
     <ClCompile Include="..\..\src\wxchartsohlcdata.cpp" />
     <ClCompile Include="..\..\src\wxchartsthemeid.cpp" />
     <ClCompile Include="..\..\src\wxchartstheme.cpp" />
+    <ClCompile Include="..\..\src\wxchartsdatasettheme.cpp" />
     <ClCompile Include="..\..\src\wxchartspresentationtheme.cpp" />
     <ClCompile Include="..\..\src\wxchartsprecisiontheme.cpp" />
     <ClCompile Include="..\..\src\wxchartsthemefactory.cpp" />
@@ -272,6 +273,7 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartsohlcdata.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsthemeid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartstheme.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsdatasettheme.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartspresentationtheme.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsprecisiontheme.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsthemefactory.h" />
