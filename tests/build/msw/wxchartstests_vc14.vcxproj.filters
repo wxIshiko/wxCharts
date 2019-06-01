@@ -32,7 +32,7 @@
     <ClInclude Include="..\..\src\wxchartsdefaultthemepanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\wxchartrectanglepanel.h">
+    <ClInclude Include="..\..\src\wxchartsrectanglepanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\wxchartlabelpanel.h">
@@ -100,7 +100,7 @@
     <ClCompile Include="..\..\src\wxchartsdefaultthemepanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartrectanglepanel.cpp">
+    <ClCompile Include="..\..\src\wxchartsrectanglepanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchartlabelpanel.cpp">

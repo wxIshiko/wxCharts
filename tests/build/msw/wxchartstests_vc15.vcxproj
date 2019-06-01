@@ -156,7 +156,7 @@
     <ClCompile Include="..\..\src\wxchartstestsframe.cpp" />
     <ClCompile Include="..\..\src\wxchartstestsmenubar.cpp" />
     <ClCompile Include="..\..\src\wxchartsdefaultthemepanel.cpp" />
-    <ClCompile Include="..\..\src\wxchartrectanglepanel.cpp" />
+    <ClCompile Include="..\..\src\wxchartsrectanglepanel.cpp" />
     <ClCompile Include="..\..\src\wxchartlabelpanel.cpp" />
     <ClCompile Include="..\..\src\wxchartlabelseriespanel.cpp" />
     <ClCompile Include="..\..\src\wxchartcategoricalaxispanel.cpp" />
@@ -193,7 +193,7 @@
     <ClInclude Include="..\..\src\wxchartstestsmenubar.h" />
     <ClInclude Include="..\..\src\wxchartstestswindowids.h" />
     <ClInclude Include="..\..\src\wxchartsdefaultthemepanel.h" />
-    <ClInclude Include="..\..\src\wxchartrectanglepanel.h" />
+    <ClInclude Include="..\..\src\wxchartsrectanglepanel.h" />
     <ClInclude Include="..\..\src\wxchartlabelpanel.h" />
     <ClInclude Include="..\..\src\wxchartlabelseriespanel.h" />
     <ClInclude Include="..\..\src\wxchartcategoricalaxispanel.h" />

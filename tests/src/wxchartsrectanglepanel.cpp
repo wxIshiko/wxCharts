@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,14 +20,14 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartrectanglepanel.h"
+#include "wxchartsrectanglepanel.h"
 #include <wx/sizer.h>
 
-wxChartRectanglePanel::wxChartRectanglePanel(wxWindow* parent)
+wxChartsRectanglePanel::wxChartsRectanglePanel(wxWindow* parent)
     : wxPanel(parent)
 {
-    wxChartRectangleOptions options(*wxRED, *wxBLACK, 0);
-    m_rectangle = new wxChartRectangle(
+    wxChartsRectangleOptions options(*wxRED, *wxBLACK, 0);
+    m_rectangle = new wxChartsRectangle(
         0, 0,
         wxChartTooltipProvider::ptr(),
         options

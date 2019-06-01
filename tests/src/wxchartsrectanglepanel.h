@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,21 +20,21 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _TESTS_WX_CHARTS_WXCHARTRECTANGLEPANEL_H_
-#define _TESTS_WX_CHARTS_WXCHARTRECTANGLEPANEL_H_
+#ifndef _TESTS_WX_CHARTS_WXCHARTSRECTANGLEPANEL_H_
+#define _TESTS_WX_CHARTS_WXCHARTSRECTANGLEPANEL_H_
 
 #include "elementcanvaswindow.h"
 #include <wx/charts/wxcharts.h>
 #include <wx/panel.h>
 
-class wxChartRectanglePanel : public wxPanel
+class wxChartsRectanglePanel : public wxPanel
 {
 public:
-    wxChartRectanglePanel(wxWindow* parent);
+    wxChartsRectanglePanel(wxWindow* parent);
 
 private:
     ElementCanvasWindow* m_canvas;
-    wxChartRectangle* m_rectangle;
+    wxChartsRectangle* m_rectangle;
 };
 
 #endif
