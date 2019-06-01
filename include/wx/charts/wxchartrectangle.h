@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,14 +25,14 @@
 #ifndef _WX_CHARTS_WXCHARTRECTANGLE_H_
 #define _WX_CHARTS_WXCHARTRECTANGLE_H_
 
-#include "wxchartelement.h"
+#include "wxchartselement.h"
 #include "wxchartrectangleoptions.h"
 #include <wx/graphics.h>
 
 /// This class is used to display a rectangle on a chart.
 
 /// \ingroup elementclasses
-class wxChartRectangle : public wxChartElement
+class wxChartRectangle : public wxChartsElement
 {
 public:
     /// Constructs a wxChartRectangle element.

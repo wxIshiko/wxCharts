@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -40,7 +40,7 @@ wxChartPoint::wxChartPoint(wxDouble x,
                            wxDouble radius,
                            const wxChartTooltipProvider::ptr tooltipProvider,
                            const wxChartPointOptions &options)
-    : wxChartElement(tooltipProvider), m_options(options),
+    : wxChartsElement(tooltipProvider), m_options(options),
     m_position(x, y), m_radius(radius), m_hitDetectionRange(radius)
 {
 }
@@ -51,7 +51,7 @@ wxChartPoint::wxChartPoint(wxDouble x,
                            wxDouble hitDetectionRange,
                            const wxChartTooltipProvider::ptr tooltipProvider,
                            const wxChartPointOptions &options)
-    : wxChartElement(tooltipProvider), m_options(options),
+    : wxChartsElement(tooltipProvider), m_options(options),
     m_position(x, y), m_radius(radius), m_hitDetectionRange(hitDetectionRange)
 {
 }

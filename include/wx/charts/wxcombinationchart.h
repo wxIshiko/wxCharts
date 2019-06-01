@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -44,7 +44,7 @@ private:
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
+    virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point);
 
 private:
     wxCombinationChartOptions m_options;

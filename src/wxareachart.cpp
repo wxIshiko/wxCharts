@@ -400,9 +400,9 @@ void wxAreaChart::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxAreaChart::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxAreaChart::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
         const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();

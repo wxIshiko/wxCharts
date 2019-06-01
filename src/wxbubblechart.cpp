@@ -389,9 +389,9 @@ void wxBubbleChart::DoSetSize(const wxSize &size)
     m_grid.Resize(size);
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxBubbleChart::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxBubbleChart::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {

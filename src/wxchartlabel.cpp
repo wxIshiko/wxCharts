@@ -67,6 +67,11 @@ wxPoint2DDouble wxChartLabel::GetTooltipPosition() const
     return wxPoint2DDouble(0, 0);
 }
 
+wxChartLabelOptions& wxChartLabel::GetOptions()
+{
+    return m_options;
+}
+
 const wxString& wxChartLabel::GetText() const
 {
     return m_text;

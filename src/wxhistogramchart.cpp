@@ -250,7 +250,7 @@ void wxHistogramChart::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*>> wxHistogramChart::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxHistogramChart::GetActiveElements(const wxPoint &point)
 {
-    return wxSharedPtr<wxVector<const wxChartElement*> >(new wxVector<const wxChartElement*>());
+    return wxSharedPtr<wxVector<const wxChartsElement*>>(new wxVector<const wxChartsElement*>());
 }

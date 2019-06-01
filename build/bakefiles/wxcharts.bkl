@@ -179,7 +179,7 @@ library wxcharts
         ../../src/wxchartsprecisiontheme.cpp
         ../../src/wxchartsthemefactory.cpp
 
-        ../../src/wxcharstelement.cpp
+        ../../src/wxchartselement.cpp
 
         ../../src/wxchartutilities.cpp
         ../../src/wxchartpadding.cpp

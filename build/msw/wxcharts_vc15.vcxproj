@@ -161,7 +161,7 @@
     <ClCompile Include="..\..\src\wxchartspresentationtheme.cpp" />
     <ClCompile Include="..\..\src\wxchartsprecisiontheme.cpp" />
     <ClCompile Include="..\..\src\wxchartsthemefactory.cpp" />
-    <ClCompile Include="..\..\src\wxcharstelement.cpp" />
+    <ClCompile Include="..\..\src\wxchartselement.cpp" />
     <ClCompile Include="..\..\src\wxchartutilities.cpp" />
     <ClCompile Include="..\..\src\wxchartpadding.cpp" />
     <ClCompile Include="..\..\src\wxchartbackgroundoptions.cpp" />

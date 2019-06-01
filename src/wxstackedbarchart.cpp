@@ -289,9 +289,9 @@ void wxStackedBarChart::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxStackedBarChart::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxStackedBarChart::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {

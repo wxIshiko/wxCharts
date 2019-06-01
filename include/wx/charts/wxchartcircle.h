@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,13 +25,13 @@
 #ifndef _WX_CHARTS_WXCHARTCIRCLE_H_
 #define _WX_CHARTS_WXCHARTCIRCLE_H_
 
-#include "wxchartelement.h"
+#include "wxchartselement.h"
 #include "wxchartcircleoptions.h"
 
 /// This class is used to draw a circle on the chart.
 
 /// \ingroup elementclasses
-class wxChartCircle : public wxChartElement
+class wxChartCircle : public wxChartsElement
 {
 public:
     wxChartCircle(wxDouble x, wxDouble y, wxDouble radius,

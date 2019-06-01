@@ -80,7 +80,7 @@ wxCandlestickChart::Candlestick::Candlestick(const wxChartsOHLCData &data,
     const wxColor &downFillColor,
     unsigned int rectangleWidth,
     const wxChartTooltipProvider::ptr tooltipProvider)
-    : wxChartElement(tooltipProvider), m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
+    : wxChartsElement(tooltipProvider), m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
     m_openPoint(0, 0), m_closePoint(0, 0), m_lineColor(lineColor), m_lineWidth(lineWidth),
     m_upFillColor(upFillColor), m_downFillColor(downFillColor), m_rectangleWidth(rectangleWidth)
 {
@@ -303,9 +303,9 @@ void wxCandlestickChart::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxCandlestickChart::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxCandlestickChart::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
     for (size_t i = 0; i < m_data.size(); ++i)
     {
         if (m_data[i]->HitTest(point))

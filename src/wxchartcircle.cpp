@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -29,7 +29,7 @@ wxChartCircle::wxChartCircle(wxDouble x,
                              wxDouble radius,
                              const wxChartTooltipProvider::ptr tooltipProvider,
                              const wxChartCircleOptions &options)
-    : wxChartElement(tooltipProvider), m_options(options),
+    : wxChartsElement(tooltipProvider), m_options(options),
     m_x(x), m_y(y), m_radius(radius)
 {
 }

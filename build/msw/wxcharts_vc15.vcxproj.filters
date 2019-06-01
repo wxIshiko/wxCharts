@@ -385,7 +385,7 @@
     <ClCompile Include="..\..\src\wxchartsthemefactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxcharstelement.cpp">
+    <ClCompile Include="..\..\src\wxchartselement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchartutilities.cpp">

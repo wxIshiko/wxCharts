@@ -89,8 +89,8 @@ void wxRadarChart::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxRadarChart::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxRadarChart::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
     return activeElements;
 }
