@@ -164,6 +164,8 @@
     <ClCompile Include="..\..\src\wxchartselement.cpp" />
     <ClCompile Include="..\..\src\wxchartspenoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartsbrushoptions.cpp" />
+    <ClCompile Include="..\..\src\wxchartsrectangleoptions.cpp" />
+    <ClCompile Include="..\..\src\wxchartsrectangle.cpp" />
     <ClCompile Include="..\..\src\wxchartutilities.cpp" />
     <ClCompile Include="..\..\src\wxchartpadding.cpp" />
     <ClCompile Include="..\..\src\wxchartbackgroundoptions.cpp" />
@@ -184,8 +186,6 @@
     <ClCompile Include="..\..\src\wxchartradialgrid.cpp" />
     <ClCompile Include="..\..\src\wxchartpointoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartpoint.cpp" />
-    <ClCompile Include="..\..\src\wxchartrectangleoptions.cpp" />
-    <ClCompile Include="..\..\src\wxchartrectangle.cpp" />
     <ClCompile Include="..\..\src\wxchartarc.cpp" />
     <ClCompile Include="..\..\src\wxchartarcoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartcircle.cpp" />
@@ -278,6 +278,8 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartselement.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartspenoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsbrushoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsrectangleoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsrectangle.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartutilities.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartpadding.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartbackgroundoptions.h" />
@@ -298,8 +300,6 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartradialgrid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartpointoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartpoint.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartrectangleoptions.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartrectangle.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartarc.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartarcoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartcircle.h" />
