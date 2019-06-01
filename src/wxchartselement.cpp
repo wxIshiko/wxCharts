@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,28 +20,28 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartelement.h"
+#include "wxchartselement.h"
 
-wxChartElement::wxChartElement()
+wxChartsElement::wxChartsElement()
     : m_tooltipProvider(wxChartTooltipProviderStatic::ptr(new wxChartTooltipProviderStatic("", "", *wxBLACK)))
 {
 }
 
-wxChartElement::wxChartElement(const wxString &tooltip)
+wxChartsElement::wxChartsElement(const wxString &tooltip)
     : m_tooltipProvider(wxChartTooltipProviderStatic::ptr(new wxChartTooltipProviderStatic("", tooltip, *wxBLACK)))
 {
 }
 
-wxChartElement::wxChartElement(const wxChartTooltipProvider::ptr tooltipProvider)
+wxChartsElement::wxChartsElement(const wxChartTooltipProvider::ptr tooltipProvider)
     : m_tooltipProvider(tooltipProvider)
 {
 }
 
-wxChartElement::~wxChartElement()
+wxChartsElement::~wxChartsElement()
 {
 }
 
-const wxChartTooltipProvider::ptr wxChartElement::GetTooltipProvider() const
+const wxChartTooltipProvider::ptr wxChartsElement::GetTooltipProvider() const
 {
     return m_tooltipProvider;
 }

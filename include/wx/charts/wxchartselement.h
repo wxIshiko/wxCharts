@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,8 +22,8 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTELEMENT_H_
-#define _WX_CHARTS_WXCHARTELEMENT_H_
+#ifndef _WX_CHARTS_WXCHARTSELEMENT_H_
+#define _WX_CHARTS_WXCHARTSELEMENT_H_
 
 #include "wxcharttooltipprovider.h"
 #include <wx/sharedptr.h>
@@ -38,23 +38,23 @@
 /// users of the charts, they are there for people implementing
 /// charts.
 /// \ingroup elementclasses
-class wxChartElement
+class wxChartsElement
 {
 public:
     /// Smart pointer typedef.
-    typedef wxSharedPtr<wxChartElement> ptr;
+    typedef wxSharedPtr<wxChartsElement> ptr;
 
     /// Constructs a wxChartElement instance with no
     /// tooltip.
-    wxChartElement();
+    wxChartsElement();
     /// Constructs a wxChartElement instance with a static
     /// tooltip.
     /// @param tooltip The tooltip text.
-    wxChartElement(const wxString &tooltip);
+    wxChartsElement(const wxString &tooltip);
     /// Constructs a wxChartElement instance.
     /// @param tooltipProvider The tooltip provider.
-    wxChartElement(const wxChartTooltipProvider::ptr tooltipProvider);
-    virtual ~wxChartElement();
+    wxChartsElement(const wxChartTooltipProvider::ptr tooltipProvider);
+    virtual ~wxChartsElement();
 
     /// Draws the element.
     /// @param gc The graphics context.

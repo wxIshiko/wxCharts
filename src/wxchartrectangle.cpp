@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -39,7 +39,7 @@ wxChartRectangle::wxChartRectangle(wxDouble x,
                                    wxDouble y,
                                    const wxChartTooltipProvider::ptr tooltipProvider,
                                    const wxChartRectangleOptions &options)
-    : wxChartElement(tooltipProvider), 
+    : wxChartsElement(tooltipProvider), 
     m_position(x, y), m_width(0), m_height(0), m_options(options)
 {
 }

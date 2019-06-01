@@ -181,9 +181,9 @@ void wxDoughnutAndPieChartBase::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxDoughnutAndPieChartBase::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxDoughnutAndPieChartBase::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
     for (size_t i = 0; i < m_slices.size(); ++i)
     {
         if (m_slices[i]->HitTest(point))

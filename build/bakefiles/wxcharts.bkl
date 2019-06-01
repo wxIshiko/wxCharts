@@ -62,9 +62,10 @@ library wxcharts
         ../../include/wx/charts/wxchartsprecisiontheme.h
         ../../include/wx/charts/wxchartsthemefactory.h
 
+        ../../include/wx/charts/wxchartselement.h
+
         ../../include/wx/charts/wxchartutilities.h
         ../../include/wx/charts/wxchartpadding.h
-        ../../include/wx/charts/wxchartelement.h
         ../../include/wx/charts/wxchartbackgroundoptions.h
         ../../include/wx/charts/wxchartbackground.h
         ../../include/wx/charts/wxchartfontoptions.h
@@ -178,9 +179,10 @@ library wxcharts
         ../../src/wxchartsprecisiontheme.cpp
         ../../src/wxchartsthemefactory.cpp
 
+        ../../src/wxchartselement.cpp
+
         ../../src/wxchartutilities.cpp
         ../../src/wxchartpadding.cpp
-        ../../src/wxchartelement.cpp
         ../../src/wxchartbackgroundoptions.cpp
         ../../src/wxchartbackground.cpp
         ../../src/wxchartfontoptions.cpp

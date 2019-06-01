@@ -80,7 +80,7 @@ wxOHLCChart::OHLCLines::OHLCLines(const wxChartsOHLCData &data,
                                   unsigned int openLineLength,
                                   unsigned int closeLineLength,
                                   const wxChartTooltipProvider::ptr tooltipProvider)
-    : wxChartElement(tooltipProvider), m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
+    : wxChartsElement(tooltipProvider), m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
     m_openPoint(0, 0), m_closePoint(0, 0), m_lineWidth(lineWidth),
     m_upLineColor(upLineColor), m_downLineColor(downLineColor),
     m_openLineLength(openLineLength), m_closeLineLength(closeLineLength)
@@ -251,9 +251,9 @@ void wxOHLCChart::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxOHLCChart::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxOHLCChart::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
     for (size_t i = 0; i < m_data.size(); ++i)
     {
         if (m_data[i]->HitTest(point))

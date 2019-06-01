@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -36,7 +36,7 @@
 #ifndef _WX_CHARTS_WXCHARTGRID_H_
 #define _WX_CHARTS_WXCHARTGRID_H_
 
-#include "wxchartelement.h"
+#include "wxchartselement.h"
 #include "wxchartgridoptions.h"
 #include "wxchartgridmapping.h"
 #include "wxchartaxis.h"
@@ -64,7 +64,7 @@
 ///
 /// @see wxChartGridOptions
 /// \ingroup elementclasses
-class wxChartGrid : public wxChartElement
+class wxChartGrid : public wxChartsElement
 {
 public:
     typedef wxSharedPtr<wxChartGrid> ptr;

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,7 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTLABEL_H_
 #define _WX_CHARTS_WXCHARTLABEL_H_
 
-#include "wxchartelement.h"
+#include "wxchartselement.h"
 #include "wxchartlabeloptions.h"
 #include "wxchartpadding.h"
 #include <wx/graphics.h>
@@ -39,7 +39,7 @@
 /// as that requires a graphics context. The code
 /// that uses this class needs to set and update 
 /// the width and height.
-class wxChartLabel : public wxChartElement
+class wxChartLabel : public wxChartsElement
 {
 public:
     /// Constructs a wxChartLabel element. The width
@@ -61,6 +61,7 @@ public:
 
     virtual wxPoint2DDouble GetTooltipPosition() const;
 
+    wxChartLabelOptions& GetOptions();
     /// Gets the text of the label.
     /// @return The text of the label.
     const wxString& GetText() const;

@@ -640,9 +640,9 @@ void wxMath2DPlot::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxMath2DPlot::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxMath2DPlot::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
         const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();

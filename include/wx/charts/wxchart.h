@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,7 +26,7 @@
 #define _WX_CHARTS_WXCHART_H_
 
 #include "wxchartcommonoptions.h"
-#include "wxchartelement.h"
+#include "wxchartselement.h"
 #include <wx/sharedptr.h>
 
 /// \defgroup chartclasses
@@ -55,11 +55,11 @@ private:
     virtual void DoSetSize(const wxSize &size) = 0;
     virtual void DoFit() = 0;
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips) = 0;
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point) = 0;
+    virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point) = 0;
 
 private:
     bool m_needsFit;
-    wxSharedPtr<wxVector<const wxChartElement*> > m_activeElements;
+    wxSharedPtr<wxVector<const wxChartsElement*>> m_activeElements;
 };
 
 #endif

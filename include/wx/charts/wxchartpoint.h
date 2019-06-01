@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,14 +25,14 @@
 #ifndef _WX_CHARTS_WXCHARTPOINT_H_
 #define _WX_CHARTS_WXCHARTPOINT_H_
 
-#include "wxchartelement.h"
+#include "wxchartselement.h"
 #include "wxchartpointoptions.h"
 #include <wx/graphics.h>
 
 /// This class is used to display a point on a chart.
 
 /// \ingroup elementclasses
-class wxChartPoint : public wxChartElement
+class wxChartPoint : public wxChartsElement
 {
 public:
     /// Constructs a wxChartPoint element.

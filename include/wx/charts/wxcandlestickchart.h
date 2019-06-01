@@ -94,10 +94,10 @@ private:
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
+    virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point);
 
 private:
-    class Candlestick : public wxChartElement
+    class Candlestick : public wxChartsElement
     {
     public:
         typedef wxSharedPtr<Candlestick> ptr;

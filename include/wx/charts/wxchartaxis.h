@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -36,7 +36,7 @@
 #ifndef _WX_CHARTS_WXCHARTAXIS_H_
 #define _WX_CHARTS_WXCHARTAXIS_H_
 
-#include "wxchartelement.h"
+#include "wxchartselement.h"
 #include "wxchartaxisoptions.h"
 #include "wxchartlabelgroup.h"
 #include <wx/graphics.h>
@@ -44,7 +44,7 @@
 /// This class represents an axis.
 
 /// \ingroup elementclasses
-class wxChartAxis : public wxChartElement
+class wxChartAxis : public wxChartsElement
 {
 public:
     /// Smart pointer typedef.

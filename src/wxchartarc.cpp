@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -43,7 +43,7 @@ wxChartArc::wxChartArc(wxDouble x,
                        wxDouble innerRadius,
                        const wxString &tooltip,
                        const wxChartArcOptions &options)
-    : wxChartElement(tooltip), m_x(x), m_y(y), 
+    : wxChartsElement(tooltip), m_x(x), m_y(y), 
     m_startAngle(startAngle), m_endAngle(endAngle), 
     m_outerRadius(outerRadius), m_innerRadius(innerRadius), 
     m_options(options)
