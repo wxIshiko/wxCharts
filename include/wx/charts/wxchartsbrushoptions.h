@@ -25,8 +25,29 @@
 #ifndef _WX_CHARTS_WXCHARTSBRUSHOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSBRUSHOPTIONS_H_
 
-class wxChartBrushOptions
+#include <wx/colour.h>
+
+/// The options for a brush.
+/**
+    \ingroup elementclasses
+*/
+class wxChartsBrushOptions
 {
+public:
+    /// Constructor.
+    /**
+        @param color The color of the brush.
+    */
+    wxChartsBrushOptions(const wxColor &color);
+
+    /// Gets the color of the brush.
+    /**
+        @return The color of the brush.
+    */
+    const wxColor& GetColor() const;
+
+private:
+    wxColor m_color;
 };
 
 #endif

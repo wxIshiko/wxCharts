@@ -25,6 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTRECTANGLEOPTIONS_H_
 #define _WX_CHARTS_WXCHARTRECTANGLEOPTIONS_H_
 
+#include "wxchartsbrushoptions.h"
 #include <wx/colour.h>
 
 /// The options for the wxChartRectangle element.
@@ -67,7 +68,7 @@ public:
     int GetBorders() const;
 
 private:
-    wxColor m_fillColor;
+    wxChartsBrushOptions m_brushOptions;
     wxColor m_strokeColor;
     int m_borders;
 };

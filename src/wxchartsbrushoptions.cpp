@@ -23,3 +23,13 @@
 /// @file
 
 #include "wxchartsbrushoptions.h"
+
+wxChartsBrushOptions::wxChartsBrushOptions(const wxColor &color)
+    : m_color(color)
+{
+}
+
+const wxColor& wxChartsBrushOptions::GetColor() const
+{
+    return m_color;
+}

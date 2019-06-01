@@ -25,13 +25,13 @@
 wxChartRectangleOptions::wxChartRectangleOptions(const wxColor &fillColor,
                                                  const wxColor &strokeColor, 
                                                  int borders)
-    : m_fillColor(fillColor), m_strokeColor(strokeColor), m_borders(borders)
+    : m_brushOptions(fillColor), m_strokeColor(strokeColor), m_borders(borders)
 {
 }
 
 const wxColor& wxChartRectangleOptions::GetFillColor() const
 {
-    return m_fillColor;
+    return m_brushOptions.GetColor();
 }
 
 const wxColor& wxChartRectangleOptions::GetStrokeColor() const
