@@ -22,21 +22,21 @@
 
 #include "wxchartsrectangleoptions.h"
 
-wxChartsRectangleOptions::wxChartsRectangleOptions(const wxChartsBrushOptions &brushOptions,
-                                                   const wxChartsPenOptions &penOptions,
+wxChartsRectangleOptions::wxChartsRectangleOptions(const wxChartsPenOptions &penOptions,
+                                                   const wxChartsBrushOptions &brushOptions,
                                                    int borders)
-    : m_brushOptions(brushOptions), m_penOptions(penOptions), m_borders(borders)
+    : m_penOptions(penOptions), m_brushOptions(brushOptions), m_borders(borders)
 {
-}
-
-const wxChartsBrushOptions& wxChartsRectangleOptions::GetBrushOptions() const
-{
-    return m_brushOptions;
 }
 
 const wxChartsPenOptions& wxChartsRectangleOptions::GetPenOptions() const
 {
     return m_penOptions;
+}
+
+const wxChartsBrushOptions& wxChartsRectangleOptions::GetBrushOptions() const
+{
+    return m_brushOptions;
 }
 
 int wxChartsRectangleOptions::GetBorders() const

@@ -37,21 +37,15 @@ class wxChartsRectangleOptions
 public:
     /// Constructor.
     /**
-        @param brushOptions The options for the brush used to fill
-        the rectangle.
         @param penOptions The options for the pen used to draw the
         outline of the rectangle.
+        @param brushOptions The options for the brush used to fill
+        the rectangle.
         @param borders A combination of wxTOP, wxBOTTOM, wxRIGHT
         and wxLEFT that specifies which borders need to be drawn.
     */
-    wxChartsRectangleOptions(const wxChartsBrushOptions &brushOptions,
-        const wxChartsPenOptions &penOptions, int borders);
-
-    /// Gets the options for the brush used to fill the rectangle.
-    /**
-        @return The options for the brush used to fill the rectangle.
-    */
-    const wxChartsBrushOptions& GetBrushOptions() const;
+    wxChartsRectangleOptions(const wxChartsPenOptions &penOptions,
+        const wxChartsBrushOptions &brushOptions, int borders);
 
     /// Gets the options for the pen used to draw the outline of the rectangle.
     /**
@@ -59,6 +53,12 @@ public:
         outline of the rectangle.
     */
     const wxChartsPenOptions& GetPenOptions() const;
+
+    /// Gets the options for the brush used to fill the rectangle.
+    /**
+        @return The options for the brush used to fill the rectangle.
+    */
+    const wxChartsBrushOptions& GetBrushOptions() const;
 
     /// Gets the flags that specify which borders need to be drawn.
     /**
@@ -68,8 +68,8 @@ public:
     int GetBorders() const;
 
 private:
-    wxChartsBrushOptions m_brushOptions;
     wxChartsPenOptions m_penOptions;
+    wxChartsBrushOptions m_brushOptions;
     int m_borders;
 };
 

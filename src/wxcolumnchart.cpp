@@ -44,7 +44,7 @@ wxColumnChart::Column::Column(wxDouble value,
                               const wxColor &fillColor,
                               const wxColor &strokeColor,
                               int directions)
-    : wxChartsRectangle(x, y, tooltipProvider, wxChartsRectangleOptions(fillColor, strokeColor, directions)),
+    : wxChartsRectangle(x, y, tooltipProvider, wxChartsRectangleOptions(strokeColor, fillColor, directions)),
     m_value(value)
 {
 }

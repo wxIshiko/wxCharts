@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,8 +26,7 @@
 #define _WX_CHARTS_WXCHARTSDOUBLEDATASET_H_
 
 #include "wxchartsdataset.h"
-
-#include <wx/colour.h>
+#include "wxchartsrectangleoptions.h"
 #include <wx/sharedptr.h>
 
 /// Stores the information about a dataset to be shown on one of the bar chart controls.
@@ -62,8 +61,7 @@ public:
     const wxVector<wxDouble>& GetData() const;
 
 private:
-    wxColor m_fillColor;
-    wxColor m_strokeColor;
+    wxChartsRectangleOptions m_options;
     wxVector<wxDouble> m_data;
 };
 
