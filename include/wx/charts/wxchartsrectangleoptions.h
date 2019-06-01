@@ -22,17 +22,17 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTRECTANGLEOPTIONS_H_
-#define _WX_CHARTS_WXCHARTRECTANGLEOPTIONS_H_
+#ifndef _WX_CHARTS_WXCHARTSRECTANGLEOPTIONS_H_
+#define _WX_CHARTS_WXCHARTSRECTANGLEOPTIONS_H_
 
 #include "wxchartsbrushoptions.h"
 #include <wx/colour.h>
 
-/// The options for the wxChartRectangle element.
+/// The options for the wxChartsRectangle element.
 /**
     \ingroup elementclasses
 */
-class wxChartRectangleOptions
+class wxChartsRectangleOptions
 {
 public:
     /// Constructor.
@@ -44,7 +44,7 @@ public:
         @param borders A combination of wxTOP, wxBOTTOM, wxRIGHT
         and wxLEFT that specifies which borders need to be drawn.
     */
-    wxChartRectangleOptions(const wxChartsBrushOptions &brushOptions,
+    wxChartsRectangleOptions(const wxChartsBrushOptions &brushOptions,
         const wxColor &strokeColor, int borders);
 
     /// Gets the options for the brush used to fill the rectangle.

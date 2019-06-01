@@ -29,7 +29,7 @@
 #include "wxchartscategoricaldata.h"
 #include "wxstackedbarchartoptions.h"
 #include "wxchartgrid.h"
-#include "wxchartrectangle.h"
+#include "wxchartsrectangle.h"
 
 /// A stacked bar chart.
 
@@ -53,7 +53,7 @@ private:
     virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point);
 
 private:
-    class Bar : public wxChartRectangle
+    class Bar : public wxChartsRectangle
     {
     public:
         typedef wxSharedPtr<Bar> ptr;

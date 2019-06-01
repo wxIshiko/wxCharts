@@ -31,20 +31,20 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
-#include "wxchartrectangle.h"
+#include "wxchartsrectangle.h"
 #include <wx/pen.h>
 #include <wx/brush.h>
 
-wxChartRectangle::wxChartRectangle(wxDouble x,
-                                   wxDouble y,
-                                   const wxChartTooltipProvider::ptr tooltipProvider,
-                                   const wxChartRectangleOptions &options)
+wxChartsRectangle::wxChartsRectangle(wxDouble x,
+                                     wxDouble y,
+                                     const wxChartTooltipProvider::ptr tooltipProvider,
+                                     const wxChartsRectangleOptions &options)
     : wxChartsElement(tooltipProvider), 
     m_position(x, y), m_width(0), m_height(0), m_options(options)
 {
 }
 
-void wxChartRectangle::Draw(wxGraphicsContext &gc) const
+void wxChartsRectangle::Draw(wxGraphicsContext &gc) const
 {
     wxGraphicsPath path = gc.CreatePath();
 
@@ -89,46 +89,46 @@ void wxChartRectangle::Draw(wxGraphicsContext &gc) const
     }
 }
 
-bool wxChartRectangle::HitTest(const wxPoint &point) const
+bool wxChartsRectangle::HitTest(const wxPoint &point) const
 {
     bool x = ((m_position.m_x <= point.x) && (point.x <= (m_position.m_x + m_width)));
     bool y = ((m_position.m_y <= point.y) && (point.y <= (m_position.m_y + m_height)));
     return (x && y);
 }
 
-wxPoint2DDouble wxChartRectangle::GetTooltipPosition() const
+wxPoint2DDouble wxChartsRectangle::GetTooltipPosition() const
 {
     return wxPoint2DDouble(m_position.m_x + (m_width / 2),
         m_position.m_y + (m_height / 2));
 }
 
-const wxPoint2DDouble& wxChartRectangle::GetPosition() const
+const wxPoint2DDouble& wxChartsRectangle::GetPosition() const
 {
     return m_position;
 }
 
-void wxChartRectangle::SetPosition(wxDouble x, wxDouble y)
+void wxChartsRectangle::SetPosition(wxDouble x, wxDouble y)
 {
     m_position.m_x = x;
     m_position.m_y = y;
 }
 
-void wxChartRectangle::SetPosition(wxPoint2DDouble position)
+void wxChartsRectangle::SetPosition(wxPoint2DDouble position)
 {
     m_position = position;
 }
 
-wxDouble wxChartRectangle::GetWidth() const
+wxDouble wxChartsRectangle::GetWidth() const
 {
     return m_width;
 }
 
-wxDouble wxChartRectangle::GetHeight() const
+wxDouble wxChartsRectangle::GetHeight() const
 {
     return m_height;
 }
 
-void wxChartRectangle::SetSize(wxDouble width, wxDouble height)
+void wxChartsRectangle::SetSize(wxDouble width, wxDouble height)
 {
     m_width = width;
     m_height = height;

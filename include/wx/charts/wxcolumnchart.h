@@ -40,7 +40,7 @@
 #include "wxchartscategoricaldata.h"
 #include "wxcolumnchartoptions.h"
 #include "wxchartgrid.h"
-#include "wxchartrectangle.h"
+#include "wxchartsrectangle.h"
 #include <wx/sharedptr.h>
 
 /// A column chart.
@@ -65,7 +65,7 @@ private:
     wxDouble GetColumnWidth() const;
 
 private:
-    class Column : public wxChartRectangle
+    class Column : public wxChartsRectangle
     {
     public:
         typedef wxSharedPtr<Column> ptr;

@@ -20,26 +20,26 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartrectangleoptions.h"
+#include "wxchartsrectangleoptions.h"
 
-wxChartRectangleOptions::wxChartRectangleOptions(const wxChartsBrushOptions &brushOptions,
-                                                 const wxColor &strokeColor, 
-                                                 int borders)
+wxChartsRectangleOptions::wxChartsRectangleOptions(const wxChartsBrushOptions &brushOptions,
+                                                   const wxColor &strokeColor, 
+                                                   int borders)
     : m_brushOptions(brushOptions), m_strokeColor(strokeColor), m_borders(borders)
 {
 }
 
-const wxChartsBrushOptions& wxChartRectangleOptions::GetBrushOptions() const
+const wxChartsBrushOptions& wxChartsRectangleOptions::GetBrushOptions() const
 {
     return m_brushOptions;
 }
 
-const wxColor& wxChartRectangleOptions::GetStrokeColor() const
+const wxColor& wxChartsRectangleOptions::GetStrokeColor() const
 {
     return m_strokeColor;
 }
 
-int wxChartRectangleOptions::GetBorders() const
+int wxChartsRectangleOptions::GetBorders() const
 {
     return m_borders;
 }

@@ -44,7 +44,7 @@ wxBarChart::Bar::Bar(wxDouble value,
                      const wxColor &fillColor,
                      const wxColor &strokeColor,
                      int directions)
-    : wxChartRectangle(x, y, tooltipProvider, wxChartRectangleOptions(fillColor, strokeColor, directions)),
+    : wxChartsRectangle(x, y, tooltipProvider, wxChartsRectangleOptions(fillColor, strokeColor, directions)),
     m_value(value)
 {
 }
