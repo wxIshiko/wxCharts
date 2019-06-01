@@ -23,9 +23,9 @@
 #include "wxchartsrectangleoptions.h"
 
 wxChartsRectangleOptions::wxChartsRectangleOptions(const wxChartsBrushOptions &brushOptions,
-                                                   const wxColor &strokeColor, 
+                                                   const wxChartsPenOptions &penOptions,
                                                    int borders)
-    : m_brushOptions(brushOptions), m_penOptions(strokeColor), m_borders(borders)
+    : m_brushOptions(brushOptions), m_penOptions(penOptions), m_borders(borders)
 {
 }
 
@@ -34,9 +34,9 @@ const wxChartsBrushOptions& wxChartsRectangleOptions::GetBrushOptions() const
     return m_brushOptions;
 }
 
-const wxColor& wxChartsRectangleOptions::GetStrokeColor() const
+const wxChartsPenOptions& wxChartsRectangleOptions::GetPenOptions() const
 {
-    return m_penOptions.GetColor();
+    return m_penOptions;
 }
 
 int wxChartsRectangleOptions::GetBorders() const

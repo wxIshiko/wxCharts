@@ -39,13 +39,13 @@ public:
     /**
         @param brushOptions The options for the brush used to fill
         the rectangle.
-        @param strokeColor The color of the pen used to draw the
+        @param penOptions The options for the pen used to draw the
         outline of the rectangle.
         @param borders A combination of wxTOP, wxBOTTOM, wxRIGHT
         and wxLEFT that specifies which borders need to be drawn.
     */
     wxChartsRectangleOptions(const wxChartsBrushOptions &brushOptions,
-        const wxColor &strokeColor, int borders);
+        const wxChartsPenOptions &penOptions, int borders);
 
     /// Gets the options for the brush used to fill the rectangle.
     /**
@@ -53,12 +53,12 @@ public:
     */
     const wxChartsBrushOptions& GetBrushOptions() const;
 
-    /// Gets the color of the pen used to draw the outline of the rectangle.
+    /// Gets the options for the pen used to draw the outline of the rectangle.
     /**
-        @return The color of the pen used to draw the 
+        @return The options for the pen used to draw the 
         outline of the rectangle.
     */
-    const wxColor& GetStrokeColor() const;
+    const wxChartsPenOptions& GetPenOptions() const;
 
     /// Gets the flags that specify which borders need to be drawn.
     /**
