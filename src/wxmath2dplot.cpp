@@ -110,14 +110,14 @@ wxMath2DPlot::Point::Point(
     const wxColor &strokeColor,
     const wxColor &fillColor,
     wxDouble hitDetectionRange)
-    : wxChartPoint(x, y, radius, tooltipProvider, wxChartPointOptions(strokeWidth, strokeColor, fillColor)),
+    : wxChartsPoint(x, y, radius, tooltipProvider, wxChartsPointOptions(strokeWidth, strokeColor, fillColor)),
       m_value(value), m_hitDetectionRange(hitDetectionRange)
 {
 }
 
 wxPoint2DDouble wxMath2DPlot::Point::GetTooltipPosition() const
 {
-    wxPoint2DDouble position = wxChartPoint::GetTooltipPosition();
+    wxPoint2DDouble position = wxChartsPoint::GetTooltipPosition();
     position.m_y -= 10;
     return position;
 }

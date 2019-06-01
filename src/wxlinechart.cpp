@@ -132,7 +132,7 @@ wxLineChart::Point::Point(wxDouble value,
                           const wxColor &strokeColor,
                           const wxColor &fillColor,
                           wxDouble hitDetectionRange)
-    : wxChartPoint(x, y, radius, tooltipProvider, wxChartPointOptions(strokeWidth, strokeColor, fillColor)),
+    : wxChartsPoint(x, y, radius, tooltipProvider, wxChartsPointOptions(strokeWidth, strokeColor, fillColor)),
     m_value(value), m_hitDetectionRange(hitDetectionRange)
 {
 }

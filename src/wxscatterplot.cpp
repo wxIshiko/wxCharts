@@ -66,14 +66,14 @@ wxScatterPlot::Point::Point(wxPoint2DDouble value,
                             const wxChartTooltipProvider::ptr tooltipProvider,
                             wxDouble x,
                             wxDouble y,
-                            const wxChartPointOptions &options)
-    : wxChartPoint(x, y, 5, 20, tooltipProvider, options), m_value(value)
+                            const wxChartsPointOptions &options)
+    : wxChartsPoint(x, y, 5, 20, tooltipProvider, options), m_value(value)
 {
 }
 
 wxPoint2DDouble wxScatterPlot::Point::GetTooltipPosition() const
 {
-    wxPoint2DDouble position = wxChartPoint::GetTooltipPosition();
+    wxPoint2DDouble position = wxChartsPoint::GetTooltipPosition();
     position.m_y -= 10;
     return position;
 }
@@ -149,7 +149,7 @@ void wxScatterPlot::Initialize(const wxScatterPlotData &data)
 
             Point::ptr point(
                 new Point(datasetData[j], tooltipProvider, 20 + j * 10, 0,
-                    wxChartPointOptions(2, datasets[i]->GetStrokeColor(), datasets[i]->GetFillColor()))
+                    wxChartsPointOptions(2, datasets[i]->GetStrokeColor(), datasets[i]->GetFillColor()))
                 );
 
             newDataset->AppendPoint(point);
