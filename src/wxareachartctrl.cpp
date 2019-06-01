@@ -51,7 +51,7 @@ wxAreaChartCtrl::wxAreaChartCtrl(wxWindow *parent,
 wxAreaChartCtrl::wxAreaChartCtrl(wxWindow *parent,
 								 wxWindowID id,
 								 const wxAreaChartData &data,
-								 wxSharedPtr<wxAreaChartOptions> &options,
+								 wxAreaChartOptions::ptr &options,
 								 const wxPoint &pos,
 								 const wxSize &size,
 								 long style)

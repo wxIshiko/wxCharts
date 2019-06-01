@@ -44,6 +44,11 @@
 #include "wxtimeserieschart.h"
 #include <wx/sharedptr.h>
 
+/// \defgroup themeclasses
+
+/// Represent a wxCharts theme.
+
+/// \ingroup themeclasses
 class wxChartsTheme
 {
 public:

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -27,6 +27,7 @@
 
 #include "wxchartoptions.h"
 #include "wxchartgridoptions.h"
+#include <wx/sharedptr.h>
 
 /// The options for the wxBarChartCtrl control.
 
@@ -34,6 +35,9 @@
 class wxBarChartOptions : public wxChartOptions
 {
 public:
+    /// Smart pointer typedef.
+    typedef wxSharedPtr<wxBarChartOptions> ptr;
+
     /// Constructs a wxBarChartOptions instance.
     wxBarChartOptions();
 

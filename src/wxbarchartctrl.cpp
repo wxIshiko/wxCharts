@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -47,7 +47,7 @@ wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent,
 wxBarChartCtrl::wxBarChartCtrl(wxWindow *parent, 
                                wxWindowID id,
                                wxChartsCategoricalData::ptr &data,
-                               wxSharedPtr<wxBarChartOptions> options,
+                               wxBarChartOptions::ptr options,
                                const wxPoint &pos,
                                const wxSize &size, 
                                long style)

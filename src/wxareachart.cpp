@@ -166,7 +166,7 @@ wxAreaChart::wxAreaChart(const wxAreaChartData &data,
 }
 
 wxAreaChart::wxAreaChart(const wxAreaChartData &data,
-                         wxSharedPtr<wxAreaChartOptions> &options,
+                         wxAreaChartOptions::ptr &options,
                          const wxSize &size)
     : m_options(options),
     m_grid(

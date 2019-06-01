@@ -95,13 +95,28 @@ private:
 };
 
 /// An area chart.
-
-/// \ingroup chartclasses
+/**
+    \ingroup chartclasses
+*/
 class wxAreaChart : public wxChart
 {
 public:
+    /// Constructor.
+    /**
+        The chart options will be defined by the default theme.
+
+        @param data The data that will be used to initialize the chart.
+        @param size The initial size of the chart.
+    */
     wxAreaChart(const wxAreaChartData &data, const wxSize &size);
-    wxAreaChart(const wxAreaChartData &data, wxSharedPtr<wxAreaChartOptions> &options,
+
+    /// Constructor.
+    /**
+        @param data The data that will be used to initialize the chart.
+        @param options The options to use for the chart.
+        @param size The initial size of the chart.
+    */
+    wxAreaChart(const wxAreaChartData &data, wxAreaChartOptions::ptr &options,
         const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;

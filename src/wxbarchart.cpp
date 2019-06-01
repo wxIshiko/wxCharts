@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -83,7 +83,7 @@ wxBarChart::wxBarChart(wxChartsCategoricalData::ptr &data,
 }
 
 wxBarChart::wxBarChart(wxChartsCategoricalData::ptr &data,
-                       wxSharedPtr<wxBarChartOptions> options,
+                       wxBarChartOptions::ptr options,
                        const wxSize &size)
     : m_options(options),
     m_grid(
