@@ -31,6 +31,8 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
+/// @file
+
 #include "wxareachart.h"
 #include "wxchartstheme.h"
 #include <wx/dcmemory.h>

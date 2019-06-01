@@ -31,6 +31,8 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
+/// @file
+
 #include "wxbarchart.h"
 #include "wxchartstheme.h"
 #include "wxchartcategoricalaxis.h"

@@ -20,6 +20,8 @@
     IN THE SOFTWARE.
 */
 
+/// @file
+
 #include "wxbarchartoptions.h"
 
 wxBarChartOptions::wxBarChartOptions()

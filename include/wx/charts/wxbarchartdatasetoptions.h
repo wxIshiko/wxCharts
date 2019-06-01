@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,43 +22,7 @@
 
 /// @file
 
-#include "wxareachartoptions.h"
+#ifndef _WX_CHARTS_WXBARCHARTDATASETOPTIONS_H_
+#define _WX_CHARTS_WXBARCHARTDATASETOPTIONS_H_
 
-wxAreaChartOptions::wxAreaChartOptions()
-    : m_dotRadius(4), m_dotStrokeWidth(1),
-    m_lineWidth(2), m_hitDetectionRange(24)
-{
-    wxChartMultiTooltipOptions& options = GetCommonOptions().GetMultiTooltipOptions();
-    options.SetShowTitle(false);
-    options.SetAlignment(wxALIGN_TOP);
-}
-
-const wxChartGridOptions& wxAreaChartOptions::GetGridOptions() const
-{
-    return m_gridOptions;
-}
-
-wxChartGridOptions& wxAreaChartOptions::GetGridOptions()
-{
-    return m_gridOptions;
-}
-
-wxDouble wxAreaChartOptions::GetDotRadius() const
-{
-    return m_dotRadius;
-}
-
-unsigned int wxAreaChartOptions::GetDotStrokeWidth() const
-{
-    return m_dotStrokeWidth;
-}
-
-unsigned int wxAreaChartOptions::GetLineWidth() const
-{
-    return m_lineWidth;
-}
-
-wxDouble wxAreaChartOptions::GetHitDetectionRange() const
-{
-    return m_hitDetectionRange;
-}
+#endif
