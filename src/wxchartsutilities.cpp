@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -31,21 +31,21 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
-#include "wxchartutilities.h"
+#include "wxchartsutilities.h"
 #include <sstream>
 
-size_t wxChartUtilities::GetDecimalPlaces()
+size_t wxChartsUtilities::GetDecimalPlaces()
 {
     return 1;
 }
 
-void wxChartUtilities::CalculateGridRange(wxDouble minValue,
-                                          wxDouble maxValue, 
-                                          wxDouble &graphMinValue,
-                                          wxDouble &graphMaxValue,
-                                          wxDouble &valueRange,
-                                          size_t &steps,
-                                          wxDouble &stepValue)
+void wxChartsUtilities::CalculateGridRange(wxDouble minValue,
+                                           wxDouble maxValue, 
+                                           wxDouble &graphMinValue,
+                                           wxDouble &graphMaxValue,
+                                           wxDouble &valueRange,
+                                           size_t &steps,
+                                           wxDouble &stepValue)
 {
     // Set a minimum step of two - a point at the top of the graph, and a point at the base
     steps = 2;
@@ -71,18 +71,18 @@ void wxChartUtilities::CalculateGridRange(wxDouble minValue,
     steps = round(graphRange / stepValue);
 }
 
-wxDouble wxChartUtilities::CalculateOrderOfMagnitude(wxDouble value)
+wxDouble wxChartsUtilities::CalculateOrderOfMagnitude(wxDouble value)
 {
     return floor(log10(value));
 }
 
-void wxChartUtilities::BuildNumericalLabels(wxDouble minValue,
-                                            size_t steps,
-                                            wxDouble stepValue,
-                                            const wxChartLabelOptions &options,
-                                            wxVector<wxChartLabel> &labels)
+void wxChartsUtilities::BuildNumericalLabels(wxDouble minValue,
+                                             size_t steps,
+                                             wxDouble stepValue,
+                                             const wxChartLabelOptions &options,
+                                             wxVector<wxChartLabel> &labels)
 {
-    size_t stepDecimalPlaces = wxChartUtilities::GetDecimalPlaces();
+    size_t stepDecimalPlaces = GetDecimalPlaces();
 
     for (size_t i = 0; i <= steps; ++i)
     {
@@ -94,11 +94,11 @@ void wxChartUtilities::BuildNumericalLabels(wxDouble minValue,
     }
 }
 
-void wxChartUtilities::GetTextSize(wxGraphicsContext &gc,
-                                   const wxFont &font, 
-                                   const wxString &string,
-                                   wxDouble &width,
-                                   wxDouble &height)
+void wxChartsUtilities::GetTextSize(wxGraphicsContext &gc,
+                                    const wxFont &font, 
+                                    const wxString &string,
+                                    wxDouble &width,
+                                    wxDouble &height)
 {
     wxDouble descent;
     wxDouble externalLeading;

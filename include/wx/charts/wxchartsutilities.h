@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -33,14 +33,14 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTUTILITIES_H_
-#define _WX_CHARTS_WXCHARTUTILITIES_H_
+#ifndef _WX_CHARTS_WXCHARTSUTILITIES_H_
+#define _WX_CHARTS_WXCHARTSUTILITIES_H_
 
 #include "wxchartlabel.h"
 #include <wx/graphics.h>
 
 /// This class contains a set of static utility functions.
-class wxChartUtilities
+class wxChartsUtilities
 {
 public:
     static size_t GetDecimalPlaces();

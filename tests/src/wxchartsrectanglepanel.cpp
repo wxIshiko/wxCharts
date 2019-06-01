@@ -26,7 +26,7 @@
 wxChartsRectanglePanel::wxChartsRectanglePanel(wxWindow* parent)
     : wxPanel(parent)
 {
-    wxChartsRectangleOptions options(*wxRED, *wxBLACK, 0);
+    wxChartsRectangleOptions options(*wxBLACK, *wxRED, 0);
     m_rectangle = new wxChartsRectangle(
         0, 0,
         wxChartTooltipProvider::ptr(),

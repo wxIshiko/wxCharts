@@ -56,13 +56,13 @@ void wxChartsRectangle::Draw(wxGraphicsContext &gc) const
 
     if (m_options.GetBorders() == wxALL)
     {
-        wxPen pen(m_options.GetStrokeColor(), 2);
+        wxPen pen(m_options.GetPenOptions().GetColor(), 2);
         gc.SetPen(pen);
         gc.StrokePath(path);
     }
     else
     {
-        wxPen pen(m_options.GetStrokeColor(), 2);
+        wxPen pen(m_options.GetPenOptions().GetColor(), 2);
         gc.SetPen(pen);
 
         int borders = m_options.GetBorders();

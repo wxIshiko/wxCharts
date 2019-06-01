@@ -68,7 +68,7 @@ library wxcharts
         ../../include/wx/charts/wxchartsrectangleoptions.h
         ../../include/wx/charts/wxchartsrectangle.h
 
-        ../../include/wx/charts/wxchartutilities.h
+        ../../include/wx/charts/wxchartsutilities.h
         ../../include/wx/charts/wxchartpadding.h
         ../../include/wx/charts/wxchartbackgroundoptions.h
         ../../include/wx/charts/wxchartbackground.h
@@ -187,7 +187,7 @@ library wxcharts
         ../../src/wxchartsrectangleoptions.cpp
         ../../src/wxchartsrectangle.cpp
 
-        ../../src/wxchartutilities.cpp
+        ../../src/wxchartsutilities.cpp
         ../../src/wxchartpadding.cpp
         ../../src/wxchartbackgroundoptions.cpp
         ../../src/wxchartbackground.cpp

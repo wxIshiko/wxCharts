@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -32,7 +32,7 @@
 */
 
 #include "wxchartmultitooltip.h"
-#include "wxchartutilities.h"
+#include "wxchartsutilities.h"
 #include <wx/brush.h>
 
 wxChartMultiTooltip::wxChartMultiTooltip(const wxString &title)
@@ -60,7 +60,7 @@ void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
     wxDouble titleHeight = 0;
     if (m_options.ShowTitle())
     {
-        wxChartUtilities::GetTextSize(gc, titleFont, m_title, titleWidth, titleHeight);
+        wxChartsUtilities::GetTextSize(gc, titleFont, m_title, titleWidth, titleHeight);
     }
 
     // Update the size of each line to reflect the currently

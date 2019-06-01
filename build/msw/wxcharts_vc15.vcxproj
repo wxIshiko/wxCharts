@@ -166,7 +166,7 @@
     <ClCompile Include="..\..\src\wxchartsbrushoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartsrectangleoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartsrectangle.cpp" />
-    <ClCompile Include="..\..\src\wxchartutilities.cpp" />
+    <ClCompile Include="..\..\src\wxchartsutilities.cpp" />
     <ClCompile Include="..\..\src\wxchartpadding.cpp" />
     <ClCompile Include="..\..\src\wxchartbackgroundoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartbackground.cpp" />
@@ -280,7 +280,7 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartsbrushoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsrectangleoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsrectangle.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartutilities.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsutilities.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartpadding.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartbackgroundoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartbackground.h" />

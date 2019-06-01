@@ -25,20 +25,20 @@
 #include "wxchartsdoubledataset.h"
 
 wxChartsDoubleDataset::wxChartsDoubleDataset(const wxColor &fillColor,
-                                            const wxColor &strokeColor,
-                                            const wxVector<wxDouble> &data)
-    : m_fillColor(fillColor), m_strokeColor(strokeColor), m_data(data)
+                                             const wxColor &strokeColor,
+                                             const wxVector<wxDouble> &data)
+    : m_options(strokeColor, fillColor, 0), m_data(data)
 {
 }
 
 const wxColor& wxChartsDoubleDataset::GetFillColor() const
 {
-    return m_fillColor;
+    return m_options.GetBrushOptions().GetColor();
 }
 
 const wxColor& wxChartsDoubleDataset::GetStrokeColor() const
 {
-    return m_strokeColor;
+    return m_options.GetPenOptions().GetColor();
 }
 
 const wxVector<wxDouble>& wxChartsDoubleDataset::GetData() const
