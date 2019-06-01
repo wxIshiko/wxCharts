@@ -54,6 +54,7 @@ library wxcharts
         ../../include/wx/charts/wxchartsdoubledataset.h
         ../../include/wx/charts/wxchartscategoricaldata.h
         ../../include/wx/charts/wxchartscategoricaldataobserver.h
+        ../../include/wx/charts/wxchartsohlcdata.h
 
         ../../include/wx/charts/wxchartsthemeid.h
         ../../include/wx/charts/wxchartstheme.h
@@ -100,7 +101,6 @@ library wxcharts
         ../../include/wx/charts/wxchartlegendctrl.h
         ../../include/wx/charts/wxchartslicedata.h
         ../../include/wx/charts/wxchartobservers.h
-        ../../include/wx/charts/wxchartohlcdata.h
         ../../include/wx/charts/wxchartoptions.h
         ../../include/wx/charts/wxchartcommonoptions.h
         ../../include/wx/charts/wxchart.h
@@ -170,6 +170,7 @@ library wxcharts
         ../../src/wxchartsdoubledataset.cpp
         ../../src/wxchartscategoricaldata.cpp
         ../../src/wxchartscategoricaldataobserver.cpp
+        ../../src/wxchartsohlcdata.cpp
 
         ../../src/wxchartsthemeid.cpp
         ../../src/wxchartstheme.cpp
@@ -215,7 +216,6 @@ library wxcharts
         ../../src/wxchartlegendctrl.cpp
         ../../src/wxchartlegenditem.cpp
         ../../src/wxchartslicedata.cpp
-        ../../src/wxchartohlcdata.cpp
         ../../src/wxchartoptions.cpp
         ../../src/wxchartcommonoptions.cpp
         ../../src/wxchart.cpp
