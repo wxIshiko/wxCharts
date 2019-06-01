@@ -52,6 +52,7 @@ public:
         @return A pen with the specified options.
     */
     static wxPen CreatePen(const wxChartsPenOptions& options);
+
     /// Creates a brush from a wxChartsBrushOptions instance.
     /**
         @return A brush with the specified options.

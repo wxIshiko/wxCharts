@@ -49,16 +49,16 @@ public:
         const wxChartsBrushOptions &brushOptions,
         const wxVector<wxDouble> &data);
 
-    /// Gets the color of the brush used to fill the
-    /// bar.
-    /// @return The color of the brush used to fill the
-    /// bar.
-    const wxColor& GetFillColor() const;
-    /// Gets the color of the pen used to draw the outline
+    /// Gets the options for the pen used to draw the outline
     /// of the bar.
-    /// @return The color of the pen used to draw the 
+    /// @return The options for the pen used to draw the 
     /// outline of the bar.
-    const wxColor& GetStrokeColor() const;
+    const wxChartsPenOptions& GetPenOptions() const;
+
+    /// Gets the options for the brush used to fill the bar.
+    /// @return The options for the brush used to fill the bar.
+    const wxChartsBrushOptions& GetBrushOptions() const;
+
     const wxVector<wxDouble>& GetData() const;
 
 private:

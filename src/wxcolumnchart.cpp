@@ -91,12 +91,12 @@ wxColumnChart::wxColumnChart(wxChartsCategoricalData::ptr &data,
             std::stringstream tooltip;
             tooltip << datasetData[j];
             wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), dataset.GetFillColor())
+                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), dataset.GetBrushOptions().GetColor())
                 );
 
             newDataset->AppendColumn(Column::ptr(new Column(
-                datasetData[j], tooltipProvider, 25, 50, dataset.GetFillColor(),
-                dataset.GetStrokeColor(), wxLEFT | wxTOP | wxRIGHT
+                datasetData[j], tooltipProvider, 25, 50, dataset.GetPenOptions(),
+                dataset.GetBrushOptions(), wxLEFT | wxTOP | wxRIGHT
                 )));
         }
 

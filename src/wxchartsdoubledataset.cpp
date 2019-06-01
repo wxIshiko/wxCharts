@@ -31,14 +31,14 @@ wxChartsDoubleDataset::wxChartsDoubleDataset(const wxChartsPenOptions &penOption
 {
 }
 
-const wxColor& wxChartsDoubleDataset::GetFillColor() const
+const wxChartsPenOptions& wxChartsDoubleDataset::GetPenOptions() const
 {
-    return m_options.GetBrushOptions().GetColor();
+    return m_options.GetPenOptions();
 }
 
-const wxColor& wxChartsDoubleDataset::GetStrokeColor() const
+const wxChartsBrushOptions& wxChartsDoubleDataset::GetBrushOptions() const
 {
-    return m_options.GetPenOptions().GetColor();
+    return m_options.GetBrushOptions();
 }
 
 const wxVector<wxDouble>& wxChartsDoubleDataset::GetData() const
