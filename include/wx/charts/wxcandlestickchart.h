@@ -60,16 +60,34 @@ private:
 };
 
 /// A candlestick chart.
-
-/// \ingroup chartclasses
+/**
+    \ingroup chartclasses
+*/
 class wxCandlestickChart : public wxChart
 {
 public:
+    /// Constructor.
+    /**
+        The chart options will be defined by the default theme.
+
+        @param data The data that will be used to initialize the chart.
+        @param size The initial size of the chart.
+    */
     wxCandlestickChart(const wxCandlestickChartData &data, const wxSize &size);
+
+    /// Constructor.
+    /**
+        @param data The data that will be used to initialize the chart.
+        @param options The options to use for the chart.
+        @param size The initial size of the chart.
+    */
+    wxCandlestickChart(const wxCandlestickChartData &data, wxCandlestickChartOptions::ptr options,
+        const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
+    void Initialize(const wxCandlestickChartData &data);
     static wxDouble GetMinValue(const wxCandlestickChartData &data);
     static wxDouble GetMaxValue(const wxCandlestickChartData &data);
 
