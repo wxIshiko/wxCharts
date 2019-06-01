@@ -25,7 +25,7 @@
 wxChartsRectangleOptions::wxChartsRectangleOptions(const wxChartsBrushOptions &brushOptions,
                                                    const wxColor &strokeColor, 
                                                    int borders)
-    : m_brushOptions(brushOptions), m_strokeColor(strokeColor), m_borders(borders)
+    : m_brushOptions(brushOptions), m_penOptions(strokeColor), m_borders(borders)
 {
 }
 
@@ -36,7 +36,7 @@ const wxChartsBrushOptions& wxChartsRectangleOptions::GetBrushOptions() const
 
 const wxColor& wxChartsRectangleOptions::GetStrokeColor() const
 {
-    return m_strokeColor;
+    return m_penOptions.GetColor();
 }
 
 int wxChartsRectangleOptions::GetBorders() const

@@ -25,8 +25,29 @@
 #ifndef _WX_CHARTS_WXCHARTSPENOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSPENOPTIONS_H_
 
-class wxChartPenOptions
+#include <wx/colour.h>
+
+/// The options for a pen.
+/**
+    \ingroup elementclasses
+*/
+class wxChartsPenOptions
 {
+public:
+    /// Constructor.
+    /**
+        @param color The color of the pen.
+    */
+    wxChartsPenOptions(const wxColor &color);
+
+    /// Gets the color of the pen.
+    /**
+        @return The color of the pen.
+    */
+    const wxColor& GetColor() const;
+
+private:
+    wxColor m_color;
 };
 
 #endif

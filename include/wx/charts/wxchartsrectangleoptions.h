@@ -26,7 +26,7 @@
 #define _WX_CHARTS_WXCHARTSRECTANGLEOPTIONS_H_
 
 #include "wxchartsbrushoptions.h"
-#include <wx/colour.h>
+#include "wxchartspenoptions.h"
 
 /// The options for the wxChartsRectangle element.
 /**
@@ -69,7 +69,7 @@ public:
 
 private:
     wxChartsBrushOptions m_brushOptions;
-    wxColor m_strokeColor;
+    wxChartsPenOptions m_penOptions;
     int m_borders;
 };
 

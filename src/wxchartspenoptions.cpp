@@ -23,3 +23,13 @@
 /// @file
 
 #include "wxchartspenoptions.h"
+
+wxChartsPenOptions::wxChartsPenOptions(const wxColor &color)
+    : m_color(color)
+{
+}
+
+const wxColor& wxChartsPenOptions::GetColor() const
+{
+    return m_color;
+}
