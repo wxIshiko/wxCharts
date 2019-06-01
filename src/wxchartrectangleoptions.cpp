@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,16 +22,16 @@
 
 #include "wxchartrectangleoptions.h"
 
-wxChartRectangleOptions::wxChartRectangleOptions(const wxColor &fillColor,
+wxChartRectangleOptions::wxChartRectangleOptions(const wxChartsBrushOptions &brushOptions,
                                                  const wxColor &strokeColor, 
                                                  int borders)
-    : m_brushOptions(fillColor), m_strokeColor(strokeColor), m_borders(borders)
+    : m_brushOptions(brushOptions), m_strokeColor(strokeColor), m_borders(borders)
 {
 }
 
-const wxColor& wxChartRectangleOptions::GetFillColor() const
+const wxChartsBrushOptions& wxChartRectangleOptions::GetBrushOptions() const
 {
-    return m_brushOptions.GetColor();
+    return m_brushOptions;
 }
 
 const wxColor& wxChartRectangleOptions::GetStrokeColor() const

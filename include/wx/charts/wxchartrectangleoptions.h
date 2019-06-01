@@ -37,21 +37,21 @@ class wxChartRectangleOptions
 public:
     /// Constructor.
     /**
-        @param fillColor The color of the brush used to fill the
-        rectangle.
+        @param brushOptions The options for the brush used to fill
+        the rectangle.
         @param strokeColor The color of the pen used to draw the
         outline of the rectangle.
         @param borders A combination of wxTOP, wxBOTTOM, wxRIGHT
         and wxLEFT that specifies which borders need to be drawn.
     */
-    wxChartRectangleOptions(const wxColor &fillColor,
+    wxChartRectangleOptions(const wxChartsBrushOptions &brushOptions,
         const wxColor &strokeColor, int borders);
 
-    /// Gets the color of the brush used to fill the rectangle.
+    /// Gets the options for the brush used to fill the rectangle.
     /**
-        @return The color of the brush used to fill the rectangle.
+        @return The options for the brush used to fill the rectangle.
     */
-    const wxColor& GetFillColor() const;
+    const wxChartsBrushOptions& GetBrushOptions() const;
 
     /// Gets the color of the pen used to draw the outline of the rectangle.
     /**
