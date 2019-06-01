@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2016 Xavier Leclercq
+	Copyright (c) 2016-2019 Xavier Leclercq
 
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
@@ -43,16 +43,16 @@ WxOHLCFrame::WxOHLCFrame(const wxString& title)
     labels.push_back("09/02");
     labels.push_back("10/02");
 
-    wxVector<wxChartOHLCData> data;
-    data.push_back(wxChartOHLCData(6, 10, 5, 8));
-    data.push_back(wxChartOHLCData(7, 7.5, 6, 6.2));
-    data.push_back(wxChartOHLCData(5, 6, 3, 4));
-    data.push_back(wxChartOHLCData(3.5, 4.2, 3.2, 3.5));
-    data.push_back(wxChartOHLCData(4, 7, 4, 5));
-    data.push_back(wxChartOHLCData(4.5, 6, 4, 6));
-    data.push_back(wxChartOHLCData(5, 7, 4.5, 7));
-    data.push_back(wxChartOHLCData(7, 8, 5, 7.5));
-    data.push_back(wxChartOHLCData(7.2, 8, 6, 6.5));
+    wxVector<wxChartsOHLCData> data;
+    data.push_back(wxChartsOHLCData(6, 10, 5, 8));
+    data.push_back(wxChartsOHLCData(7, 7.5, 6, 6.2));
+    data.push_back(wxChartsOHLCData(5, 6, 3, 4));
+    data.push_back(wxChartsOHLCData(3.5, 4.2, 3.2, 3.5));
+    data.push_back(wxChartsOHLCData(4, 7, 4, 5));
+    data.push_back(wxChartsOHLCData(4.5, 6, 4, 6));
+    data.push_back(wxChartsOHLCData(5, 7, 4.5, 7));
+    data.push_back(wxChartsOHLCData(7, 8, 5, 7.5));
+    data.push_back(wxChartsOHLCData(7.2, 8, 6, 6.5));
 
     wxOHLCChartData chartData(labels, data);
 
