@@ -24,12 +24,24 @@
 
 #include "wxchartspenoptions.h"
 
-wxChartsPenOptions::wxChartsPenOptions(const wxColor &color)
-    : m_color(color)
+wxChartsPenOptions::wxChartsPenOptions(const wxColor &color,
+                                       int width,
+                                       wxPenStyle style)
+    : m_color(color), m_width(width), m_style(style)
 {
 }
 
 const wxColor& wxChartsPenOptions::GetColor() const
 {
     return m_color;
+}
+
+int wxChartsPenOptions::GetWidth() const
+{
+    return m_width;
+}
+
+wxPenStyle wxChartsPenOptions::GetStyle() const
+{
+    return m_style;
 }

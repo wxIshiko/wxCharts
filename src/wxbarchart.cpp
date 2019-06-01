@@ -31,6 +31,8 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
+/// @file
+
 #include "wxbarchart.h"
 #include "wxchartstheme.h"
 #include "wxchartcategoricalaxis.h"
@@ -41,10 +43,10 @@ wxBarChart::Bar::Bar(wxDouble value,
                      const wxChartTooltipProvider::ptr tooltipProvider,
                      wxDouble x,
                      wxDouble y,
-                     const wxColor &fillColor,
-                     const wxColor &strokeColor,
-                     int directions)
-    : wxChartsRectangle(x, y, tooltipProvider, wxChartsRectangleOptions(strokeColor, fillColor, directions)),
+                     const wxChartsPenOptions &penOptions,
+                     const wxChartsBrushOptions &brushOptions,
+                     int borders)
+    : wxChartsRectangle(x, y, tooltipProvider, wxChartsRectangleOptions(penOptions, brushOptions, borders)),
     m_value(value)
 {
 }
@@ -116,12 +118,12 @@ void wxBarChart::Initialize(wxChartsCategoricalData::ptr &data)
             std::stringstream tooltip;
             tooltip << datasetData[j];
             wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), dataset.GetFillColor())
+                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), dataset.GetBrushOptions().GetColor())
                 );
 
             newDataset->AppendBar(Bar::ptr(new Bar(
-                datasetData[j], tooltipProvider, 25, 50, dataset.GetFillColor(),
-                dataset.GetStrokeColor(), wxTOP | wxRIGHT | wxBOTTOM
+                datasetData[j], tooltipProvider, 25, 50, dataset.GetPenOptions(),
+                dataset.GetBrushOptions(), wxTOP | wxRIGHT | wxBOTTOM
                 )));
         }
 

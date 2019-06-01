@@ -58,6 +58,7 @@ library wxcharts
 
         ../../include/wx/charts/wxchartsthemeid.h
         ../../include/wx/charts/wxchartstheme.h
+        ../../include/wx/charts/wxchartsdatasettheme.h
         ../../include/wx/charts/wxchartspresentationtheme.h
         ../../include/wx/charts/wxchartsprecisiontheme.h
         ../../include/wx/charts/wxchartsthemefactory.h
@@ -109,6 +110,7 @@ library wxcharts
         ../../include/wx/charts/wxchart.h
         ../../include/wx/charts/wxchartctrl.h
         ../../include/wx/charts/wxbarchartoptions.h
+        ../../include/wx/charts/wxbarchartdatasetoptions.h
         ../../include/wx/charts/wxbarchart.h
         ../../include/wx/charts/wxbarchartctrl.h
         ../../include/wx/charts/wxcandlestickchartoptions.h
@@ -177,6 +179,7 @@ library wxcharts
 
         ../../src/wxchartsthemeid.cpp
         ../../src/wxchartstheme.cpp
+        ../../src/wxchartsdatasettheme.cpp
         ../../src/wxchartspresentationtheme.cpp
         ../../src/wxchartsprecisiontheme.cpp
         ../../src/wxchartsthemefactory.cpp
@@ -227,6 +230,7 @@ library wxcharts
         ../../src/wxchart.cpp
         ../../src/wxchartctrl.cpp
         ../../src/wxbarchartoptions.cpp
+        ../../src/wxbarchartdatasetoptions.cpp
         ../../src/wxbarchart.cpp
         ../../src/wxbarchartctrl.cpp
         ../../src/wxcandlestickchartoptions.cpp

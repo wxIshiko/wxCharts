@@ -70,8 +70,9 @@ private:
         Column(wxDouble value,
             const wxChartTooltipProvider::ptr tooltipProvider,
             wxDouble x, wxDouble y,
-            const wxColor &fillColor, const wxColor &strokeColor,
-            int directions);
+            const wxChartsPenOptions &penOptions,
+            const wxChartsBrushOptions &brushOptions,
+            int borders);
 
         virtual bool HitTest(const wxPoint &point) const;
 

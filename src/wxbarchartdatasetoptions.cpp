@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2016-2017 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,26 +22,4 @@
 
 /// @file
 
-#include "wxchartsdoubledataset.h"
-
-wxChartsDoubleDataset::wxChartsDoubleDataset(const wxChartsPenOptions &penOptions,
-                                             const wxChartsBrushOptions &brushOptions,
-                                             const wxVector<wxDouble> &data)
-    : m_penOptions(penOptions), m_brushOptions(m_brushOptions), m_data(data)
-{
-}
-
-const wxChartsPenOptions& wxChartsDoubleDataset::GetPenOptions() const
-{
-    return m_penOptions;
-}
-
-const wxChartsBrushOptions& wxChartsDoubleDataset::GetBrushOptions() const
-{
-    return m_brushOptions;
-}
-
-const wxVector<wxDouble>& wxChartsDoubleDataset::GetData() const
-{
-    return m_data;
-}
+#include "wxbarchartdatasetoptions.h"

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -34,8 +34,13 @@ class wxChartsDatasetId
 {
 public:
     wxChartsDatasetId();
+    static wxChartsDatasetId CreateImplicitId(int id);
 
     bool IsUndefined() const;
+    bool operator==(const wxChartsDatasetId& other) const;
+    bool operator!=(const wxChartsDatasetId& other) const;
+    bool operator<(const wxChartsDatasetId& other) const;
+    bool operator>(const wxChartsDatasetId& other) const;
 
 private:
     int m_implicitId;
