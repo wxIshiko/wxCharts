@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,34 +20,34 @@
     IN THE SOFTWARE.
 */
 
-#include "wxcharttooltipprovider.h"
+/// @file
 
-wxChartTooltipProvider::wxChartTooltipProvider()
-{
-}
+#ifndef _WX_CHARTS_WXCHARTSBRUSHOPTIONS_H_
+#define _WX_CHARTS_WXCHARTSBRUSHOPTIONS_H_
 
-wxChartTooltipProvider::~wxChartTooltipProvider()
-{
-}
+#include <wx/colour.h>
 
-wxChartTooltipProviderStatic::wxChartTooltipProviderStatic(const wxString &title, 
-                                                           const wxString &text,
-                                                           const wxColor &color)
-    : m_title(title), m_text(text), m_color(color)
+/// The options for a brush.
+/**
+    \ingroup elementclasses
+*/
+class wxChartsBrushOptions
 {
-}
+public:
+    /// Constructor.
+    /**
+        @param color The color of the brush.
+    */
+    wxChartsBrushOptions(const wxColor &color);
 
-wxString wxChartTooltipProviderStatic::GetTooltipTitle() const
-{
-    return m_title;
-}
+    /// Gets the color of the brush.
+    /**
+        @return The color of the brush.
+    */
+    const wxColor& GetColor() const;
 
-wxString wxChartTooltipProviderStatic::GetTooltipText() const
-{
-    return m_text;
-}
+private:
+    wxColor m_color;
+};
 
-wxColor wxChartTooltipProviderStatic::GetAssociatedColor() const
-{
-    return m_color;
-}
+#endif

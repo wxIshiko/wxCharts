@@ -63,6 +63,8 @@ library wxcharts
         ../../include/wx/charts/wxchartsthemefactory.h
 
         ../../include/wx/charts/wxchartselement.h
+        ../../include/wx/charts/wxchartspenoptions.h
+        ../../include/wx/charts/wxchartsbrushoptions.h
 
         ../../include/wx/charts/wxchartutilities.h
         ../../include/wx/charts/wxchartpadding.h
@@ -180,6 +182,8 @@ library wxcharts
         ../../src/wxchartsthemefactory.cpp
 
         ../../src/wxchartselement.cpp
+        ../../src/wxchartspenoptions.cpp
+        ../../src/wxchartsbrushoptions.cpp
 
         ../../src/wxchartutilities.cpp
         ../../src/wxchartpadding.cpp

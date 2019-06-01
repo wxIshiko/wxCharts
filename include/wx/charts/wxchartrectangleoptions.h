@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,38 +25,52 @@
 #ifndef _WX_CHARTS_WXCHARTRECTANGLEOPTIONS_H_
 #define _WX_CHARTS_WXCHARTRECTANGLEOPTIONS_H_
 
+#include "wxchartsbrushoptions.h"
 #include <wx/colour.h>
 
 /// The options for the wxChartRectangle element.
-
-/// \ingroup elementclasses
+/**
+    \ingroup elementclasses
+*/
 class wxChartRectangleOptions
 {
 public:
-    /// Constructs a wxChartRectangleOptions instance.
-    /// @param fillColor The color of the brush used to 
-    /// fill the rectangle.
-    /// @param strokeColor The color of the pen used to
-    /// draw the outline of the rectangle.
-    wxChartRectangleOptions(const wxColor &fillColor,
-        const wxColor &strokeColor, int directions);
+    /// Constructor.
+    /**
+        @param brushOptions The options for the brush used to fill
+        the rectangle.
+        @param strokeColor The color of the pen used to draw the
+        outline of the rectangle.
+        @param borders A combination of wxTOP, wxBOTTOM, wxRIGHT
+        and wxLEFT that specifies which borders need to be drawn.
+    */
+    wxChartRectangleOptions(const wxChartsBrushOptions &brushOptions,
+        const wxColor &strokeColor, int borders);
 
-    /// Gets the color of the brush used to fill the
-    /// rectangle.
-    /// @return The color of the brush used to fill the
-    /// rectangle.
-    const wxColor& GetFillColor() const;
-    /// Gets the color of the pen used to draw the outline
-    /// of the rectangle.
-    /// @return The color of the pen used to draw the 
-    /// outline of the rectangle.
+    /// Gets the options for the brush used to fill the rectangle.
+    /**
+        @return The options for the brush used to fill the rectangle.
+    */
+    const wxChartsBrushOptions& GetBrushOptions() const;
+
+    /// Gets the color of the pen used to draw the outline of the rectangle.
+    /**
+        @return The color of the pen used to draw the 
+        outline of the rectangle.
+    */
     const wxColor& GetStrokeColor() const;
-    int GetDirections() const;
+
+    /// Gets the flags that specify which borders need to be drawn.
+    /**
+        @return A combination of wxTOP, wxBOTTOM, wxRIGHT
+        and wxLEFT that specifies which borders need to be drawn.
+    */
+    int GetBorders() const;
 
 private:
-    wxColor m_fillColor;
+    wxChartsBrushOptions m_brushOptions;
     wxColor m_strokeColor;
-    int m_directions;
+    int m_borders;
 };
 
 #endif

@@ -50,11 +50,11 @@ void wxChartRectangle::Draw(wxGraphicsContext &gc) const
 
     path.AddRectangle(m_position.m_x, m_position.m_y, m_width, m_height);
 
-    wxBrush brush(m_options.GetFillColor());
+    wxBrush brush(m_options.GetBrushOptions().GetColor());
     gc.SetBrush(brush);
     gc.FillPath(path);
 
-    if (m_options.GetDirections() == wxALL)
+    if (m_options.GetBorders() == wxALL)
     {
         wxPen pen(m_options.GetStrokeColor(), 2);
         gc.SetPen(pen);
@@ -65,22 +65,23 @@ void wxChartRectangle::Draw(wxGraphicsContext &gc) const
         wxPen pen(m_options.GetStrokeColor(), 2);
         gc.SetPen(pen);
 
-        if (m_options.GetDirections() & wxTOP)
+        int borders = m_options.GetBorders();
+        if (borders & wxTOP)
         {
             gc.StrokeLine(m_position.m_x, m_position.m_y, 
                 m_position.m_x + m_width, m_position.m_y);
         }
-        if (m_options.GetDirections() & wxRIGHT)
+        if (borders & wxRIGHT)
         {
             gc.StrokeLine(m_position.m_x + m_width, m_position.m_y, 
                 m_position.m_x + m_width, m_position.m_y + m_height);
         }
-        if (m_options.GetDirections() & wxBOTTOM)
+        if (borders & wxBOTTOM)
         {
             gc.StrokeLine(m_position.m_x, m_position.m_y + m_height,
                 m_position.m_x + m_width, m_position.m_y + m_height);
         }
-        if (m_options.GetDirections() & wxLEFT)
+        if (borders & wxLEFT)
         {
             gc.StrokeLine(m_position.m_x, m_position.m_y,
                 m_position.m_x, m_position.m_y + m_height);

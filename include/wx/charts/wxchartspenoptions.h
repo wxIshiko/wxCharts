@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,34 +20,13 @@
     IN THE SOFTWARE.
 */
 
-#include "wxcharttooltipprovider.h"
+/// @file
 
-wxChartTooltipProvider::wxChartTooltipProvider()
-{
-}
+#ifndef _WX_CHARTS_WXCHARTSPENOPTIONS_H_
+#define _WX_CHARTS_WXCHARTSPENOPTIONS_H_
 
-wxChartTooltipProvider::~wxChartTooltipProvider()
+class wxChartPenOptions
 {
-}
+};
 
-wxChartTooltipProviderStatic::wxChartTooltipProviderStatic(const wxString &title, 
-                                                           const wxString &text,
-                                                           const wxColor &color)
-    : m_title(title), m_text(text), m_color(color)
-{
-}
-
-wxString wxChartTooltipProviderStatic::GetTooltipTitle() const
-{
-    return m_title;
-}
-
-wxString wxChartTooltipProviderStatic::GetTooltipText() const
-{
-    return m_text;
-}
-
-wxColor wxChartTooltipProviderStatic::GetAssociatedColor() const
-{
-    return m_color;
-}
+#endif
