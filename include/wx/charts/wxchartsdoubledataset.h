@@ -40,12 +40,13 @@ public:
     typedef wxSharedPtr<wxChartsDoubleDataset> ptr;
 
     /// Constructs a wxBarChartDataset instance.
-    /// @param fillColor The color of the brush used to 
-    /// fill the bar.
-    /// @param strokeColor The color of the pen used to
+    /// @param penOptions The options for the pen used to
     /// draw the outline of the bar.
+    /// @param brushOptions The options for the brush used to 
+    /// fill the bar.
     /// @param data The list of values.
-    wxChartsDoubleDataset(const wxColor &fillColor, const wxColor &strokeColor,
+    wxChartsDoubleDataset(const wxChartsPenOptions &penOptions,
+        const wxChartsBrushOptions &brushOptions,
         const wxVector<wxDouble> &data);
 
     /// Gets the color of the brush used to fill the

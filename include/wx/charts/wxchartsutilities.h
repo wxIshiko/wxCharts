@@ -36,13 +36,28 @@
 #ifndef _WX_CHARTS_WXCHARTSUTILITIES_H_
 #define _WX_CHARTS_WXCHARTSUTILITIES_H_
 
+#include "wxchartspenoptions.h"
+#include "wxchartsbrushoptions.h"
 #include "wxchartlabel.h"
+#include <wx/pen.h>
+#include <wx/brush.h>
 #include <wx/graphics.h>
 
 /// This class contains a set of static utility functions.
 class wxChartsUtilities
 {
 public:
+    /// Creates a pen from a wxChartsPenOptions instance.
+    /**
+        @return A pen with the specified options.
+    */
+    static wxPen CreatePen(const wxChartsPenOptions& options);
+    /// Creates a brush from a wxChartsBrushOptions instance.
+    /**
+        @return A brush with the specified options.
+    */
+    static wxBrush CreateBrush(const wxChartsBrushOptions& options);
+
     static size_t GetDecimalPlaces();
     static void CalculateGridRange(wxDouble minValue,
         wxDouble maxValue, wxDouble &graphMinValue,

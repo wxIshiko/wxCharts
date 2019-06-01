@@ -24,10 +24,10 @@
 
 #include "wxchartsdoubledataset.h"
 
-wxChartsDoubleDataset::wxChartsDoubleDataset(const wxColor &fillColor,
-                                             const wxColor &strokeColor,
+wxChartsDoubleDataset::wxChartsDoubleDataset(const wxChartsPenOptions &penOptions,
+                                             const wxChartsBrushOptions &brushOptions,
                                              const wxVector<wxDouble> &data)
-    : m_options(strokeColor, fillColor, 0), m_data(data)
+    : m_options(penOptions, brushOptions, 0), m_data(data)
 {
 }
 

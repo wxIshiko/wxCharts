@@ -34,6 +34,16 @@
 #include "wxchartsutilities.h"
 #include <sstream>
 
+wxPen wxChartsUtilities::CreatePen(const wxChartsPenOptions& options)
+{
+    return wxPen(options.GetColor(), options.GetWidth(), options.GetStyle());
+}
+
+wxBrush wxChartsUtilities::CreateBrush(const wxChartsBrushOptions& options)
+{
+    return wxBrush(options.GetColor());
+}
+
 size_t wxChartsUtilities::GetDecimalPlaces()
 {
     return 1;

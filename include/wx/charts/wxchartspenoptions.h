@@ -26,6 +26,7 @@
 #define _WX_CHARTS_WXCHARTSPENOPTIONS_H_
 
 #include <wx/colour.h>
+#include <wx/pen.h>
 
 /// The options for a pen.
 /**
@@ -38,7 +39,8 @@ public:
     /**
         @param color The color of the pen.
     */
-    wxChartsPenOptions(const wxColor &color);
+    wxChartsPenOptions(const wxColor &color, int width = 1,
+        wxPenStyle style = wxPENSTYLE_SOLID);
 
     /// Gets the color of the pen.
     /**
@@ -46,8 +48,22 @@ public:
     */
     const wxColor& GetColor() const;
 
+    /// Gets the width of the pen.
+    /**
+        @return The width of the pen.
+    */
+    int GetWidth() const;
+
+    /// Gets the style of the pen.
+    /**
+        @return The style of the pen.
+    */
+    wxPenStyle GetStyle() const;
+
 private:
     wxColor m_color;
+    int m_width;
+    wxPenStyle m_style;
 };
 
 #endif

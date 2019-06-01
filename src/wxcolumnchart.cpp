@@ -41,10 +41,10 @@ wxColumnChart::Column::Column(wxDouble value,
                               const wxChartTooltipProvider::ptr tooltipProvider,
                               wxDouble x,
                               wxDouble y,
-                              const wxColor &fillColor,
-                              const wxColor &strokeColor,
-                              int directions)
-    : wxChartsRectangle(x, y, tooltipProvider, wxChartsRectangleOptions(strokeColor, fillColor, directions)),
+                              const wxChartsPenOptions &penOptions,
+                              const wxChartsBrushOptions &brushOptions,
+                              int borders)
+    : wxChartsRectangle(x, y, tooltipProvider, wxChartsRectangleOptions(penOptions, brushOptions, borders)),
     m_value(value)
 {
 }
