@@ -31,7 +31,7 @@
 #include <sstream>
 
 wxOHLCChartData::wxOHLCChartData(const wxVector<wxString> &labels,
-    const wxVector<wxChartOHLCData> &data)
+    const wxVector<wxChartsOHLCData> &data)
     : m_labels(labels), m_lineWidth(3),
     m_upLineColor(0, 185, 0), m_downLineColor(200, 0, 0),
     m_openLineLength(10), m_closeLineLength(10), m_data(data)
@@ -68,12 +68,12 @@ unsigned int wxOHLCChartData::GetCloseLineLength() const
     return m_closeLineLength;
 }
 
-const wxVector<wxChartOHLCData>& wxOHLCChartData::GetData() const
+const wxVector<wxChartsOHLCData>& wxOHLCChartData::GetData() const
 {
     return m_data;
 }
 
-wxOHLCChart::OHLCLines::OHLCLines(const wxChartOHLCData &data,
+wxOHLCChart::OHLCLines::OHLCLines(const wxChartsOHLCData &data,
                                   unsigned int lineWidth,
                                   const wxColor& upLineColor,
                                   const wxColor& downLineColor,

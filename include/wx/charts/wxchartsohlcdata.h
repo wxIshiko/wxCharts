@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,18 +22,21 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTOHLCDATA_H_
-#define _WX_CHARTS_WXCHARTOHLCDATA_H_
+#ifndef _WX_CHARTS_WXCHARTSOHLCDATA_H_
+#define _WX_CHARTS_WXCHARTSOHLCDATA_H_
 
 #include <wx/defs.h>
 
 /// The open, high, low and close values for a single unit of time.
+/**
+    This is used in charts like the OHLC and candlestick charts.
 
-/// This is used in charts like the OHLDC and candlestick charts.
-class wxChartOHLCData
+    \ingroup dataclasses
+*/
+class wxChartsOHLCData
 {
 public:
-    wxChartOHLCData(wxDouble open, wxDouble high, wxDouble low, wxDouble close);
+    wxChartsOHLCData(wxDouble open, wxDouble high, wxDouble low, wxDouble close);
 
     wxDouble GetOpenValue() const;
     wxDouble GetHighValue() const;

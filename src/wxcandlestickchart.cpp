@@ -31,7 +31,7 @@
 #include <sstream>
 
 wxCandlestickChartData::wxCandlestickChartData(const wxVector<wxString> &labels,
-                                               const wxVector<wxChartOHLCData> &data)
+                                               const wxVector<wxChartsOHLCData> &data)
     : m_labels(labels), m_lineColor(0, 0, 0, 0x80), m_lineWidth(3), 
     m_upFillColor(0, 205, 0, 0x60), m_downFillColor(225, 0, 0, 0x60), m_rectangleWidth(20), 
     m_data(data)
@@ -68,12 +68,12 @@ unsigned int wxCandlestickChartData::GetRectangleWidth() const
     return m_rectangleWidth;
 }
 
-const wxVector<wxChartOHLCData>& wxCandlestickChartData::GetData() const
+const wxVector<wxChartsOHLCData>& wxCandlestickChartData::GetData() const
 {
     return m_data;
 }
 
-wxCandlestickChart::Candlestick::Candlestick(const wxChartOHLCData &data,
+wxCandlestickChart::Candlestick::Candlestick(const wxChartsOHLCData &data,
     const wxColor &lineColor,
     unsigned int lineWidth,
     const wxColor &upFillColor,
