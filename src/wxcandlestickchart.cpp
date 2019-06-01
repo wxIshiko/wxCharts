@@ -31,7 +31,7 @@
 #include <sstream>
 
 wxCandlestickChartData::wxCandlestickChartData(const wxVector<wxString> &labels,
-                                               const wxVector<wxChartOHLCData> &data)
+                                               const wxVector<wxChartsOHLCData> &data)
     : m_labels(labels), m_lineColor(0, 0, 0, 0x80), m_lineWidth(3), 
     m_upFillColor(0, 205, 0, 0x60), m_downFillColor(225, 0, 0, 0x60), m_rectangleWidth(20), 
     m_data(data)
@@ -68,12 +68,12 @@ unsigned int wxCandlestickChartData::GetRectangleWidth() const
     return m_rectangleWidth;
 }
 
-const wxVector<wxChartOHLCData>& wxCandlestickChartData::GetData() const
+const wxVector<wxChartsOHLCData>& wxCandlestickChartData::GetData() const
 {
     return m_data;
 }
 
-wxCandlestickChart::Candlestick::Candlestick(const wxChartOHLCData &data,
+wxCandlestickChart::Candlestick::Candlestick(const wxChartsOHLCData &data,
     const wxColor &lineColor,
     unsigned int lineWidth,
     const wxColor &upFillColor,
@@ -174,7 +174,27 @@ wxCandlestickChart::wxCandlestickChart(const wxCandlestickChartData &data,
         wxChartCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
         wxChartNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
-        )
+    )
+{
+    Initialize(data);
+}
+
+wxCandlestickChart::wxCandlestickChart(const wxCandlestickChartData &data,
+                                       wxCandlestickChartOptions::ptr options,
+                                       const wxSize &size)
+    : m_options(options),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
+        size,
+        wxChartCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
+    )
+{
+    Initialize(data);
+}
+
+void wxCandlestickChart::Initialize(const wxCandlestickChartData &data)
 {
     for (size_t i = 0; i < data.GetData().size(); ++i)
     {
@@ -185,7 +205,7 @@ wxCandlestickChart::wxCandlestickChart(const wxCandlestickChartData &data,
             << "\r\nC: " << data.GetData()[i].GetCloseValue();
         wxChartTooltipProvider::ptr tooltipProvider(
             new wxChartTooltipProviderStatic(data.GetLabels()[i], tooltip.str(), *wxWHITE)
-            );
+        );
 
         Candlestick::ptr newCandlestick(new Candlestick(
             data.GetData()[i],
@@ -195,7 +215,7 @@ wxCandlestickChart::wxCandlestickChart(const wxCandlestickChartData &data,
             data.GetDownFillColor(),
             data.GetRectangleWidth(),
             tooltipProvider
-            ));
+        ));
         m_data.push_back(newCandlestick);
     }
 }

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -32,6 +32,17 @@ wxBubbleChartCtrl::wxBubbleChartCtrl(wxWindow *parent,
                                      long style)
     : wxChartCtrl(parent, id, pos, size, style),
     m_bubbleChart(data, size)
+{
+}
+
+wxBubbleChartCtrl::wxBubbleChartCtrl(wxWindow *parent,
+                                     wxWindowID id, const wxBubbleChartData &data,
+                                     wxBubbleChartOptions::ptr options,
+                                     const wxPoint &pos,
+                                     const wxSize &size,
+                                     long style)
+    : wxChartCtrl(parent, id, pos, size, style),
+    m_bubbleChart(data, options, size)
 {
 }
 

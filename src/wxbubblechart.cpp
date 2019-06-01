@@ -135,6 +135,22 @@ wxBubbleChart::wxBubbleChart(const wxBubbleChartData &data,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
         m_options->GetGridOptions()
+    ),
+    m_minZValue(GetMinZValue(data.GetDatasets())), m_maxZValue(GetMaxZValue(data.GetDatasets()))
+{
+    Initialize(data);
+}
+
+wxBubbleChart::wxBubbleChart(const wxBubbleChartData &data,
+                             wxBubbleChartOptions::ptr options,
+                             const wxSize &size)
+    : m_options(options),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+        size,
+        GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
+        GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
+        m_options->GetGridOptions()
         ),
     m_minZValue(GetMinZValue(data.GetDatasets())), m_maxZValue(GetMaxZValue(data.GetDatasets()))
 {

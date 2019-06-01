@@ -26,7 +26,7 @@
 #define _WX_CHARTS_WXCANDLESTICKCHART_H_
 
 #include "wxchart.h"
-#include "wxchartohlcdata.h"
+#include "wxchartsohlcdata.h"
 #include "wxcandlestickchartoptions.h"
 #include "wxchartgrid.h"
 
@@ -36,7 +36,7 @@
 class wxCandlestickChartData
 {
 public:
-    wxCandlestickChartData(const wxVector<wxString> &labels, const wxVector<wxChartOHLCData> &data);
+    wxCandlestickChartData(const wxVector<wxString> &labels, const wxVector<wxChartsOHLCData> &data);
 
     /// Gets the labels of the X axis.
     /// @return A vector containing the labels of the
@@ -47,7 +47,7 @@ public:
     const wxColor& GetUpFillColor() const;
     const wxColor& GetDownFillColor() const;
     unsigned int GetRectangleWidth() const;
-    const wxVector<wxChartOHLCData>& GetData() const;
+    const wxVector<wxChartsOHLCData>& GetData() const;
 
 private:
     wxVector<wxString> m_labels;
@@ -56,20 +56,38 @@ private:
     wxColor m_upFillColor;
     wxColor m_downFillColor;
     unsigned int m_rectangleWidth;
-    wxVector<wxChartOHLCData> m_data;
+    wxVector<wxChartsOHLCData> m_data;
 };
 
 /// A candlestick chart.
-
-/// \ingroup chartclasses
+/**
+    \ingroup chartclasses
+*/
 class wxCandlestickChart : public wxChart
 {
 public:
+    /// Constructor.
+    /**
+        The chart options will be defined by the default theme.
+
+        @param data The data that will be used to initialize the chart.
+        @param size The initial size of the chart.
+    */
     wxCandlestickChart(const wxCandlestickChartData &data, const wxSize &size);
+
+    /// Constructor.
+    /**
+        @param data The data that will be used to initialize the chart.
+        @param options The options to use for the chart.
+        @param size The initial size of the chart.
+    */
+    wxCandlestickChart(const wxCandlestickChartData &data, wxCandlestickChartOptions::ptr options,
+        const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
+    void Initialize(const wxCandlestickChartData &data);
     static wxDouble GetMinValue(const wxCandlestickChartData &data);
     static wxDouble GetMaxValue(const wxCandlestickChartData &data);
 
@@ -84,7 +102,7 @@ private:
     public:
         typedef wxSharedPtr<Candlestick> ptr;
 
-        Candlestick(const wxChartOHLCData &data, const wxColor &lineColor, unsigned int lineWidth,
+        Candlestick(const wxChartsOHLCData &data, const wxColor &lineColor, unsigned int lineWidth,
             const wxColor &upFillColor, const wxColor &downFillColor, unsigned int rectangleWidth,
             const wxChartTooltipProvider::ptr tooltipProvider);
 
@@ -95,7 +113,7 @@ private:
         void Update(const wxChartGridMapping& mapping, size_t index);
 
     private:
-        wxChartOHLCData m_data;
+        wxChartsOHLCData m_data;
         wxPoint2DDouble m_lowPoint;
         wxPoint2DDouble m_highPoint;
         wxPoint2DDouble m_openPoint;

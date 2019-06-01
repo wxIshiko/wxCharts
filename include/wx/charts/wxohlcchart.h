@@ -26,7 +26,7 @@
 #define _WX_CHARTS_WXOHLCCHART_H_
 
 #include "wxchart.h"
-#include "wxchartohlcdata.h"
+#include "wxchartsohlcdata.h"
 #include "wxohlcchartoptions.h"
 #include "wxchartgrid.h"
 
@@ -36,7 +36,7 @@
 class wxOHLCChartData
 {
 public:
-    wxOHLCChartData(const wxVector<wxString> &labels, const wxVector<wxChartOHLCData> &data);
+    wxOHLCChartData(const wxVector<wxString> &labels, const wxVector<wxChartsOHLCData> &data);
 
     /// Gets the labels of the X axis.
     /// @return A vector containing the labels of the
@@ -47,7 +47,7 @@ public:
     const wxColor& GetDownLineColor() const;
     unsigned int GetOpenLineLength() const;
     unsigned int GetCloseLineLength() const;
-    const wxVector<wxChartOHLCData>& GetData() const;
+    const wxVector<wxChartsOHLCData>& GetData() const;
 
 private:
     wxVector<wxString> m_labels;
@@ -56,7 +56,7 @@ private:
     wxColor m_downLineColor;
     unsigned int m_openLineLength;
     unsigned int m_closeLineLength;
-    wxVector<wxChartOHLCData> m_data;
+    wxVector<wxChartsOHLCData> m_data;
 };
 
 /// An open-high-low-close chart.
@@ -84,7 +84,7 @@ private:
     public:
         typedef wxSharedPtr<OHLCLines> ptr;
 
-        OHLCLines(const wxChartOHLCData &data, unsigned int lineWidth,
+        OHLCLines(const wxChartsOHLCData &data, unsigned int lineWidth,
             const wxColor& upLineColor, const wxColor& downLineColor,
             unsigned int openLineLength, unsigned int closeLineLength,
             const wxChartTooltipProvider::ptr tooltipProvider);
@@ -96,7 +96,7 @@ private:
         void Update(const wxChartGridMapping& mapping, size_t index);
 
     private:
-        wxChartOHLCData m_data;
+        wxChartsOHLCData m_data;
         wxPoint2DDouble m_lowPoint;
         wxPoint2DDouble m_highPoint;
         wxPoint2DDouble m_openPoint;

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,29 +20,29 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartohlcdata.h"
+#include "wxchartsohlcdata.h"
 
-wxChartOHLCData::wxChartOHLCData(wxDouble open, wxDouble high, wxDouble low, wxDouble close)
+wxChartsOHLCData::wxChartsOHLCData(wxDouble open, wxDouble high, wxDouble low, wxDouble close)
     : m_open(open), m_high(high), m_low(low), m_close(close)
 {
 }
 
-wxDouble wxChartOHLCData::GetOpenValue() const
+wxDouble wxChartsOHLCData::GetOpenValue() const
 {
     return m_open;
 }
 
-wxDouble wxChartOHLCData::GetHighValue() const
+wxDouble wxChartsOHLCData::GetHighValue() const
 {
     return m_high;
 }
 
-wxDouble wxChartOHLCData::GetLowValue() const
+wxDouble wxChartsOHLCData::GetLowValue() const
 {
     return m_low;
 }
 
-wxDouble wxChartOHLCData::GetCloseValue() const
+wxDouble wxChartsOHLCData::GetCloseValue() const
 {
     return m_close;
 

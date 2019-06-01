@@ -41,29 +41,50 @@
 #include <wx/menu.h>
 
 /// A control that displays an area chart.
-
-/// \ingroup chartclasses
+/**
+    \ingroup chartclasses
+*/
 class wxAreaChartCtrl : public wxChartCtrl
 {
 public:
-    /// Constructs a wxAreaChartCtrl control.
-    /// @param parent Pointer to a parent window.
-    /// @param id Control identifier. If wxID_ANY, will automatically
-    /// create an identifier.
-    /// @param data The data that will be used to initialize the chart.
-    /// @param pos Control position. wxDefaultPosition indicates that
-    /// wxWidgets should generate a default position for the control.
-    /// @param size Control size. wxDefaultSize indicates that wxWidgets
-    /// should generate a default size for the window. If no suitable
-    /// size can  be found, the window will be sized to 20x20 pixels
-    /// so that the window is visible but obviously not correctly sized.
-    /// @param style Control style. For generic window styles, please
-    /// see wxWindow.
+    /// Constructor.
+    /**
+        The chart options will be defined by the default theme.
+
+        @param parent Pointer to a parent window.
+        @param id Control identifier. If wxID_ANY, will automatically
+        create an identifier.
+        @param data The data that will be used to initialize the chart.
+        @param pos Control position. wxDefaultPosition indicates that
+        wxWidgets should generate a default position for the control.
+        @param size Control size. wxDefaultSize indicates that wxWidgets
+        should generate a default size for the window. If no suitable
+        size can  be found, the window will be sized to 20x20 pixels
+        so that the window is visible but obviously not correctly sized.
+        @param style Control style. For generic window styles, please
+        see wxWindow.
+    */
     wxAreaChartCtrl(wxWindow *parent, wxWindowID id, const wxAreaChartData &data,
         const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
         long style = 0);
+
+    /**
+        @param parent Pointer to a parent window.
+        @param id Control identifier. If wxID_ANY, will automatically
+        create an identifier.
+        @param data The data that will be used to initialize the chart.
+        @param options The options to use for the chart.
+        @param pos Control position. wxDefaultPosition indicates that
+        wxWidgets should generate a default position for the control.
+        @param size Control size. wxDefaultSize indicates that wxWidgets
+        should generate a default size for the window. If no suitable
+        size can  be found, the window will be sized to 20x20 pixels
+        so that the window is visible but obviously not correctly sized.
+        @param style Control style. For generic window styles, please
+        see wxWindow.
+    */
     wxAreaChartCtrl(wxWindow *parent, wxWindowID id, const wxAreaChartData &data,
-        wxSharedPtr<wxAreaChartOptions> &options, const wxPoint &pos = wxDefaultPosition,
+        wxAreaChartOptions::ptr &options, const wxPoint &pos = wxDefaultPosition,
         const wxSize &size = wxDefaultSize, long style = 0);
 
 private:
