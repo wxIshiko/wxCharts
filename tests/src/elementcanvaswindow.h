@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -31,14 +31,14 @@ class ElementCanvasWindow : public wxWindow
 public:
     ElementCanvasWindow(wxWindow* parent);
 
-    void setElement(const wxChartElement* element);
+    void setElement(const wxChartsElement* element);
 
 private:
     void OnPaint(wxPaintEvent &evt);
     void DrawGrid(wxGraphicsContext &gc);
 
 private:
-    const wxChartElement* m_element;
+    const wxChartsElement* m_element;
 
     DECLARE_EVENT_TABLE();
 };
