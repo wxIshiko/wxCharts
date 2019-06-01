@@ -27,18 +27,18 @@
 wxChartsDoubleDataset::wxChartsDoubleDataset(const wxChartsPenOptions &penOptions,
                                              const wxChartsBrushOptions &brushOptions,
                                              const wxVector<wxDouble> &data)
-    : m_options(penOptions, brushOptions, 0), m_data(data)
+    : m_penOptions(penOptions), m_brushOptions(m_brushOptions), m_data(data)
 {
 }
 
 const wxChartsPenOptions& wxChartsDoubleDataset::GetPenOptions() const
 {
-    return m_options.GetPenOptions();
+    return m_penOptions;
 }
 
 const wxChartsBrushOptions& wxChartsDoubleDataset::GetBrushOptions() const
 {
-    return m_options.GetBrushOptions();
+    return m_brushOptions;
 }
 
 const wxVector<wxDouble>& wxChartsDoubleDataset::GetData() const

@@ -62,7 +62,8 @@ public:
     const wxVector<wxDouble>& GetData() const;
 
 private:
-    wxChartsRectangleOptions m_options;
+    wxChartsPenOptions m_penOptions;
+    wxChartsBrushOptions m_brushOptions;
     wxVector<wxDouble> m_data;
 };
 
