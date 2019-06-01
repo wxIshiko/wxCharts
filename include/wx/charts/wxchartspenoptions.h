@@ -25,4 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSPENOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSPENOPTIONS_H_
 
+class wxChartPenOptions
+{
+};
+
 #endif

@@ -25,4 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSBRUSHOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSBRUSHOPTIONS_H_
 
+class wxChartBrushOptions
+{
+};
+
 #endif
