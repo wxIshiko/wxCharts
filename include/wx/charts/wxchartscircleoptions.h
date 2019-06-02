@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,23 +22,23 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTCIRCLEOPTIONS_H_
-#define _WX_CHARTS_WXCHARTCIRCLEOPTIONS_H_
+#ifndef _WX_CHARTS_WXCHARTSCIRCLEOPTIONS_H_
+#define _WX_CHARTS_WXCHARTSCIRCLEOPTIONS_H_
 
 #include <wx/colour.h>
 
-/// Options for the wxChartCircle class.
+/// Options for the wxChartsCircle class.
 
 /// \ingroup elementclasses
-class wxChartCircleOptions
+class wxChartsCircleOptions
 {
 public:
-    /// Constructs a wxChartCircleOptions instance.
+    /// Constructs a wxChartsCircleOptions instance.
     /// @param outlineWidth The width of the pen used to draw the outline
     /// of the circle.
     /// @param outlineColor The color of the outline.
     /// @param fillColor The color of the brush used to fill the circle.
-    wxChartCircleOptions(unsigned int outlineWidth, const wxColor &outlineColor,
+    wxChartsCircleOptions(unsigned int outlineWidth, const wxColor &outlineColor,
         const wxColor &fillColor);
 
     unsigned int GetOutlineWidth() const;

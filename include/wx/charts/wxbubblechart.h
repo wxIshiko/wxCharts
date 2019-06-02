@@ -28,7 +28,7 @@
 #include "wxchart.h"
 #include "wxbubblechartoptions.h"
 #include "wxchartsgrid.h"
-#include "wxchartcircle.h"
+#include "wxchartscircle.h"
 
 class wxDoubleTriplet
 {
@@ -130,14 +130,14 @@ private:
     virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point);
 
 private:
-    class Circle : public wxChartCircle
+    class Circle : public wxChartsCircle
     {
     public:
         typedef wxSharedPtr<Circle> ptr;
 
         Circle(wxDoubleTriplet value, wxDouble x, wxDouble y, wxDouble radius,
             const wxChartTooltipProvider::ptr tooltipProvider,
-            const wxChartCircleOptions &options);
+            const wxChartsCircleOptions &options);
 
         wxDoubleTriplet GetValue() const;
 

@@ -90,8 +90,8 @@ wxBubbleChart::Circle::Circle(wxDoubleTriplet value,
     wxDouble y,
     wxDouble radius,
     const wxChartTooltipProvider::ptr tooltipProvider,
-    const wxChartCircleOptions &options)
-    : wxChartCircle(x, y, radius, tooltipProvider, options), m_value(value)
+    const wxChartsCircleOptions &options)
+    : wxChartsCircle(x, y, radius, tooltipProvider, options), m_value(value)
 {
 }
 
@@ -180,7 +180,7 @@ void wxBubbleChart::Initialize(const wxBubbleChartData &data)
 
             Circle::ptr circle(
                 new Circle(datasetData[j], 0, 0, 1, tooltipProvider,
-                    wxChartCircleOptions(datasets[i]->GetOutlineWidth(),
+                    wxChartsCircleOptions(datasets[i]->GetOutlineWidth(),
                         datasets[i]->GetOutlineColor(), datasets[i]->GetFillColor()))
                 );
 

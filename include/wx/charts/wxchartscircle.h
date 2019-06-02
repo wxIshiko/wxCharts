@@ -22,21 +22,21 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTCIRCLE_H_
-#define _WX_CHARTS_WXCHARTCIRCLE_H_
+#ifndef _WX_CHARTS_WXCHARTSCIRCLE_H_
+#define _WX_CHARTS_WXCHARTSCIRCLE_H_
 
 #include "wxchartselement.h"
-#include "wxchartcircleoptions.h"
+#include "wxchartscircleoptions.h"
 
 /// This class is used to draw a circle on the chart.
 
 /// \ingroup elementclasses
-class wxChartCircle : public wxChartsElement
+class wxChartsCircle : public wxChartsElement
 {
 public:
-    wxChartCircle(wxDouble x, wxDouble y, wxDouble radius,
+    wxChartsCircle(wxDouble x, wxDouble y, wxDouble radius,
         const wxChartTooltipProvider::ptr tooltipProvider,
-        const wxChartCircleOptions &options);
+        const wxChartsCircleOptions &options);
 
     virtual void Draw(wxGraphicsContext &gc) const;
 
@@ -54,7 +54,7 @@ public:
     void SetRadius(wxDouble radius);
 
 private:
-    wxChartCircleOptions m_options;
+    wxChartsCircleOptions m_options;
     wxDouble m_x;
     wxDouble m_y;
     wxDouble m_radius;

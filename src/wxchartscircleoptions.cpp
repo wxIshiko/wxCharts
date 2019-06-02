@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,27 +20,27 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartcircleoptions.h"
+#include "wxchartscircleoptions.h"
 
-wxChartCircleOptions::wxChartCircleOptions(unsigned int outlineWidth, 
-                                           const wxColor &outlineColor,
-                                           const wxColor &fillColor)
+wxChartsCircleOptions::wxChartsCircleOptions(unsigned int outlineWidth, 
+                                             const wxColor &outlineColor,
+                                             const wxColor &fillColor)
     : m_outlineWidth(outlineWidth), m_outlineColor(outlineColor),
     m_fillColor(fillColor)
 {
 }
 
-unsigned int wxChartCircleOptions::GetOutlineWidth() const
+unsigned int wxChartsCircleOptions::GetOutlineWidth() const
 {
     return m_outlineWidth;
 }
 
-const wxColor& wxChartCircleOptions::GetOutlineColor() const
+const wxColor& wxChartsCircleOptions::GetOutlineColor() const
 {
     return m_outlineColor;
 }
 
-const wxColor& wxChartCircleOptions::GetFillColor() const
+const wxColor& wxChartsCircleOptions::GetFillColor() const
 {
     return m_fillColor;
 }
