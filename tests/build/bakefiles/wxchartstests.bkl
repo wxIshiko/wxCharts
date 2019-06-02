@@ -71,7 +71,7 @@ program wxchartstests
         ../../src/wxchartlabelseriespanel.h
         ../../src/wxchartcategoricalaxispanel.h
         ../../src/wxchartnumericalaxispanel.h
-        ../../src/wxchartgridpanel.h
+        ../../src/wxchartsgridpanel.h
         ../../src/wxareachartpanel.h
         ../../src/wxbarchartpanel.h
         ../../src/wxbubblechartpanel.h
@@ -98,7 +98,7 @@ program wxchartstests
         ../../src/wxchartlabelseriespanel.cpp
         ../../src/wxchartcategoricalaxispanel.cpp
         ../../src/wxchartnumericalaxispanel.cpp
-        ../../src/wxchartgridpanel.cpp
+        ../../src/wxchartsgridpanel.cpp
         ../../src/wxareachartpanel.cpp
         ../../src/wxbarchartpanel.cpp
         ../../src/wxbubblechartpanel.cpp
@@ -114,11 +114,13 @@ program wxchartstests
         ../../src/tests/testsuite.cpp
         ../../src/tests/wxchartsdatasetidtests.cpp
         ../../src/tests/wxchartscategoricaldatatests.cpp
+        ../../src/tests/wxchartspenoptionstests.cpp
+        ../../src/tests/wxchartsbrushoptionstests.cpp
         ../../src/tests/wxchartbackgroundoptionstests.cpp
         ../../src/tests/wxchartfontoptionstests.cpp
         ../../src/tests/wxchartlabeloptionstests.cpp
         ../../src/tests/wxchartaxisoptionstests.cpp
-        ../../src/tests/wxchartgridoptionstests.cpp
+        ../../src/tests/wxchartsgridoptionstests.cpp
         ../../src/tests/wxcolumnchartoptionstests.cpp
         ../../src/tests/wxpiechartoptionstests.cpp
         ../../src/tests/wxchartsthemeidtests.cpp

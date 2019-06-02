@@ -20,21 +20,27 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _TESTS_WX_CHARTS_WXCHARTGRIDPANEL_H_
-#define _TESTS_WX_CHARTS_WXCHARTGRIDPANEL_H_
+#include "wxchartsgridpanel.h"
+#include <wx/sizer.h>
 
-#include "elementcanvaswindow.h"
-#include <wx/charts/wxcharts.h>
-#include <wx/panel.h>
-
-class wxChartGridPanel : public wxPanel
+wxChartsGridPanel::wxChartsGridPanel(wxWindow* parent)
+    : wxPanel(parent)
 {
-public:
-    wxChartGridPanel(wxWindow* parent);
+    wxVector<wxString> labels;
+    labels.push_back("January");
+    m_grid = new wxChartsGrid(
+        wxPoint2DDouble(0, 0),
+        wxSize(200, 100),
+        wxChartCategoricalAxis::make_shared("id0", labels, wxChartAxisOptions(wxCHARTAXISPOSITION_BOTTOM)),
+        wxChartNumericalAxis::make_shared("id1", 0, 100, wxChartAxisOptions(wxCHARTAXISPOSITION_LEFT)),
+        wxChartsGridOptions()
+    );
 
-private:
-    ElementCanvasWindow* m_canvas;
-    wxChartsGrid* m_grid;
-};
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
-#endif
+    m_canvas = new ElementCanvasWindow(this);
+    m_canvas->setElement(m_grid);
+    sizer->Add(m_canvas, 1, wxEXPAND);
+
+    SetSizer(sizer);
+}

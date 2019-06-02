@@ -47,7 +47,7 @@
     <ClInclude Include="..\..\src\wxchartnumericalaxispanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\wxchartgridpanel.h">
+    <ClInclude Include="..\..\src\wxchartsgridpanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\wxareachartpanel.h">
@@ -115,7 +115,7 @@
     <ClCompile Include="..\..\src\wxchartnumericalaxispanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartgridpanel.cpp">
+    <ClCompile Include="..\..\src\wxchartsgridpanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxareachartpanel.cpp">
@@ -160,6 +160,12 @@
     <ClCompile Include="..\..\src\tests\wxchartscategoricaldatatests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\tests\wxchartspenoptionstests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\wxchartsbrushoptionstests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\tests\wxchartbackgroundoptionstests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -172,7 +178,7 @@
     <ClCompile Include="..\..\src\tests\wxchartaxisoptionstests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\tests\wxchartgridoptionstests.cpp">
+    <ClCompile Include="..\..\src\tests\wxchartsgridoptionstests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\tests\wxcolumnchartoptionstests.cpp">

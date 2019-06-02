@@ -161,7 +161,7 @@
     <ClCompile Include="..\..\src\wxchartlabelseriespanel.cpp" />
     <ClCompile Include="..\..\src\wxchartcategoricalaxispanel.cpp" />
     <ClCompile Include="..\..\src\wxchartnumericalaxispanel.cpp" />
-    <ClCompile Include="..\..\src\wxchartgridpanel.cpp" />
+    <ClCompile Include="..\..\src\wxchartsgridpanel.cpp" />
     <ClCompile Include="..\..\src\wxareachartpanel.cpp" />
     <ClCompile Include="..\..\src\wxbarchartpanel.cpp" />
     <ClCompile Include="..\..\src\wxbubblechartpanel.cpp" />
@@ -176,11 +176,13 @@
     <ClCompile Include="..\..\src\tests\testsuite.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartsdatasetidtests.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartscategoricaldatatests.cpp" />
+    <ClCompile Include="..\..\src\tests\wxchartspenoptionstests.cpp" />
+    <ClCompile Include="..\..\src\tests\wxchartsbrushoptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartbackgroundoptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartfontoptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartlabeloptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartaxisoptionstests.cpp" />
-    <ClCompile Include="..\..\src\tests\wxchartgridoptionstests.cpp" />
+    <ClCompile Include="..\..\src\tests\wxchartsgridoptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxcolumnchartoptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxpiechartoptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartsthemeidtests.cpp" />
@@ -198,7 +200,7 @@
     <ClInclude Include="..\..\src\wxchartlabelseriespanel.h" />
     <ClInclude Include="..\..\src\wxchartcategoricalaxispanel.h" />
     <ClInclude Include="..\..\src\wxchartnumericalaxispanel.h" />
-    <ClInclude Include="..\..\src\wxchartgridpanel.h" />
+    <ClInclude Include="..\..\src\wxchartsgridpanel.h" />
     <ClInclude Include="..\..\src\wxareachartpanel.h" />
     <ClInclude Include="..\..\src\wxbarchartpanel.h" />
     <ClInclude Include="..\..\src\wxbubblechartpanel.h" />
