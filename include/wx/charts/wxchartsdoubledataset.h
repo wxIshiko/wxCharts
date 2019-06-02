@@ -39,6 +39,8 @@ public:
     /// Smart pointer typedef.
     typedef wxSharedPtr<wxChartsDoubleDataset> ptr;
 
+    wxChartsDoubleDataset(const wxVector<wxDouble> &data);
+
     /// Constructs a wxBarChartDataset instance.
     /// @param penOptions The options for the pen used to
     /// draw the outline of the bar.

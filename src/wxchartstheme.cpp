@@ -43,8 +43,15 @@ wxChartsTheme::wxChartsTheme()
     m_stackedColumnChartOptions(new wxStackedColumnChartOptions()),
     m_timeSeriesChartOptions(new wxTimeSeriesChartOptions())
 {
-    m_datasetThemes[wxChartsDatasetId::CreateImplicitId(0)] = new wxChartsDatasetTheme();
-    m_datasetThemes[wxChartsDatasetId::CreateImplicitId(1)] = new wxChartsDatasetTheme();
+    wxSharedPtr<wxChartsDatasetTheme> datasetTheme0(new wxChartsDatasetTheme());
+    wxBarChartDatasetOptions datasetOptions0(wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2), wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F)));
+    datasetTheme0->SetBarChartDatasetOptions(datasetOptions0);
+    m_datasetThemes[wxChartsDatasetId::CreateImplicitId(0)] = datasetTheme0;
+    
+    wxSharedPtr<wxChartsDatasetTheme> datasetTheme1(new wxChartsDatasetTheme());
+    wxBarChartDatasetOptions datasetOptions1(wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2), wxChartsBrushOptions(wxColor(151, 187, 205, 0x7F)));
+    datasetTheme1->SetBarChartDatasetOptions(datasetOptions1);
+    m_datasetThemes[wxChartsDatasetId::CreateImplicitId(1)] = datasetTheme1;
 }
 
 wxSharedPtr<wxAreaChartOptions> wxChartsTheme::GetAreaChartOptions()

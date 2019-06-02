@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -23,3 +23,19 @@
 /// @file
 
 #include "wxbarchartdatasetoptions.h"
+
+wxBarChartDatasetOptions::wxBarChartDatasetOptions(const wxChartsPenOptions &penOptions,
+                                                   const wxChartsBrushOptions &brushOptions)
+    : m_penOptions(penOptions), m_brushOptions(brushOptions)
+{
+}
+
+const wxChartsPenOptions& wxBarChartDatasetOptions::GetPenOptions() const
+{
+    return m_penOptions;
+}
+
+const wxChartsBrushOptions& wxBarChartDatasetOptions::GetBrushOptions() const
+{
+    return m_brushOptions;
+}
