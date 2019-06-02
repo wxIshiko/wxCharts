@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,7 +26,7 @@
 wxChartNumericalAxisPanel::wxChartNumericalAxisPanel(wxWindow* parent)
     : wxPanel(parent)
 {
-    m_axis = new wxChartNumericalAxis("id0", 0, 100, wxChartAxisOptions(wxCHARTAXISPOSITION_LEFT));
+    m_axis = new wxChartsNumericalAxis("id0", 0, 100, wxChartsAxisOptions(wxCHARTSAXISPOSITION_LEFT));
 
     wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
