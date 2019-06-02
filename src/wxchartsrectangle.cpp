@@ -32,6 +32,7 @@
 */
 
 #include "wxchartsrectangle.h"
+#include "wxchartsutilities.h"
 #include <wx/pen.h>
 #include <wx/brush.h>
 
@@ -56,13 +57,13 @@ void wxChartsRectangle::Draw(wxGraphicsContext &gc) const
 
     if (m_options.GetBorders() == wxALL)
     {
-        wxPen pen(m_options.GetPenOptions().GetColor(), 2);
+        wxPen pen = wxChartsUtilities::CreatePen(m_options.GetPenOptions());
         gc.SetPen(pen);
         gc.StrokePath(path);
     }
     else
     {
-        wxPen pen(m_options.GetPenOptions().GetColor(), 2);
+        wxPen pen = wxChartsUtilities::CreatePen(m_options.GetPenOptions());
         gc.SetPen(pen);
 
         int borders = m_options.GetBorders();
