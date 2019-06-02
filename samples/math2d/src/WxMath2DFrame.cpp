@@ -92,7 +92,7 @@ WxMath2DFrame::WxMath2DFrame(const wxString& title)
     chartData.AddDataset(dataset);
 
     math2dPlotCtrl = new wxMath2DPlotCtrl(panel, wxID_ANY, chartData, options);
-    wxChartGridOptions opt = math2dPlotCtrl->GetGridOptions();
+    wxChartsGridOptions opt = math2dPlotCtrl->GetGridOptions();
     opt.GetHorizontalGridLineOptions().SetMajorGridLineColor(wxColour("Grey"));
     opt.GetVerticalGridLineOptions().SetMajorGridLineColor(wxColour("Grey"));
     math2dPlotCtrl->SetGridOptions(opt);
