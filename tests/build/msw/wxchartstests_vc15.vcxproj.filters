@@ -41,10 +41,10 @@
     <ClInclude Include="..\..\src\wxchartlabelseriespanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\wxchartcategoricalaxispanel.h">
+    <ClInclude Include="..\..\src\wxchartscategoricalaxispanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\wxchartnumericalaxispanel.h">
+    <ClInclude Include="..\..\src\wxchartsnumericalaxispanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\wxchartsgridpanel.h">
@@ -109,10 +109,10 @@
     <ClCompile Include="..\..\src\wxchartlabelseriespanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartcategoricalaxispanel.cpp">
+    <ClCompile Include="..\..\src\wxchartscategoricalaxispanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartnumericalaxispanel.cpp">
+    <ClCompile Include="..\..\src\wxchartsnumericalaxispanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchartsgridpanel.cpp">

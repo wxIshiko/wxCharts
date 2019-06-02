@@ -69,8 +69,8 @@ program wxchartstests
         ../../src/wxchartsrectanglepanel.h
         ../../src/wxchartlabelpanel.h
         ../../src/wxchartlabelseriespanel.h
-        ../../src/wxchartcategoricalaxispanel.h
-        ../../src/wxchartnumericalaxispanel.h
+        ../../src/wxchartscategoricalaxispanel.h
+        ../../src/wxchartsnumericalaxispanel.h
         ../../src/wxchartsgridpanel.h
         ../../src/wxareachartpanel.h
         ../../src/wxbarchartpanel.h
@@ -96,8 +96,8 @@ program wxchartstests
         ../../src/wxchartsrectanglepanel.cpp
         ../../src/wxchartlabelpanel.cpp
         ../../src/wxchartlabelseriespanel.cpp
-        ../../src/wxchartcategoricalaxispanel.cpp
-        ../../src/wxchartnumericalaxispanel.cpp
+        ../../src/wxchartscategoricalaxispanel.cpp
+        ../../src/wxchartsnumericalaxispanel.cpp
         ../../src/wxchartsgridpanel.cpp
         ../../src/wxareachartpanel.cpp
         ../../src/wxbarchartpanel.cpp
