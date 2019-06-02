@@ -71,8 +71,8 @@ public:
     bool RemoveDataset(std::size_t index);
     void AddDataset(const wxMath2DPlotDataset::ptr &newset);
 
-    const wxChartGridOptions& GetGridOptions() const;
-    void  SetGridOptions(const wxChartGridOptions& opt);
+    const wxChartsGridOptions& GetGridOptions() const;
+    void  SetGridOptions(const wxChartsGridOptions& opt);
     const wxMath2DPlotOptions& GetChartOptions() const;
     void  SetChartOptions(const wxMath2DPlotOptions& opt);
     void  SetChartType(std::size_t index,const wxChartType &type);

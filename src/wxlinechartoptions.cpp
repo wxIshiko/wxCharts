@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -28,12 +28,12 @@ wxLineChartOptions::wxLineChartOptions()
 {
 }
 
-const wxChartGridOptions& wxLineChartOptions::GetGridOptions() const
+const wxChartsGridOptions& wxLineChartOptions::GetGridOptions() const
 {
     return m_gridOptions;
 }
 
-wxChartGridOptions& wxLineChartOptions::GetGridOptions()
+wxChartsGridOptions& wxLineChartOptions::GetGridOptions()
 {
     return m_gridOptions;
 }

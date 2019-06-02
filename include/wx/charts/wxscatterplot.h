@@ -27,7 +27,7 @@
 
 #include "wxchart.h"
 #include "wxscatterplotoptions.h"
-#include "wxchartgrid.h"
+#include "wxchartsgrid.h"
 #include "wxchartspoint.h"
 
 class wxScatterPlotDataset
@@ -128,7 +128,7 @@ private:
 
 private:
     wxSharedPtr<wxScatterPlotOptions> m_options;
-    wxChartGrid m_grid;
+    wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };
 

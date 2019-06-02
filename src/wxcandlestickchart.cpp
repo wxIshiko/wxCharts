@@ -156,7 +156,7 @@ wxPoint2DDouble wxCandlestickChart::Candlestick::GetTooltipPosition() const
     return wxPoint2DDouble(m_lowPoint.m_x, m_highPoint.m_y + (m_lowPoint.m_y - m_highPoint.m_y) / 2);
 }
 
-void wxCandlestickChart::Candlestick::Update(const wxChartGridMapping& mapping,
+void wxCandlestickChart::Candlestick::Update(const wxChartsGridMapping& mapping,
     size_t index)
 {
     m_lowPoint = mapping.GetWindowPositionAtTickMark(index, m_data.GetLowValue());

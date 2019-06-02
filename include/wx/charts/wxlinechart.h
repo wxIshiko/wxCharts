@@ -38,7 +38,7 @@
 
 #include "wxchart.h"
 #include "wxlinechartoptions.h"
-#include "wxchartgrid.h"
+#include "wxchartsgrid.h"
 #include "wxchartspoint.h"
 
 enum wxLineType
@@ -214,7 +214,7 @@ private:
 
 private:
     wxSharedPtr<wxLineChartOptions> m_options;
-    wxChartGrid m_grid;
+    wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };
 

@@ -229,12 +229,12 @@ const wxChartCommonOptions& wxMath2DPlot::GetCommonOptions() const
     return m_options->GetCommonOptions();
 }
 
-const wxChartGridOptions& wxMath2DPlot::GetGridOptions() const
+const wxChartsGridOptions& wxMath2DPlot::GetGridOptions() const
 {
     return m_grid.GetOptions();
 }
 
-void wxMath2DPlot::SetGridOptions(const wxChartGridOptions& opt)
+void wxMath2DPlot::SetGridOptions(const wxChartsGridOptions& opt)
 {
     m_grid.SetOptions(opt);
 }

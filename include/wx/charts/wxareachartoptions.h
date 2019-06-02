@@ -26,7 +26,7 @@
 #define _WX_CHARTS_WXAREACHARTOPTIONS_H_
 
 #include "wxchartoptions.h"
-#include "wxchartgridoptions.h"
+#include "wxchartsgridoptions.h"
 #include <wx/sharedptr.h>
 
 /// The options for the wxAreaChartCtrl control.
@@ -46,13 +46,13 @@ public:
     /**
         @return The options for the grid.
     */
-    const wxChartGridOptions& GetGridOptions() const;
+    const wxChartsGridOptions& GetGridOptions() const;
 
     /// Gets the options for the grid.
     /**
         @return The options for the grid.
     */
-    wxChartGridOptions& GetGridOptions();
+    wxChartsGridOptions& GetGridOptions();
 
     /// Gets the radius for the dots representing points on the chart.
     /**
@@ -86,7 +86,7 @@ public:
     wxDouble GetHitDetectionRange() const;
 
 private:
-    wxChartGridOptions m_gridOptions;
+    wxChartsGridOptions m_gridOptions;
     wxDouble m_dotRadius;
     unsigned int m_dotStrokeWidth;
     unsigned int m_lineWidth;

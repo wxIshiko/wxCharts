@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,7 +26,7 @@
 #define _WX_CHARTS_WXMATH2DPLOTOPTIONS_H_
 
 #include "wxchartoptions.h"
-#include "wxchartgridoptions.h"
+#include "wxchartsgridoptions.h"
 
 #include <functional>
 
@@ -43,10 +43,10 @@ public:
 
     /// Gets the options for the grid.
     /// @return The options for the grid.
-    const wxChartGridOptions& GetGridOptions() const;
+    const wxChartsGridOptions& GetGridOptions() const;
     /// Gets the options for the grid.
     /// @return The grid options.
-    wxChartGridOptions& GetGridOptions();
+    wxChartsGridOptions& GetGridOptions();
     /// Gets the radius for the dots representing
     /// points on the chart.
     /// @return The radius of the dots.
@@ -78,7 +78,7 @@ public:
     void SetAxisFuncY(const AxisFunc &newfunc);
 
 private:
-    wxChartGridOptions m_gridOptions;
+    wxChartsGridOptions m_gridOptions;
     wxDouble m_dotRadius;
     unsigned int m_dotStrokeWidth;
     unsigned int m_lineWidth;

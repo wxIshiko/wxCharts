@@ -26,7 +26,7 @@
 #define _WX_CHARTS_WXHISTOGRAMCHARTOPTIONS_H_
 
 #include "wxchartoptions.h"
-#include "wxchartgridoptions.h"
+#include "wxchartsgridoptions.h"
 
 /// The options for the wxHistogramChartCtrl control.
 
@@ -39,10 +39,10 @@ public:
 
     /// Gets the options for the grid.
     /// @return The options for the grid.
-    const wxChartGridOptions& GetGridOptions() const;
+    const wxChartsGridOptions& GetGridOptions() const;
     /// Gets the options for the grid.
     /// @return The grid options.
-    wxChartGridOptions& GetGridOptions();
+    wxChartsGridOptions& GetGridOptions();
 
     /// Gets the width of the pen used to
     /// draw the lines connecting the points
@@ -53,7 +53,7 @@ public:
     unsigned int GetLineWidth() const;
 
 private:
-    wxChartGridOptions m_gridOptions;
+    wxChartsGridOptions m_gridOptions;
     unsigned int m_lineWidth;
 };
 

@@ -39,7 +39,7 @@
 #include "wxchart.h"
 #include "wxchartscategoricaldata.h"
 #include "wxcolumnchartoptions.h"
-#include "wxchartgrid.h"
+#include "wxchartsgrid.h"
 #include "wxchartsrectangle.h"
 #include <wx/sharedptr.h>
 
@@ -99,7 +99,7 @@ private:
 
 private:
     wxSharedPtr<wxColumnChartOptions> m_options;
-    wxChartGrid m_grid;
+    wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };
 

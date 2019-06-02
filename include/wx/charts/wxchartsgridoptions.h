@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,19 +22,19 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTGRIDOPTIONS_H_
-#define _WX_CHARTS_WXCHARTGRIDOPTIONS_H_
+#ifndef _WX_CHARTS_WXCHARTSGRIDOPTIONS_H_
+#define _WX_CHARTS_WXCHARTSGRIDOPTIONS_H_
 
 #include "wxchartaxisoptions.h"
 #include <wx/colour.h>
 
-/// The options for the grid lines of wxChartGrid element.
-class wxChartGridLineOptions
+/// The options for the grid lines of wxChartsGrid element.
+class wxChartsGridLineOptions
 {
 public:
-    /// Constructs a wxChartGridOptions
+    /// Constructs a wxChartsGridOptions
     /// instance.
-    wxChartGridLineOptions();
+    wxChartsGridLineOptions();
 
     /// Whether to show grid lines. This doesn't affect
     /// the visibility of the X or Y axis.
@@ -79,19 +79,19 @@ private:
     unsigned int m_numberOfMinorGridLinesBetweenTickMarks;
 };
 
-/// The options for the wxChartGrid element.
-class wxChartGridOptions
+/// The options for the wxChartsGrid element.
+class wxChartsGridOptions
 {
 public:
-    /// Constructs a wxChartGridOptions instance with
+    /// Constructs a wxChartsGridOptions instance with
     /// default options for the X and Y axes.
-    wxChartGridOptions();
-    /// Constructs a wxChartGridOptions instance with
+    wxChartsGridOptions();
+    /// Constructs a wxChartsGridOptions instance with
     /// the options for the X and Y axes passed in as
     /// arguments.
     /// @param xAxisOptions The options for the X axis.
     /// @param yAxisOptions The options for the Y axis.
-    wxChartGridOptions(const wxChartAxisOptions &xAxisOptions,
+    wxChartsGridOptions(const wxChartAxisOptions &xAxisOptions,
         const wxChartAxisOptions &yAxisOptions);
 
     /// Gets the options for the X axis.
@@ -109,24 +109,24 @@ public:
 
     /// Gets the options for the horizontal grid lines.
     /// @return The options for the horizontal grid lines.
-    const wxChartGridLineOptions& GetHorizontalGridLineOptions() const;
+    const wxChartsGridLineOptions& GetHorizontalGridLineOptions() const;
     /// Gets the options for the horizontal grid lines.
     /// @return The options for the horizontal grid lines.
-    wxChartGridLineOptions& GetHorizontalGridLineOptions();
+    wxChartsGridLineOptions& GetHorizontalGridLineOptions();
     /// Gets the options for the vertical grid lines.
     /// @return The options for the vertical grid lines.
-    const wxChartGridLineOptions& GetVerticalGridLineOptions() const;
+    const wxChartsGridLineOptions& GetVerticalGridLineOptions() const;
     /// Gets the options for the vertical grid lines.
     /// @return The options for the vertical grid lines.
-    wxChartGridLineOptions& GetVerticalGridLineOptions();
+    wxChartsGridLineOptions& GetVerticalGridLineOptions();
 
     void SetShowGridLines(bool show);
 
 private:
     wxChartAxisOptions m_XAxisOptions;
     wxChartAxisOptions m_YAxisOptions;
-    wxChartGridLineOptions m_horizontalGridLineOptions;
-    wxChartGridLineOptions m_verticalGridLinesOptions;
+    wxChartsGridLineOptions m_horizontalGridLineOptions;
+    wxChartsGridLineOptions m_verticalGridLinesOptions;
 };
 
 #endif

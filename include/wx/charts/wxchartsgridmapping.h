@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -33,17 +33,17 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTGRIDMAPPING_H_
-#define _WX_CHARTS_WXCHARTGRIDMAPPING_H_
+#ifndef _WX_CHARTS_WXCHARTSGRIDMAPPING_H_
+#define _WX_CHARTS_WXCHARTSGRIDMAPPING_H_
 
 #include "wxchartaxis.h"
 #include <wx/geometry.h>
 
 /// This class maintains a mapping between points on the chart and pixels on the screen.
-class wxChartGridMapping
+class wxChartsGridMapping
 {
 public:
-    wxChartGridMapping(const wxSize &size,
+    wxChartsGridMapping(const wxSize &size,
         const wxChartAxis::ptr xAxis, const wxChartAxis::ptr yAxis);
 
     const wxSize& GetSize() const;

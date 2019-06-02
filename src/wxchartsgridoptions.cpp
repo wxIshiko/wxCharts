@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,107 +20,107 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartgridoptions.h"
+#include "wxchartsgridoptions.h"
 
-wxChartGridLineOptions::wxChartGridLineOptions()
+wxChartsGridLineOptions::wxChartsGridLineOptions()
     : m_showGridLines(true),
     m_majorGridLineWidth(1), m_majorGridLineColor(0, 0, 0, 0x0C),
     m_numberOfMinorGridLinesBetweenTickMarks(0)
 {
 }
 
-bool wxChartGridLineOptions::ShowGridLines() const
+bool wxChartsGridLineOptions::ShowGridLines() const
 {
     return m_showGridLines;
 }
 
-void wxChartGridLineOptions::SetShowGridLines(bool show)
+void wxChartsGridLineOptions::SetShowGridLines(bool show)
 {
     m_showGridLines = show;
 }
 
-unsigned int wxChartGridLineOptions::GetMajorGridLineWidth() const
+unsigned int wxChartsGridLineOptions::GetMajorGridLineWidth() const
 {
     return m_majorGridLineWidth;
 }
 
-void wxChartGridLineOptions::SetMajorGridLineWidth(unsigned int width)
+void wxChartsGridLineOptions::SetMajorGridLineWidth(unsigned int width)
 {
     m_majorGridLineWidth = width;
 }
 
-const wxColor& wxChartGridLineOptions::GetMajorGridLineColor() const
+const wxColor& wxChartsGridLineOptions::GetMajorGridLineColor() const
 {
     return m_majorGridLineColor;
 }
 
-void wxChartGridLineOptions::SetMajorGridLineColor(const wxColor &color)
+void wxChartsGridLineOptions::SetMajorGridLineColor(const wxColor &color)
 {
     m_majorGridLineColor = color;
 }
 
-unsigned int wxChartGridLineOptions::GetNumberOfMinorGridLinesBetweenTickMarks() const
+unsigned int wxChartsGridLineOptions::GetNumberOfMinorGridLinesBetweenTickMarks() const
 {
     return m_numberOfMinorGridLinesBetweenTickMarks;
 }
 
-void wxChartGridLineOptions::SetNumberOfMinorGridLinesBetweenTickMarks(unsigned int n)
+void wxChartsGridLineOptions::SetNumberOfMinorGridLinesBetweenTickMarks(unsigned int n)
 {
     m_numberOfMinorGridLinesBetweenTickMarks = n;
 }
 
-wxChartGridOptions::wxChartGridOptions()
+wxChartsGridOptions::wxChartsGridOptions()
     : m_XAxisOptions(wxCHARTAXISPOSITION_BOTTOM), m_YAxisOptions(wxCHARTAXISPOSITION_LEFT)
 {
 }
 
-wxChartGridOptions::wxChartGridOptions(const wxChartAxisOptions &xAxisOptions,
-                                       const wxChartAxisOptions &yAxisOptions)
+wxChartsGridOptions::wxChartsGridOptions(const wxChartAxisOptions &xAxisOptions,
+                                         const wxChartAxisOptions &yAxisOptions)
     : m_XAxisOptions(xAxisOptions), m_YAxisOptions(yAxisOptions)
 {
 }
 
-const wxChartAxisOptions& wxChartGridOptions::GetXAxisOptions() const
+const wxChartAxisOptions& wxChartsGridOptions::GetXAxisOptions() const
 {
     return m_XAxisOptions;
 }
 
-wxChartAxisOptions& wxChartGridOptions::GetXAxisOptions()
+wxChartAxisOptions& wxChartsGridOptions::GetXAxisOptions()
 {
     return m_XAxisOptions;
 }
 
-const wxChartAxisOptions& wxChartGridOptions::GetYAxisOptions() const
+const wxChartAxisOptions& wxChartsGridOptions::GetYAxisOptions() const
 {
     return m_YAxisOptions;
 }
 
-wxChartAxisOptions& wxChartGridOptions::GetYAxisOptions()
+wxChartAxisOptions& wxChartsGridOptions::GetYAxisOptions()
 {
     return m_YAxisOptions;
 }
 
-const wxChartGridLineOptions& wxChartGridOptions::GetHorizontalGridLineOptions() const
+const wxChartsGridLineOptions& wxChartsGridOptions::GetHorizontalGridLineOptions() const
 {
     return m_horizontalGridLineOptions;
 }
 
-wxChartGridLineOptions& wxChartGridOptions::GetHorizontalGridLineOptions()
+wxChartsGridLineOptions& wxChartsGridOptions::GetHorizontalGridLineOptions()
 {
     return m_horizontalGridLineOptions;
 }
 
-const wxChartGridLineOptions& wxChartGridOptions::GetVerticalGridLineOptions() const
+const wxChartsGridLineOptions& wxChartsGridOptions::GetVerticalGridLineOptions() const
 {
     return m_verticalGridLinesOptions;
 }
 
-wxChartGridLineOptions& wxChartGridOptions::GetVerticalGridLineOptions()
+wxChartsGridLineOptions& wxChartsGridOptions::GetVerticalGridLineOptions()
 {
     return m_verticalGridLinesOptions;
 }
 
-void wxChartGridOptions::SetShowGridLines(bool show)
+void wxChartsGridOptions::SetShowGridLines(bool show)
 {
     if(m_horizontalGridLineOptions.ShowGridLines() != show)
         m_horizontalGridLineOptions.SetShowGridLines(show);

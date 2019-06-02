@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -31,7 +31,7 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
-#include "wxchartgrid.h"
+#include "wxchartsgrid.h"
 #include "wxchartnumericalaxis.h"
 #include "wxchartcategoricalaxis.h"
 #include <wx/pen.h>
@@ -39,11 +39,11 @@
 static const wxDouble MinDistance = 1.0e-3;
 static const wxDouble MaxDistance = 1.0e3;
 
-wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
-                         const wxSize &size,
-                         wxChartAxis::ptr xAxis,
-                         wxChartAxis::ptr yAxis,
-                         const wxChartGridOptions& options)
+wxChartsGrid::wxChartsGrid(const wxPoint2DDouble &position,
+                          const wxSize &size,
+                          wxChartAxis::ptr xAxis,
+                          wxChartAxis::ptr yAxis,
+                          const wxChartsGridOptions& options)
     : m_options(options), m_position(position),
     m_XAxis(xAxis), m_YAxis(yAxis),
     m_mapping(size, m_XAxis, m_YAxis),
@@ -51,13 +51,13 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 {
 }
 
-wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
-                         const wxSize &size,
-                         wxDouble minXValue,
-                         wxDouble maxXValue,
-                         wxDouble minYValue,
-                         wxDouble maxYValue,
-                         const wxChartGridOptions& options)
+wxChartsGrid::wxChartsGrid(const wxPoint2DDouble &position,
+                          const wxSize &size,
+                          wxDouble minXValue,
+                          wxDouble maxXValue,
+                          wxDouble minYValue,
+                          wxDouble maxYValue,
+                          const wxChartsGridOptions& options)
     : m_options(options), m_position(position),
       m_XAxis(new wxChartNumericalAxis("x", minXValue, maxXValue, options.GetXAxisOptions())),
       m_YAxis(new wxChartNumericalAxis("y", minYValue, maxYValue, options.GetYAxisOptions())),
@@ -69,7 +69,7 @@ wxChartGrid::wxChartGrid(const wxPoint2DDouble &position,
 
 }
 
-void wxChartGrid::Draw(wxGraphicsContext &gc) const
+void wxChartsGrid::Draw(wxGraphicsContext &gc) const
 {
     const wxChartAxis* verticalAxis = 0;
     if (m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
@@ -105,17 +105,17 @@ void wxChartGrid::Draw(wxGraphicsContext &gc) const
     m_YAxis->Draw(gc);
 }
 
-bool wxChartGrid::HitTest(const wxPoint &point) const
+bool wxChartsGrid::HitTest(const wxPoint &point) const
 {
     return false;
 }
 
-wxPoint2DDouble wxChartGrid::GetTooltipPosition() const
+wxPoint2DDouble wxChartsGrid::GetTooltipPosition() const
 {
     return wxPoint2DDouble(0, 0);
 }
 
-void wxChartGrid::Fit(wxGraphicsContext &gc)
+void wxChartsGrid::Fit(wxGraphicsContext &gc)
 {
     if (!m_needsFit)
     {
@@ -153,28 +153,28 @@ void wxChartGrid::Fit(wxGraphicsContext &gc)
     m_needsFit = false;
 }
 
-void wxChartGrid::Resize(const wxSize &size)
+void wxChartsGrid::Resize(const wxSize &size)
 {
     m_mapping.SetSize(size);
     m_needsFit = true;
 }
 
-const wxChartGridMapping& wxChartGrid::GetMapping() const
+const wxChartsGridMapping& wxChartsGrid::GetMapping() const
 {
     return m_mapping;
 }
 
-void wxChartGrid::SetOptions(const wxChartGridOptions& opt)
+void wxChartsGrid::SetOptions(const wxChartsGridOptions& opt)
 {
     m_options = opt;
 }
 
-const wxChartGridOptions& wxChartGrid::GetOptions() const
+const wxChartsGridOptions& wxChartsGrid::GetOptions() const
 {
     return m_options;
 }
 
-bool wxChartGrid::Scale(int c)
+bool wxChartsGrid::Scale(int c)
 {
     if(c)
     {
@@ -200,7 +200,7 @@ bool wxChartGrid::Scale(int c)
     return true;
 }
 
-void wxChartGrid::Shift(double dx,double dy)
+void wxChartsGrid::Shift(double dx,double dy)
 {
     double deltaX = (m_curAxisLimits.MaxX-m_curAxisLimits.MinX)*dx;
     m_curAxisLimits.MinX+=deltaX;
@@ -213,7 +213,7 @@ void wxChartGrid::Shift(double dx,double dy)
     Update();
 }
 
-void wxChartGrid::UpdateAxisLimit(const std::string& axisId, wxDouble min, wxDouble max)
+void wxChartsGrid::UpdateAxisLimit(const std::string& axisId, wxDouble min, wxDouble max)
 {
     if(axisId == "x")
     {
@@ -236,35 +236,35 @@ void wxChartGrid::UpdateAxisLimit(const std::string& axisId, wxDouble min, wxDou
         m_YAxis = new wxChartNumericalAxis(axisId,m_curAxisLimits.MinY,
                                            m_curAxisLimits.MaxY, m_options.GetYAxisOptions());
     }
-    m_mapping = wxChartGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
+    m_mapping = wxChartsGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
     m_needsFit = true;
 }
 
-void wxChartGrid::ChangeLabels(const std::string& axisId, const wxVector<wxString> &labels, wxChartAxisOptions options)
+void wxChartsGrid::ChangeLabels(const std::string& axisId, const wxVector<wxString> &labels, wxChartAxisOptions options)
 {
     if(axisId == "x")
         m_XAxis = wxChartCategoricalAxis::make_shared(axisId,labels,options);
     else if(axisId == "y")
         m_YAxis = wxChartCategoricalAxis::make_shared(axisId,labels,options);
 
-    m_mapping = wxChartGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
+    m_mapping = wxChartsGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
     m_needsFit = true;
 }
 
-void wxChartGrid::Update()
+void wxChartsGrid::Update()
 {
     m_XAxis = new wxChartNumericalAxis("x", m_curAxisLimits.MinX,
         m_curAxisLimits.MaxX,m_options.GetXAxisOptions());
     m_YAxis = new wxChartNumericalAxis("y", m_curAxisLimits.MinY,
         m_curAxisLimits.MaxY, m_options.GetYAxisOptions());
-    m_mapping = wxChartGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
+    m_mapping = wxChartsGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
     m_needsFit = true;
 }
 
-void wxChartGrid::CalculatePadding(const wxChartAxis &xAxis,
-                                   const wxChartAxis &yAxis,
-                                   wxDouble &left,
-                                   wxDouble &right)
+void wxChartsGrid::CalculatePadding(const wxChartAxis &xAxis,
+                                    const wxChartAxis &yAxis,
+                                    wxDouble &left,
+                                    wxDouble &right)
 {
     if (xAxis.GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
     {
@@ -300,10 +300,10 @@ void wxChartGrid::CalculatePadding(const wxChartAxis &xAxis,
     }
 }
 
-void wxChartGrid::DrawHorizontalGridLines(const wxChartAxis &horizontalAxis,
-        const wxChartAxis &verticalAxis,
-        const wxChartGridLineOptions &options,
-        wxGraphicsContext &gc)
+void wxChartsGrid::DrawHorizontalGridLines(const wxChartAxis &horizontalAxis,
+                                           const wxChartAxis &verticalAxis,
+                                           const wxChartsGridLineOptions &options,
+                                           wxGraphicsContext &gc)
 {
     for (size_t i = 1; i < verticalAxis.GetNumberOfTickMarks(); ++i)
     {
@@ -343,10 +343,10 @@ void wxChartGrid::DrawHorizontalGridLines(const wxChartAxis &horizontalAxis,
     }
 }
 
-void wxChartGrid::DrawVerticalGridLines(const wxChartAxis &horizontalAxis,
-                                        const wxChartAxis &verticalAxis,
-                                        const wxChartGridLineOptions &options,
-                                        wxGraphicsContext &gc)
+void wxChartsGrid::DrawVerticalGridLines(const wxChartAxis &horizontalAxis,
+                                         const wxChartAxis &verticalAxis,
+                                         const wxChartsGridLineOptions &options,
+                                         wxGraphicsContext &gc)
 {
     size_t i = 1;
     if (horizontalAxis.GetOptions().GetStartMarginType() == wxCHARTAXISMARGINTYPE_TICKMARKOFFSET)
