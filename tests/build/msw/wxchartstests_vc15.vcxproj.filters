@@ -160,6 +160,12 @@
     <ClCompile Include="..\..\src\tests\wxchartscategoricaldatatests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\tests\wxchartspenoptionstests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\wxchartsbrushoptionstests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\tests\wxchartbackgroundoptionstests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
