@@ -29,12 +29,12 @@ wxHistogramChartOptions::wxHistogramChartOptions() : m_lineWidth(2)
     options.SetAlignment(wxALIGN_TOP);
 }
 
-const wxChartGridOptions& wxHistogramChartOptions::GetGridOptions() const
+const wxChartsGridOptions& wxHistogramChartOptions::GetGridOptions() const
 {
     return m_gridOptions;
 }
 
-wxChartGridOptions& wxHistogramChartOptions::GetGridOptions()
+wxChartsGridOptions& wxHistogramChartOptions::GetGridOptions()
 {
     return m_gridOptions;
 }

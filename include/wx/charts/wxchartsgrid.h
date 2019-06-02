@@ -33,12 +33,12 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTGRID_H_
-#define _WX_CHARTS_WXCHARTGRID_H_
+#ifndef _WX_CHARTS_WXCHARTSGRID_H_
+#define _WX_CHARTS_WXCHARTSGRID_H_
 
 #include "wxchartselement.h"
-#include "wxchartgridoptions.h"
-#include "wxchartgridmapping.h"
+#include "wxchartsgridoptions.h"
+#include "wxchartsgridmapping.h"
 #include "wxchartaxis.h"
 #include <wx/graphics.h>
 
@@ -52,24 +52,24 @@
 /// are called major grid lines.
 ///
 /// Minor grid lines can be drawn in between major grid lines when more precise readings are
-/// needed. By default minor grid lines are not shown. Use the wxChartGridOptions::GetNumberOfHorizontalMinorGridLinesBetweenTickMarks,
-/// wxChartGridOptions::SetNumberOfHorizontalMinorGridLinesBetweenTickMarks, wxChartGridOptions::GetNumberOfVerticalMinorGridLinesBetweenTickMarks
-/// and wxChartGridOptions::SetNumberOfVerticalMinorGridLinesBetweenTickMarks to control the
+/// needed. By default minor grid lines are not shown. Use the wxChartsGridOptions::GetNumberOfHorizontalMinorGridLinesBetweenTickMarks,
+/// wxChartsGridOptions::SetNumberOfHorizontalMinorGridLinesBetweenTickMarks, wxChartsGridOptions::GetNumberOfVerticalMinorGridLinesBetweenTickMarks
+/// and wxChartsGridOptions::SetNumberOfVerticalMinorGridLinesBetweenTickMarks to control the
 /// display of minor grid lines.
 ///
 ///
-/// The wxChartGridOptions::ShowHorizontalGridLines, wxChartGridOptions::ShowVerticalGridLines,
-/// wxChartGridOptions::SetShowHorizontalGridLines and wxChartGridOptions::SetShowVerticalGridLines
+/// The wxChartsGridOptions::ShowHorizontalGridLines, wxChartsGridOptions::ShowVerticalGridLines,
+/// wxChartsGridOptions::SetShowHorizontalGridLines and wxChartsGridOptions::SetShowVerticalGridLines
 /// functions can be used to control the visibility of grid lines.
 ///
-/// @see wxChartGridOptions
+/// @see wxChartsGridOptions
 /// \ingroup elementclasses
-class wxChartGrid : public wxChartsElement
+class wxChartsGrid : public wxChartsElement
 {
 public:
-    typedef wxSharedPtr<wxChartGrid> ptr;
+    typedef wxSharedPtr<wxChartsGrid> ptr;
 
-    /// Constructs a wxChartGrid element.
+    /// Constructs a wxChartsGrid element.
     /// @param position The position of the top left corner
     /// of the chart.
     /// @param size The size of the area where the grid
@@ -78,10 +78,10 @@ public:
     /// @param yAxis The Y axis.
     /// @param options The settings to be used for the
     /// grid.
-    wxChartGrid(const wxPoint2DDouble &position, const wxSize &size,
+    wxChartsGrid(const wxPoint2DDouble &position, const wxSize &size,
         wxChartAxis::ptr xAxis, wxChartAxis::ptr yAxis,
-        const wxChartGridOptions& options);
-    /// Constructs a wxChartGrid element. The tick marks on the X and
+        const wxChartsGridOptions& options);
+    /// Constructs a wxChartsGrid element. The tick marks on the X and
     /// Y axes are computed automatically using the
     /// minimum and maximum values that need to be displayed on the grid.
     /// @param position The position of the top left corner
@@ -98,10 +98,10 @@ public:
     /// will be shown on the chart for the Y coordinate.
     /// @param options The settings to be used for the
     /// grid.
-    wxChartGrid(const wxPoint2DDouble &position, const wxSize &size,
+    wxChartsGrid(const wxPoint2DDouble &position, const wxSize &size,
         wxDouble minXValue, wxDouble maxXValue,
         wxDouble minYValue, wxDouble maxYValue,
-        const wxChartGridOptions& options);
+        const wxChartsGridOptions& options);
 
     virtual void Draw(wxGraphicsContext &gc) const;
 
@@ -119,10 +119,10 @@ public:
     /// Gets the mapping that allows external code
     /// to correctly position points on the grid.
     /// @return The grid mapping.
-    const wxChartGridMapping& GetMapping() const;
+    const wxChartsGridMapping& GetMapping() const;
 
-    const wxChartGridOptions& GetOptions() const;
-    void  SetOptions(const wxChartGridOptions& opt);
+    const wxChartsGridOptions& GetOptions() const;
+    void  SetOptions(const wxChartsGridOptions& opt);
 
     bool Scale(int coeff);
     void Shift(double dx,double dy);
@@ -136,28 +136,28 @@ private:
     void CalculatePadding(const wxChartAxis &xAxis,
         const wxChartAxis &yAxis, wxDouble &left, wxDouble &right);
     static void DrawHorizontalGridLines(const wxChartAxis &horizontalAxis, const wxChartAxis &verticalAxis,
-        const wxChartGridLineOptions &options, wxGraphicsContext &gc);
+        const wxChartsGridLineOptions &options, wxGraphicsContext &gc);
     static void DrawVerticalGridLines(const wxChartAxis &horizontalAxis, const wxChartAxis &verticalAxis,
-        const wxChartGridLineOptions &options, wxGraphicsContext &gc);
+        const wxChartsGridLineOptions &options, wxGraphicsContext &gc);
 
 private:
     struct AxisLimits
     {
-    AxisLimits(wxDouble p1,wxDouble p2,wxDouble p3,wxDouble p4)
-        : MinX(p1),MaxX(p2),MinY(p3),MaxY(p4) {}
-    AxisLimits() {}
-    wxDouble MinX;
-    wxDouble MaxX;
-    wxDouble MinY;
-    wxDouble MaxY;
+        AxisLimits(wxDouble p1,wxDouble p2,wxDouble p3,wxDouble p4)
+            : MinX(p1),MaxX(p2),MinY(p3),MaxY(p4) {}
+        AxisLimits() {}
+        wxDouble MinX;
+        wxDouble MaxX;
+        wxDouble MinY;
+        wxDouble MaxY;
     };
 
 private:
-    wxChartGridOptions m_options;
+    wxChartsGridOptions m_options;
     wxPoint2DDouble m_position;
     wxChartAxis::ptr m_XAxis;
     wxChartAxis::ptr m_YAxis;
-    wxChartGridMapping m_mapping;
+    wxChartsGridMapping m_mapping;
     // Whether something has changed and we
     // need to rearrange the chart
     bool m_needsFit;

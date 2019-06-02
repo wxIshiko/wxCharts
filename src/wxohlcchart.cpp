@@ -124,7 +124,7 @@ wxPoint2DDouble wxOHLCChart::OHLCLines::GetTooltipPosition() const
     return wxPoint2DDouble(m_lowPoint.m_x, m_highPoint.m_y + (m_lowPoint.m_y - m_highPoint.m_y) / 2);
 }
 
-void wxOHLCChart::OHLCLines::Update(const wxChartGridMapping& mapping,
+void wxOHLCChart::OHLCLines::Update(const wxChartsGridMapping& mapping,
                                     size_t index)
 {
     m_lowPoint = mapping.GetWindowPositionAtTickMark(index, m_data.GetLowValue());

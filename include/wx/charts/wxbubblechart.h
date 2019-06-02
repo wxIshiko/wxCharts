@@ -27,7 +27,7 @@
 
 #include "wxchart.h"
 #include "wxbubblechartoptions.h"
-#include "wxchartgrid.h"
+#include "wxchartsgrid.h"
 #include "wxchartcircle.h"
 
 class wxDoubleTriplet
@@ -166,7 +166,7 @@ private:
 
 private:
     wxSharedPtr<wxBubbleChartOptions> m_options;
-    wxChartGrid m_grid;
+    wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
     wxDouble m_minZValue;
     wxDouble m_maxZValue;

@@ -28,7 +28,7 @@
 #include "wxchart.h"
 #include "wxchartscategoricaldata.h"
 #include "wxstackedbarchartoptions.h"
-#include "wxchartgrid.h"
+#include "wxchartsgrid.h"
 #include "wxchartsrectangle.h"
 
 /// A stacked bar chart.
@@ -89,7 +89,7 @@ private:
 
 private:
     wxSharedPtr<wxStackedBarChartOptions> m_options;
-    wxChartGrid m_grid;
+    wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };
 

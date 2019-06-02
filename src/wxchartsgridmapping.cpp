@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -31,28 +31,28 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
-#include "wxchartgridmapping.h"
+#include "wxchartsgridmapping.h"
 #include "wxchartnumericalaxis.h"
 
-wxChartGridMapping::wxChartGridMapping(const wxSize &size,
-                                       const wxChartAxis::ptr xAxis,
-                                       const wxChartAxis::ptr yAxis)
+wxChartsGridMapping::wxChartsGridMapping(const wxSize &size,
+                                        const wxChartAxis::ptr xAxis,
+                                        const wxChartAxis::ptr yAxis)
     : m_size(size), m_XAxis(xAxis), m_YAxis(yAxis)
 {
 }
 
-const wxSize& wxChartGridMapping::GetSize() const
+const wxSize& wxChartsGridMapping::GetSize() const
 {
     return m_size;
 }
 
-void wxChartGridMapping::SetSize(const wxSize &size)
+void wxChartsGridMapping::SetSize(const wxSize &size)
 {
     m_size = size;
 }
 
-wxPoint2DDouble wxChartGridMapping::GetWindowPosition(wxDouble x, 
-                                                      wxDouble y) const
+wxPoint2DDouble wxChartsGridMapping::GetWindowPosition(wxDouble x, 
+                                                       wxDouble y) const
 {
     const wxChartNumericalAxis& numericalXAxis = static_cast<const wxChartNumericalAxis&>(*m_XAxis);
     const wxChartNumericalAxis& numericalYAxis = static_cast<const wxChartNumericalAxis&>(*m_YAxis);
@@ -78,8 +78,8 @@ wxPoint2DDouble wxChartGridMapping::GetWindowPosition(wxDouble x,
     return wxPoint2DDouble(0, 0);
 }
 
-wxPoint2DDouble wxChartGridMapping::GetWindowPositionAtTickMark(size_t index,
-                                                                wxDouble value) const
+wxPoint2DDouble wxChartsGridMapping::GetWindowPositionAtTickMark(size_t index,
+                                                                 wxDouble value) const
 {
     const wxChartNumericalAxis& numericalYAxis = static_cast<const wxChartNumericalAxis&>(*m_YAxis);
 
@@ -104,7 +104,7 @@ wxPoint2DDouble wxChartGridMapping::GetWindowPositionAtTickMark(size_t index,
     return wxPoint2DDouble(0, 0);
 }
 
-const wxChartAxis& wxChartGridMapping::GetXAxis() const
+const wxChartAxis& wxChartsGridMapping::GetXAxis() const
 {
     return *m_XAxis;
 }

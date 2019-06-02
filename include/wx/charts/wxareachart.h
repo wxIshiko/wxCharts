@@ -38,7 +38,7 @@
 
 #include "wxchart.h"
 #include "wxareachartoptions.h"
-#include "wxchartgrid.h"
+#include "wxchartsgrid.h"
 #include "wxchartspoint.h"
 
 /// \ingroup dataclasses
@@ -182,7 +182,7 @@ private:
 
 private:
     wxSharedPtr<wxAreaChartOptions> m_options;
-    wxChartGrid m_grid;
+    wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };
 

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -33,12 +33,12 @@ wxCandlestickChartOptions::wxCandlestickChartOptions()
     m_gridOptions.GetVerticalGridLineOptions().SetMajorGridLineColor(wxColor(0, 0, 0, 0x30));
 }
 
-const wxChartGridOptions& wxCandlestickChartOptions::GetGridOptions() const
+const wxChartsGridOptions& wxCandlestickChartOptions::GetGridOptions() const
 {
     return m_gridOptions;
 }
 
-wxChartGridOptions& wxCandlestickChartOptions::GetGridOptions()
+wxChartsGridOptions& wxCandlestickChartOptions::GetGridOptions()
 {
     return m_gridOptions;
 }

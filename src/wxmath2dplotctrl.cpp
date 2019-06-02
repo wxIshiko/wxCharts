@@ -66,12 +66,12 @@ wxMath2DPlot& wxMath2DPlotCtrl::GetChart()
     return m_math2dPlot;
 }
 
-const wxChartGridOptions& wxMath2DPlotCtrl::GetGridOptions() const
+const wxChartsGridOptions& wxMath2DPlotCtrl::GetGridOptions() const
 {
     return m_math2dPlot.GetGridOptions();
 }
 
-void wxMath2DPlotCtrl::SetGridOptions(const wxChartGridOptions& opt)
+void wxMath2DPlotCtrl::SetGridOptions(const wxChartsGridOptions& opt)
 {
     m_math2dPlot.SetGridOptions(opt);
     Update();

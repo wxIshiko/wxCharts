@@ -38,7 +38,7 @@
 
 #include "wxchart.h"
 #include "wxhistogramchartoptions.h"
-#include "wxchartgrid.h"
+#include "wxchartsgrid.h"
 #include "wxchartspoint.h"
 
 #include <wx/scopedptr.h>
@@ -146,7 +146,7 @@ private:
 
 private:
     wxSharedPtr<wxHistogramChartOptions> m_options;
-    wxChartGrid m_grid;
+    wxChartsGrid m_grid;
     wxScopedPtr<Dataset> m_dataset;
 };
 

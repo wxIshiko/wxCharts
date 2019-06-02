@@ -28,7 +28,7 @@
 #include "wxchart.h"
 #include "wxcombinationchartoptions.h"
 #include "wxchartscategoricaldata.h"
-#include "wxchartgrid.h"
+#include "wxchartsgrid.h"
 
 /// \ingroup chartclasses
 class wxCombinationChart : public wxChart
@@ -48,7 +48,7 @@ private:
 
 private:
     wxCombinationChartOptions m_options;
-    wxChartGrid::ptr m_grid;
+    wxChartsGrid::ptr m_grid;
 };
 
 #endif

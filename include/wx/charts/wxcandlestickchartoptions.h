@@ -26,7 +26,7 @@
 #define _WX_CHARTS_WXCANDLESTICKCHARTOPTIONS_H_
 
 #include "wxchartoptions.h"
-#include "wxchartgridoptions.h"
+#include "wxchartsgridoptions.h"
 #include <wx/sharedptr.h>
 
 /// The options for the wxCandlestickChartCtrl control.
@@ -43,13 +43,13 @@ public:
 
     /// Gets the options for the grid.
     /// @return The grid options.
-    const wxChartGridOptions& GetGridOptions() const;
+    const wxChartsGridOptions& GetGridOptions() const;
     /// Gets the options for the grid.
     /// @return The grid options.
-    wxChartGridOptions& GetGridOptions();
+    wxChartsGridOptions& GetGridOptions();
 
 private:
-    wxChartGridOptions m_gridOptions;
+    wxChartsGridOptions m_gridOptions;
 };
 
 #endif

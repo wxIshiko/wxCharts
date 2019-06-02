@@ -28,7 +28,7 @@
 #include "wxchart.h"
 #include "wxchartsohlcdata.h"
 #include "wxcandlestickchartoptions.h"
-#include "wxchartgrid.h"
+#include "wxchartsgrid.h"
 
 /// Data for the wxCandlestickChartCtrl control.
 
@@ -110,7 +110,7 @@ private:
         virtual bool HitTest(const wxPoint &point) const;
         virtual wxPoint2DDouble GetTooltipPosition() const;
 
-        void Update(const wxChartGridMapping& mapping, size_t index);
+        void Update(const wxChartsGridMapping& mapping, size_t index);
 
     private:
         wxChartsOHLCData m_data;
@@ -127,7 +127,7 @@ private:
 
 private:
     wxSharedPtr<wxCandlestickChartOptions> m_options;
-    wxChartGrid m_grid;
+    wxChartsGrid m_grid;
     wxVector<Candlestick::ptr> m_data;
 };
 

@@ -26,7 +26,7 @@
 #define _WX_CHARTS_WXBUBBLECHARTOPTIONS_H_
 
 #include "wxchartoptions.h"
-#include "wxchartgridoptions.h"
+#include "wxchartsgridoptions.h"
 #include <wx/sharedptr.h>
 
 /// The options for the wxBubbleChartCtrl control.
@@ -43,10 +43,10 @@ public:
 
     /// Gets the options for the grid.
     /// @return The options for the grid.
-    const wxChartGridOptions& GetGridOptions() const;
+    const wxChartsGridOptions& GetGridOptions() const;
 
 private:
-    wxChartGridOptions m_gridOptions;
+    wxChartsGridOptions m_gridOptions;
 };
 
 #endif

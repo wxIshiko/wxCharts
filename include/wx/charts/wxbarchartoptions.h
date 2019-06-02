@@ -26,7 +26,7 @@
 #define _WX_CHARTS_WXBARCHARTOPTIONS_H_
 
 #include "wxchartoptions.h"
-#include "wxchartgridoptions.h"
+#include "wxchartsgridoptions.h"
 #include <wx/sharedptr.h>
 
 /// The options for the wxBarChartCtrl control.
@@ -43,7 +43,7 @@ public:
 
     /// Gets the options for the grid.
     /// @return The options for the grid.
-    const wxChartGridOptions& GetGridOptions() const;
+    const wxChartsGridOptions& GetGridOptions() const;
 
     /// Gets the amount of space the bars are separated
     /// by. The actual space between bars will be twice
@@ -54,7 +54,7 @@ public:
     wxDouble GetDatasetSpacing() const;
 
 private:
-    wxChartGridOptions m_gridOptions;
+    wxChartsGridOptions m_gridOptions;
     wxDouble m_barSpacing;
     wxDouble m_datasetSpacing;
 };

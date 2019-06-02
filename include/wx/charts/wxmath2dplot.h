@@ -38,7 +38,7 @@
 
 #include "wxchart.h"
 #include "wxmath2dplotoptions.h"
-#include "wxchartgrid.h"
+#include "wxchartsgrid.h"
 #include "wxchartspoint.h"
 
 enum wxChartType
@@ -132,8 +132,8 @@ public:
     bool RemoveDataset(std::size_t index);
     void AddDataset(const wxMath2DPlotDataset::ptr &newset,bool is_new = true);
 
-    const wxChartGridOptions& GetGridOptions() const;
-    void  SetGridOptions(const wxChartGridOptions& opt);
+    const wxChartsGridOptions& GetGridOptions() const;
+    void  SetGridOptions(const wxChartsGridOptions& opt);
     const wxMath2DPlotOptions& GetChartOptions() const;
     void  SetChartOptions(const wxMath2DPlotOptions& opt);
     bool  SetChartType(std::size_t index,const wxChartType &type);
@@ -207,7 +207,7 @@ private:
 
 private:
     wxSharedPtr<wxMath2DPlotOptions> m_options;
-    wxChartGrid m_grid;
+    wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };
 

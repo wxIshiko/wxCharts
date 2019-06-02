@@ -169,6 +169,9 @@
     <ClCompile Include="..\..\src\wxchartsrectangle.cpp" />
     <ClCompile Include="..\..\src\wxchartspointoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartspoint.cpp" />
+    <ClCompile Include="..\..\src\wxchartsgridmapping.cpp" />
+    <ClCompile Include="..\..\src\wxchartsgridoptions.cpp" />
+    <ClCompile Include="..\..\src\wxchartsgrid.cpp" />
     <ClCompile Include="..\..\src\wxchartsutilities.cpp" />
     <ClCompile Include="..\..\src\wxchartpadding.cpp" />
     <ClCompile Include="..\..\src\wxchartbackgroundoptions.cpp" />
@@ -182,9 +185,6 @@
     <ClCompile Include="..\..\src\wxchartcategoricalaxis.cpp" />
     <ClCompile Include="..\..\src\wxchartnumericalaxis.cpp" />
     <ClCompile Include="..\..\src\wxcharttimeaxis.cpp" />
-    <ClCompile Include="..\..\src\wxchartgridmapping.cpp" />
-    <ClCompile Include="..\..\src\wxchartgridoptions.cpp" />
-    <ClCompile Include="..\..\src\wxchartgrid.cpp" />
     <ClCompile Include="..\..\src\wxchartradialgridoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartradialgrid.cpp" />
     <ClCompile Include="..\..\src\wxchartarc.cpp" />
@@ -285,6 +285,9 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartsrectangle.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartspointoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartspoint.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsgridmapping.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsgridoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsgrid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsutilities.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartpadding.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartbackgroundoptions.h" />
@@ -298,9 +301,6 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartcategoricalaxis.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartnumericalaxis.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcharttimeaxis.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartgridmapping.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartgridoptions.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartgrid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartradialgridoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartradialgrid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartarc.h" />
