@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,24 +22,4 @@
 
 /// @file
 
-#include "wxstackedbarchartoptions.h"
-
-wxStackedBarChartOptions::wxStackedBarChartOptions()
-    : m_gridOptions(
-        wxChartsAxisOptions(wxCHARTSAXISPOSITION_LEFT, wxCHARTSAXISLABELTYPE_RANGE),
-        wxChartsAxisOptions(wxCHARTSAXISPOSITION_BOTTOM)
-        ),
-    m_barSpacing(10)
-{
-    m_gridOptions.GetYAxisOptions().SetExplicitStartValue(0);
-}
-
-const wxChartsGridOptions& wxStackedBarChartOptions::GetGridOptions() const
-{
-    return m_gridOptions;
-}
-
-wxDouble wxStackedBarChartOptions::GetBarSpacing() const
-{
-    return m_barSpacing;
-}
+#include "wxstackedbarchartdatasetoptions.h"

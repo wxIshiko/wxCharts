@@ -20,6 +20,8 @@
     IN THE SOFTWARE.
 */
 
+/// @file
+
 #include "wxstackedbarchartctrl.h"
 
 wxStackedBarChartCtrl::wxStackedBarChartCtrl(wxWindow *parent,

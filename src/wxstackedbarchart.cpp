@@ -20,6 +20,8 @@
     IN THE SOFTWARE.
 */
 
+/// @file
+
 #include "wxstackedbarchart.h"
 #include "wxchartstheme.h"
 #include "wxchartscategoricalaxis.h"

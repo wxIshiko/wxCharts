@@ -218,6 +218,7 @@
     <ClCompile Include="..\..\src\wxcolumnchart.cpp" />
     <ClCompile Include="..\..\src\wxcolumnchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxstackedbarchartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxstackedbarchartdatasetoptions.cpp" />
     <ClCompile Include="..\..\src\wxstackedbarchart.cpp" />
     <ClCompile Include="..\..\src\wxstackedbarchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxstackedcolumnchartoptions.cpp" />
@@ -336,6 +337,7 @@
     <ClInclude Include="..\..\include\wx\charts\wxcolumnchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcolumnchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxstackedbarchartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxstackedbarchartdatasetoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxstackedbarchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxstackedbarchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxstackedcolumnchartoptions.h" />
