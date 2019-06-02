@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -23,18 +23,18 @@
 #include <wx/charts/wxcharts.h>
 #include <catch.hpp>
 
-TEST_CASE("wxChartGridOptions constructor")
+TEST_CASE("wxChartsGridOptions constructor")
 {
-    wxChartGridOptions options;
+    wxChartsGridOptions options;
 
     REQUIRE(options.GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM);
     REQUIRE(options.GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_POINT);
 }
 
-TEST_CASE("wxChartGridOptions copy constructor")
+TEST_CASE("wxChartsGridOptions copy constructor")
 {
-    wxChartGridOptions options;
-    wxChartGridOptions optionsCopy(options);
+    wxChartsGridOptions options;
+    wxChartsGridOptions optionsCopy(options);
 
     REQUIRE(optionsCopy.GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM);
     REQUIRE(optionsCopy.GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_POINT);

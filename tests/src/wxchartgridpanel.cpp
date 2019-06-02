@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -28,12 +28,12 @@ wxChartGridPanel::wxChartGridPanel(wxWindow* parent)
 {
     wxVector<wxString> labels;
     labels.push_back("January");
-    m_grid = new wxChartGrid(
+    m_grid = new wxChartsGrid(
         wxPoint2DDouble(0, 0),
         wxSize(200, 100),
         wxChartCategoricalAxis::make_shared("id0", labels, wxChartAxisOptions(wxCHARTAXISPOSITION_BOTTOM)),
         wxChartNumericalAxis::make_shared("id1", 0, 100, wxChartAxisOptions(wxCHARTAXISPOSITION_LEFT)),
-        wxChartGridOptions()
+        wxChartsGridOptions()
     );
 
     wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
