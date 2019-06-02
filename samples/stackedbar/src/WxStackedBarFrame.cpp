@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -52,8 +52,8 @@ WxStackedBarFrame::WxStackedBarFrame(const wxString& title)
     points1.push_back(5);
     points1.push_back(1);
     wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset(
+        wxChartsPenOptions(wxColor(96, 83, 77, 0x6C), 2),
         wxColor(96, 83, 77, 0x3F),
-        wxColor(96, 83, 77, 0x6C),
         points1));
     chartData->AddDataset(dataset1);
 
@@ -67,8 +67,8 @@ WxStackedBarFrame::WxStackedBarFrame(const wxString& title)
     points2.push_back(1.8);
     points2.push_back(0.4);
     wxChartsDoubleDataset::ptr dataset2(new wxChartsDoubleDataset(
+        wxChartsPenOptions(wxColor(200, 200, 200, 0xFF), 2),
         wxColor(220, 220, 220, 0x7F),
-        wxColor(200, 200, 200, 0xFF),
         points2));
     chartData->AddDataset(dataset2);
 
@@ -82,8 +82,8 @@ WxStackedBarFrame::WxStackedBarFrame(const wxString& title)
     points3.push_back(0.5);
     points3.push_back(0.4);
     wxChartsDoubleDataset::ptr dataset3(new wxChartsDoubleDataset(
+        wxChartsPenOptions(wxColor(151, 187, 205, 0xCC), 2),
         wxColor(151, 187, 205, 0x7F),
-        wxColor(151, 187, 205, 0xCC),
         points3));
     chartData->AddDataset(dataset3);
 

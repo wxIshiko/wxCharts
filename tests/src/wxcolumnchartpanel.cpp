@@ -57,8 +57,8 @@ wxColumnChartPanel::wxColumnChartPanel(wxWindow* parent)
     points1.push_back(1);
     wxChartsDoubleDataset::ptr dataset1(
         new wxChartsDoubleDataset(
+            wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2),
             wxColor(220, 220, 220, 0x7F),
-            wxColor(220, 220, 220, 0xCC),
             points1)
     );
     chartData->AddDataset(dataset1);

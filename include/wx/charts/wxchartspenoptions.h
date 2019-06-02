@@ -39,7 +39,7 @@ public:
     /**
         @param color The color of the pen.
     */
-    wxChartsPenOptions(const wxColor &color, int width = 1,
+    wxChartsPenOptions(const wxColor &color, int width,
         wxPenStyle style = wxPENSTYLE_SOLID);
 
     /// Gets the color of the pen.
