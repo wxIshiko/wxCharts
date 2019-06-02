@@ -20,10 +20,10 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartnumericalaxispanel.h"
+#include "wxchartsnumericalaxispanel.h"
 #include <wx/sizer.h>
 
-wxChartNumericalAxisPanel::wxChartNumericalAxisPanel(wxWindow* parent)
+wxChartsNumericalAxisPanel::wxChartsNumericalAxisPanel(wxWindow* parent)
     : wxPanel(parent)
 {
     m_axis = new wxChartsNumericalAxis("id0", 0, 100, wxChartsAxisOptions(wxCHARTSAXISPOSITION_LEFT));
