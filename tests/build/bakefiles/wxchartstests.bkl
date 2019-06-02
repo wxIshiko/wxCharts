@@ -71,7 +71,7 @@ program wxchartstests
         ../../src/wxchartlabelseriespanel.h
         ../../src/wxchartcategoricalaxispanel.h
         ../../src/wxchartnumericalaxispanel.h
-        ../../src/wxchartgridpanel.h
+        ../../src/wxchartsgridpanel.h
         ../../src/wxareachartpanel.h
         ../../src/wxbarchartpanel.h
         ../../src/wxbubblechartpanel.h
@@ -120,7 +120,7 @@ program wxchartstests
         ../../src/tests/wxchartfontoptionstests.cpp
         ../../src/tests/wxchartlabeloptionstests.cpp
         ../../src/tests/wxchartaxisoptionstests.cpp
-        ../../src/tests/wxchartgridoptionstests.cpp
+        ../../src/tests/wxchartsgridoptionstests.cpp
         ../../src/tests/wxcolumnchartoptionstests.cpp
         ../../src/tests/wxpiechartoptionstests.cpp
         ../../src/tests/wxchartsthemeidtests.cpp
