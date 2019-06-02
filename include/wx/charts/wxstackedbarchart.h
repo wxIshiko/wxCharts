@@ -44,6 +44,7 @@ public:
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
+    void Initialize(wxChartsCategoricalData::ptr &data);
     static wxDouble GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
     static wxDouble GetCumulativeMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
 

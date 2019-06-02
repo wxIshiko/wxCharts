@@ -48,6 +48,8 @@ wxChartsTheme::wxChartsTheme()
     datasetTheme0->SetBarChartDatasetOptions(barDatasetOptions0);
     wxColumnChartDatasetOptions columnDatasetOptions0(wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2), wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F)));
     datasetTheme0->SetColumnChartDatasetOptions(columnDatasetOptions0);
+    wxStackedBarChartDatasetOptions stackedBarDatasetOptions0(wxChartsPenOptions(wxColor(96, 83, 77, 0x6C), 2), wxChartsBrushOptions(wxColor(96, 83, 77, 0x3F)));
+    datasetTheme0->SetStackedBarChartDatasetOptions(stackedBarDatasetOptions0);
     m_datasetThemes[wxChartsDatasetId::CreateImplicitId(0)] = datasetTheme0;
 
     wxSharedPtr<wxChartsDatasetTheme> datasetTheme1(new wxChartsDatasetTheme());
@@ -55,7 +57,14 @@ wxChartsTheme::wxChartsTheme()
     datasetTheme1->SetBarChartDatasetOptions(barDatasetOptions1);
     wxColumnChartDatasetOptions columnDatasetOptions1(wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2), wxChartsBrushOptions(wxColor(151, 187, 205, 0x7F)));
     datasetTheme1->SetColumnChartDatasetOptions(columnDatasetOptions1);
+    wxStackedBarChartDatasetOptions stackedBarDatasetOptions1(wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2), wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F)));
+    datasetTheme1->SetStackedBarChartDatasetOptions(stackedBarDatasetOptions1);
     m_datasetThemes[wxChartsDatasetId::CreateImplicitId(1)] = datasetTheme1;
+
+    wxSharedPtr<wxChartsDatasetTheme> datasetTheme2(new wxChartsDatasetTheme());
+    wxStackedBarChartDatasetOptions stackedBarDatasetOptions2(wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2), wxChartsBrushOptions(wxColor(151, 187, 205, 0x7F)));
+    datasetTheme2->SetStackedBarChartDatasetOptions(stackedBarDatasetOptions2);
+    m_datasetThemes[wxChartsDatasetId::CreateImplicitId(2)] = datasetTheme2;
 }
 
 wxSharedPtr<wxAreaChartOptions> wxChartsTheme::GetAreaChartOptions()

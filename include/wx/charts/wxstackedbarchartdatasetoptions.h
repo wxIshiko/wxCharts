@@ -25,4 +25,21 @@
 #ifndef _WX_CHARTS_WXSTACKEDBARCHARTDATASETOPTIONS_H_
 #define _WX_CHARTS_WXSTACKEDBARCHARTDATASETOPTIONS_H_
 
+#include "wxchartspenoptions.h"
+#include "wxchartsbrushoptions.h"
+
+class wxStackedBarChartDatasetOptions
+{
+public:
+    wxStackedBarChartDatasetOptions(const wxChartsPenOptions &penOptions,
+        const wxChartsBrushOptions &brushOptions);
+
+    const wxChartsPenOptions& GetPenOptions() const;
+    const wxChartsBrushOptions& GetBrushOptions() const;
+
+private:
+    wxChartsPenOptions m_penOptions;
+    wxChartsBrushOptions m_brushOptions;
+};
+
 #endif

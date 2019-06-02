@@ -23,3 +23,19 @@
 /// @file
 
 #include "wxstackedbarchartdatasetoptions.h"
+
+wxStackedBarChartDatasetOptions::wxStackedBarChartDatasetOptions(const wxChartsPenOptions &penOptions,
+    const wxChartsBrushOptions &brushOptions)
+    : m_penOptions(penOptions), m_brushOptions(brushOptions)
+{
+}
+
+const wxChartsPenOptions& wxStackedBarChartDatasetOptions::GetPenOptions() const
+{
+    return m_penOptions;
+}
+
+const wxChartsBrushOptions& wxStackedBarChartDatasetOptions::GetBrushOptions() const
+{
+    return m_brushOptions;
+}
