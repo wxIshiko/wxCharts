@@ -23,3 +23,19 @@
 /// @file
 
 #include "wxcolumnchartdatasetoptions.h"
+
+wxColumnChartDatasetOptions::wxColumnChartDatasetOptions(const wxChartsPenOptions &penOptions,
+    const wxChartsBrushOptions &brushOptions)
+    : m_penOptions(penOptions), m_brushOptions(brushOptions)
+{
+}
+
+const wxChartsPenOptions& wxColumnChartDatasetOptions::GetPenOptions() const
+{
+    return m_penOptions;
+}
+
+const wxChartsBrushOptions& wxColumnChartDatasetOptions::GetBrushOptions() const
+{
+    return m_brushOptions;
+}

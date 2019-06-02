@@ -26,6 +26,7 @@
 #define _WX_CHARTS_WXCHARTSDATASETTHEME_H_
 
 #include "wxbarchartdatasetoptions.h"
+#include "wxcolumnchartdatasetoptions.h"
 #include <wx/sharedptr.h>
 
 class wxChartsDatasetTheme
@@ -34,11 +35,14 @@ public:
     wxChartsDatasetTheme();
 
     wxSharedPtr<wxBarChartDatasetOptions> GetBarChartDatasetOptions();
+    wxSharedPtr<wxColumnChartDatasetOptions> GetColumnChartDatasetOptions();
 
     void SetBarChartDatasetOptions(const wxBarChartDatasetOptions& options);
+    void SetColumnChartDatasetOptions(const wxColumnChartDatasetOptions& options);
 
 private:
     wxSharedPtr<wxBarChartDatasetOptions> m_barChartDatasetOptions;
+    wxSharedPtr<wxColumnChartDatasetOptions> m_columnChartDatasetOptions;
 };
 
 #endif

@@ -25,4 +25,21 @@
 #ifndef _WX_CHARTS_WXCOLUMNCHARTDATASETOPTIONS_H_
 #define _WX_CHARTS_WXCOLUMNCHARTDATASETOPTIONS_H_
 
+#include "wxchartspenoptions.h"
+#include "wxchartsbrushoptions.h"
+
+class wxColumnChartDatasetOptions
+{
+public:
+    wxColumnChartDatasetOptions(const wxChartsPenOptions &penOptions,
+        const wxChartsBrushOptions &brushOptions);
+
+    const wxChartsPenOptions& GetPenOptions() const;
+    const wxChartsBrushOptions& GetBrushOptions() const;
+
+private:
+    wxChartsPenOptions m_penOptions;
+    wxChartsBrushOptions m_brushOptions;
+};
+
 #endif
