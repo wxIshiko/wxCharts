@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,17 +20,37 @@
     IN THE SOFTWARE.
 */
 
+/*
+    Part of this file were copied from the Chart.js project (http://chartjs.org/)
+    and translated into C++.
+
+    The files of the Chart.js project have the following copyright and license.
+
+    Copyright (c) 2013-2016 Nick Downie
+    Released under the MIT license
+    https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
+*/
+
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTTIMEAXIS_H_
-#define _WX_CHARTS_WXCHARTTIMEAXIS_H_
+#ifndef _WX_CHARTS_WXCHARTSCATEGORICALAXIS_H_
+#define _WX_CHARTS_WXCHARTSCATEGORICALAXIS_H_
 
-#include "wxchartaxis.h"
+#include "wxchartsaxis.h"
 
-class wxChartTimeAxis : public wxChartAxis
+/// \ingroup elementclasses
+class wxChartsCategoricalAxis : public wxChartsAxis
 {
 public:
-    wxChartTimeAxis(const std::string &id, const wxChartAxisOptions &options);
+    /// Constructs a wxChartsCategoricalAxis axis. The tick marks
+    /// on the axis are specified explicitly by the labels parameter.
+    /// @param labels The labels of the axis.
+    /// @param options The settings to be used for the
+    /// axis.
+    wxChartsCategoricalAxis(const std::string &id, const wxVector<wxString> &labels,
+        const wxChartsAxisOptions &options);
+    static ptr make_shared(const std::string &id, const wxVector<wxString> &labels,
+        const wxChartsAxisOptions &options);
 };
 
 #endif

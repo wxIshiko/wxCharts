@@ -35,8 +35,8 @@
 
 #include "wxbarchart.h"
 #include "wxchartstheme.h"
-#include "wxchartcategoricalaxis.h"
-#include "wxchartnumericalaxis.h"
+#include "wxchartscategoricalaxis.h"
+#include "wxchartsnumericalaxis.h"
 #include <sstream>
 
 wxBarChart::Bar::Bar(wxDouble value,
@@ -76,8 +76,8 @@ wxBarChart::wxBarChart(wxChartsCategoricalData::ptr &data,
     m_grid(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
     )
 {
@@ -91,8 +91,8 @@ wxBarChart::wxBarChart(wxChartsCategoricalData::ptr &data,
     m_grid(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
         )
 {
@@ -109,6 +109,9 @@ void wxBarChart::Initialize(wxChartsCategoricalData::ptr &data)
     const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
+        wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
+        wxSharedPtr<wxBarChartDatasetOptions> datasetOptions = datasetTheme->GetBarChartDatasetOptions();
+
         const wxChartsDoubleDataset& dataset = *datasets[i];
         Dataset::ptr newDataset(new Dataset());
 
@@ -118,12 +121,12 @@ void wxBarChart::Initialize(wxChartsCategoricalData::ptr &data)
             std::stringstream tooltip;
             tooltip << datasetData[j];
             wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), dataset.GetBrushOptions().GetColor())
+                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), datasetOptions->GetBrushOptions().GetColor())
                 );
 
             newDataset->AppendBar(Bar::ptr(new Bar(
-                datasetData[j], tooltipProvider, 25, 50, dataset.GetPenOptions(),
-                dataset.GetBrushOptions(), wxTOP | wxRIGHT | wxBOTTOM
+                datasetData[j], tooltipProvider, 25, 50, datasetOptions->GetPenOptions(),
+                datasetOptions->GetBrushOptions(), wxTOP | wxRIGHT | wxBOTTOM
                 )));
         }
 

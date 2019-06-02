@@ -36,7 +36,7 @@
 #ifndef _WX_CHARTS_WXCHARTSGRIDMAPPING_H_
 #define _WX_CHARTS_WXCHARTSGRIDMAPPING_H_
 
-#include "wxchartaxis.h"
+#include "wxchartsaxis.h"
 #include <wx/geometry.h>
 
 /// This class maintains a mapping between points on the chart and pixels on the screen.
@@ -44,7 +44,7 @@ class wxChartsGridMapping
 {
 public:
     wxChartsGridMapping(const wxSize &size,
-        const wxChartAxis::ptr xAxis, const wxChartAxis::ptr yAxis);
+        const wxChartsAxis::ptr xAxis, const wxChartsAxis::ptr yAxis);
 
     const wxSize& GetSize() const;
     void SetSize(const wxSize &size);
@@ -52,12 +52,12 @@ public:
     wxPoint2DDouble GetWindowPosition(wxDouble x, wxDouble y) const;
     wxPoint2DDouble GetWindowPositionAtTickMark(size_t index, wxDouble value) const;
     
-    const wxChartAxis& GetXAxis() const;
+    const wxChartsAxis& GetXAxis() const;
     
 private:
     wxSize m_size;
-    wxChartAxis::ptr m_XAxis;
-    wxChartAxis::ptr m_YAxis;
+    wxChartsAxis::ptr m_XAxis;
+    wxChartsAxis::ptr m_YAxis;
 };
 
 #endif

@@ -70,32 +70,32 @@ void wxChartsGridLineOptions::SetNumberOfMinorGridLinesBetweenTickMarks(unsigned
 }
 
 wxChartsGridOptions::wxChartsGridOptions()
-    : m_XAxisOptions(wxCHARTAXISPOSITION_BOTTOM), m_YAxisOptions(wxCHARTAXISPOSITION_LEFT)
+    : m_XAxisOptions(wxCHARTSAXISPOSITION_BOTTOM), m_YAxisOptions(wxCHARTSAXISPOSITION_LEFT)
 {
 }
 
-wxChartsGridOptions::wxChartsGridOptions(const wxChartAxisOptions &xAxisOptions,
-                                         const wxChartAxisOptions &yAxisOptions)
+wxChartsGridOptions::wxChartsGridOptions(const wxChartsAxisOptions &xAxisOptions,
+                                         const wxChartsAxisOptions &yAxisOptions)
     : m_XAxisOptions(xAxisOptions), m_YAxisOptions(yAxisOptions)
 {
 }
 
-const wxChartAxisOptions& wxChartsGridOptions::GetXAxisOptions() const
+const wxChartsAxisOptions& wxChartsGridOptions::GetXAxisOptions() const
 {
     return m_XAxisOptions;
 }
 
-wxChartAxisOptions& wxChartsGridOptions::GetXAxisOptions()
+wxChartsAxisOptions& wxChartsGridOptions::GetXAxisOptions()
 {
     return m_XAxisOptions;
 }
 
-const wxChartAxisOptions& wxChartsGridOptions::GetYAxisOptions() const
+const wxChartsAxisOptions& wxChartsGridOptions::GetYAxisOptions() const
 {
     return m_YAxisOptions;
 }
 
-wxChartAxisOptions& wxChartsGridOptions::GetYAxisOptions()
+wxChartsAxisOptions& wxChartsGridOptions::GetYAxisOptions()
 {
     return m_YAxisOptions;
 }

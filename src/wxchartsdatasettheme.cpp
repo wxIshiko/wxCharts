@@ -23,3 +23,18 @@
 /// @file
 
 #include "wxchartsdatasettheme.h"
+
+wxChartsDatasetTheme::wxChartsDatasetTheme()
+    : m_barChartDatasetOptions(new wxBarChartDatasetOptions(wxChartsPenOptions(*wxBLACK, 2), wxChartsBrushOptions(*wxWHITE)))
+{
+}
+
+wxSharedPtr<wxBarChartDatasetOptions> wxChartsDatasetTheme::GetBarChartDatasetOptions()
+{
+    return m_barChartDatasetOptions;
+}
+
+void wxChartsDatasetTheme::SetBarChartDatasetOptions(const wxBarChartDatasetOptions& options)
+{
+    m_barChartDatasetOptions = new wxBarChartDatasetOptions(options);
+}

@@ -25,8 +25,20 @@
 #ifndef _WX_CHARTS_WXCHARTSDATASETTHEME_H_
 #define _WX_CHARTS_WXCHARTSDATASETTHEME_H_
 
+#include "wxbarchartdatasetoptions.h"
+#include <wx/sharedptr.h>
+
 class wxChartsDatasetTheme
 {
+public:
+    wxChartsDatasetTheme();
+
+    wxSharedPtr<wxBarChartDatasetOptions> GetBarChartDatasetOptions();
+
+    void SetBarChartDatasetOptions(const wxBarChartDatasetOptions& options);
+
+private:
+    wxSharedPtr<wxBarChartDatasetOptions> m_barChartDatasetOptions;
 };
 
 #endif

@@ -25,7 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTSGRIDOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSGRIDOPTIONS_H_
 
-#include "wxchartaxisoptions.h"
+#include "wxchartsaxisoptions.h"
 #include <wx/colour.h>
 
 /// The options for the grid lines of wxChartsGrid element.
@@ -91,21 +91,21 @@ public:
     /// arguments.
     /// @param xAxisOptions The options for the X axis.
     /// @param yAxisOptions The options for the Y axis.
-    wxChartsGridOptions(const wxChartAxisOptions &xAxisOptions,
-        const wxChartAxisOptions &yAxisOptions);
+    wxChartsGridOptions(const wxChartsAxisOptions &xAxisOptions,
+        const wxChartsAxisOptions &yAxisOptions);
 
     /// Gets the options for the X axis.
     /// @return The options for the X axis.
-    const wxChartAxisOptions& GetXAxisOptions() const;
+    const wxChartsAxisOptions& GetXAxisOptions() const;
     /// Gets the options for the X axis.
     /// @return The options for the X axis.
-    wxChartAxisOptions& GetXAxisOptions();
+    wxChartsAxisOptions& GetXAxisOptions();
     /// Gets the options for the Y axis.
     /// @return The options for the Y axis.
-    const wxChartAxisOptions& GetYAxisOptions() const;
+    const wxChartsAxisOptions& GetYAxisOptions() const;
     /// Gets the options for the Y axis.
     /// @return The options for the Y axis.
-    wxChartAxisOptions& GetYAxisOptions();
+    wxChartsAxisOptions& GetYAxisOptions();
 
     /// Gets the options for the horizontal grid lines.
     /// @return The options for the horizontal grid lines.
@@ -123,8 +123,8 @@ public:
     void SetShowGridLines(bool show);
 
 private:
-    wxChartAxisOptions m_XAxisOptions;
-    wxChartAxisOptions m_YAxisOptions;
+    wxChartsAxisOptions m_XAxisOptions;
+    wxChartsAxisOptions m_YAxisOptions;
     wxChartsGridLineOptions m_horizontalGridLineOptions;
     wxChartsGridLineOptions m_verticalGridLinesOptions;
 };

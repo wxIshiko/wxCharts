@@ -33,22 +33,22 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTAXIS_H_
-#define _WX_CHARTS_WXCHARTAXIS_H_
+#ifndef _WX_CHARTS_WXCHARTSAXIS_H_
+#define _WX_CHARTS_WXCHARTSAXIS_H_
 
 #include "wxchartselement.h"
-#include "wxchartaxisoptions.h"
+#include "wxchartsaxisoptions.h"
 #include "wxchartlabelgroup.h"
 #include <wx/graphics.h>
 
 /// This class represents an axis.
 
 /// \ingroup elementclasses
-class wxChartAxis : public wxChartsElement
+class wxChartsAxis : public wxChartsElement
 {
 public:
     /// Smart pointer typedef.
-    typedef wxSharedPtr<wxChartAxis> ptr;
+    typedef wxSharedPtr<wxChartsAxis> ptr;
 
     virtual void Draw(wxGraphicsContext &gc) const;
 
@@ -76,23 +76,23 @@ public:
     wxPoint2DDouble GetPosition(wxDouble relativeValue) const;
 
     const std::string& GetId() const;
-    const wxChartAxisOptions& GetOptions() const;
+    const wxChartsAxisOptions& GetOptions() const;
 
 protected:
-    /// Construcs a wxChartAxis element.
+    /// Construcs a wxChartsAxis element.
     /// @param options The settings to be used for the axis.
-    wxChartAxis(const std::string &id, const wxChartAxisOptions &options);
-    /// Constructs a wxChartAxis element.
+    wxChartsAxis(const std::string &id, const wxChartsAxisOptions &options);
+    /// Constructs a wxChartsAxis element.
     /// @param labels The labels to display along the axis.
     /// @param options The settings to be used for the axis.
-    wxChartAxis(const std::string &id, const wxVector<wxString> &labels,
-        const wxChartAxisOptions &options);
+    wxChartsAxis(const std::string &id, const wxVector<wxString> &labels,
+        const wxChartsAxisOptions &options);
 
 private:
     void DrawTickMarks(wxGraphicsContext &gc) const;
 
 private:
-    wxChartAxisOptions m_options;
+    wxChartsAxisOptions m_options;
     std::string m_id;
     wxPoint2DDouble m_startPoint;
     wxPoint2DDouble m_endPoint;

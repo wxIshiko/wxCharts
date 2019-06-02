@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -28,8 +28,8 @@ wxChartCategoricalAxisPanel::wxChartCategoricalAxisPanel(wxWindow* parent)
 {
     wxVector<wxString> labels;
     labels.push_back("January");
-    wxChartAxisOptions options(wxCHARTAXISPOSITION_BOTTOM);
-    m_axis = new wxChartCategoricalAxis("id0", labels, options);
+    wxChartsAxisOptions options(wxCHARTSAXISPOSITION_BOTTOM);
+    m_axis = new wxChartsCategoricalAxis("id0", labels, options);
 
     wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 

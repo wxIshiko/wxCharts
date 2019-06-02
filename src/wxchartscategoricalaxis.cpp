@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,10 +20,29 @@
     IN THE SOFTWARE.
 */
 
-#include "wxcharttimeaxis.h"
+/*
+    Part of this file were copied from the Chart.js project (http://chartjs.org/)
+    and translated into C++.
 
-wxChartTimeAxis::wxChartTimeAxis(const std::string &id,
-                                 const wxChartAxisOptions &options)
-    : wxChartAxis(id, options)
+    The files of the Chart.js project have the following copyright and license.
+
+    Copyright (c) 2013-2016 Nick Downie
+    Released under the MIT license
+    https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
+*/
+
+#include "wxchartscategoricalaxis.h"
+
+wxChartsCategoricalAxis::wxChartsCategoricalAxis(const std::string &id, 
+                                                 const wxVector<wxString> &labels,
+                                                 const wxChartsAxisOptions &options)
+    : wxChartsAxis(id, labels, options)
 {
+}
+
+wxChartsCategoricalAxis::ptr wxChartsCategoricalAxis::make_shared(const std::string &id, 
+                                                                  const wxVector<wxString> &labels,
+                                                                  const wxChartsAxisOptions &options)
+{
+    return ptr(new wxChartsCategoricalAxis(id, labels, options));
 }

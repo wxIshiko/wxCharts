@@ -32,18 +32,18 @@
 */
 
 #include "wxchartsgrid.h"
-#include "wxchartnumericalaxis.h"
-#include "wxchartcategoricalaxis.h"
+#include "wxchartsnumericalaxis.h"
+#include "wxchartscategoricalaxis.h"
 #include <wx/pen.h>
 
 static const wxDouble MinDistance = 1.0e-3;
 static const wxDouble MaxDistance = 1.0e3;
 
 wxChartsGrid::wxChartsGrid(const wxPoint2DDouble &position,
-                          const wxSize &size,
-                          wxChartAxis::ptr xAxis,
-                          wxChartAxis::ptr yAxis,
-                          const wxChartsGridOptions& options)
+                           const wxSize &size,
+                           wxChartsAxis::ptr xAxis,
+                           wxChartsAxis::ptr yAxis,
+                           const wxChartsGridOptions& options)
     : m_options(options), m_position(position),
     m_XAxis(xAxis), m_YAxis(yAxis),
     m_mapping(size, m_XAxis, m_YAxis),
@@ -52,15 +52,15 @@ wxChartsGrid::wxChartsGrid(const wxPoint2DDouble &position,
 }
 
 wxChartsGrid::wxChartsGrid(const wxPoint2DDouble &position,
-                          const wxSize &size,
-                          wxDouble minXValue,
-                          wxDouble maxXValue,
-                          wxDouble minYValue,
-                          wxDouble maxYValue,
-                          const wxChartsGridOptions& options)
+                           const wxSize &size,
+                           wxDouble minXValue,
+                           wxDouble maxXValue,
+                           wxDouble minYValue,
+                           wxDouble maxYValue,
+                           const wxChartsGridOptions& options)
     : m_options(options), m_position(position),
-      m_XAxis(new wxChartNumericalAxis("x", minXValue, maxXValue, options.GetXAxisOptions())),
-      m_YAxis(new wxChartNumericalAxis("y", minYValue, maxYValue, options.GetYAxisOptions())),
+      m_XAxis(new wxChartsNumericalAxis("x", minXValue, maxXValue, options.GetXAxisOptions())),
+      m_YAxis(new wxChartsNumericalAxis("y", minYValue, maxYValue, options.GetYAxisOptions())),
       m_mapping(size, m_XAxis, m_YAxis),
       m_needsFit(true),
       m_origAxisLimits(minXValue,maxXValue,minYValue,maxYValue),
@@ -71,22 +71,22 @@ wxChartsGrid::wxChartsGrid(const wxPoint2DDouble &position,
 
 void wxChartsGrid::Draw(wxGraphicsContext &gc) const
 {
-    const wxChartAxis* verticalAxis = 0;
-    if (m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
+    const wxChartsAxis* verticalAxis = 0;
+    if (m_XAxis->GetOptions().GetPosition() == wxCHARTSAXISPOSITION_LEFT)
     {
         verticalAxis = m_XAxis.get();
     }
-    else if (m_YAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
+    else if (m_YAxis->GetOptions().GetPosition() == wxCHARTSAXISPOSITION_LEFT)
     {
         verticalAxis = m_YAxis.get();
     }
 
-    const wxChartAxis* horizontalAxis = 0;
-    if (m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+    const wxChartsAxis* horizontalAxis = 0;
+    if (m_XAxis->GetOptions().GetPosition() == wxCHARTSAXISPOSITION_BOTTOM)
     {
         horizontalAxis = m_XAxis.get();
     }
-    else if (m_YAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+    else if (m_YAxis->GetOptions().GetPosition() == wxCHARTSAXISPOSITION_BOTTOM)
     {
         horizontalAxis = m_YAxis.get();
     }
@@ -136,12 +136,12 @@ void wxChartsGrid::Fit(wxGraphicsContext &gc)
     wxDouble rightPadding = 0;
     CalculatePadding(*m_XAxis, *m_YAxis, leftPadding, rightPadding);
 
-    if (m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+    if (m_XAxis->GetOptions().GetPosition() == wxCHARTSAXISPOSITION_BOTTOM)
     {
         m_XAxis->Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(m_mapping.GetSize().GetWidth() - rightPadding, startPoint));
         m_YAxis->Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(leftPadding, endPoint));
     }
-    else if (m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
+    else if (m_XAxis->GetOptions().GetPosition() == wxCHARTSAXISPOSITION_LEFT)
     {
         m_XAxis->Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(leftPadding, endPoint));
         m_YAxis->Fit(wxPoint2DDouble(leftPadding, startPoint), wxPoint2DDouble(m_mapping.GetSize().GetWidth() - rightPadding, startPoint));
@@ -223,8 +223,8 @@ void wxChartsGrid::UpdateAxisLimit(const std::string& axisId, wxDouble min, wxDo
         m_curAxisLimits.MinX = min;
         m_curAxisLimits.MaxX = max;
 
-        m_XAxis = new wxChartNumericalAxis(axisId,m_curAxisLimits.MinX,
-                                           m_curAxisLimits.MaxX,m_options.GetXAxisOptions());
+        m_XAxis = new wxChartsNumericalAxis(axisId, m_curAxisLimits.MinX,
+            m_curAxisLimits.MaxX,m_options.GetXAxisOptions());
     }
     else if(axisId == "y")
     {
@@ -233,19 +233,19 @@ void wxChartsGrid::UpdateAxisLimit(const std::string& axisId, wxDouble min, wxDo
 
         m_curAxisLimits.MinY = min;
         m_curAxisLimits.MaxY = max;
-        m_YAxis = new wxChartNumericalAxis(axisId,m_curAxisLimits.MinY,
-                                           m_curAxisLimits.MaxY, m_options.GetYAxisOptions());
+        m_YAxis = new wxChartsNumericalAxis(axisId, m_curAxisLimits.MinY,
+            m_curAxisLimits.MaxY, m_options.GetYAxisOptions());
     }
     m_mapping = wxChartsGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
     m_needsFit = true;
 }
 
-void wxChartsGrid::ChangeLabels(const std::string& axisId, const wxVector<wxString> &labels, wxChartAxisOptions options)
+void wxChartsGrid::ChangeLabels(const std::string& axisId, const wxVector<wxString> &labels, wxChartsAxisOptions options)
 {
     if(axisId == "x")
-        m_XAxis = wxChartCategoricalAxis::make_shared(axisId,labels,options);
+        m_XAxis = wxChartsCategoricalAxis::make_shared(axisId,labels,options);
     else if(axisId == "y")
-        m_YAxis = wxChartCategoricalAxis::make_shared(axisId,labels,options);
+        m_YAxis = wxChartsCategoricalAxis::make_shared(axisId,labels,options);
 
     m_mapping = wxChartsGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
     m_needsFit = true;
@@ -253,20 +253,20 @@ void wxChartsGrid::ChangeLabels(const std::string& axisId, const wxVector<wxStri
 
 void wxChartsGrid::Update()
 {
-    m_XAxis = new wxChartNumericalAxis("x", m_curAxisLimits.MinX,
+    m_XAxis = new wxChartsNumericalAxis("x", m_curAxisLimits.MinX,
         m_curAxisLimits.MaxX,m_options.GetXAxisOptions());
-    m_YAxis = new wxChartNumericalAxis("y", m_curAxisLimits.MinY,
+    m_YAxis = new wxChartsNumericalAxis("y", m_curAxisLimits.MinY,
         m_curAxisLimits.MaxY, m_options.GetYAxisOptions());
     m_mapping = wxChartsGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
     m_needsFit = true;
 }
 
-void wxChartsGrid::CalculatePadding(const wxChartAxis &xAxis,
-                                    const wxChartAxis &yAxis,
+void wxChartsGrid::CalculatePadding(const wxChartsAxis &xAxis,
+                                    const wxChartsAxis &yAxis,
                                     wxDouble &left,
                                     wxDouble &right)
 {
-    if (xAxis.GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+    if (xAxis.GetOptions().GetPosition() == wxCHARTSAXISPOSITION_BOTTOM)
     {
         // Either the first x label or any of the y labels can be the widest
         // so they are all taken into account to compute the left padding
@@ -282,7 +282,7 @@ void wxChartsGrid::CalculatePadding(const wxChartAxis &xAxis,
             right = (xAxis.GetLabels().back().GetSize().GetWidth() / 2);
         }
     }
-    else if (xAxis.GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT)
+    else if (xAxis.GetOptions().GetPosition() == wxCHARTSAXISPOSITION_LEFT)
     {
         // Either the first y label or any of the x labels can be the widest
         // so they are all taken into account to compute the left padding
@@ -300,8 +300,8 @@ void wxChartsGrid::CalculatePadding(const wxChartAxis &xAxis,
     }
 }
 
-void wxChartsGrid::DrawHorizontalGridLines(const wxChartAxis &horizontalAxis,
-                                           const wxChartAxis &verticalAxis,
+void wxChartsGrid::DrawHorizontalGridLines(const wxChartsAxis &horizontalAxis,
+                                           const wxChartsAxis &verticalAxis,
                                            const wxChartsGridLineOptions &options,
                                            wxGraphicsContext &gc)
 {
@@ -309,7 +309,7 @@ void wxChartsGrid::DrawHorizontalGridLines(const wxChartAxis &horizontalAxis,
     {
         wxPoint2DDouble lineStartPosition = verticalAxis.GetTickMarkPosition(i);
         wxPoint2DDouble lineEndPosition = horizontalAxis.GetTickMarkPosition(horizontalAxis.GetNumberOfTickMarks() - 1);
-        if (horizontalAxis.GetOptions().GetEndMarginType() == wxCHARTAXISMARGINTYPE_TICKMARKOFFSET)
+        if (horizontalAxis.GetOptions().GetEndMarginType() == wxCHARTSAXISMARGINTYPE_TICKMARKOFFSET)
         {
             lineEndPosition.m_x += horizontalAxis.GetDistanceBetweenTickMarks();
         }
@@ -343,18 +343,18 @@ void wxChartsGrid::DrawHorizontalGridLines(const wxChartAxis &horizontalAxis,
     }
 }
 
-void wxChartsGrid::DrawVerticalGridLines(const wxChartAxis &horizontalAxis,
-                                         const wxChartAxis &verticalAxis,
+void wxChartsGrid::DrawVerticalGridLines(const wxChartsAxis &horizontalAxis,
+                                         const wxChartsAxis &verticalAxis,
                                          const wxChartsGridLineOptions &options,
                                          wxGraphicsContext &gc)
 {
     size_t i = 1;
-    if (horizontalAxis.GetOptions().GetStartMarginType() == wxCHARTAXISMARGINTYPE_TICKMARKOFFSET)
+    if (horizontalAxis.GetOptions().GetStartMarginType() == wxCHARTSAXISMARGINTYPE_TICKMARKOFFSET)
     {
         i = 0;
     }
     size_t end = horizontalAxis.GetNumberOfTickMarks();
-    if (horizontalAxis.GetOptions().GetEndMarginType() == wxCHARTAXISMARGINTYPE_TICKMARKOFFSET)
+    if (horizontalAxis.GetOptions().GetEndMarginType() == wxCHARTSAXISMARGINTYPE_TICKMARKOFFSET)
     {
         ++end;
     }

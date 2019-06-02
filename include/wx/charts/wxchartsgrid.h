@@ -39,7 +39,7 @@
 #include "wxchartselement.h"
 #include "wxchartsgridoptions.h"
 #include "wxchartsgridmapping.h"
-#include "wxchartaxis.h"
+#include "wxchartsaxis.h"
 #include <wx/graphics.h>
 
 /// This class is used to display a grid.
@@ -79,7 +79,7 @@ public:
     /// @param options The settings to be used for the
     /// grid.
     wxChartsGrid(const wxPoint2DDouble &position, const wxSize &size,
-        wxChartAxis::ptr xAxis, wxChartAxis::ptr yAxis,
+        wxChartsAxis::ptr xAxis, wxChartsAxis::ptr yAxis,
         const wxChartsGridOptions& options);
     /// Constructs a wxChartsGrid element. The tick marks on the X and
     /// Y axes are computed automatically using the
@@ -129,15 +129,15 @@ public:
     void ChangeCorners(wxDouble minX,wxDouble maxX,
         wxDouble minY,wxDouble maxY);
     void UpdateAxisLimit(const std::string& axisId, wxDouble min, wxDouble max);
-    void ChangeLabels(const std::string& axisId, const wxVector<wxString> &labels, wxChartAxisOptions options);
+    void ChangeLabels(const std::string& axisId, const wxVector<wxString> &labels, wxChartsAxisOptions options);
 
 private:
     void Update();
-    void CalculatePadding(const wxChartAxis &xAxis,
-        const wxChartAxis &yAxis, wxDouble &left, wxDouble &right);
-    static void DrawHorizontalGridLines(const wxChartAxis &horizontalAxis, const wxChartAxis &verticalAxis,
+    void CalculatePadding(const wxChartsAxis &xAxis,
+        const wxChartsAxis &yAxis, wxDouble &left, wxDouble &right);
+    static void DrawHorizontalGridLines(const wxChartsAxis &horizontalAxis, const wxChartsAxis &verticalAxis,
         const wxChartsGridLineOptions &options, wxGraphicsContext &gc);
-    static void DrawVerticalGridLines(const wxChartAxis &horizontalAxis, const wxChartAxis &verticalAxis,
+    static void DrawVerticalGridLines(const wxChartsAxis &horizontalAxis, const wxChartsAxis &verticalAxis,
         const wxChartsGridLineOptions &options, wxGraphicsContext &gc);
 
 private:
@@ -155,8 +155,8 @@ private:
 private:
     wxChartsGridOptions m_options;
     wxPoint2DDouble m_position;
-    wxChartAxis::ptr m_XAxis;
-    wxChartAxis::ptr m_YAxis;
+    wxChartsAxis::ptr m_XAxis;
+    wxChartsAxis::ptr m_YAxis;
     wxChartsGridMapping m_mapping;
     // Whether something has changed and we
     // need to rearrange the chart

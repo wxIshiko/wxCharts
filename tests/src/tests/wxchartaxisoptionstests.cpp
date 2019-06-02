@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -23,19 +23,19 @@
 #include <wx/charts/wxcharts.h>
 #include <catch.hpp>
 
-TEST_CASE("wxChartAxisOptions constructor")
+TEST_CASE("wxChartsAxisOptions constructor")
 {
-    wxChartAxisOptions options(wxCHARTAXISPOSITION_LEFT);
+    wxChartsAxisOptions options(wxCHARTSAXISPOSITION_LEFT);
 
-    REQUIRE(options.GetPosition() == wxCHARTAXISPOSITION_LEFT);
-    REQUIRE(options.GetLabelType() == wxCHARTAXISLABELTYPE_POINT);
+    REQUIRE(options.GetPosition() == wxCHARTSAXISPOSITION_LEFT);
+    REQUIRE(options.GetLabelType() == wxCHARTSAXISLABELTYPE_POINT);
 }
 
-TEST_CASE("wxChartAxisOptions copy constructor")
+TEST_CASE("wxChartsAxisOptions copy constructor")
 {
-    wxChartAxisOptions options(wxCHARTAXISPOSITION_LEFT);
-    wxChartAxisOptions optionsCopy(options);
+    wxChartsAxisOptions options(wxCHARTSAXISPOSITION_LEFT);
+    wxChartsAxisOptions optionsCopy(options);
 
-    REQUIRE(optionsCopy.GetPosition() == wxCHARTAXISPOSITION_LEFT);
-    REQUIRE(optionsCopy.GetLabelType() == wxCHARTAXISLABELTYPE_POINT);
+    REQUIRE(optionsCopy.GetPosition() == wxCHARTSAXISPOSITION_LEFT);
+    REQUIRE(optionsCopy.GetLabelType() == wxCHARTSAXISLABELTYPE_POINT);
 }

@@ -32,11 +32,11 @@
 */
 
 #include "wxchartsgridmapping.h"
-#include "wxchartnumericalaxis.h"
+#include "wxchartsnumericalaxis.h"
 
 wxChartsGridMapping::wxChartsGridMapping(const wxSize &size,
-                                        const wxChartAxis::ptr xAxis,
-                                        const wxChartAxis::ptr yAxis)
+                                         const wxChartsAxis::ptr xAxis,
+                                         const wxChartsAxis::ptr yAxis)
     : m_size(size), m_XAxis(xAxis), m_YAxis(yAxis)
 {
 }
@@ -54,19 +54,19 @@ void wxChartsGridMapping::SetSize(const wxSize &size)
 wxPoint2DDouble wxChartsGridMapping::GetWindowPosition(wxDouble x, 
                                                        wxDouble y) const
 {
-    const wxChartNumericalAxis& numericalXAxis = static_cast<const wxChartNumericalAxis&>(*m_XAxis);
-    const wxChartNumericalAxis& numericalYAxis = static_cast<const wxChartNumericalAxis&>(*m_YAxis);
+    const wxChartsNumericalAxis& numericalXAxis = static_cast<const wxChartsNumericalAxis&>(*m_XAxis);
+    const wxChartsNumericalAxis& numericalYAxis = static_cast<const wxChartsNumericalAxis&>(*m_YAxis);
 
-    if ((numericalXAxis.GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM) &&
-        (m_YAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT))
+    if ((numericalXAxis.GetOptions().GetPosition() == wxCHARTSAXISPOSITION_BOTTOM) &&
+        (m_YAxis->GetOptions().GetPosition() == wxCHARTSAXISPOSITION_LEFT))
     {
         return wxPoint2DDouble(
             m_XAxis->GetPosition((x - numericalXAxis.GetMinValue()) / (numericalXAxis.GetMaxValue() - numericalXAxis.GetMinValue())).m_x,
             m_YAxis->GetPosition((y - numericalYAxis.GetMinValue()) / (numericalYAxis.GetMaxValue() - numericalYAxis.GetMinValue())).m_y
             );
     }
-    else if ((numericalXAxis.GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT) &&
-        (m_YAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM))
+    else if ((numericalXAxis.GetOptions().GetPosition() == wxCHARTSAXISPOSITION_LEFT) &&
+        (m_YAxis->GetOptions().GetPosition() == wxCHARTSAXISPOSITION_BOTTOM))
     {
         return wxPoint2DDouble(
             m_YAxis->GetPosition((y - numericalYAxis.GetMinValue()) / (numericalYAxis.GetMaxValue() - numericalYAxis.GetMinValue())).m_x,
@@ -81,18 +81,18 @@ wxPoint2DDouble wxChartsGridMapping::GetWindowPosition(wxDouble x,
 wxPoint2DDouble wxChartsGridMapping::GetWindowPositionAtTickMark(size_t index,
                                                                  wxDouble value) const
 {
-    const wxChartNumericalAxis& numericalYAxis = static_cast<const wxChartNumericalAxis&>(*m_YAxis);
+    const wxChartsNumericalAxis& numericalYAxis = static_cast<const wxChartsNumericalAxis&>(*m_YAxis);
 
-    if ((m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM) &&
-        (m_YAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT))
+    if ((m_XAxis->GetOptions().GetPosition() == wxCHARTSAXISPOSITION_BOTTOM) &&
+        (m_YAxis->GetOptions().GetPosition() == wxCHARTSAXISPOSITION_LEFT))
     {
         return wxPoint2DDouble(
             m_XAxis->GetTickMarkPosition(index).m_x,
             m_YAxis->GetPosition((value - numericalYAxis.GetMinValue()) / (numericalYAxis.GetMaxValue() - numericalYAxis.GetMinValue())).m_y
             );
     }
-    else if ((m_XAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_LEFT) &&
-        (m_YAxis->GetOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM))
+    else if ((m_XAxis->GetOptions().GetPosition() == wxCHARTSAXISPOSITION_LEFT) &&
+        (m_YAxis->GetOptions().GetPosition() == wxCHARTSAXISPOSITION_BOTTOM))
     {
         return wxPoint2DDouble(
             m_YAxis->GetPosition((value - numericalYAxis.GetMinValue()) / (numericalYAxis.GetMaxValue() - numericalYAxis.GetMinValue())).m_x,
@@ -104,7 +104,7 @@ wxPoint2DDouble wxChartsGridMapping::GetWindowPositionAtTickMark(size_t index,
     return wxPoint2DDouble(0, 0);
 }
 
-const wxChartAxis& wxChartsGridMapping::GetXAxis() const
+const wxChartsAxis& wxChartsGridMapping::GetXAxis() const
 {
     return *m_XAxis;
 }

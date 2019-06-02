@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,25 +20,10 @@
     IN THE SOFTWARE.
 */
 
-/// @file
+#include "wxchartstimeaxis.h"
 
-#include "wxohlcchartoptions.h"
-
-wxOHLCChartOptions::wxOHLCChartOptions()
+wxChartsTimeAxis::wxChartsTimeAxis(const std::string &id,
+                                   const wxChartsAxisOptions &options)
+    : wxChartsAxis(id, options)
 {
-    m_gridOptions.GetXAxisOptions().SetStartMarginType(wxCHARTSAXISMARGINTYPE_TICKMARKOFFSET);
-    m_gridOptions.GetXAxisOptions().SetEndMarginType(wxCHARTSAXISMARGINTYPE_TICKMARKOFFSET);
-    m_gridOptions.GetHorizontalGridLineOptions().SetMajorGridLineColor(wxColor(0, 0, 0, 0x30));
-    m_gridOptions.GetHorizontalGridLineOptions().SetNumberOfMinorGridLinesBetweenTickMarks(4);
-    m_gridOptions.GetVerticalGridLineOptions().SetMajorGridLineColor(wxColor(0, 0, 0, 0x30));
-}
-
-const wxChartsGridOptions& wxOHLCChartOptions::GetGridOptions() const
-{
-    return m_gridOptions;
-}
-
-wxChartsGridOptions& wxOHLCChartOptions::GetGridOptions()
-{
-    return m_gridOptions;
 }

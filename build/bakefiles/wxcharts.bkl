@@ -70,6 +70,11 @@ library wxcharts
         ../../include/wx/charts/wxchartsrectangle.h
         ../../include/wx/charts/wxchartspointoptions.h
         ../../include/wx/charts/wxchartspoint.h
+        ../../include/wx/charts/wxchartsaxis.h
+        ../../include/wx/charts/wxchartsaxisoptions.h
+        ../../include/wx/charts/wxchartscategoricalaxis.h
+        ../../include/wx/charts/wxchartsnumericalaxis.h
+        ../../include/wx/charts/wxchartstimeaxis.h
         ../../include/wx/charts/wxchartsgridmapping.h
         ../../include/wx/charts/wxchartsgridoptions.h
         ../../include/wx/charts/wxchartsgrid.h
@@ -82,11 +87,6 @@ library wxcharts
         ../../include/wx/charts/wxchartlabel.h
         ../../include/wx/charts/wxchartlabeloptions.h
         ../../include/wx/charts/wxchartlabelgroup.h
-        ../../include/wx/charts/wxchartaxis.h
-        ../../include/wx/charts/wxchartaxisoptions.h
-        ../../include/wx/charts/wxchartcategoricalaxis.h
-        ../../include/wx/charts/wxchartnumericalaxis.h
-        ../../include/wx/charts/wxcharttimeaxis.h
         ../../include/wx/charts/wxchartradialgridoptions.h
         ../../include/wx/charts/wxchartradialgrid.h
         ../../include/wx/charts/wxchartarc.h
@@ -191,6 +191,11 @@ library wxcharts
         ../../src/wxchartsrectangle.cpp
         ../../src/wxchartspointoptions.cpp
         ../../src/wxchartspoint.cpp
+        ../../src/wxchartsaxis.cpp
+        ../../src/wxchartsaxisoptions.cpp
+        ../../src/wxchartscategoricalaxis.cpp
+        ../../src/wxchartsnumericalaxis.cpp
+        ../../src/wxchartstimeaxis.cpp
         ../../src/wxchartsgridmapping.cpp
         ../../src/wxchartsgridoptions.cpp
         ../../src/wxchartsgrid.cpp
@@ -203,11 +208,6 @@ library wxcharts
         ../../src/wxchartlabel.cpp
         ../../src/wxchartlabeloptions.cpp
         ../../src/wxchartlabelgroup.cpp
-        ../../src/wxchartaxis.cpp
-        ../../src/wxchartaxisoptions.cpp
-        ../../src/wxchartcategoricalaxis.cpp
-        ../../src/wxchartnumericalaxis.cpp
-        ../../src/wxcharttimeaxis.cpp
         ../../src/wxchartradialgridoptions.cpp
         ../../src/wxchartradialgrid.cpp
         ../../src/wxchartarc.cpp
