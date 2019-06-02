@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,27 +22,42 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTSDATASETTHEME_H_
-#define _WX_CHARTS_WXCHARTSDATASETTHEME_H_
+#ifndef _WX_CHARTS_WXCHARTSCIRCLE_H_
+#define _WX_CHARTS_WXCHARTSCIRCLE_H_
 
-#include "wxbarchartdatasetoptions.h"
-#include "wxcolumnchartdatasetoptions.h"
-#include <wx/sharedptr.h>
+#include "wxchartselement.h"
+#include "wxchartscircleoptions.h"
 
-class wxChartsDatasetTheme
+/// This class is used to draw a circle on the chart.
+
+/// \ingroup elementclasses
+class wxChartsCircle : public wxChartsElement
 {
 public:
-    wxChartsDatasetTheme();
+    wxChartsCircle(wxDouble x, wxDouble y, wxDouble radius,
+        const wxChartTooltipProvider::ptr tooltipProvider,
+        const wxChartsCircleOptions &options);
 
-    wxSharedPtr<wxBarChartDatasetOptions> GetBarChartDatasetOptions();
-    wxSharedPtr<wxColumnChartDatasetOptions> GetColumnChartDatasetOptions();
+    virtual void Draw(wxGraphicsContext &gc) const;
 
-    void SetBarChartDatasetOptions(const wxBarChartDatasetOptions& options);
-    void SetColumnChartDatasetOptions(const wxColumnChartDatasetOptions& options);
+    virtual bool HitTest(const wxPoint &point) const;
+
+    virtual wxPoint2DDouble GetTooltipPosition() const;
+
+    /// Sets the center of the circle.
+    /// @param x The X coordinate of the center.
+    /// @param y The Y coordinate of the center.
+    void SetCenter(wxDouble x, wxDouble y);
+    /// Sets the center of the circle.
+    /// @param position The new center of the circle.
+    void SetCenter(wxPoint2DDouble center);
+    void SetRadius(wxDouble radius);
 
 private:
-    wxSharedPtr<wxBarChartDatasetOptions> m_barChartDatasetOptions;
-    wxSharedPtr<wxColumnChartDatasetOptions> m_columnChartDatasetOptions;
+    wxChartsCircleOptions m_options;
+    wxDouble m_x;
+    wxDouble m_y;
+    wxDouble m_radius;
 };
 
 #endif

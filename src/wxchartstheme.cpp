@@ -44,13 +44,17 @@ wxChartsTheme::wxChartsTheme()
     m_timeSeriesChartOptions(new wxTimeSeriesChartOptions())
 {
     wxSharedPtr<wxChartsDatasetTheme> datasetTheme0(new wxChartsDatasetTheme());
-    wxBarChartDatasetOptions datasetOptions0(wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2), wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F)));
-    datasetTheme0->SetBarChartDatasetOptions(datasetOptions0);
+    wxBarChartDatasetOptions barDatasetOptions0(wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2), wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F)));
+    datasetTheme0->SetBarChartDatasetOptions(barDatasetOptions0);
+    wxColumnChartDatasetOptions columnDatasetOptions0(wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2), wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F)));
+    datasetTheme0->SetColumnChartDatasetOptions(columnDatasetOptions0);
     m_datasetThemes[wxChartsDatasetId::CreateImplicitId(0)] = datasetTheme0;
-    
+
     wxSharedPtr<wxChartsDatasetTheme> datasetTheme1(new wxChartsDatasetTheme());
-    wxBarChartDatasetOptions datasetOptions1(wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2), wxChartsBrushOptions(wxColor(151, 187, 205, 0x7F)));
-    datasetTheme1->SetBarChartDatasetOptions(datasetOptions1);
+    wxBarChartDatasetOptions barDatasetOptions1(wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2), wxChartsBrushOptions(wxColor(151, 187, 205, 0x7F)));
+    datasetTheme1->SetBarChartDatasetOptions(barDatasetOptions1);
+    wxColumnChartDatasetOptions columnDatasetOptions1(wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2), wxChartsBrushOptions(wxColor(151, 187, 205, 0x7F)));
+    datasetTheme1->SetColumnChartDatasetOptions(columnDatasetOptions1);
     m_datasetThemes[wxChartsDatasetId::CreateImplicitId(1)] = datasetTheme1;
 }
 

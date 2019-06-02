@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,34 +20,21 @@
     IN THE SOFTWARE.
 */
 
-/*
-    Part of this file were copied from the Chart.js project (http://chartjs.org/)
-    and translated into C++.
+#ifndef _TESTS_WX_CHARTS_WXCHARTSCATEGORICALAXISPANEL_H_
+#define _TESTS_WX_CHARTS_WXCHARTSCATEGORICALAXISPANEL_H_
 
-    The files of the Chart.js project have the following copyright and license.
+#include "elementcanvaswindow.h"
+#include <wx/charts/wxcharts.h>
+#include <wx/panel.h>
 
-    Copyright (c) 2013-2016 Nick Downie
-    Released under the MIT license
-    https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
-*/
-
-/// @file
-
-#include "wxcolumnchartctrl.h"
-
-wxColumnChartCtrl::wxColumnChartCtrl(wxWindow *parent,
-                                     wxWindowID id,
-                                     wxChartsCategoricalData::ptr &data,
-                                     const wxPoint &pos,
-                                     const wxSize &size,
-                                     long style)
-    : wxChartCtrl(parent, id, pos, size, style), 
-    m_columnChart(data, size)
+class wxChartsCategoricalAxisPanel : public wxPanel
 {
-    SetMinSize(wxSize(300, 150));
-}
+public:
+    wxChartsCategoricalAxisPanel(wxWindow* parent);
 
-wxColumnChart& wxColumnChartCtrl::GetChart()
-{
-    return m_columnChart;
-}
+private:
+    ElementCanvasWindow* m_canvas;
+    wxChartsCategoricalAxis* m_axis;
+};
+
+#endif

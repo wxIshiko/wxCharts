@@ -36,8 +36,8 @@ wxChartsTestsMenuBar::wxChartsTestsMenuBar()
     wxMenu* menuElements = new wxMenu;
     menuElements->Append(wxID_RECTANGLE_ELEMENT, "wxChartsRectangle");
     menuElements->Append(wxID_LABEL_ELEMENT, "wxChartLabel");
-    menuElements->Append(wxID_CATEGORICALAXIS_ELEMENT, "wxChartCategoricalAxis");
-    menuElements->Append(wxID_NUMERICALAXIS_ELEMENT, "wxChartNumericalAxis");
+    menuElements->Append(wxID_CATEGORICALAXIS_ELEMENT, "wxChartsCategoricalAxis");
+    menuElements->Append(wxID_NUMERICALAXIS_ELEMENT, "wxChartsNumericalAxis");
     menuElements->Append(wxID_GRID_ELEMENT, "wxChartsGrid");
     Append(menuElements, "&Elements");
 

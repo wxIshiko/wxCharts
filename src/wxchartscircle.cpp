@@ -20,21 +20,21 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartcircle.h"
+#include "wxchartscircle.h"
 #include <wx/pen.h>
 #include <wx/brush.h>
 
-wxChartCircle::wxChartCircle(wxDouble x, 
-                             wxDouble y, 
-                             wxDouble radius,
-                             const wxChartTooltipProvider::ptr tooltipProvider,
-                             const wxChartCircleOptions &options)
+wxChartsCircle::wxChartsCircle(wxDouble x, 
+                               wxDouble y, 
+                               wxDouble radius,
+                               const wxChartTooltipProvider::ptr tooltipProvider,
+                               const wxChartsCircleOptions &options)
     : wxChartsElement(tooltipProvider), m_options(options),
     m_x(x), m_y(y), m_radius(radius)
 {
 }
 
-void wxChartCircle::Draw(wxGraphicsContext &gc) const
+void wxChartsCircle::Draw(wxGraphicsContext &gc) const
 {
     wxGraphicsPath path = gc.CreatePath();
     
@@ -49,7 +49,7 @@ void wxChartCircle::Draw(wxGraphicsContext &gc) const
     gc.StrokePath(path);
 }
 
-bool wxChartCircle::HitTest(const wxPoint &point) const
+bool wxChartsCircle::HitTest(const wxPoint &point) const
 {
     wxDouble distanceFromXCenter = point.x - m_x;
     wxDouble distanceFromYCenter = point.y - m_y;
@@ -58,24 +58,24 @@ bool wxChartCircle::HitTest(const wxPoint &point) const
     return (radialDistanceFromCenter <= m_radius);
 }
 
-wxPoint2DDouble wxChartCircle::GetTooltipPosition() const
+wxPoint2DDouble wxChartsCircle::GetTooltipPosition() const
 {
     return wxPoint2DDouble(m_x, m_y);
 }
 
-void wxChartCircle::SetCenter(wxDouble x, wxDouble y)
+void wxChartsCircle::SetCenter(wxDouble x, wxDouble y)
 {
     m_x = x;
     m_y = y;
 }
 
-void wxChartCircle::SetCenter(wxPoint2DDouble center)
+void wxChartsCircle::SetCenter(wxPoint2DDouble center)
 {
     m_x = center.m_x;
     m_y = center.m_y;
 }
 
-void wxChartCircle::SetRadius(wxDouble radius)
+void wxChartsCircle::SetRadius(wxDouble radius)
 {
     m_radius = radius;
 }

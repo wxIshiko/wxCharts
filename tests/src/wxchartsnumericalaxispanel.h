@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,27 +20,21 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartcircleoptions.h"
+#ifndef _TESTS_WX_CHARTS_WXCHARTSNUMERICALAXISPANEL_H_
+#define _TESTS_WX_CHARTS_WXCHARTSNUMERICALAXISPANEL_H_
 
-wxChartCircleOptions::wxChartCircleOptions(unsigned int outlineWidth, 
-                                           const wxColor &outlineColor,
-                                           const wxColor &fillColor)
-    : m_outlineWidth(outlineWidth), m_outlineColor(outlineColor),
-    m_fillColor(fillColor)
-{
-}
+#include "elementcanvaswindow.h"
+#include <wx/charts/wxcharts.h>
+#include <wx/panel.h>
 
-unsigned int wxChartCircleOptions::GetOutlineWidth() const
+class wxChartsNumericalAxisPanel : public wxPanel
 {
-    return m_outlineWidth;
-}
+public:
+    wxChartsNumericalAxisPanel(wxWindow* parent);
 
-const wxColor& wxChartCircleOptions::GetOutlineColor() const
-{
-    return m_outlineColor;
-}
+private:
+    ElementCanvasWindow* m_canvas;
+    wxChartsNumericalAxis* m_axis;
+};
 
-const wxColor& wxChartCircleOptions::GetFillColor() const
-{
-    return m_fillColor;
-}
+#endif

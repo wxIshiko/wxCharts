@@ -31,6 +31,8 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
+/// @file
+
 #include "wxcolumnchart.h"
 #include "wxchartstheme.h"
 #include "wxchartscategoricalaxis.h"
@@ -82,6 +84,9 @@ wxColumnChart::wxColumnChart(wxChartsCategoricalData::ptr &data,
     const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
+        wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
+        wxSharedPtr<wxColumnChartDatasetOptions> datasetOptions = datasetTheme->GetColumnChartDatasetOptions();
+
         const wxChartsDoubleDataset& dataset = *datasets[i];
         Dataset::ptr newDataset(new Dataset());
 
@@ -91,12 +96,12 @@ wxColumnChart::wxColumnChart(wxChartsCategoricalData::ptr &data,
             std::stringstream tooltip;
             tooltip << datasetData[j];
             wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), dataset.GetBrushOptions().GetColor())
+                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), datasetOptions->GetBrushOptions().GetColor())
                 );
 
             newDataset->AppendColumn(Column::ptr(new Column(
-                datasetData[j], tooltipProvider, 25, 50, dataset.GetPenOptions(),
-                dataset.GetBrushOptions(), wxLEFT | wxTOP | wxRIGHT
+                datasetData[j], tooltipProvider, 25, 50, datasetOptions->GetPenOptions(),
+                datasetOptions->GetBrushOptions(), wxLEFT | wxTOP | wxRIGHT
                 )));
         }
 

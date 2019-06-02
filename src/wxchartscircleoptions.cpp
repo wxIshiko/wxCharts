@@ -20,44 +20,27 @@
     IN THE SOFTWARE.
 */
 
-/// @file
+#include "wxchartscircleoptions.h"
 
-#ifndef _WX_CHARTS_WXCHARTCIRCLE_H_
-#define _WX_CHARTS_WXCHARTCIRCLE_H_
-
-#include "wxchartselement.h"
-#include "wxchartcircleoptions.h"
-
-/// This class is used to draw a circle on the chart.
-
-/// \ingroup elementclasses
-class wxChartCircle : public wxChartsElement
+wxChartsCircleOptions::wxChartsCircleOptions(unsigned int outlineWidth, 
+                                             const wxColor &outlineColor,
+                                             const wxColor &fillColor)
+    : m_outlineWidth(outlineWidth), m_outlineColor(outlineColor),
+    m_fillColor(fillColor)
 {
-public:
-    wxChartCircle(wxDouble x, wxDouble y, wxDouble radius,
-        const wxChartTooltipProvider::ptr tooltipProvider,
-        const wxChartCircleOptions &options);
+}
 
-    virtual void Draw(wxGraphicsContext &gc) const;
+unsigned int wxChartsCircleOptions::GetOutlineWidth() const
+{
+    return m_outlineWidth;
+}
 
-    virtual bool HitTest(const wxPoint &point) const;
+const wxColor& wxChartsCircleOptions::GetOutlineColor() const
+{
+    return m_outlineColor;
+}
 
-    virtual wxPoint2DDouble GetTooltipPosition() const;
-
-    /// Sets the center of the circle.
-    /// @param x The X coordinate of the center.
-    /// @param y The Y coordinate of the center.
-    void SetCenter(wxDouble x, wxDouble y);
-    /// Sets the center of the circle.
-    /// @param position The new center of the circle.
-    void SetCenter(wxPoint2DDouble center);
-    void SetRadius(wxDouble radius);
-
-private:
-    wxChartCircleOptions m_options;
-    wxDouble m_x;
-    wxDouble m_y;
-    wxDouble m_radius;
-};
-
-#endif
+const wxColor& wxChartsCircleOptions::GetFillColor() const
+{
+    return m_fillColor;
+}

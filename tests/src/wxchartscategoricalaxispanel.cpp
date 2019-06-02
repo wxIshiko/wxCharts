@@ -20,10 +20,10 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartcategoricalaxispanel.h"
+#include "wxchartscategoricalaxispanel.h"
 #include <wx/sizer.h>
 
-wxChartCategoricalAxisPanel::wxChartCategoricalAxisPanel(wxWindow* parent)
+wxChartsCategoricalAxisPanel::wxChartsCategoricalAxisPanel(wxWindow* parent)
     : wxPanel(parent)
 {
     wxVector<wxString> labels;

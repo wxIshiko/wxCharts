@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,21 +20,26 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _TESTS_WX_CHARTS_WXCHARTNUMERICALAXISPANEL_H_
-#define _TESTS_WX_CHARTS_WXCHARTNUMERICALAXISPANEL_H_
+/// @file
 
-#include "elementcanvaswindow.h"
-#include <wx/charts/wxcharts.h>
-#include <wx/panel.h>
+#ifndef _WX_CHARTS_WXCOLUMNCHARTDATASETOPTIONS_H_
+#define _WX_CHARTS_WXCOLUMNCHARTDATASETOPTIONS_H_
 
-class wxChartNumericalAxisPanel : public wxPanel
+#include "wxchartspenoptions.h"
+#include "wxchartsbrushoptions.h"
+
+class wxColumnChartDatasetOptions
 {
 public:
-    wxChartNumericalAxisPanel(wxWindow* parent);
+    wxColumnChartDatasetOptions(const wxChartsPenOptions &penOptions,
+        const wxChartsBrushOptions &brushOptions);
+
+    const wxChartsPenOptions& GetPenOptions() const;
+    const wxChartsBrushOptions& GetBrushOptions() const;
 
 private:
-    ElementCanvasWindow* m_canvas;
-    wxChartsNumericalAxis* m_axis;
+    wxChartsPenOptions m_penOptions;
+    wxChartsBrushOptions m_brushOptions;
 };
 
 #endif

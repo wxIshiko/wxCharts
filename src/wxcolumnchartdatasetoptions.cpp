@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,19 +20,22 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartnumericalaxispanel.h"
-#include <wx/sizer.h>
+/// @file
 
-wxChartNumericalAxisPanel::wxChartNumericalAxisPanel(wxWindow* parent)
-    : wxPanel(parent)
+#include "wxcolumnchartdatasetoptions.h"
+
+wxColumnChartDatasetOptions::wxColumnChartDatasetOptions(const wxChartsPenOptions &penOptions,
+    const wxChartsBrushOptions &brushOptions)
+    : m_penOptions(penOptions), m_brushOptions(brushOptions)
 {
-    m_axis = new wxChartsNumericalAxis("id0", 0, 100, wxChartsAxisOptions(wxCHARTSAXISPOSITION_LEFT));
+}
 
-    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+const wxChartsPenOptions& wxColumnChartDatasetOptions::GetPenOptions() const
+{
+    return m_penOptions;
+}
 
-    m_canvas = new ElementCanvasWindow(this);
-    m_canvas->setElement(m_axis);
-    sizer->Add(m_canvas, 1, wxEXPAND);
-
-    SetSizer(sizer);
+const wxChartsBrushOptions& wxColumnChartDatasetOptions::GetBrushOptions() const
+{
+    return m_brushOptions;
 }

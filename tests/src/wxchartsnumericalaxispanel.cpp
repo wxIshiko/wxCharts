@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,35 +20,19 @@
     IN THE SOFTWARE.
 */
 
-/// @file
+#include "wxchartsnumericalaxispanel.h"
+#include <wx/sizer.h>
 
-#ifndef _WX_CHARTS_WXCHARTCIRCLEOPTIONS_H_
-#define _WX_CHARTS_WXCHARTCIRCLEOPTIONS_H_
-
-#include <wx/colour.h>
-
-/// Options for the wxChartCircle class.
-
-/// \ingroup elementclasses
-class wxChartCircleOptions
+wxChartsNumericalAxisPanel::wxChartsNumericalAxisPanel(wxWindow* parent)
+    : wxPanel(parent)
 {
-public:
-    /// Constructs a wxChartCircleOptions instance.
-    /// @param outlineWidth The width of the pen used to draw the outline
-    /// of the circle.
-    /// @param outlineColor The color of the outline.
-    /// @param fillColor The color of the brush used to fill the circle.
-    wxChartCircleOptions(unsigned int outlineWidth, const wxColor &outlineColor,
-        const wxColor &fillColor);
+    m_axis = new wxChartsNumericalAxis("id0", 0, 100, wxChartsAxisOptions(wxCHARTSAXISPOSITION_LEFT));
 
-    unsigned int GetOutlineWidth() const;
-    const wxColor& GetOutlineColor() const;
-    const wxColor& GetFillColor() const;
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
-private:
-    unsigned int m_outlineWidth;
-    wxColor m_outlineColor;
-    wxColor m_fillColor;
-};
+    m_canvas = new ElementCanvasWindow(this);
+    m_canvas->setElement(m_axis);
+    sizer->Add(m_canvas, 1, wxEXPAND);
 
-#endif
+    SetSizer(sizer);
+}

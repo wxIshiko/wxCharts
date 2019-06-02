@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,21 +20,35 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _TESTS_WX_CHARTS_WXCHARTCATEGORICALAXISPANEL_H_
-#define _TESTS_WX_CHARTS_WXCHARTCATEGORICALAXISPANEL_H_
+/// @file
 
-#include "elementcanvaswindow.h"
-#include <wx/charts/wxcharts.h>
-#include <wx/panel.h>
+#ifndef _WX_CHARTS_WXCHARTSCIRCLEOPTIONS_H_
+#define _WX_CHARTS_WXCHARTSCIRCLEOPTIONS_H_
 
-class wxChartCategoricalAxisPanel : public wxPanel
+#include <wx/colour.h>
+
+/// Options for the wxChartsCircle class.
+
+/// \ingroup elementclasses
+class wxChartsCircleOptions
 {
 public:
-    wxChartCategoricalAxisPanel(wxWindow* parent);
+    /// Constructs a wxChartsCircleOptions instance.
+    /// @param outlineWidth The width of the pen used to draw the outline
+    /// of the circle.
+    /// @param outlineColor The color of the outline.
+    /// @param fillColor The color of the brush used to fill the circle.
+    wxChartsCircleOptions(unsigned int outlineWidth, const wxColor &outlineColor,
+        const wxColor &fillColor);
+
+    unsigned int GetOutlineWidth() const;
+    const wxColor& GetOutlineColor() const;
+    const wxColor& GetFillColor() const;
 
 private:
-    ElementCanvasWindow* m_canvas;
-    wxChartsCategoricalAxis* m_axis;
+    unsigned int m_outlineWidth;
+    wxColor m_outlineColor;
+    wxColor m_fillColor;
 };
 
 #endif
