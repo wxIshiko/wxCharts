@@ -33,7 +33,7 @@
 class wxChartsArcOptions
 {
 public:
-    /// Constructs a wxChartArcOptions instance.
+    /// Constructs a wxChartsArcOptions instance.
     /// @param outlineWidth The width of the pen used to draw the outline
     /// of the arc.
     /// @param fillColor The color of the brush used to fill the arc.

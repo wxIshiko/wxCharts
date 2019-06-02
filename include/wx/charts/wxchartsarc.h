@@ -46,7 +46,7 @@
 class wxChartsArc : public wxChartsElement
 {
 public:
-    /// Constructs a wxChartArc element. The arc is defined by the 
+    /// Constructs a wxChartsArc element. The arc is defined by the 
     /// coordinates of its centre (x, y), its inner radius and its 
     /// outer radius. The arc goes from the starting angle startAngle
     /// to endAngle clockwise. The angles are measured in radians but,
