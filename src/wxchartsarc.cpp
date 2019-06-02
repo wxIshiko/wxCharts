@@ -31,18 +31,18 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
-#include "wxchartarc.h"
+#include "wxchartsarc.h"
 #include <wx/pen.h>
 #include <wx/brush.h>
 
-wxChartArc::wxChartArc(wxDouble x,
-                       wxDouble y, 
-                       wxDouble startAngle,
-                       wxDouble endAngle,
-                       wxDouble outerRadius,
-                       wxDouble innerRadius,
-                       const wxString &tooltip,
-                       const wxChartArcOptions &options)
+wxChartsArc::wxChartsArc(wxDouble x,
+                         wxDouble y, 
+                         wxDouble startAngle,
+                         wxDouble endAngle,
+                         wxDouble outerRadius,
+                         wxDouble innerRadius,
+                         const wxString &tooltip,
+                         const wxChartsArcOptions &options)
     : wxChartsElement(tooltip), m_x(x), m_y(y), 
     m_startAngle(startAngle), m_endAngle(endAngle), 
     m_outerRadius(outerRadius), m_innerRadius(innerRadius), 
@@ -58,7 +58,7 @@ wxChartArc::wxChartArc(wxDouble x,
     }
 }
 
-void wxChartArc::Draw(wxGraphicsContext &gc) const
+void wxChartsArc::Draw(wxGraphicsContext &gc) const
 {
     wxGraphicsPath path = gc.CreatePath();
 
@@ -84,7 +84,7 @@ void wxChartArc::Draw(wxGraphicsContext &gc) const
     gc.StrokePath(path);
 }
 
-bool wxChartArc::HitTest(const wxPoint &point) const
+bool wxChartsArc::HitTest(const wxPoint &point) const
 {
     wxDouble distanceFromXCenter = point.x - m_x;
     wxDouble distanceFromYCenter = point.y - m_y;
@@ -118,7 +118,7 @@ bool wxChartArc::HitTest(const wxPoint &point) const
     return (betweenAngles && withinRadius);
 }
 
-wxPoint2DDouble wxChartArc::GetTooltipPosition() const
+wxPoint2DDouble wxChartsArc::GetTooltipPosition() const
 {
     wxDouble centreAngle = m_startAngle + (m_endAngle - m_startAngle) / 2;
     wxDouble rangeFromCentre = m_innerRadius + (m_outerRadius - m_innerRadius) / 2;
@@ -127,13 +127,13 @@ wxPoint2DDouble wxChartArc::GetTooltipPosition() const
     return wxPoint2DDouble(x, y);
 }
 
-void wxChartArc::SetCenter(wxDouble x, wxDouble y)
+void wxChartsArc::SetCenter(wxDouble x, wxDouble y)
 {
     m_x = x;
     m_y = y;
 }
 
-void wxChartArc::SetAngles(wxDouble startAngle, wxDouble endAngle)
+void wxChartsArc::SetAngles(wxDouble startAngle, wxDouble endAngle)
 {
     m_startAngle = startAngle;
     if (m_startAngle > (2 * M_PI))
@@ -147,13 +147,13 @@ void wxChartArc::SetAngles(wxDouble startAngle, wxDouble endAngle)
     }
 }
 
-void wxChartArc::SetRadiuses(wxDouble outerRadius, wxDouble innerRadius)
+void wxChartsArc::SetRadiuses(wxDouble outerRadius, wxDouble innerRadius)
 {
     m_outerRadius = outerRadius;
     m_innerRadius = innerRadius;
 }
 
-const wxChartArcOptions& wxChartArc::GetOptions() const
+const wxChartsArcOptions& wxChartsArc::GetOptions() const
 {
     return m_options;
 }

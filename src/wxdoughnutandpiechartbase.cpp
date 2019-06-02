@@ -85,8 +85,8 @@ wxDoughnutAndPieChartBase::SliceArc::SliceArc(const wxChartSliceData &slice,
                                               wxDouble outerRadius,
                                               wxDouble innerRadius,
                                               unsigned int strokeWidth)
-    : wxChartArc(x, y, startAngle, endAngle, outerRadius, innerRadius, 
-        slice.GetTooltipText(), wxChartArcOptions(strokeWidth, slice.GetColor())),
+    : wxChartsArc(x, y, startAngle, endAngle, outerRadius, innerRadius, 
+        slice.GetTooltipText(), wxChartsArcOptions(strokeWidth, slice.GetColor())),
     m_value(slice.GetValue())
 {
 }

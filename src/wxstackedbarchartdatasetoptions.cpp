@@ -22,31 +22,20 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTSDATASETTHEME_H_
-#define _WX_CHARTS_WXCHARTSDATASETTHEME_H_
-
-#include "wxbarchartdatasetoptions.h"
-#include "wxcolumnchartdatasetoptions.h"
 #include "wxstackedbarchartdatasetoptions.h"
-#include <wx/sharedptr.h>
 
-class wxChartsDatasetTheme
+wxStackedBarChartDatasetOptions::wxStackedBarChartDatasetOptions(const wxChartsPenOptions &penOptions,
+    const wxChartsBrushOptions &brushOptions)
+    : m_penOptions(penOptions), m_brushOptions(brushOptions)
 {
-public:
-    wxChartsDatasetTheme();
+}
 
-    wxSharedPtr<wxBarChartDatasetOptions> GetBarChartDatasetOptions();
-    wxSharedPtr<wxColumnChartDatasetOptions> GetColumnChartDatasetOptions();
-    wxSharedPtr<wxStackedBarChartDatasetOptions> GetStackedBarChartDatasetOptions();
+const wxChartsPenOptions& wxStackedBarChartDatasetOptions::GetPenOptions() const
+{
+    return m_penOptions;
+}
 
-    void SetBarChartDatasetOptions(const wxBarChartDatasetOptions& options);
-    void SetColumnChartDatasetOptions(const wxColumnChartDatasetOptions& options);
-    void SetStackedBarChartDatasetOptions(const wxStackedBarChartDatasetOptions& options);
-
-private:
-    wxSharedPtr<wxBarChartDatasetOptions> m_barChartDatasetOptions;
-    wxSharedPtr<wxColumnChartDatasetOptions> m_columnChartDatasetOptions;
-    wxSharedPtr<wxStackedBarChartDatasetOptions> m_stackedBarChartDatasetOptions;
-};
-
-#endif
+const wxChartsBrushOptions& wxStackedBarChartDatasetOptions::GetBrushOptions() const
+{
+    return m_brushOptions;
+}

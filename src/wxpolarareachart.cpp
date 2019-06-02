@@ -54,8 +54,8 @@ wxPolarAreaChart::SliceArc::SliceArc(const wxChartSliceData &slice,
                                      wxDouble startAngle,
                                      wxDouble endAngle,
                                      wxDouble radius)
-    : wxChartArc(x, y, startAngle, endAngle, radius, 0,
-        slice.GetTooltipText(), wxChartArcOptions(2, slice.GetColor())),
+    : wxChartsArc(x, y, startAngle, endAngle, radius, 0,
+        slice.GetTooltipText(), wxChartsArcOptions(2, slice.GetColor())),
     m_value(slice.GetValue())
 {
 }

@@ -20,6 +20,8 @@
     IN THE SOFTWARE.
 */
 
+/// @file
+
 #include "wxstackedbarchart.h"
 #include "wxchartstheme.h"
 #include "wxchartscategoricalaxis.h"
@@ -74,38 +76,7 @@ wxStackedBarChart::wxStackedBarChart(wxChartsCategoricalData::ptr &data,
         m_options->GetGridOptions()
         )
 {
-    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
-    for (size_t i = 0; i < datasets.size(); ++i)
-    {
-        const wxChartsDoubleDataset& dataset = *datasets[i];
-        Dataset::ptr newDataset(new Dataset());
-
-        int border = wxTOP | wxBOTTOM;
-        if (i == (datasets.size() - 1))
-        {
-            border |= wxRIGHT;
-        }
-
-        const wxVector<wxDouble>& datasetData = dataset.GetData();
-        for (size_t j = 0; j < datasetData.size(); ++j)
-        {
-            std::stringstream tooltip;
-            tooltip << datasetData[j];
-            wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), dataset.GetBrushOptions().GetColor())
-                );
-
-            newDataset->AppendBar(Bar::ptr(new Bar(
-                datasetData[j],
-                tooltipProvider,
-                25, 50,
-                dataset.GetPenOptions(), dataset.GetBrushOptions(),
-                border
-                )));
-        }
-
-        m_datasets.push_back(newDataset);
-    }
+    Initialize(data);
 }
 
 wxStackedBarChart::wxStackedBarChart(wxChartsCategoricalData::ptr &data,
@@ -120,9 +91,22 @@ wxStackedBarChart::wxStackedBarChart(wxChartsCategoricalData::ptr &data,
         m_options->GetGridOptions()
         )
 {
+    Initialize(data);
+}
+
+const wxChartCommonOptions& wxStackedBarChart::GetCommonOptions() const
+{
+    return m_options->GetCommonOptions();
+}
+
+void wxStackedBarChart::Initialize(wxChartsCategoricalData::ptr &data)
+{
     const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
+        wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
+        wxSharedPtr<wxStackedBarChartDatasetOptions> datasetOptions = datasetTheme->GetStackedBarChartDatasetOptions();
+
         const wxChartsDoubleDataset& dataset = *datasets[i];
         Dataset::ptr newDataset(new Dataset());
 
@@ -138,25 +122,20 @@ wxStackedBarChart::wxStackedBarChart(wxChartsCategoricalData::ptr &data,
             std::stringstream tooltip;
             tooltip << datasetData[j];
             wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), dataset.GetBrushOptions().GetColor())
-                );
+                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), datasetOptions->GetBrushOptions().GetColor())
+            );
 
             newDataset->AppendBar(Bar::ptr(new Bar(
                 datasetData[j],
                 tooltipProvider,
                 25, 50,
-                dataset.GetPenOptions(), dataset.GetBrushOptions(),
+                datasetOptions->GetPenOptions(), datasetOptions->GetBrushOptions(),
                 border
-                )));
+            )));
         }
 
         m_datasets.push_back(newDataset);
     }
-}
-
-const wxChartCommonOptions& wxStackedBarChart::GetCommonOptions() const
-{
-    return m_options->GetCommonOptions();
 }
 
 wxDouble wxStackedBarChart::GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)

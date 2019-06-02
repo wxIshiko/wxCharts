@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,21 +20,26 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartarcoptions.h"
+/// @file
 
-wxChartArcOptions::wxChartArcOptions(unsigned int outlineWidth,
-                                     const wxColor &fillColor)
-    : m_outlineWidth(outlineWidth),
-    m_fillColor(fillColor)
-{
-}
+#ifndef _WX_CHARTS_WXSTACKEDBARCHARTDATASETOPTIONS_H_
+#define _WX_CHARTS_WXSTACKEDBARCHARTDATASETOPTIONS_H_
 
-unsigned int wxChartArcOptions::GetOutlineWidth() const
-{
-    return m_outlineWidth;
-}
+#include "wxchartspenoptions.h"
+#include "wxchartsbrushoptions.h"
 
-const wxColor& wxChartArcOptions::GetFillColor() const
+class wxStackedBarChartDatasetOptions
 {
-    return m_fillColor;
-}
+public:
+    wxStackedBarChartDatasetOptions(const wxChartsPenOptions &penOptions,
+        const wxChartsBrushOptions &brushOptions);
+
+    const wxChartsPenOptions& GetPenOptions() const;
+    const wxChartsBrushOptions& GetBrushOptions() const;
+
+private:
+    wxChartsPenOptions m_penOptions;
+    wxChartsBrushOptions m_brushOptions;
+};
+
+#endif

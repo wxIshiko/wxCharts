@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,31 +22,37 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTSDATASETTHEME_H_
-#define _WX_CHARTS_WXCHARTSDATASETTHEME_H_
+#ifndef _WX_CHARTS_WXCHARTSARCOPTIONS_H_
+#define _WX_CHARTS_WXCHARTSARCOPTIONS_H_
 
-#include "wxbarchartdatasetoptions.h"
-#include "wxcolumnchartdatasetoptions.h"
-#include "wxstackedbarchartdatasetoptions.h"
-#include <wx/sharedptr.h>
+#include <wx/colour.h>
 
-class wxChartsDatasetTheme
+/// Options for the wxChartsArc class.
+
+/// \ingroup elementclasses
+class wxChartsArcOptions
 {
 public:
-    wxChartsDatasetTheme();
+    /// Constructs a wxChartsArcOptions instance.
+    /// @param outlineWidth The width of the pen used to draw the outline
+    /// of the arc.
+    /// @param fillColor The color of the brush used to fill the arc.
+    wxChartsArcOptions(unsigned int outlineWidth, const wxColor &fillColor);
 
-    wxSharedPtr<wxBarChartDatasetOptions> GetBarChartDatasetOptions();
-    wxSharedPtr<wxColumnChartDatasetOptions> GetColumnChartDatasetOptions();
-    wxSharedPtr<wxStackedBarChartDatasetOptions> GetStackedBarChartDatasetOptions();
+    /// Gets the width of the pen used to draw
+    /// the outline of the arc.
+    /// @return The width of the pen.
+    unsigned int GetOutlineWidth() const;
 
-    void SetBarChartDatasetOptions(const wxBarChartDatasetOptions& options);
-    void SetColumnChartDatasetOptions(const wxColumnChartDatasetOptions& options);
-    void SetStackedBarChartDatasetOptions(const wxStackedBarChartDatasetOptions& options);
+    /// Gets the color of the brush used to fill the
+    /// arc.
+    /// @return The color of the brush used to fill the
+    /// arc.
+    const wxColor& GetFillColor() const;
 
 private:
-    wxSharedPtr<wxBarChartDatasetOptions> m_barChartDatasetOptions;
-    wxSharedPtr<wxColumnChartDatasetOptions> m_columnChartDatasetOptions;
-    wxSharedPtr<wxStackedBarChartDatasetOptions> m_stackedBarChartDatasetOptions;
+    unsigned int m_outlineWidth;
+    wxColor m_fillColor;
 };
 
 #endif

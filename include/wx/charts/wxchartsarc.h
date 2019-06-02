@@ -33,20 +33,20 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTARC_H_
-#define _WX_CHARTS_WXCHARTARC_H_
+#ifndef _WX_CHARTS_WXCHARTSARC_H_
+#define _WX_CHARTS_WXCHARTSARC_H_
 
 #include "wxchartselement.h"
-#include "wxchartarcoptions.h"
+#include "wxchartsarcoptions.h"
 #include <wx/graphics.h>
 
 /// This class is used to draw one of the segments of a circular chart e.g. a pie chart or a doughnut chart.
 
 /// \ingroup elementclasses
-class wxChartArc : public wxChartsElement
+class wxChartsArc : public wxChartsElement
 {
 public:
-    /// Constructs a wxChartArc element. The arc is defined by the 
+    /// Constructs a wxChartsArc element. The arc is defined by the 
     /// coordinates of its centre (x, y), its inner radius and its 
     /// outer radius. The arc goes from the starting angle startAngle
     /// to endAngle clockwise. The angles are measured in radians but,
@@ -60,9 +60,9 @@ public:
     /// @param innerRadius The inner radius of the arc. This can be 0.
     /// @param tooltip The tooltip.
     /// @param options The settings to be used for the arc.
-    wxChartArc(wxDouble x, wxDouble y, wxDouble startAngle,
+    wxChartsArc(wxDouble x, wxDouble y, wxDouble startAngle,
         wxDouble endAngle, wxDouble outerRadius, wxDouble innerRadius,
-        const wxString &tooltip, const wxChartArcOptions &options);
+        const wxString &tooltip, const wxChartsArcOptions &options);
 
     virtual void Draw(wxGraphicsContext &gc) const;
 
@@ -89,10 +89,10 @@ public:
 
     /// Gets the arc options.
     /// @return The arc options.
-    const wxChartArcOptions& GetOptions() const;
+    const wxChartsArcOptions& GetOptions() const;
 
 private:
-    wxChartArcOptions m_options;
+    wxChartsArcOptions m_options;
     wxDouble m_x;
     wxDouble m_y;
     wxDouble m_startAngle;
