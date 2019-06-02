@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,34 +20,9 @@
     IN THE SOFTWARE.
 */
 
-/*
-    Part of this file were copied from the Chart.js project (http://chartjs.org/)
-    and translated into C++.
-
-    The files of the Chart.js project have the following copyright and license.
-
-    Copyright (c) 2013-2016 Nick Downie
-    Released under the MIT license
-    https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
-*/
-
 /// @file
 
-#include "wxcolumnchartctrl.h"
+#ifndef _WX_CHARTS_WXCOLUMNCHARTDATASETOPTIONS_H_
+#define _WX_CHARTS_WXCOLUMNCHARTDATASETOPTIONS_H_
 
-wxColumnChartCtrl::wxColumnChartCtrl(wxWindow *parent,
-                                     wxWindowID id,
-                                     wxChartsCategoricalData::ptr &data,
-                                     const wxPoint &pos,
-                                     const wxSize &size,
-                                     long style)
-    : wxChartCtrl(parent, id, pos, size, style), 
-    m_columnChart(data, size)
-{
-    SetMinSize(wxSize(300, 150));
-}
-
-wxColumnChart& wxColumnChartCtrl::GetChart()
-{
-    return m_columnChart;
-}
+#endif

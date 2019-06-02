@@ -20,6 +20,8 @@
     IN THE SOFTWARE.
 */
 
+/// @file
+
 #include "wxcolumnchartoptions.h"
 
 wxColumnChartOptions::wxColumnChartOptions()

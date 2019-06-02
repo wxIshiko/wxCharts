@@ -117,6 +117,7 @@ library wxcharts
         ../../include/wx/charts/wxcandlestickchart.h
         ../../include/wx/charts/wxcandlestickchartctrl.h
         ../../include/wx/charts/wxcolumnchartoptions.h
+        ../../include/wx/charts/wxcolumnchartdatasetoptions.h
         ../../include/wx/charts/wxcolumnchart.h
         ../../include/wx/charts/wxcolumnchartctrl.h
         ../../include/wx/charts/wxstackedbarchartoptions.h
@@ -237,6 +238,7 @@ library wxcharts
         ../../src/wxcandlestickchart.cpp
         ../../src/wxcandlestickchartctrl.cpp
         ../../src/wxcolumnchartoptions.cpp
+        ../../src/wxcolumnchartdatasetoptions.cpp
         ../../src/wxcolumnchart.cpp
         ../../src/wxcolumnchartctrl.cpp
         ../../src/wxstackedbarchartoptions.cpp
