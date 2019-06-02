@@ -27,7 +27,7 @@
 wxChartsDoubleDataset::wxChartsDoubleDataset(const wxChartsPenOptions &penOptions,
                                              const wxChartsBrushOptions &brushOptions,
                                              const wxVector<wxDouble> &data)
-    : m_penOptions(penOptions), m_brushOptions(m_brushOptions), m_data(data)
+    : m_penOptions(penOptions), m_brushOptions(brushOptions), m_data(data)
 {
 }
 
