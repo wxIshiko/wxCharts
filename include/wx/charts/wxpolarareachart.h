@@ -40,7 +40,7 @@
 #include "wxchartslicedata.h"
 #include "wxpolarareachartoptions.h"
 #include "wxchartradialgrid.h"
-#include "wxchartarc.h"
+#include "wxchartsarc.h"
 
 /// Data for the wxPolarAreaChartCtrl control.
 class wxPolarAreaChartData
@@ -81,7 +81,7 @@ private:
     virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point);
 
 private:
-    class SliceArc : public wxChartArc
+    class SliceArc : public wxChartsArc
     {
     public:
         typedef wxSharedPtr<SliceArc> ptr;

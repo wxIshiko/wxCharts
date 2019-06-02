@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,21 +20,39 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartarcoptions.h"
+/// @file
 
-wxChartArcOptions::wxChartArcOptions(unsigned int outlineWidth,
-                                     const wxColor &fillColor)
-    : m_outlineWidth(outlineWidth),
-    m_fillColor(fillColor)
-{
-}
+#ifndef _WX_CHARTS_WXCHARTSARCOPTIONS_H_
+#define _WX_CHARTS_WXCHARTSARCOPTIONS_H_
 
-unsigned int wxChartArcOptions::GetOutlineWidth() const
-{
-    return m_outlineWidth;
-}
+#include <wx/colour.h>
 
-const wxColor& wxChartArcOptions::GetFillColor() const
+/// Options for the wxChartsArc class.
+
+/// \ingroup elementclasses
+class wxChartsArcOptions
 {
-    return m_fillColor;
-}
+public:
+    /// Constructs a wxChartArcOptions instance.
+    /// @param outlineWidth The width of the pen used to draw the outline
+    /// of the arc.
+    /// @param fillColor The color of the brush used to fill the arc.
+    wxChartsArcOptions(unsigned int outlineWidth, const wxColor &fillColor);
+
+    /// Gets the width of the pen used to draw
+    /// the outline of the arc.
+    /// @return The width of the pen.
+    unsigned int GetOutlineWidth() const;
+
+    /// Gets the color of the brush used to fill the
+    /// arc.
+    /// @return The color of the brush used to fill the
+    /// arc.
+    const wxColor& GetFillColor() const;
+
+private:
+    unsigned int m_outlineWidth;
+    wxColor m_fillColor;
+};
+
+#endif

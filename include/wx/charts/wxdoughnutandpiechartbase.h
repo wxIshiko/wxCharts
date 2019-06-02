@@ -39,7 +39,7 @@
 #include "wxchart.h"
 #include "wxchartslicedata.h"
 #include "wxdoughnutandpiechartoptionsbase.h"
-#include "wxchartarc.h"
+#include "wxchartsarc.h"
 #include "wxchartobservers.h"
 #include <wx/control.h>
 #include <wx/sharedptr.h>
@@ -91,7 +91,7 @@ private:
     virtual const wxDoughnutAndPieChartOptionsBase& GetOptions() const = 0;
 
 private:
-    class SliceArc : public wxChartArc
+    class SliceArc : public wxChartsArc
     {
     public:
         typedef wxSharedPtr<SliceArc> ptr;
