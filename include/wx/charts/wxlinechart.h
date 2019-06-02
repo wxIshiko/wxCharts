@@ -39,7 +39,7 @@
 #include "wxchart.h"
 #include "wxlinechartoptions.h"
 #include "wxchartgrid.h"
-#include "wxchartpoint.h"
+#include "wxchartspoint.h"
 
 enum wxLineType
 {
@@ -163,7 +163,7 @@ private:
     virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point);
 
 private:
-    class Point : public wxChartPoint
+    class Point : public wxChartsPoint
     {
     public:
         typedef wxSharedPtr<Point> ptr;

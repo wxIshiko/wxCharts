@@ -28,7 +28,7 @@
 #include "wxchart.h"
 #include "wxscatterplotoptions.h"
 #include "wxchartgrid.h"
-#include "wxchartpoint.h"
+#include "wxchartspoint.h"
 
 class wxScatterPlotDataset
 {
@@ -94,7 +94,7 @@ private:
     virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point);
 
 private:
-    class Point : public wxChartPoint
+    class Point : public wxChartsPoint
     {
     public:
         typedef wxSharedPtr<Point> ptr;
@@ -102,7 +102,7 @@ private:
         Point(wxPoint2DDouble value,
             const wxChartTooltipProvider::ptr tooltipProvider,
             wxDouble x, wxDouble y,
-            const wxChartPointOptions &options);
+            const wxChartsPointOptions &options);
 
         virtual wxPoint2DDouble GetTooltipPosition() const;
 

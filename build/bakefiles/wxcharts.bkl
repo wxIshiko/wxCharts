@@ -68,6 +68,8 @@ library wxcharts
         ../../include/wx/charts/wxchartsbrushoptions.h
         ../../include/wx/charts/wxchartsrectangleoptions.h
         ../../include/wx/charts/wxchartsrectangle.h
+        ../../include/wx/charts/wxchartspointoptions.h
+        ../../include/wx/charts/wxchartspoint.h
 
         ../../include/wx/charts/wxchartsutilities.h
         ../../include/wx/charts/wxchartpadding.h
@@ -87,8 +89,6 @@ library wxcharts
         ../../include/wx/charts/wxchartgrid.h
         ../../include/wx/charts/wxchartradialgridoptions.h
         ../../include/wx/charts/wxchartradialgrid.h
-        ../../include/wx/charts/wxchartpointoptions.h
-        ../../include/wx/charts/wxchartpoint.h
         ../../include/wx/charts/wxchartarc.h
         ../../include/wx/charts/wxchartarcoptions.h
         ../../include/wx/charts/wxchartcircle.h
@@ -189,6 +189,8 @@ library wxcharts
         ../../src/wxchartsbrushoptions.cpp
         ../../src/wxchartsrectangleoptions.cpp
         ../../src/wxchartsrectangle.cpp
+        ../../src/wxchartspointoptions.cpp
+        ../../src/wxchartspoint.cpp
 
         ../../src/wxchartsutilities.cpp
         ../../src/wxchartpadding.cpp
@@ -208,8 +210,6 @@ library wxcharts
         ../../src/wxchartgrid.cpp
         ../../src/wxchartradialgridoptions.cpp
         ../../src/wxchartradialgrid.cpp
-        ../../src/wxchartpointoptions.cpp
-        ../../src/wxchartpoint.cpp
         ../../src/wxchartarc.cpp
         ../../src/wxchartarcoptions.cpp
         ../../src/wxchartcircle.cpp

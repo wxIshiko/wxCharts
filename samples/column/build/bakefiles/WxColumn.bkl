@@ -19,6 +19,8 @@ setting WXCHARTS_ROOT
 
 program WxColumn
 {
+    archs = x86 x86_64;
+
     vs2017.projectfile = ../msw/WxColumn_vc15.vcxproj;
     vs2015.projectfile = ../msw/WxColumn_vc14.vcxproj;
     vs2013.projectfile = ../msw/WxColumn_vc12.vcxproj;
@@ -31,8 +33,16 @@ program WxColumn
     
         includedirs += $(WXWIDGETS_ROOT)/include;
         includedirs += $(WXWIDGETS_ROOT)/include/msvc;
-        libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
-        libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+        if ($(arch) == x86)
+        {
+            libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
+            libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+        }
+        if ($(arch) == x86_64)
+        {
+            libdirs += $(WXCHARTS_ROOT)/lib/vc_x64_lib;
+            libdirs += $(WXWIDGETS_ROOT)/lib/vc_x64_lib;
+        }
     }
     if ($(toolset) == gnu)
     {

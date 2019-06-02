@@ -22,17 +22,17 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTPOINT_H_
-#define _WX_CHARTS_WXCHARTPOINT_H_
+#ifndef _WX_CHARTS_WXCHARTSPOINT_H_
+#define _WX_CHARTS_WXCHARTSPOINT_H_
 
 #include "wxchartselement.h"
-#include "wxchartpointoptions.h"
+#include "wxchartspointoptions.h"
 #include <wx/graphics.h>
 
 /// This class is used to display a point on a chart.
 
 /// \ingroup elementclasses
-class wxChartPoint : public wxChartsElement
+class wxChartsPoint : public wxChartsElement
 {
 public:
     /// Constructs a wxChartPoint element.
@@ -43,13 +43,13 @@ public:
     /// @param tooltipProvider The tooltip provider.
     /// @param options The settings to be used for the
     /// point.
-    wxChartPoint(wxDouble x, wxDouble y, wxDouble radius,
+    wxChartsPoint(wxDouble x, wxDouble y, wxDouble radius,
         const wxChartTooltipProvider::ptr tooltipProvider,
-        const wxChartPointOptions &options);
-    wxChartPoint(wxDouble x, wxDouble y, wxDouble radius,
+        const wxChartsPointOptions &options);
+    wxChartsPoint(wxDouble x, wxDouble y, wxDouble radius,
         wxDouble hitDetectionRange,
         const wxChartTooltipProvider::ptr tooltipProvider,
-        const wxChartPointOptions &options);
+        const wxChartsPointOptions &options);
 
     virtual void Draw(wxGraphicsContext &gc) const;
 
@@ -69,7 +69,7 @@ public:
     void SetPosition(wxPoint2DDouble position);
 
 private:
-    wxChartPointOptions m_options;
+    wxChartsPointOptions m_options;
     wxPoint2DDouble m_position;
     wxDouble m_radius;
     wxDouble m_hitDetectionRange;

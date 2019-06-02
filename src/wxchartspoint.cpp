@@ -31,32 +31,32 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
-#include "wxchartpoint.h"
+#include "wxchartspoint.h"
 #include <wx/pen.h>
 #include <wx/brush.h>
 
-wxChartPoint::wxChartPoint(wxDouble x,
-                           wxDouble y, 
-                           wxDouble radius,
-                           const wxChartTooltipProvider::ptr tooltipProvider,
-                           const wxChartPointOptions &options)
+wxChartsPoint::wxChartsPoint(wxDouble x,
+                             wxDouble y, 
+                             wxDouble radius,
+                             const wxChartTooltipProvider::ptr tooltipProvider,
+                             const wxChartsPointOptions &options)
     : wxChartsElement(tooltipProvider), m_options(options),
     m_position(x, y), m_radius(radius), m_hitDetectionRange(radius)
 {
 }
 
-wxChartPoint::wxChartPoint(wxDouble x,
-                           wxDouble y,
-                           wxDouble radius,
-                           wxDouble hitDetectionRange,
-                           const wxChartTooltipProvider::ptr tooltipProvider,
-                           const wxChartPointOptions &options)
+wxChartsPoint::wxChartsPoint(wxDouble x,
+                             wxDouble y,
+                             wxDouble radius,
+                             wxDouble hitDetectionRange,
+                             const wxChartTooltipProvider::ptr tooltipProvider,
+                             const wxChartsPointOptions &options)
     : wxChartsElement(tooltipProvider), m_options(options),
     m_position(x, y), m_radius(radius), m_hitDetectionRange(hitDetectionRange)
 {
 }
 
-void wxChartPoint::Draw(wxGraphicsContext &gc) const
+void wxChartsPoint::Draw(wxGraphicsContext &gc) const
 {
     wxGraphicsPath path = gc.CreatePath();
     path.AddArc(m_position.m_x, m_position.m_y, m_radius, 0, 2 * M_PI, false);
@@ -71,7 +71,7 @@ void wxChartPoint::Draw(wxGraphicsContext &gc) const
     gc.StrokePath(path);
 }
 
-bool wxChartPoint::HitTest(const wxPoint &point) const
+bool wxChartsPoint::HitTest(const wxPoint &point) const
 {
     wxDouble distanceFromXCenterSquared = point.x - m_position.m_x;
     distanceFromXCenterSquared *= distanceFromXCenterSquared;
@@ -81,23 +81,23 @@ bool wxChartPoint::HitTest(const wxPoint &point) const
     return ((distanceFromXCenterSquared + distanceFromYCenterSquared) <= (m_hitDetectionRange * m_hitDetectionRange));
 }
 
-wxPoint2DDouble wxChartPoint::GetTooltipPosition() const
+wxPoint2DDouble wxChartsPoint::GetTooltipPosition() const
 {
     return m_position;
 }
 
-const wxPoint2DDouble& wxChartPoint::GetPosition() const
+const wxPoint2DDouble& wxChartsPoint::GetPosition() const
 {
     return m_position;
 }
 
-void wxChartPoint::SetPosition(wxDouble x, wxDouble y)
+void wxChartsPoint::SetPosition(wxDouble x, wxDouble y)
 {
     m_position.m_x = x;
     m_position.m_y = y;
 }
 
-void wxChartPoint::SetPosition(wxPoint2DDouble position)
+void wxChartsPoint::SetPosition(wxPoint2DDouble position)
 {
     m_position = position;
 }

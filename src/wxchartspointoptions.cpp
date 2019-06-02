@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,27 +20,27 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartpointoptions.h"
+#include "wxchartspointoptions.h"
 
-wxChartPointOptions::wxChartPointOptions(unsigned int strokeWidth,
-                                         const wxColor &strokeColor,
-                                         const wxColor &fillColor)
+wxChartsPointOptions::wxChartsPointOptions(unsigned int strokeWidth,
+                                           const wxColor &strokeColor,
+                                           const wxColor &fillColor)
     : m_strokeWidth(strokeWidth), m_strokeColor(strokeColor),
     m_fillColor(fillColor)
 {
 }
 
-unsigned int wxChartPointOptions::GetStrokeWidth() const
+unsigned int wxChartsPointOptions::GetStrokeWidth() const
 {
     return m_strokeWidth;
 }
 
-const wxColor& wxChartPointOptions::GetStrokeColor() const
+const wxColor& wxChartsPointOptions::GetStrokeColor() const
 {
     return m_strokeColor;
 }
 
-const wxColor& wxChartPointOptions::GetFillColor() const
+const wxColor& wxChartsPointOptions::GetFillColor() const
 {
     return m_fillColor;
 }

@@ -39,7 +39,7 @@
 #include "wxchart.h"
 #include "wxhistogramchartoptions.h"
 #include "wxchartgrid.h"
-#include "wxchartpoint.h"
+#include "wxchartspoint.h"
 
 #include <wx/scopedptr.h>
 
