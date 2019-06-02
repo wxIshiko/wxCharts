@@ -161,7 +161,7 @@
     <ClCompile Include="..\..\src\wxchartlabelseriespanel.cpp" />
     <ClCompile Include="..\..\src\wxchartcategoricalaxispanel.cpp" />
     <ClCompile Include="..\..\src\wxchartnumericalaxispanel.cpp" />
-    <ClCompile Include="..\..\src\wxchartgridpanel.cpp" />
+    <ClCompile Include="..\..\src\wxchartsgridpanel.cpp" />
     <ClCompile Include="..\..\src\wxareachartpanel.cpp" />
     <ClCompile Include="..\..\src\wxbarchartpanel.cpp" />
     <ClCompile Include="..\..\src\wxbubblechartpanel.cpp" />

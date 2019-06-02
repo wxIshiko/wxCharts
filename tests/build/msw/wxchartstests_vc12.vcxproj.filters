@@ -115,7 +115,7 @@
     <ClCompile Include="..\..\src\wxchartnumericalaxispanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartgridpanel.cpp">
+    <ClCompile Include="..\..\src\wxchartsgridpanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxareachartpanel.cpp">

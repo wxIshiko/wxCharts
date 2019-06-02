@@ -20,17 +20,17 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _TESTS_WX_CHARTS_WXCHARTGRIDPANEL_H_
-#define _TESTS_WX_CHARTS_WXCHARTGRIDPANEL_H_
+#ifndef _TESTS_WX_CHARTS_WXCHARTSGRIDPANEL_H_
+#define _TESTS_WX_CHARTS_WXCHARTSGRIDPANEL_H_
 
 #include "elementcanvaswindow.h"
 #include <wx/charts/wxcharts.h>
 #include <wx/panel.h>
 
-class wxChartGridPanel : public wxPanel
+class wxChartsGridPanel : public wxPanel
 {
 public:
-    wxChartGridPanel(wxWindow* parent);
+    wxChartsGridPanel(wxWindow* parent);
 
 private:
     ElementCanvasWindow* m_canvas;

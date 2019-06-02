@@ -35,11 +35,11 @@ public:
 private:
     void OnExit(wxCommandEvent& evt);
     void OnDefaultTheme(wxCommandEvent& evt);
-    void OnChartRectangleElement(wxCommandEvent& evt);
+    void OnChartsRectangleElement(wxCommandEvent& evt);
     void OnChartLabelElement(wxCommandEvent& evt);
     void OnChartCategoricalAxisElement(wxCommandEvent& evt);
     void OnChartNumericalAxisElement(wxCommandEvent& evt);
-    void OnChartGridElement(wxCommandEvent& evt);
+    void OnChartsGridElement(wxCommandEvent& evt);
     void OnAreaChart(wxCommandEvent& evt);
     void OnBarChart(wxCommandEvent& evt);
     void OnBubbleChart(wxCommandEvent& evt);
@@ -60,11 +60,11 @@ private:
 
     wxPanel* m_currentPanel;
     wxPanel* m_chartsDefaultThemePanel;
-    wxPanel* m_chartRectanglePanel;
+    wxPanel* m_chartsRectanglePanel;
     wxPanel* m_chartLabelPanel;
     wxPanel* m_chartCategoricalAxisPanel;
     wxPanel* m_chartNumericalAxisPanel;
-    wxPanel* m_chartGridPanel;
+    wxPanel* m_chartsGridPanel;
     wxPanel* m_areaChartPanel;
     wxPanel* m_barChartPanel;
     wxPanel* m_bubbleChartPanel;

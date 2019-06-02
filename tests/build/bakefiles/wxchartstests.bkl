@@ -98,7 +98,7 @@ program wxchartstests
         ../../src/wxchartlabelseriespanel.cpp
         ../../src/wxchartcategoricalaxispanel.cpp
         ../../src/wxchartnumericalaxispanel.cpp
-        ../../src/wxchartgridpanel.cpp
+        ../../src/wxchartsgridpanel.cpp
         ../../src/wxareachartpanel.cpp
         ../../src/wxbarchartpanel.cpp
         ../../src/wxbubblechartpanel.cpp

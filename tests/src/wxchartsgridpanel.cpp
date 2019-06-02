@@ -20,10 +20,10 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartgridpanel.h"
+#include "wxchartsgridpanel.h"
 #include <wx/sizer.h>
 
-wxChartGridPanel::wxChartGridPanel(wxWindow* parent)
+wxChartsGridPanel::wxChartsGridPanel(wxWindow* parent)
     : wxPanel(parent)
 {
     wxVector<wxString> labels;
