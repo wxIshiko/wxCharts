@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -31,22 +31,22 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
-#include "wxchartaxis.h"
+#include "wxchartsaxis.h"
 #include <wx/pen.h>
 
-void wxChartAxis::Draw(wxGraphicsContext &gc) const
+void wxChartsAxis::Draw(wxGraphicsContext &gc) const
 {
     wxPen pen(m_options.GetLineColor(), m_options.GetLineWidth());
     gc.SetPen(pen);
 
     // Draw the axis
     wxGraphicsPath path = gc.CreatePath();
-    if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
+    if (m_options.GetPosition() == wxCHARTSAXISPOSITION_LEFT)
     {
         path.MoveToPoint(m_startPoint);
         path.AddLineToPoint(m_endPoint.m_x, m_endPoint.m_y - m_options.GetOverhang());
     }
-    else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+    else if (m_options.GetPosition() == wxCHARTSAXISPOSITION_BOTTOM)
     {
         path.MoveToPoint(m_startPoint);
         path.AddLineToPoint(m_endPoint.m_x + m_options.GetOverhang(), m_endPoint.m_y);
@@ -57,29 +57,29 @@ void wxChartAxis::Draw(wxGraphicsContext &gc) const
     m_labels.Draw(gc);
 }
 
-bool wxChartAxis::HitTest(const wxPoint &point) const
+bool wxChartsAxis::HitTest(const wxPoint &point) const
 {
     return false;
 }
 
-wxPoint2DDouble wxChartAxis::GetTooltipPosition() const
+wxPoint2DDouble wxChartsAxis::GetTooltipPosition() const
 {
     return wxPoint2DDouble(0, 0);
 }
 
-void wxChartAxis::Fit(wxPoint2DDouble startPoint,
-                      wxPoint2DDouble endPoint)
+void wxChartsAxis::Fit(wxPoint2DDouble startPoint,
+                       wxPoint2DDouble endPoint)
 {
     m_startPoint = startPoint;
     m_endPoint = endPoint;
 }
 
-void wxChartAxis::UpdateLabelSizes(wxGraphicsContext &gc)
+void wxChartsAxis::UpdateLabelSizes(wxGraphicsContext &gc)
 {
     m_labels.UpdateSizes(gc);
 }
 
-void wxChartAxis::UpdateLabelPositions()
+void wxChartsAxis::UpdateLabelPositions()
 {
     for (size_t i = 0; i < m_labels.size(); ++i)
     {
@@ -87,24 +87,24 @@ void wxChartAxis::UpdateLabelPositions()
     }
 }
 
-const wxChartLabelGroup& wxChartAxis::GetLabels() const
+const wxChartLabelGroup& wxChartsAxis::GetLabels() const
 {
     return m_labels;
 }
 
-void wxChartAxis::SetLabels(const wxVector<wxChartLabel> &labels)
+void wxChartsAxis::SetLabels(const wxVector<wxChartLabel> &labels)
 {
     m_labels.assign(labels.begin(), labels.end());
 }
 
-wxPoint2DDouble wxChartAxis::CalculateLabelPosition(size_t index)
+wxPoint2DDouble wxChartsAxis::CalculateLabelPosition(size_t index)
 {
     wxDouble marginCorrection = 0;
-    if (m_options.GetStartMarginType() == wxCHARTAXISMARGINTYPE_TICKMARKOFFSET)
+    if (m_options.GetStartMarginType() == wxCHARTSAXISMARGINTYPE_TICKMARKOFFSET)
     {
         marginCorrection += GetDistanceBetweenTickMarks();
     }
-    if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
+    if (m_options.GetPosition() == wxCHARTSAXISPOSITION_LEFT)
     {
         wxDouble distance = GetDistanceBetweenTickMarks();
         wxPoint2DDouble position(
@@ -112,14 +112,14 @@ wxPoint2DDouble wxChartAxis::CalculateLabelPosition(size_t index)
             m_startPoint.m_y - (distance * index) - (m_labels[index].GetSize().GetHeight() / 2) - marginCorrection
             );
 
-        if (m_options.GetLabelType() == wxCHARTAXISLABELTYPE_RANGE)
+        if (m_options.GetLabelType() == wxCHARTSAXISLABELTYPE_RANGE)
         {
             position.m_y -= (distance / 2);
         }
 
         return position;
     }
-    else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+    else if (m_options.GetPosition() == wxCHARTSAXISPOSITION_BOTTOM)
     {
         wxDouble distance = GetDistanceBetweenTickMarks();
         wxPoint2DDouble position(
@@ -133,7 +133,7 @@ wxPoint2DDouble wxChartAxis::CalculateLabelPosition(size_t index)
         valueOffset = (valueWidth * index) + this.xScalePaddingLeft;
         */
 
-        if (m_options.GetLabelType() == wxCHARTAXISLABELTYPE_RANGE)
+        if (m_options.GetLabelType() == wxCHARTSAXISLABELTYPE_RANGE)
         {
             position.m_x += (distance / 2);
         }
@@ -149,9 +149,9 @@ wxPoint2DDouble wxChartAxis::CalculateLabelPosition(size_t index)
     return wxPoint2DDouble(0, 0);
 }
 
-size_t wxChartAxis::GetNumberOfTickMarks() const
+size_t wxChartsAxis::GetNumberOfTickMarks() const
 {
-    if (m_options.GetLabelType() == wxCHARTAXISLABELTYPE_POINT)
+    if (m_options.GetLabelType() == wxCHARTSAXISLABELTYPE_POINT)
     {
         return m_labels.size();
     }
@@ -161,22 +161,22 @@ size_t wxChartAxis::GetNumberOfTickMarks() const
     }
 }
 
-wxDouble wxChartAxis::GetDistanceBetweenTickMarks() const
+wxDouble wxChartsAxis::GetDistanceBetweenTickMarks() const
 {
     size_t marginCorrection = 0;
-    if (m_options.GetStartMarginType() == wxCHARTAXISMARGINTYPE_TICKMARKOFFSET)
+    if (m_options.GetStartMarginType() == wxCHARTSAXISMARGINTYPE_TICKMARKOFFSET)
     {
         ++marginCorrection;
     }
-    if (m_options.GetEndMarginType() == wxCHARTAXISMARGINTYPE_TICKMARKOFFSET)
+    if (m_options.GetEndMarginType() == wxCHARTSAXISMARGINTYPE_TICKMARKOFFSET)
     {
         ++marginCorrection;
     }
-    if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
+    if (m_options.GetPosition() == wxCHARTSAXISPOSITION_LEFT)
     {
         return ((m_startPoint.m_y - m_endPoint.m_y) / (GetNumberOfTickMarks() + marginCorrection - 1));
     }
-    else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+    else if (m_options.GetPosition() == wxCHARTSAXISPOSITION_BOTTOM)
     {
         return ((m_endPoint.m_x - m_startPoint.m_x) / (GetNumberOfTickMarks() + marginCorrection - 1));
     }
@@ -185,19 +185,19 @@ wxDouble wxChartAxis::GetDistanceBetweenTickMarks() const
     return 0;
 }
 
-wxPoint2DDouble wxChartAxis::GetTickMarkPosition(size_t index) const
+wxPoint2DDouble wxChartsAxis::GetTickMarkPosition(size_t index) const
 {
     wxDouble marginCorrection = 0;
-    if (m_options.GetStartMarginType() == wxCHARTAXISMARGINTYPE_TICKMARKOFFSET)
+    if (m_options.GetStartMarginType() == wxCHARTSAXISMARGINTYPE_TICKMARKOFFSET)
     {
         marginCorrection += GetDistanceBetweenTickMarks();
     }
-    if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
+    if (m_options.GetPosition() == wxCHARTSAXISPOSITION_LEFT)
     {
         wxDouble valueOffset = m_startPoint.m_y - (GetDistanceBetweenTickMarks() * index) - marginCorrection;
         return wxPoint2DDouble(m_startPoint.m_x, valueOffset);
     }
-    else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+    else if (m_options.GetPosition() == wxCHARTSAXISPOSITION_BOTTOM)
     {
         wxDouble valueOffset = m_startPoint.m_x + (GetDistanceBetweenTickMarks() * index) + marginCorrection;
         return wxPoint2DDouble(valueOffset, m_startPoint.m_y);
@@ -207,16 +207,16 @@ wxPoint2DDouble wxChartAxis::GetTickMarkPosition(size_t index) const
     return wxPoint2DDouble(0, 0);
 }
 
-wxPoint2DDouble wxChartAxis::GetPosition(wxDouble relativeValue) const
+wxPoint2DDouble wxChartsAxis::GetPosition(wxDouble relativeValue) const
 {
-    if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
+    if (m_options.GetPosition() == wxCHARTSAXISPOSITION_LEFT)
     {
         return wxPoint2DDouble(
             m_startPoint.m_x,
             m_startPoint.m_y - (relativeValue * (m_startPoint.m_y - m_endPoint.m_y))
             );
     }
-    else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+    else if (m_options.GetPosition() == wxCHARTSAXISPOSITION_BOTTOM)
     {
         return wxPoint2DDouble(
             m_startPoint.m_x + (relativeValue * (m_endPoint.m_x - m_startPoint.m_x)),
@@ -228,26 +228,26 @@ wxPoint2DDouble wxChartAxis::GetPosition(wxDouble relativeValue) const
     return wxPoint2DDouble(0, 0);
 }
 
-const std::string& wxChartAxis::GetId() const
+const std::string& wxChartsAxis::GetId() const
 {
     return m_id;
 }
 
-const wxChartAxisOptions& wxChartAxis::GetOptions() const
+const wxChartsAxisOptions& wxChartsAxis::GetOptions() const
 {
     return m_options;
 }
 
-wxChartAxis::wxChartAxis(const std::string &id, 
-                         const wxChartAxisOptions &options)
+wxChartsAxis::wxChartsAxis(const std::string &id, 
+                           const wxChartsAxisOptions &options)
     : m_options(options), m_id(id), 
     m_startPoint(0, 0), m_endPoint(0, 0)
 {
 }
 
-wxChartAxis::wxChartAxis(const std::string &id, 
-                         const wxVector<wxString> &labels,
-                         const wxChartAxisOptions &options)
+wxChartsAxis::wxChartsAxis(const std::string &id, 
+                           const wxVector<wxString> &labels,
+                           const wxChartsAxisOptions &options)
     : m_options(options), m_id(id),
     m_startPoint(0, 0), m_endPoint(0, 0)
 {
@@ -262,9 +262,9 @@ wxChartAxis::wxChartAxis(const std::string &id,
     }
 }
 
-void wxChartAxis::DrawTickMarks(wxGraphicsContext &gc) const
+void wxChartsAxis::DrawTickMarks(wxGraphicsContext &gc) const
 {
-    if (m_options.GetPosition() == wxCHARTAXISPOSITION_LEFT)
+    if (m_options.GetPosition() == wxCHARTSAXISPOSITION_LEFT)
     {
         size_t n = GetNumberOfTickMarks();
         for (size_t i = 0; i < n; ++i)
@@ -277,7 +277,7 @@ void wxChartAxis::DrawTickMarks(wxGraphicsContext &gc) const
             gc.StrokePath(path);
         }
     }
-    else if (m_options.GetPosition() == wxCHARTAXISPOSITION_BOTTOM)
+    else if (m_options.GetPosition() == wxCHARTSAXISPOSITION_BOTTOM)
     {
         size_t n = GetNumberOfTickMarks();
         for (size_t i = 0; i < n; ++i)

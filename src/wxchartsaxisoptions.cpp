@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,107 +20,107 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartaxisoptions.h"
+#include "wxchartsaxisoptions.h"
 
-wxChartAxisOptions::wxChartAxisOptions(wxChartAxisPosition position)
-    : m_position(position), m_labelType(wxCHARTAXISLABELTYPE_POINT),
-    m_startMarginType(wxCHARTAXISMARGINTYPE_NONE), m_endMarginType(wxCHARTAXISMARGINTYPE_NONE),
-    m_startValueMode(wxCHARTAXISVALUEMODE_AUTO), m_startValue(0),
-    m_endValueMode(wxCHARTAXISVALUEMODE_AUTO), m_endValue(0),
+wxChartsAxisOptions::wxChartsAxisOptions(wxChartsAxisPosition position)
+    : m_position(position), m_labelType(wxCHARTSAXISLABELTYPE_POINT),
+    m_startMarginType(wxCHARTSAXISMARGINTYPE_NONE), m_endMarginType(wxCHARTSAXISMARGINTYPE_NONE),
+    m_startValueMode(wxCHARTSAXISVALUEMODE_AUTO), m_startValue(0),
+    m_endValueMode(wxCHARTSAXISVALUEMODE_AUTO), m_endValue(0),
     m_lineWidth(1), m_lineColor(0, 0, 0, 0x19), m_overhang(3),
     m_fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666)
 {
 }
 
-wxChartAxisOptions::wxChartAxisOptions(wxChartAxisPosition position,
-                                       wxChartAxisLabelType labelType)
+wxChartsAxisOptions::wxChartsAxisOptions(wxChartsAxisPosition position,
+                                         wxChartsAxisLabelType labelType)
     : m_position(position), m_labelType(labelType),
-    m_startMarginType(wxCHARTAXISMARGINTYPE_NONE), m_endMarginType(wxCHARTAXISMARGINTYPE_NONE),
-    m_startValueMode(wxCHARTAXISVALUEMODE_AUTO), m_startValue(0),
-    m_endValueMode(wxCHARTAXISVALUEMODE_AUTO), m_endValue(0),
+    m_startMarginType(wxCHARTSAXISMARGINTYPE_NONE), m_endMarginType(wxCHARTSAXISMARGINTYPE_NONE),
+    m_startValueMode(wxCHARTSAXISVALUEMODE_AUTO), m_startValue(0),
+    m_endValueMode(wxCHARTSAXISVALUEMODE_AUTO), m_endValue(0),
     m_lineWidth(1), m_lineColor(0, 0, 0, 0x19), m_overhang(3),
     m_fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666)
 {
 }
 
-wxChartAxisPosition wxChartAxisOptions::GetPosition() const
+wxChartsAxisPosition wxChartsAxisOptions::GetPosition() const
 {
     return m_position;
 }
 
-wxChartAxisLabelType wxChartAxisOptions::GetLabelType() const
+wxChartsAxisLabelType wxChartsAxisOptions::GetLabelType() const
 {
     return m_labelType;
 }
 
-wxChartAxisMarginType wxChartAxisOptions::GetStartMarginType() const
+wxChartsAxisMarginType wxChartsAxisOptions::GetStartMarginType() const
 {
     return m_startMarginType;
 }
 
-void wxChartAxisOptions::SetStartMarginType(wxChartAxisMarginType type)
+void wxChartsAxisOptions::SetStartMarginType(wxChartsAxisMarginType type)
 {
     m_startMarginType = type;
 }
 
-wxChartAxisMarginType wxChartAxisOptions::GetEndMarginType() const
+wxChartsAxisMarginType wxChartsAxisOptions::GetEndMarginType() const
 {
     return m_endMarginType;
 }
 
-void wxChartAxisOptions::SetEndMarginType(wxChartAxisMarginType type)
+void wxChartsAxisOptions::SetEndMarginType(wxChartsAxisMarginType type)
 {
     m_endMarginType = type;
 }
 
-wxChartAxisValueMode wxChartAxisOptions::GetStartValueMode() const
+wxChartsAxisValueMode wxChartsAxisOptions::GetStartValueMode() const
 {
     return m_startValueMode;
 }
 
-wxDouble wxChartAxisOptions::GetStartValue() const
+wxDouble wxChartsAxisOptions::GetStartValue() const
 {
     return m_startValue;
 }
 
-void wxChartAxisOptions::SetExplicitStartValue(wxDouble startValue)
+void wxChartsAxisOptions::SetExplicitStartValue(wxDouble startValue)
 {
-    m_startValueMode = wxCHARTAXISVALUEMODE_EXPLICIT;
+    m_startValueMode = wxCHARTSAXISVALUEMODE_EXPLICIT;
     m_startValue = startValue;
 }
 
-wxChartAxisValueMode wxChartAxisOptions::GetEndValueMode() const
+wxChartsAxisValueMode wxChartsAxisOptions::GetEndValueMode() const
 {
     return m_endValueMode;
 }
 
-wxDouble wxChartAxisOptions::GetEndValue() const
+wxDouble wxChartsAxisOptions::GetEndValue() const
 {
     return m_endValue;
 }
 
-void wxChartAxisOptions::SetExplicitEndValue(wxDouble endValue)
+void wxChartsAxisOptions::SetExplicitEndValue(wxDouble endValue)
 {
-    m_endValueMode = wxCHARTAXISVALUEMODE_EXPLICIT;
+    m_endValueMode = wxCHARTSAXISVALUEMODE_EXPLICIT;
     m_endValue = endValue;
 }
 
-unsigned int wxChartAxisOptions::GetLineWidth() const
+unsigned int wxChartsAxisOptions::GetLineWidth() const
 {
     return m_lineWidth;
 }
 
-const wxColor& wxChartAxisOptions::GetLineColor() const
+const wxColor& wxChartsAxisOptions::GetLineColor() const
 {
     return m_lineColor;
 }
 
-wxDouble wxChartAxisOptions::GetOverhang() const
+wxDouble wxChartsAxisOptions::GetOverhang() const
 {
     return m_overhang;
 }
 
-const wxChartFontOptions& wxChartAxisOptions::GetFontOptions() const
+const wxChartFontOptions& wxChartsAxisOptions::GetFontOptions() const
 {
     return m_fontOptions;
 }

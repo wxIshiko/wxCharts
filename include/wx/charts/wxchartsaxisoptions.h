@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,8 +22,8 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTAXISOPTIONS_H_
-#define _WX_CHARTS_WXCHARTAXISOPTIONS_H_
+#ifndef _WX_CHARTS_WXCHARTSAXISOPTIONS_H_
+#define _WX_CHARTS_WXCHARTSAXISOPTIONS_H_
 
 #include "wxchartfontoptions.h"
 
@@ -31,23 +31,23 @@
 
 /// The position is used to know where to draw the labels
 /// and markers.
-enum wxChartAxisPosition
+enum wxChartsAxisPosition
 {
     /// The axis is on the left of the chart. Markers
     /// and labels should be drawn on the left of the axis.
-    wxCHARTAXISPOSITION_LEFT = 0,
+    wxCHARTSAXISPOSITION_LEFT = 0,
     /// The axis is on the right of the chart. Markers
     /// and labels should be drawn on the right of the axis.
-    wxCHARTAXISPOSITION_RIGHT = 1,
+    wxCHARTSAXISPOSITION_RIGHT = 1,
     /// The axis is at the top of the chart. Markers
     /// and labels should be drawn above the axis.
-    wxCHARTAXISPOSITION_BOTTOM = 2,
+    wxCHARTSAXISPOSITION_BOTTOM = 2,
     /// The axis is at the bottom of the chart. Markers
     /// and labels should be drawn below the axis.
-    wxCHARTAXISPOSITION_TOP = 3
+    wxCHARTSAXISPOSITION_TOP = 3
 };
 
-/// Label types for the wxChartAxis class.
+/// Label types for the wxChartsAxis class.
 
 /// Labels on an axis can represent 2 things. 
 /// - A specific value or point, in which case 
@@ -56,7 +56,7 @@ enum wxChartAxisPosition
 /// - A range, in which case the labels should
 /// be positioned in between grid lines.
 ///
-/// Note that the wxChartAxis class can be used
+/// Note that the wxChartsAxis class can be used
 /// for many things so the above description may
 /// not make sense for a particular type of data
 /// shown on the axis.
@@ -65,24 +65,24 @@ enum wxChartAxisPosition
 /// label may affect more than just where they are
 /// positioned so something like 'centered' would
 /// have its own issues.
-enum wxChartAxisLabelType
+enum wxChartsAxisLabelType
 {
     /// The labels represent specific points on the 
     /// axis. Grid lines are drawn at these points.
-    wxCHARTAXISLABELTYPE_POINT = 0,
+    wxCHARTSAXISLABELTYPE_POINT = 0,
     /// The labels represent portions of the axis.
     /// The start and end of each portion are marked
     /// by the grid lines.
-    wxCHARTAXISLABELTYPE_RANGE = 1
+    wxCHARTSAXISLABELTYPE_RANGE = 1
 };
 
 /// Margin types for the gap between the first label and the start
 /// of the axis (start margin) or between the last label 
 /// and the end of the axis (end margin).
-enum wxChartAxisMarginType
+enum wxChartsAxisMarginType
 {
     /// No margin.
-    wxCHARTAXISMARGINTYPE_NONE = 0,
+    wxCHARTSAXISMARGINTYPE_NONE = 0,
     /// In the case of the start margin the first tick mark 
     /// is usually immediately located at the start of
     /// the axis. This margin type will offset the start of the first tick mark
@@ -93,57 +93,57 @@ enum wxChartAxisMarginType
     /// the axis. This margin type will offset the end of the last tick mark
     /// by the distance between two tick marks. It's like inserting a hidden
     /// tick mark after the last tick mark.
-    wxCHARTAXISMARGINTYPE_TICKMARKOFFSET = 1
+    wxCHARTSAXISMARGINTYPE_TICKMARKOFFSET = 1
 };
 
-enum wxChartAxisValueMode
+enum wxChartsAxisValueMode
 {
-    wxCHARTAXISVALUEMODE_AUTO = 0,
-    wxCHARTAXISVALUEMODE_EXPLICIT = 1
+    wxCHARTSAXISVALUEMODE_AUTO = 0,
+    wxCHARTSAXISVALUEMODE_EXPLICIT = 1
 };
 
-/// The options for the wxChartAxis element.
+/// The options for the wxChartsAxis element.
 
 /// \ingroup elementclassess
-class wxChartAxisOptions
+class wxChartsAxisOptions
 {
 public:
-    /// Constructs a new wxChartAxisOptions
-    /// instance. The axis will use the wxCHARTAXISLABELTYPE_POINT type
+    /// Constructs a new wxChartsAxisOptions
+    /// instance. The axis will use the wxCHARTSAXISLABELTYPE_POINT type
     /// as label type.
     /// @param position The position of the axis.
-    wxChartAxisOptions(wxChartAxisPosition position);
-    /// Constructs a new wxChartAxisOptions
+    wxChartsAxisOptions(wxChartsAxisPosition position);
+    /// Constructs a new wxChartsAxisOptions
     /// instance.
     /// @param position The position of the axis.
     /// @param labelType The type of labels.
-    wxChartAxisOptions(wxChartAxisPosition position, wxChartAxisLabelType labelType);
+    wxChartsAxisOptions(wxChartsAxisPosition position, wxChartsAxisLabelType labelType);
 
     /// Gets the position of the axis.
     /// @return The position of the axis.
-    wxChartAxisPosition GetPosition() const;
+    wxChartsAxisPosition GetPosition() const;
 
     /// Gets the label type.
     /// @return The label type.
-    wxChartAxisLabelType GetLabelType() const;
+    wxChartsAxisLabelType GetLabelType() const;
 
     /// Gets the start margin type.
     /// @return The start margin type.
-    wxChartAxisMarginType GetStartMarginType() const;
+    wxChartsAxisMarginType GetStartMarginType() const;
     /// Sets the type of the start margin.
     /// @param type The margin type.
-    void SetStartMarginType(wxChartAxisMarginType type);
+    void SetStartMarginType(wxChartsAxisMarginType type);
     /// Gets the end margin type.
     /// @return The end margin type.
-    wxChartAxisMarginType GetEndMarginType() const;
+    wxChartsAxisMarginType GetEndMarginType() const;
     /// Sets the type of the end margin.
     /// @param type The margin type.
-    void SetEndMarginType(wxChartAxisMarginType type);
+    void SetEndMarginType(wxChartsAxisMarginType type);
 
-    wxChartAxisValueMode GetStartValueMode() const;
+    wxChartsAxisValueMode GetStartValueMode() const;
     wxDouble GetStartValue() const;
     void SetExplicitStartValue(wxDouble startValue);
-    wxChartAxisValueMode GetEndValueMode() const;
+    wxChartsAxisValueMode GetEndValueMode() const;
     wxDouble GetEndValue() const;
     void SetExplicitEndValue(wxDouble endValue);
 
@@ -164,13 +164,13 @@ public:
     const wxChartFontOptions& GetFontOptions() const;
 
 private:
-    wxChartAxisPosition m_position;
-    wxChartAxisLabelType m_labelType;
-    wxChartAxisMarginType m_startMarginType;
-    wxChartAxisMarginType m_endMarginType;
-    wxChartAxisValueMode m_startValueMode;
+    wxChartsAxisPosition m_position;
+    wxChartsAxisLabelType m_labelType;
+    wxChartsAxisMarginType m_startMarginType;
+    wxChartsAxisMarginType m_endMarginType;
+    wxChartsAxisValueMode m_startValueMode;
     wxDouble m_startValue;
-    wxChartAxisValueMode m_endValueMode;
+    wxChartsAxisValueMode m_endValueMode;
     wxDouble m_endValue;
     unsigned int m_lineWidth;
     wxColor m_lineColor;

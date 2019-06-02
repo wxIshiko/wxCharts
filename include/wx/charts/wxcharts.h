@@ -25,8 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTS_H_
 #define _WX_CHARTS_WXCHARTS_H_
 
-#include "wxchartcategoricalaxis.h"
-#include "wxchartnumericalaxis.h"
+#include "wxchartscategoricalaxis.h"
+#include "wxchartsnumericalaxis.h"
 
 #include "wxbarchartctrl.h"
 #include "wxstackedbarchartctrl.h"

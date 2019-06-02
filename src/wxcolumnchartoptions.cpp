@@ -24,8 +24,8 @@
 
 wxColumnChartOptions::wxColumnChartOptions()
     : m_gridOptions(
-        wxChartAxisOptions(wxCHARTAXISPOSITION_BOTTOM, wxCHARTAXISLABELTYPE_RANGE), 
-        wxChartAxisOptions(wxCHARTAXISPOSITION_LEFT)
+        wxChartsAxisOptions(wxCHARTSAXISPOSITION_BOTTOM, wxCHARTSAXISLABELTYPE_RANGE), 
+        wxChartsAxisOptions(wxCHARTSAXISPOSITION_LEFT)
         ),
     m_columnSpacing(15), m_datasetSpacing(6)
 {

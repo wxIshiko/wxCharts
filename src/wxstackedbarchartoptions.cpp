@@ -24,8 +24,8 @@
 
 wxStackedBarChartOptions::wxStackedBarChartOptions()
     : m_gridOptions(
-        wxChartAxisOptions(wxCHARTAXISPOSITION_LEFT, wxCHARTAXISLABELTYPE_RANGE),
-        wxChartAxisOptions(wxCHARTAXISPOSITION_BOTTOM)
+        wxChartsAxisOptions(wxCHARTSAXISPOSITION_LEFT, wxCHARTSAXISLABELTYPE_RANGE),
+        wxChartsAxisOptions(wxCHARTSAXISPOSITION_BOTTOM)
         ),
     m_barSpacing(10)
 {

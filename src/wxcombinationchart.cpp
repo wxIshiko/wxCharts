@@ -21,8 +21,8 @@
 */
 
 #include "wxcombinationchart.h"
-#include "wxchartcategoricalaxis.h"
-#include "wxchartnumericalaxis.h"
+#include "wxchartscategoricalaxis.h"
+#include "wxchartsnumericalaxis.h"
 
 wxCombinationChart::wxCombinationChart()
 {
@@ -33,8 +33,8 @@ void wxCombinationChart::AddColumnChart(const wxChartsCategoricalData &data)
     m_grid = new wxChartsGrid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
         wxSize(100, 100),
-        wxChartCategoricalAxis::make_shared("x", data.GetCategories(), wxChartsGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", 0, 200, wxChartsGridOptions().GetYAxisOptions()),
+        wxChartsCategoricalAxis::make_shared("x", data.GetCategories(), wxChartsGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", 0, 200, wxChartsGridOptions().GetYAxisOptions()),
         wxChartsGridOptions()
     );
 }

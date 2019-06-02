@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -33,22 +33,22 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTNUMERICALAXIS_H_
-#define _WX_CHARTS_WXCHARTNUMERICALAXIS_H_
+#ifndef _WX_CHARTS_WXCHARTSNUMERICALAXIS_H_
+#define _WX_CHARTS_WXCHARTSNUMERICALAXIS_H_
 
-#include "wxchartaxis.h"
+#include "wxchartsaxis.h"
 
-enum wxChartAxisScale
+enum wxChartsAxisScale
 {
-    wxCHARTAXISSCALE_LINEAR = 0,
-    wxCHARTAXISSCALE_LOGARITHMIC = 1
+    wxCHARTSAXISSCALE_LINEAR = 0,
+    wxCHARTSAXISSCALE_LOGARITHMIC = 1
 };
 
 /// \ingroup elementclasses
-class wxChartNumericalAxis : public wxChartAxis
+class wxChartsNumericalAxis : public wxChartsAxis
 {
 public:
-    /// Constructs a wxChartNumericalAxis axis. The
+    /// Constructs a wxChartsNumericalAxis axis. The
     /// tick marks on the axis are computed automatically 
     /// using the minimum and maximum values that need to
     /// be displayed on the grid.
@@ -58,10 +58,10 @@ public:
     /// will be shown on the axis.
     /// @param options The settings to be used for the
     /// axis.
-    wxChartNumericalAxis(const std::string &id, wxDouble minValue, wxDouble maxValue,
-        const wxChartAxisOptions &options);
+    wxChartsNumericalAxis(const std::string &id, wxDouble minValue, wxDouble maxValue,
+        const wxChartsAxisOptions &options);
     static ptr make_shared(const std::string &id, wxDouble minValue, wxDouble maxValue,
-        const wxChartAxisOptions &options);
+        const wxChartsAxisOptions &options);
 
     wxDouble GetMinValue() const;
     void SetMinValue(wxDouble minValue);

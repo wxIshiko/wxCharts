@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -31,18 +31,18 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
-#include "wxchartcategoricalaxis.h"
+#include "wxchartscategoricalaxis.h"
 
-wxChartCategoricalAxis::wxChartCategoricalAxis(const std::string &id, 
-                                               const wxVector<wxString> &labels,
-                                               const wxChartAxisOptions &options)
-    : wxChartAxis(id, labels, options)
+wxChartsCategoricalAxis::wxChartsCategoricalAxis(const std::string &id, 
+                                                 const wxVector<wxString> &labels,
+                                                 const wxChartsAxisOptions &options)
+    : wxChartsAxis(id, labels, options)
 {
 }
 
-wxChartCategoricalAxis::ptr wxChartCategoricalAxis::make_shared(const std::string &id, 
-                                                                const wxVector<wxString> &labels,
-                                                                const wxChartAxisOptions &options)
+wxChartsCategoricalAxis::ptr wxChartsCategoricalAxis::make_shared(const std::string &id, 
+                                                                  const wxVector<wxString> &labels,
+                                                                  const wxChartsAxisOptions &options)
 {
-    return ptr(new wxChartCategoricalAxis(id, labels, options));
+    return ptr(new wxChartsCategoricalAxis(id, labels, options));
 }

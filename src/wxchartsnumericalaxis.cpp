@@ -31,23 +31,23 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
-#include "wxchartnumericalaxis.h"
+#include "wxchartsnumericalaxis.h"
 #include "wxchartsutilities.h"
 
-wxChartNumericalAxis::wxChartNumericalAxis(const std::string &id, 
-                                           wxDouble minValue,
-                                           wxDouble maxValue,
-                                           const wxChartAxisOptions &options)
-    : wxChartAxis(id, options),
+wxChartsNumericalAxis::wxChartsNumericalAxis(const std::string &id, 
+                                             wxDouble minValue,
+                                             wxDouble maxValue,
+                                             const wxChartsAxisOptions &options)
+    : wxChartsAxis(id, options),
     m_minValue(minValue), m_maxValue(maxValue)
 {
     wxDouble effectiveMinXValue = minValue;
-    if (options.GetStartValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
+    if (options.GetStartValueMode() == wxCHARTSAXISVALUEMODE_EXPLICIT)
     {
         effectiveMinXValue = options.GetStartValue();
     }
     wxDouble effectiveMaxXValue = maxValue;
-    if (options.GetEndValueMode() == wxCHARTAXISVALUEMODE_EXPLICIT)
+    if (options.GetEndValueMode() == wxCHARTSAXISVALUEMODE_EXPLICIT)
     {
         effectiveMaxXValue = options.GetEndValue();
     }
@@ -73,30 +73,30 @@ wxChartNumericalAxis::wxChartNumericalAxis(const std::string &id,
     SetLabels(xLabels);
 }
 
-wxChartNumericalAxis::ptr wxChartNumericalAxis::make_shared(const std::string &id, 
-                                                            wxDouble minValue,
-                                                            wxDouble maxValue,
-                                                            const wxChartAxisOptions &options)
+wxChartsNumericalAxis::ptr wxChartsNumericalAxis::make_shared(const std::string &id, 
+                                                              wxDouble minValue,
+                                                              wxDouble maxValue,
+                                                              const wxChartsAxisOptions &options)
 {
-    return ptr(new wxChartNumericalAxis(id, minValue, maxValue, options));
+    return ptr(new wxChartsNumericalAxis(id, minValue, maxValue, options));
 }
 
-wxDouble wxChartNumericalAxis::GetMinValue() const
+wxDouble wxChartsNumericalAxis::GetMinValue() const
 {
     return m_minValue;
 }
 
-void wxChartNumericalAxis::SetMinValue(wxDouble minValue)
+void wxChartsNumericalAxis::SetMinValue(wxDouble minValue)
 {
     m_minValue = minValue;
 }
 
-wxDouble wxChartNumericalAxis::GetMaxValue() const
+wxDouble wxChartsNumericalAxis::GetMaxValue() const
 {
     return m_maxValue;
 }
 
-void wxChartNumericalAxis::SetMaxValue(wxDouble maxValue)
+void wxChartsNumericalAxis::SetMaxValue(wxDouble maxValue)
 {
     m_maxValue = maxValue;
 }

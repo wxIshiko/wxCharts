@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,15 +22,15 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTTIMEAXIS_H_
-#define _WX_CHARTS_WXCHARTTIMEAXIS_H_
+#ifndef _WX_CHARTS_WXCHARTSTIMEAXIS_H_
+#define _WX_CHARTS_WXCHARTSTIMEAXIS_H_
 
-#include "wxchartaxis.h"
+#include "wxchartsaxis.h"
 
-class wxChartTimeAxis : public wxChartAxis
+class wxChartsTimeAxis : public wxChartsAxis
 {
 public:
-    wxChartTimeAxis(const std::string &id, const wxChartAxisOptions &options);
+    wxChartsTimeAxis(const std::string &id, const wxChartsAxisOptions &options);
 };
 
 #endif
