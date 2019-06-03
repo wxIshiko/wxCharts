@@ -46,10 +46,7 @@ wxStackedColumnChartPanel::wxStackedColumnChartPanel(wxWindow* parent)
     points1.push_back(4);
     points1.push_back(5);
     points1.push_back(1);
-    wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset(
-        wxChartsPenOptions(wxColor(96, 83, 77, 0x6C), 2),
-        wxColor(96, 83, 77, 0x3F),
-        points1));
+    wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset(points1));
     chartData->AddDataset(dataset1);
 
     // Add the second dataset
@@ -61,10 +58,7 @@ wxStackedColumnChartPanel::wxStackedColumnChartPanel(wxWindow* parent)
     points2.push_back(3);
     points2.push_back(1.8);
     points2.push_back(0.4);
-    wxChartsDoubleDataset::ptr dataset2(new wxChartsDoubleDataset(
-        wxChartsPenOptions(wxColor(200, 200, 200, 0xFF), 2),
-        wxColor(220, 220, 220, 0x7F),
-        points2));
+    wxChartsDoubleDataset::ptr dataset2(new wxChartsDoubleDataset(points2));
     chartData->AddDataset(dataset2);
 
     // Add the third dataset
@@ -76,10 +70,7 @@ wxStackedColumnChartPanel::wxStackedColumnChartPanel(wxWindow* parent)
     points3.push_back(1);
     points3.push_back(0.5);
     points3.push_back(0.4);
-    wxChartsDoubleDataset::ptr dataset3(new wxChartsDoubleDataset(
-        wxChartsPenOptions(wxColor(151, 187, 205, 0xCC), 2),
-        wxColor(151, 187, 205, 0x7F),
-        points3));
+    wxChartsDoubleDataset::ptr dataset3(new wxChartsDoubleDataset(points3));
     chartData->AddDataset(dataset3);
 
     // Create the stacked bar chart widget

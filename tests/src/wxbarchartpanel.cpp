@@ -55,12 +55,7 @@ wxBarChartPanel::wxBarChartPanel(wxWindow* parent)
     points1.push_back(6);
     points1.push_back(5);
     points1.push_back(1);
-    wxChartsDoubleDataset::ptr dataset1(
-        new wxChartsDoubleDataset(
-            wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2),
-            wxColor(220, 220, 220, 0x7F),
-            points1)
-    );
+    wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset(points1));
     chartData->AddDataset(dataset1);
 
     // Create the column chart widget
