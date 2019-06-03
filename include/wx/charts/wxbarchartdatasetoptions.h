@@ -31,10 +31,22 @@
 class wxBarChartDatasetOptions
 {
 public:
+    /// Constructs a wxBarChartDatasetOptions instance.
+    /// @param penOptions The options for the pen used to
+    /// draw the outline of the bar.
+    /// @param brushOptions The options for the brush used to 
+    /// fill the bar.
     wxBarChartDatasetOptions(const wxChartsPenOptions &penOptions,
         const wxChartsBrushOptions &brushOptions);
 
+    /// Gets the options for the pen used to draw the outline
+    /// of the bar.
+    /// @return The options for the pen used to draw the 
+    /// outline of the bar.
     const wxChartsPenOptions& GetPenOptions() const;
+
+    /// Gets the options for the brush used to fill the bar.
+    /// @return The options for the brush used to fill the bar.
     const wxChartsBrushOptions& GetBrushOptions() const;
 
 private:

@@ -39,33 +39,13 @@ public:
     /// Smart pointer typedef.
     typedef wxSharedPtr<wxChartsDoubleDataset> ptr;
 
-    wxChartsDoubleDataset(const wxVector<wxDouble> &data);
-
     /// Constructs a wxBarChartDataset instance.
-    /// @param penOptions The options for the pen used to
-    /// draw the outline of the bar.
-    /// @param brushOptions The options for the brush used to 
-    /// fill the bar.
     /// @param data The list of values.
-    wxChartsDoubleDataset(const wxChartsPenOptions &penOptions,
-        const wxChartsBrushOptions &brushOptions,
-        const wxVector<wxDouble> &data);
-
-    /// Gets the options for the pen used to draw the outline
-    /// of the bar.
-    /// @return The options for the pen used to draw the 
-    /// outline of the bar.
-    const wxChartsPenOptions& GetPenOptions() const;
-
-    /// Gets the options for the brush used to fill the bar.
-    /// @return The options for the brush used to fill the bar.
-    const wxChartsBrushOptions& GetBrushOptions() const;
+    wxChartsDoubleDataset(const wxVector<wxDouble> &data);
 
     const wxVector<wxDouble>& GetData() const;
 
 private:
-    wxChartsPenOptions m_penOptions;
-    wxChartsBrushOptions m_brushOptions;
     wxVector<wxDouble> m_data;
 };
 
