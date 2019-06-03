@@ -25,7 +25,7 @@
 #include "wxstackedbarchartdatasetoptions.h"
 
 wxStackedBarChartDatasetOptions::wxStackedBarChartDatasetOptions(const wxChartsPenOptions &penOptions,
-    const wxChartsBrushOptions &brushOptions)
+                                                                 const wxChartsBrushOptions &brushOptions)
     : m_penOptions(penOptions), m_brushOptions(brushOptions)
 {
 }

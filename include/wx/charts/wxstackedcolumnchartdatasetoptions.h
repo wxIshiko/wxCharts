@@ -22,20 +22,24 @@
 
 /// @file
 
-#include "wxcolumnchartdatasetoptions.h"
+#ifndef _WX_CHARTS_WXSTACKEDCOLUMNCHARTDATASETOPTIONS_H_
+#define _WX_CHARTS_WXSTACKEDCOLUMNCHARTDATASETOPTIONS_H_
 
-wxColumnChartDatasetOptions::wxColumnChartDatasetOptions(const wxChartsPenOptions &penOptions,
-                                                         const wxChartsBrushOptions &brushOptions)
-    : m_penOptions(penOptions), m_brushOptions(brushOptions)
-{
-}
+#include "wxchartspenoptions.h"
+#include "wxchartsbrushoptions.h"
 
-const wxChartsPenOptions& wxColumnChartDatasetOptions::GetPenOptions() const
+class wxStackedColumnChartDatasetOptions
 {
-    return m_penOptions;
-}
+public:
+    wxStackedColumnChartDatasetOptions(const wxChartsPenOptions &penOptions,
+        const wxChartsBrushOptions &brushOptions);
 
-const wxChartsBrushOptions& wxColumnChartDatasetOptions::GetBrushOptions() const
-{
-    return m_brushOptions;
-}
+    const wxChartsPenOptions& GetPenOptions() const;
+    const wxChartsBrushOptions& GetBrushOptions() const;
+
+private:
+    wxChartsPenOptions m_penOptions;
+    wxChartsBrushOptions m_brushOptions;
+};
+
+#endif

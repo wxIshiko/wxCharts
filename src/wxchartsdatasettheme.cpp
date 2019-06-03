@@ -27,7 +27,8 @@
 wxChartsDatasetTheme::wxChartsDatasetTheme()
     : m_barChartDatasetOptions(new wxBarChartDatasetOptions(wxChartsPenOptions(*wxBLACK, 2), wxChartsBrushOptions(*wxWHITE))),
     m_columnChartDatasetOptions(new wxColumnChartDatasetOptions(wxChartsPenOptions(*wxBLACK, 2), wxChartsBrushOptions(*wxWHITE))),
-    m_stackedBarChartDatasetOptions(new wxStackedBarChartDatasetOptions(wxChartsPenOptions(*wxBLACK, 2), wxChartsBrushOptions(*wxWHITE)))
+    m_stackedBarChartDatasetOptions(new wxStackedBarChartDatasetOptions(wxChartsPenOptions(*wxBLACK, 2), wxChartsBrushOptions(*wxWHITE))),
+    m_stackedColumnChartDatasetOptions(new wxStackedColumnChartDatasetOptions(wxChartsPenOptions(*wxBLACK, 2), wxChartsBrushOptions(*wxWHITE)))
 {
 }
 
@@ -46,6 +47,11 @@ wxSharedPtr<wxStackedBarChartDatasetOptions> wxChartsDatasetTheme::GetStackedBar
     return m_stackedBarChartDatasetOptions;
 }
 
+wxSharedPtr<wxStackedColumnChartDatasetOptions> wxChartsDatasetTheme::GetStackedColumnChartDatasetOptions()
+{
+    return m_stackedColumnChartDatasetOptions;
+}
+
 void wxChartsDatasetTheme::SetBarChartDatasetOptions(const wxBarChartDatasetOptions& options)
 {
     m_barChartDatasetOptions = new wxBarChartDatasetOptions(options);
@@ -59,4 +65,9 @@ void wxChartsDatasetTheme::SetColumnChartDatasetOptions(const wxColumnChartDatas
 void wxChartsDatasetTheme::SetStackedBarChartDatasetOptions(const wxStackedBarChartDatasetOptions& options)
 {
     m_stackedBarChartDatasetOptions = new wxStackedBarChartDatasetOptions(options);
+}
+
+void wxChartsDatasetTheme::SetStackedColumnChartDatasetOptions(const wxStackedColumnChartDatasetOptions& options)
+{
+    m_stackedColumnChartDatasetOptions = new wxStackedColumnChartDatasetOptions(options);
 }

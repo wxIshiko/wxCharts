@@ -28,6 +28,7 @@
 #include "wxbarchartdatasetoptions.h"
 #include "wxcolumnchartdatasetoptions.h"
 #include "wxstackedbarchartdatasetoptions.h"
+#include "wxstackedcolumnchartdatasetoptions.h"
 #include <wx/sharedptr.h>
 
 class wxChartsDatasetTheme
@@ -38,15 +39,18 @@ public:
     wxSharedPtr<wxBarChartDatasetOptions> GetBarChartDatasetOptions();
     wxSharedPtr<wxColumnChartDatasetOptions> GetColumnChartDatasetOptions();
     wxSharedPtr<wxStackedBarChartDatasetOptions> GetStackedBarChartDatasetOptions();
+    wxSharedPtr<wxStackedColumnChartDatasetOptions> GetStackedColumnChartDatasetOptions();
 
     void SetBarChartDatasetOptions(const wxBarChartDatasetOptions& options);
     void SetColumnChartDatasetOptions(const wxColumnChartDatasetOptions& options);
     void SetStackedBarChartDatasetOptions(const wxStackedBarChartDatasetOptions& options);
+    void SetStackedColumnChartDatasetOptions(const wxStackedColumnChartDatasetOptions& options);
 
 private:
     wxSharedPtr<wxBarChartDatasetOptions> m_barChartDatasetOptions;
     wxSharedPtr<wxColumnChartDatasetOptions> m_columnChartDatasetOptions;
     wxSharedPtr<wxStackedBarChartDatasetOptions> m_stackedBarChartDatasetOptions;
+    wxSharedPtr<wxStackedColumnChartDatasetOptions> m_stackedColumnChartDatasetOptions;
 };
 
 #endif
