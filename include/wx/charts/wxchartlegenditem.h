@@ -93,7 +93,7 @@ public:
     /// Gets the list of items in the legend.
     /// @return The list of legend items.
     const wxVector<wxChartLegendItem>& GetItems() const;
-
+void UpdateItems(const std::map<wxString, wxChartSliceData> &slices);
 private:
     wxVector<wxChartLegendItem> m_items;
 };

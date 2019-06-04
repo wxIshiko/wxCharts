@@ -57,6 +57,7 @@ public:
         const wxSize &size = wxDefaultSize,
         long style = 0);
 
+    void UpdateItems(wxChartLegendData *data);
 private:
     void OnPaint(wxPaintEvent &evt);
 

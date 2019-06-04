@@ -40,6 +40,19 @@ wxChartLabel::wxChartLabel(const wxString &text,
 {
 }
 
+wxChartLabel::wxChartLabel(const wxChartLabel &obj)
+    : m_options(obj.m_options), m_text(obj.m_text), m_position(obj.m_position), m_size(obj.m_size),
+      m_padding(obj.m_padding) {}
+
+wxChartLabel &wxChartLabel::operator=(const wxChartLabel &obj) {
+    m_options=obj.m_options;
+    m_text=obj.m_text;
+    m_position=obj.m_position;
+    m_size=obj.m_size;
+    m_padding=obj.m_padding;
+    return *this;
+}
+
 void wxChartLabel::Draw(wxGraphicsContext &gc) const
 {
     if (m_options.HasBackground())

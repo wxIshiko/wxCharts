@@ -80,6 +80,14 @@ void wxChartLegendCtrl::OnPaint(wxPaintEvent &evt)
         delete gc;
     }
 }
+void wxChartLegendCtrl::UpdateItems(wxChartLegendData *data) {
+    m_lines.clear();
+    const wxVector<wxChartLegendItem> &items = data->GetItems();
+    for (size_t i = 0; i < items.size(); ++i) {
+        m_lines.push_back(
+            wxChartLegendLine(items[i].GetColor(), items[i].GetLabel(), m_options.GetLegendLineOptions()));
+    }
+}
 
 BEGIN_EVENT_TABLE(wxChartLegendCtrl, wxControl)
     EVT_PAINT(wxChartLegendCtrl::OnPaint)

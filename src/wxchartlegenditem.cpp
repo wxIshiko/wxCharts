@@ -89,3 +89,11 @@ const wxVector<wxChartLegendItem>& wxChartLegendData::GetItems() const
 {
     return m_items;
 }
+
+void wxChartLegendData::UpdateItems(const std::map<wxString, wxChartSliceData> &slices) {
+        m_items.clear();
+        for (const auto &slice : slices)
+        {
+            m_items.push_back(wxChartLegendItem(slice.second));
+        }
+}

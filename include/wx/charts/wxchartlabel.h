@@ -54,6 +54,10 @@ public:
     /// @param options The settings to be used for the label.
     wxChartLabel(const wxString &text, wxDouble width,
         wxDouble height, const wxChartLabelOptions &options);
+        
+    wxChartLabel (const wxChartLabel& obj);
+
+    wxChartLabel &operator=(const wxChartLabel &obj);
 
     virtual void Draw(wxGraphicsContext &gc) const;
 
