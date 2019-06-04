@@ -51,12 +51,7 @@ Frame::Frame(const wxString& title)
     points1.push_back(6);
     points1.push_back(5);
     points1.push_back(1);
-    wxChartsDoubleDataset::ptr dataset1(
-        new wxChartsDoubleDataset(
-            wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2),
-            wxColor(220, 220, 220, 0x7F),
-            points1)
-    );
+    wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset(points1));
     chartData->AddDataset(dataset1);
 
     // Add the second dataset
@@ -68,10 +63,7 @@ Frame::Frame(const wxString& title)
     points2.push_back(3);
     points2.push_back(1.8);
     points2.push_back(0.4);
-    wxChartsDoubleDataset::ptr dataset2(new wxChartsDoubleDataset(
-        wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2),
-        wxColor(151, 187, 205, 0x7F),
-        points2));
+    wxChartsDoubleDataset::ptr dataset2(new wxChartsDoubleDataset(points2));
     chartData->AddDataset(dataset2);
 
     // Create a column chart widget

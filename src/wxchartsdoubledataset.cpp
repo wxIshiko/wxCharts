@@ -25,25 +25,8 @@
 #include "wxchartsdoubledataset.h"
 
 wxChartsDoubleDataset::wxChartsDoubleDataset(const wxVector<wxDouble> &data)
-    : m_penOptions(wxChartsPenOptions(*wxBLACK, 2)), m_brushOptions(wxChartsBrushOptions(*wxWHITE)), m_data(data)
+    : m_data(data)
 {
-}
-
-wxChartsDoubleDataset::wxChartsDoubleDataset(const wxChartsPenOptions &penOptions,
-    const wxChartsBrushOptions &brushOptions,
-    const wxVector<wxDouble> &data)
-    : m_penOptions(penOptions), m_brushOptions(brushOptions), m_data(data)
-{
-}
-
-const wxChartsPenOptions& wxChartsDoubleDataset::GetPenOptions() const
-{
-    return m_penOptions;
-}
-
-const wxChartsBrushOptions& wxChartsDoubleDataset::GetBrushOptions() const
-{
-    return m_brushOptions;
 }
 
 const wxVector<wxDouble>& wxChartsDoubleDataset::GetData() const
