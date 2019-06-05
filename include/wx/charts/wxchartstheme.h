@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,21 +25,77 @@
 #ifndef _WX_CHARTS_WXCHARTSTHEME_H_
 #define _WX_CHARTS_WXCHARTSTHEME_H_
 
+#include "wxareachartoptions.h"
 #include "wxbarchartoptions.h"
+#include "wxbubblechartoptions.h"
+#include "wxcandlestickchartoptions.h"
 #include "wxcolumnchartoptions.h"
+#include "wxdoughnutchartoptions.h"
+#include "wxhistogramchartoptions.h"
+#include "wxlinechartoptions.h"
+#include "wxmath2dplotoptions.h"
+#include "wxohlcchartoptions.h"
+#include "wxpiechartoptions.h"
+#include "wxpolarareachartoptions.h"
+#include "wxradarchartoptions.h"
+#include "wxscatterplotoptions.h"
+#include "wxstackedbarchartoptions.h"
+#include "wxstackedcolumnchartoptions.h"
+#include "wxtimeserieschart.h"
+#include "wxchartsdatasetid.h"
+#include "wxchartsdatasettheme.h"
 #include <wx/sharedptr.h>
+#include <map>
 
+/// \defgroup themeclasses
+
+/// Represent a wxCharts theme.
+
+/// \ingroup themeclasses
 class wxChartsTheme
 {
 public:
     wxChartsTheme();
 
+    wxSharedPtr<wxAreaChartOptions> GetAreaChartOptions();
     wxSharedPtr<wxBarChartOptions> GetBarChartOptions();
+    wxSharedPtr<wxBubbleChartOptions> GetBubbleChartOptions();
+    wxSharedPtr<wxCandlestickChartOptions> GetCandlestickChartOptions();
     wxSharedPtr<wxColumnChartOptions> GetColumnChartOptions();
+    wxSharedPtr<wxDoughnutChartOptions> GetDoughnutChartOptions();
+    wxSharedPtr<wxHistogramChartOptions> GetHistogramChartOptions();
+    wxSharedPtr<wxLineChartOptions> GetLineChartOptions();
+    wxSharedPtr<wxMath2DPlotOptions> GetMath2DPlotOptions();
+    wxSharedPtr<wxOHLCChartOptions> GetOHLCChartOptions();
+    wxSharedPtr<wxPieChartOptions> GetPieChartOptions();
+    wxSharedPtr<wxPolarAreaChartOptions> GetPolarAreaChartOptions();
+    wxSharedPtr<wxRadarChartOptions> GetRadarChartOptions();
+    wxSharedPtr<wxScatterPlotOptions> GetScatterPlotOptions();
+    wxSharedPtr<wxStackedBarChartOptions> GetStackedBarChartOptions();
+    wxSharedPtr<wxStackedColumnChartOptions> GetStackedColumnChartOptions();
+    wxSharedPtr<wxTimeSeriesChartOptions> GetTimeSeriesChartOptions();
+
+    wxSharedPtr<wxChartsDatasetTheme> GetDatasetTheme(const wxChartsDatasetId& id);
 
 private:
+    wxSharedPtr<wxAreaChartOptions> m_areaChartOptions;
     wxSharedPtr<wxBarChartOptions> m_barChartOptions;
+    wxSharedPtr<wxBubbleChartOptions> m_bubbleChartOptions;
+    wxSharedPtr<wxCandlestickChartOptions> m_candlestickChartOptions;
     wxSharedPtr<wxColumnChartOptions> m_columnChartOptions;
+    wxSharedPtr<wxDoughnutChartOptions> m_doughnutChartOptions;
+    wxSharedPtr<wxHistogramChartOptions> m_histogramChartOptions;
+    wxSharedPtr<wxLineChartOptions> m_lineChartOptions;
+    wxSharedPtr<wxMath2DPlotOptions> m_math2DPlotOptions;
+    wxSharedPtr<wxOHLCChartOptions> m_ohlcChartOptions;
+    wxSharedPtr<wxPieChartOptions> m_pieChartOptions;
+    wxSharedPtr<wxPolarAreaChartOptions> m_polarAreaChartOptions;
+    wxSharedPtr<wxRadarChartOptions> m_radarChartOptions;
+    wxSharedPtr<wxScatterPlotOptions> m_scatterPlotOptions;
+    wxSharedPtr<wxStackedBarChartOptions> m_stackedBarChartOptions;
+    wxSharedPtr<wxStackedColumnChartOptions> m_stackedColumnChartOptions;
+    wxSharedPtr<wxTimeSeriesChartOptions> m_timeSeriesChartOptions;
+    std::map<wxChartsDatasetId, wxSharedPtr<wxChartsDatasetTheme>> m_datasetThemes;
 };
 
 extern wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme;

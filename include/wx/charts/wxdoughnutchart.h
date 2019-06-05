@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -27,25 +27,6 @@
 
 #include "wxdoughnutandpiechartbase.h"
 #include "wxdoughnutchartoptions.h"
-#include "wxchartobservers.h"
-#include <map>
-
-/// Data for the wxDoughnutChartCtrl control.
-
-/// \ingroup dataclasses
-class wxDoughnutChartData : public wxChartObservableValue<std::map<wxString, wxChartSliceData>>
-{
-public:
-    wxDoughnutChartData();
-
-    const std::map<wxString,wxChartSliceData>& GetSlices() const;
-    void AppendSlice(const wxChartSliceData &slice);
-    void UpdateSlices(const wxVector<wxChartSliceData> &slices);
-    void AddSlices(const wxVector<wxChartSliceData> &slices);
-
-private:
-    void Add(const wxChartSliceData &slice);
-};
 
 /// A doughnut chart.
 
@@ -53,19 +34,17 @@ private:
 class wxDoughnutChart : public wxDoughnutAndPieChartBase
 {
 public:
-    wxDoughnutChart(const wxDoughnutChartData &data, const wxSize &size);
-    wxDoughnutChart(const wxDoughnutChartData &data,
-        const wxDougnutChartOptions &options, const wxSize &size);
+    wxDoughnutChart(wxPieChartData::ptr data, const wxSize &size);
+    wxDoughnutChart(wxPieChartData::ptr data, wxSharedPtr<wxDoughnutChartOptions> &options,
+        const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
-    void Initialize(const wxDoughnutChartData &data);
-
-    virtual const wxDoughnutAndPieChartOptionsBase& GetOptions() const;
+    const wxDoughnutAndPieChartOptionsBase& GetOptions() const override;
 
 private:
-    wxDougnutChartOptions m_options;
+    wxSharedPtr<wxDoughnutChartOptions> m_options;
 };
 
 #endif

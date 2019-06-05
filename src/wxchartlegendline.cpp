@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -23,7 +23,7 @@
 /// @file
 
 #include "wxchartlegendline.h"
-#include "wxchartutilities.h"
+#include "wxchartsutilities.h"
 #include <wx/brush.h>
 
 wxChartLegendLine::wxChartLegendLine(const wxColor &color,
@@ -86,7 +86,7 @@ void wxChartLegendLine::UpdateSize(wxGraphicsContext &gc)
 {
     wxDouble width;
     wxDouble height;
-    wxChartUtilities::GetTextSize(gc, m_options.GetFontOptions().GetFont(), m_text, width, height);
+    wxChartsUtilities::GetTextSize(gc, m_options.GetFontOptions().GetFont(), m_text, width, height);
     m_size.x = width + 20;
     m_size.y = height;
 }

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -23,14 +23,15 @@
 /// @file
 
 #include "wxohlcchart.h"
-#include "wxchartcategoricalaxis.h"
-#include "wxchartnumericalaxis.h"
+#include "wxchartstheme.h"
+#include "wxchartscategoricalaxis.h"
+#include "wxchartsnumericalaxis.h"
 #include <wx/brush.h>
 #include <wx/pen.h>
 #include <sstream>
 
 wxOHLCChartData::wxOHLCChartData(const wxVector<wxString> &labels,
-    const wxVector<wxChartOHLCData> &data)
+    const wxVector<wxChartsOHLCData> &data)
     : m_labels(labels), m_lineWidth(3),
     m_upLineColor(0, 185, 0), m_downLineColor(200, 0, 0),
     m_openLineLength(10), m_closeLineLength(10), m_data(data)
@@ -67,19 +68,19 @@ unsigned int wxOHLCChartData::GetCloseLineLength() const
     return m_closeLineLength;
 }
 
-const wxVector<wxChartOHLCData>& wxOHLCChartData::GetData() const
+const wxVector<wxChartsOHLCData>& wxOHLCChartData::GetData() const
 {
     return m_data;
 }
 
-wxOHLCChart::OHLCLines::OHLCLines(const wxChartOHLCData &data,
+wxOHLCChart::OHLCLines::OHLCLines(const wxChartsOHLCData &data,
                                   unsigned int lineWidth,
                                   const wxColor& upLineColor,
                                   const wxColor& downLineColor,
                                   unsigned int openLineLength,
                                   unsigned int closeLineLength,
                                   const wxChartTooltipProvider::ptr tooltipProvider)
-    : wxChartElement(tooltipProvider), m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
+    : wxChartsElement(tooltipProvider), m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
     m_openPoint(0, 0), m_closePoint(0, 0), m_lineWidth(lineWidth),
     m_upLineColor(upLineColor), m_downLineColor(downLineColor),
     m_openLineLength(openLineLength), m_closeLineLength(closeLineLength)
@@ -123,7 +124,7 @@ wxPoint2DDouble wxOHLCChart::OHLCLines::GetTooltipPosition() const
     return wxPoint2DDouble(m_lowPoint.m_x, m_highPoint.m_y + (m_lowPoint.m_y - m_highPoint.m_y) / 2);
 }
 
-void wxOHLCChart::OHLCLines::Update(const wxChartGridMapping& mapping,
+void wxOHLCChart::OHLCLines::Update(const wxChartsGridMapping& mapping,
                                     size_t index)
 {
     m_lowPoint = mapping.GetWindowPositionAtTickMark(index, m_data.GetLowValue());
@@ -134,12 +135,13 @@ void wxOHLCChart::OHLCLines::Update(const wxChartGridMapping& mapping,
 
 wxOHLCChart::wxOHLCChart(const wxOHLCChartData &data,
                          const wxSize &size)
-    : m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
+    : m_options(wxChartsDefaultTheme->GetOHLCChartOptions()),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions().GetYAxisOptions()),
-        m_options.GetGridOptions()
+        wxChartsCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
         )
 {
     for (size_t i = 0; i < data.GetData().size(); ++i)
@@ -168,7 +170,7 @@ wxOHLCChart::wxOHLCChart(const wxOHLCChartData &data,
 
 const wxChartCommonOptions& wxOHLCChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 wxDouble wxOHLCChart::GetMinValue(const wxOHLCChartData &data)
@@ -216,8 +218,8 @@ wxDouble wxOHLCChart::GetMaxValue(const wxOHLCChartData &data)
 void wxOHLCChart::DoSetSize(const wxSize &size)
 {
     wxSize newSize(
-        size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
-        size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+        size.GetWidth() - m_options->GetPadding().GetTotalHorizontalPadding(),
+        size.GetHeight() - m_options->GetPadding().GetTotalVerticalPadding()
         );
     m_grid.Resize(newSize);
 }
@@ -249,9 +251,9 @@ void wxOHLCChart::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxOHLCChart::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxOHLCChart::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
     for (size_t i = 0; i < m_data.size(); ++i)
     {
         if (m_data[i]->HitTest(point))

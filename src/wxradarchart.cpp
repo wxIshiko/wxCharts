@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -32,6 +32,7 @@
 */
 
 #include "wxradarchart.h"
+#include "wxchartstheme.h"
 
 wxRadarChartData::wxRadarChartData(const wxVector<wxString> &labels)
     : m_labels(labels)
@@ -44,14 +45,15 @@ const wxVector<wxString>& wxRadarChartData::GetLabels() const
 };
 
 wxRadarChart::wxRadarChart(const wxSize &size)
-    : m_grid(size, GetMinValue(), GetMaxValue(),
-        m_options.GetGridOptions())
+    : m_options(wxChartsDefaultTheme->GetRadarChartOptions()),
+    m_grid(size, GetMinValue(), GetMaxValue(),
+        m_options->GetGridOptions())
 {
 }
 
 const wxChartCommonOptions& wxRadarChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 wxDouble wxRadarChart::GetMinValue()
@@ -87,8 +89,8 @@ void wxRadarChart::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxRadarChart::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxRadarChart::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
     return activeElements;
 }

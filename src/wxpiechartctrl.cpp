@@ -24,7 +24,7 @@
 
 wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
                                wxWindowID id,
-                               wxPieChartData &data,
+                               wxPieChartData::ptr data,
                                const wxPoint &pos,
                                const wxSize &size, 
                                long style)
@@ -32,20 +32,20 @@ wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
     m_pieChart(data, size)
 {
     SetMinSize(wxSize(100, 100));
-	data.AddObserver(this);
+	data->AddObserver(this);
 }
 
 wxPieChartCtrl::wxPieChartCtrl(wxWindow *parent,
                                wxWindowID id,
-                               wxPieChartData &data,
-                               const wxPieChartOptions &options,
+                               wxPieChartData::ptr data,
+                               wxSharedPtr<wxPieChartOptions> &options,
                                const wxPoint &pos,
                                const wxSize &size,
                                long style)
     : wxChartCtrl(parent, id, pos, size, style),
     m_pieChart(data, options, size)
 {
-    data.AddObserver(this);
+    data->AddObserver(this);
 }
 
 wxPieChart& wxPieChartCtrl::GetChart()

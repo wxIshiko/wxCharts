@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -38,8 +38,8 @@
 
 #include "wxchart.h"
 #include "wxlinechartoptions.h"
-#include "wxchartgrid.h"
-#include "wxchartpoint.h"
+#include "wxchartsgrid.h"
+#include "wxchartspoint.h"
 
 enum wxLineType
 {
@@ -160,10 +160,10 @@ private:
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
+    virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point);
 
 private:
-    class Point : public wxChartPoint
+    class Point : public wxChartsPoint
     {
     public:
         typedef wxSharedPtr<Point> ptr;
@@ -213,8 +213,8 @@ private:
     };
 
 private:
-    wxLineChartOptions m_options;
-    wxChartGrid m_grid;
+    wxSharedPtr<wxLineChartOptions> m_options;
+    wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };
 

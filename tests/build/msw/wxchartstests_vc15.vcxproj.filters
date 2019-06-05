@@ -29,7 +29,10 @@
     <ClInclude Include="..\..\src\wxchartstestswindowids.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\wxchartrectanglepanel.h">
+    <ClInclude Include="..\..\src\wxchartsdefaultthemepanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\wxchartsrectanglepanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\wxchartlabelpanel.h">
@@ -38,13 +41,13 @@
     <ClInclude Include="..\..\src\wxchartlabelseriespanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\wxchartcategoricalaxispanel.h">
+    <ClInclude Include="..\..\src\wxchartscategoricalaxispanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\wxchartnumericalaxispanel.h">
+    <ClInclude Include="..\..\src\wxchartsnumericalaxispanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\wxchartgridpanel.h">
+    <ClInclude Include="..\..\src\wxchartsgridpanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\wxareachartpanel.h">
@@ -62,10 +65,19 @@
     <ClInclude Include="..\..\src\wxcolumnchartpanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\wxlinechartpanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\wxpiechartpanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\wxpolarareachartpanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\wxstackedbarchartpanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\wxstackedcolumnchartpanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\elementcanvaswindow.h">
@@ -85,7 +97,10 @@
     <ClCompile Include="..\..\src\wxchartstestsmenubar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartrectanglepanel.cpp">
+    <ClCompile Include="..\..\src\wxchartsdefaultthemepanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wxchartsrectanglepanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchartlabelpanel.cpp">
@@ -94,13 +109,13 @@
     <ClCompile Include="..\..\src\wxchartlabelseriespanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartcategoricalaxispanel.cpp">
+    <ClCompile Include="..\..\src\wxchartscategoricalaxispanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartnumericalaxispanel.cpp">
+    <ClCompile Include="..\..\src\wxchartsnumericalaxispanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartgridpanel.cpp">
+    <ClCompile Include="..\..\src\wxchartsgridpanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxareachartpanel.cpp">
@@ -118,10 +133,19 @@
     <ClCompile Include="..\..\src\wxcolumnchartpanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\wxlinechartpanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\wxpiechartpanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxpolarareachartpanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wxstackedbarchartpanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wxstackedcolumnchartpanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\elementcanvaswindow.cpp">
@@ -136,6 +160,12 @@
     <ClCompile Include="..\..\src\tests\wxchartscategoricaldatatests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\tests\wxchartspenoptionstests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\wxchartsbrushoptionstests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\tests\wxchartbackgroundoptionstests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -148,7 +178,7 @@
     <ClCompile Include="..\..\src\tests\wxchartaxisoptionstests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\tests\wxchartgridoptionstests.cpp">
+    <ClCompile Include="..\..\src\tests\wxchartsgridoptionstests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\tests\wxcolumnchartoptionstests.cpp">
@@ -157,7 +187,13 @@
     <ClCompile Include="..\..\src\tests\wxpiechartoptionstests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\tests\wxchartsthemeidtests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\tests\wxchartsthemetests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\wxchartsthemefactorytests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

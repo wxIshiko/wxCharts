@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -27,8 +27,8 @@
 
 #include "wxchart.h"
 #include "wxscatterplotoptions.h"
-#include "wxchartgrid.h"
-#include "wxchartpoint.h"
+#include "wxchartsgrid.h"
+#include "wxchartspoint.h"
 
 class wxScatterPlotDataset
 {
@@ -76,8 +76,8 @@ class wxScatterPlot : public wxChart
 {
 public:
     wxScatterPlot(const wxScatterPlotData &data, const wxSize &size);
-    wxScatterPlot(const wxScatterPlotData &data, 
-        const wxScatterPlotOptions &options, const wxSize &size);
+    wxScatterPlot(const wxScatterPlotData &data, wxSharedPtr<wxScatterPlotOptions> &options,
+        const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
@@ -91,10 +91,10 @@ private:
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
+    virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point);
 
 private:
-    class Point : public wxChartPoint
+    class Point : public wxChartsPoint
     {
     public:
         typedef wxSharedPtr<Point> ptr;
@@ -102,7 +102,7 @@ private:
         Point(wxPoint2DDouble value,
             const wxChartTooltipProvider::ptr tooltipProvider,
             wxDouble x, wxDouble y,
-            const wxChartPointOptions &options);
+            const wxChartsPointOptions &options);
 
         virtual wxPoint2DDouble GetTooltipPosition() const;
 
@@ -127,8 +127,8 @@ private:
     };
 
 private:
-    wxScatterPlotOptions m_options;
-    wxChartGrid m_grid;
+    wxSharedPtr<wxScatterPlotOptions> m_options;
+    wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };
 

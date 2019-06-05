@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -34,18 +34,22 @@ public:
 
 private:
     void OnExit(wxCommandEvent& evt);
-    void OnChartRectangleElement(wxCommandEvent& evt);
+    void OnDefaultTheme(wxCommandEvent& evt);
+    void OnChartsRectangleElement(wxCommandEvent& evt);
     void OnChartLabelElement(wxCommandEvent& evt);
-    void OnChartCategoricalAxisElement(wxCommandEvent& evt);
-    void OnChartNumericalAxisElement(wxCommandEvent& evt);
-    void OnChartGridElement(wxCommandEvent& evt);
+    void OnChartsCategoricalAxisElement(wxCommandEvent& evt);
+    void OnChartsNumericalAxisElement(wxCommandEvent& evt);
+    void OnChartsGridElement(wxCommandEvent& evt);
     void OnAreaChart(wxCommandEvent& evt);
     void OnBarChart(wxCommandEvent& evt);
     void OnBubbleChart(wxCommandEvent& evt);
     void OnCandlestickChart(wxCommandEvent& evt);
     void OnColumnChart(wxCommandEvent& evt);
+    void OnLineChart(wxCommandEvent& evt);
     void OnPieChart(wxCommandEvent& evt);
     void OnPolarAreaChart(wxCommandEvent& evt);
+    void OnStackedBarChart(wxCommandEvent& evt);
+    void OnStackedColumnChart(wxCommandEvent& evt);
     void OnRunAllTests(wxCommandEvent& evt);
 
     void SwitchPanel(wxPanel* newPanel);
@@ -55,18 +59,22 @@ private:
     wxTextCtrl* m_output;
 
     wxPanel* m_currentPanel;
-    wxPanel* m_chartRectanglePanel;
+    wxPanel* m_chartsDefaultThemePanel;
+    wxPanel* m_chartsRectanglePanel;
     wxPanel* m_chartLabelPanel;
-    wxPanel* m_chartCategoricalAxisPanel;
-    wxPanel* m_chartNumericalAxisPanel;
-    wxPanel* m_chartGridPanel;
+    wxPanel* m_chartsCategoricalAxisPanel;
+    wxPanel* m_chartsNumericalAxisPanel;
+    wxPanel* m_chartsGridPanel;
     wxPanel* m_areaChartPanel;
     wxPanel* m_barChartPanel;
     wxPanel* m_bubbleChartPanel;
     wxPanel* m_candlestickChartPanel;
     wxPanel* m_columnChartPanel;
+    wxPanel* m_lineChartPanel;
     wxPanel* m_pieChartPanel;
     wxPanel* m_polarAreaChartPanel;
+    wxPanel* m_stackedBarChartPanel;
+    wxPanel* m_stackedColumnChartPanel;
 
     wxDECLARE_EVENT_TABLE();
 };

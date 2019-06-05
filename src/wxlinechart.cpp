@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -32,8 +32,9 @@
 */
 
 #include "wxlinechart.h"
-#include "wxchartcategoricalaxis.h"
-#include "wxchartnumericalaxis.h"
+#include "wxchartstheme.h"
+#include "wxchartscategoricalaxis.h"
+#include "wxchartsnumericalaxis.h"
 #include <wx/brush.h>
 #include <wx/pen.h>
 #include <wx/dcmemory.h>
@@ -131,7 +132,7 @@ wxLineChart::Point::Point(wxDouble value,
                           const wxColor &strokeColor,
                           const wxColor &fillColor,
                           wxDouble hitDetectionRange)
-    : wxChartPoint(x, y, radius, tooltipProvider, wxChartPointOptions(strokeWidth, strokeColor, fillColor)),
+    : wxChartsPoint(x, y, radius, tooltipProvider, wxChartsPointOptions(strokeWidth, strokeColor, fillColor)),
     m_value(value), m_hitDetectionRange(hitDetectionRange)
 {
 }
@@ -205,12 +206,13 @@ void wxLineChart::Dataset::AppendPoint(Point::ptr point)
 
 wxLineChart::wxLineChart(const wxLineChartData &data,
                          const wxSize &size)
-    : m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
+    : m_options(wxChartsDefaultTheme->GetLineChartOptions()),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", GetMinValue(data.GetDatasets()), GetMaxValue(data.GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
-        m_options.GetGridOptions()
+        wxChartsCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(data.GetDatasets()), GetMaxValue(data.GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
         )
 {
     Initialize(data);
@@ -219,13 +221,13 @@ wxLineChart::wxLineChart(const wxLineChartData &data,
 wxLineChart::wxLineChart(const wxLineChartData &data,
                          const wxLineChartOptions &options,
                          const wxSize &size)
-    : m_options(options),
+    : m_options(new wxLineChartOptions(options)),
     m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", GetMinValue(data.GetDatasets()), GetMaxValue(data.GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
-        m_options.GetGridOptions()
+        wxChartsCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(data.GetDatasets()), GetMaxValue(data.GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
         )
 {
     Initialize(data);
@@ -233,7 +235,7 @@ wxLineChart::wxLineChart(const wxLineChartData &data,
 
 const wxChartCommonOptions& wxLineChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 void wxLineChart::Save(const wxString &filename,
@@ -273,9 +275,9 @@ void wxLineChart::Initialize(const wxLineChartData &data)
 
             Point::ptr point(
                 new Point(datasetData[j], tooltipProvider, 20 + j * 10, 0,
-                    m_options.GetDotRadius(), m_options.GetDotStrokeWidth(),
+                    m_options->GetDotRadius(), m_options->GetDotStrokeWidth(),
                     datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor(),
-                    m_options.GetHitDetectionRange())
+                    m_options->GetHitDetectionRange())
                 );
 
             newDataset->AppendPoint(point);
@@ -338,8 +340,8 @@ wxDouble wxLineChart::GetMaxValue(const wxVector<wxLineChartDataset::ptr>& datas
 void wxLineChart::DoSetSize(const wxSize &size)
 {
     wxSize newSize(
-        size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
-        size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+        size.GetWidth() - m_options->GetPadding().GetTotalHorizontalPadding(),
+        size.GetHeight() - m_options->GetPadding().GetTotalVerticalPadding()
         );
     m_grid.Resize(newSize);
 }
@@ -381,7 +383,7 @@ void wxLineChart::DoDraw(wxGraphicsContext &gc,
 
             if (m_datasets[i]->ShowLine())
             {
-                wxPen pen(m_datasets[i]->GetLineColor(), m_options.GetLineWidth());
+                wxPen pen(m_datasets[i]->GetLineColor(), m_options->GetLineWidth());
                 gc.SetPen(pen);
             }
             else
@@ -419,9 +421,9 @@ void wxLineChart::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxLineChart::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxLineChart::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
         const wxVector<Point::ptr>& points = m_datasets[i]->GetPoints();

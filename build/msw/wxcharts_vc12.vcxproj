@@ -7,9 +7,17 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -25,7 +33,19 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
@@ -37,7 +57,13 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
   </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -45,10 +71,32 @@
     <TargetName>wxchartsd</TargetName>
     <OutDir>..\..\lib\vc_lib\</OutDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>wxchartsd</TargetName>
+    <OutDir>..\..\lib\vc_x64_lib\</OutDir>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\lib\vc_lib\</OutDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\..\lib\vc_x64_lib\</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <AdditionalIncludeDirectories>..\..\include\wx\charts;$(WXWIN)\include;$(WXWIN)\include\msvc</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
@@ -82,40 +130,67 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <AdditionalIncludeDirectories>..\..\include\wx\charts;$(WXWIN)\include;$(WXWIN)\include\msvc</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\wxchartsdatasetid.cpp" />
     <ClCompile Include="..\..\src\wxchartsdataset.cpp" />
     <ClCompile Include="..\..\src\wxchartsdoubledataset.cpp" />
     <ClCompile Include="..\..\src\wxchartscategoricaldata.cpp" />
     <ClCompile Include="..\..\src\wxchartscategoricaldataobserver.cpp" />
+    <ClCompile Include="..\..\src\wxchartsohlcdata.cpp" />
+    <ClCompile Include="..\..\src\wxchartsthemeid.cpp" />
     <ClCompile Include="..\..\src\wxchartstheme.cpp" />
-    <ClCompile Include="..\..\src\wxchartutilities.cpp" />
+    <ClCompile Include="..\..\src\wxchartsdatasettheme.cpp" />
+    <ClCompile Include="..\..\src\wxchartspresentationtheme.cpp" />
+    <ClCompile Include="..\..\src\wxchartsprecisiontheme.cpp" />
+    <ClCompile Include="..\..\src\wxchartsthemefactory.cpp" />
+    <ClCompile Include="..\..\src\wxchartselement.cpp" />
+    <ClCompile Include="..\..\src\wxchartspenoptions.cpp" />
+    <ClCompile Include="..\..\src\wxchartsbrushoptions.cpp" />
+    <ClCompile Include="..\..\src\wxchartsrectangleoptions.cpp" />
+    <ClCompile Include="..\..\src\wxchartsrectangle.cpp" />
+    <ClCompile Include="..\..\src\wxchartspointoptions.cpp" />
+    <ClCompile Include="..\..\src\wxchartspoint.cpp" />
+    <ClCompile Include="..\..\src\wxchartscircleoptions.cpp" />
+    <ClCompile Include="..\..\src\wxchartscircle.cpp" />
+    <ClCompile Include="..\..\src\wxchartsarcoptions.cpp" />
+    <ClCompile Include="..\..\src\wxchartsarc.cpp" />
+    <ClCompile Include="..\..\src\wxchartsaxis.cpp" />
+    <ClCompile Include="..\..\src\wxchartsaxisoptions.cpp" />
+    <ClCompile Include="..\..\src\wxchartscategoricalaxis.cpp" />
+    <ClCompile Include="..\..\src\wxchartsnumericalaxis.cpp" />
+    <ClCompile Include="..\..\src\wxchartstimeaxis.cpp" />
+    <ClCompile Include="..\..\src\wxchartsgridmapping.cpp" />
+    <ClCompile Include="..\..\src\wxchartsgridoptions.cpp" />
+    <ClCompile Include="..\..\src\wxchartsgrid.cpp" />
+    <ClCompile Include="..\..\src\wxchartsutilities.cpp" />
     <ClCompile Include="..\..\src\wxchartpadding.cpp" />
-    <ClCompile Include="..\..\src\wxchartelement.cpp" />
     <ClCompile Include="..\..\src\wxchartbackgroundoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartbackground.cpp" />
     <ClCompile Include="..\..\src\wxchartfontoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartlabel.cpp" />
     <ClCompile Include="..\..\src\wxchartlabeloptions.cpp" />
     <ClCompile Include="..\..\src\wxchartlabelgroup.cpp" />
-    <ClCompile Include="..\..\src\wxchartaxis.cpp" />
-    <ClCompile Include="..\..\src\wxchartaxisoptions.cpp" />
-    <ClCompile Include="..\..\src\wxchartcategoricalaxis.cpp" />
-    <ClCompile Include="..\..\src\wxchartnumericalaxis.cpp" />
-    <ClCompile Include="..\..\src\wxcharttimeaxis.cpp" />
-    <ClCompile Include="..\..\src\wxchartgridmapping.cpp" />
-    <ClCompile Include="..\..\src\wxchartgridoptions.cpp" />
-    <ClCompile Include="..\..\src\wxchartgrid.cpp" />
     <ClCompile Include="..\..\src\wxchartradialgridoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartradialgrid.cpp" />
-    <ClCompile Include="..\..\src\wxchartpointoptions.cpp" />
-    <ClCompile Include="..\..\src\wxchartpoint.cpp" />
-    <ClCompile Include="..\..\src\wxchartrectangleoptions.cpp" />
-    <ClCompile Include="..\..\src\wxchartrectangle.cpp" />
-    <ClCompile Include="..\..\src\wxchartarc.cpp" />
-    <ClCompile Include="..\..\src\wxchartarcoptions.cpp" />
-    <ClCompile Include="..\..\src\wxchartcircle.cpp" />
-    <ClCompile Include="..\..\src\wxchartcircleoptions.cpp" />
     <ClCompile Include="..\..\src\wxcharttooltipoptions.cpp" />
     <ClCompile Include="..\..\src\wxcharttooltipprovider.cpp" />
     <ClCompile Include="..\..\src\wxcharttooltip.cpp" />
@@ -127,24 +202,27 @@
     <ClCompile Include="..\..\src\wxchartlegendctrl.cpp" />
     <ClCompile Include="..\..\src\wxchartlegenditem.cpp" />
     <ClCompile Include="..\..\src\wxchartslicedata.cpp" />
-    <ClCompile Include="..\..\src\wxchartohlcdata.cpp" />
     <ClCompile Include="..\..\src\wxchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartcommonoptions.cpp" />
     <ClCompile Include="..\..\src\wxchart.cpp" />
     <ClCompile Include="..\..\src\wxchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxbarchartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxbarchartdatasetoptions.cpp" />
     <ClCompile Include="..\..\src\wxbarchart.cpp" />
     <ClCompile Include="..\..\src\wxbarchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxcandlestickchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxcandlestickchart.cpp" />
     <ClCompile Include="..\..\src\wxcandlestickchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxcolumnchartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxcolumnchartdatasetoptions.cpp" />
     <ClCompile Include="..\..\src\wxcolumnchart.cpp" />
     <ClCompile Include="..\..\src\wxcolumnchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxstackedbarchartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxstackedbarchartdatasetoptions.cpp" />
     <ClCompile Include="..\..\src\wxstackedbarchart.cpp" />
     <ClCompile Include="..\..\src\wxstackedbarchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxstackedcolumnchartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxstackedcolumnchartdatasetoptions.cpp" />
     <ClCompile Include="..\..\src\wxstackedcolumnchart.cpp" />
     <ClCompile Include="..\..\src\wxstackedcolumnchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxlinechartoptions.cpp" />
@@ -182,9 +260,9 @@
     <ClCompile Include="..\..\src\wxareachartoptions.cpp" />
     <ClCompile Include="..\..\src\wxareachart.cpp" />
     <ClCompile Include="..\..\src\wxareachartctrl.cpp" />
-    <ClCompile Include="..\..\src\wxhistchartoptions.cpp" />
-    <ClCompile Include="..\..\src\wxhistchart.cpp" />
-    <ClCompile Include="..\..\src\wxhistchartctrl.cpp" />
+    <ClCompile Include="..\..\src\wxhistogramchartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxhistogramchart.cpp" />
+    <ClCompile Include="..\..\src\wxhistogramchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxcombinationchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxcombinationchart.cpp" />
     <ClCompile Include="..\..\src\wxcombinationchartctrl.cpp" />
@@ -199,34 +277,42 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartsdoubledataset.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartscategoricaldata.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartscategoricaldataobserver.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsohlcdata.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsthemeid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartstheme.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartutilities.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsdatasettheme.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartspresentationtheme.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsprecisiontheme.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsthemefactory.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartselement.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartspenoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsbrushoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsrectangleoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsrectangle.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartspointoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartspoint.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartscircleoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartscircle.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsarcoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsarc.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsaxis.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsaxisoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartscategoricalaxis.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsnumericalaxis.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartstimeaxis.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsgridmapping.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsgridoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsgrid.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsutilities.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartpadding.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartelement.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartbackgroundoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartbackground.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartfontoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartlabel.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartlabeloptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartlabelgroup.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartaxis.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartaxisoptions.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartcategoricalaxis.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartnumericalaxis.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxcharttimeaxis.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartgridmapping.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartgridoptions.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartgrid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartradialgridoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartradialgrid.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartpointoptions.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartpoint.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartrectangleoptions.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartrectangle.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartarc.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartarcoptions.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartcircle.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartcircleoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltipoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltipprovider.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltip.h" />
@@ -239,24 +325,27 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartlegendctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartslicedata.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartobservers.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartohlcdata.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartcommonoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxbarchartdatasetoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcandlestickchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcandlestickchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcandlestickchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcolumnchartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxcolumnchartdatasetoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcolumnchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcolumnchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxstackedbarchartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxstackedbarchartdatasetoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxstackedbarchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxstackedbarchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxstackedcolumnchartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxstackedcolumnchartdatasetoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxstackedcolumnchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxstackedcolumnchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxlinechartoptions.h" />
@@ -294,9 +383,9 @@
     <ClInclude Include="..\..\include\wx\charts\wxareachartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxareachart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxareachartctrl.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxhistchartoptions.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxhistchart.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxhistchartctrl.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxhistogramchartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxhistogramchart.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxhistogramchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcombinationchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcombinationchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcombinationchartctrl.h" />

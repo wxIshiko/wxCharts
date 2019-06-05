@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -54,12 +54,7 @@ WxCombinationChartFrame::WxCombinationChartFrame(const wxString& title)
     points1.push_back(6);
     points1.push_back(5);
     points1.push_back(1);
-    wxChartsDoubleDataset::ptr dataset1(
-        new wxChartsDoubleDataset(
-            wxColor(220, 220, 220, 0x7F),
-            wxColor(220, 220, 220, 0xCC),
-            points1)
-    );
+    wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset(points1));
     chartData.AddDataset(dataset1);
     combinationChartCtrl->AddColumnChart(chartData);
 

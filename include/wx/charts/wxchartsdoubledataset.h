@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,8 +26,7 @@
 #define _WX_CHARTS_WXCHARTSDOUBLEDATASET_H_
 
 #include "wxchartsdataset.h"
-
-#include <wx/colour.h>
+#include "wxchartsrectangleoptions.h"
 #include <wx/sharedptr.h>
 
 /// Stores the information about a dataset to be shown on one of the bar chart controls.
@@ -41,29 +40,12 @@ public:
     typedef wxSharedPtr<wxChartsDoubleDataset> ptr;
 
     /// Constructs a wxBarChartDataset instance.
-    /// @param fillColor The color of the brush used to 
-    /// fill the bar.
-    /// @param strokeColor The color of the pen used to
-    /// draw the outline of the bar.
     /// @param data The list of values.
-    wxChartsDoubleDataset(const wxColor &fillColor, const wxColor &strokeColor,
-        const wxVector<wxDouble> &data);
+    wxChartsDoubleDataset(const wxVector<wxDouble> &data);
 
-    /// Gets the color of the brush used to fill the
-    /// bar.
-    /// @return The color of the brush used to fill the
-    /// bar.
-    const wxColor& GetFillColor() const;
-    /// Gets the color of the pen used to draw the outline
-    /// of the bar.
-    /// @return The color of the pen used to draw the 
-    /// outline of the bar.
-    const wxColor& GetStrokeColor() const;
     const wxVector<wxDouble>& GetData() const;
 
 private:
-    wxColor m_fillColor;
-    wxColor m_strokeColor;
     wxVector<wxDouble> m_data;
 };
 

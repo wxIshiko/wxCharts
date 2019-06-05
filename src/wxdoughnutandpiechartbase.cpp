@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -33,6 +33,50 @@
 
 #include "wxdoughnutandpiechartbase.h"
 
+wxPieChartData::wxPieChartData()
+{
+}
+
+wxPieChartData::ptr wxPieChartData::make_shared()
+{
+    return ptr(new wxPieChartData());
+}
+
+const std::map<wxString, wxChartSliceData>& wxPieChartData::GetSlices() const
+{
+    return m_value;
+}
+
+void wxPieChartData::AppendSlice(const wxChartSliceData &slice)
+{
+    Add(slice);
+    Notify();
+}
+
+void wxPieChartData::UpdateSlices(const wxVector<wxChartSliceData> &slices)
+{
+    m_value.clear();
+    AddSlices(slices);
+}
+
+void wxPieChartData::AddSlices(const wxVector<wxChartSliceData> &slices)
+{
+    for (const auto &slice : slices)
+        Add(slice);
+
+    Notify();
+}
+
+void wxPieChartData::Add(const wxChartSliceData &slice)
+{
+    auto key = slice.GetLabel();
+    auto it = m_value.find(key);
+    if (it == m_value.end())
+        m_value.insert(std::make_pair(key, slice));
+    else
+        it->second.SetValue(it->second.GetValue() + slice.GetValue());
+}
+
 wxDoughnutAndPieChartBase::SliceArc::SliceArc(const wxChartSliceData &slice,
                                               wxDouble x,
                                               wxDouble y,
@@ -41,8 +85,8 @@ wxDoughnutAndPieChartBase::SliceArc::SliceArc(const wxChartSliceData &slice,
                                               wxDouble outerRadius,
                                               wxDouble innerRadius,
                                               unsigned int strokeWidth)
-    : wxChartArc(x, y, startAngle, endAngle, outerRadius, innerRadius, 
-        slice.GetTooltipText(), wxChartArcOptions(strokeWidth, slice.GetColor())),
+    : wxChartsArc(x, y, startAngle, endAngle, outerRadius, innerRadius, 
+        slice.GetTooltipText(), wxChartsArcOptions(strokeWidth, slice.GetColor())),
     m_value(slice.GetValue())
 {
 }
@@ -64,13 +108,14 @@ wxDouble wxDoughnutAndPieChartBase::SliceArc::GetValue() const
     return m_value;
 }
 
-wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase()
-    : m_total(0)
+wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(wxPieChartData::ptr data)
+    : m_data(data), m_total(0)
 {
 }
 
-wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(const wxSize &size)
-    : m_size(size), m_total(0)
+wxDoughnutAndPieChartBase::wxDoughnutAndPieChartBase(const wxPieChartData::ptr data,
+                                                     const wxSize &size)
+    : m_data(data), m_size(size), m_total(0)
 {
 }
 
@@ -79,7 +124,7 @@ void wxDoughnutAndPieChartBase::SetData(const std::map<wxString, wxChartSliceDat
     m_slices.resize(data.size());
     m_total = 0;
 	size_t i = 0;
-    for(const auto &pair : data)
+    for (const auto &pair : data)
     {
         auto slice = pair.second;
 
@@ -93,7 +138,6 @@ void wxDoughnutAndPieChartBase::SetData(const std::map<wxString, wxChartSliceDat
                                                x, y, 0, 0, outerRadius, innerRadius, GetOptions().GetSliceStrokeWidth()));
         m_slices[i++] = newSlice;
     }
-    
 }
 
 void wxDoughnutAndPieChartBase::DoSetSize(const wxSize &size)
@@ -103,6 +147,8 @@ void wxDoughnutAndPieChartBase::DoSetSize(const wxSize &size)
 
 void wxDoughnutAndPieChartBase::DoFit()
 {
+    SetData(m_data->GetSlices());
+
     for (size_t i = 0; i < m_slices.size(); ++i)
     {
         m_slices[i]->Resize(m_size, GetOptions());
@@ -135,9 +181,9 @@ void wxDoughnutAndPieChartBase::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxDoughnutAndPieChartBase::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxDoughnutAndPieChartBase::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
     for (size_t i = 0; i < m_slices.size(); ++i)
     {
         if (m_slices[i]->HitTest(point))

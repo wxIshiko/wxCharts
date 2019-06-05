@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -33,7 +33,7 @@
 
 #include "wxcharttooltip.h"
 #include "wxchartbackground.h"
-#include "wxchartutilities.h"
+#include "wxchartsutilities.h"
 #include <wx/brush.h>
 
 wxChartTooltip::wxChartTooltip(const wxPoint2DDouble &position,
@@ -56,7 +56,7 @@ void wxChartTooltip::Draw(wxGraphicsContext &gc)
         m_options.GetFontFamily(), m_options.GetFontStyle(), wxFONTWEIGHT_NORMAL);
     wxDouble tooltipWidth;
     wxDouble tooltipHeight;
-    wxChartUtilities::GetTextSize(gc, font, text, tooltipWidth, tooltipHeight);
+    wxChartsUtilities::GetTextSize(gc, font, text, tooltipWidth, tooltipHeight);
     tooltipWidth += 2 * m_options.GetHorizontalPadding();
     tooltipHeight += 2 * m_options.GetVerticalPadding();
 

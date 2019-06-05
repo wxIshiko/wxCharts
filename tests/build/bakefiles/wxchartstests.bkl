@@ -25,13 +25,14 @@ setting CATCH2_ROOT
 
 program wxchartstests
 {
+    archs = x86 x86_64;
+
     vs2017.projectfile = ../msw/wxchartstests_vc15.vcxproj;
     vs2015.projectfile = ../msw/wxchartstests_vc14.vcxproj;
     vs2013.projectfile = ../msw/wxchartstests_vc12.vcxproj;
  
     includedirs += $(WXCHARTS_ROOT)/include;
     includedirs += $(CATCH2_ROOT)/single_include;
-    libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
 
     if (($(toolset) == vs2017) || ($(toolset) == vs2015) || ($(toolset) == vs2013))
     {
@@ -39,7 +40,16 @@ program wxchartstests
         
         includedirs += $(WXWIDGETS_ROOT)/include;
         includedirs += $(WXWIDGETS_ROOT)/include/msvc;
-        libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+        if ($(arch) == x86)
+        {
+            libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
+            libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+        }
+        if ($(arch) == x86_64)
+        {
+            libdirs += $(WXCHARTS_ROOT)/lib/vc_x64_lib;
+            libdirs += $(WXWIDGETS_ROOT)/lib/vc_x64_lib;
+        }
     }
     if ($(toolset) == gnu)
     {
@@ -55,19 +65,23 @@ program wxchartstests
         ../../src/wxchartstestsframe.h
         ../../src/wxchartstestsmenubar.h
         ../../src/wxchartstestswindowids.h
-        ../../src/wxchartrectanglepanel.h
+        ../../src/wxchartsdefaultthemepanel.h
+        ../../src/wxchartsrectanglepanel.h
         ../../src/wxchartlabelpanel.h
         ../../src/wxchartlabelseriespanel.h
-        ../../src/wxchartcategoricalaxispanel.h
-        ../../src/wxchartnumericalaxispanel.h
-        ../../src/wxchartgridpanel.h
+        ../../src/wxchartscategoricalaxispanel.h
+        ../../src/wxchartsnumericalaxispanel.h
+        ../../src/wxchartsgridpanel.h
         ../../src/wxareachartpanel.h
         ../../src/wxbarchartpanel.h
         ../../src/wxbubblechartpanel.h
         ../../src/wxcandlestickchartpanel.h
         ../../src/wxcolumnchartpanel.h
+        ../../src/wxlinechartpanel.h
         ../../src/wxpiechartpanel.h
         ../../src/wxpolarareachartpanel.h
+        ../../src/wxstackedbarchartpanel.h
+        ../../src/wxstackedcolumnchartpanel.h
         ../../src/elementcanvaswindow.h
 
         ../../src/tests/testsuite.h
@@ -78,31 +92,39 @@ program wxchartstests
         ../../src/wxchartstestsapp.cpp
         ../../src/wxchartstestsframe.cpp
         ../../src/wxchartstestsmenubar.cpp
-        ../../src/wxchartrectanglepanel.cpp
+        ../../src/wxchartsdefaultthemepanel.cpp
+        ../../src/wxchartsrectanglepanel.cpp
         ../../src/wxchartlabelpanel.cpp
         ../../src/wxchartlabelseriespanel.cpp
-        ../../src/wxchartcategoricalaxispanel.cpp
-        ../../src/wxchartnumericalaxispanel.cpp
-        ../../src/wxchartgridpanel.cpp
+        ../../src/wxchartscategoricalaxispanel.cpp
+        ../../src/wxchartsnumericalaxispanel.cpp
+        ../../src/wxchartsgridpanel.cpp
         ../../src/wxareachartpanel.cpp
         ../../src/wxbarchartpanel.cpp
         ../../src/wxbubblechartpanel.cpp
         ../../src/wxcandlestickchartpanel.cpp
         ../../src/wxcolumnchartpanel.cpp
+        ../../src/wxlinechartpanel.cpp
         ../../src/wxpiechartpanel.cpp
         ../../src/wxpolarareachartpanel.cpp
+        ../../src/wxstackedbarchartpanel.cpp
+        ../../src/wxstackedcolumnchartpanel.cpp
         ../../src/elementcanvaswindow.cpp
 
         ../../src/tests/testsuite.cpp
         ../../src/tests/wxchartsdatasetidtests.cpp
         ../../src/tests/wxchartscategoricaldatatests.cpp
+        ../../src/tests/wxchartspenoptionstests.cpp
+        ../../src/tests/wxchartsbrushoptionstests.cpp
         ../../src/tests/wxchartbackgroundoptionstests.cpp
         ../../src/tests/wxchartfontoptionstests.cpp
         ../../src/tests/wxchartlabeloptionstests.cpp
         ../../src/tests/wxchartaxisoptionstests.cpp
-        ../../src/tests/wxchartgridoptionstests.cpp
+        ../../src/tests/wxchartsgridoptionstests.cpp
         ../../src/tests/wxcolumnchartoptionstests.cpp
         ../../src/tests/wxpiechartoptionstests.cpp
+        ../../src/tests/wxchartsthemeidtests.cpp
         ../../src/tests/wxchartsthemetests.cpp
+        ../../src/tests/wxchartsthemefactorytests.cpp
     }
 }

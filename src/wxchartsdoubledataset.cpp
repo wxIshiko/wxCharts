@@ -24,21 +24,9 @@
 
 #include "wxchartsdoubledataset.h"
 
-wxChartsDoubleDataset::wxChartsDoubleDataset(const wxColor &fillColor,
-                                            const wxColor &strokeColor,
-                                            const wxVector<wxDouble> &data)
-    : m_fillColor(fillColor), m_strokeColor(strokeColor), m_data(data)
+wxChartsDoubleDataset::wxChartsDoubleDataset(const wxVector<wxDouble> &data)
+    : m_data(data)
 {
-}
-
-const wxColor& wxChartsDoubleDataset::GetFillColor() const
-{
-    return m_fillColor;
-}
-
-const wxColor& wxChartsDoubleDataset::GetStrokeColor() const
-{
-    return m_strokeColor;
 }
 
 const wxVector<wxDouble>& wxChartsDoubleDataset::GetData() const

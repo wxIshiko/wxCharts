@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,50 +26,67 @@
 #define _WX_CHARTS_WXAREACHARTOPTIONS_H_
 
 #include "wxchartoptions.h"
-#include "wxchartgridoptions.h"
+#include "wxchartsgridoptions.h"
+#include <wx/sharedptr.h>
 
 /// The options for the wxAreaChartCtrl control.
-
-/// \ingroup chartclasses
+/**
+    \ingroup chartclasses
+*/
 class wxAreaChartOptions : public wxChartOptions
 {
 public:
-    /// Constructs a wxAreaChartOptions instance.
+    /// Smart pointer typedef.
+    typedef wxSharedPtr<wxAreaChartOptions> ptr;
+
+    /// Constructor.
     wxAreaChartOptions();
 
     /// Gets the options for the grid.
-    /// @return The options for the grid.
-    const wxChartGridOptions& GetGridOptions() const;
+    /**
+        @return The options for the grid.
+    */
+    const wxChartsGridOptions& GetGridOptions() const;
+
     /// Gets the options for the grid.
-    /// @return The grid options.
-    wxChartGridOptions& GetGridOptions();
-    /// Gets the radius for the dots representing
-    /// points on the chart.
-    /// @return The radius of the dots.
+    /**
+        @return The options for the grid.
+    */
+    wxChartsGridOptions& GetGridOptions();
+
+    /// Gets the radius for the dots representing points on the chart.
+    /**
+        @return The radius of the dots.
+    */
     wxDouble GetDotRadius() const;
-    /// Gets the width of the pen used to draw
-    /// the outline of the dots.
-    /// @return The width of the pen.
+
+    /// Gets the width of the pen used to draw the outline of the dots.
+    /**
+        @return The width of the pen.
+    */
     unsigned int GetDotStrokeWidth() const;
-    /// Gets the width of the pen used to
-    /// draw the lines connecting the points
-    /// of the chart. Width of the axes and grid
-    /// lines are part of the options returned
-    /// by the GetGridOptions() function.
-    /// @return The width of the pen.
+
+    /// Gets the width of the pen used to draw the lines connecting the points of the chart.
+    /**
+        Width of the axes and grid lines are part of the options returned by the
+        GetGridOptions() function.
+
+        @return The width of the pen.
+    */
     unsigned int GetLineWidth() const;
 
-    /// Gets the hit detection range. When the
-    /// distance between the X coordinate of
-    /// the mouse position and a point on the
-    /// chart is less than this range the
-    /// point is considered active. The Y
-    /// coordinate is ignored in this calculation.
-    /// @return The hit detection range.
+    /// Gets the hit detection range.
+    /**
+        When the distance between the X coordinate of the mouse position and a point on the
+        chart is less than this range the point is considered active. The Y coordinate is
+        ignored in this calculation.
+        
+        @return The hit detection range.
+    */
     wxDouble GetHitDetectionRange() const;
 
 private:
-    wxChartGridOptions m_gridOptions;
+    wxChartsGridOptions m_gridOptions;
     wxDouble m_dotRadius;
     unsigned int m_dotStrokeWidth;
     unsigned int m_lineWidth;

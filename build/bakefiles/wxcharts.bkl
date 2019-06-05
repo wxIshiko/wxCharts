@@ -13,6 +13,8 @@ setting WXWIDGETS_ROOT
 
 library wxcharts
 {
+    archs = x86 x86_64;
+
     vs2017.projectfile = ../msw/wxcharts_vc15.vcxproj;
     vs2015.projectfile = ../msw/wxcharts_vc14.vcxproj;
     vs2013.projectfile = ../msw/wxcharts_vc12.vcxproj;
@@ -23,9 +25,15 @@ library wxcharts
     {
         includedirs += $(WXWIDGETS_ROOT)/include;
         includedirs += $(WXWIDGETS_ROOT)/include/msvc;
-        libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
 
-        outputdir = ../../lib/vc_lib;
+        if ($(arch) == x86)
+        {
+            outputdir = ../../lib/vc_lib;
+        }
+        if ($(arch) == x86_64)
+        {
+            outputdir = ../../lib/vc_x64_lib;
+        }
     }
     if ($(toolset) == gnu)
     {
@@ -46,36 +54,45 @@ library wxcharts
         ../../include/wx/charts/wxchartsdoubledataset.h
         ../../include/wx/charts/wxchartscategoricaldata.h
         ../../include/wx/charts/wxchartscategoricaldataobserver.h
+        ../../include/wx/charts/wxchartsohlcdata.h
 
+        ../../include/wx/charts/wxchartsthemeid.h
         ../../include/wx/charts/wxchartstheme.h
+        ../../include/wx/charts/wxchartsdatasettheme.h
+        ../../include/wx/charts/wxchartspresentationtheme.h
+        ../../include/wx/charts/wxchartsprecisiontheme.h
+        ../../include/wx/charts/wxchartsthemefactory.h
 
-        ../../include/wx/charts/wxchartutilities.h
+        ../../include/wx/charts/wxchartselement.h
+        ../../include/wx/charts/wxchartspenoptions.h
+        ../../include/wx/charts/wxchartsbrushoptions.h
+        ../../include/wx/charts/wxchartsrectangleoptions.h
+        ../../include/wx/charts/wxchartsrectangle.h
+        ../../include/wx/charts/wxchartspointoptions.h
+        ../../include/wx/charts/wxchartspoint.h
+        ../../include/wx/charts/wxchartscircleoptions.h
+        ../../include/wx/charts/wxchartscircle.h
+        ../../include/wx/charts/wxchartsarcoptions.h
+        ../../include/wx/charts/wxchartsarc.h
+        ../../include/wx/charts/wxchartsaxis.h
+        ../../include/wx/charts/wxchartsaxisoptions.h
+        ../../include/wx/charts/wxchartscategoricalaxis.h
+        ../../include/wx/charts/wxchartsnumericalaxis.h
+        ../../include/wx/charts/wxchartstimeaxis.h
+        ../../include/wx/charts/wxchartsgridmapping.h
+        ../../include/wx/charts/wxchartsgridoptions.h
+        ../../include/wx/charts/wxchartsgrid.h
+
+        ../../include/wx/charts/wxchartsutilities.h
         ../../include/wx/charts/wxchartpadding.h
-        ../../include/wx/charts/wxchartelement.h
         ../../include/wx/charts/wxchartbackgroundoptions.h
         ../../include/wx/charts/wxchartbackground.h
         ../../include/wx/charts/wxchartfontoptions.h
         ../../include/wx/charts/wxchartlabel.h
         ../../include/wx/charts/wxchartlabeloptions.h
         ../../include/wx/charts/wxchartlabelgroup.h
-        ../../include/wx/charts/wxchartaxis.h
-        ../../include/wx/charts/wxchartaxisoptions.h
-        ../../include/wx/charts/wxchartcategoricalaxis.h
-        ../../include/wx/charts/wxchartnumericalaxis.h
-        ../../include/wx/charts/wxcharttimeaxis.h
-        ../../include/wx/charts/wxchartgridmapping.h
-        ../../include/wx/charts/wxchartgridoptions.h
-        ../../include/wx/charts/wxchartgrid.h
         ../../include/wx/charts/wxchartradialgridoptions.h
         ../../include/wx/charts/wxchartradialgrid.h
-        ../../include/wx/charts/wxchartpointoptions.h
-        ../../include/wx/charts/wxchartpoint.h
-        ../../include/wx/charts/wxchartrectangleoptions.h
-        ../../include/wx/charts/wxchartrectangle.h
-        ../../include/wx/charts/wxchartarc.h
-        ../../include/wx/charts/wxchartarcoptions.h
-        ../../include/wx/charts/wxchartcircle.h
-        ../../include/wx/charts/wxchartcircleoptions.h
         ../../include/wx/charts/wxcharttooltipoptions.h
         ../../include/wx/charts/wxcharttooltipprovider.h
         ../../include/wx/charts/wxcharttooltip.h
@@ -88,24 +105,27 @@ library wxcharts
         ../../include/wx/charts/wxchartlegendctrl.h
         ../../include/wx/charts/wxchartslicedata.h
         ../../include/wx/charts/wxchartobservers.h
-        ../../include/wx/charts/wxchartohlcdata.h
         ../../include/wx/charts/wxchartoptions.h
         ../../include/wx/charts/wxchartcommonoptions.h
         ../../include/wx/charts/wxchart.h
         ../../include/wx/charts/wxchartctrl.h
         ../../include/wx/charts/wxbarchartoptions.h
+        ../../include/wx/charts/wxbarchartdatasetoptions.h
         ../../include/wx/charts/wxbarchart.h
         ../../include/wx/charts/wxbarchartctrl.h
         ../../include/wx/charts/wxcandlestickchartoptions.h
         ../../include/wx/charts/wxcandlestickchart.h
         ../../include/wx/charts/wxcandlestickchartctrl.h
         ../../include/wx/charts/wxcolumnchartoptions.h
+        ../../include/wx/charts/wxcolumnchartdatasetoptions.h
         ../../include/wx/charts/wxcolumnchart.h
         ../../include/wx/charts/wxcolumnchartctrl.h
         ../../include/wx/charts/wxstackedbarchartoptions.h
+        ../../include/wx/charts/wxstackedbarchartdatasetoptions.h
         ../../include/wx/charts/wxstackedbarchart.h
         ../../include/wx/charts/wxstackedbarchartctrl.h
         ../../include/wx/charts/wxstackedcolumnchartoptions.h
+        ../../include/wx/charts/wxstackedcolumnchartdatasetoptions.h
         ../../include/wx/charts/wxstackedcolumnchart.h
         ../../include/wx/charts/wxstackedcolumnchartctrl.h
         ../../include/wx/charts/wxlinechartoptions.h
@@ -143,9 +163,9 @@ library wxcharts
         ../../include/wx/charts/wxareachartoptions.h
         ../../include/wx/charts/wxareachart.h
         ../../include/wx/charts/wxareachartctrl.h
-        ../../include/wx/charts/wxhistchartoptions.h
-        ../../include/wx/charts/wxhistchart.h
-        ../../include/wx/charts/wxhistchartctrl.h
+        ../../include/wx/charts/wxhistogramchartoptions.h
+        ../../include/wx/charts/wxhistogramchart.h
+        ../../include/wx/charts/wxhistogramchartctrl.h
         ../../include/wx/charts/wxcombinationchartoptions.h
         ../../include/wx/charts/wxcombinationchart.h
         ../../include/wx/charts/wxcombinationchartctrl.h
@@ -161,36 +181,45 @@ library wxcharts
         ../../src/wxchartsdoubledataset.cpp
         ../../src/wxchartscategoricaldata.cpp
         ../../src/wxchartscategoricaldataobserver.cpp
+        ../../src/wxchartsohlcdata.cpp
 
+        ../../src/wxchartsthemeid.cpp
         ../../src/wxchartstheme.cpp
+        ../../src/wxchartsdatasettheme.cpp
+        ../../src/wxchartspresentationtheme.cpp
+        ../../src/wxchartsprecisiontheme.cpp
+        ../../src/wxchartsthemefactory.cpp
 
-        ../../src/wxchartutilities.cpp
+        ../../src/wxchartselement.cpp
+        ../../src/wxchartspenoptions.cpp
+        ../../src/wxchartsbrushoptions.cpp
+        ../../src/wxchartsrectangleoptions.cpp
+        ../../src/wxchartsrectangle.cpp
+        ../../src/wxchartspointoptions.cpp
+        ../../src/wxchartspoint.cpp
+        ../../src/wxchartscircleoptions.cpp
+        ../../src/wxchartscircle.cpp
+        ../../src/wxchartsarcoptions.cpp
+        ../../src/wxchartsarc.cpp
+        ../../src/wxchartsaxis.cpp
+        ../../src/wxchartsaxisoptions.cpp
+        ../../src/wxchartscategoricalaxis.cpp
+        ../../src/wxchartsnumericalaxis.cpp
+        ../../src/wxchartstimeaxis.cpp
+        ../../src/wxchartsgridmapping.cpp
+        ../../src/wxchartsgridoptions.cpp
+        ../../src/wxchartsgrid.cpp
+
+        ../../src/wxchartsutilities.cpp
         ../../src/wxchartpadding.cpp
-        ../../src/wxchartelement.cpp
         ../../src/wxchartbackgroundoptions.cpp
         ../../src/wxchartbackground.cpp
         ../../src/wxchartfontoptions.cpp
         ../../src/wxchartlabel.cpp
         ../../src/wxchartlabeloptions.cpp
         ../../src/wxchartlabelgroup.cpp
-        ../../src/wxchartaxis.cpp
-        ../../src/wxchartaxisoptions.cpp
-        ../../src/wxchartcategoricalaxis.cpp
-        ../../src/wxchartnumericalaxis.cpp
-        ../../src/wxcharttimeaxis.cpp
-        ../../src/wxchartgridmapping.cpp
-        ../../src/wxchartgridoptions.cpp
-        ../../src/wxchartgrid.cpp
         ../../src/wxchartradialgridoptions.cpp
         ../../src/wxchartradialgrid.cpp
-        ../../src/wxchartpointoptions.cpp
-        ../../src/wxchartpoint.cpp
-        ../../src/wxchartrectangleoptions.cpp
-        ../../src/wxchartrectangle.cpp
-        ../../src/wxchartarc.cpp
-        ../../src/wxchartarcoptions.cpp
-        ../../src/wxchartcircle.cpp
-        ../../src/wxchartcircleoptions.cpp
         ../../src/wxcharttooltipoptions.cpp
         ../../src/wxcharttooltipprovider.cpp
         ../../src/wxcharttooltip.cpp
@@ -202,24 +231,27 @@ library wxcharts
         ../../src/wxchartlegendctrl.cpp
         ../../src/wxchartlegenditem.cpp
         ../../src/wxchartslicedata.cpp
-        ../../src/wxchartohlcdata.cpp
         ../../src/wxchartoptions.cpp
         ../../src/wxchartcommonoptions.cpp
         ../../src/wxchart.cpp
         ../../src/wxchartctrl.cpp
         ../../src/wxbarchartoptions.cpp
+        ../../src/wxbarchartdatasetoptions.cpp
         ../../src/wxbarchart.cpp
         ../../src/wxbarchartctrl.cpp
         ../../src/wxcandlestickchartoptions.cpp
         ../../src/wxcandlestickchart.cpp
         ../../src/wxcandlestickchartctrl.cpp
         ../../src/wxcolumnchartoptions.cpp
+        ../../src/wxcolumnchartdatasetoptions.cpp
         ../../src/wxcolumnchart.cpp
         ../../src/wxcolumnchartctrl.cpp
         ../../src/wxstackedbarchartoptions.cpp
+        ../../src/wxstackedbarchartdatasetoptions.cpp
         ../../src/wxstackedbarchart.cpp
         ../../src/wxstackedbarchartctrl.cpp
         ../../src/wxstackedcolumnchartoptions.cpp
+        ../../src/wxstackedcolumnchartdatasetoptions.cpp
         ../../src/wxstackedcolumnchart.cpp
         ../../src/wxstackedcolumnchartctrl.cpp
         ../../src/wxlinechartoptions.cpp
@@ -257,9 +289,9 @@ library wxcharts
         ../../src/wxareachartoptions.cpp
         ../../src/wxareachart.cpp
         ../../src/wxareachartctrl.cpp
-        ../../src/wxhistchartoptions.cpp
-        ../../src/wxhistchart.cpp
-        ../../src/wxhistchartctrl.cpp
+        ../../src/wxhistogramchartoptions.cpp
+        ../../src/wxhistogramchart.cpp
+        ../../src/wxhistogramchartctrl.cpp
         ../../src/wxcombinationchartoptions.cpp
         ../../src/wxcombinationchart.cpp
         ../../src/wxcombinationchartctrl.cpp

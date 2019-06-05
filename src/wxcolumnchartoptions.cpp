@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,19 +20,21 @@
     IN THE SOFTWARE.
 */
 
+/// @file
+
 #include "wxcolumnchartoptions.h"
 
 wxColumnChartOptions::wxColumnChartOptions()
     : m_gridOptions(
-        wxChartAxisOptions(wxCHARTAXISPOSITION_BOTTOM, wxCHARTAXISLABELTYPE_RANGE), 
-        wxChartAxisOptions(wxCHARTAXISPOSITION_LEFT)
+        wxChartsAxisOptions(wxCHARTSAXISPOSITION_BOTTOM, wxCHARTSAXISLABELTYPE_RANGE), 
+        wxChartsAxisOptions(wxCHARTSAXISPOSITION_LEFT)
         ),
     m_columnSpacing(15), m_datasetSpacing(6)
 {
     m_gridOptions.GetYAxisOptions().SetExplicitStartValue(0);
 }
 
-const wxChartGridOptions& wxColumnChartOptions::GetGridOptions() const
+const wxChartsGridOptions& wxColumnChartOptions::GetGridOptions() const
 {
     return m_gridOptions;
 }

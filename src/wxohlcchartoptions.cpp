@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,19 +26,19 @@
 
 wxOHLCChartOptions::wxOHLCChartOptions()
 {
-    m_gridOptions.GetXAxisOptions().SetStartMarginType(wxCHARTAXISMARGINTYPE_TICKMARKOFFSET);
-    m_gridOptions.GetXAxisOptions().SetEndMarginType(wxCHARTAXISMARGINTYPE_TICKMARKOFFSET);
+    m_gridOptions.GetXAxisOptions().SetStartMarginType(wxCHARTSAXISMARGINTYPE_TICKMARKOFFSET);
+    m_gridOptions.GetXAxisOptions().SetEndMarginType(wxCHARTSAXISMARGINTYPE_TICKMARKOFFSET);
     m_gridOptions.GetHorizontalGridLineOptions().SetMajorGridLineColor(wxColor(0, 0, 0, 0x30));
     m_gridOptions.GetHorizontalGridLineOptions().SetNumberOfMinorGridLinesBetweenTickMarks(4);
     m_gridOptions.GetVerticalGridLineOptions().SetMajorGridLineColor(wxColor(0, 0, 0, 0x30));
 }
 
-const wxChartGridOptions& wxOHLCChartOptions::GetGridOptions() const
+const wxChartsGridOptions& wxOHLCChartOptions::GetGridOptions() const
 {
     return m_gridOptions;
 }
 
-wxChartGridOptions& wxOHLCChartOptions::GetGridOptions()
+wxChartsGridOptions& wxOHLCChartOptions::GetGridOptions()
 {
     return m_gridOptions;
 }

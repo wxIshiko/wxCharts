@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -28,8 +28,8 @@
 #include "wxchart.h"
 #include "wxchartscategoricaldata.h"
 #include "wxstackedbarchartoptions.h"
-#include "wxchartgrid.h"
-#include "wxchartrectangle.h"
+#include "wxchartsgrid.h"
+#include "wxchartsrectangle.h"
 
 /// A stacked bar chart.
 
@@ -44,16 +44,17 @@ public:
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
+    void Initialize(wxChartsCategoricalData::ptr &data);
     static wxDouble GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
     static wxDouble GetCumulativeMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
 
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
+    virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point);
 
 private:
-    class Bar : public wxChartRectangle
+    class Bar : public wxChartsRectangle
     {
     public:
         typedef wxSharedPtr<Bar> ptr;
@@ -61,8 +62,9 @@ private:
         Bar(wxDouble value,
             const wxChartTooltipProvider::ptr tooltipProvider,
             wxDouble x, wxDouble y,
-            const wxColor &fillColor, const wxColor &strokeColor,
-            int directions);
+            const wxChartsPenOptions &penOptions,
+            const wxChartsBrushOptions &brushOptions,
+            int borders);
 
         virtual bool HitTest(const wxPoint &point) const;
 
@@ -87,8 +89,8 @@ private:
     };
 
 private:
-    wxStackedBarChartOptions m_options;
-    wxChartGrid m_grid;
+    wxSharedPtr<wxStackedBarChartOptions> m_options;
+    wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };
 

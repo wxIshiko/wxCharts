@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,7 +26,8 @@
 #define _WX_CHARTS_WXBARCHARTOPTIONS_H_
 
 #include "wxchartoptions.h"
-#include "wxchartgridoptions.h"
+#include "wxchartsgridoptions.h"
+#include <wx/sharedptr.h>
 
 /// The options for the wxBarChartCtrl control.
 
@@ -34,12 +35,15 @@
 class wxBarChartOptions : public wxChartOptions
 {
 public:
+    /// Smart pointer typedef.
+    typedef wxSharedPtr<wxBarChartOptions> ptr;
+
     /// Constructs a wxBarChartOptions instance.
     wxBarChartOptions();
 
     /// Gets the options for the grid.
     /// @return The options for the grid.
-    const wxChartGridOptions& GetGridOptions() const;
+    const wxChartsGridOptions& GetGridOptions() const;
 
     /// Gets the amount of space the bars are separated
     /// by. The actual space between bars will be twice
@@ -50,7 +54,7 @@ public:
     wxDouble GetDatasetSpacing() const;
 
 private:
-    wxChartGridOptions m_gridOptions;
+    wxChartsGridOptions m_gridOptions;
     wxDouble m_barSpacing;
     wxDouble m_datasetSpacing;
 };

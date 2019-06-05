@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -38,8 +38,8 @@
 
 #include "wxchart.h"
 #include "wxareachartoptions.h"
-#include "wxchartgrid.h"
-#include "wxchartpoint.h"
+#include "wxchartsgrid.h"
+#include "wxchartspoint.h"
 
 /// \ingroup dataclasses
 class wxAreaChartDataset
@@ -95,14 +95,29 @@ private:
 };
 
 /// An area chart.
-
-/// \ingroup chartclasses
+/**
+    \ingroup chartclasses
+*/
 class wxAreaChart : public wxChart
 {
 public:
+    /// Constructor.
+    /**
+        The chart options will be defined by the default theme.
+
+        @param data The data that will be used to initialize the chart.
+        @param size The initial size of the chart.
+    */
     wxAreaChart(const wxAreaChartData &data, const wxSize &size);
-    wxAreaChart(const wxAreaChartData &data,
-        const wxAreaChartOptions &options, const wxSize &size);
+
+    /// Constructor.
+    /**
+        @param data The data that will be used to initialize the chart.
+        @param options The options to use for the chart.
+        @param size The initial size of the chart.
+    */
+    wxAreaChart(const wxAreaChartData &data, wxAreaChartOptions::ptr &options,
+        const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
@@ -119,10 +134,10 @@ private:
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
+    virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point);
 
 private:
-    class Point : public wxChartPoint
+    class Point : public wxChartsPoint
     {
     public:
         typedef wxSharedPtr<Point> ptr;
@@ -166,8 +181,8 @@ private:
     };
 
 private:
-    wxAreaChartOptions m_options;
-    wxChartGrid m_grid;
+    wxSharedPtr<wxAreaChartOptions> m_options;
+    wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };
 

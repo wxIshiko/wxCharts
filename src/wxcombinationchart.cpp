@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -21,8 +21,8 @@
 */
 
 #include "wxcombinationchart.h"
-#include "wxchartcategoricalaxis.h"
-#include "wxchartnumericalaxis.h"
+#include "wxchartscategoricalaxis.h"
+#include "wxchartsnumericalaxis.h"
 
 wxCombinationChart::wxCombinationChart()
 {
@@ -30,12 +30,12 @@ wxCombinationChart::wxCombinationChart()
 
 void wxCombinationChart::AddColumnChart(const wxChartsCategoricalData &data)
 {
-    m_grid = new wxChartGrid(
+    m_grid = new wxChartsGrid(
         wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
         wxSize(100, 100),
-        wxChartCategoricalAxis::make_shared("x", data.GetCategories(), wxChartGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", 0, 200, wxChartGridOptions().GetYAxisOptions()),
-        wxChartGridOptions()
+        wxChartsCategoricalAxis::make_shared("x", data.GetCategories(), wxChartsGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", 0, 200, wxChartsGridOptions().GetYAxisOptions()),
+        wxChartsGridOptions()
     );
 }
 
@@ -67,8 +67,8 @@ void wxCombinationChart::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxCombinationChart::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxCombinationChart::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
     return activeElements;
 }

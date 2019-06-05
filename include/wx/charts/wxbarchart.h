@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -39,18 +39,33 @@
 #include "wxchart.h"
 #include "wxchartscategoricaldata.h"
 #include "wxbarchartoptions.h"
-#include "wxchartgrid.h"
-#include "wxchartrectangle.h"
+#include "wxchartsgrid.h"
+#include "wxchartsrectangle.h"
 #include <wx/sharedptr.h>
 
 /// A bar chart.
-
-/// \ingroup chartclasses
+/**
+    \ingroup chartclasses
+*/
 class wxBarChart : public wxChart
 {
 public:
+    /// Constructor.
+    /**
+        The chart options will be defined by the default theme.
+
+        @param data The data that will be used to initialize the chart.
+        @param size The initial size of the chart.
+    */
     wxBarChart(wxChartsCategoricalData::ptr &data, const wxSize &size);
-    wxBarChart(wxChartsCategoricalData::ptr &data, wxSharedPtr<wxBarChartOptions> options,
+
+    /// Constructor.
+    /**
+        @param data The data that will be used to initialize the chart.
+        @param options The options to use for the chart.
+        @param size The initial size of the chart.
+    */
+    wxBarChart(wxChartsCategoricalData::ptr &data, wxBarChartOptions::ptr options,
         const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
@@ -63,12 +78,12 @@ private:
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
+    virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point);
 
     wxDouble GetBarHeight() const;
 
 private:
-    class Bar : public wxChartRectangle
+    class Bar : public wxChartsRectangle
     {
     public:
         typedef wxSharedPtr<Bar> ptr;
@@ -76,8 +91,9 @@ private:
         Bar(wxDouble value,
             const wxChartTooltipProvider::ptr tooltipProvider,
             wxDouble x, wxDouble y,
-            const wxColor &fillColor, const wxColor &strokeColor,
-            int directions);
+            const wxChartsPenOptions &penOptions,
+            const wxChartsBrushOptions &brushOptions,
+            int borders);
 
         wxDouble GetValue() const;
 
@@ -101,7 +117,7 @@ private:
 
 private:
     wxSharedPtr<wxBarChartOptions> m_options;
-    wxChartGrid m_grid;
+    wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
 };
 

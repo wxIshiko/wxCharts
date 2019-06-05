@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -31,7 +31,7 @@ wxBubbleChartOptions::wxBubbleChartOptions()
     options.SetAlignment(wxALIGN_TOP);
 }
 
-const wxChartGridOptions& wxBubbleChartOptions::GetGridOptions() const
+const wxChartsGridOptions& wxBubbleChartOptions::GetGridOptions() const
 {
     return m_gridOptions;
 }

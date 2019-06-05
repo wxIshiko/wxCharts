@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -51,7 +51,7 @@ wxMath2DPlotCtrl::wxMath2DPlotCtrl(wxWindow *parent,
 wxMath2DPlotCtrl::wxMath2DPlotCtrl(wxWindow *parent,
                                    wxWindowID id,
                                    const wxMath2DPlotData &data,
-                                   const wxMath2DPlotOptions &options,
+                                   wxSharedPtr<wxMath2DPlotOptions> &options,
                                    const wxPoint &pos,
                                    const wxSize &size,
                                    long style)
@@ -66,12 +66,12 @@ wxMath2DPlot& wxMath2DPlotCtrl::GetChart()
     return m_math2dPlot;
 }
 
-const wxChartGridOptions& wxMath2DPlotCtrl::GetGridOptions() const
+const wxChartsGridOptions& wxMath2DPlotCtrl::GetGridOptions() const
 {
     return m_math2dPlot.GetGridOptions();
 }
 
-void wxMath2DPlotCtrl::SetGridOptions(const wxChartGridOptions& opt)
+void wxMath2DPlotCtrl::SetGridOptions(const wxChartsGridOptions& opt)
 {
     m_math2dPlot.SetGridOptions(opt);
     Update();
