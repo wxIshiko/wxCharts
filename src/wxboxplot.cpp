@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -23,8 +23,8 @@
 /// @file
 
 #include "wxboxplot.h"
-#include "wxchartcategoricalaxis.h"
-#include "wxchartnumericalaxis.h"
+#include "wxchartscategoricalaxis.h"
+#include "wxchartsnumericalaxis.h"
 #include <wx/brush.h>
 #include <wx/pen.h>
 #include <sstream>
@@ -74,7 +74,7 @@ const wxVector<wxVector<wxDouble>>& wxBoxPlotData::GetData() const
 wxBoxPlot::Box::Box(const wxVector<wxDouble> &data,
                     const wxColor &Color, const wxColor &upFillColor, unsigned int lineWidth,
                     unsigned int rectangleWidth, const wxChartTooltipProvider::ptr tooltipProvider)
-    : wxChartElement(tooltipProvider), m_data(data), m_lineColor(Color),
+    : wxChartsElement(tooltipProvider), m_data(data), m_lineColor(Color),
       m_upFillColor(upFillColor), m_width(lineWidth), m_rectangleWidth(rectangleWidth)
 {
 }
@@ -124,7 +124,7 @@ wxPoint2DDouble wxBoxPlot::Box::GetTooltipPosition() const
     return wxPoint2DDouble(m_minPoint.m_x, m_maxPoint.m_y + (m_minPoint.m_y - m_maxPoint.m_y) / 2);
 }
 
-void wxBoxPlot::Box::Update(const wxChartGridMapping& mapping,
+void wxBoxPlot::Box::Update(const wxChartsGridMapping& mapping,
                             size_t index)
 {
     auto len = m_data.size();
@@ -145,8 +145,8 @@ wxBoxPlot::wxBoxPlot(const wxBoxPlotData &data,
     : m_grid(
           wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
           size,
-          wxChartCategoricalAxis::make_shared("x", data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
-          wxChartNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions().GetYAxisOptions()),
+          wxChartsCategoricalAxis::make_shared("x", data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
+          wxChartsNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions().GetYAxisOptions()),
           m_options.GetGridOptions()
       )
 {
@@ -246,9 +246,9 @@ void wxBoxPlot::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxBoxPlot::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxBoxPlot::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
     for (size_t i = 0; i < m_data.size(); ++i)
     {
         if (m_data[i]->HitTest(point))

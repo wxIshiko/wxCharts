@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,19 +26,19 @@
 
 wxBoxPlotOptions::wxBoxPlotOptions()
 {
-    m_gridOptions.GetXAxisOptions().SetStartMarginType(wxCHARTAXISMARGINTYPE_TICKMARKOFFSET);
-    m_gridOptions.GetXAxisOptions().SetEndMarginType(wxCHARTAXISMARGINTYPE_TICKMARKOFFSET);
+    m_gridOptions.GetXAxisOptions().SetStartMarginType(wxCHARTSAXISMARGINTYPE_TICKMARKOFFSET);
+    m_gridOptions.GetXAxisOptions().SetEndMarginType(wxCHARTSAXISMARGINTYPE_TICKMARKOFFSET);
     m_gridOptions.GetHorizontalGridLineOptions().SetMajorGridLineColor(wxColor(0, 0, 0, 0x30));
     m_gridOptions.GetHorizontalGridLineOptions().SetNumberOfMinorGridLinesBetweenTickMarks(4);
     m_gridOptions.GetVerticalGridLineOptions().SetMajorGridLineColor(wxColor(0, 0, 0, 0x30));
 }
 
-const wxChartGridOptions& wxBoxPlotOptions::GetGridOptions() const
+const wxChartsGridOptions& wxBoxPlotOptions::GetGridOptions() const
 {
     return m_gridOptions;
 }
 
-wxChartGridOptions& wxBoxPlotOptions::GetGridOptions()
+wxChartsGridOptions& wxBoxPlotOptions::GetGridOptions()
 {
     return m_gridOptions;
 }

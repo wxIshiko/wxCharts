@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -27,7 +27,7 @@
 
 #include "wxchart.h"
 #include "wxboxplotoptions.h"
-#include "wxchartgrid.h"
+#include "wxchartsgrid.h"
 
 /// Data for the wxBoxPlotCtrl control.
 
@@ -73,10 +73,10 @@ private:
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
+    virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point);
 
 private:
-    class Box : public wxChartElement
+    class Box : public wxChartsElement
     {
     public:
         typedef wxSharedPtr<Box> ptr;
@@ -89,7 +89,7 @@ private:
         virtual bool HitTest(const wxPoint &point) const;
         virtual wxPoint2DDouble GetTooltipPosition() const;
 
-        void Update(const wxChartGridMapping& mapping, size_t index);
+        void Update(const wxChartsGridMapping& mapping, size_t index);
 
     private:
         wxVector<wxDouble> m_data;
@@ -106,7 +106,7 @@ private:
 
 private:
     wxBoxPlotOptions m_options;
-    wxChartGrid m_grid;
+    wxChartsGrid m_grid;
     wxVector<Box::ptr> m_data;
 };
 
