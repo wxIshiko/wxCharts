@@ -35,7 +35,7 @@
 class wxChartsLegendLine : public wxChartsElement
 {
 public:
-    /// Constructs a wxChartLegendLine element.
+    /// Constructs a wxChartsLegendLine element.
     /// @param color The color associated with this
     /// item on the chart.
     /// @param text The text of the legend.

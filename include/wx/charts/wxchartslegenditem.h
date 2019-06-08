@@ -32,22 +32,22 @@
 #include <wx/string.h>
 #include <map>
 
-/// Class that represents items of the wxChartLegendData class.
+/// Class that represents items of the wxChartsLegendData class.
 class wxChartsLegendItem
 {
 public:
-    /// Constructs a wxChartLegendItem instance.
+    /// Constructs a wxChartsLegendItem instance.
     /// @param color The color associated with this
     /// item on the chart.
     /// @param label The text to be display in the legend.
     wxChartsLegendItem(const wxColor &color,
         const wxString &label);
-    /// Constructs a wxChartLegendItem instance from a
+    /// Constructs a wxChartsLegendItem instance from a
     /// slice data.
     /// @param slice The slice of the chart this legend item
     /// corresponds to.
     wxChartsLegendItem(const wxChartSliceData &slice);
-    /// Constructs a wxChartLegendItem instance from a
+    /// Constructs a wxChartsLegendItem instance from a
     /// line chart dataset.
     /// @param dataset The dataset this legend item
     /// corresponds to.
@@ -65,22 +65,22 @@ private:
     wxString m_label;
 };
 
-typedef wxVector<wxChartsLegendItem> wxChartLegendItems;
+typedef wxVector<wxChartsLegendItem> wxChartsLegendItems;
 
-/// Data for the wxChartLegendCtrl control.
+/// Data for the wxChartsLegendCtrl control.
 class wxChartsLegendData
 {
 public:
-    /// Constructs a wxChartLegendData
+    /// Constructs a wxChartsLegendData
     /// instance.
     wxChartsLegendData();
-    /// Constructs a wxChartLegendData instance from
+    /// Constructs a wxChartsLegendData instance from
     /// a list of slices. This can be used to build
     /// a legend for the wxPieChartCtrl and
     /// wxDoughnutChartCtrl controls for instance.
     /// @param slices List of slices.
     wxChartsLegendData(const std::map<wxString, wxChartSliceData>& slices);
-    /// Constructs a wxChartLegendData instance from
+    /// Constructs a wxChartsLegendData instance from
     /// a list of datasets. This can be used to build
     /// a legend for the wxLineChartCtrl control.
     /// @param datasets List of datasets.

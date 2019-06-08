@@ -38,7 +38,7 @@
 class wxChartsLegendCtrl : public wxControl
 {
 public:
-    /// Constructs a wxChartLegendCtrl control.
+    /// Constructs a wxChartsLegendCtrl control.
     /// @param parent Pointer to a parent window.
     /// @param id Control identifier. If wxID_ANY, will automatically
     /// create an identifier.
