@@ -35,10 +35,10 @@
     <ClInclude Include="..\..\src\wxchartsrectanglepanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\wxchartlabelpanel.h">
+    <ClInclude Include="..\..\src\wxchartslabelpanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\wxchartlabelseriespanel.h">
+    <ClInclude Include="..\..\src\wxchartslabelseriespanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\wxchartscategoricalaxispanel.h">
@@ -103,10 +103,10 @@
     <ClCompile Include="..\..\src\wxchartsrectanglepanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartlabelpanel.cpp">
+    <ClCompile Include="..\..\src\wxchartslabelpanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartlabelseriespanel.cpp">
+    <ClCompile Include="..\..\src\wxchartslabelseriespanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchartscategoricalaxispanel.cpp">
@@ -172,7 +172,7 @@
     <ClCompile Include="..\..\src\tests\wxchartfontoptionstests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\tests\wxchartlabeloptionstests.cpp">
+    <ClCompile Include="..\..\src\tests\wxchartslabeloptionstests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\tests\wxchartaxisoptionstests.cpp">
