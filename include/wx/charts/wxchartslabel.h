@@ -42,12 +42,12 @@
 class wxChartsLabel : public wxChartsElement
 {
 public:
-    /// Constructs a wxChartLabel element. The width
+    /// Constructs a wxChartsLabel element. The width
     /// and height are set to 0.
     /// @param text The text to display.
     /// @param options The settings to be used for the label.
     wxChartsLabel(const wxString &text, const wxChartsLabelOptions &options);
-    /// Constructs a wxChartLabel element.
+    /// Constructs a wxChartsLabel element.
     /// @param text The text to display.
     /// @param width The width of the label.
     /// @param height The height of the label.
