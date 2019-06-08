@@ -20,12 +20,12 @@
 	IN THE SOFTWARE.
 */
 
-#include "WxDoughnutFrame.h"
+#include "wxdoughnutchartframe.h"
 #include <wx/panel.h>
 #include <wx/sizer.h>
 #include <wx/charts/wxcharts.h>
 
-WxDoughnutFrame::WxDoughnutFrame(const wxString& title)
+wxDoughnutChartFrame::wxDoughnutChartFrame(const wxString& title)
 	: wxFrame(NULL, wxID_ANY, title)
 {
 	// Create a top-level panel to hold all the contents of the frame
@@ -44,8 +44,8 @@ WxDoughnutFrame::WxDoughnutFrame(const wxString& title)
 		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
 	// Create the legend widget
-	wxChartLegendData legendData(chartData->GetSlices());
-	wxChartLegendCtrl* legendCtrl = new wxChartLegendCtrl(panel, wxID_ANY, legendData,
+	wxChartsLegendData legendData(chartData->GetSlices());
+	wxChartsLegendCtrl* legendCtrl = new wxChartsLegendCtrl(panel, wxID_ANY, legendData,
 		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
 	// Set up the sizer for the panel

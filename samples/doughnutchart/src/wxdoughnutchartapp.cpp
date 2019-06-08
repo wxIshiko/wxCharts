@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2015-2016 Xavier Leclercq
+	Copyright (c) 2015-2019 Xavier Leclercq
 
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
@@ -20,14 +20,14 @@
 	IN THE SOFTWARE.
 */
 
-#include "WxDoughnutApp.h"
-#include "WxDoughnutFrame.h"
+#include "wxdoughnutchartapp.h"
+#include "wxdoughnutchartframe.h"
 
-wxIMPLEMENT_APP(WxDoughnutApp);
+wxIMPLEMENT_APP(wxDoughnutChartApp);
 
-bool WxDoughnutApp::OnInit()
+bool wxDoughnutChartApp::OnInit()
 {
-	WxDoughnutFrame* frame = new WxDoughnutFrame("wxCharts Doughnut Chart Sample");
+	wxDoughnutChartFrame* frame = new wxDoughnutChartFrame("wxCharts - wxDoughnutChart Sample");
 	frame->Show(true);
 	return true;
 }
