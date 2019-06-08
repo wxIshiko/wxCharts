@@ -74,6 +74,9 @@ library wxcharts
         ../../include/wx/charts/wxchartscircle.h
         ../../include/wx/charts/wxchartsarcoptions.h
         ../../include/wx/charts/wxchartsarc.h
+        ../../include/wx/charts/wxchartslabel.h
+        ../../include/wx/charts/wxchartslabeloptions.h
+        ../../include/wx/charts/wxchartslabelgroup.h
         ../../include/wx/charts/wxchartsaxis.h
         ../../include/wx/charts/wxchartsaxisoptions.h
         ../../include/wx/charts/wxchartscategoricalaxis.h
@@ -90,9 +93,6 @@ library wxcharts
         ../../include/wx/charts/wxchartbackgroundoptions.h
         ../../include/wx/charts/wxchartbackground.h
         ../../include/wx/charts/wxchartfontoptions.h
-        ../../include/wx/charts/wxchartlabel.h
-        ../../include/wx/charts/wxchartlabeloptions.h
-        ../../include/wx/charts/wxchartlabelgroup.h
         ../../include/wx/charts/wxcharttooltipoptions.h
         ../../include/wx/charts/wxcharttooltipprovider.h
         ../../include/wx/charts/wxcharttooltip.h
@@ -202,6 +202,9 @@ library wxcharts
         ../../src/wxchartscircle.cpp
         ../../src/wxchartsarcoptions.cpp
         ../../src/wxchartsarc.cpp
+        ../../src/wxchartslabel.cpp
+        ../../src/wxchartslabeloptions.cpp
+        ../../src/wxchartslabelgroup.cpp
         ../../src/wxchartsaxis.cpp
         ../../src/wxchartsaxisoptions.cpp
         ../../src/wxchartscategoricalaxis.cpp
@@ -218,9 +221,6 @@ library wxcharts
         ../../src/wxchartbackgroundoptions.cpp
         ../../src/wxchartbackground.cpp
         ../../src/wxchartfontoptions.cpp
-        ../../src/wxchartlabel.cpp
-        ../../src/wxchartlabeloptions.cpp
-        ../../src/wxchartlabelgroup.cpp
         ../../src/wxcharttooltipoptions.cpp
         ../../src/wxcharttooltipprovider.cpp
         ../../src/wxcharttooltip.cpp

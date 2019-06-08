@@ -89,6 +89,15 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartsarc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\charts\wxchartslabel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx\charts\wxchartslabeloptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx\charts\wxchartslabelgroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxchartsaxis.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -132,15 +141,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxchartfontoptions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxchartlabel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxchartlabeloptions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxchartlabelgroup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltipoptions.h">
@@ -454,6 +454,15 @@
     <ClCompile Include="..\..\src\wxchartsarc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\wxchartslabel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wxchartslabeloptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wxchartslabelgroup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\wxchartsaxis.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -497,15 +506,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchartfontoptions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\wxchartlabel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\wxchartlabeloptions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\wxchartlabelgroup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxcharttooltipoptions.cpp">
