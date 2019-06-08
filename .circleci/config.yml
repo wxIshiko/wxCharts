@@ -59,9 +59,9 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxDoughnut sample build
+          name: wxDoughnutChart sample build
           command: make
-          working_directory: samples/doughnut
+          working_directory: samples/doughnutchart
           environment:
             WXCHARTS_ROOT: ../..
       - run:

@@ -1,9 +1,9 @@
 toolsets = gnu vs2017 vs2015 vs2013;
 
 gnu.makefile = ../../GNUmakefile;
-vs2017.solutionfile = ../msw/WxDoughnut_vc15.sln;
-vs2015.solutionfile = ../msw/WxDoughnut_vc14.sln;
-vs2013.solutionfile = ../msw/WxDoughnut_vc12.sln;
+vs2017.solutionfile = ../msw/wxdoughnutchart_vc15.sln;
+vs2015.solutionfile = ../msw/wxdoughnutchart_vc14.sln;
+vs2013.solutionfile = ../msw/wxdoughnutchart_vc12.sln;
 
 setting WXWIDGETS_ROOT
 {
@@ -17,13 +17,13 @@ setting WXCHARTS_ROOT
     default = '$(WXCHARTS)';
 }
 
-program WxDoughnut
+program wxdoughnutchart
 {
     archs = x86 x86_64;
 
-    vs2017.projectfile = ../msw/WxDoughnut_vc15.vcxproj;
-    vs2015.projectfile = ../msw/WxDoughnut_vc14.vcxproj;
-    vs2013.projectfile = ../msw/WxDoughnut_vc12.vcxproj;
+    vs2017.projectfile = ../msw/wxdoughnutchart_vc15.vcxproj;
+    vs2015.projectfile = ../msw/wxdoughnutchart_vc14.vcxproj;
+    vs2013.projectfile = ../msw/wxdoughnutchart_vc12.vcxproj;
 
     includedirs += $(WXCHARTS_ROOT)/include;
 
@@ -54,13 +54,13 @@ program WxDoughnut
 
     headers
     {
-        ../../src/WxDoughnutApp.h
-        ../../src/WxDoughnutFrame.h
+        ../../src/wxdoughnutchartapp.h
+        ../../src/wxdoughnutchartframe.h
     }
 
     sources
     {
-        ../../src/WxDoughnutApp.cpp
-        ../../src/WxDoughnutFrame.cpp
+        ../../src/wxdoughnutchartapp.cpp
+        ../../src/wxdoughnutchartframe.cpp
     }
 }

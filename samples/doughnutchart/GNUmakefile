@@ -66,21 +66,21 @@ WXCHARTS_ROOT ?= $(WXCHARTS)
 
 # ------------
 
-all: $(_builddir)WxDoughnut
+all: $(_builddir)wxdoughnutchart
 
-$(_builddir)WxDoughnut: $(_builddir)WxDoughnut_WxDoughnutApp.o $(_builddir)WxDoughnut_WxDoughnutFrame.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)WxDoughnut_WxDoughnutApp.o $(_builddir)WxDoughnut_WxDoughnutFrame.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
+$(_builddir)wxdoughnutchart: $(_builddir)wxdoughnutchart_wxdoughnutchartapp.o $(_builddir)wxdoughnutchart_wxdoughnutchartframe.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxdoughnutchart_wxdoughnutchartapp.o $(_builddir)wxdoughnutchart_wxdoughnutchartframe.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
 
-$(_builddir)WxDoughnut_WxDoughnutApp.o: src/WxDoughnutApp.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxDoughnutApp.cpp
+$(_builddir)wxdoughnutchart_wxdoughnutchartapp.o: src/wxdoughnutchartapp.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxdoughnutchartapp.cpp
 
-$(_builddir)WxDoughnut_WxDoughnutFrame.o: src/WxDoughnutFrame.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxDoughnutFrame.cpp
+$(_builddir)wxdoughnutchart_wxdoughnutchartframe.o: src/wxdoughnutchartframe.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxdoughnutchartframe.cpp
 
 clean:
 	rm -f $(_builddir)*.o
 	rm -f $(_builddir)*.d
-	rm -f $(_builddir)WxDoughnut
+	rm -f $(_builddir)wxdoughnutchart
 
 .PHONY: all clean
 
