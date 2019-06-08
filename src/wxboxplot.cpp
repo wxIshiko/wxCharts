@@ -23,6 +23,7 @@
 /// @file
 
 #include "wxboxplot.h"
+#include "wxchartstheme.h"
 #include "wxchartscategoricalaxis.h"
 #include "wxchartsnumericalaxis.h"
 #include <wx/brush.h>
@@ -142,12 +143,13 @@ void wxBoxPlot::Box::Update(const wxChartsGridMapping& mapping,
 
 wxBoxPlot::wxBoxPlot(const wxBoxPlotData &data,
                      const wxSize &size)
-    : m_grid(
-          wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
+    : m_options(wxChartsDefaultTheme->GetBoxPlotOptions()),
+    m_grid(
+          wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
           size,
-          wxChartsCategoricalAxis::make_shared("x", data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
-          wxChartsNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions().GetYAxisOptions()),
-          m_options.GetGridOptions()
+          wxChartsCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+          wxChartsNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options->GetGridOptions().GetYAxisOptions()),
+          m_options->GetGridOptions()
       )
 {
     Initialize(data);
@@ -156,12 +158,13 @@ wxBoxPlot::wxBoxPlot(const wxBoxPlotData &data,
 wxBoxPlot::wxBoxPlot(const wxBoxPlotData &data,
                      wxBoxPlotOptions::ptr options,
                      const wxSize &size)
-    : m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
+    : m_options(options),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
         size,
-        wxChartsCategoricalAxis::make_shared("x", data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
-        wxChartsNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions().GetYAxisOptions()),
-        m_options.GetGridOptions()
+        wxChartsCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
     )
 {
     Initialize(data);
@@ -169,7 +172,7 @@ wxBoxPlot::wxBoxPlot(const wxBoxPlotData &data,
 
 const wxChartCommonOptions& wxBoxPlot::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 void wxBoxPlot::Initialize(const wxBoxPlotData &data)
@@ -232,8 +235,8 @@ wxDouble wxBoxPlot::GetMaxValue(const wxBoxPlotData &data)
 void wxBoxPlot::DoSetSize(const wxSize &size)
 {
     wxSize newSize(
-        size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
-        size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+        size.GetWidth() - m_options->GetPadding().GetTotalHorizontalPadding(),
+        size.GetHeight() - m_options->GetPadding().GetTotalVerticalPadding()
     );
     m_grid.Resize(newSize);
 }

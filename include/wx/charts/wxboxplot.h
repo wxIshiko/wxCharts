@@ -123,7 +123,7 @@ private:
     };
 
 private:
-    wxBoxPlotOptions m_options;
+    wxBoxPlotOptions::ptr m_options;
     wxChartsGrid m_grid;
     wxVector<Box::ptr> m_data;
 };

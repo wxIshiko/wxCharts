@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -32,6 +32,18 @@ wxBoxPlotCtrl::wxBoxPlotCtrl(wxWindow *parent,
                              long style)
     : wxChartCtrl(parent, id, pos, size, style),
       m_boxplot(data, size)
+{
+}
+
+wxBoxPlotCtrl::wxBoxPlotCtrl(wxWindow *parent,
+                             wxWindowID id,
+                             const wxBoxPlotData &data,
+                             wxBoxPlotOptions::ptr options,
+                             const wxPoint &pos,
+                             const wxSize &size,
+                             long style)
+    : wxChartCtrl(parent, id, pos, size, style),
+      m_boxplot(data, options, size)
 {
 }
 
