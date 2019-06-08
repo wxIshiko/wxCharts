@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,10 +25,10 @@
 
 #include <wx/frame.h>
 
-class WxAreaChartFrame : public wxFrame
+class wxAreaChartFrame : public wxFrame
 {
 public:
-    WxAreaChartFrame(const wxString& title);
+    wxAreaChartFrame(const wxString& title);
 };
 
 #endif

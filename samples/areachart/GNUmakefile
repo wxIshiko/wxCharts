@@ -66,21 +66,21 @@ WXCHARTS_ROOT ?= $(WXCHARTS)
 
 # ------------
 
-all: $(_builddir)wxAreaChart
+all: $(_builddir)wxareachart
 
-$(_builddir)wxAreaChart: $(_builddir)wxAreaChart_wxareachartapp.o $(_builddir)wxAreaChart_wxareachartframe.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxAreaChart_wxareachartapp.o $(_builddir)wxAreaChart_wxareachartframe.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
+$(_builddir)wxareachart: $(_builddir)wxareachart_wxareachartapp.o $(_builddir)wxareachart_wxareachartframe.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxareachart_wxareachartapp.o $(_builddir)wxareachart_wxareachartframe.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
 
-$(_builddir)wxAreaChart_wxareachartapp.o: src/wxareachartapp.cpp
+$(_builddir)wxareachart_wxareachartapp.o: src/wxareachartapp.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxareachartapp.cpp
 
-$(_builddir)wxAreaChart_wxareachartframe.o: src/wxareachartframe.cpp
+$(_builddir)wxareachart_wxareachartframe.o: src/wxareachartframe.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxareachartframe.cpp
 
 clean:
 	rm -f $(_builddir)*.o
 	rm -f $(_builddir)*.d
-	rm -f $(_builddir)wxAreaChart
+	rm -f $(_builddir)wxareachart
 
 .PHONY: all clean
 
