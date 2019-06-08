@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,14 +20,14 @@
     IN THE SOFTWARE.
 */
 
-#include "WxAreaChartApp.h"
-#include "WxAreaChartFrame.h"
+#include "wxareachartapp.h"
+#include "wxareachartframe.h"
 
-wxIMPLEMENT_APP(WxAreaChartApp);
+wxIMPLEMENT_APP(wxAreaChartApp);
 
-bool WxAreaChartApp::OnInit()
+bool wxAreaChartApp::OnInit()
 {
-    WxAreaChartFrame* frame = new WxAreaChartFrame("wxCharts Area Chart Sample");
+    wxAreaChartFrame* frame = new wxAreaChartFrame("wxCharts - wxAreaChart Sample");
     frame->Show(true);
     return true;
 }
