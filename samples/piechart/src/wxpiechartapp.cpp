@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2015-2016 Xavier Leclercq
+	Copyright (c) 2015-2019 Xavier Leclercq
 
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
@@ -20,14 +20,14 @@
 	IN THE SOFTWARE.
 */
 
-#include "WxPieApp.h"
-#include "WxPieFrame.h"
+#include "wxpiechartapp.h"
+#include "wxpiechartframe.h"
 
-wxIMPLEMENT_APP(WxPieApp);
+wxIMPLEMENT_APP(wxPieChartApp);
 
-bool WxPieApp::OnInit()
+bool wxPieChartApp::OnInit()
 {
-	WxPieFrame* frame = new WxPieFrame("wxCharts Pie Chart Sample");
+	wxPieChartFrame* frame = new wxPieChartFrame("wxCharts - wxPieChart Sample");
 	frame->Show(true);
 	return true;
 }

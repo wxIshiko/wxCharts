@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2015-2016 Xavier Leclercq
+	Copyright (c) 2015-2019 Xavier Leclercq
 
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
@@ -20,15 +20,15 @@
 	IN THE SOFTWARE.
 */
 
-#ifndef _SAMPLES_PIE_WXPIEFRAME_H_
-#define _SAMPLES_PIE_WXPIEFRAME_H_
+#ifndef _SAMPLES_PIECHART_WXPIECHARTFRAME_H_
+#define _SAMPLES_PIECHART_WXPIECHARTFRAME_H_
 
 #include <wx/frame.h>
 
-class WxPieFrame : public wxFrame
+class wxPieChartFrame : public wxFrame
 {
 public:
-	WxPieFrame(const wxString& title);
+    wxPieChartFrame(const wxString& title);
 };
 
 #endif

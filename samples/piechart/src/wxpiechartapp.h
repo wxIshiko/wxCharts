@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2015-2016 Xavier Leclercq
+	Copyright (c) 2015-2019 Xavier Leclercq
 
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
@@ -20,12 +20,12 @@
 	IN THE SOFTWARE.
 */
 
-#ifndef _SAMPLES_PIE_WXPIEAPP_H_
-#define _SAMPLES_PIE_WXPIEAPP_H_
+#ifndef _SAMPLES_PIECHART_WXPIECHARTAPP_H_
+#define _SAMPLES_PIECHART_WXPIECHARTAPP_H_
 
 #include <wx/app.h>
 
-class WxPieApp : public wxApp
+class wxPieChartApp : public wxApp
 {
 public:
 	virtual bool OnInit();

@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2015-2016 Xavier Leclercq
+	Copyright (c) 2015-2019 Xavier Leclercq
 
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
@@ -20,12 +20,12 @@
 	IN THE SOFTWARE.
 */
 
-#include "WxPieFrame.h"
+#include "wxpiechartframe.h"
 #include <wx/panel.h>
 #include <wx/sizer.h>
 #include <wx/charts/wxcharts.h>
 
-WxPieFrame::WxPieFrame(const wxString& title)
+wxPieChartFrame::wxPieChartFrame(const wxString& title)
 	: wxFrame(NULL, wxID_ANY, title)
 {
 	// Create a top-level panel to hold all the contents of the frame
@@ -44,8 +44,8 @@ WxPieFrame::WxPieFrame(const wxString& title)
 		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
 	// Create the legend widget
-	wxChartLegendData legendData(chartData->GetSlices());
-	wxChartLegendCtrl* legendCtrl = new wxChartLegendCtrl(panel, wxID_ANY, legendData,
+	wxChartsLegendData legendData(chartData->GetSlices());
+	wxChartsLegendCtrl* legendCtrl = new wxChartsLegendCtrl(panel, wxID_ANY, legendData,
 		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
 	// Set up the sizer for the panel
