@@ -110,6 +110,11 @@ wxLineChartData::wxLineChartData(const wxVector<wxString> &labels)
 {
 }
 
+wxLineChartData::ptr wxLineChartData::make_shared(const wxVector<wxString> &labels)
+{
+    return ptr(new wxLineChartData(labels));
+}
+
 void wxLineChartData::AddDataset(wxLineChartDataset::ptr dataset)
 {
     m_datasets.push_back(dataset);
@@ -206,29 +211,29 @@ void wxLineChart::Dataset::AppendPoint(Point::ptr point)
     m_points.push_back(point);
 }
 
-wxLineChart::wxLineChart(const wxLineChartData &data,
+wxLineChart::wxLineChart(wxLineChartData::ptr &data,
                          const wxSize &size)
     : m_options(wxChartsDefaultTheme->GetLineChartOptions()),
     m_grid(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
         size,
-        wxChartsCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
-        wxChartsNumericalAxis::make_shared("y", GetMinValue(data.GetDatasets()), GetMaxValue(data.GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        wxChartsCategoricalAxis::make_shared("x", data->GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
         )
 {
     Initialize(data);
 }
 
-wxLineChart::wxLineChart(const wxLineChartData &data,
+wxLineChart::wxLineChart(wxLineChartData::ptr &data,
                          const wxLineChartOptions &options,
                          const wxSize &size)
     : m_options(new wxLineChartOptions(options)),
     m_grid(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
         size,
-        wxChartsCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
-        wxChartsNumericalAxis::make_shared("y", GetMinValue(data.GetDatasets()), GetMaxValue(data.GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        wxChartsCategoricalAxis::make_shared("x", data->GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
         )
 {
@@ -258,9 +263,9 @@ void wxLineChart::Save(const wxString &filename,
     }
 }
 
-void wxLineChart::Initialize(const wxLineChartData &data)
+void wxLineChart::Initialize(wxLineChartData::ptr &data)
 {
-    const wxVector<wxLineChartDataset::ptr>& datasets = data.GetDatasets();
+    const wxVector<wxLineChartDataset::ptr>& datasets = data->GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
         wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
@@ -277,7 +282,7 @@ void wxLineChart::Initialize(const wxLineChartData &data)
             std::stringstream tooltip;
             tooltip << datasetData[j];
             wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic(data.GetLabels()[j], tooltip.str(), datasets[i]->GetLineColor())
+                new wxChartTooltipProviderStatic(data->GetLabels()[j], tooltip.str(), datasets[i]->GetLineColor())
                 );
 
             Point::ptr point(

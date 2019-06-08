@@ -118,9 +118,13 @@ private:
 class wxLineChartData
 {
 public:
+    /// Smart pointer typedef.
+    typedef wxSharedPtr<wxLineChartData> ptr;
+
     /// Constructs a wxLineChartData instance.
     /// @param labels The labels of the X axis.
     wxLineChartData(const wxVector<wxString> &labels);
+    static ptr make_shared(const wxVector<wxString> &labels);
 
     /// Adds a dataset.
     /// @param dataset The dataset to add.
@@ -143,8 +147,8 @@ private:
 class wxLineChart : public wxChart
 {
 public:
-    wxLineChart(const wxLineChartData &data, const wxSize &size);
-    wxLineChart(const wxLineChartData &data, const wxLineChartOptions &options,
+    wxLineChart(wxLineChartData::ptr &data, const wxSize &size);
+    wxLineChart(wxLineChartData::ptr &data, const wxLineChartOptions &options,
         const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
@@ -153,7 +157,7 @@ public:
         const wxSize &size, const wxColor &backgroundColor);
 
 private:
-    void Initialize(const wxLineChartData &data);
+    void Initialize(wxLineChartData::ptr &data);
     static wxDouble GetMinValue(const wxVector<wxLineChartDataset::ptr>& datasets);
     static wxDouble GetMaxValue(const wxVector<wxLineChartDataset::ptr>& datasets);
 
