@@ -26,8 +26,8 @@
 
 wxLineChartDatasetOptions::wxLineChartDatasetOptions(const wxColor &dotColor,
                                                      const wxColor &dotStrokeColor)
-    : m_showDots(true), m_dotColor(dotColor), m_dotStrokeColor(dotStrokeColor),
-    m_dotRadius(4), m_dotStrokeWidth(1), m_lineWidth(2)
+    : m_showDots(true), m_dotPenOptions(dotStrokeColor, 1), m_dotColor(dotColor),
+    m_dotRadius(4), m_lineWidth(2)
 {
 }
 
@@ -43,7 +43,7 @@ const wxColor& wxLineChartDatasetOptions::GetDotColor() const
 
 const wxColor& wxLineChartDatasetOptions::GetDotStrokeColor() const
 {
-    return m_dotStrokeColor;
+    return m_dotPenOptions.GetColor();
 }
 
 wxDouble wxLineChartDatasetOptions::GetDotRadius() const
@@ -53,7 +53,7 @@ wxDouble wxLineChartDatasetOptions::GetDotRadius() const
 
 unsigned int wxLineChartDatasetOptions::GetDotStrokeWidth() const
 {
-    return m_dotStrokeWidth;
+    return m_dotPenOptions.GetWidth();
 }
 
 unsigned int wxLineChartDatasetOptions::GetLineWidth() const

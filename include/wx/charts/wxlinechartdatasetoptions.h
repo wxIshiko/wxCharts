@@ -59,10 +59,9 @@ public:
 
 private:
     bool m_showDots;
+    wxChartsPenOptions m_dotPenOptions;
     wxColor m_dotColor;
-    wxColor m_dotStrokeColor;
     wxDouble m_dotRadius;
-    unsigned int m_dotStrokeWidth;
     unsigned int m_lineWidth;
 };
 
