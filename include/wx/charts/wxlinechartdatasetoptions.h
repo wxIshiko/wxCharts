@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,40 +22,7 @@
 
 /// @file
 
-#include "wxlinechartoptions.h"
+#ifndef _WX_CHARTS_WXLINECHARTDATASETOPTIONS_H_
+#define _WX_CHARTS_WXLINECHARTDATASETOPTIONS_H_
 
-wxLineChartOptions::wxLineChartOptions()
-    : m_dotRadius(4), m_dotStrokeWidth(1),
-    m_lineWidth(2), m_hitDetectionRange(24)
-{
-}
-
-const wxChartsGridOptions& wxLineChartOptions::GetGridOptions() const
-{
-    return m_gridOptions;
-}
-
-wxChartsGridOptions& wxLineChartOptions::GetGridOptions()
-{
-    return m_gridOptions;
-}
-
-wxDouble wxLineChartOptions::GetDotRadius() const
-{
-    return m_dotRadius;
-}
-
-unsigned int wxLineChartOptions::GetDotStrokeWidth() const
-{
-    return m_dotStrokeWidth;
-}
-
-unsigned int wxLineChartOptions::GetLineWidth() const
-{
-    return m_lineWidth;
-}
-
-wxDouble wxLineChartOptions::GetHitDetectionRange() const
-{
-    return m_hitDetectionRange;
-}
+#endif

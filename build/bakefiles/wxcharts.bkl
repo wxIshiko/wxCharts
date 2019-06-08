@@ -129,6 +129,7 @@ library wxcharts
         ../../include/wx/charts/wxstackedcolumnchart.h
         ../../include/wx/charts/wxstackedcolumnchartctrl.h
         ../../include/wx/charts/wxlinechartoptions.h
+        ../../include/wx/charts/wxlinechartdatasetoptions.h
         ../../include/wx/charts/wxlinechart.h
         ../../include/wx/charts/wxlinechartctrl.h
         ../../include/wx/charts/wxtimeserieschartoptions.h
@@ -255,6 +256,7 @@ library wxcharts
         ../../src/wxstackedcolumnchart.cpp
         ../../src/wxstackedcolumnchartctrl.cpp
         ../../src/wxlinechartoptions.cpp
+        ../../src/wxlinechartdatasetoptions.cpp
         ../../src/wxlinechart.cpp
         ../../src/wxlinechartctrl.cpp
         ../../src/wxtimeserieschartoptions.cpp

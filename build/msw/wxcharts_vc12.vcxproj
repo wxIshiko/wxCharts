@@ -226,6 +226,7 @@
     <ClCompile Include="..\..\src\wxstackedcolumnchart.cpp" />
     <ClCompile Include="..\..\src\wxstackedcolumnchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxlinechartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxlinechartdatasetoptions.cpp" />
     <ClCompile Include="..\..\src\wxlinechart.cpp" />
     <ClCompile Include="..\..\src\wxlinechartctrl.cpp" />
     <ClCompile Include="..\..\src\wxtimeserieschartoptions.cpp" />
@@ -349,6 +350,7 @@
     <ClInclude Include="..\..\include\wx\charts\wxstackedcolumnchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxstackedcolumnchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxlinechartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxlinechartdatasetoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxlinechart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxlinechartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxtimeserieschartoptions.h" />
