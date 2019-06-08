@@ -66,21 +66,21 @@ WXCHARTS_ROOT ?= $(WXCHARTS)
 
 # ------------
 
-all: $(_builddir)WxStackedColumn
+all: $(_builddir)wxstackedcolumnchart
 
-$(_builddir)WxStackedColumn: $(_builddir)WxStackedColumn_WxStackedColumnApp.o $(_builddir)WxStackedColumn_WxStackedColumnFrame.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)WxStackedColumn_WxStackedColumnApp.o $(_builddir)WxStackedColumn_WxStackedColumnFrame.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
+$(_builddir)wxstackedcolumnchart: $(_builddir)wxstackedcolumnchart_wxstackedcolumnchartapp.o $(_builddir)wxstackedcolumnchart_wxstackedcolumnchartframe.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxstackedcolumnchart_wxstackedcolumnchartapp.o $(_builddir)wxstackedcolumnchart_wxstackedcolumnchartframe.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
 
-$(_builddir)WxStackedColumn_WxStackedColumnApp.o: src/WxStackedColumnApp.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxStackedColumnApp.cpp
+$(_builddir)wxstackedcolumnchart_wxstackedcolumnchartapp.o: src/wxstackedcolumnchartapp.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxstackedcolumnchartapp.cpp
 
-$(_builddir)WxStackedColumn_WxStackedColumnFrame.o: src/WxStackedColumnFrame.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxStackedColumnFrame.cpp
+$(_builddir)wxstackedcolumnchart_wxstackedcolumnchartframe.o: src/wxstackedcolumnchartframe.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxstackedcolumnchartframe.cpp
 
 clean:
 	rm -f $(_builddir)*.o
 	rm -f $(_builddir)*.d
-	rm -f $(_builddir)WxStackedColumn
+	rm -f $(_builddir)wxstackedcolumnchart
 
 .PHONY: all clean
 
