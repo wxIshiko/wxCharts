@@ -31,8 +31,6 @@
 #include <sstream>
 #include <algorithm>
 
-wxDouble median(const wxVector<double> &vec,std::size_t begin,std::size_t end);
-
 wxBoxPlotData::wxBoxPlotData(const wxVector<wxString> &labels,
                              const wxVector<wxVector<wxDouble>> &data)
     : m_labels(labels), m_lineColor(0, 0, 0, 0x80), m_width(3),
@@ -134,11 +132,11 @@ void wxBoxPlot::Box::Update(const wxChartsGridMapping& mapping,
     m_maxPoint = mapping.GetWindowPositionAtTickMark(index,
                  *m_data.rbegin());
     m_medianPoint = mapping.GetWindowPositionAtTickMark(index,
-                    median(m_data,0,len));
+                GetMedian(m_data,0,len));
     m_q1Point = mapping.GetWindowPositionAtTickMark(index,
-                median(m_data,0,len/2));
+                GetMedian(m_data,0,len/2));
     m_q3Point = mapping.GetWindowPositionAtTickMark(index,
-                median(m_data,len/2,m_data.size()));
+                GetMedian(m_data,len/2,m_data.size()));
 }
 
 wxBoxPlot::wxBoxPlot(const wxBoxPlotData &data,
@@ -185,9 +183,9 @@ void wxBoxPlot::Initialize(const wxBoxPlotData &data)
         std::stringstream tooltip;
         tooltip << "Max: " << *cur.begin()
             << "\r\nMin: " << *cur.rbegin()
-            << "\r\nMedian: " << median(cur, 0, len)
-            << "\r\nQ1: " << median(cur, 0, len / 2)
-            << "\r\nQ3: " << median(cur, len / 2, cur.size());
+            << "\r\nMedian: " << GetMedian(cur, 0, len)
+            << "\r\nQ1: " << GetMedian(cur, 0, len / 2)
+            << "\r\nQ3: " << GetMedian(cur, len / 2, cur.size());
         wxChartTooltipProvider::ptr tooltipProvider(
             new wxChartTooltipProviderStatic(data.GetLabels()[i], tooltip.str(), *wxWHITE)
         );
@@ -231,6 +229,22 @@ wxDouble wxBoxPlot::GetMaxValue(const wxBoxPlotData &data)
     }
     return result;
 }
+
+wxDouble wxBoxPlot::GetMedian(const wxVector<wxDouble> &data,
+                              size_t begin,
+                              size_t end)
+{
+    auto len = end - begin;
+    if (len % 2 == 0)
+    {
+        return (data[begin + len / 2] + data[begin + len / 2 - 1]) / 2;
+    }
+    else
+    {
+        return data[begin + len / 2];
+    }
+}
+
 
 void wxBoxPlot::DoSetSize(const wxSize &size)
 {
@@ -279,17 +293,4 @@ wxSharedPtr<wxVector<const wxChartsElement*>> wxBoxPlot::GetActiveElements(const
         }
     }
     return activeElements;
-}
-
-wxDouble median(const wxVector<double> &vec,std::size_t begin,std::size_t end)
-{
-    auto len = end-begin;
-    if(len%2==0)
-    {
-        return (vec[begin+len/2]+vec[begin+len/2-1])/2;
-    }
-    else
-    {
-        return vec[begin+len/2];
-    }
 }
