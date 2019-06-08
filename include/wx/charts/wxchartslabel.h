@@ -22,11 +22,11 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTLABEL_H_
-#define _WX_CHARTS_WXCHARTLABEL_H_
+#ifndef _WX_CHARTS_WXCHARTSLABEL_H_
+#define _WX_CHARTS_WXCHARTSLABEL_H_
 
 #include "wxchartselement.h"
-#include "wxchartlabeloptions.h"
+#include "wxchartslabeloptions.h"
 #include "wxchartpadding.h"
 #include <wx/graphics.h>
 #include <wx/string.h>
@@ -39,21 +39,21 @@
 /// as that requires a graphics context. The code
 /// that uses this class needs to set and update 
 /// the width and height.
-class wxChartLabel : public wxChartsElement
+class wxChartsLabel : public wxChartsElement
 {
 public:
     /// Constructs a wxChartLabel element. The width
     /// and height are set to 0.
     /// @param text The text to display.
     /// @param options The settings to be used for the label.
-    wxChartLabel(const wxString &text, const wxChartLabelOptions &options);
+    wxChartsLabel(const wxString &text, const wxChartsLabelOptions &options);
     /// Constructs a wxChartLabel element.
     /// @param text The text to display.
     /// @param width The width of the label.
     /// @param height The height of the label.
     /// @param options The settings to be used for the label.
-    wxChartLabel(const wxString &text, wxDouble width,
-        wxDouble height, const wxChartLabelOptions &options);
+    wxChartsLabel(const wxString &text, wxDouble width,
+        wxDouble height, const wxChartsLabelOptions &options);
 
     virtual void Draw(wxGraphicsContext &gc) const;
 
@@ -61,7 +61,7 @@ public:
 
     virtual wxPoint2DDouble GetTooltipPosition() const;
 
-    wxChartLabelOptions& GetOptions();
+    wxChartsLabelOptions& GetOptions();
     /// Gets the text of the label.
     /// @return The text of the label.
     const wxString& GetText() const;
@@ -95,7 +95,7 @@ public:
     void SetPadding(const wxChartPadding &padding);
 
 private:
-    wxChartLabelOptions m_options;
+    wxChartsLabelOptions m_options;
     wxString m_text;
     wxPoint2DDouble m_position;
     wxSize m_size;

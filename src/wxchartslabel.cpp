@@ -20,27 +20,27 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartlabel.h"
+#include "wxchartslabel.h"
 #include "wxchartbackground.h"
 #include "wxchartsutilities.h"
 
-wxChartLabel::wxChartLabel(const wxString &text,
-                           const wxChartLabelOptions &options)
+wxChartsLabel::wxChartsLabel(const wxString &text,
+                             const wxChartsLabelOptions &options)
     : m_options(options), m_text(text), m_position(0, 0),
     m_size(0, 0)
 {
 }
 
-wxChartLabel::wxChartLabel(const wxString &text,
-                           wxDouble width,
-                           wxDouble height,
-                           const wxChartLabelOptions &options)
+wxChartsLabel::wxChartsLabel(const wxString &text,
+                             wxDouble width,
+                             wxDouble height,
+                             const wxChartsLabelOptions &options)
     : m_options(options), m_text(text), m_position(0, 0),
     m_size(width, height)
 {
 }
 
-void wxChartLabel::Draw(wxGraphicsContext &gc) const
+void wxChartsLabel::Draw(wxGraphicsContext &gc) const
 {
     if (m_options.HasBackground())
     {
@@ -57,60 +57,60 @@ void wxChartLabel::Draw(wxGraphicsContext &gc) const
     gc.DrawText(m_text, m_position.m_x, m_position.m_y);
 }
 
-bool wxChartLabel::HitTest(const wxPoint &point) const
+bool wxChartsLabel::HitTest(const wxPoint &point) const
 {
     return false;
 }
 
-wxPoint2DDouble wxChartLabel::GetTooltipPosition() const
+wxPoint2DDouble wxChartsLabel::GetTooltipPosition() const
 {
     return wxPoint2DDouble(0, 0);
 }
 
-wxChartLabelOptions& wxChartLabel::GetOptions()
+wxChartsLabelOptions& wxChartsLabel::GetOptions()
 {
     return m_options;
 }
 
-const wxString& wxChartLabel::GetText() const
+const wxString& wxChartsLabel::GetText() const
 {
     return m_text;
 }
 
-const wxPoint2DDouble& wxChartLabel::GetPosition() const
+const wxPoint2DDouble& wxChartsLabel::GetPosition() const
 {
     return m_position;
 }
 
-void wxChartLabel::SetPosition(const wxPoint2DDouble &position)
+void wxChartsLabel::SetPosition(const wxPoint2DDouble &position)
 {
     m_position = position;
 }
 
-void wxChartLabel::SetPosition(wxDouble x,
-                               wxDouble y)
+void wxChartsLabel::SetPosition(wxDouble x,
+                                wxDouble y)
 {
     m_position.m_x = x;
     m_position.m_y = y;
 }
 
-const wxSize& wxChartLabel::GetSize() const
+const wxSize& wxChartsLabel::GetSize() const
 {
     return m_size;
 }
 
-void wxChartLabel::SetSize(const wxSize &size)
+void wxChartsLabel::SetSize(const wxSize &size)
 {
     m_size = size;
 }
 
-void wxChartLabel::SetSize(wxDouble width, wxDouble height)
+void wxChartsLabel::SetSize(wxDouble width, wxDouble height)
 {
     m_size.x = width;
     m_size.y = height;
 }
 
-void wxChartLabel::UpdateSize(wxGraphicsContext &gc)
+void wxChartsLabel::UpdateSize(wxGraphicsContext &gc)
 {
     wxFont font = m_options.GetFontOptions().GetFont();
     wxDouble width = 0;
@@ -120,12 +120,12 @@ void wxChartLabel::UpdateSize(wxGraphicsContext &gc)
     m_size.y = height;
 }
 
-const wxChartPadding& wxChartLabel::GetPadding() const
+const wxChartPadding& wxChartsLabel::GetPadding() const
 {
     return m_padding;
 }
 
-void wxChartLabel::SetPadding(const wxChartPadding &padding)
+void wxChartsLabel::SetPadding(const wxChartPadding &padding)
 {
     m_padding = padding;
 }

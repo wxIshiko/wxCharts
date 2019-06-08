@@ -53,7 +53,7 @@ bool wxChartsRadialGridOptions::ShowLabels() const
     return m_showLabels;
 }
 
-const wxChartLabelOptions& wxChartsRadialGridOptions::GetLabelOptions() const
+const wxChartsLabelOptions& wxChartsRadialGridOptions::GetLabelOptions() const
 {
     return m_labelOptions;
 }

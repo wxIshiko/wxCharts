@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,14 +20,14 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartlabelgroup.h"
+#include "wxchartslabelgroup.h"
 
-wxChartLabelGroup::wxChartLabelGroup()
+wxChartsLabelGroup::wxChartsLabelGroup()
     : m_maxWidth(0)
 {
 }
 
-void wxChartLabelGroup::Draw(wxGraphicsContext &gc) const
+void wxChartsLabelGroup::Draw(wxGraphicsContext &gc) const
 {
     for (size_t i = 0; i < size(); ++i)
     {
@@ -35,7 +35,7 @@ void wxChartLabelGroup::Draw(wxGraphicsContext &gc) const
     }
 }
 
-void wxChartLabelGroup::UpdateSizes(wxGraphicsContext &gc)
+void wxChartsLabelGroup::UpdateSizes(wxGraphicsContext &gc)
 {
     m_maxWidth = 0;
 
@@ -51,7 +51,7 @@ void wxChartLabelGroup::UpdateSizes(wxGraphicsContext &gc)
     }
 }
 
-wxDouble wxChartLabelGroup::GetMaxWidth() const
+wxDouble wxChartsLabelGroup::GetMaxWidth() const
 {
     return m_maxWidth;
 }

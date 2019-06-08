@@ -38,7 +38,7 @@
 
 #include "wxchartspenoptions.h"
 #include "wxchartsbrushoptions.h"
-#include "wxchartlabel.h"
+#include "wxchartslabel.h"
 #include <wx/pen.h>
 #include <wx/brush.h>
 #include <wx/graphics.h>
@@ -66,8 +66,8 @@ public:
         size_t &steps, wxDouble &stepValue);
     static wxDouble CalculateOrderOfMagnitude(wxDouble value);
     static void BuildNumericalLabels(wxDouble minValue, size_t steps,
-        wxDouble stepValue, const wxChartLabelOptions &options,
-        wxVector<wxChartLabel> &labels);
+        wxDouble stepValue, const wxChartsLabelOptions &options,
+        wxVector<wxChartsLabel> &labels);
     /// Gets the size of the text for the given font.
     /// @param gc The graphics context.
     /// @param font The font.

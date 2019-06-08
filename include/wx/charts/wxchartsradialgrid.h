@@ -38,7 +38,7 @@
 
 #include "wxchartselement.h"
 #include "wxchartsradialgridoptions.h"
-#include "wxchartlabelgroup.h"
+#include "wxchartslabelgroup.h"
 #include <wx/graphics.h>
 
 /// This class is used to display a radial grid.
@@ -50,7 +50,7 @@
 class wxChartsRadialGrid : public wxChartsElement
 {
 public:
-    /// Constructs a wxChartRadialGrid element.
+    /// Constructs a wxChartsRadialGrid element.
     /// @param size The size of the area where the chart 
     /// will be displayed.
     /// @param minValue The minimum of the values that
@@ -87,7 +87,7 @@ private:
     wxSize m_size;
     wxDouble m_drawingArea;
     wxPoint2DDouble m_center;
-    wxChartLabelGroup m_labels;
+    wxChartsLabelGroup m_labels;
     wxDouble m_graphMinValue;
     wxDouble m_graphMaxValue;
     size_t m_steps;
