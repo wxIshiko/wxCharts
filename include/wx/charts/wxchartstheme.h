@@ -78,6 +78,7 @@ public:
     wxSharedPtr<wxTimeSeriesChartOptions> GetTimeSeriesChartOptions();
 
     wxSharedPtr<wxChartsDatasetTheme> GetDatasetTheme(const wxChartsDatasetId& id);
+    void SetDatasetTheme(const wxChartsDatasetId& id, wxSharedPtr<wxChartsDatasetTheme> theme);
 
 private:
     wxSharedPtr<wxAreaChartOptions> m_areaChartOptions;

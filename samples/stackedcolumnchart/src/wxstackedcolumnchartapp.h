@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,12 +20,12 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _SAMPLES_STACKEDCOLUMN_WXSTACKEDCOLUMNAPP_H_
-#define _SAMPLES_STACKEDCOLUMN_WXSTACKEDCOLUMNAPP_H_
+#ifndef _SAMPLES_STACKEDCOLUMNCHART_WXSTACKEDCOLUMNCHARTAPP_H_
+#define _SAMPLES_STACKEDCOLUMNCHART_WXSTACKEDCOLUMNCHARTAPP_H_
 
 #include <wx/app.h>
 
-class WxStackedColumnApp : public wxApp
+class wxStackedColumnChartApp : public wxApp
 {
 public:
     virtual bool OnInit();

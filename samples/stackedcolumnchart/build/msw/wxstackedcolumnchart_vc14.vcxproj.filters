@@ -17,18 +17,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\WxStackedColumnApp.h">
+    <ClInclude Include="..\..\src\wxstackedcolumnchartapp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\WxStackedColumnFrame.h">
+    <ClInclude Include="..\..\src\wxstackedcolumnchartframe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\WxStackedColumnApp.cpp">
+    <ClCompile Include="..\..\src\wxstackedcolumnchartapp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\WxStackedColumnFrame.cpp">
+    <ClCompile Include="..\..\src\wxstackedcolumnchartframe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

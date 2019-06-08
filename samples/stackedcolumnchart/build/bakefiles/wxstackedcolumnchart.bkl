@@ -1,9 +1,9 @@
 toolsets = gnu vs2017 vs2015 vs2013;
 
 gnu.makefile = ../../GNUmakefile;
-vs2017.solutionfile = ../msw/WxStackedColumn_vc15.sln;
-vs2015.solutionfile = ../msw/WxStackedColumn_vc14.sln;
-vs2013.solutionfile = ../msw/WxStackedColumn_vc12.sln;
+vs2017.solutionfile = ../msw/wxstackedcolumnchart_vc15.sln;
+vs2015.solutionfile = ../msw/wxstackedcolumnchart_vc14.sln;
+vs2013.solutionfile = ../msw/wxstackedcolumnchart_vc12.sln;
 
 setting WXWIDGETS_ROOT
 {
@@ -17,13 +17,13 @@ setting WXCHARTS_ROOT
     default = '$(WXCHARTS)';
 }
 
-program WxStackedColumn
+program wxstackedcolumnchart
 {
     archs = x86 x86_64;
 
-    vs2017.projectfile = ../msw/WxStackedColumn_vc15.vcxproj;
-    vs2015.projectfile = ../msw/WxStackedColumn_vc14.vcxproj;
-    vs2013.projectfile = ../msw/WxStackedColumn_vc12.vcxproj;
+    vs2017.projectfile = ../msw/wxstackedcolumnchart_vc15.vcxproj;
+    vs2015.projectfile = ../msw/wxstackedcolumnchart_vc14.vcxproj;
+    vs2013.projectfile = ../msw/wxstackedcolumnchart_vc12.vcxproj;
 
     includedirs += $(WXCHARTS_ROOT)/include;
 
@@ -54,13 +54,13 @@ program WxStackedColumn
 
     headers
     {
-        ../../src/WxStackedColumnApp.h
-        ../../src/WxStackedColumnFrame.h
+        ../../src/wxstackedcolumnchartapp.h
+        ../../src/wxstackedcolumnchartframe.h
     }
 
     sources
     {
-        ../../src/WxStackedColumnApp.cpp
-        ../../src/WxStackedColumnFrame.cpp
+        ../../src/wxstackedcolumnchartapp.cpp
+        ../../src/wxstackedcolumnchartframe.cpp
     }
 }

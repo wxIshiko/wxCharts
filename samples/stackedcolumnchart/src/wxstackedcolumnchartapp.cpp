@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,15 +20,14 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _SAMPLES_STACKEDCOLUMN_WXSTACKEDCOLUMNFRAME_H_
-#define _SAMPLES_STACKEDCOLUMN_WXSTACKEDCOLUMNFRAME_H_
+#include "wxstackedcolumnchartapp.h"
+#include "wxstackedcolumnchartframe.h"
 
-#include <wx/frame.h>
+wxIMPLEMENT_APP(wxStackedColumnChartApp);
 
-class WxStackedColumnFrame : public wxFrame
+bool wxStackedColumnChartApp::OnInit()
 {
-public:
-    WxStackedColumnFrame(const wxString& title);
-};
-
-#endif
+    wxStackedColumnChartFrame* frame = new wxStackedColumnChartFrame("wxCharts - wxStackedColumnChart Sample");
+    frame->Show(true);
+    return true;
+}

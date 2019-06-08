@@ -20,12 +20,12 @@
     IN THE SOFTWARE.
 */
 
-#include "WxStackedColumnFrame.h"
+#include "wxstackedcolumnchartframe.h"
 #include <wx/panel.h>
 #include <wx/sizer.h>
 #include <wx/charts/wxcharts.h>
 
-WxStackedColumnFrame::WxStackedColumnFrame(const wxString& title)
+wxStackedColumnChartFrame::wxStackedColumnChartFrame(const wxString& title)
     : wxFrame(NULL, wxID_ANY, title)
 {
     // Create a top-level panel to hold all the contents of the frame
