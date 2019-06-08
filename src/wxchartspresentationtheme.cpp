@@ -28,47 +28,77 @@ wxChartsPresentationTheme::wxChartsPresentationTheme()
 {
     SetDatasetTheme(wxChartsDatasetId::CreateImplicitId(0),
         wxSharedPtr<wxChartsDatasetTheme>(new wxChartsPresentationDatasetTheme0()));
-
     SetDatasetTheme(wxChartsDatasetId::CreateImplicitId(1),
         wxSharedPtr<wxChartsDatasetTheme>(new wxChartsPresentationDatasetTheme1()));
-
-    wxSharedPtr<wxChartsDatasetTheme> datasetTheme2(new wxChartsDatasetTheme());
-    wxStackedBarChartDatasetOptions stackedBarDatasetOptions2(wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2), wxChartsBrushOptions(wxColor(151, 187, 205, 0x7F)));
-    datasetTheme2->SetStackedBarChartDatasetOptions(stackedBarDatasetOptions2);
-    wxStackedColumnChartDatasetOptions stackedColumnDatasetOptions2(wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2), wxChartsBrushOptions(wxColor(151, 187, 205, 0x7F)));
-    datasetTheme2->SetStackedColumnChartDatasetOptions(stackedColumnDatasetOptions2);
-    SetDatasetTheme(wxChartsDatasetId::CreateImplicitId(2), datasetTheme2);
+    SetDatasetTheme(wxChartsDatasetId::CreateImplicitId(2),
+        wxSharedPtr<wxChartsDatasetTheme>(new wxChartsPresentationDatasetTheme2()));
 }
 
 wxChartsPresentationDatasetTheme0::wxChartsPresentationDatasetTheme0()
 {
-    wxBarChartDatasetOptions barDatasetOptions0(wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2), wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F)));
-    SetBarChartDatasetOptions(barDatasetOptions0);
-    wxLineChartDatasetOptions lineDatasetOptions0(wxColor(220, 220, 220), wxColor(255, 255, 255));
-    SetLineChartDatasetOptions(lineDatasetOptions0);
-    wxColumnChartDatasetOptions columnDatasetOptions0(wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2), wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F)));
-    SetColumnChartDatasetOptions(columnDatasetOptions0);
-    wxStackedBarChartDatasetOptions stackedBarDatasetOptions0(wxChartsPenOptions(wxColor(96, 83, 77, 0x6C), 2), wxChartsBrushOptions(wxColor(96, 83, 77, 0x3F)));
-    SetStackedBarChartDatasetOptions(stackedBarDatasetOptions0);
-    wxStackedColumnChartDatasetOptions stackedColumnDatasetOptions0(wxChartsPenOptions(wxColor(96, 83, 77, 0x6C), 2), wxChartsBrushOptions(wxColor(96, 83, 77, 0x3F)));
-    SetStackedColumnChartDatasetOptions(stackedColumnDatasetOptions0);
+    SetBarChartDatasetOptions(wxBarChartDatasetOptions(
+        wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2),
+        wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F))
+    ));
+
+    SetLineChartDatasetOptions(wxLineChartDatasetOptions(
+        wxColor(220, 220, 220),
+        wxColor(255, 255, 255)
+    ));
+
+    SetColumnChartDatasetOptions(wxColumnChartDatasetOptions(
+        wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2),
+        wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F))
+    ));
+
+    SetStackedBarChartDatasetOptions(wxStackedBarChartDatasetOptions(
+        wxChartsPenOptions(wxColor(96, 83, 77, 0x6C), 2),
+        wxChartsBrushOptions(wxColor(96, 83, 77, 0x3F))
+    ));
+
+    SetStackedColumnChartDatasetOptions(wxStackedColumnChartDatasetOptions(
+        wxChartsPenOptions(wxColor(96, 83, 77, 0x6C), 2),
+        wxChartsBrushOptions(wxColor(96, 83, 77, 0x3F))
+    ));
 }
 
 wxChartsPresentationDatasetTheme1::wxChartsPresentationDatasetTheme1()
 {
-    wxBarChartDatasetOptions barDatasetOptions1(wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2), wxChartsBrushOptions(wxColor(151, 187, 205, 0x7F)));
-    SetBarChartDatasetOptions(barDatasetOptions1);
-    wxLineChartDatasetOptions lineDatasetOptions1(wxColor(151, 187, 205), wxColor(255, 255, 255));
-    SetLineChartDatasetOptions(lineDatasetOptions1);
-    wxColumnChartDatasetOptions columnDatasetOptions1(wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2), wxChartsBrushOptions(wxColor(151, 187, 205, 0x7F)));
-    SetColumnChartDatasetOptions(columnDatasetOptions1);
-    wxStackedBarChartDatasetOptions stackedBarDatasetOptions1(wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2), wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F)));
-    SetStackedBarChartDatasetOptions(stackedBarDatasetOptions1);
-    wxStackedColumnChartDatasetOptions stackedColumnDatasetOptions1(wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2), wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F)));
-    SetStackedColumnChartDatasetOptions(stackedColumnDatasetOptions1);
+    SetBarChartDatasetOptions(wxBarChartDatasetOptions(
+        wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2),
+        wxChartsBrushOptions(wxColor(151, 187, 205, 0x7F))
+    ));
 
+    SetLineChartDatasetOptions(wxLineChartDatasetOptions(
+        wxColor(151, 187, 205),
+        wxColor(255, 255, 255)
+    ));
+ 
+    SetColumnChartDatasetOptions(wxColumnChartDatasetOptions(
+        wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2),
+        wxChartsBrushOptions(wxColor(151, 187, 205, 0x7F))
+    ));
+   
+    SetStackedBarChartDatasetOptions(wxStackedBarChartDatasetOptions(
+        wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2),
+        wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F))
+    ));
+    
+    SetStackedColumnChartDatasetOptions(wxStackedColumnChartDatasetOptions(
+        wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2),
+        wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F))
+    ));
 }
 
 wxChartsPresentationDatasetTheme2::wxChartsPresentationDatasetTheme2()
 {
+    SetStackedBarChartDatasetOptions(wxStackedBarChartDatasetOptions(
+        wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2),
+        wxChartsBrushOptions(wxColor(151, 187, 205, 0x7F))
+    ));
+
+    SetStackedColumnChartDatasetOptions(wxStackedColumnChartDatasetOptions(
+        wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2),
+        wxChartsBrushOptions(wxColor(151, 187, 205, 0x7F))
+    ));
 }
