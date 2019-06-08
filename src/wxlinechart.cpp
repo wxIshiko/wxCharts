@@ -43,11 +43,11 @@
 #include <sstream>
 
 wxLineChartDataset::wxLineChartDataset(const wxString &label,
-    const wxColor &dotColor,
-    const wxColor &dotStrokeColor,
-    const wxColor &fillColor,
-    const wxVector<wxDouble> &data,
-    const wxLineType &lineType)
+                                       const wxColor &dotColor,
+                                       const wxColor &dotStrokeColor,
+                                       const wxColor &fillColor,
+                                       const wxVector<wxDouble> &data,
+                                       const wxLineType &lineType)
     : m_label(label), m_showDots(true), m_dotColor(dotColor),
     m_dotStrokeColor(dotStrokeColor), m_showLine(true),
     m_lineColor(dotColor), m_fill(true), m_fillColor(fillColor),
@@ -261,7 +261,10 @@ void wxLineChart::Initialize(const wxLineChartData &data)
     const wxVector<wxLineChartDataset::ptr>& datasets = data.GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        Dataset::ptr newDataset(new Dataset(datasets[i]->ShowDots(),
+        wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
+        wxSharedPtr<wxLineChartDatasetOptions> datasetOptions = datasetTheme->GetLineChartDatasetOptions();
+
+        Dataset::ptr newDataset(new Dataset(datasetOptions->ShowDots(),
             datasets[i]->ShowLine(), datasets[i]->GetLineColor(),
             datasets[i]->Fill(), datasets[i]->GetFillColor(),
             datasets[i]->GetType()));
@@ -278,7 +281,7 @@ void wxLineChart::Initialize(const wxLineChartData &data)
             Point::ptr point(
                 new Point(datasetData[j], tooltipProvider, 20 + j * 10, 0,
                     m_options->GetDotRadius(), m_options->GetDotStrokeWidth(),
-                    datasets[i]->GetDotStrokeColor(), datasets[i]->GetDotColor(),
+                    datasetOptions->GetDotStrokeColor(), datasetOptions->GetDotColor(),
                     m_options->GetHitDetectionRange())
                 );
 
