@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -32,9 +32,9 @@
 wxChartLabelPanel::wxChartLabelPanel(wxWindow* parent)
     : wxPanel(parent)
 {
-    m_label = new wxChartLabel(
+    m_label = new wxChartsLabel(
         "labeltext1",
-        wxChartLabelOptions(wxChartFontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666), false, wxChartBackgroundOptions(*wxWHITE, 1))
+        wxChartsLabelOptions(wxChartFontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666), false, wxChartBackgroundOptions(*wxWHITE, 1))
     );
 
     wxSizer* sizer = new wxBoxSizer(wxVERTICAL);

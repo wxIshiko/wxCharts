@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -37,7 +37,7 @@ private:
 
 private:
     ElementCanvasWindow* m_canvas;
-    wxChartLabel* m_label;
+    wxChartsLabel* m_label;
 };
 
 #endif

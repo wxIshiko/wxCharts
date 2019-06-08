@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -27,7 +27,7 @@ TEST_CASE("wxChartLabelOptions constructor")
 {
 	wxChartFontOptions fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666);
 	wxChartBackgroundOptions backgroundOptions(0x12345678, 0.2);
-	wxChartLabelOptions options(fontOptions, true, backgroundOptions);
+	wxChartsLabelOptions options(fontOptions, true, backgroundOptions);
 
 	REQUIRE(options.GetFontOptions().GetFamily() == wxFONTFAMILY_SWISS);
 	REQUIRE(options.GetFontOptions().GetSize() == 12);
@@ -43,8 +43,8 @@ TEST_CASE("wxChartLabelOptions copy constructor")
 {
 	wxChartFontOptions fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666);
 	wxChartBackgroundOptions backgroundOptions(0x12345678, 0.2);
-	wxChartLabelOptions options(fontOptions, true, backgroundOptions);
-	wxChartLabelOptions optionsCopy(options);
+	wxChartsLabelOptions options(fontOptions, true, backgroundOptions);
+	wxChartsLabelOptions optionsCopy(options);
 
 	REQUIRE(optionsCopy.GetFontOptions().GetFamily() == wxFONTFAMILY_SWISS);
 	REQUIRE(optionsCopy.GetFontOptions().GetSize() == 12);
