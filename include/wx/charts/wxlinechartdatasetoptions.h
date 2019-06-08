@@ -41,10 +41,29 @@ public:
     const wxColor& GetDotColor() const;
     const wxColor& GetDotStrokeColor() const;
 
+    /// Gets the radius for the dots representing
+    /// points on the chart.
+    /// @return The radius of the dots.
+    wxDouble GetDotRadius() const;
+    /// Gets the width of the pen used to draw
+    /// the outline of the dots.
+    /// @return The width of the pen.
+    unsigned int GetDotStrokeWidth() const;
+    /// Gets the width of the pen used to
+    /// draw the lines connecting the points
+    /// of the chart. Width of the axes and grid
+    /// lines are part of the options returned
+    /// by the GetGridOptions() function.
+    /// @return The width of the pen.
+    unsigned int GetLineWidth() const;
+
 private:
     bool m_showDots;
     wxColor m_dotColor;
     wxColor m_dotStrokeColor;
+    wxDouble m_dotRadius;
+    unsigned int m_dotStrokeWidth;
+    unsigned int m_lineWidth;
 };
 
 #endif

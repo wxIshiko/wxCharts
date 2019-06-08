@@ -282,7 +282,7 @@ void wxLineChart::Initialize(const wxLineChartData &data)
 
             Point::ptr point(
                 new Point(datasetData[j], tooltipProvider, 20 + j * 10, 0,
-                    m_options->GetDotRadius(), m_options->GetDotStrokeWidth(),
+                    datasetOptions->GetDotRadius(), datasetOptions->GetDotStrokeWidth(),
                     datasetOptions->GetDotStrokeColor(), datasetOptions->GetDotColor(),
                     m_options->GetHitDetectionRange())
                 );
@@ -390,7 +390,10 @@ void wxLineChart::DoDraw(wxGraphicsContext &gc,
 
             if (m_datasets[i]->ShowLine())
             {
-                wxPen pen(m_datasets[i]->GetLineColor(), m_options->GetLineWidth());
+                wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
+                wxSharedPtr<wxLineChartDatasetOptions> datasetOptions = datasetTheme->GetLineChartDatasetOptions();
+
+                wxPen pen(m_datasets[i]->GetLineColor(), datasetOptions->GetLineWidth());
                 gc.SetPen(pen);
             }
             else
