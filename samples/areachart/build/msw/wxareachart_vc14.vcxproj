@@ -21,10 +21,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0E4C6A62-2F9C-501F-A549-F5A1CF5EEE77}</ProjectGuid>
+    <ProjectGuid>{186518F8-7E4F-5B4D-AE8D-9D4069EF7C3A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>wxAreaChart</RootNamespace>
-    <ProjectName>wxAreaChart</ProjectName>
+    <RootNamespace>wxareachart</RootNamespace>
+    <ProjectName>wxareachart</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

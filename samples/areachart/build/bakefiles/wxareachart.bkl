@@ -17,7 +17,7 @@ setting WXCHARTS_ROOT
     default = '$(WXCHARTS)';
 }
 
-program wxAreaChart
+program wxareachart
 {
     archs = x86 x86_64;
 
