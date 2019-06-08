@@ -38,7 +38,7 @@
 
 #include "wxchartselement.h"
 #include "wxchartsaxisoptions.h"
-#include "wxchartlabelgroup.h"
+#include "wxchartslabelgroup.h"
 #include <wx/graphics.h>
 
 /// This class represents an axis.
@@ -66,8 +66,8 @@ public:
 
     /// Gets the labels.
     /// @return The list of labels.
-    const wxChartLabelGroup& GetLabels() const;
-    void SetLabels(const wxVector<wxChartLabel> &labels);
+    const wxChartsLabelGroup& GetLabels() const;
+    void SetLabels(const wxVector<wxChartsLabel> &labels);
 
     wxPoint2DDouble CalculateLabelPosition(size_t index);
     size_t GetNumberOfTickMarks() const;
@@ -96,7 +96,7 @@ private:
     std::string m_id;
     wxPoint2DDouble m_startPoint;
     wxPoint2DDouble m_endPoint;
-    wxChartLabelGroup m_labels;
+    wxChartsLabelGroup m_labels;
 };
 
 #endif

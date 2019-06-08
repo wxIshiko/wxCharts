@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,7 +20,7 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartlabelpanel.h"
+#include "wxchartslabelpanel.h"
 #include <wx/sizer.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
@@ -29,12 +29,12 @@
 #include <wx/fontdlg.h>
 #include <sstream>
 
-wxChartLabelPanel::wxChartLabelPanel(wxWindow* parent)
+wxChartsLabelPanel::wxChartsLabelPanel(wxWindow* parent)
     : wxPanel(parent)
 {
-    m_label = new wxChartLabel(
+    m_label = new wxChartsLabel(
         "labeltext1",
-        wxChartLabelOptions(wxChartFontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666), false, wxChartBackgroundOptions(*wxWHITE, 1))
+        wxChartsLabelOptions(wxChartFontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666), false, wxChartBackgroundOptions(*wxWHITE, 1))
     );
 
     wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
@@ -53,7 +53,7 @@ wxChartLabelPanel::wxChartLabelPanel(wxWindow* parent)
     sizer->Add(m_canvas, 1, wxEXPAND);
 
     wxButton* button = new wxButton(this, wxID_ANY, L"Change font...");
-    button->Bind(wxEVT_BUTTON, &wxChartLabelPanel::OnFontSelection, this);
+    button->Bind(wxEVT_BUTTON, &wxChartsLabelPanel::OnFontSelection, this);
     sizer->Add(button);
 
     wxClientDC dc(this);
@@ -70,7 +70,7 @@ wxChartLabelPanel::wxChartLabelPanel(wxWindow* parent)
     SetSizer(sizer);
 }
 
-void wxChartLabelPanel::OnFontSelection(wxCommandEvent &evt)
+void wxChartsLabelPanel::OnFontSelection(wxCommandEvent &evt)
 {
     wxFontDialog* fontDialog = new wxFontDialog(this);
 

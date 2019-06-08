@@ -87,12 +87,12 @@ void wxChartsAxis::UpdateLabelPositions()
     }
 }
 
-const wxChartLabelGroup& wxChartsAxis::GetLabels() const
+const wxChartsLabelGroup& wxChartsAxis::GetLabels() const
 {
     return m_labels;
 }
 
-void wxChartsAxis::SetLabels(const wxVector<wxChartLabel> &labels)
+void wxChartsAxis::SetLabels(const wxVector<wxChartsLabel> &labels)
 {
     m_labels.assign(labels.begin(), labels.end());
 }
@@ -254,9 +254,9 @@ wxChartsAxis::wxChartsAxis(const std::string &id,
     for (size_t i = 0; i < labels.size(); ++i)
     {
         m_labels.push_back(
-            wxChartLabel(
+            wxChartsLabel(
                 labels[i], 
-                wxChartLabelOptions(m_options.GetFontOptions(), false, wxChartBackgroundOptions(*wxWHITE, 0))
+                wxChartsLabelOptions(m_options.GetFontOptions(), false, wxChartBackgroundOptions(*wxWHITE, 0))
                 )
             );
     }

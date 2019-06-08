@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,38 +20,15 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartlabelgroup.h"
+#ifndef _TESTS_WX_CHARTS_WXCHARTSLABELSERIESPANEL_H_
+#define _TESTS_WX_CHARTS_WXCHARTSLABELSERIESPANEL_H_
 
-wxChartLabelGroup::wxChartLabelGroup()
-    : m_maxWidth(0)
+#include <wx/panel.h>
+
+class wxChartsLabelSeriesPanel : public wxPanel
 {
-}
+public:
+    wxChartsLabelSeriesPanel(wxWindow* parent);
+};
 
-void wxChartLabelGroup::Draw(wxGraphicsContext &gc) const
-{
-    for (size_t i = 0; i < size(); ++i)
-    {
-        (*this)[i].Draw(gc);
-    }
-}
-
-void wxChartLabelGroup::UpdateSizes(wxGraphicsContext &gc)
-{
-    m_maxWidth = 0;
-
-    for (size_t i = 0; i < size(); ++i)
-    {
-        (*this)[i].UpdateSize(gc);
-
-        const wxSize size = (*this)[i].GetSize();
-        if (size.GetWidth() > m_maxWidth)
-        {
-            m_maxWidth = size.GetWidth();
-        }
-    }
-}
-
-wxDouble wxChartLabelGroup::GetMaxWidth() const
-{
-    return m_maxWidth;
-}
+#endif

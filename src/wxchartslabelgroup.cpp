@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,24 +20,38 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _TESTS_WX_CHARTS_WXCHARTLABELPANEL_H_
-#define _TESTS_WX_CHARTS_WXCHARTLABELPANEL_H_
+#include "wxchartslabelgroup.h"
 
-#include "elementcanvaswindow.h"
-#include <wx/charts/wxcharts.h>
-#include <wx/panel.h>
-
-class wxChartLabelPanel : public wxPanel
+wxChartsLabelGroup::wxChartsLabelGroup()
+    : m_maxWidth(0)
 {
-public:
-    wxChartLabelPanel(wxWindow* parent);
+}
 
-private:
-    void OnFontSelection(wxCommandEvent &evt);
+void wxChartsLabelGroup::Draw(wxGraphicsContext &gc) const
+{
+    for (size_t i = 0; i < size(); ++i)
+    {
+        (*this)[i].Draw(gc);
+    }
+}
 
-private:
-    ElementCanvasWindow* m_canvas;
-    wxChartLabel* m_label;
-};
+void wxChartsLabelGroup::UpdateSizes(wxGraphicsContext &gc)
+{
+    m_maxWidth = 0;
 
-#endif
+    for (size_t i = 0; i < size(); ++i)
+    {
+        (*this)[i].UpdateSize(gc);
+
+        const wxSize size = (*this)[i].GetSize();
+        if (size.GetWidth() > m_maxWidth)
+        {
+            m_maxWidth = size.GetWidth();
+        }
+    }
+}
+
+wxDouble wxChartsLabelGroup::GetMaxWidth() const
+{
+    return m_maxWidth;
+}

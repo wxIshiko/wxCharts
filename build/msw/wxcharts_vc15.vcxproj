@@ -173,6 +173,9 @@
     <ClCompile Include="..\..\src\wxchartscircle.cpp" />
     <ClCompile Include="..\..\src\wxchartsarcoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartsarc.cpp" />
+    <ClCompile Include="..\..\src\wxchartslabel.cpp" />
+    <ClCompile Include="..\..\src\wxchartslabeloptions.cpp" />
+    <ClCompile Include="..\..\src\wxchartslabelgroup.cpp" />
     <ClCompile Include="..\..\src\wxchartsaxis.cpp" />
     <ClCompile Include="..\..\src\wxchartsaxisoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartscategoricalaxis.cpp" />
@@ -188,9 +191,6 @@
     <ClCompile Include="..\..\src\wxchartbackgroundoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartbackground.cpp" />
     <ClCompile Include="..\..\src\wxchartfontoptions.cpp" />
-    <ClCompile Include="..\..\src\wxchartlabel.cpp" />
-    <ClCompile Include="..\..\src\wxchartlabeloptions.cpp" />
-    <ClCompile Include="..\..\src\wxchartlabelgroup.cpp" />
     <ClCompile Include="..\..\src\wxcharttooltipoptions.cpp" />
     <ClCompile Include="..\..\src\wxcharttooltipprovider.cpp" />
     <ClCompile Include="..\..\src\wxcharttooltip.cpp" />
@@ -296,6 +296,9 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartscircle.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsarcoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsarc.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartslabel.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartslabeloptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartslabelgroup.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsaxis.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsaxisoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartscategoricalaxis.h" />
@@ -311,9 +314,6 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartbackgroundoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartbackground.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartfontoptions.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartlabel.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartlabeloptions.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartlabelgroup.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltipoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltipprovider.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltip.h" />

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,16 +22,16 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTLABELGROUP_H_
-#define _WX_CHARTS_WXCHARTLABELGROUP_H_
+#ifndef _WX_CHARTS_WXCHARTSLABELGROUP_H_
+#define _WX_CHARTS_WXCHARTSLABELGROUP_H_
 
-#include "wxchartlabel.h"
+#include "wxchartslabel.h"
 
 /// This class is to manage a group of labels.
-class wxChartLabelGroup : public wxVector<wxChartLabel>
+class wxChartsLabelGroup : public wxVector<wxChartsLabel>
 {
 public:
-    wxChartLabelGroup();
+    wxChartsLabelGroup();
 
     void Draw(wxGraphicsContext &gc) const;
 

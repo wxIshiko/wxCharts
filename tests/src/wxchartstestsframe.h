@@ -36,7 +36,7 @@ private:
     void OnExit(wxCommandEvent& evt);
     void OnDefaultTheme(wxCommandEvent& evt);
     void OnChartsRectangleElement(wxCommandEvent& evt);
-    void OnChartLabelElement(wxCommandEvent& evt);
+    void OnChartsLabelElement(wxCommandEvent& evt);
     void OnChartsCategoricalAxisElement(wxCommandEvent& evt);
     void OnChartsNumericalAxisElement(wxCommandEvent& evt);
     void OnChartsGridElement(wxCommandEvent& evt);
@@ -61,7 +61,7 @@ private:
     wxPanel* m_currentPanel;
     wxPanel* m_chartsDefaultThemePanel;
     wxPanel* m_chartsRectanglePanel;
-    wxPanel* m_chartLabelPanel;
+    wxPanel* m_chartsLabelPanel;
     wxPanel* m_chartsCategoricalAxisPanel;
     wxPanel* m_chartsNumericalAxisPanel;
     wxPanel* m_chartsGridPanel;

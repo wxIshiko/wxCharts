@@ -25,9 +25,9 @@
 #ifndef _WX_CHARTS_WXCHARTSRADIALGRIDOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSRADIALGRIDOPTIONS_H_
 
-#include "wxchartlabeloptions.h"
+#include "wxchartslabeloptions.h"
 
-/// Styles for the wxChartRadialGrid element.
+/// Styles for the wxChartsRadialGrid element.
 enum wxChartsRadialGridStyle
 {
     /// The grid is a series of concentric circles.
@@ -36,7 +36,7 @@ enum wxChartsRadialGridStyle
     wxCHARTSRADIALGRIDSTYLE_POLYGONAL = 1
 };
 
-/// Options for the wxChartRadialGrid element.
+/// Options for the wxChartsRadialGrid element.
 class wxChartsRadialGridOptions
 {
 public:
@@ -61,14 +61,14 @@ public:
     /// @retval true Display the values.
     /// @retval false Don't display the values.
     bool ShowLabels() const;
-    const wxChartLabelOptions& GetLabelOptions() const;
+    const wxChartsLabelOptions& GetLabelOptions() const;
 
 private:
     wxChartsRadialGridStyle m_style;
     unsigned int m_lineWidth;
     wxColor m_lineColor;
     bool m_showLabels;
-    wxChartLabelOptions m_labelOptions;
+    wxChartsLabelOptions m_labelOptions;
 };
 
 #endif

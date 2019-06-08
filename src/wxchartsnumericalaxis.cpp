@@ -63,12 +63,12 @@ wxChartsNumericalAxis::wxChartsNumericalAxis(const std::string &id,
     SetMinValue(graphMinXValue);
     SetMaxValue(graphMaxXValue);
 
-    wxVector<wxChartLabel> xLabels;
+    wxVector<wxChartsLabel> xLabels;
     wxChartsUtilities::BuildNumericalLabels(
         GetMinValue(),
         steps,
         stepValue,
-        wxChartLabelOptions(options.GetFontOptions(), false, wxChartBackgroundOptions(*wxWHITE, 0)),
+        wxChartsLabelOptions(options.GetFontOptions(), false, wxChartBackgroundOptions(*wxWHITE, 0)),
         xLabels);
     SetLabels(xLabels);
 }

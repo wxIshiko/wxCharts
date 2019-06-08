@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,19 +20,19 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartlabelseriespanel.h"
-#include "wxchartlabelpanel.h"
+#include "wxchartslabelseriespanel.h"
+#include "wxchartslabelpanel.h"
 #include <wx/splitter.h>
 #include <wx/sizer.h>
 
-wxChartLabelSeriesPanel::wxChartLabelSeriesPanel(wxWindow* parent)
+wxChartsLabelSeriesPanel::wxChartsLabelSeriesPanel(wxWindow* parent)
     : wxPanel(parent)
 {
     wxSplitterWindow* splitterWindow = new wxSplitterWindow(this, wxID_ANY);
     splitterWindow->SetMinimumPaneSize(50);
 
-    wxPanel* panel1 = new wxChartLabelPanel(splitterWindow);
-    wxPanel* panel2 = new wxChartLabelPanel(splitterWindow);
+    wxPanel* panel1 = new wxChartsLabelPanel(splitterWindow);
+    wxPanel* panel2 = new wxChartsLabelPanel(splitterWindow);
 
     splitterWindow->SplitVertically(panel1, panel2);
 
