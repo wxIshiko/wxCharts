@@ -303,8 +303,8 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartsgridmapping.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsgridoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsgrid.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxcharstradialgridoptions.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxcharstradialgrid.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsradialgridoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsradialgrid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsutilities.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartpadding.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartbackgroundoptions.h" />

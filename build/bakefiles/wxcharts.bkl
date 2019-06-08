@@ -82,8 +82,8 @@ library wxcharts
         ../../include/wx/charts/wxchartsgridmapping.h
         ../../include/wx/charts/wxchartsgridoptions.h
         ../../include/wx/charts/wxchartsgrid.h
-        ../../include/wx/charts/wxcharstradialgridoptions.h
-        ../../include/wx/charts/wxcharstradialgrid.h
+        ../../include/wx/charts/wxchartsradialgridoptions.h
+        ../../include/wx/charts/wxchartsradialgrid.h
 
         ../../include/wx/charts/wxchartsutilities.h
         ../../include/wx/charts/wxchartpadding.h

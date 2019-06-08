@@ -38,7 +38,7 @@
 
 #include "wxchart.h"
 #include "wxradarchartoptions.h"
-#include "wxchartradialgrid.h"
+#include "wxchartsradialgrid.h"
 
 /// Data for the wxRadarChartCtrl control.
 class wxRadarChartData
@@ -77,7 +77,7 @@ private:
 
 private:
     wxSharedPtr<wxRadarChartOptions> m_options;
-    wxChartRadialGrid m_grid;
+    wxChartsRadialGrid m_grid;
 };
 
 #endif

@@ -113,10 +113,10 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartsgrid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxcharstradialgridoptions.h">
+    <ClInclude Include="..\..\include\wx\charts\wxchartsradialgridoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxcharstradialgrid.h">
+    <ClInclude Include="..\..\include\wx\charts\wxchartsradialgrid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxchartsutilities.h">

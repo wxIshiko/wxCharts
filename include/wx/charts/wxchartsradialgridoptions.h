@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,30 +22,30 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTRADIALGRIDOPTIONS_H_
-#define _WX_CHARTS_WXCHARTRADIALGRIDOPTIONS_H_
+#ifndef _WX_CHARTS_WXCHARTSRADIALGRIDOPTIONS_H_
+#define _WX_CHARTS_WXCHARTSRADIALGRIDOPTIONS_H_
 
 #include "wxchartlabeloptions.h"
 
 /// Styles for the wxChartRadialGrid element.
-enum wxChartRadialGridStyle
+enum wxChartsRadialGridStyle
 {
     /// The grid is a series of concentric circles.
-    wxCHARTRADIALGRIDSTYLE_CIRCULAR = 0,
+    wxCHARTSRADIALGRIDSTYLE_CIRCULAR = 0,
     /// The grid is a series of polygons.
-    wxCHARTRADIALGRIDSTYLE_POLYGONAL = 1
+    wxCHARTSRADIALGRIDSTYLE_POLYGONAL = 1
 };
 
 /// Options for the wxChartRadialGrid element.
-class wxChartRadialGridOptions
+class wxChartsRadialGridOptions
 {
 public:
-    /// Constructs a wxChartRadialGridOptions instance.
-    wxChartRadialGridOptions(wxChartRadialGridStyle style);
+    /// Constructs a wxChartsRadialGridOptions instance.
+    wxChartsRadialGridOptions(wxChartsRadialGridStyle style);
 
     /// Gets the style of the radial grid.
     /// @return The style of the radial grid.
-    wxChartRadialGridStyle GetStyle() const;
+    wxChartsRadialGridStyle GetStyle() const;
 
     /// Gets the width of the pen used to draw 
     /// the lines of the grid.
@@ -64,7 +64,7 @@ public:
     const wxChartLabelOptions& GetLabelOptions() const;
 
 private:
-    wxChartRadialGridStyle m_style;
+    wxChartsRadialGridStyle m_style;
     unsigned int m_lineWidth;
     wxColor m_lineColor;
     bool m_showLabels;
