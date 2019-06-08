@@ -123,7 +123,7 @@ public:
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
     void Save(const wxString &filename, const wxBitmapType &type,
-        const wxSize &size);
+        const wxSize &size, const wxColor &backgroundColor);
 
     bool Scale(int coeff);
     void Shift(double dx,double dy);

@@ -210,7 +210,7 @@ void wxMath2DPlotCtrl::CreateContextMenu()
             break;
         }
 
-        m_math2dPlot.Save(filename, type, GetSize());
+        m_math2dPlot.Save(filename, type, GetSize(), GetBackgroundColour());
     },
     wxID_SAVEAS
                       );
