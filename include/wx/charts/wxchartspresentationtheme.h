@@ -33,4 +33,22 @@ public:
     wxChartsPresentationTheme();
 };
 
+class wxChartsPresentationDatasetTheme0 : public wxChartsDatasetTheme
+{
+public:
+    wxChartsPresentationDatasetTheme0();
+};
+
+class wxChartsPresentationDatasetTheme1 : public wxChartsDatasetTheme
+{
+public:
+    wxChartsPresentationDatasetTheme1();
+};
+
+class wxChartsPresentationDatasetTheme2 : public wxChartsDatasetTheme
+{
+public:
+    wxChartsPresentationDatasetTheme2();
+};
+
 #endif
