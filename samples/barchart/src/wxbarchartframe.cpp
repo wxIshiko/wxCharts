@@ -20,12 +20,12 @@
     IN THE SOFTWARE.
 */
 
-#include "WxBarFrame.h"
+#include "wxbarchartframe.h"
 #include <wx/panel.h>
 #include <wx/sizer.h>
 #include <wx/charts/wxcharts.h>
 
-WxBarFrame::WxBarFrame(const wxString& title)
+wxBarChartFrame::wxBarChartFrame(const wxString& title)
     : wxFrame(NULL, wxID_ANY, title)
 {
     // Create a top-level panel to hold all the contents of the frame

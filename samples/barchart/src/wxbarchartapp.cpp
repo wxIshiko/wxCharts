@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2015-2016 Xavier Leclercq
+    Copyright (c) 2015-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,14 +20,14 @@
     IN THE SOFTWARE.
 */
 
-#include "WxBarApp.h"
-#include "WxBarFrame.h"
+#include "wxbarchartapp.h"
+#include "wxbarchartframe.h"
 
-wxIMPLEMENT_APP(WxBarApp);
+wxIMPLEMENT_APP(wxBarChartApp);
 
-bool WxBarApp::OnInit()
+bool wxBarChartApp::OnInit()
 {
-    WxBarFrame* frame = new WxBarFrame("wxCharts Bar Chart Sample");
+    wxBarChartFrame* frame = new wxBarChartFrame("wxCharts - wxBarChart Sample");
     frame->Show(true);
     return true;
 }

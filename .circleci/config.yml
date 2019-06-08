@@ -23,9 +23,9 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxBar sample build
+          name: wxBarChart sample build
           command: make
-          working_directory: samples/bar
+          working_directory: samples/barchart
           environment:
             WXCHARTS_ROOT: ../..
       - run:
