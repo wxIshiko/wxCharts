@@ -150,6 +150,30 @@ wxBoxPlot::wxBoxPlot(const wxBoxPlotData &data,
           m_options.GetGridOptions()
       )
 {
+    Initialize(data);
+}
+
+wxBoxPlot::wxBoxPlot(const wxBoxPlotData &data,
+                     wxBoxPlotOptions::ptr options,
+                     const wxSize &size)
+    : m_grid(
+        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
+        size,
+        wxChartsCategoricalAxis::make_shared("x", data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions().GetYAxisOptions()),
+        m_options.GetGridOptions()
+    )
+{
+    Initialize(data);
+}
+
+const wxChartCommonOptions& wxBoxPlot::GetCommonOptions() const
+{
+    return m_options.GetCommonOptions();
+}
+
+void wxBoxPlot::Initialize(const wxBoxPlotData &data)
+{
     for (size_t i = 0; i < data.GetData().size(); ++i)
     {
         auto cur = data.GetData()[i];
@@ -157,29 +181,24 @@ wxBoxPlot::wxBoxPlot(const wxBoxPlotData &data,
 
         std::stringstream tooltip;
         tooltip << "Max: " << *cur.begin()
-                << "\r\nMin: " << *cur.rbegin()
-                << "\r\nMedian: " << median(cur,0,len)
-                << "\r\nQ1: " << median(cur,0,len/2)
-                << "\r\nQ3: " << median(cur,len/2,cur.size());
+            << "\r\nMin: " << *cur.rbegin()
+            << "\r\nMedian: " << median(cur, 0, len)
+            << "\r\nQ1: " << median(cur, 0, len / 2)
+            << "\r\nQ3: " << median(cur, len / 2, cur.size());
         wxChartTooltipProvider::ptr tooltipProvider(
             new wxChartTooltipProviderStatic(data.GetLabels()[i], tooltip.str(), *wxWHITE)
         );
 
         Box::ptr newBox(new Box(
-                            cur,
-                            data.GetLineColor(),
-                            data.GetUpFillColor(),
-                            data.GetWidth(),
-                            data.GetRectangleWidth(),
-                            tooltipProvider
-                        ));
+            cur,
+            data.GetLineColor(),
+            data.GetUpFillColor(),
+            data.GetWidth(),
+            data.GetRectangleWidth(),
+            tooltipProvider
+        ));
         m_data.push_back(newBox);
     }
-}
-
-const wxChartCommonOptions& wxBoxPlot::GetCommonOptions() const
-{
-    return m_options.GetCommonOptions();
 }
 
 wxDouble wxBoxPlot::GetMinValue(const wxBoxPlotData &data)

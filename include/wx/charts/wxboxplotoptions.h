@@ -27,6 +27,7 @@
 
 #include "wxchartoptions.h"
 #include "wxchartsgridoptions.h"
+#include <wx/sharedptr.h>
 
 /// The options for the wxBoxPlotCtrl control.
 
@@ -34,6 +35,9 @@
 class wxBoxPlotOptions : public wxChartOptions
 {
 public:
+    /// Smart pointer typedef.
+    typedef wxSharedPtr<wxBoxPlotOptions> ptr;
+
     /// Constructs a wxBoxPlotOptions instance.
     wxBoxPlotOptions();
 

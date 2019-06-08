@@ -57,16 +57,34 @@ private:
 };
 
 /// A Boxplot.
-
-/// \ingroup chartclasses
+/**
+    \ingroup chartclasses
+*/
 class wxBoxPlot : public wxChart
 {
 public:
+    /// Constructor.
+    /**
+        The chart options will be defined by the default theme.
+
+        @param data The data that will be used to initialize the chart.
+        @param size The initial size of the chart.
+    */
     wxBoxPlot(const wxBoxPlotData &data, const wxSize &size);
+
+    /// Constructor.
+    /**
+        @param data The data that will be used to initialize the chart.
+        @param options The options to use for the chart.
+        @param size The initial size of the chart.
+    */
+    wxBoxPlot(const wxBoxPlotData &data, wxBoxPlotOptions::ptr options,
+        const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
+    void Initialize(const wxBoxPlotData &data);
     static wxDouble GetMinValue(const wxBoxPlotData &data);
     static wxDouble GetMaxValue(const wxBoxPlotData &data);
 
