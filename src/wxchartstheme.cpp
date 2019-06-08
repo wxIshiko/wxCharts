@@ -23,6 +23,7 @@
 /// @file
 
 #include "wxchartstheme.h"
+#include "wxchartspresentationtheme.h"
 
 wxChartsTheme::wxChartsTheme()
     : m_areaChartOptions(new wxAreaChartOptions()),
@@ -173,4 +174,5 @@ wxSharedPtr<wxChartsDatasetTheme> wxChartsTheme::GetDatasetTheme(const wxChartsD
     return m_datasetThemes[id];
 }
 
-wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme(new wxChartsTheme());
+// By default the default theme is actually the wxChartsPresentationTheme
+wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme(new wxChartsPresentationTheme());
