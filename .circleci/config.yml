@@ -29,6 +29,12 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
+          name: wxBoxplot sample build
+          command: make
+          working_directory: samples/boxplot
+          environment:
+            WXCHARTS_ROOT: ../..
+      - run:
           name: wxBubble sample build
           command: make
           working_directory: samples/bubble

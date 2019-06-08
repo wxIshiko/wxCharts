@@ -74,12 +74,12 @@ const wxVector<wxChartsOHLCData>& wxCandlestickChartData::GetData() const
 }
 
 wxCandlestickChart::Candlestick::Candlestick(const wxChartsOHLCData &data,
-    const wxColor &lineColor,
-    unsigned int lineWidth,
-    const wxColor &upFillColor,
-    const wxColor &downFillColor,
-    unsigned int rectangleWidth,
-    const wxChartTooltipProvider::ptr tooltipProvider)
+                                             const wxColor &lineColor,
+                                             unsigned int lineWidth,
+                                             const wxColor &upFillColor,
+                                             const wxColor &downFillColor,
+                                             unsigned int rectangleWidth,
+                                             const wxChartTooltipProvider::ptr tooltipProvider)
     : wxChartsElement(tooltipProvider), m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
     m_openPoint(0, 0), m_closePoint(0, 0), m_lineColor(lineColor), m_lineWidth(lineWidth),
     m_upFillColor(upFillColor), m_downFillColor(downFillColor), m_rectangleWidth(rectangleWidth)
