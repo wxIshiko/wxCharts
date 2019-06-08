@@ -1,9 +1,9 @@
 toolsets = gnu vs2017 vs2015 vs2013;
 
 gnu.makefile = ../../GNUmakefile;
-vs2017.solutionfile = ../msw/WxAreaChart_vc15.sln;
-vs2015.solutionfile = ../msw/WxAreaChart_vc14.sln;
-vs2013.solutionfile = ../msw/WxAreaChart_vc12.sln;
+vs2017.solutionfile = ../msw/wxareachart_vc15.sln;
+vs2015.solutionfile = ../msw/wxareachart_vc14.sln;
+vs2013.solutionfile = ../msw/wxareachart_vc12.sln;
 
 setting WXWIDGETS_ROOT
 {
@@ -17,11 +17,11 @@ setting WXCHARTS_ROOT
     default = '$(WXCHARTS)';
 }
 
-program WxAreaChart
+program wxAreaChart
 {
-    vs2017.projectfile = ../msw/WxAreaChart_vc15.vcxproj;
-    vs2015.projectfile = ../msw/WxAreaChart_vc14.vcxproj;
-    vs2013.projectfile = ../msw/WxAreaChart_vc12.vcxproj;
+    vs2017.projectfile = ../msw/wxareachart_vc15.vcxproj;
+    vs2015.projectfile = ../msw/wxareachart_vc14.vcxproj;
+    vs2013.projectfile = ../msw/wxareachart_vc12.vcxproj;
 
     includedirs += $(WXCHARTS_ROOT)/include;
 
@@ -44,13 +44,13 @@ program WxAreaChart
 
     headers
     {
-        ../../src/WxAreaChartApp.h
-        ../../src/WxAreaChartFrame.h
+        ../../src/wxareachartapp.h
+        ../../src/wxareachartframe.h
     }
 
     sources
     {
-        ../../src/WxAreaChartApp.cpp
-        ../../src/WxAreaChartFrame.cpp
+        ../../src/wxareachartapp.cpp
+        ../../src/wxareachartframe.cpp
     }
 }
