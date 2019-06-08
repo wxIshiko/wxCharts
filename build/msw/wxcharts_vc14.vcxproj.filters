@@ -158,19 +158,19 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartmultitooltip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxchartlegendlineoptions.h">
+    <ClInclude Include="..\..\include\wx\charts\wxchartslegendlineoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxchartlegendline.h">
+    <ClInclude Include="..\..\include\wx\charts\wxchartslegendline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxchartlegendoptions.h">
+    <ClInclude Include="..\..\include\wx\charts\wxchartslegendoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxchartlegenditem.h">
+    <ClInclude Include="..\..\include\wx\charts\wxchartslegenditem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\charts\wxchartlegendctrl.h">
+    <ClInclude Include="..\..\include\wx\charts\wxchartslegendctrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxchartslicedata.h">
@@ -523,19 +523,19 @@
     <ClCompile Include="..\..\src\wxchartmultitooltip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartlegendlineoptions.cpp">
+    <ClCompile Include="..\..\src\wxchartslegendlineoptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartlegendline.cpp">
+    <ClCompile Include="..\..\src\wxchartslegendline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartlegendoptions.cpp">
+    <ClCompile Include="..\..\src\wxchartslegendoptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartlegendctrl.cpp">
+    <ClCompile Include="..\..\src\wxchartslegendctrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\wxchartlegenditem.cpp">
+    <ClCompile Include="..\..\src\wxchartslegenditem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\wxchartslicedata.cpp">
