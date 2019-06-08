@@ -38,13 +38,36 @@ public:
     /// @retval true Show the points.
     /// @retval false Don't show the points.
     bool ShowDots() const;
-    const wxColor& GetDotColor() const;
-    const wxColor& GetDotStrokeColor() const;
+
+    /// Gets the options for the pen used to draw the dots representing points on the chart.
+    /**
+        @return The options for the pen used to draw the dots representing points on the chart.
+    */
+    const wxChartsPenOptions& GetDotPenOptions() const;
+    /// Gets the options for the brush used to draw the dots representing points on the chart.
+    /**
+        @return The options for the brush used to draw the dots representing points on the chart.
+    */
+    const wxChartsBrushOptions& GetDotBrushOptions() const;
+
+    /// Gets the radius for the dots representing
+    /// points on the chart.
+    /// @return The radius of the dots.
+    wxDouble GetDotRadius() const;
+    /// Gets the width of the pen used to
+    /// draw the lines connecting the points
+    /// of the chart. Width of the axes and grid
+    /// lines are part of the options returned
+    /// by the GetGridOptions() function.
+    /// @return The width of the pen.
+    unsigned int GetLineWidth() const;
 
 private:
     bool m_showDots;
-    wxColor m_dotColor;
-    wxColor m_dotStrokeColor;
+    wxChartsPenOptions m_dotPenOptions;
+    wxChartsBrushOptions m_dotBrushOptions;
+    wxDouble m_dotRadius;
+    unsigned int m_lineWidth;
 };
 
 #endif

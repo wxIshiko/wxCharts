@@ -45,7 +45,7 @@
 #include "wxcandlestickchartctrl.h"
 #include "wxohlcchartctrl.h"
 #include "wxcombinationchartctrl.h"
-#include "wxchartlegendctrl.h"
+#include "wxchartslegendctrl.h"
 #include "wxhistogramchartctrl.h"
 #include "wxboxplotctrl.h"
 

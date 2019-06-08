@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,38 +20,19 @@
     IN THE SOFTWARE.
 */
 
-/// @file
+#include "wxchartslegendoptions.h"
 
-#include "wxlinechartdatasetoptions.h"
-
-wxLineChartDatasetOptions::wxLineChartDatasetOptions(const wxColor &dotColor,
-                                                     const wxColor &dotStrokeColor)
-    : m_showDots(true), m_dotPenOptions(dotStrokeColor, 1), m_dotBrushOptions(dotColor),
-    m_dotRadius(4), m_lineWidth(2)
+wxChartsLegendOptions::wxChartsLegendOptions()
+    : m_orientation(wxVERTICAL)
 {
 }
 
-bool wxLineChartDatasetOptions::ShowDots() const
+wxOrientation wxChartsLegendOptions::GetOrientation() const
 {
-    return m_showDots;
+    return m_orientation;
 }
 
-const wxChartsPenOptions& wxLineChartDatasetOptions::GetDotPenOptions() const
+const wxChartsLegendLineOptions& wxChartsLegendOptions::GetLegendLineOptions() const
 {
-    return m_dotPenOptions;
-}
-
-const wxChartsBrushOptions& wxLineChartDatasetOptions::GetDotBrushOptions() const
-{
-    return m_dotBrushOptions;
-}
-
-wxDouble wxLineChartDatasetOptions::GetDotRadius() const
-{
-    return m_dotRadius;
-}
-
-unsigned int wxLineChartDatasetOptions::GetLineWidth() const
-{
-    return m_lineWidth;
+    return m_legendLineOptions;
 }

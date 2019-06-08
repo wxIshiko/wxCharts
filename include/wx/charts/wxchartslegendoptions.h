@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,36 +22,30 @@
 
 /// @file
 
-#include "wxlinechartdatasetoptions.h"
+#ifndef _WX_CHARTS_WXCHARTSLEGENDOPTIONS_H_
+#define _WX_CHARTS_WXCHARTSLEGENDOPTIONS_H_
 
-wxLineChartDatasetOptions::wxLineChartDatasetOptions(const wxColor &dotColor,
-                                                     const wxColor &dotStrokeColor)
-    : m_showDots(true), m_dotPenOptions(dotStrokeColor, 1), m_dotBrushOptions(dotColor),
-    m_dotRadius(4), m_lineWidth(2)
-{
-}
+#include "wxchartslegendlineoptions.h"
 
-bool wxLineChartDatasetOptions::ShowDots() const
+/// Options for the wxChartsLegendCtrl control.
+class wxChartsLegendOptions
 {
-    return m_showDots;
-}
+public:
+    /// Constructs a wxChartsLegendOptions instance.
+    wxChartsLegendOptions();
 
-const wxChartsPenOptions& wxLineChartDatasetOptions::GetDotPenOptions() const
-{
-    return m_dotPenOptions;
-}
+    /// Gets the orientation of the legend.
+    /// @retval wxHORIZONTAL The legend items
+    /// are organized horizontally.
+    /// @retval wxVERTICAL The legend items
+    /// are organized vertically.
+    wxOrientation GetOrientation() const;
 
-const wxChartsBrushOptions& wxLineChartDatasetOptions::GetDotBrushOptions() const
-{
-    return m_dotBrushOptions;
-}
+    const wxChartsLegendLineOptions& GetLegendLineOptions() const;
 
-wxDouble wxLineChartDatasetOptions::GetDotRadius() const
-{
-    return m_dotRadius;
-}
+private:
+    wxOrientation m_orientation;
+    wxChartsLegendLineOptions m_legendLineOptions;
+};
 
-unsigned int wxLineChartDatasetOptions::GetLineWidth() const
-{
-    return m_lineWidth;
-}
+#endif
