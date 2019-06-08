@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2015-2016 Xavier Leclercq
+	Copyright (c) 2015-2019 Xavier Leclercq
 
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
@@ -20,12 +20,12 @@
 	IN THE SOFTWARE.
 */
 
-#include "WxLineFrame.h"
+#include "wxlinechartframe.h"
 #include <wx/panel.h>
 #include <wx/sizer.h>
 #include <wx/charts/wxcharts.h>
 
-WxLineFrame::WxLineFrame(const wxString& title)
+wxLineChartFrame::wxLineChartFrame(const wxString& title)
 	: wxFrame(NULL, wxID_ANY, title)
 {
 	// Create a top-level panel to hold all the contents of the frame

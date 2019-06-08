@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,9 +20,9 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartradialgridoptions.h"
+#include "wxchartsradialgridoptions.h"
 
-wxChartRadialGridOptions::wxChartRadialGridOptions(wxChartRadialGridStyle style)
+wxChartsRadialGridOptions::wxChartsRadialGridOptions(wxChartsRadialGridStyle style)
     : m_style(style), m_lineWidth(1), m_lineColor(0, 0, 0, 0x19),
     m_showLabels(true), 
     m_labelOptions(
@@ -33,27 +33,27 @@ wxChartRadialGridOptions::wxChartRadialGridOptions(wxChartRadialGridStyle style)
 {
 }
 
-wxChartRadialGridStyle wxChartRadialGridOptions::GetStyle() const
+wxChartsRadialGridStyle wxChartsRadialGridOptions::GetStyle() const
 {
     return m_style;
 }
 
-unsigned int wxChartRadialGridOptions::GetLineWidth() const
+unsigned int wxChartsRadialGridOptions::GetLineWidth() const
 {
     return m_lineWidth;
 }
 
-const wxColor& wxChartRadialGridOptions::GetLineColor() const
+const wxColor& wxChartsRadialGridOptions::GetLineColor() const
 {
     return m_lineColor;
 }
 
-bool wxChartRadialGridOptions::ShowLabels() const
+bool wxChartsRadialGridOptions::ShowLabels() const
 {
     return m_showLabels;
 }
 
-const wxChartLabelOptions& wxChartRadialGridOptions::GetLabelOptions() const
+const wxChartLabelOptions& wxChartsRadialGridOptions::GetLabelOptions() const
 {
     return m_labelOptions;
 }

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,7 +26,7 @@
 #define _WX_CHARTS_WXRADARCHARTOPTIONS_H_
 
 #include "wxchartoptions.h"
-#include "wxchartradialgridoptions.h"
+#include "wxchartsradialgridoptions.h"
 
 /// The options for the wxRadarChartCtrl control.
 
@@ -39,10 +39,10 @@ public:
 
     /// Gets the options for the grid.
     /// @return The options for the grid.
-    const wxChartRadialGridOptions& GetGridOptions() const;
+    const wxChartsRadialGridOptions& GetGridOptions() const;
 
 private:
-    wxChartRadialGridOptions m_gridOptions;
+    wxChartsRadialGridOptions m_gridOptions;
 };
 
 #endif

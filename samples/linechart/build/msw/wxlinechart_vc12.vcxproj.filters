@@ -17,18 +17,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\WxLineApp.h">
+    <ClInclude Include="..\..\src\wxlinechartapp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\WxLineFrame.h">
+    <ClInclude Include="..\..\src\wxlinechartframe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\WxLineApp.cpp">
+    <ClCompile Include="..\..\src\wxlinechartapp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\WxLineFrame.cpp">
+    <ClCompile Include="..\..\src\wxlinechartframe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

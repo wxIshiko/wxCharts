@@ -181,6 +181,8 @@
     <ClCompile Include="..\..\src\wxchartsgridmapping.cpp" />
     <ClCompile Include="..\..\src\wxchartsgridoptions.cpp" />
     <ClCompile Include="..\..\src\wxchartsgrid.cpp" />
+    <ClCompile Include="..\..\src\wxchartsradialgridoptions.cpp" />
+    <ClCompile Include="..\..\src\wxchartsradialgrid.cpp" />
     <ClCompile Include="..\..\src\wxchartsutilities.cpp" />
     <ClCompile Include="..\..\src\wxchartpadding.cpp" />
     <ClCompile Include="..\..\src\wxchartbackgroundoptions.cpp" />
@@ -189,8 +191,6 @@
     <ClCompile Include="..\..\src\wxchartlabel.cpp" />
     <ClCompile Include="..\..\src\wxchartlabeloptions.cpp" />
     <ClCompile Include="..\..\src\wxchartlabelgroup.cpp" />
-    <ClCompile Include="..\..\src\wxchartradialgridoptions.cpp" />
-    <ClCompile Include="..\..\src\wxchartradialgrid.cpp" />
     <ClCompile Include="..\..\src\wxcharttooltipoptions.cpp" />
     <ClCompile Include="..\..\src\wxcharttooltipprovider.cpp" />
     <ClCompile Include="..\..\src\wxcharttooltip.cpp" />
@@ -226,6 +226,7 @@
     <ClCompile Include="..\..\src\wxstackedcolumnchart.cpp" />
     <ClCompile Include="..\..\src\wxstackedcolumnchartctrl.cpp" />
     <ClCompile Include="..\..\src\wxlinechartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxlinechartdatasetoptions.cpp" />
     <ClCompile Include="..\..\src\wxlinechart.cpp" />
     <ClCompile Include="..\..\src\wxlinechartctrl.cpp" />
     <ClCompile Include="..\..\src\wxtimeserieschartoptions.cpp" />
@@ -303,6 +304,8 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartsgridmapping.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsgridoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsgrid.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsradialgridoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxchartsradialgrid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsutilities.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartpadding.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartbackgroundoptions.h" />
@@ -311,8 +314,6 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartlabel.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartlabeloptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartlabelgroup.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartradialgridoptions.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxchartradialgrid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltipoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltipprovider.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcharttooltip.h" />
@@ -349,6 +350,7 @@
     <ClInclude Include="..\..\include\wx\charts\wxstackedcolumnchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxstackedcolumnchartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxlinechartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxlinechartdatasetoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxlinechart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxlinechartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxtimeserieschartoptions.h" />

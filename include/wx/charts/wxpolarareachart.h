@@ -39,7 +39,7 @@
 #include "wxchart.h"
 #include "wxchartslicedata.h"
 #include "wxpolarareachartoptions.h"
-#include "wxchartradialgrid.h"
+#include "wxchartsradialgrid.h"
 #include "wxchartsarc.h"
 
 /// Data for the wxPolarAreaChartCtrl control.
@@ -99,7 +99,7 @@ private:
 
 private:
     wxSharedPtr<wxPolarAreaChartOptions> m_options;
-    wxChartRadialGrid m_grid;
+    wxChartsRadialGrid m_grid;
     wxVector<SliceArc::ptr> m_slices;
 };
 

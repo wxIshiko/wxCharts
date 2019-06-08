@@ -33,11 +33,11 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTRADIALGRID_H_
-#define _WX_CHARTS_WXCHARTRADIALGRID_H_
+#ifndef _WX_CHARTS_WXCHARTSRADIALGRID_H_
+#define _WX_CHARTS_WXCHARTSRADIALGRID_H_
 
 #include "wxchartselement.h"
-#include "wxchartradialgridoptions.h"
+#include "wxchartsradialgridoptions.h"
 #include "wxchartlabelgroup.h"
 #include <wx/graphics.h>
 
@@ -47,7 +47,7 @@
 /// background of some of the chart controls like for instance 
 /// the polar area chart.
 /// \ingroup elementclasses
-class wxChartRadialGrid : public wxChartsElement
+class wxChartsRadialGrid : public wxChartsElement
 {
 public:
     /// Constructs a wxChartRadialGrid element.
@@ -59,8 +59,8 @@ public:
     /// will be shown on the chart.
     /// @param options The settings to be used for the
     /// grid.
-    wxChartRadialGrid(const wxSize &size, wxDouble minValue,
-        wxDouble maxValue, const wxChartRadialGridOptions& options);
+    wxChartsRadialGrid(const wxSize &size, wxDouble minValue,
+        wxDouble maxValue, const wxChartsRadialGridOptions& options);
 
     virtual void Draw(wxGraphicsContext &gc) const;
 
@@ -83,7 +83,7 @@ private:
         wxDouble maxValue);
     
 private:
-    wxChartRadialGridOptions m_options;
+    wxChartsRadialGridOptions m_options;
     wxSize m_size;
     wxDouble m_drawingArea;
     wxPoint2DDouble m_center;

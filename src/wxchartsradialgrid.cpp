@@ -31,14 +31,14 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
-#include "wxchartradialgrid.h"
+#include "wxchartsradialgrid.h"
 #include "wxchartsutilities.h"
 #include <wx/pen.h>
 
-wxChartRadialGrid::wxChartRadialGrid(const wxSize &size, 
-                                     wxDouble minValue,
-                                     wxDouble maxValue,
-                                     const wxChartRadialGridOptions& options)
+wxChartsRadialGrid::wxChartsRadialGrid(const wxSize &size,
+                                       wxDouble minValue,
+                                       wxDouble maxValue,
+                                       const wxChartsRadialGridOptions& options)
     : m_options(options), m_size(size), m_center(CalculateCenter(size)),
     m_needsFit(true)
 {
@@ -56,31 +56,31 @@ wxChartRadialGrid::wxChartRadialGrid(const wxSize &size,
     }
 }
 
-void wxChartRadialGrid::Draw(wxGraphicsContext &gc) const
+void wxChartsRadialGrid::Draw(wxGraphicsContext &gc) const
 {
     switch (m_options.GetStyle())
     {
-    case wxCHARTRADIALGRIDSTYLE_CIRCULAR:
+    case wxCHARTSRADIALGRIDSTYLE_CIRCULAR:
         DrawCircular(gc);
         break;
 
-    case wxCHARTRADIALGRIDSTYLE_POLYGONAL:
+    case wxCHARTSRADIALGRIDSTYLE_POLYGONAL:
         DrawPolygonal(gc);
         break;
     }
 }
 
-bool wxChartRadialGrid::HitTest(const wxPoint &point) const
+bool wxChartsRadialGrid::HitTest(const wxPoint &point) const
 {
     return false;
 }
 
-wxPoint2DDouble wxChartRadialGrid::GetTooltipPosition() const
+wxPoint2DDouble wxChartsRadialGrid::GetTooltipPosition() const
 {
     return wxPoint2DDouble(0, 0);
 }
 
-void wxChartRadialGrid::Fit(wxGraphicsContext &gc)
+void wxChartsRadialGrid::Fit(wxGraphicsContext &gc)
 {
     if (!m_needsFit)
     {
@@ -89,7 +89,7 @@ void wxChartRadialGrid::Fit(wxGraphicsContext &gc)
 
     m_labels.UpdateSizes(gc);
 
-    if (m_options.GetStyle() == wxCHARTRADIALGRIDSTYLE_CIRCULAR)
+    if (m_options.GetStyle() == wxCHARTSRADIALGRIDSTYLE_CIRCULAR)
     {
         for (size_t i = 0; i < m_labels.size(); ++i)
         {
@@ -108,19 +108,19 @@ void wxChartRadialGrid::Fit(wxGraphicsContext &gc)
     m_needsFit = false;
 }
 
-void wxChartRadialGrid::Resize(const wxSize &size)
+void wxChartsRadialGrid::Resize(const wxSize &size)
 {
     m_size = size;
     m_drawingArea = (size.x < size.y) ? size.x / 2 : size.y / 2;
     m_center = CalculateCenter(size);
 }
 
-wxDouble wxChartRadialGrid::GetRadius(wxDouble value) const
+wxDouble wxChartsRadialGrid::GetRadius(wxDouble value) const
 {
     return (((value - m_graphMinValue) / (m_graphMaxValue - m_graphMinValue)) * m_drawingArea);
 }
 
-void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc) const
+void wxChartsRadialGrid::DrawCircular(wxGraphicsContext &gc) const
 {
     for (size_t i = 0; i < m_labels.size(); ++i)
     {
@@ -142,7 +142,7 @@ void wxChartRadialGrid::DrawCircular(wxGraphicsContext &gc) const
     }
 }
 
-void wxChartRadialGrid::DrawPolygonal(wxGraphicsContext &gc) const
+void wxChartsRadialGrid::DrawPolygonal(wxGraphicsContext &gc) const
 {
     // Don't draw a centre value so start from 1
     for (size_t i = 1; i < m_labels.size(); ++i)
@@ -164,15 +164,15 @@ void wxChartRadialGrid::DrawPolygonal(wxGraphicsContext &gc) const
     }
 }
 
-wxPoint2DDouble wxChartRadialGrid::CalculateCenter(const wxSize& size)
+wxPoint2DDouble wxChartsRadialGrid::CalculateCenter(const wxSize& size)
 {
     return wxPoint2DDouble(size.GetWidth() / 2, size.GetHeight() / 2);
 }
 
-wxDouble wxChartRadialGrid::CalculateCenterOffset(wxDouble value, 
-                                                  wxDouble drawingArea,
-                                                  wxDouble minValue,
-                                                  wxDouble maxValue)
+wxDouble wxChartsRadialGrid::CalculateCenterOffset(wxDouble value,
+                                                   wxDouble drawingArea,
+                                                   wxDouble minValue,
+                                                   wxDouble maxValue)
 {
     wxDouble scalingFactor = drawingArea / (maxValue - minValue);
 

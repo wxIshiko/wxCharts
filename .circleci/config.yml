@@ -29,7 +29,7 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxBoxplot sample build
+          name: wxBoxPlot sample build
           command: make
           working_directory: samples/boxplot
           environment:
@@ -71,9 +71,9 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxLine sample build
+          name: wxLineChart sample build
           command: make
-          working_directory: samples/line
+          working_directory: samples/linechart
           environment:
             WXCHARTS_ROOT: ../..
       - run:
