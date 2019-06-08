@@ -242,10 +242,12 @@ const wxChartCommonOptions& wxLineChart::GetCommonOptions() const
 
 void wxLineChart::Save(const wxString &filename,
                        const wxBitmapType &type,
-                       const wxSize &size)
+                       const wxSize &size,
+                       const wxColor &backgroundColor)
 {
     wxBitmap bmp(size.GetWidth(), size.GetHeight());
     wxMemoryDC mdc(bmp);
+    mdc.SetBackground(wxBrush(backgroundColor));
     mdc.Clear();
     wxGraphicsContext* gc = wxGraphicsContext::Create(mdc);
     if (gc)
