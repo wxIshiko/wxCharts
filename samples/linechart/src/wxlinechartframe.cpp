@@ -77,8 +77,8 @@ wxLineChartFrame::wxLineChartFrame(const wxString& title)
 		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
 	// Create the legend widget
-	wxChartLegendData legendData(chartData.GetDatasets());
-	wxChartLegendCtrl* legendCtrl = new wxChartLegendCtrl(panel, wxID_ANY, legendData,
+	wxChartsLegendData legendData(chartData.GetDatasets());
+	wxChartsLegendCtrl* legendCtrl = new wxChartsLegendCtrl(panel, wxID_ANY, legendData,
 		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
 	// Set up the sizer for the panel

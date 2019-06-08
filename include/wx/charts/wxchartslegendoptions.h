@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,17 +22,17 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTLEGENDOPTIONS_H_
-#define _WX_CHARTS_WXCHARTLEGENDOPTIONS_H_
+#ifndef _WX_CHARTS_WXCHARTSLEGENDOPTIONS_H_
+#define _WX_CHARTS_WXCHARTSLEGENDOPTIONS_H_
 
-#include "wxchartlegendlineoptions.h"
+#include "wxchartslegendlineoptions.h"
 
-/// Options for the wxChartLegendCtrl control.
-class wxChartLegendOptions
+/// Options for the wxChartsLegendCtrl control.
+class wxChartsLegendOptions
 {
 public:
-    /// Constructs a wxChartLegendOptions instance.
-    wxChartLegendOptions();
+    /// Constructs a wxChartsLegendOptions instance.
+    wxChartsLegendOptions();
 
     /// Gets the orientation of the legend.
     /// @retval wxHORIZONTAL The legend items
@@ -41,11 +41,11 @@ public:
     /// are organized vertically.
     wxOrientation GetOrientation() const;
 
-    const wxChartLegendLineOptions& GetLegendLineOptions() const;
+    const wxChartsLegendLineOptions& GetLegendLineOptions() const;
 
 private:
     wxOrientation m_orientation;
-    wxChartLegendLineOptions m_legendLineOptions;
+    wxChartsLegendLineOptions m_legendLineOptions;
 };
 
 #endif

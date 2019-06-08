@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,12 +22,12 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTLEGENDCTRL_H_
-#define _WX_CHARTS_WXCHARTLEGENDCTRL_H_
+#ifndef _WX_CHARTS_WXCHARTSLEGENDCTRL_H_
+#define _WX_CHARTS_WXCHARTSLEGENDCTRL_H_
 
-#include "wxchartlegendoptions.h"
-#include "wxchartlegendline.h"
-#include "wxchartlegenditem.h"
+#include "wxchartslegendoptions.h"
+#include "wxchartslegendline.h"
+#include "wxchartslegenditem.h"
 #include <wx/control.h>
 
 /// This control can be used to display a chart legend.
@@ -35,7 +35,7 @@
 /// The legend is implemented as a separate control (and not
 /// as part of the chart control itself) to allow for more
 /// flexible layouts with the help of wxWidgets sizers.
-class wxChartLegendCtrl : public wxControl
+class wxChartsLegendCtrl : public wxControl
 {
 public:
     /// Constructs a wxChartLegendCtrl control.
@@ -51,8 +51,8 @@ public:
     /// so that the window is visible but obviously not correctly sized.
     /// @param style Control style. For generic window styles, please 
     /// see wxWindow.
-    wxChartLegendCtrl(wxWindow *parent, wxWindowID id,
-        const wxChartLegendData &data,
+    wxChartsLegendCtrl(wxWindow *parent, wxWindowID id,
+        const wxChartsLegendData &data,
         const wxPoint &pos = wxDefaultPosition,
         const wxSize &size = wxDefaultSize,
         long style = 0);
@@ -61,8 +61,8 @@ private:
     void OnPaint(wxPaintEvent &evt);
 
 private:
-    wxChartLegendOptions m_options;
-    wxVector<wxChartLegendLine> m_lines;
+    wxChartsLegendOptions m_options;
+    wxVector<wxChartsLegendLine> m_lines;
 
     DECLARE_EVENT_TABLE();
 };

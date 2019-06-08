@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq and the wxCharts contributors
+    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,8 +22,8 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTLEGENDITEM_H_
-#define _WX_CHARTS_WXCHARTLEGENDITEM_H_
+#ifndef _WX_CHARTS_WXCHARTSLEGENDITEM_H_
+#define _WX_CHARTS_WXCHARTSLEGENDITEM_H_
 
 #include "wxchartslicedata.h"
 #include "wxlinechartctrl.h"
@@ -33,25 +33,25 @@
 #include <map>
 
 /// Class that represents items of the wxChartLegendData class.
-class wxChartLegendItem
+class wxChartsLegendItem
 {
 public:
     /// Constructs a wxChartLegendItem instance.
     /// @param color The color associated with this
     /// item on the chart.
     /// @param label The text to be display in the legend.
-    wxChartLegendItem(const wxColor &color,
+    wxChartsLegendItem(const wxColor &color,
         const wxString &label);
     /// Constructs a wxChartLegendItem instance from a
     /// slice data.
     /// @param slice The slice of the chart this legend item
     /// corresponds to.
-    wxChartLegendItem(const wxChartSliceData &slice);
+    wxChartsLegendItem(const wxChartSliceData &slice);
     /// Constructs a wxChartLegendItem instance from a
     /// line chart dataset.
     /// @param dataset The dataset this legend item
     /// corresponds to.
-    wxChartLegendItem(const wxLineChartDataset &dataset);
+    wxChartsLegendItem(const wxLineChartDataset &dataset);
 
     /// Gets the color of the item.
     /// @return The color of the item.
@@ -65,37 +65,37 @@ private:
     wxString m_label;
 };
 
-typedef wxVector<wxChartLegendItem> wxChartLegendItems;
+typedef wxVector<wxChartsLegendItem> wxChartLegendItems;
 
 /// Data for the wxChartLegendCtrl control.
-class wxChartLegendData
+class wxChartsLegendData
 {
 public:
     /// Constructs a wxChartLegendData
     /// instance.
-    wxChartLegendData();
+    wxChartsLegendData();
     /// Constructs a wxChartLegendData instance from
     /// a list of slices. This can be used to build
     /// a legend for the wxPieChartCtrl and
     /// wxDoughnutChartCtrl controls for instance.
     /// @param slices List of slices.
-    wxChartLegendData(const std::map<wxString, wxChartSliceData>& slices);
+    wxChartsLegendData(const std::map<wxString, wxChartSliceData>& slices);
     /// Constructs a wxChartLegendData instance from
     /// a list of datasets. This can be used to build
     /// a legend for the wxLineChartCtrl control.
     /// @param datasets List of datasets.
-    wxChartLegendData(const wxVector<wxLineChartDataset::ptr>& datasets);
+    wxChartsLegendData(const wxVector<wxLineChartDataset::ptr>& datasets);
 
     /// Appends an item to the legend.
     /// @param item The new item.
-    void Append(const wxChartLegendItem &item);
+    void Append(const wxChartsLegendItem &item);
 
     /// Gets the list of items in the legend.
     /// @return The list of legend items.
-    const wxVector<wxChartLegendItem>& GetItems() const;
+    const wxVector<wxChartsLegendItem>& GetItems() const;
 
 private:
-    wxVector<wxChartLegendItem> m_items;
+    wxVector<wxChartsLegendItem> m_items;
 };
 
 #endif

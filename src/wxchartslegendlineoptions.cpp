@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,19 +22,19 @@
 
 /// @file
 
-#include "wxchartlegendlineoptions.h"
+#include "wxchartslegendlineoptions.h"
 
-wxChartLegendLineOptions::wxChartLegendLineOptions()
+wxChartsLegendLineOptions::wxChartsLegendLineOptions()
     : m_fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666)
 {
 }
 
-wxChartLegendLineOptions::wxChartLegendLineOptions(const wxChartFontOptions& fontOptions)
+wxChartsLegendLineOptions::wxChartsLegendLineOptions(const wxChartFontOptions& fontOptions)
     : m_fontOptions(fontOptions)
 {
 }
 
-const wxChartFontOptions& wxChartLegendLineOptions::GetFontOptions() const
+const wxChartFontOptions& wxChartsLegendLineOptions::GetFontOptions() const
 {
     return m_fontOptions;
 }

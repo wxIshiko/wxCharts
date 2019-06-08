@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,18 +22,18 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTLEGENDLINEOPTIONS_H_
-#define _WX_CHARTS_WXCHARTLEGENDLINEOPTIONS_H_
+#ifndef _WX_CHARTS_WXCHARTSLEGENDLINEOPTIONS_H_
+#define _WX_CHARTS_WXCHARTSLEGENDLINEOPTIONS_H_
 
 #include "wxchartfontoptions.h"
 
-/// The options for the wxChartLegendLine element.
-class wxChartLegendLineOptions
+/// The options for the wxChartsLegendLine element.
+class wxChartsLegendLineOptions
 {
 public:
     /// Constructs a wxChartLegendLineOptions instance.
-    wxChartLegendLineOptions();
-    wxChartLegendLineOptions(const wxChartFontOptions& fontOptions);
+    wxChartsLegendLineOptions();
+    wxChartsLegendLineOptions(const wxChartFontOptions& fontOptions);
 
     const wxChartFontOptions& GetFontOptions() const;
 

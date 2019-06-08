@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,32 +20,32 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartlegendctrl.h"
+#include "wxchartslegendctrl.h"
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
 
-wxChartLegendCtrl::wxChartLegendCtrl(wxWindow *parent,
-                                     wxWindowID id,
-                                     const wxChartLegendData &data,
-                                     const wxPoint &pos,
-                                     const wxSize &size,
-                                     long style)
+wxChartsLegendCtrl::wxChartsLegendCtrl(wxWindow *parent,
+                                       wxWindowID id,
+                                       const wxChartsLegendData &data,
+                                       const wxPoint &pos,
+                                       const wxSize &size,
+                                       long style)
     : wxControl(parent, id, pos, size, style)
 {
     SetBackgroundStyle(wxBG_STYLE_PAINT);
     SetBackgroundColour(*wxWHITE);
 
-    const wxVector<wxChartLegendItem>& items = data.GetItems();
+    const wxVector<wxChartsLegendItem>& items = data.GetItems();
     for (size_t i = 0; i < items.size(); ++i)
     {
         m_lines.push_back(
-            wxChartLegendLine(items[i].GetColor(), items[i].GetLabel(), 
+            wxChartsLegendLine(items[i].GetColor(), items[i].GetLabel(), 
                 m_options.GetLegendLineOptions())
             );
     }
 }
 
-void wxChartLegendCtrl::OnPaint(wxPaintEvent &evt)
+void wxChartsLegendCtrl::OnPaint(wxPaintEvent &evt)
 {
     wxAutoBufferedPaintDC dc(this);
 
@@ -81,6 +81,6 @@ void wxChartLegendCtrl::OnPaint(wxPaintEvent &evt)
     }
 }
 
-BEGIN_EVENT_TABLE(wxChartLegendCtrl, wxControl)
-    EVT_PAINT(wxChartLegendCtrl::OnPaint)
+BEGIN_EVENT_TABLE(wxChartsLegendCtrl, wxControl)
+    EVT_PAINT(wxChartsLegendCtrl::OnPaint)
 END_EVENT_TABLE()

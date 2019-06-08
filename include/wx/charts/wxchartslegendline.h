@@ -22,17 +22,17 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTLEGENDLINE_H_
-#define _WX_CHARTS_WXCHARTLEGENDLINE_H_
+#ifndef _WX_CHARTS_WXCHARTSLEGENDLINE_H_
+#define _WX_CHARTS_WXCHARTSLEGENDLINE_H_
 
 #include "wxchartselement.h"
-#include "wxchartlegendlineoptions.h"
+#include "wxchartslegendlineoptions.h"
 
 /// This class is used to draw a line in a legend.
 
 /// It can be used wherever a single line of text is needed
 /// with a single colored square at the start of the line.
-class wxChartLegendLine : public wxChartsElement
+class wxChartsLegendLine : public wxChartsElement
 {
 public:
     /// Constructs a wxChartLegendLine element.
@@ -41,8 +41,8 @@ public:
     /// @param text The text of the legend.
     /// @param options The settings to be used for the
     /// legend line.
-    wxChartLegendLine(const wxColor &color, const wxString &text, 
-        const wxChartLegendLineOptions& options);
+    wxChartsLegendLine(const wxColor &color, const wxString &text, 
+        const wxChartsLegendLineOptions& options);
 
     virtual void Draw(wxGraphicsContext &gc) const;
     
@@ -65,7 +65,7 @@ public:
     void SetText(const wxString &text);
 
 private:
-    wxChartLegendLineOptions m_options;
+    wxChartsLegendLineOptions m_options;
     wxPoint2DDouble m_position;
     wxSize m_size;
     wxColor m_color;

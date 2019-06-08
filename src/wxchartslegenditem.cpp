@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq and the wxCharts contributors
+    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,20 +20,20 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartlegenditem.h"
+#include "wxchartslegenditem.h"
 
-wxChartLegendItem::wxChartLegendItem(const wxColor &color,
-                                     const wxString &label)
+wxChartsLegendItem::wxChartsLegendItem(const wxColor &color,
+                                       const wxString &label)
     : m_color(color), m_label(label)
 {
 }
 
-wxChartLegendItem::wxChartLegendItem(const wxChartSliceData &slice)
+wxChartsLegendItem::wxChartsLegendItem(const wxChartSliceData &slice)
     : m_color(slice.GetColor()), m_label(slice.GetLabel())
 {
 }
 
-wxChartLegendItem::wxChartLegendItem(const wxLineChartDataset &dataset)
+wxChartsLegendItem::wxChartsLegendItem(const wxLineChartDataset &dataset)
     : m_color(*wxWHITE), m_label(dataset.GetLabel())
 {
     if (dataset.ShowDots())
@@ -50,42 +50,42 @@ wxChartLegendItem::wxChartLegendItem(const wxLineChartDataset &dataset)
     }
 }
 
-const wxColor& wxChartLegendItem::GetColor() const
+const wxColor& wxChartsLegendItem::GetColor() const
 {
     return m_color;
 }
 
-const wxString& wxChartLegendItem::GetLabel() const
+const wxString& wxChartsLegendItem::GetLabel() const
 {
     return m_label;
 }
 
-wxChartLegendData::wxChartLegendData()
+wxChartsLegendData::wxChartsLegendData()
 {
 }
 
-wxChartLegendData::wxChartLegendData(const std::map<wxString, wxChartSliceData>& slices)
+wxChartsLegendData::wxChartsLegendData(const std::map<wxString, wxChartSliceData>& slices)
 {
     for (const auto &slice : slices)
     {
-        m_items.push_back(wxChartLegendItem(slice.second));
+        m_items.push_back(wxChartsLegendItem(slice.second));
     }
 }
 
-wxChartLegendData::wxChartLegendData(const wxVector<wxLineChartDataset::ptr>& datasets)
+wxChartsLegendData::wxChartsLegendData(const wxVector<wxLineChartDataset::ptr>& datasets)
 {
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        m_items.push_back(wxChartLegendItem(*datasets[i]));
+        m_items.push_back(wxChartsLegendItem(*datasets[i]));
     }
 }
 
-void wxChartLegendData::Append(const wxChartLegendItem &item)
+void wxChartsLegendData::Append(const wxChartsLegendItem &item)
 {
     m_items.push_back(item);
 }
 
-const wxVector<wxChartLegendItem>& wxChartLegendData::GetItems() const
+const wxVector<wxChartsLegendItem>& wxChartsLegendData::GetItems() const
 {
     return m_items;
 }

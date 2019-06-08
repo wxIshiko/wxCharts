@@ -22,19 +22,19 @@
 
 /// @file
 
-#include "wxchartlegendline.h"
+#include "wxchartslegendline.h"
 #include "wxchartsutilities.h"
 #include <wx/brush.h>
 
-wxChartLegendLine::wxChartLegendLine(const wxColor &color,
-                                     const wxString &text,
-                                     const wxChartLegendLineOptions& options)
+wxChartsLegendLine::wxChartsLegendLine(const wxColor &color,
+                                       const wxString &text,
+                                       const wxChartsLegendLineOptions& options)
     : m_options(options), m_position(0, 0), m_size(0, 0),
     m_color(color), m_text(text)
 {
 }
 
-void wxChartLegendLine::Draw(wxGraphicsContext &gc) const
+void wxChartsLegendLine::Draw(wxGraphicsContext &gc) const
 {
     wxFont font = m_options.GetFontOptions().GetFont();
     gc.SetFont(font, m_options.GetFontOptions().GetColor());
@@ -56,33 +56,33 @@ void wxChartLegendLine::Draw(wxGraphicsContext &gc) const
     gc.DrawText(m_text, m_position.m_x + 20, m_position.m_y);
 }
 
-bool wxChartLegendLine::HitTest(const wxPoint &point) const
+bool wxChartsLegendLine::HitTest(const wxPoint &point) const
 {
     return false;
 }
 
-wxPoint2DDouble wxChartLegendLine::GetTooltipPosition() const
+wxPoint2DDouble wxChartsLegendLine::GetTooltipPosition() const
 {
     return wxPoint2DDouble(0, 0);
 }
 
-const wxPoint2DDouble& wxChartLegendLine::GetPosition() const
+const wxPoint2DDouble& wxChartsLegendLine::GetPosition() const
 {
     return m_position;
 }
 
-void wxChartLegendLine::SetPosition(wxDouble x, wxDouble y)
+void wxChartsLegendLine::SetPosition(wxDouble x, wxDouble y)
 {
     m_position.m_x = x;
     m_position.m_y = y;
 }
 
-const wxSize& wxChartLegendLine::GetSize() const
+const wxSize& wxChartsLegendLine::GetSize() const
 {
     return m_size;
 }
 
-void wxChartLegendLine::UpdateSize(wxGraphicsContext &gc)
+void wxChartsLegendLine::UpdateSize(wxGraphicsContext &gc)
 {
     wxDouble width;
     wxDouble height;
@@ -91,12 +91,12 @@ void wxChartLegendLine::UpdateSize(wxGraphicsContext &gc)
     m_size.y = height;
 }
 
-const wxString& wxChartLegendLine::GetText() const
+const wxString& wxChartsLegendLine::GetText() const
 {
     return m_text;
 }
 
-void wxChartLegendLine::SetText(const wxString &text)
+void wxChartsLegendLine::SetText(const wxString &text)
 {
     m_text = text;
 }

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,19 +20,19 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartlegendoptions.h"
+#include "wxchartslegendoptions.h"
 
-wxChartLegendOptions::wxChartLegendOptions()
+wxChartsLegendOptions::wxChartsLegendOptions()
     : m_orientation(wxVERTICAL)
 {
 }
 
-wxOrientation wxChartLegendOptions::GetOrientation() const
+wxOrientation wxChartsLegendOptions::GetOrientation() const
 {
     return m_orientation;
 }
 
-const wxChartLegendLineOptions& wxChartLegendOptions::GetLegendLineOptions() const
+const wxChartsLegendLineOptions& wxChartsLegendOptions::GetLegendLineOptions() const
 {
     return m_legendLineOptions;
 }
