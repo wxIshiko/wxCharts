@@ -1,9 +1,9 @@
 toolsets = gnu vs2017 vs2015 vs2013;
 
 gnu.makefile = ../../GNUmakefile;
-vs2017.solutionfile = ../msw/WxPie_vc15.sln;
-vs2015.solutionfile = ../msw/WxPie_vc14.sln;
-vs2013.solutionfile = ../msw/WxPie_vc12.sln;
+vs2017.solutionfile = ../msw/wxpiechart_vc15.sln;
+vs2015.solutionfile = ../msw/wxpiechart_vc14.sln;
+vs2013.solutionfile = ../msw/wxpiechart_vc12.sln;
 
 setting WXWIDGETS_ROOT
 {
@@ -17,13 +17,13 @@ setting WXCHARTS_ROOT
     default = '$(WXCHARTS)';
 }
 
-program WxPie
+program wxpiechart
 {
     archs = x86 x86_64;
 
-    vs2017.projectfile = ../msw/WxPie_vc15.vcxproj;
-    vs2015.projectfile = ../msw/WxPie_vc14.vcxproj;
-    vs2013.projectfile = ../msw/WxPie_vc12.vcxproj;
+    vs2017.projectfile = ../msw/wxpiechart_vc15.vcxproj;
+    vs2015.projectfile = ../msw/wxpiechart_vc14.vcxproj;
+    vs2013.projectfile = ../msw/wxpiechart_vc12.vcxproj;
 
     includedirs += $(WXCHARTS_ROOT)/include;
 
@@ -54,13 +54,13 @@ program WxPie
 
     headers
     {
-        ../../src/WxPieApp.h
-        ../../src/WxPieFrame.h
+        ../../src/wxpiechartapp.h
+        ../../src/wxpiechartframe.h
     }
 
     sources
     {
-        ../../src/WxPieApp.cpp
-        ../../src/WxPieFrame.cpp
+        ../../src/wxpiechartapp.cpp
+        ../../src/wxpiechartframe.cpp
     }
 }

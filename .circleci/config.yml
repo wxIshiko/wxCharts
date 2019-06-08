@@ -95,9 +95,9 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxPie sample build
+          name: wxPieChart sample build
           command: make
-          working_directory: samples/pie
+          working_directory: samples/piechart
           environment:
             WXCHARTS_ROOT: ../..
       - run:

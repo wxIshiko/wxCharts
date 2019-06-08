@@ -66,21 +66,21 @@ WXCHARTS_ROOT ?= $(WXCHARTS)
 
 # ------------
 
-all: $(_builddir)WxPie
+all: $(_builddir)wxpiechart
 
-$(_builddir)WxPie: $(_builddir)WxPie_WxPieApp.o $(_builddir)WxPie_WxPieFrame.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)WxPie_WxPieApp.o $(_builddir)WxPie_WxPieFrame.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
+$(_builddir)wxpiechart: $(_builddir)wxpiechart_wxpiechartapp.o $(_builddir)wxpiechart_wxpiechartframe.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxpiechart_wxpiechartapp.o $(_builddir)wxpiechart_wxpiechartframe.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
 
-$(_builddir)WxPie_WxPieApp.o: src/WxPieApp.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxPieApp.cpp
+$(_builddir)wxpiechart_wxpiechartapp.o: src/wxpiechartapp.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxpiechartapp.cpp
 
-$(_builddir)WxPie_WxPieFrame.o: src/WxPieFrame.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxPieFrame.cpp
+$(_builddir)wxpiechart_wxpiechartframe.o: src/wxpiechartframe.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxpiechartframe.cpp
 
 clean:
 	rm -f $(_builddir)*.o
 	rm -f $(_builddir)*.d
-	rm -f $(_builddir)WxPie
+	rm -f $(_builddir)wxpiechart
 
 .PHONY: all clean
 
