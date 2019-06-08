@@ -36,24 +36,19 @@ bool wxLineChartDatasetOptions::ShowDots() const
     return m_showDots;
 }
 
+const wxChartsPenOptions& wxLineChartDatasetOptions::GetDotPenOptions() const
+{
+    return m_dotPenOptions;
+}
+
 const wxColor& wxLineChartDatasetOptions::GetDotColor() const
 {
     return m_dotColor;
 }
 
-const wxColor& wxLineChartDatasetOptions::GetDotStrokeColor() const
-{
-    return m_dotPenOptions.GetColor();
-}
-
 wxDouble wxLineChartDatasetOptions::GetDotRadius() const
 {
     return m_dotRadius;
-}
-
-unsigned int wxLineChartDatasetOptions::GetDotStrokeWidth() const
-{
-    return m_dotPenOptions.GetWidth();
 }
 
 unsigned int wxLineChartDatasetOptions::GetLineWidth() const
