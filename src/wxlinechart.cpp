@@ -283,7 +283,7 @@ void wxLineChart::Initialize(const wxLineChartData &data)
             Point::ptr point(
                 new Point(datasetData[j], tooltipProvider, 20 + j * 10, 0,
                     datasetOptions->GetDotRadius(), datasetOptions->GetDotPenOptions().GetWidth(),
-                    datasetOptions->GetDotPenOptions().GetColor(), datasetOptions->GetDotColor(),
+                    datasetOptions->GetDotPenOptions().GetColor(), datasetOptions->GetDotBrushOptions().GetColor(),
                     m_options->GetHitDetectionRange())
                 );
 

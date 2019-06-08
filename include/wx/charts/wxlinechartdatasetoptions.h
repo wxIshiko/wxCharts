@@ -44,7 +44,11 @@ public:
         @return The options for the pen used to draw the dots representing points on the chart.
     */
     const wxChartsPenOptions& GetDotPenOptions() const;
-    const wxColor& GetDotColor() const;
+    /// Gets the options for the brush used to draw the dots representing points on the chart.
+    /**
+        @return The options for the brush used to draw the dots representing points on the chart.
+    */
+    const wxChartsBrushOptions& GetDotBrushOptions() const;
 
     /// Gets the radius for the dots representing
     /// points on the chart.
@@ -61,7 +65,7 @@ public:
 private:
     bool m_showDots;
     wxChartsPenOptions m_dotPenOptions;
-    wxColor m_dotColor;
+    wxChartsBrushOptions m_dotBrushOptions;
     wxDouble m_dotRadius;
     unsigned int m_lineWidth;
 };
