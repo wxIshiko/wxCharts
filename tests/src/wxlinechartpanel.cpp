@@ -35,7 +35,7 @@ wxLineChartPanel::wxLineChartPanel(wxWindow* parent)
     labels.push_back("May");
     labels.push_back("June");
     labels.push_back("July");
-    wxLineChartData chartData(labels);
+    wxLineChartData::ptr chartData = wxLineChartData::make_shared(labels);
 
     // Add the first dataset
     wxVector<wxDouble> points1;
@@ -50,7 +50,7 @@ wxLineChartPanel::wxLineChartPanel(wxWindow* parent)
         "My First Dataset", wxColor(220, 220, 220),
         wxColor(255, 255, 255), wxColor(220, 220, 220, 0x33),
         points1));
-    chartData.AddDataset(dataset1);
+    chartData->AddDataset(dataset1);
 
     // Add the second dataset
     wxVector<wxDouble> points2;
@@ -65,7 +65,7 @@ wxLineChartPanel::wxLineChartPanel(wxWindow* parent)
         "My Second Dataset", wxColor(151, 187, 205),
         wxColor(255, 255, 255), wxColor(151, 187, 205, 0x33),
         points2));
-    chartData.AddDataset(dataset2);
+    chartData->AddDataset(dataset2);
 
     // Create the line chart widget from the constructed data
     m_lineChart = new wxLineChartCtrl(this, wxID_ANY, chartData,
