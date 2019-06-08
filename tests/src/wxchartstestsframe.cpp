@@ -25,7 +25,7 @@
 #include "wxchartstestswindowids.h"
 #include "wxchartsdefaultthemepanel.h"
 #include "wxchartsrectanglepanel.h"
-#include "wxchartlabelseriespanel.h"
+#include "wxchartslabelseriespanel.h"
 #include "wxchartscategoricalaxispanel.h"
 #include "wxchartsnumericalaxispanel.h"
 #include "wxchartsgridpanel.h"
@@ -70,9 +70,9 @@ wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
     mainPanelSizer->Add(m_chartsRectanglePanel, 1, wxEXPAND);
     m_chartsRectanglePanel->Hide();
 
-    m_chartLabelPanel = new wxChartLabelSeriesPanel(m_mainPanel);
-    mainPanelSizer->Add(m_chartLabelPanel, 1, wxEXPAND);
-    m_chartLabelPanel->Hide();
+    m_chartsLabelPanel = new wxChartsLabelSeriesPanel(m_mainPanel);
+    mainPanelSizer->Add(m_chartsLabelPanel, 1, wxEXPAND);
+    m_chartsLabelPanel->Hide();
 
     m_chartsCategoricalAxisPanel = new wxChartsCategoricalAxisPanel(m_mainPanel);
     mainPanelSizer->Add(m_chartsCategoricalAxisPanel, 1, wxEXPAND);
@@ -157,9 +157,9 @@ void wxChartsTestsFrame::OnChartsRectangleElement(wxCommandEvent& evt)
     SwitchPanel(m_chartsRectanglePanel);
 }
 
-void wxChartsTestsFrame::OnChartLabelElement(wxCommandEvent& evt)
+void wxChartsTestsFrame::OnChartsLabelElement(wxCommandEvent& evt)
 {
-    SwitchPanel(m_chartLabelPanel);
+    SwitchPanel(m_chartsLabelPanel);
 }
 
 void wxChartsTestsFrame::OnChartsCategoricalAxisElement(wxCommandEvent& evt)
@@ -247,7 +247,7 @@ wxBEGIN_EVENT_TABLE(wxChartsTestsFrame, wxFrame)
     EVT_MENU(wxID_EXIT, wxChartsTestsFrame::OnExit)
     EVT_MENU(wxID_DEFAULT_THEME, wxChartsTestsFrame::OnDefaultTheme)
     EVT_MENU(wxID_RECTANGLE_ELEMENT, wxChartsTestsFrame::OnChartsRectangleElement)
-    EVT_MENU(wxID_LABEL_ELEMENT, wxChartsTestsFrame::OnChartLabelElement)
+    EVT_MENU(wxID_LABEL_ELEMENT, wxChartsTestsFrame::OnChartsLabelElement)
     EVT_MENU(wxID_CATEGORICALAXIS_ELEMENT, wxChartsTestsFrame::OnChartsCategoricalAxisElement)
     EVT_MENU(wxID_NUMERICALAXIS_ELEMENT, wxChartsTestsFrame::OnChartsNumericalAxisElement)
     EVT_MENU(wxID_GRID_ELEMENT, wxChartsTestsFrame::OnChartsGridElement)

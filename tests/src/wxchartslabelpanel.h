@@ -20,17 +20,17 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _TESTS_WX_CHARTS_WXCHARTLABELPANEL_H_
-#define _TESTS_WX_CHARTS_WXCHARTLABELPANEL_H_
+#ifndef _TESTS_WX_CHARTS_WXCHARTSLABELPANEL_H_
+#define _TESTS_WX_CHARTS_WXCHARTSLABELPANEL_H_
 
 #include "elementcanvaswindow.h"
 #include <wx/charts/wxcharts.h>
 #include <wx/panel.h>
 
-class wxChartLabelPanel : public wxPanel
+class wxChartsLabelPanel : public wxPanel
 {
 public:
-    wxChartLabelPanel(wxWindow* parent);
+    wxChartsLabelPanel(wxWindow* parent);
 
 private:
     void OnFontSelection(wxCommandEvent &evt);

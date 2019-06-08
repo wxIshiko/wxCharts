@@ -20,7 +20,7 @@
     IN THE SOFTWARE.
 */
 
-#include "wxchartlabelpanel.h"
+#include "wxchartslabelpanel.h"
 #include <wx/sizer.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
@@ -29,7 +29,7 @@
 #include <wx/fontdlg.h>
 #include <sstream>
 
-wxChartLabelPanel::wxChartLabelPanel(wxWindow* parent)
+wxChartsLabelPanel::wxChartsLabelPanel(wxWindow* parent)
     : wxPanel(parent)
 {
     m_label = new wxChartsLabel(
@@ -53,7 +53,7 @@ wxChartLabelPanel::wxChartLabelPanel(wxWindow* parent)
     sizer->Add(m_canvas, 1, wxEXPAND);
 
     wxButton* button = new wxButton(this, wxID_ANY, L"Change font...");
-    button->Bind(wxEVT_BUTTON, &wxChartLabelPanel::OnFontSelection, this);
+    button->Bind(wxEVT_BUTTON, &wxChartsLabelPanel::OnFontSelection, this);
     sizer->Add(button);
 
     wxClientDC dc(this);
@@ -70,7 +70,7 @@ wxChartLabelPanel::wxChartLabelPanel(wxWindow* parent)
     SetSizer(sizer);
 }
 
-void wxChartLabelPanel::OnFontSelection(wxCommandEvent &evt)
+void wxChartsLabelPanel::OnFontSelection(wxCommandEvent &evt)
 {
     wxFontDialog* fontDialog = new wxFontDialog(this);
 

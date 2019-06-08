@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,15 +20,15 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _TESTS_WX_CHARTS_WXCHARTLABELSERIESPANEL_H_
-#define _TESTS_WX_CHARTS_WXCHARTLABELSERIESPANEL_H_
+#ifndef _TESTS_WX_CHARTS_WXCHARTSLABELSERIESPANEL_H_
+#define _TESTS_WX_CHARTS_WXCHARTSLABELSERIESPANEL_H_
 
 #include <wx/panel.h>
 
-class wxChartLabelSeriesPanel : public wxPanel
+class wxChartsLabelSeriesPanel : public wxPanel
 {
 public:
-    wxChartLabelSeriesPanel(wxWindow* parent);
+    wxChartsLabelSeriesPanel(wxWindow* parent);
 };
 
 #endif

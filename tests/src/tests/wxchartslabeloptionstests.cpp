@@ -23,7 +23,7 @@
 #include <wx/charts/wxcharts.h>
 #include <catch.hpp>
 
-TEST_CASE("wxChartLabelOptions constructor")
+TEST_CASE("wxChartsLabelOptions constructor")
 {
 	wxChartFontOptions fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666);
 	wxChartBackgroundOptions backgroundOptions(0x12345678, 0.2);
@@ -39,7 +39,7 @@ TEST_CASE("wxChartLabelOptions constructor")
 	REQUIRE(options.GetBackgroundOptions().GetCornerRadius() == 0.2);
 }
 
-TEST_CASE("wxChartLabelOptions copy constructor")
+TEST_CASE("wxChartsLabelOptions copy constructor")
 {
 	wxChartFontOptions fontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666);
 	wxChartBackgroundOptions backgroundOptions(0x12345678, 0.2);
