@@ -131,9 +131,9 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxStackedColumn sample build
+          name: wxStackedColumnChart sample build
           command: make
-          working_directory: samples/stackedcolumn
+          working_directory: samples/stackedcolumnchart
           environment:
             WXCHARTS_ROOT: ../..
       - run:
