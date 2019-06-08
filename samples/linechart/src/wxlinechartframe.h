@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2015-2016 Xavier Leclercq
+	Copyright (c) 2015-2019 Xavier Leclercq
 
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
@@ -20,15 +20,15 @@
 	IN THE SOFTWARE.
 */
 
-#ifndef _SAMPLES_LINE_WXLINEFRAME_H_
-#define _SAMPLES_LINE_WXLINEFRAME_H_
+#ifndef _SAMPLES_LINECHART_WXLINECHARTFRAME_H_
+#define _SAMPLES_LINECHART_WXLINECHARTFRAME_H_
 
 #include <wx/frame.h>
 
-class WxLineFrame : public wxFrame
+class wxLineChartFrame : public wxFrame
 {
 public:
-	WxLineFrame(const wxString& title);
+    wxLineChartFrame(const wxString& title);
 };
 
 #endif
