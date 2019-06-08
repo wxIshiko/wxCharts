@@ -1,9 +1,9 @@
 toolsets = gnu vs2017 vs2015 vs2013;
 
 gnu.makefile = ../../GNUmakefile;
-vs2017.solutionfile = ../msw/WxBar_vc15.sln;
-vs2015.solutionfile = ../msw/WxBar_vc14.sln;
-vs2013.solutionfile = ../msw/WxBar_vc12.sln;
+vs2017.solutionfile = ../msw/wxbarchart_vc15.sln;
+vs2015.solutionfile = ../msw/wxbarchart_vc14.sln;
+vs2013.solutionfile = ../msw/wxbarchart_vc12.sln;
 
 setting WXWIDGETS_ROOT
 {
@@ -17,13 +17,13 @@ setting WXCHARTS_ROOT
     default = '$(WXCHARTS)';
 }
 
-program WxBar
+program wxbarchart
 {
     archs = x86 x86_64;
 
-    vs2017.projectfile = ../msw/WxBar_vc15.vcxproj;
-    vs2015.projectfile = ../msw/WxBar_vc14.vcxproj;
-    vs2013.projectfile = ../msw/WxBar_vc12.vcxproj;
+    vs2017.projectfile = ../msw/wxbarchart_vc15.vcxproj;
+    vs2015.projectfile = ../msw/wxbarchart_vc14.vcxproj;
+    vs2013.projectfile = ../msw/wxbarchart_vc12.vcxproj;
 
     includedirs += $(WXCHARTS_ROOT)/include;
 
@@ -54,13 +54,13 @@ program WxBar
 
     headers
     {
-        ../../src/WxBarApp.h
-        ../../src/WxBarFrame.h
+        ../../src/wxbarchartapp.h
+        ../../src/wxbarchartframe.h
     }
 
     sources
     {
-        ../../src/WxBarApp.cpp
-        ../../src/WxBarFrame.cpp
+        ../../src/wxbarchartapp.cpp
+        ../../src/wxbarchartframe.cpp
     }
 }

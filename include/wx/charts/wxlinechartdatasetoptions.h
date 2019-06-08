@@ -25,8 +25,26 @@
 #ifndef _WX_CHARTS_WXLINECHARTDATASETOPTIONS_H_
 #define _WX_CHARTS_WXLINECHARTDATASETOPTIONS_H_
 
+#include "wxchartspenoptions.h"
+#include "wxchartsbrushoptions.h"
+
 class wxLineChartDatasetOptions
 {
+public:
+    wxLineChartDatasetOptions(const wxColor &dotColor, const wxColor &dotStrokeColor);
+
+public:
+    /// Whether to show the points on the chart.
+    /// @retval true Show the points.
+    /// @retval false Don't show the points.
+    bool ShowDots() const;
+    const wxColor& GetDotColor() const;
+    const wxColor& GetDotStrokeColor() const;
+
+private:
+    bool m_showDots;
+    wxColor m_dotColor;
+    wxColor m_dotStrokeColor;
 };
 
 #endif

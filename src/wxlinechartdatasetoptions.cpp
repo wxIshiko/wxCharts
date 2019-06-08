@@ -23,3 +23,24 @@
 /// @file
 
 #include "wxlinechartdatasetoptions.h"
+
+wxLineChartDatasetOptions::wxLineChartDatasetOptions(const wxColor &dotColor,
+                                                     const wxColor &dotStrokeColor)
+    : m_showDots(true), m_dotColor(dotColor), m_dotStrokeColor(dotStrokeColor)
+{
+}
+
+bool wxLineChartDatasetOptions::ShowDots() const
+{
+    return m_showDots;
+}
+
+const wxColor& wxLineChartDatasetOptions::GetDotColor() const
+{
+    return m_dotColor;
+}
+
+const wxColor& wxLineChartDatasetOptions::GetDotStrokeColor() const
+{
+    return m_dotStrokeColor;
+}

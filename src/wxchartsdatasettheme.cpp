@@ -27,7 +27,7 @@
 wxChartsDatasetTheme::wxChartsDatasetTheme()
     : m_barChartDatasetOptions(new wxBarChartDatasetOptions(wxChartsPenOptions(*wxBLACK, 2), wxChartsBrushOptions(*wxWHITE))),
     m_columnChartDatasetOptions(new wxColumnChartDatasetOptions(wxChartsPenOptions(*wxBLACK, 2), wxChartsBrushOptions(*wxWHITE))),
-    m_lineChartDatasetOptions(new wxLineChartDatasetOptions()),
+    m_lineChartDatasetOptions(new wxLineChartDatasetOptions(*wxBLACK, *wxWHITE)),
     m_stackedBarChartDatasetOptions(new wxStackedBarChartDatasetOptions(wxChartsPenOptions(*wxBLACK, 2), wxChartsBrushOptions(*wxWHITE))),
     m_stackedColumnChartDatasetOptions(new wxStackedColumnChartDatasetOptions(wxChartsPenOptions(*wxBLACK, 2), wxChartsBrushOptions(*wxWHITE)))
 {

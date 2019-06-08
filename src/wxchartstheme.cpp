@@ -23,6 +23,7 @@
 /// @file
 
 #include "wxchartstheme.h"
+#include "wxchartspresentationtheme.h"
 
 wxChartsTheme::wxChartsTheme()
     : m_areaChartOptions(new wxAreaChartOptions()),
@@ -47,6 +48,8 @@ wxChartsTheme::wxChartsTheme()
     wxSharedPtr<wxChartsDatasetTheme> datasetTheme0(new wxChartsDatasetTheme());
     wxBarChartDatasetOptions barDatasetOptions0(wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2), wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F)));
     datasetTheme0->SetBarChartDatasetOptions(barDatasetOptions0);
+    wxLineChartDatasetOptions lineDatasetOptions0(wxColor(220, 220, 220), wxColor(255, 255, 255));
+    datasetTheme0->SetLineChartDatasetOptions(lineDatasetOptions0);
     wxColumnChartDatasetOptions columnDatasetOptions0(wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2), wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F)));
     datasetTheme0->SetColumnChartDatasetOptions(columnDatasetOptions0);
     wxStackedBarChartDatasetOptions stackedBarDatasetOptions0(wxChartsPenOptions(wxColor(96, 83, 77, 0x6C), 2), wxChartsBrushOptions(wxColor(96, 83, 77, 0x3F)));
@@ -58,6 +61,8 @@ wxChartsTheme::wxChartsTheme()
     wxSharedPtr<wxChartsDatasetTheme> datasetTheme1(new wxChartsDatasetTheme());
     wxBarChartDatasetOptions barDatasetOptions1(wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2), wxChartsBrushOptions(wxColor(151, 187, 205, 0x7F)));
     datasetTheme1->SetBarChartDatasetOptions(barDatasetOptions1);
+    wxLineChartDatasetOptions lineDatasetOptions1(wxColor(151, 187, 205), wxColor(255, 255, 255));
+    datasetTheme1->SetLineChartDatasetOptions(lineDatasetOptions1);
     wxColumnChartDatasetOptions columnDatasetOptions1(wxChartsPenOptions(wxColor(151, 187, 205, 0xFF), 2), wxChartsBrushOptions(wxColor(151, 187, 205, 0x7F)));
     datasetTheme1->SetColumnChartDatasetOptions(columnDatasetOptions1);
     wxStackedBarChartDatasetOptions stackedBarDatasetOptions1(wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2), wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F)));
@@ -169,4 +174,5 @@ wxSharedPtr<wxChartsDatasetTheme> wxChartsTheme::GetDatasetTheme(const wxChartsD
     return m_datasetThemes[id];
 }
 
-wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme(new wxChartsTheme());
+// By default the default theme is actually the wxChartsPresentationTheme
+wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme(new wxChartsPresentationTheme());

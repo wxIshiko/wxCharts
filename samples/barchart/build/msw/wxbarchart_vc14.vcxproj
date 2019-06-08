@@ -21,10 +21,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{1950B529-DE55-57E2-A192-92B5036B08B3}</ProjectGuid>
+    <ProjectGuid>{F1E59543-09A3-5CEB-AEC6-64C864D8B38B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>WxBar</RootNamespace>
-    <ProjectName>WxBar</ProjectName>
+    <RootNamespace>wxbarchart</RootNamespace>
+    <ProjectName>wxbarchart</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -152,12 +152,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\WxBarApp.cpp" />
-    <ClCompile Include="..\..\src\WxBarFrame.cpp" />
+    <ClCompile Include="..\..\src\wxbarchartapp.cpp" />
+    <ClCompile Include="..\..\src\wxbarchartframe.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\WxBarApp.h" />
-    <ClInclude Include="..\..\src\WxBarFrame.h" />
+    <ClInclude Include="..\..\src\wxbarchartapp.h" />
+    <ClInclude Include="..\..\src\wxbarchartframe.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

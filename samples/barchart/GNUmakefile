@@ -66,21 +66,21 @@ WXCHARTS_ROOT ?= $(WXCHARTS)
 
 # ------------
 
-all: $(_builddir)WxBar
+all: $(_builddir)wxbarchart
 
-$(_builddir)WxBar: $(_builddir)WxBar_WxBarApp.o $(_builddir)WxBar_WxBarFrame.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)WxBar_WxBarApp.o $(_builddir)WxBar_WxBarFrame.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
+$(_builddir)wxbarchart: $(_builddir)wxbarchart_wxbarchartapp.o $(_builddir)wxbarchart_wxbarchartframe.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxbarchart_wxbarchartapp.o $(_builddir)wxbarchart_wxbarchartframe.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
 
-$(_builddir)WxBar_WxBarApp.o: src/WxBarApp.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxBarApp.cpp
+$(_builddir)wxbarchart_wxbarchartapp.o: src/wxbarchartapp.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxbarchartapp.cpp
 
-$(_builddir)WxBar_WxBarFrame.o: src/WxBarFrame.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxBarFrame.cpp
+$(_builddir)wxbarchart_wxbarchartframe.o: src/wxbarchartframe.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxbarchartframe.cpp
 
 clean:
 	rm -f $(_builddir)*.o
 	rm -f $(_builddir)*.d
-	rm -f $(_builddir)WxBar
+	rm -f $(_builddir)wxbarchart
 
 .PHONY: all clean
 
