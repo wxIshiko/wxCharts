@@ -25,4 +25,8 @@
 #ifndef _WX_CHARTS_WXLINECHARTDATASETOPTIONS_H_
 #define _WX_CHARTS_WXLINECHARTDATASETOPTIONS_H_
 
+class wxLineChartDatasetOptions
+{
+};
+
 #endif
