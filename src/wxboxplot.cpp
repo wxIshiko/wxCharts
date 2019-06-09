@@ -33,36 +33,17 @@
 
 wxBoxPlotData::wxBoxPlotData(const wxVector<wxString> &labels,
                              const wxVector<wxVector<wxDouble>> &data)
-    : m_labels(labels), m_lineColor(0, 0, 0, 0x80), m_width(3),
-      m_upFillColor(0, 205, 0, 0x60), m_rectangleWidth(20), m_data(data)
+    : m_labels(labels), m_data(data)
 {
-    for(auto &vec : m_data)
-        std::sort(vec.begin(),vec.end());
+    for (auto &vec : m_data)
+    {
+        std::sort(vec.begin(), vec.end());
+    }
 }
 
 const wxVector<wxString>& wxBoxPlotData::GetLabels() const
 {
     return m_labels;
-}
-
-const wxColor& wxBoxPlotData::GetLineColor() const
-{
-    return m_lineColor;
-}
-
-const wxColor& wxBoxPlotData::GetUpFillColor() const
-{
-    return m_upFillColor;
-}
-
-unsigned int wxBoxPlotData::GetWidth() const
-{
-    return m_width;
-}
-
-unsigned int wxBoxPlotData::GetRectangleWidth() const
-{
-    return m_rectangleWidth;
 }
 
 const wxVector<wxVector<wxDouble>>& wxBoxPlotData::GetData() const
@@ -177,6 +158,9 @@ void wxBoxPlot::Initialize(const wxBoxPlotData &data)
 {
     for (size_t i = 0; i < data.GetData().size(); ++i)
     {
+        wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
+        wxSharedPtr<wxBoxPlotDatasetOptions> datasetOptions = datasetTheme->GetBoxPlotDatasetOptions();
+
         auto cur = data.GetData()[i];
         auto len = cur.size();
 
@@ -192,10 +176,10 @@ void wxBoxPlot::Initialize(const wxBoxPlotData &data)
 
         Box::ptr newBox(new Box(
             cur,
-            data.GetLineColor(),
-            data.GetUpFillColor(),
-            data.GetWidth(),
-            data.GetRectangleWidth(),
+            datasetOptions->GetLineColor(),
+            datasetOptions->GetUpFillColor(),
+            datasetOptions->GetWidth(),
+            datasetOptions->GetRectangleWidth(),
             tooltipProvider
         ));
         m_data.push_back(newBox);

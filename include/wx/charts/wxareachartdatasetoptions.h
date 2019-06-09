@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,31 +20,34 @@
     IN THE SOFTWARE.
 */
 
-#include "wxareachartpanel.h"
-#include <wx/sizer.h>
+/// @file
 
-wxAreaChartPanel::wxAreaChartPanel(wxWindow* parent)
-    : wxPanel(parent)
+#ifndef _WX_CHARTS_WXAREACHARTDATASETOPTIONS_H_
+#define _WX_CHARTS_WXAREACHARTDATASETOPTIONS_H_
+
+#include <wx/colour.h>
+
+class wxAreaChartDatasetOptions
 {
-    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+public:
+    wxAreaChartDatasetOptions(const wxColor &dotColor);
 
-    // Create the data for the area chart widget
-    wxAreaChartData chartData;
+    /// Whether to show the points on the chart.
+    /// @retval true Show the points.
+    /// @retval false Don't show the points.
+    bool ShowDots() const;
+    const wxColor& GetDotColor() const;
+    /// Whether to show the line on the chart.
+    /// @retval true Show the line.
+    /// @retval false Don't show the line.
+    bool ShowLine() const;
+    const wxColor& GetLineColor() const;
 
-    // Add a dataset
-    wxVector<wxPoint2DDouble> points1;
-    points1.push_back(wxPoint2DDouble(3, 3));
-    points1.push_back(wxPoint2DDouble(3.5, 4));
-    points1.push_back(wxPoint2DDouble(6, 2));
-    points1.push_back(wxPoint2DDouble(7, -1));
-    points1.push_back(wxPoint2DDouble(5, 0));
-    points1.push_back(wxPoint2DDouble(4.5, 1.7));
-    wxAreaChartDataset::ptr dataset1(new wxAreaChartDataset(points1));
-    chartData.AddDataset(dataset1);
+private:
+    bool m_showDots;
+    wxColor m_dotColor;
+    bool m_showLine;
+    wxColor m_lineColor;
+};
 
-    // Create the area chart widget
-    m_areaChart = new wxAreaChartCtrl(this, wxID_ANY, chartData);
-    sizer->Add(m_areaChart, 1, wxEXPAND);
-
-    SetSizer(sizer);
-}
+#endif

@@ -66,21 +66,21 @@ WXCHARTS_ROOT ?= $(WXCHARTS)
 
 # ------------
 
-all: $(_builddir)WxBoxplot
+all: $(_builddir)wxboxplot
 
-$(_builddir)WxBoxplot: $(_builddir)WxBoxplot_WxBoxplotApp.o $(_builddir)WxBoxplot_WxBoxplotFrame.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)WxBoxplot_WxBoxplotApp.o $(_builddir)WxBoxplot_WxBoxplotFrame.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
+$(_builddir)wxboxplot: $(_builddir)wxboxplot_wxboxplotapp.o $(_builddir)wxboxplot_wxboxplotframe.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxboxplot_wxboxplotapp.o $(_builddir)wxboxplot_wxboxplotframe.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
 
-$(_builddir)WxBoxplot_WxBoxplotApp.o: src/WxBoxplotApp.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxBoxplotApp.cpp
+$(_builddir)wxboxplot_wxboxplotapp.o: src/wxboxplotapp.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxboxplotapp.cpp
 
-$(_builddir)WxBoxplot_WxBoxplotFrame.o: src/WxBoxplotFrame.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxBoxplotFrame.cpp
+$(_builddir)wxboxplot_wxboxplotframe.o: src/wxboxplotframe.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxboxplotframe.cpp
 
 clean:
 	rm -f $(_builddir)*.o
 	rm -f $(_builddir)*.d
-	rm -f $(_builddir)WxBoxplot
+	rm -f $(_builddir)wxboxplot
 
 .PHONY: all clean
 

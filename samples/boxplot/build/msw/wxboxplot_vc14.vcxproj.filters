@@ -17,18 +17,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\WxBoxplotApp.h">
+    <ClInclude Include="..\..\src\wxboxplotapp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\WxBoxplotFrame.h">
+    <ClInclude Include="..\..\src\wxboxplotframe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\WxBoxplotApp.cpp">
+    <ClCompile Include="..\..\src\wxboxplotapp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\WxBoxplotFrame.cpp">
+    <ClCompile Include="..\..\src\wxboxplotframe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

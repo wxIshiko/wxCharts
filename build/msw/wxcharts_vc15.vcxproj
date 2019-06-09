@@ -206,10 +206,18 @@
     <ClCompile Include="..\..\src\wxchartcommonoptions.cpp" />
     <ClCompile Include="..\..\src\wxchart.cpp" />
     <ClCompile Include="..\..\src\wxchartctrl.cpp" />
+    <ClCompile Include="..\..\src\wxareachartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxareachartdatasetoptions.cpp" />
+    <ClCompile Include="..\..\src\wxareachart.cpp" />
+    <ClCompile Include="..\..\src\wxareachartctrl.cpp" />
     <ClCompile Include="..\..\src\wxbarchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxbarchartdatasetoptions.cpp" />
     <ClCompile Include="..\..\src\wxbarchart.cpp" />
     <ClCompile Include="..\..\src\wxbarchartctrl.cpp" />
+    <ClCompile Include="..\..\src\wxboxplotoptions.cpp" />
+    <ClCompile Include="..\..\src\wxboxplotdatasetoptions.cpp" />
+    <ClCompile Include="..\..\src\wxboxplot.cpp" />
+    <ClCompile Include="..\..\src\wxboxplotctrl.cpp" />
     <ClCompile Include="..\..\src\wxcandlestickchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxcandlestickchart.cpp" />
     <ClCompile Include="..\..\src\wxcandlestickchartctrl.cpp" />
@@ -258,18 +266,12 @@
     <ClCompile Include="..\..\src\wxmath2dplotoptions.cpp" />
     <ClCompile Include="..\..\src\wxmath2dplot.cpp" />
     <ClCompile Include="..\..\src\wxmath2dplotctrl.cpp" />
-    <ClCompile Include="..\..\src\wxareachartoptions.cpp" />
-    <ClCompile Include="..\..\src\wxareachart.cpp" />
-    <ClCompile Include="..\..\src\wxareachartctrl.cpp" />
     <ClCompile Include="..\..\src\wxhistogramoptions.cpp" />
     <ClCompile Include="..\..\src\wxhistogram.cpp" />
     <ClCompile Include="..\..\src\wxhistogramctrl.cpp" />
     <ClCompile Include="..\..\src\wxcombinationchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxcombinationchart.cpp" />
     <ClCompile Include="..\..\src\wxcombinationchartctrl.cpp" />
-    <ClCompile Include="..\..\src\wxboxplotoptions.cpp" />
-    <ClCompile Include="..\..\src\wxboxplot.cpp" />
-    <ClCompile Include="..\..\src\wxboxplotctrl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h" />
@@ -330,10 +332,18 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartcommonoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartctrl.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxareachartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxareachartdatasetoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxareachart.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxareachartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartdatasetoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartctrl.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxboxplotoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxboxplotdatasetoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxboxplot.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxboxplotctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcandlestickchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcandlestickchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcandlestickchartctrl.h" />
@@ -382,18 +392,12 @@
     <ClInclude Include="..\..\include\wx\charts\wxmath2dplotoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxmath2dplot.h" />
     <ClInclude Include="..\..\include\wx\charts\wxmath2dplotctrl.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxareachartoptions.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxareachart.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxareachartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxhistogramoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxhistogram.h" />
     <ClInclude Include="..\..\include\wx\charts\wxhistogramctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcombinationchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcombinationchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxcombinationchartctrl.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxboxplotoptions.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxboxplot.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxboxplotctrl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

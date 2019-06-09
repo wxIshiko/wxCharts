@@ -109,10 +109,18 @@ library wxcharts
         ../../include/wx/charts/wxchartcommonoptions.h
         ../../include/wx/charts/wxchart.h
         ../../include/wx/charts/wxchartctrl.h
+        ../../include/wx/charts/wxareachartoptions.h
+        ../../include/wx/charts/wxareachartdatasetoptions.h
+        ../../include/wx/charts/wxareachart.h
+        ../../include/wx/charts/wxareachartctrl.h
         ../../include/wx/charts/wxbarchartoptions.h
         ../../include/wx/charts/wxbarchartdatasetoptions.h
         ../../include/wx/charts/wxbarchart.h
         ../../include/wx/charts/wxbarchartctrl.h
+        ../../include/wx/charts/wxboxplotoptions.h
+        ../../include/wx/charts/wxboxplotdatasetoptions.h
+        ../../include/wx/charts/wxboxplot.h
+        ../../include/wx/charts/wxboxplotctrl.h
         ../../include/wx/charts/wxcandlestickchartoptions.h
         ../../include/wx/charts/wxcandlestickchart.h
         ../../include/wx/charts/wxcandlestickchartctrl.h
@@ -161,18 +169,12 @@ library wxcharts
         ../../include/wx/charts/wxmath2dplotoptions.h
         ../../include/wx/charts/wxmath2dplot.h
         ../../include/wx/charts/wxmath2dplotctrl.h
-        ../../include/wx/charts/wxareachartoptions.h
-        ../../include/wx/charts/wxareachart.h
-        ../../include/wx/charts/wxareachartctrl.h
         ../../include/wx/charts/wxhistogramoptions.h
         ../../include/wx/charts/wxhistogram.h
         ../../include/wx/charts/wxhistogramctrl.h
         ../../include/wx/charts/wxcombinationchartoptions.h
         ../../include/wx/charts/wxcombinationchart.h
         ../../include/wx/charts/wxcombinationchartctrl.h
-        ../../include/wx/charts/wxboxplotoptions.h
-        ../../include/wx/charts/wxboxplot.h
-        ../../include/wx/charts/wxboxplotctrl.h
     }
 
     sources
@@ -236,10 +238,18 @@ library wxcharts
         ../../src/wxchartcommonoptions.cpp
         ../../src/wxchart.cpp
         ../../src/wxchartctrl.cpp
+        ../../src/wxareachartoptions.cpp
+        ../../src/wxareachartdatasetoptions.cpp
+        ../../src/wxareachart.cpp
+        ../../src/wxareachartctrl.cpp
         ../../src/wxbarchartoptions.cpp
         ../../src/wxbarchartdatasetoptions.cpp
         ../../src/wxbarchart.cpp
         ../../src/wxbarchartctrl.cpp
+        ../../src/wxboxplotoptions.cpp
+        ../../src/wxboxplotdatasetoptions.cpp
+        ../../src/wxboxplot.cpp
+        ../../src/wxboxplotctrl.cpp
         ../../src/wxcandlestickchartoptions.cpp
         ../../src/wxcandlestickchart.cpp
         ../../src/wxcandlestickchartctrl.cpp
@@ -288,17 +298,11 @@ library wxcharts
         ../../src/wxmath2dplotoptions.cpp
         ../../src/wxmath2dplot.cpp
         ../../src/wxmath2dplotctrl.cpp
-        ../../src/wxareachartoptions.cpp
-        ../../src/wxareachart.cpp
-        ../../src/wxareachartctrl.cpp
         ../../src/wxhistogramoptions.cpp
         ../../src/wxhistogram.cpp
         ../../src/wxhistogramctrl.cpp
         ../../src/wxcombinationchartoptions.cpp
         ../../src/wxcombinationchart.cpp
         ../../src/wxcombinationchartctrl.cpp
-        ../../src/wxboxplotoptions.cpp
-        ../../src/wxboxplot.cpp
-        ../../src/wxboxplotctrl.cpp
     }
 }

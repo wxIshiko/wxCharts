@@ -38,32 +38,9 @@
 #include <wx/dcmemory.h>
 #include <sstream>
 
-wxAreaChartDataset::wxAreaChartDataset(
-    const wxColor &dotColor,
-    wxVector<wxPoint2DDouble> &data)
-    : m_showDots(true), m_dotColor(dotColor),
-    m_showLine(true),m_lineColor(dotColor),m_data(data)
+wxAreaChartDataset::wxAreaChartDataset(wxVector<wxPoint2DDouble> &data)
+    : m_data(data)
 {
-}
-
-bool wxAreaChartDataset::ShowDots() const
-{
-    return m_showDots;
-}
-
-const wxColor& wxAreaChartDataset::GetDotColor() const
-{
-    return m_dotColor;
-}
-
-bool wxAreaChartDataset::ShowLine() const
-{
-    return m_showLine;
-}
-
-const wxColor& wxAreaChartDataset::GetLineColor() const
-{
-    return m_lineColor;
 }
 
 const wxVector<wxPoint2DDouble>& wxAreaChartDataset::GetData() const
@@ -207,8 +184,11 @@ void wxAreaChart::Initialize(const wxAreaChartData &data)
     const wxVector<wxAreaChartDataset::ptr>& datasets = data.GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        Dataset::ptr newDataset(new Dataset(datasets[i]->ShowDots(),datasets[i]->ShowLine(),
-            datasets[i]->GetLineColor()));
+        wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
+        wxSharedPtr<wxAreaChartDatasetOptions> datasetOptions = datasetTheme->GetAreaChartDatasetOptions();
+
+        Dataset::ptr newDataset(new Dataset(datasetOptions->ShowDots(), datasetOptions->ShowLine(),
+            datasetOptions->GetLineColor()));
 
         const wxVector<wxPoint2DDouble>& datasetData = datasets[i]->GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
@@ -216,13 +196,13 @@ void wxAreaChart::Initialize(const wxAreaChartData &data)
             std::stringstream tooltip;
             tooltip << "(" << datasetData[j].m_x << "," << datasetData[j].m_y << ")";
             wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic("", tooltip.str(), datasets[i]->GetLineColor())
+                new wxChartTooltipProviderStatic("", tooltip.str(), datasetOptions->GetLineColor())
                 );
 
             Point::ptr point(
                 new Point(datasetData[j], tooltipProvider, 20 + j * 10, 0,
                     m_options->GetDotRadius(), m_options->GetDotStrokeWidth(),
-                    datasets[i]->GetDotColor(),m_options->GetHitDetectionRange()));
+                    datasetOptions->GetDotColor(),m_options->GetHitDetectionRange()));
 
             newDataset->AppendPoint(point);
         }

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,37 +20,39 @@
     IN THE SOFTWARE.
 */
 
-#include "wxareachartframe.h"
+#include "wxboxplotframe.h"
 #include <wx/panel.h>
 #include <wx/sizer.h>
 #include <wx/charts/wxcharts.h>
 
-wxAreaChartFrame::wxAreaChartFrame(const wxString& title)
+wxBoxPlotFrame::wxBoxPlotFrame(const wxString& title)
     : wxFrame(NULL, wxID_ANY, title)
 {
     // Create a top-level panel to hold all the contents of the frame
     wxPanel* panel = new wxPanel(this, wxID_ANY);
 
-    // Create the data for the area chart widget
-    wxAreaChartData chartData;
+    // Create the data for the boxplot chart widget
+    wxVector<wxString> labels;
+    labels.push_back("A1");
+    labels.push_back("A2");
 
-    // Add a dataset
-    wxVector<wxPoint2DDouble> points1;
-    points1.push_back(wxPoint2DDouble(3, 3));
-    points1.push_back(wxPoint2DDouble(3.5, 4));
-    points1.push_back(wxPoint2DDouble(6, 2));
-    points1.push_back(wxPoint2DDouble(7, -1));
-    points1.push_back(wxPoint2DDouble(5, 0));
-    points1.push_back(wxPoint2DDouble(4.5, 1.7));
-    wxAreaChartDataset::ptr dataset1(new wxAreaChartDataset(points1));
-    chartData.AddDataset(dataset1);
+    wxVector<wxVector<wxDouble>> data;
+    //data from http://www.physics.csbsju.edu/stats/box2.html
+    double A1[]={0.22, -0.87, -2.39, -1.79, 0.37, -1.54, 1.28, -0.31, -0.74, 1.72, 0.38, -0.17, -0.62, -1.10, 0.30, 0.15, 2.30, 0.19, -0.50, -0.09};
+    double A2[]={-5.13, -2.19, -2.43, -3.83, 0.50, -3.25, 4.32, 1.63, 5.18, -0.43, 7.11, 4.87, -3.10, -5.81, 3.76, 6.31, 2.58, 0.07, 5.76, 3.50}; 
+    wxVector<wxDouble> vec1(std::begin(A1),std::end(A1)),vec2(std::begin(A2),std::end(A2));
+    data.push_back(vec1);
+    data.push_back(vec2);
 
-    // Create the area chart widget
-    wxAreaChartCtrl* areaChartCtrl = new wxAreaChartCtrl(panel, wxID_ANY, chartData);
+    wxBoxPlotData chartData(labels, data);
+
+    // Create the boxplot chart widget from the constructed data
+    wxBoxPlotCtrl* boxplotChartCtrl = new wxBoxPlotCtrl(panel, wxID_ANY, chartData,
+        wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
     // Set up the sizer for the panel
     wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
-    panelSizer->Add(areaChartCtrl, 1, wxEXPAND);
+    panelSizer->Add(boxplotChartCtrl, 1, wxEXPAND);
     panel->SetSizer(panelSizer);
 
     // Set up the sizer for the frame
