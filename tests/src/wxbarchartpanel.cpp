@@ -60,7 +60,7 @@ wxBarChartPanel::wxBarChartPanel(wxWindow* parent)
 
     // Create the column chart widget
     m_barChart = new wxBarChartCtrl(this, wxID_ANY, chartData);
-    sizer->Add(m_barChart);
+    sizer->Add(m_barChart, 1, wxEXPAND);
 
     SetSizer(sizer);
 }

@@ -35,13 +35,15 @@ wxHistogramPanel::wxHistogramPanel(wxWindow* parent)
     wxVector<wxDouble> data;
     data.reserve(N);
     std::default_random_engine generator;
-    std::normal_distribution<double> distribution(5.0, 2.0);
+    std::normal_distribution<wxDouble> distribution(5.0, 2.0);
 
     for (std::size_t i = 0; i < N; ++i)
     {
         wxDouble number = distribution(generator);
         if ((number >= 0.0) && (number < 10.0))
+        {
             data.push_back(number);
+        }
     }
 
     wxHistogramDataset::ptr dataset(

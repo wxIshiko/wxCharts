@@ -66,7 +66,6 @@ wxChartsGrid::wxChartsGrid(const wxPoint2DDouble &position,
       m_origAxisLimits(minXValue,maxXValue,minYValue,maxYValue),
       m_curAxisLimits(minXValue,maxXValue,minYValue,maxYValue)
 {
-
 }
 
 void wxChartsGrid::Draw(wxGraphicsContext &gc) const
