@@ -52,8 +52,7 @@ wxLineChartFrame::wxLineChartFrame(const wxString& title)
 	points1.push_back(5);
 	points1.push_back(1);
 	wxLineChartDataset::ptr dataset1(new wxLineChartDataset(
-		"My First Dataset", wxColor(220, 220, 220), 
-		wxColor(220, 220, 220, 0x33), 
+		"My First Dataset", wxColor(220, 220, 220, 0x33), 
 		points1));  
 	chartData->AddDataset(dataset1);
 
@@ -67,8 +66,7 @@ wxLineChartFrame::wxLineChartFrame(const wxString& title)
 	points2.push_back(-1.8);
 	points2.push_back(0.4);
 	wxLineChartDataset::ptr dataset2(new wxLineChartDataset(
-		"My Second Dataset", wxColor(151, 187, 205),
-		wxColor(151, 187, 205, 0x33), 
+		"My Second Dataset", wxColor(151, 187, 205, 0x33), 
 		points2));
 	chartData->AddDataset(dataset2);
 

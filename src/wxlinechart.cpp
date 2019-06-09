@@ -43,12 +43,10 @@
 #include <sstream>
 
 wxLineChartDataset::wxLineChartDataset(const wxString &label,
-                                       const wxColor &dotColor,
                                        const wxColor &fillColor,
                                        const wxVector<wxDouble> &data,
                                        const wxLineType &lineType)
-    : m_label(label), m_showLine(true),
-    m_lineColor(dotColor), m_fill(true), m_fillColor(fillColor),
+    : m_label(label), m_fill(true), m_fillColor(fillColor),
     m_data(data),m_type(lineType)
 {
 }
@@ -61,16 +59,6 @@ const wxString& wxLineChartDataset::GetLabel() const
 const wxLineType& wxLineChartDataset::GetType() const
 {
     return m_type;
-}
-
-bool wxLineChartDataset::ShowLine() const
-{
-    return m_showLine;
-}
-
-const wxColor& wxLineChartDataset::GetLineColor() const
-{
-    return m_lineColor;
 }
 
 bool wxLineChartDataset::Fill() const
@@ -255,7 +243,7 @@ void wxLineChart::Initialize(wxLineChartData::ptr &data)
         wxSharedPtr<wxLineChartDatasetOptions> datasetOptions = datasetTheme->GetLineChartDatasetOptions();
 
         Dataset::ptr newDataset(new Dataset(datasetOptions->ShowDots(),
-            datasets[i]->ShowLine(), datasets[i]->GetLineColor(),
+            datasetOptions->ShowLine(), datasetOptions->GetLineColor(),
             datasets[i]->Fill(), datasets[i]->GetFillColor(),
             datasets[i]->GetType()));
 
@@ -265,7 +253,7 @@ void wxLineChart::Initialize(wxLineChartData::ptr &data)
             std::stringstream tooltip;
             tooltip << datasetData[j];
             wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic(data->GetLabels()[j], tooltip.str(), datasets[i]->GetLineColor())
+                new wxChartTooltipProviderStatic(data->GetLabels()[j], tooltip.str(), datasetOptions->GetLineColor())
                 );
 
             Point::ptr point(

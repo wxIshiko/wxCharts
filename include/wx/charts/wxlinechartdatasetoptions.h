@@ -54,6 +54,14 @@ public:
     /// points on the chart.
     /// @return The radius of the dots.
     wxDouble GetDotRadius() const;
+
+    /// Whether to show the line on the chart.
+    /// @retval true Show the line.
+    /// @retval false Don't show the line.
+    bool ShowLine() const;
+
+    const wxColor& GetLineColor() const;
+
     /// Gets the width of the pen used to
     /// draw the lines connecting the points
     /// of the chart. Width of the axes and grid
@@ -67,6 +75,8 @@ private:
     wxChartsPenOptions m_dotPenOptions;
     wxChartsBrushOptions m_dotBrushOptions;
     wxDouble m_dotRadius;
+    bool m_showLine;
+    wxColor m_lineColor;
     unsigned int m_lineWidth;
 };
 

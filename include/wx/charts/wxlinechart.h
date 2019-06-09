@@ -67,18 +67,13 @@ public:
     /// this color.
     /// @param data The list of values.
     wxLineChartDataset(const wxString &label,
-        const wxColor &dotColor, const wxColor &fillColor,
+        const wxColor &fillColor,
         const wxVector<wxDouble> &data,
         const wxLineType &lineType=wxLINETYPE_STRAIGHTLINE);
 
     /// Gets the name of the dataset.
     /// @return The name of the dataset.
     const wxString& GetLabel() const;
-    /// Whether to show the line on the chart.
-    /// @retval true Show the line.
-    /// @retval false Don't show the line.
-    bool ShowLine() const;
-    const wxColor& GetLineColor() const;
     /// Whether to fill the part of the chart
     /// between the line and X-axis with the
     /// color returned by GetFillColor().
@@ -95,8 +90,6 @@ public:
 
 private:
     wxString m_label;
-    bool m_showLine;
-    wxColor m_lineColor;
     bool m_fill;
     wxColor m_fillColor;
     wxVector<wxDouble> m_data;

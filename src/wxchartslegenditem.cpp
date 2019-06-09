@@ -42,9 +42,9 @@ wxChartsLegendItem::wxChartsLegendItem(const wxLineChartDataset &dataset,
     {
         m_color = datasetOptions.GetDotBrushOptions().GetColor();
     }
-    else if (dataset.ShowLine())
+    else if (datasetOptions.ShowLine())
     {
-        m_color = dataset.GetLineColor();
+        m_color = datasetOptions.GetLineColor();
     }
     else if (dataset.Fill())
     {
