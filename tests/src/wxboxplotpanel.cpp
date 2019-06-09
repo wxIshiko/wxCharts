@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,33 +20,32 @@
     IN THE SOFTWARE.
 */
 
-#include "wxpiechartpanel.h"
+#include "wxboxplotpanel.h"
 #include <wx/sizer.h>
 #include <wx/choice.h>
 
-wxPieChartPanel::wxPieChartPanel(wxWindow* parent)
+wxBoxPlotPanel::wxBoxPlotPanel(wxWindow* parent)
     : wxPanel(parent)
 {
     wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
-    wxArrayString str;
-    str.Add("three");
-    str.Add("four");
-    wxChoice* choice = new wxChoice(this, -1, wxDefaultPosition, wxDefaultSize, str);
-    sizer->Add(choice);
+    wxVector<wxString> labels;
+    labels.push_back("A1");
+    labels.push_back("A2");
 
-    // Create the data for the pie chart widget
-    wxPieChartData::ptr chartData = wxPieChartData::make_shared();
-    chartData->AppendSlice(wxChartSliceData(300, wxColor(0x4A46F7), "Red"));
-    chartData->AppendSlice(wxChartSliceData(50, wxColor(0xBDBF46), "Green"));
-    chartData->AppendSlice(wxChartSliceData(100, wxColor(0x5CB4FD), "Yellow"));
-    chartData->AppendSlice(wxChartSliceData(40, wxColor(0xB19F94), "Grey"));
-    chartData->AppendSlice(wxChartSliceData(120, wxColor(0x60534D), "Dark Grey"));
+    wxVector<wxVector<wxDouble>> data;
+    //data from http://www.physics.csbsju.edu/stats/box2.html
+    double A1[] = { 0.22, -0.87, -2.39, -1.79, 0.37, -1.54, 1.28, -0.31, -0.74, 1.72, 0.38, -0.17, -0.62, -1.10, 0.30, 0.15, 2.30, 0.19, -0.50, -0.09 };
+    double A2[] = { -5.13, -2.19, -2.43, -3.83, 0.50, -3.25, 4.32, 1.63, 5.18, -0.43, 7.11, 4.87, -3.10, -5.81, 3.76, 6.31, 2.58, 0.07, 5.76, 3.50 };
+    wxVector<wxDouble> vec1(std::begin(A1), std::end(A1)), vec2(std::begin(A2), std::end(A2));
+    data.push_back(vec1);
+    data.push_back(vec2);
 
-    // Create the pie chart widget
-    m_pieChart = new wxPieChartCtrl(this, wxID_ANY, chartData,
-        wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
-    sizer->Add(m_pieChart, 1, wxEXPAND);
+    wxBoxPlotData chartData(labels, data);
+
+    // Create the boxplot widget from the constructed data
+    m_boxPlot = new wxBoxPlotCtrl(this, wxID_ANY, chartData);
+    sizer->Add(m_boxPlot, 1, wxEXPAND);
 
     SetSizer(sizer);
 }

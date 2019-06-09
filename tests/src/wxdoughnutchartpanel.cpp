@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,11 +20,11 @@
     IN THE SOFTWARE.
 */
 
-#include "wxpiechartpanel.h"
+#include "wxdoughnutchartpanel.h"
 #include <wx/sizer.h>
 #include <wx/choice.h>
 
-wxPieChartPanel::wxPieChartPanel(wxWindow* parent)
+wxDoughnutChartPanel::wxDoughnutChartPanel(wxWindow* parent)
     : wxPanel(parent)
 {
     wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
@@ -44,9 +44,9 @@ wxPieChartPanel::wxPieChartPanel(wxWindow* parent)
     chartData->AppendSlice(wxChartSliceData(120, wxColor(0x60534D), "Dark Grey"));
 
     // Create the pie chart widget
-    m_pieChart = new wxPieChartCtrl(this, wxID_ANY, chartData,
+    m_doughnutChart = new wxDoughnutChartCtrl(this, wxID_ANY, chartData,
         wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
-    sizer->Add(m_pieChart, 1, wxEXPAND);
+    sizer->Add(m_doughnutChart, 1, wxEXPAND);
 
     SetSizer(sizer);
 }

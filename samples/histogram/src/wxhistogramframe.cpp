@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2015-2019 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,58 +20,44 @@
     IN THE SOFTWARE.
 */
 
-#include "wxbarchartframe.h"
+#include "wxhistogramframe.h"
 #include <wx/panel.h>
 #include <wx/sizer.h>
 #include <wx/charts/wxcharts.h>
+#include <random>
 
-wxBarChartFrame::wxBarChartFrame(const wxString& title)
+wxHistogramFrame::wxHistogramFrame(const wxString& title)
     : wxFrame(NULL, wxID_ANY, title)
 {
     // Create a top-level panel to hold all the contents of the frame
     wxPanel* panel = new wxPanel(this, wxID_ANY);
 
-    // Create the data for the bar chart widget
-    wxVector<wxString> labels;
-    labels.push_back("January");
-    labels.push_back("February");
-    labels.push_back("March");
-    labels.push_back("April");
-    labels.push_back("May");
-    labels.push_back("June");
-    labels.push_back("July");
-    wxChartsCategoricalData::ptr chartData = wxChartsCategoricalData::make_shared(labels);
+    // Create the data for the histogram chart widget
+    const std::size_t N=10000;
+    wxVector<wxDouble> data;
+    data.reserve(N);
+    std::default_random_engine generator;
+    std::normal_distribution<double> distribution(5.0, 2.0);
 
-    // Add the first dataset
-    wxVector<wxDouble> points1;
-    points1.push_back(3);
-    points1.push_back(2.5);
-    points1.push_back(1.2);
-    points1.push_back(3);
-    points1.push_back(6);
-    points1.push_back(5);
-    points1.push_back(1);
-    wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset("Dataset 1", points1));
-    chartData->AddDataset(dataset1);
+    for (std::size_t i=0; i<N; ++i)
+    {
+        wxDouble number = distribution(generator);
+        if ((number>=0.0) && (number<10.0))
+            data.push_back(number);
+    }
 
-    // Add the second dataset
-    wxVector<wxDouble> points2;
-    points2.push_back(1);
-    points2.push_back(1.33);
-    points2.push_back(2.5);
-    points2.push_back(2);
-    points2.push_back(3);
-    points2.push_back(1.8);
-    points2.push_back(0.4);
-    wxChartsDoubleDataset::ptr dataset2(new wxChartsDoubleDataset("Dataset 2", points2));
-    chartData->AddDataset(dataset2);
+    wxHistogramDataset::ptr dataset(
+        new wxHistogramDataset(wxColor(134, 134, 134), wxColor(127, 46, 46), data)
+    );
 
-    // Create the bar chart widget
-    wxBarChartCtrl* barChartCtrl = new wxBarChartCtrl(panel, wxID_ANY, chartData);
+    wxHistogramData chartData(dataset, 20);
+
+    // Create the histogram widget
+    wxHistogramCtrl* histogramCtrl = new wxHistogramCtrl(panel, wxID_ANY, chartData);
 
     // Set up the sizer for the panel
     wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
-    panelSizer->Add(barChartCtrl, 1, wxEXPAND);
+    panelSizer->Add(histogramCtrl, 1, wxEXPAND);
     panel->SetSizer(panelSizer);
 
     // Set up the sizer for the frame

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,21 +20,27 @@
     IN THE SOFTWARE.
 */
 
-/// @file
+#include "wxhistogramoptions.h"
 
-#include "wxchartsdataset.h"
-
-wxChartsDataset::wxChartsDataset(const wxString& name)
-    : m_name(name)
+wxHistogramOptions::wxHistogramOptions()
+    : m_lineWidth(2)
 {
+    wxChartMultiTooltipOptions& options = GetCommonOptions().GetMultiTooltipOptions();
+    options.SetShowTitle(false);
+    options.SetAlignment(wxALIGN_TOP);
 }
 
-const wxChartsDatasetId& wxChartsDataset::GetId() const
+const wxChartsGridOptions& wxHistogramOptions::GetGridOptions() const
 {
-    return m_id;
+    return m_gridOptions;
 }
 
-const wxString& wxChartsDataset::GetName() const
+wxChartsGridOptions& wxHistogramOptions::GetGridOptions()
 {
-    return m_name;
+    return m_gridOptions;
+}
+
+unsigned int wxHistogramOptions::GetLineWidth() const
+{
+    return m_lineWidth;
 }

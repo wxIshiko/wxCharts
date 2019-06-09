@@ -29,9 +29,8 @@
 #include "wxchartsnumericalaxis.h"
 
 #include "wxbarchartctrl.h"
-#include "wxstackedbarchartctrl.h"
+#include "wxboxplotctrl.h"
 #include "wxcolumnchartctrl.h"
-#include "wxstackedcolumnchartctrl.h"
 #include "wxlinechartctrl.h"
 #include "wxtimeserieschartctrl.h"
 #include "wxdoughnutchartctrl.h"
@@ -46,8 +45,9 @@
 #include "wxohlcchartctrl.h"
 #include "wxcombinationchartctrl.h"
 #include "wxchartslegendctrl.h"
-#include "wxhistogramchartctrl.h"
-#include "wxboxplotctrl.h"
+#include "wxhistogramctrl.h"
+#include "wxstackedbarchartctrl.h"
+#include "wxstackedcolumnchartctrl.h"
 #include "wxcategoricalscatterplotctrl.h"
 
 #include "wxchartsthemeid.h"

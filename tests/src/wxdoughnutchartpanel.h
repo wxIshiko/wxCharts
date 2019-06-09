@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,15 +20,19 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _SAMPLES_HISTOGRAMCHART_WXHISTOGRAMCHARTAPP_H_
-#define _SAMPLES_HISTOGRAMCHART_WXHISTOGRAMCHARTAPP_H_
+#ifndef _TESTS_WX_CHARTS_WXDOUGHNUTCHARTPANEL_H_
+#define _TESTS_WX_CHARTS_WXDOUGHNUTCHARTPANEL_H_
 
-#include <wx/app.h>
+#include <wx/charts/wxcharts.h>
+#include <wx/panel.h>
 
-class WxHistogramChartApp : public wxApp
+class wxDoughnutChartPanel : public wxPanel
 {
 public:
-    virtual bool OnInit();
+    wxDoughnutChartPanel(wxWindow* parent);
+
+private:
+    wxDoughnutChartCtrl* m_doughnutChart;
 };
 
 #endif

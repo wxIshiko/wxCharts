@@ -20,27 +20,14 @@
     IN THE SOFTWARE.
 */
 
-#include "wxhistogramchartoptions.h"
+#include "wxhistogramapp.h"
+#include "wxhistogramframe.h"
 
-wxHistogramChartOptions::wxHistogramChartOptions() : m_lineWidth(2)
+wxIMPLEMENT_APP(wxHistogramApp);
+
+bool wxHistogramApp::OnInit()
 {
-    wxChartMultiTooltipOptions& options = GetCommonOptions().GetMultiTooltipOptions();
-    options.SetShowTitle(false);
-    options.SetAlignment(wxALIGN_TOP);
+    wxHistogramFrame* frame = new wxHistogramFrame("wxCharts - wxHistogram Sample");
+    frame->Show(true);
+    return true;
 }
-
-const wxChartsGridOptions& wxHistogramChartOptions::GetGridOptions() const
-{
-    return m_gridOptions;
-}
-
-wxChartsGridOptions& wxHistogramChartOptions::GetGridOptions()
-{
-    return m_gridOptions;
-}
-
-unsigned int wxHistogramChartOptions::GetLineWidth() const
-{
-    return m_lineWidth;
-}
-

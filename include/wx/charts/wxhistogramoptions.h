@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,19 +22,39 @@
 
 /// @file
 
-#include "wxchartsdataset.h"
+#ifndef _WX_CHARTS_WXHISTOGRAMOPTIONS_H_
+#define _WX_CHARTS_WXHISTOGRAMOPTIONS_H_
 
-wxChartsDataset::wxChartsDataset(const wxString& name)
-    : m_name(name)
-{
-}
+#include "wxchartoptions.h"
+#include "wxchartsgridoptions.h"
 
-const wxChartsDatasetId& wxChartsDataset::GetId() const
-{
-    return m_id;
-}
+/// The options for the wxHistogramCtrl control.
 
-const wxString& wxChartsDataset::GetName() const
+/// \ingroup chartclasses
+class wxHistogramOptions : public wxChartOptions
 {
-    return m_name;
-}
+public:
+    /// Constructs a wxHistogramOptions instance.
+    wxHistogramOptions();
+
+    /// Gets the options for the grid.
+    /// @return The options for the grid.
+    const wxChartsGridOptions& GetGridOptions() const;
+    /// Gets the options for the grid.
+    /// @return The grid options.
+    wxChartsGridOptions& GetGridOptions();
+
+    /// Gets the width of the pen used to
+    /// draw the lines connecting the points
+    /// of the chart. Width of the axes and grid
+    /// lines are part of the options returned
+    /// by the GetGridOptions() function.
+    /// @return The width of the pen.
+    unsigned int GetLineWidth() const;
+
+private:
+    wxChartsGridOptions m_gridOptions;
+    unsigned int m_lineWidth;
+};
+
+#endif

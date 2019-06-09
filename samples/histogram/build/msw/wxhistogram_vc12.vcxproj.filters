@@ -17,18 +17,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\WxHistogramChartApp.h">
+    <ClInclude Include="..\..\src\wxhistogramapp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\WxHistogramChartFrame.h">
+    <ClInclude Include="..\..\src\wxhistogramframe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\WxHistogramChartApp.cpp">
+    <ClCompile Include="..\..\src\wxhistogramapp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\WxHistogramChartFrame.cpp">
+    <ClCompile Include="..\..\src\wxhistogramframe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

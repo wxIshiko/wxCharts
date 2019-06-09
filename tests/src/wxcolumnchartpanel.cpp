@@ -55,12 +55,12 @@ wxColumnChartPanel::wxColumnChartPanel(wxWindow* parent)
     points1.push_back(6);
     points1.push_back(5);
     points1.push_back(1);
-    wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset(points1));
+    wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset("Dataset 1", points1));
     chartData->AddDataset(dataset1);
 
     // Create the column chart widget
     m_columnChart = new wxColumnChartCtrl(this, wxID_ANY, chartData);
-    sizer->Add(m_columnChart);
+    sizer->Add(m_columnChart, 1, wxEXPAND);
 
     SetSizer(sizer);
 }

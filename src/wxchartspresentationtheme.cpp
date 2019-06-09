@@ -43,7 +43,8 @@ wxChartsPresentationDatasetTheme0::wxChartsPresentationDatasetTheme0()
 
     SetLineChartDatasetOptions(wxLineChartDatasetOptions(
         wxColor(220, 220, 220),
-        wxColor(255, 255, 255)
+        wxColor(255, 255, 255),
+        wxColor(220, 220, 220, 0x33)
     ));
 
     SetColumnChartDatasetOptions(wxColumnChartDatasetOptions(
@@ -71,7 +72,8 @@ wxChartsPresentationDatasetTheme1::wxChartsPresentationDatasetTheme1()
 
     SetLineChartDatasetOptions(wxLineChartDatasetOptions(
         wxColor(151, 187, 205),
-        wxColor(255, 255, 255)
+        wxColor(255, 255, 255),
+        wxColor(151, 187, 205, 0x33)
     ));
  
     SetColumnChartDatasetOptions(wxColumnChartDatasetOptions(

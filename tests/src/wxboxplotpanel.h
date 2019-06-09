@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,21 +20,19 @@
     IN THE SOFTWARE.
 */
 
-/// @file
+#ifndef _TESTS_WX_CHARTS_WXBOXPLOTPANEL_H_
+#define _TESTS_WX_CHARTS_WXBOXPLOTPANEL_H_
 
-#include "wxchartsdataset.h"
+#include <wx/charts/wxcharts.h>
+#include <wx/panel.h>
 
-wxChartsDataset::wxChartsDataset(const wxString& name)
-    : m_name(name)
+class wxBoxPlotPanel : public wxPanel
 {
-}
+public:
+    wxBoxPlotPanel(wxWindow* parent);
 
-const wxChartsDatasetId& wxChartsDataset::GetId() const
-{
-    return m_id;
-}
+private:
+    wxBoxPlotCtrl* m_boxPlot;
+};
 
-const wxString& wxChartsDataset::GetName() const
-{
-    return m_name;
-}
+#endif

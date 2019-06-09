@@ -31,9 +31,12 @@
 #include "wxchartsgridpanel.h"
 #include "wxareachartpanel.h"
 #include "wxbarchartpanel.h"
+#include "wxboxplotpanel.h"
 #include "wxbubblechartpanel.h"
 #include "wxcandlestickchartpanel.h"
 #include "wxcolumnchartpanel.h"
+#include "wxdoughnutchartpanel.h"
+#include "wxhistogrampanel.h"
 #include "wxlinechartpanel.h"
 #include "wxpiechartpanel.h"
 #include "wxpolarareachartpanel.h"
@@ -94,6 +97,10 @@ wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
     mainPanelSizer->Add(m_barChartPanel, 1, wxEXPAND);
     m_barChartPanel->Hide();
 
+    m_boxPlotPanel = new wxBoxPlotPanel(m_mainPanel);
+    mainPanelSizer->Add(m_boxPlotPanel, 1, wxEXPAND);
+    m_boxPlotPanel->Hide();
+
     m_bubbleChartPanel = new wxBubbleChartPanel(m_mainPanel);
     mainPanelSizer->Add(m_bubbleChartPanel, 1, wxEXPAND);
     m_bubbleChartPanel->Hide();
@@ -105,6 +112,14 @@ wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
     m_columnChartPanel = new wxColumnChartPanel(m_mainPanel);
     mainPanelSizer->Add(m_columnChartPanel, 1, wxEXPAND);
     m_columnChartPanel->Hide();
+
+    m_doughnutChartPanel = new wxDoughnutChartPanel(m_mainPanel);
+    mainPanelSizer->Add(m_doughnutChartPanel, 1, wxEXPAND);
+    m_doughnutChartPanel->Hide();
+
+    m_histogramPanel = new wxHistogramPanel(m_mainPanel);
+    mainPanelSizer->Add(m_histogramPanel, 1, wxEXPAND);
+    m_histogramPanel->Hide();
 
     m_lineChartPanel = new wxLineChartPanel(m_mainPanel);
     mainPanelSizer->Add(m_lineChartPanel, 1, wxEXPAND);
@@ -187,6 +202,11 @@ void wxChartsTestsFrame::OnBarChart(wxCommandEvent& evt)
     SwitchPanel(m_barChartPanel);
 }
 
+void wxChartsTestsFrame::OnBoxPlot(wxCommandEvent& evt)
+{
+    SwitchPanel(m_boxPlotPanel);
+}
+
 void wxChartsTestsFrame::OnBubbleChart(wxCommandEvent& evt)
 {
     SwitchPanel(m_bubbleChartPanel);
@@ -200,6 +220,16 @@ void wxChartsTestsFrame::OnCandlestickChart(wxCommandEvent& evt)
 void wxChartsTestsFrame::OnColumnChart(wxCommandEvent& evt)
 {
     SwitchPanel(m_columnChartPanel);
+}
+
+void wxChartsTestsFrame::OnDoughnutChart(wxCommandEvent& evt)
+{
+    SwitchPanel(m_doughnutChartPanel);
+}
+
+void wxChartsTestsFrame::OnHistogram(wxCommandEvent& evt)
+{
+    SwitchPanel(m_histogramPanel);
 }
 
 void wxChartsTestsFrame::OnLineChart(wxCommandEvent& evt)
@@ -253,9 +283,12 @@ wxBEGIN_EVENT_TABLE(wxChartsTestsFrame, wxFrame)
     EVT_MENU(wxID_GRID_ELEMENT, wxChartsTestsFrame::OnChartsGridElement)
     EVT_MENU(wxID_AREA_CHART, wxChartsTestsFrame::OnAreaChart)
     EVT_MENU(wxID_BAR_CHART, wxChartsTestsFrame::OnBarChart)
+    EVT_MENU(wxID_BOX_PLOT, wxChartsTestsFrame::OnBoxPlot)
     EVT_MENU(wxID_BUBBLE_CHART, wxChartsTestsFrame::OnBubbleChart)
     EVT_MENU(wxID_CANDLESTICK_CHART, wxChartsTestsFrame::OnCandlestickChart)
     EVT_MENU(wxID_COLUMN_CHART, wxChartsTestsFrame::OnColumnChart)
+    EVT_MENU(wxID_DOUGHNUT_CHART, wxChartsTestsFrame::OnDoughnutChart)
+    EVT_MENU(wxID_HISTOGRAM, wxChartsTestsFrame::OnHistogram)
     EVT_MENU(wxID_LINE_CHART, wxChartsTestsFrame::OnLineChart)
     EVT_MENU(wxID_PIE_CHART, wxChartsTestsFrame::OnPieChart)
     EVT_MENU(wxID_POLARAREA_CHART, wxChartsTestsFrame::OnPolarAreaChart)

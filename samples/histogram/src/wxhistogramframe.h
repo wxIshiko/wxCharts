@@ -20,41 +20,15 @@
     IN THE SOFTWARE.
 */
 
-/// @file
+#ifndef _SAMPLES_HISTOGRAM_WXHISTOGRAMFRAME_H_
+#define _SAMPLES_HISTOGRAM_WXHISTOGRAMFRAME_H_
 
-#ifndef _WX_CHARTS_WXHISTOGRAMCHARTOPTIONS_H_
-#define _WX_CHARTS_WXHISTOGRAMCHARTOPTIONS_H_
+#include <wx/frame.h>
 
-#include "wxchartoptions.h"
-#include "wxchartsgridoptions.h"
-
-/// The options for the wxHistogramChartCtrl control.
-
-/// \ingroup chartclasses
-class wxHistogramChartOptions : public wxChartOptions
+class wxHistogramFrame : public wxFrame
 {
 public:
-    /// Constructs a wxHistogramChartOptions instance.
-    wxHistogramChartOptions();
-
-    /// Gets the options for the grid.
-    /// @return The options for the grid.
-    const wxChartsGridOptions& GetGridOptions() const;
-    /// Gets the options for the grid.
-    /// @return The grid options.
-    wxChartsGridOptions& GetGridOptions();
-
-    /// Gets the width of the pen used to
-    /// draw the lines connecting the points
-    /// of the chart. Width of the axes and grid
-    /// lines are part of the options returned
-    /// by the GetGridOptions() function.
-    /// @return The width of the pen.
-    unsigned int GetLineWidth() const;
-
-private:
-    wxChartsGridOptions m_gridOptions;
-    unsigned int m_lineWidth;
+    wxHistogramFrame(const wxString& title);
 };
 
 #endif

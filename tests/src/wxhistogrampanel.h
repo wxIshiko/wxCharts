@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,14 +20,19 @@
     IN THE SOFTWARE.
 */
 
-#include "WxHistogramChartApp.h"
-#include "WxHistogramChartFrame.h"
+#ifndef _TESTS_WX_CHARTS_WXHISTOGRAMPANEL_H_
+#define _TESTS_WX_CHARTS_WXHISTOGRAMPANEL_H_
 
-wxIMPLEMENT_APP(WxHistogramChartApp);
+#include <wx/charts/wxcharts.h>
+#include <wx/panel.h>
 
-bool WxHistogramChartApp::OnInit()
+class wxHistogramPanel : public wxPanel
 {
-    WxHistogramChartFrame* frame = new WxHistogramChartFrame("wxCharts Histogram Chart Sample");
-    frame->Show(true);
-    return true;
-}
+public:
+    wxHistogramPanel(wxWindow* parent);
+
+private:
+    wxHistogramCtrl* m_histogram;
+};
+
+#endif

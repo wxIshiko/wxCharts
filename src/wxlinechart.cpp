@@ -42,94 +42,6 @@
 #include <wx/dcmemory.h>
 #include <sstream>
 
-wxLineChartDataset::wxLineChartDataset(const wxString &label,
-                                       const wxColor &dotColor,
-                                       const wxColor &dotStrokeColor,
-                                       const wxColor &fillColor,
-                                       const wxVector<wxDouble> &data,
-                                       const wxLineType &lineType)
-    : m_label(label), m_showDots(true), m_dotColor(dotColor),
-    m_dotStrokeColor(dotStrokeColor), m_showLine(true),
-    m_lineColor(dotColor), m_fill(true), m_fillColor(fillColor),
-    m_data(data),m_type(lineType)
-{
-}
-
-const wxString& wxLineChartDataset::GetLabel() const
-{
-    return m_label;
-}
-
-bool wxLineChartDataset::ShowDots() const
-{
-    return m_showDots;
-}
-
-const wxColor& wxLineChartDataset::GetDotColor() const
-{
-    return m_dotColor;
-}
-
-const wxColor& wxLineChartDataset::GetDotStrokeColor() const
-{
-    return m_dotStrokeColor;
-}
-
-const wxLineType& wxLineChartDataset::GetType() const
-{
-    return m_type;
-}
-
-bool wxLineChartDataset::ShowLine() const
-{
-    return m_showLine;
-}
-
-const wxColor& wxLineChartDataset::GetLineColor() const
-{
-    return m_lineColor;
-}
-
-bool wxLineChartDataset::Fill() const
-{
-    return m_fill;
-}
-
-const wxColor& wxLineChartDataset::GetFillColor() const
-{
-    return m_fillColor;
-}
-
-const wxVector<double>& wxLineChartDataset::GetData() const
-{
-    return m_data;
-}
-
-wxLineChartData::wxLineChartData(const wxVector<wxString> &labels)
-    : m_labels(labels)
-{
-}
-
-wxLineChartData::ptr wxLineChartData::make_shared(const wxVector<wxString> &labels)
-{
-    return ptr(new wxLineChartData(labels));
-}
-
-void wxLineChartData::AddDataset(wxLineChartDataset::ptr dataset)
-{
-    m_datasets.push_back(dataset);
-}
-
-const wxVector<wxString>& wxLineChartData::GetLabels() const
-{
-    return m_labels;
-}
-
-const wxVector<wxLineChartDataset::ptr>& wxLineChartData::GetDatasets() const
-{
-    return m_datasets;
-}
-
 wxLineChart::Point::Point(wxDouble value,
                           const wxChartTooltipProvider::ptr tooltipProvider,
                           wxDouble x,
@@ -164,7 +76,7 @@ wxLineChart::Dataset::Dataset(bool showDots,
     const wxColor &lineColor,
     bool fill,
     const wxColor &fillColor,
-    const wxLineType &lineType)
+    const wxChartsLineType &lineType)
     : m_showDots(showDots), m_showLine(showLine),
     m_lineColor(lineColor), m_fill(fill),
     m_fillColor(fillColor), m_type(lineType)
@@ -196,7 +108,7 @@ const wxColor& wxLineChart::Dataset::GetFillColor() const
     return m_fillColor;
 }
 
-const wxLineType& wxLineChart::Dataset::GetType() const
+const wxChartsLineType& wxLineChart::Dataset::GetType() const
 {
      return m_type;
 }
@@ -211,31 +123,35 @@ void wxLineChart::Dataset::AppendPoint(Point::ptr point)
     m_points.push_back(point);
 }
 
-wxLineChart::wxLineChart(wxLineChartData::ptr &data,
+wxLineChart::wxLineChart(wxChartsCategoricalData::ptr &data,
+                         const wxChartsLineType &lineType,
                          const wxSize &size)
     : m_options(wxChartsDefaultTheme->GetLineChartOptions()),
     m_grid(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
         size,
-        wxChartsCategoricalAxis::make_shared("x", data->GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
         wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
-        )
+        ),
+    m_lineType(lineType)
 {
     Initialize(data);
 }
 
-wxLineChart::wxLineChart(wxLineChartData::ptr &data,
+wxLineChart::wxLineChart(wxChartsCategoricalData::ptr &data,
+                         const wxChartsLineType &lineType,
                          const wxLineChartOptions &options,
                          const wxSize &size)
     : m_options(new wxLineChartOptions(options)),
     m_grid(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
         size,
-        wxChartsCategoricalAxis::make_shared("x", data->GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
         wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
-        )
+        ),
+    m_lineType(lineType)
 {
     Initialize(data);
 }
@@ -263,18 +179,18 @@ void wxLineChart::Save(const wxString &filename,
     }
 }
 
-void wxLineChart::Initialize(wxLineChartData::ptr &data)
+void wxLineChart::Initialize(wxChartsCategoricalData::ptr &data)
 {
-    const wxVector<wxLineChartDataset::ptr>& datasets = data->GetDatasets();
+    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
         wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
         wxSharedPtr<wxLineChartDatasetOptions> datasetOptions = datasetTheme->GetLineChartDatasetOptions();
 
         Dataset::ptr newDataset(new Dataset(datasetOptions->ShowDots(),
-            datasets[i]->ShowLine(), datasets[i]->GetLineColor(),
-            datasets[i]->Fill(), datasets[i]->GetFillColor(),
-            datasets[i]->GetType()));
+            datasetOptions->ShowLine(), datasetOptions->GetLineColor(),
+            datasetOptions->Fill(), datasetOptions->GetFillColor(),
+            m_lineType));
 
         const wxVector<wxDouble>& datasetData = datasets[i]->GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
@@ -282,7 +198,7 @@ void wxLineChart::Initialize(wxLineChartData::ptr &data)
             std::stringstream tooltip;
             tooltip << datasetData[j];
             wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic(data->GetLabels()[j], tooltip.str(), datasets[i]->GetLineColor())
+                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), datasetOptions->GetLineColor())
                 );
 
             Point::ptr point(
@@ -299,7 +215,7 @@ void wxLineChart::Initialize(wxLineChartData::ptr &data)
     }
 }
 
-wxDouble wxLineChart::GetMinValue(const wxVector<wxLineChartDataset::ptr>& datasets)
+wxDouble wxLineChart::GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     wxDouble result = 0;
     bool foundValue = false;
@@ -324,7 +240,7 @@ wxDouble wxLineChart::GetMinValue(const wxVector<wxLineChartDataset::ptr>& datas
     return result;
 }
 
-wxDouble wxLineChart::GetMaxValue(const wxVector<wxLineChartDataset::ptr>& datasets)
+wxDouble wxLineChart::GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     wxDouble result = 0;
     bool foundValue = false;
@@ -385,11 +301,11 @@ void wxLineChart::DoDraw(wxGraphicsContext &gc,
             {
                 const Point::ptr& point = points[j];
                 lastPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j, point->GetValue());
-                if(m_datasets[i]->GetType()==wxLINETYPE_STEPPEDLINE)
-                 {
-                     wxPoint2DDouble temp = m_grid.GetMapping().GetWindowPositionAtTickMark(j, points[j-1]->GetValue());
-                     path.AddLineToPoint(temp);
-                 }
+                if (m_datasets[i]->GetType() == wxCHARTSLINETYPE_STEPPED)
+                {
+                    wxPoint2DDouble temp = m_grid.GetMapping().GetWindowPositionAtTickMark(j, points[j - 1]->GetValue());
+                    path.AddLineToPoint(temp);
+                }
                 path.AddLineToPoint(lastPosition);
             }
 

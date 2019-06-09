@@ -31,7 +31,8 @@
 class wxLineChartDatasetOptions
 {
 public:
-    wxLineChartDatasetOptions(const wxColor &dotColor, const wxColor &dotStrokeColor);
+    wxLineChartDatasetOptions(const wxColor &dotColor, const wxColor &dotStrokeColor,
+        const wxColor &fillColor);
 
 public:
     /// Whether to show the points on the chart.
@@ -54,6 +55,14 @@ public:
     /// points on the chart.
     /// @return The radius of the dots.
     wxDouble GetDotRadius() const;
+
+    /// Whether to show the line on the chart.
+    /// @retval true Show the line.
+    /// @retval false Don't show the line.
+    bool ShowLine() const;
+
+    const wxColor& GetLineColor() const;
+
     /// Gets the width of the pen used to
     /// draw the lines connecting the points
     /// of the chart. Width of the axes and grid
@@ -62,12 +71,29 @@ public:
     /// @return The width of the pen.
     unsigned int GetLineWidth() const;
 
+    /// Whether to fill the part of the chart
+    /// between the line and X-axis with the
+    /// color returned by GetFillColor().
+    /// @retval true Fill.
+    /// @retval false Don't fill.
+    bool Fill() const;
+
+    /// Returns the color with which to
+    /// fill the part of the chart between
+    /// the line and the X-axis.
+    /// @return The fill color.
+    const wxColor& GetFillColor() const;
+
 private:
     bool m_showDots;
     wxChartsPenOptions m_dotPenOptions;
     wxChartsBrushOptions m_dotBrushOptions;
     wxDouble m_dotRadius;
+    bool m_showLine;
+    wxColor m_lineColor;
     unsigned int m_lineWidth;
+    bool m_fill;
+    wxColor m_fillColor;
 };
 
 #endif

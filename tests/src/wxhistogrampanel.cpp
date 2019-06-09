@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,49 +20,41 @@
     IN THE SOFTWARE.
 */
 
-#include "WxHistogramChartFrame.h"
-#include <wx/panel.h>
+#include "wxhistogrampanel.h"
 #include <wx/sizer.h>
-#include <wx/charts/wxcharts.h>
+#include <wx/choice.h>
 #include <random>
 
-WxHistogramChartFrame::WxHistogramChartFrame(const wxString& title)
-    : wxFrame(NULL, wxID_ANY, title)
+wxHistogramPanel::wxHistogramPanel(wxWindow* parent)
+    : wxPanel(parent)
 {
-    // Create a top-level panel to hold all the contents of the frame
-    wxPanel* panel = new wxPanel(this, wxID_ANY);
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
     // Create the data for the histogram chart widget
-    const std::size_t N=10000;
+    const std::size_t N = 10000;
     wxVector<wxDouble> data;
     data.reserve(N);
     std::default_random_engine generator;
-    std::normal_distribution<double> distribution(5.0,2.0);
+    std::normal_distribution<wxDouble> distribution(5.0, 2.0);
 
-    for (std::size_t i=0; i<N; ++i)
+    for (std::size_t i = 0; i < N; ++i)
     {
         wxDouble number = distribution(generator);
-        if ((number>=0.0) && (number<10.0))
+        if ((number >= 0.0) && (number < 10.0))
+        {
             data.push_back(number);
+        }
     }
 
-    wxHistogramChartDataset::ptr dataset(
-        new wxHistogramChartDataset(
-            wxColor(134,134,134),wxColor(127,46,46),data)
+    wxHistogramDataset::ptr dataset(
+        new wxHistogramDataset(wxColor(134, 134, 134), wxColor(127, 46, 46), data)
     );
 
-    wxHistogramChartData chartData(dataset,20);
+    wxHistogramData chartData(dataset, 20);
 
-    // Create the histogram chart widget
-    wxHistogramChartCtrl* histogramChartCtrl = new wxHistogramChartCtrl(panel, wxID_ANY, chartData);
+    // Create the histogram widget
+    m_histogram = new wxHistogramCtrl(this, wxID_ANY, chartData);
+    sizer->Add(m_histogram, 1, wxEXPAND);
 
-    // Set up the sizer for the panel
-    wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
-    panelSizer->Add(histogramChartCtrl, 1, wxEXPAND);
-    panel->SetSizer(panelSizer);
-
-    // Set up the sizer for the frame
-    wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
-    topSizer->Add(panel, 1, wxEXPAND);
-    SetSizerAndFit(topSizer);
+    SetSizer(sizer);
 }
