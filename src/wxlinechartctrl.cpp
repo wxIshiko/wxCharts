@@ -39,11 +39,12 @@
 wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
                                  wxWindowID id,
                                  wxLineChartData::ptr &data,
+                                 const wxChartsLineType &lineType,
                                  const wxPoint &pos,
                                  const wxSize &size,
                                  long style)
     : wxChartCtrl(parent, id, pos, size, style),
-    m_lineChart(data, size)
+    m_lineChart(data, lineType, size)
 {
     CreateContextMenu();
 }
@@ -51,12 +52,13 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
                                  wxWindowID id,
                                  wxLineChartData::ptr &data,
+                                 const wxChartsLineType &lineType,
                                  const wxLineChartOptions &options,
                                  const wxPoint &pos,
                                  const wxSize &size,
                                  long style)
     : wxChartCtrl(parent, id, pos, size, style),
-    m_lineChart(data, options, size)
+    m_lineChart(data, lineType, options, size)
 {
     CreateContextMenu();
 }

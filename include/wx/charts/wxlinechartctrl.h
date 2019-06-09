@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -60,8 +60,8 @@ public:
     /// @param style Control style. For generic window styles, please
     /// see wxWindow.
     wxLineChartCtrl(wxWindow *parent, wxWindowID id, wxLineChartData::ptr &data,
-        const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
-        long style = 0);
+        const wxChartsLineType &lineType, const wxPoint &pos = wxDefaultPosition,
+        const wxSize &size = wxDefaultSize, long style = 0);
     /// Constructs a wxLineChartCtrl control.
     /// @param parent Pointer to a parent window.
     /// @param id Control identifier. If wxID_ANY, will automatically
@@ -77,8 +77,9 @@ public:
     /// @param style Control style. For generic window styles, please
     /// see wxWindow.
     wxLineChartCtrl(wxWindow *parent, wxWindowID id, wxLineChartData::ptr &data,
-        const wxLineChartOptions &options, const wxPoint &pos = wxDefaultPosition,
-        const wxSize &size = wxDefaultSize, long style = 0);
+        const wxChartsLineType &lineType, const wxLineChartOptions &options,
+        const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
+        long style = 0);
     
 private:
     virtual wxLineChart& GetChart();
