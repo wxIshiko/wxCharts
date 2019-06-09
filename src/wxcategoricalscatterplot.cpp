@@ -32,9 +32,8 @@
 #include <algorithm>
 
 wxCategoricalScatterPlotData::wxCategoricalScatterPlotData(const wxVector<wxString> &labels,
-        const wxVector<wxVector<wxDouble>> &data)
-    : m_labels(labels), m_lineColor(0, 0, 0, 0x80), m_width(3),
-      m_fillColor(0, 205, 0, 0x60), m_data(data)
+        const wxVector<wxVector<wxDouble>> &data) : m_labels(labels), 
+        m_lineColor(0, 0, 0, 0x80), m_width(3), m_fillColor(0, 205, 0, 0x60), m_data(data)
 {
     for(auto &vec : m_data)
         std::sort(vec.begin(),vec.end());
@@ -171,10 +170,8 @@ void wxCategoricalScatterPlot::Initialize(const wxCategoricalScatterPlotData &da
 
             Point::ptr point(new Point(datasets[i][j], data.GetFillColor(),
                                        data.GetLineColor(), data.GetWidth(), tooltipProvider));
-
             newDataset->AppendPoint(point);
         }
-
         m_data.push_back(newDataset);
     }
 }
