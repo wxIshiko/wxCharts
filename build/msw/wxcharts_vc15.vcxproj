@@ -206,6 +206,10 @@
     <ClCompile Include="..\..\src\wxchartcommonoptions.cpp" />
     <ClCompile Include="..\..\src\wxchart.cpp" />
     <ClCompile Include="..\..\src\wxchartctrl.cpp" />
+    <ClCompile Include="..\..\src\wxareachartoptions.cpp" />
+    <ClCompile Include="..\..\src\wxareachartdatasetoptions.cpp" />
+    <ClCompile Include="..\..\src\wxareachart.cpp" />
+    <ClCompile Include="..\..\src\wxareachartctrl.cpp" />
     <ClCompile Include="..\..\src\wxbarchartoptions.cpp" />
     <ClCompile Include="..\..\src\wxbarchartdatasetoptions.cpp" />
     <ClCompile Include="..\..\src\wxbarchart.cpp" />
@@ -258,9 +262,6 @@
     <ClCompile Include="..\..\src\wxmath2dplotoptions.cpp" />
     <ClCompile Include="..\..\src\wxmath2dplot.cpp" />
     <ClCompile Include="..\..\src\wxmath2dplotctrl.cpp" />
-    <ClCompile Include="..\..\src\wxareachartoptions.cpp" />
-    <ClCompile Include="..\..\src\wxareachart.cpp" />
-    <ClCompile Include="..\..\src\wxareachartctrl.cpp" />
     <ClCompile Include="..\..\src\wxhistogramoptions.cpp" />
     <ClCompile Include="..\..\src\wxhistogram.cpp" />
     <ClCompile Include="..\..\src\wxhistogramctrl.cpp" />
@@ -330,6 +331,10 @@
     <ClInclude Include="..\..\include\wx\charts\wxchartcommonoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchart.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartctrl.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxareachartoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxareachartdatasetoptions.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxareachart.h" />
+    <ClInclude Include="..\..\include\wx\charts\wxareachartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchartdatasetoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxbarchart.h" />
@@ -382,9 +387,6 @@
     <ClInclude Include="..\..\include\wx\charts\wxmath2dplotoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxmath2dplot.h" />
     <ClInclude Include="..\..\include\wx\charts\wxmath2dplotctrl.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxareachartoptions.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxareachart.h" />
-    <ClInclude Include="..\..\include\wx\charts\wxareachartctrl.h" />
     <ClInclude Include="..\..\include\wx\charts\wxhistogramoptions.h" />
     <ClInclude Include="..\..\include\wx\charts\wxhistogram.h" />
     <ClInclude Include="..\..\include\wx\charts\wxhistogramctrl.h" />
