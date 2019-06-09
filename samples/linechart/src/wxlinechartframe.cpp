@@ -68,7 +68,7 @@ wxLineChartFrame::wxLineChartFrame(const wxString& title)
 
 	// Create the line chart widget from the constructed data
 	wxLineChartCtrl* lineChartCtrl = new wxLineChartCtrl(panel, wxID_ANY, chartData,
-		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
+        wxCHARTSLINETYPE_STRAIGHT, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
 	// Create the legend widget
 	wxChartsLegendData legendData(chartData->GetDatasets());

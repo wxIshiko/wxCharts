@@ -41,10 +41,10 @@
 #include "wxchartsgrid.h"
 #include "wxchartspoint.h"
 
-enum wxLineType
+enum wxChartsLineType
 {
-    wxLINETYPE_STRAIGHTLINE,
-    wxLINETYPE_STEPPEDLINE
+    wxCHARTSLINETYPE_STRAIGHT,
+    wxCHARTSLINETYPE_STEPPED
 };
 
 /// Stores the information about a dataset to be shown on a wxLineChart.
@@ -67,19 +67,16 @@ public:
     /// this color.
     /// @param data The list of values.
     wxLineChartDataset(const wxString &label,
-        const wxVector<wxDouble> &data,
-        const wxLineType &lineType=wxLINETYPE_STRAIGHTLINE);
+        const wxVector<wxDouble> &data);
 
     /// Gets the name of the dataset.
     /// @return The name of the dataset.
     const wxString& GetLabel() const;
     const wxVector<wxDouble>& GetData() const;
-    const wxLineType& GetType() const;
 
 private:
     wxString m_label;
     wxVector<wxDouble> m_data;
-    wxLineType m_type;
 };
 
 /// Data for the wxLineChartCtrl control.
@@ -117,9 +114,9 @@ private:
 class wxLineChart : public wxChart
 {
 public:
-    wxLineChart(wxLineChartData::ptr &data, const wxSize &size);
-    wxLineChart(wxLineChartData::ptr &data, const wxLineChartOptions &options,
-        const wxSize &size);
+    wxLineChart(wxLineChartData::ptr &data, const wxChartsLineType &lineType, const wxSize &size);
+    wxLineChart(wxLineChartData::ptr &data, const wxChartsLineType &lineType,
+        const wxLineChartOptions &options, const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
@@ -164,14 +161,14 @@ private:
 
         Dataset(bool showDots, bool showLine, const wxColor &lineColor,
                 bool fill, const wxColor &fillColor,
-                const wxLineType &lineType=wxLINETYPE_STRAIGHTLINE);
+                const wxChartsLineType &lineType);
 
         bool ShowDots() const;
         bool ShowLine() const;
         const wxColor& GetLineColor() const;
         bool Fill() const;
         const wxColor& GetFillColor() const;
-        const wxLineType& GetType() const;
+        const wxChartsLineType& GetType() const;
 
         const wxVector<Point::ptr>& GetPoints() const;
         void AppendPoint(Point::ptr point);
@@ -182,7 +179,7 @@ private:
         wxColor m_lineColor;
         bool m_fill;
         wxColor m_fillColor;
-        wxLineType m_type;
+        wxChartsLineType m_type;
         wxVector<Point::ptr> m_points;
     };
 
@@ -190,6 +187,7 @@ private:
     wxSharedPtr<wxLineChartOptions> m_options;
     wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
+    wxChartsLineType m_lineType;
 };
 
 #endif

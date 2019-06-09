@@ -43,20 +43,14 @@
 #include <sstream>
 
 wxLineChartDataset::wxLineChartDataset(const wxString &label,
-                                       const wxVector<wxDouble> &data,
-                                       const wxLineType &lineType)
-    : m_label(label), m_data(data),m_type(lineType)
+                                       const wxVector<wxDouble> &data)
+    : m_label(label), m_data(data)
 {
 }
 
 const wxString& wxLineChartDataset::GetLabel() const
 {
     return m_label;
-}
-
-const wxLineType& wxLineChartDataset::GetType() const
-{
-    return m_type;
 }
 
 const wxVector<double>& wxLineChartDataset::GetData() const
@@ -123,7 +117,7 @@ wxLineChart::Dataset::Dataset(bool showDots,
     const wxColor &lineColor,
     bool fill,
     const wxColor &fillColor,
-    const wxLineType &lineType)
+    const wxChartsLineType &lineType)
     : m_showDots(showDots), m_showLine(showLine),
     m_lineColor(lineColor), m_fill(fill),
     m_fillColor(fillColor), m_type(lineType)
@@ -155,7 +149,7 @@ const wxColor& wxLineChart::Dataset::GetFillColor() const
     return m_fillColor;
 }
 
-const wxLineType& wxLineChart::Dataset::GetType() const
+const wxChartsLineType& wxLineChart::Dataset::GetType() const
 {
      return m_type;
 }
@@ -171,6 +165,7 @@ void wxLineChart::Dataset::AppendPoint(Point::ptr point)
 }
 
 wxLineChart::wxLineChart(wxLineChartData::ptr &data,
+                         const wxChartsLineType &lineType,
                          const wxSize &size)
     : m_options(wxChartsDefaultTheme->GetLineChartOptions()),
     m_grid(
@@ -179,12 +174,14 @@ wxLineChart::wxLineChart(wxLineChartData::ptr &data,
         wxChartsCategoricalAxis::make_shared("x", data->GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
         wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
-        )
+        ),
+    m_lineType(lineType)
 {
     Initialize(data);
 }
 
 wxLineChart::wxLineChart(wxLineChartData::ptr &data,
+                         const wxChartsLineType &lineType,
                          const wxLineChartOptions &options,
                          const wxSize &size)
     : m_options(new wxLineChartOptions(options)),
@@ -194,7 +191,8 @@ wxLineChart::wxLineChart(wxLineChartData::ptr &data,
         wxChartsCategoricalAxis::make_shared("x", data->GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
         wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
-        )
+        ),
+    m_lineType(lineType)
 {
     Initialize(data);
 }
@@ -233,7 +231,7 @@ void wxLineChart::Initialize(wxLineChartData::ptr &data)
         Dataset::ptr newDataset(new Dataset(datasetOptions->ShowDots(),
             datasetOptions->ShowLine(), datasetOptions->GetLineColor(),
             datasetOptions->Fill(), datasetOptions->GetFillColor(),
-            datasets[i]->GetType()));
+            m_lineType));
 
         const wxVector<wxDouble>& datasetData = datasets[i]->GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
@@ -344,11 +342,11 @@ void wxLineChart::DoDraw(wxGraphicsContext &gc,
             {
                 const Point::ptr& point = points[j];
                 lastPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j, point->GetValue());
-                if(m_datasets[i]->GetType()==wxLINETYPE_STEPPEDLINE)
-                 {
-                     wxPoint2DDouble temp = m_grid.GetMapping().GetWindowPositionAtTickMark(j, points[j-1]->GetValue());
-                     path.AddLineToPoint(temp);
-                 }
+                if (m_datasets[i]->GetType() == wxCHARTSLINETYPE_STEPPED)
+                {
+                    wxPoint2DDouble temp = m_grid.GetMapping().GetWindowPositionAtTickMark(j, points[j - 1]->GetValue());
+                    path.AddLineToPoint(temp);
+                }
                 path.AddLineToPoint(lastPosition);
             }
 
