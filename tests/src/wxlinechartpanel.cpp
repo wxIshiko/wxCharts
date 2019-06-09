@@ -46,9 +46,7 @@ wxLineChartPanel::wxLineChartPanel(wxWindow* parent)
     points1.push_back(6);
     points1.push_back(5);
     points1.push_back(1);
-    wxLineChartDataset::ptr dataset1(new wxLineChartDataset(
-        "My First Dataset", wxColor(220, 220, 220, 0x33),
-        points1));
+    wxLineChartDataset::ptr dataset1(new wxLineChartDataset("My First Dataset", points1));
     chartData->AddDataset(dataset1);
 
     // Add the second dataset
@@ -60,9 +58,7 @@ wxLineChartPanel::wxLineChartPanel(wxWindow* parent)
     points2.push_back(3);
     points2.push_back(-1.8);
     points2.push_back(0.4);
-    wxLineChartDataset::ptr dataset2(new wxLineChartDataset(
-        "My Second Dataset", wxColor(151, 187, 205, 0x33),
-        points2));
+    wxLineChartDataset::ptr dataset2(new wxLineChartDataset("My Second Dataset", points2));
     chartData->AddDataset(dataset2);
 
     // Create the line chart widget from the constructed data
