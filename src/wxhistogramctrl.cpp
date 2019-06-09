@@ -33,12 +33,12 @@
 
 /// @file
 
-#include "wxhistogramchartctrl.h"
+#include "wxhistogramctrl.h"
 #include <wx/filedlg.h>
 
-wxHistogramChartCtrl::wxHistogramChartCtrl(wxWindow *parent,
+wxHistogramCtrl::wxHistogramCtrl(wxWindow *parent,
                                  wxWindowID id,
-                                 const wxHistogramChartData &data,
+                                 const wxHistogramData &data,
                                  const wxPoint &pos,
                                  const wxSize &size,
                                  long style)
@@ -48,10 +48,10 @@ wxHistogramChartCtrl::wxHistogramChartCtrl(wxWindow *parent,
     CreateContextMenu();
 }
 
-wxHistogramChartCtrl::wxHistogramChartCtrl(wxWindow *parent,
+wxHistogramCtrl::wxHistogramCtrl(wxWindow *parent,
                                  wxWindowID id,
-                                 const wxHistogramChartData &data,
-                                 wxSharedPtr<wxHistogramChartOptions> &options,
+                                 const wxHistogramData &data,
+                                 wxSharedPtr<wxHistogramOptions> &options,
                                  const wxPoint &pos,
                                  const wxSize &size,
                                  long style)
@@ -61,12 +61,12 @@ wxHistogramChartCtrl::wxHistogramChartCtrl(wxWindow *parent,
     CreateContextMenu();
 }
 
-wxHistogramChart& wxHistogramChartCtrl::GetChart()
+wxHistogram& wxHistogramCtrl::GetChart()
 {
     return m_histChart;
 }
 
-void wxHistogramChartCtrl::CreateContextMenu()
+void wxHistogramCtrl::CreateContextMenu()
 {
     m_contextMenu.Append(wxID_SAVEAS, wxString("Save as"));
 

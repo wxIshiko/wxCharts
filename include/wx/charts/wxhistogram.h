@@ -33,27 +33,25 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXHISTOGRAMCHART_H_
-#define _WX_CHARTS_WXHISTOGRAMCHART_H_
+#ifndef _WX_CHARTS_WXHISTOGRAM_H_
+#define _WX_CHARTS_WXHISTOGRAM_H_
 
 #include "wxchart.h"
-#include "wxhistogramchartoptions.h"
+#include "wxhistogramoptions.h"
 #include "wxchartsgrid.h"
 #include "wxchartspoint.h"
 
 #include <wx/scopedptr.h>
 
 /// \ingroup dataclasses
-class wxHistogramChartDataset
+class wxHistogramDataset
 {
 public:
     /// Smart pointer typedef.
-    typedef wxSharedPtr<wxHistogramChartDataset> ptr;
+    typedef wxSharedPtr<wxHistogramDataset> ptr;
 
     /// Constructs a HistogramChart instance.
-    wxHistogramChartDataset(
-        const wxColor &lineColor,
-        const wxColor &fillColor,
+    wxHistogramDataset(const wxColor &lineColor, const wxColor &fillColor,
         wxVector<wxDouble> &data);
 
     const wxColor& GetLineColor() const;
@@ -77,31 +75,31 @@ private:
     wxVector<wxDouble> m_data;
 };
 
-/// Data for the wxHistogramChartCtrl control.
+/// Data for the wxHistogramCtrl control.
 
 /// \ingroup dataclasses
-class wxHistogramChartData
+class wxHistogramData
 {
 public:
-    /// Constructs a wxHistogramChartData instance.
-    wxHistogramChartData(wxHistogramChartDataset::ptr dataset,std::size_t n = 10);
+    /// Constructs a wxHistogramData instance.
+    wxHistogramData(wxHistogramDataset::ptr dataset, std::size_t n = 10);
 
-    const wxHistogramChartDataset::ptr& GetDataset() const;
+    const wxHistogramDataset::ptr& GetDataset() const;
     std::size_t GetNBins() const;
 
 private:
-    wxHistogramChartDataset::ptr m_dataset;
+    wxHistogramDataset::ptr m_dataset;
     std::size_t m_nbins;
 };
 
 /// A histogram.
 
 /// \ingroup chartclasses
-class wxHistogramChart : public wxChart
+class wxHistogram : public wxChart
 {
 public:
-    wxHistogramChart(const wxHistogramChartData &data, const wxSize &size);
-    wxHistogramChart(const wxHistogramChartData &data, wxSharedPtr<wxHistogramChartOptions> &options,
+    wxHistogram(const wxHistogramData &data, const wxSize &size);
+    wxHistogram(const wxHistogramData &data, wxSharedPtr<wxHistogramOptions> &options,
         const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
@@ -110,7 +108,7 @@ public:
         const wxSize &size);
 
 private:
-    void Initialize(const wxHistogramChartData &data);
+    void Initialize(const wxHistogramData &data);
 
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
@@ -145,7 +143,7 @@ private:
     };
 
 private:
-    wxSharedPtr<wxHistogramChartOptions> m_options;
+    wxSharedPtr<wxHistogramOptions> m_options;
     wxChartsGrid m_grid;
     wxScopedPtr<Dataset> m_dataset;
 };

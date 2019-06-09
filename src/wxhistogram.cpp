@@ -31,59 +31,60 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
-#include "wxhistogramchart.h"
+#include "wxhistogram.h"
 #include "wxchartstheme.h"
 #include <wx/dcmemory.h>
 #include <sstream>
 #include <algorithm>
 
-wxHistogramChartDataset::wxHistogramChartDataset(
-    const wxColor &lineColor,
-    const wxColor &fillColor,
-    wxVector<wxDouble> &data)
-    : m_lineColor(lineColor),m_fill(true),
-      m_fillColor(fillColor),m_data(data)
+wxHistogramDataset::wxHistogramDataset(const wxColor &lineColor,
+                                       const wxColor &fillColor,
+                                       wxVector<wxDouble> &data)
+    : m_lineColor(lineColor), m_fill(true), m_fillColor(fillColor), m_data(data)
 {
 }
 
-bool wxHistogramChartDataset::Fill() const
+bool wxHistogramDataset::Fill() const
 {
     return m_fill;
 }
 
-const wxColor& wxHistogramChartDataset::GetFillColor() const
+const wxColor& wxHistogramDataset::GetFillColor() const
 {
     return m_fillColor;
 }
 
-const wxColor& wxHistogramChartDataset::GetLineColor() const
+const wxColor& wxHistogramDataset::GetLineColor() const
 {
     return m_lineColor;
 }
 
-const wxVector<wxDouble>& wxHistogramChartDataset::GetData() const
+const wxVector<wxDouble>& wxHistogramDataset::GetData() const
 {
     return m_data;
 }
 
-wxHistogramChartData::wxHistogramChartData(
-    wxHistogramChartDataset::ptr dataset, std::size_t n) : m_dataset(dataset),m_nbins(n)
+wxHistogramData::wxHistogramData(wxHistogramDataset::ptr dataset,
+                                 std::size_t n)
+    : m_dataset(dataset), m_nbins(n)
 {
 }
 
-const wxHistogramChartDataset::ptr& wxHistogramChartData::GetDataset() const
+const wxHistogramDataset::ptr& wxHistogramData::GetDataset() const
 {
     return m_dataset;
 }
 
-std::size_t wxHistogramChartData::GetNBins() const
+std::size_t wxHistogramData::GetNBins() const
 {
     return m_nbins;
 }
 
-wxHistogramChart::Dataset::Dataset(
-    wxDouble min,wxDouble max,std::size_t n,
-    const wxColor &lineColor,const wxColor &fillColor)
+wxHistogram::Dataset::Dataset(wxDouble min,
+                              wxDouble max,
+                              std::size_t n,
+                              const wxColor &lineColor,
+                              const wxColor &fillColor)
     :  m_lineColor(lineColor), m_fillColor(fillColor), m_fill(true)
 {
     m_buckets = wxVector<Bucket>(n);
@@ -96,27 +97,27 @@ wxHistogramChart::Dataset::Dataset(
     }
 }
 
-bool wxHistogramChart::Dataset::Fill() const
+bool wxHistogram::Dataset::Fill() const
 {
     return m_fill;
 }
 
-const wxColor& wxHistogramChart::Dataset::GetFillColor() const
+const wxColor& wxHistogram::Dataset::GetFillColor() const
 {
     return m_fillColor;
 }
 
-const wxColor& wxHistogramChart::Dataset::GetLineColor() const
+const wxColor& wxHistogram::Dataset::GetLineColor() const
 {
     return m_lineColor;
 }
 
-const wxVector<wxHistogramChart::Bucket>& wxHistogramChart::Dataset::GetBuckets() const
+const wxVector<wxHistogram::Bucket>& wxHistogram::Dataset::GetBuckets() const
 {
     return m_buckets;
 }
 
-void wxHistogramChart::Dataset::AppendValue(wxDouble value)
+void wxHistogram::Dataset::AppendValue(wxDouble value)
 {
     auto it = std::find_if(m_buckets.begin(),m_buckets.end(),
                            [&value](const Bucket &b)
@@ -129,9 +130,9 @@ void wxHistogramChart::Dataset::AppendValue(wxDouble value)
         m_buckets.rbegin()->m_count++;
 }
 
-wxHistogramChart::wxHistogramChart(const wxHistogramChartData &data,
-                                   const wxSize &size)
-    : m_options(wxChartsDefaultTheme->GetHistogramChartOptions()),
+wxHistogram::wxHistogram(const wxHistogramData &data,
+                         const wxSize &size)
+    : m_options(wxChartsDefaultTheme->GetHistogramOptions()),
     m_grid(
           wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
           size,0,0,0,0, m_options->GetGridOptions())
@@ -139,9 +140,9 @@ wxHistogramChart::wxHistogramChart(const wxHistogramChartData &data,
     Initialize(data);
 }
 
-wxHistogramChart::wxHistogramChart(const wxHistogramChartData &data,
-                                   wxSharedPtr<wxHistogramChartOptions> &options,
-                                   const wxSize &size)
+wxHistogram::wxHistogram(const wxHistogramData &data,
+                         wxSharedPtr<wxHistogramOptions> &options,
+                         const wxSize &size)
     : m_options(options),
       m_grid(
           wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
@@ -150,7 +151,7 @@ wxHistogramChart::wxHistogramChart(const wxHistogramChartData &data,
     Initialize(data);
 }
 
-void wxHistogramChart::Initialize(const wxHistogramChartData &data)
+void wxHistogram::Initialize(const wxHistogramData &data)
 {
     auto dataset = data.GetDataset();
     auto datasetData = dataset->GetData();
@@ -175,14 +176,14 @@ void wxHistogramChart::Initialize(const wxHistogramChartData &data)
     m_grid.UpdateAxisLimit("y",0,maxY->m_count);
 }
 
-const wxChartCommonOptions& wxHistogramChart::GetCommonOptions() const
+const wxChartCommonOptions& wxHistogram::GetCommonOptions() const
 {
     return m_options->GetCommonOptions();
 }
 
-void wxHistogramChart::Save(const wxString &filename,
-                            const wxBitmapType &type,
-                            const wxSize &size)
+void wxHistogram::Save(const wxString &filename,
+                       const wxBitmapType &type,
+                       const wxSize &size)
 {
     wxBitmap bmp(size.GetWidth(), size.GetHeight());
     wxMemoryDC mdc(bmp);
@@ -196,7 +197,7 @@ void wxHistogramChart::Save(const wxString &filename,
     }
 }
 
-void wxHistogramChart::DoSetSize(const wxSize &size)
+void wxHistogram::DoSetSize(const wxSize &size)
 {
     wxSize newSize(
         size.GetWidth() - m_options->GetPadding().GetTotalHorizontalPadding(),
@@ -205,12 +206,12 @@ void wxHistogramChart::DoSetSize(const wxSize &size)
     m_grid.Resize(newSize);
 }
 
-void wxHistogramChart::DoFit()
+void wxHistogram::DoFit()
 {
 }
 
-void wxHistogramChart::DoDraw(wxGraphicsContext &gc,
-                              bool suppressTooltips)
+void wxHistogram::DoDraw(wxGraphicsContext &gc,
+                         bool suppressTooltips)
 {
     m_grid.Draw(gc);
     Fit();
@@ -250,7 +251,7 @@ void wxHistogramChart::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartsElement*>> wxHistogramChart::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxHistogram::GetActiveElements(const wxPoint &point)
 {
     return wxSharedPtr<wxVector<const wxChartsElement*>>(new wxVector<const wxChartsElement*>());
 }

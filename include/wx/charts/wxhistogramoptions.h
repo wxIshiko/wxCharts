@@ -22,20 +22,20 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXHISTOGRAMCHARTOPTIONS_H_
-#define _WX_CHARTS_WXHISTOGRAMCHARTOPTIONS_H_
+#ifndef _WX_CHARTS_WXHISTOGRAMOPTIONS_H_
+#define _WX_CHARTS_WXHISTOGRAMOPTIONS_H_
 
 #include "wxchartoptions.h"
 #include "wxchartsgridoptions.h"
 
-/// The options for the wxHistogramChartCtrl control.
+/// The options for the wxHistogramCtrl control.
 
 /// \ingroup chartclasses
-class wxHistogramChartOptions : public wxChartOptions
+class wxHistogramOptions : public wxChartOptions
 {
 public:
-    /// Constructs a wxHistogramChartOptions instance.
-    wxHistogramChartOptions();
+    /// Constructs a wxHistogramOptions instance.
+    wxHistogramOptions();
 
     /// Gets the options for the grid.
     /// @return The options for the grid.
