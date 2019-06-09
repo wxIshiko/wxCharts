@@ -44,12 +44,10 @@
 
 wxLineChartDataset::wxLineChartDataset(const wxString &label,
                                        const wxColor &dotColor,
-                                       const wxColor &dotStrokeColor,
                                        const wxColor &fillColor,
                                        const wxVector<wxDouble> &data,
                                        const wxLineType &lineType)
-    : m_label(label), m_showDots(true), m_dotColor(dotColor),
-    m_dotStrokeColor(dotStrokeColor), m_showLine(true),
+    : m_label(label), m_showLine(true),
     m_lineColor(dotColor), m_fill(true), m_fillColor(fillColor),
     m_data(data),m_type(lineType)
 {
@@ -58,21 +56,6 @@ wxLineChartDataset::wxLineChartDataset(const wxString &label,
 const wxString& wxLineChartDataset::GetLabel() const
 {
     return m_label;
-}
-
-bool wxLineChartDataset::ShowDots() const
-{
-    return m_showDots;
-}
-
-const wxColor& wxLineChartDataset::GetDotColor() const
-{
-    return m_dotColor;
-}
-
-const wxColor& wxLineChartDataset::GetDotStrokeColor() const
-{
-    return m_dotStrokeColor;
 }
 
 const wxLineType& wxLineChartDataset::GetType() const
