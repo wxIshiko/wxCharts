@@ -31,6 +31,7 @@ wxChartsTheme::wxChartsTheme()
     m_boxPlotOptions(new wxBoxPlotOptions()),
     m_bubbleChartOptions(new wxBubbleChartOptions()),
     m_candlestickChartOptions(new wxCandlestickChartOptions()),
+    m_categoricalScatterPlotOptions(new wxCategoricalScatterPlotOptions()),
     m_columnChartOptions(new wxColumnChartOptions()),
     m_doughnutChartOptions(new wxDoughnutChartOptions()),
     m_histogramOptions(new wxHistogramOptions()),
@@ -70,6 +71,11 @@ wxSharedPtr<wxBubbleChartOptions> wxChartsTheme::GetBubbleChartOptions()
 wxSharedPtr<wxCandlestickChartOptions> wxChartsTheme::GetCandlestickChartOptions()
 {
     return m_candlestickChartOptions;
+}
+
+wxSharedPtr<wxCategoricalScatterPlotOptions> wxChartsTheme::GetCategoricalScatterPlotOptions()
+{
+    return m_categoricalScatterPlotOptions;
 }
 
 wxSharedPtr<wxColumnChartOptions> wxChartsTheme::GetColumnChartOptions()

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2015-2019 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,46 +22,34 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTS_H_
-#define _WX_CHARTS_WXCHARTS_H_
+#ifndef _WX_CHARTS_WXCATEGORICALSCATTERPLOTOPTIONS_H_
+#define _WX_CHARTS_WXCATEGORICALSCATTERPLOTOPTIONS_H_
 
-#include "wxchartscategoricalaxis.h"
-#include "wxchartsnumericalaxis.h"
+#include "wxchartoptions.h"
+#include "wxchartsgridoptions.h"
+#include <wx/sharedptr.h>
 
-#include "wxbarchartctrl.h"
-#include "wxboxplotctrl.h"
-#include "wxcolumnchartctrl.h"
-#include "wxlinechartctrl.h"
-#include "wxtimeserieschartctrl.h"
-#include "wxdoughnutchartctrl.h"
-#include "wxpiechartctrl.h"
-#include "wxpolarareachartctrl.h"
-#include "wxradarchartctrl.h"
-#include "wxscatterplotctrl.h"
-#include "wxmath2dplotctrl.h"
-#include "wxareachartctrl.h"
-#include "wxbubblechartctrl.h"
-#include "wxcandlestickchartctrl.h"
-#include "wxohlcchartctrl.h"
-#include "wxcombinationchartctrl.h"
-#include "wxchartslegendctrl.h"
-#include "wxhistogramctrl.h"
-#include "wxstackedbarchartctrl.h"
-#include "wxstackedcolumnchartctrl.h"
-#include "wxcategoricalscatterplotctrl.h"
+/// The options for the wxCategoricalScatterPlotCtrl control.
 
-#include "wxchartsthemeid.h"
-#include "wxchartstheme.h"
-#include "wxchartsthemefactory.h"
+/// \ingroup chartclasses
+class wxCategoricalScatterPlotOptions : public wxChartOptions
+{
+public:
+    /// Smart pointer typedef.
+    typedef wxSharedPtr<wxCategoricalScatterPlotOptions> ptr;
 
-#ifdef _MSC_VER
+    /// Constructs a wxCategoricalScatterPlotOptions instance.
+    wxCategoricalScatterPlotOptions();
 
-#ifdef _DEBUG
-#pragma comment(lib, "wxchartsd.lib")
-#else
-#pragma comment(lib, "wxcharts.lib")
-#endif
+    /// Gets the options for the grid.
+    /// @return The grid options.
+    const wxChartsGridOptions& GetGridOptions() const;
+    /// Gets the options for the grid.
+    /// @return The grid options.
+    wxChartsGridOptions& GetGridOptions();
 
-#endif
+private:
+    wxChartsGridOptions m_gridOptions;
+};
 
 #endif

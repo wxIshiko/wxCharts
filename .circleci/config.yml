@@ -47,6 +47,12 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
+          name: WxCategoricalScatterPlot sample build
+          command: make
+          working_directory: samples/categoricalscatterplot
+          environment:
+            WXCHARTS_ROOT: ../..
+      - run:
           name: wxColumn sample build
           command: make
           working_directory: samples/column
