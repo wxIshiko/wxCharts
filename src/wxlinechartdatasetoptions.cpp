@@ -25,9 +25,11 @@
 #include "wxlinechartdatasetoptions.h"
 
 wxLineChartDatasetOptions::wxLineChartDatasetOptions(const wxColor &dotColor,
-                                                     const wxColor &dotStrokeColor)
+                                                     const wxColor &dotStrokeColor,
+                                                     const wxColor &fillColor)
     : m_showDots(true), m_dotPenOptions(dotStrokeColor, 1), m_dotBrushOptions(dotColor),
-    m_dotRadius(4), m_showLine(true), m_lineColor(dotColor), m_lineWidth(2)
+    m_dotRadius(4), m_showLine(true), m_lineColor(dotColor), m_lineWidth(2), m_fill(true),
+    m_fillColor(fillColor)
 {
 }
 
@@ -64,4 +66,14 @@ const wxColor& wxLineChartDatasetOptions::GetLineColor() const
 unsigned int wxLineChartDatasetOptions::GetLineWidth() const
 {
     return m_lineWidth;
+}
+
+bool wxLineChartDatasetOptions::Fill() const
+{
+    return m_fill;
+}
+
+const wxColor& wxLineChartDatasetOptions::GetFillColor() const
+{
+    return m_fillColor;
 }

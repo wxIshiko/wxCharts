@@ -67,31 +67,17 @@ public:
     /// this color.
     /// @param data The list of values.
     wxLineChartDataset(const wxString &label,
-        const wxColor &fillColor,
         const wxVector<wxDouble> &data,
         const wxLineType &lineType=wxLINETYPE_STRAIGHTLINE);
 
     /// Gets the name of the dataset.
     /// @return The name of the dataset.
     const wxString& GetLabel() const;
-    /// Whether to fill the part of the chart
-    /// between the line and X-axis with the
-    /// color returned by GetFillColor().
-    /// @retval true Fill.
-    /// @retval false Don't fill.
-    bool Fill() const;
-    /// Returns the color with which to
-    /// fill the part of the chart between
-    /// the line and the X-axis.
-    /// @return The fill color.
-    const wxColor& GetFillColor() const;
     const wxVector<wxDouble>& GetData() const;
     const wxLineType& GetType() const;
 
 private:
     wxString m_label;
-    bool m_fill;
-    wxColor m_fillColor;
     wxVector<wxDouble> m_data;
     wxLineType m_type;
 };

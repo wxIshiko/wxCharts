@@ -43,11 +43,9 @@
 #include <sstream>
 
 wxLineChartDataset::wxLineChartDataset(const wxString &label,
-                                       const wxColor &fillColor,
                                        const wxVector<wxDouble> &data,
                                        const wxLineType &lineType)
-    : m_label(label), m_fill(true), m_fillColor(fillColor),
-    m_data(data),m_type(lineType)
+    : m_label(label), m_data(data),m_type(lineType)
 {
 }
 
@@ -59,16 +57,6 @@ const wxString& wxLineChartDataset::GetLabel() const
 const wxLineType& wxLineChartDataset::GetType() const
 {
     return m_type;
-}
-
-bool wxLineChartDataset::Fill() const
-{
-    return m_fill;
-}
-
-const wxColor& wxLineChartDataset::GetFillColor() const
-{
-    return m_fillColor;
 }
 
 const wxVector<double>& wxLineChartDataset::GetData() const
@@ -244,7 +232,7 @@ void wxLineChart::Initialize(wxLineChartData::ptr &data)
 
         Dataset::ptr newDataset(new Dataset(datasetOptions->ShowDots(),
             datasetOptions->ShowLine(), datasetOptions->GetLineColor(),
-            datasets[i]->Fill(), datasets[i]->GetFillColor(),
+            datasetOptions->Fill(), datasetOptions->GetFillColor(),
             datasets[i]->GetType()));
 
         const wxVector<wxDouble>& datasetData = datasets[i]->GetData();

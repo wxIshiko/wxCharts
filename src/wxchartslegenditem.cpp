@@ -46,9 +46,9 @@ wxChartsLegendItem::wxChartsLegendItem(const wxLineChartDataset &dataset,
     {
         m_color = datasetOptions.GetLineColor();
     }
-    else if (dataset.Fill())
+    else if (datasetOptions.Fill())
     {
-        m_color = dataset.GetFillColor();
+        m_color = datasetOptions.GetFillColor();
     }
 }
 
