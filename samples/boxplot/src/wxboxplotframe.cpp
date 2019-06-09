@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2018 Xavier Leclercq and the wxCharts contributors.
+	Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
 
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
@@ -20,12 +20,12 @@
 	IN THE SOFTWARE.
 */
 
-#include "WxBoxplotFrame.h"
+#include "wxboxplotframe.h"
 #include <wx/panel.h>
 #include <wx/sizer.h>
 #include <wx/charts/wxcharts.h>
 
-WxBoxplotFrame::WxBoxplotFrame(const wxString& title)
+wxBoxPlotFrame::wxBoxPlotFrame(const wxString& title)
 	: wxFrame(NULL, wxID_ANY, title)
 {
 	// Create a top-level panel to hold all the contents of the frame

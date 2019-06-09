@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2018 Xavier Leclercq and the wxCharts contributors.
+	Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
 
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
@@ -20,14 +20,14 @@
 	IN THE SOFTWARE.
 */
 
-#include "WxBoxplotApp.h"
-#include "WxBoxplotFrame.h"
+#include "wxboxplotapp.h"
+#include "wxboxplotframe.h"
 
-wxIMPLEMENT_APP(WxBoxplotApp);
+wxIMPLEMENT_APP(wxBoxPlotApp);
 
-bool WxBoxplotApp::OnInit()
+bool wxBoxPlotApp::OnInit()
 {
-	WxBoxplotFrame* frame = new WxBoxplotFrame("wxCharts Boxplot Sample");
+    wxBoxPlotFrame* frame = new wxBoxPlotFrame("wxCharts - wxBoxPlot Sample");
 	frame->Show(true);
 	return true;
 }
