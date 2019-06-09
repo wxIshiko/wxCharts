@@ -46,7 +46,7 @@ wxPieChartPanel::wxPieChartPanel(wxWindow* parent)
     // Create the pie chart widget
     m_pieChart = new wxPieChartCtrl(this, wxID_ANY, chartData,
         wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
-    sizer->Add(m_pieChart);
+    sizer->Add(m_pieChart, 1, wxEXPAND);
 
     SetSizer(sizer);
 }
