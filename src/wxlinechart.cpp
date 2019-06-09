@@ -43,20 +43,14 @@
 #include <sstream>
 
 wxLineChartDataset::wxLineChartDataset(const wxString &label,
-                                       const wxVector<wxDouble> &data,
-                                       const wxChartsLineType &lineType)
-    : m_label(label), m_data(data),m_type(lineType)
+                                       const wxVector<wxDouble> &data)
+    : m_label(label), m_data(data)
 {
 }
 
 const wxString& wxLineChartDataset::GetLabel() const
 {
     return m_label;
-}
-
-const wxChartsLineType& wxLineChartDataset::GetType() const
-{
-    return m_type;
 }
 
 const wxVector<double>& wxLineChartDataset::GetData() const
@@ -180,7 +174,8 @@ wxLineChart::wxLineChart(wxLineChartData::ptr &data,
         wxChartsCategoricalAxis::make_shared("x", data->GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
         wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
-        )
+        ),
+    m_lineType(lineType)
 {
     Initialize(data);
 }
@@ -196,7 +191,8 @@ wxLineChart::wxLineChart(wxLineChartData::ptr &data,
         wxChartsCategoricalAxis::make_shared("x", data->GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
         wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
-        )
+        ),
+    m_lineType(lineType)
 {
     Initialize(data);
 }
@@ -235,7 +231,7 @@ void wxLineChart::Initialize(wxLineChartData::ptr &data)
         Dataset::ptr newDataset(new Dataset(datasetOptions->ShowDots(),
             datasetOptions->ShowLine(), datasetOptions->GetLineColor(),
             datasetOptions->Fill(), datasetOptions->GetFillColor(),
-            datasets[i]->GetType()));
+            m_lineType));
 
         const wxVector<wxDouble>& datasetData = datasets[i]->GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)

@@ -67,19 +67,16 @@ public:
     /// this color.
     /// @param data The list of values.
     wxLineChartDataset(const wxString &label,
-        const wxVector<wxDouble> &data,
-        const wxChartsLineType &lineType = wxCHARTSLINETYPE_STRAIGHT);
+        const wxVector<wxDouble> &data);
 
     /// Gets the name of the dataset.
     /// @return The name of the dataset.
     const wxString& GetLabel() const;
     const wxVector<wxDouble>& GetData() const;
-    const wxChartsLineType& GetType() const;
 
 private:
     wxString m_label;
     wxVector<wxDouble> m_data;
-    wxChartsLineType m_type;
 };
 
 /// Data for the wxLineChartCtrl control.
@@ -190,6 +187,7 @@ private:
     wxSharedPtr<wxLineChartOptions> m_options;
     wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
+    wxChartsLineType m_lineType;
 };
 
 #endif
