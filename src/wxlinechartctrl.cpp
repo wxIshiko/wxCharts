@@ -38,7 +38,7 @@
 
 wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
                                  wxWindowID id,
-                                 const wxLineChartData &data,
+                                 wxLineChartData::ptr &data,
                                  const wxPoint &pos,
                                  const wxSize &size,
                                  long style)
@@ -50,7 +50,7 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
 
 wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
                                  wxWindowID id,
-                                 const wxLineChartData &data,
+                                 wxLineChartData::ptr &data,
                                  const wxLineChartOptions &options,
                                  const wxPoint &pos,
                                  const wxSize &size,

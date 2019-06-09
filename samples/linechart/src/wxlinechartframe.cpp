@@ -40,8 +40,8 @@ wxLineChartFrame::wxLineChartFrame(const wxString& title)
 	labels.push_back("May");
 	labels.push_back("June");
 	labels.push_back("July");
-	wxLineChartData chartData(labels);
-	
+	wxLineChartData::ptr chartData = wxLineChartData::make_shared(labels);
+    
 	// Add the first dataset
 	wxVector<wxDouble> points1;
 	points1.push_back(3);
@@ -51,11 +51,8 @@ wxLineChartFrame::wxLineChartFrame(const wxString& title)
 	points1.push_back(6);
 	points1.push_back(5);
 	points1.push_back(1);
-	wxLineChartDataset::ptr dataset1(new wxLineChartDataset(
-		"My First Dataset", wxColor(220, 220, 220), 
-		wxColor(255, 255, 255), wxColor(220, 220, 220, 0x33), 
-		points1));  
-	chartData.AddDataset(dataset1);
+	wxLineChartDataset::ptr dataset1(new wxLineChartDataset("My First Dataset", points1));
+	chartData->AddDataset(dataset1);
 
 	// Add the second dataset
 	wxVector<wxDouble> points2;
@@ -66,18 +63,15 @@ wxLineChartFrame::wxLineChartFrame(const wxString& title)
 	points2.push_back(3);
 	points2.push_back(-1.8);
 	points2.push_back(0.4);
-	wxLineChartDataset::ptr dataset2(new wxLineChartDataset(
-		"My Second Dataset", wxColor(151, 187, 205),
-		wxColor(255, 255, 255), wxColor(151, 187, 205, 0x33), 
-		points2));
-	chartData.AddDataset(dataset2);
+	wxLineChartDataset::ptr dataset2(new wxLineChartDataset("My Second Dataset", points2));
+	chartData->AddDataset(dataset2);
 
 	// Create the line chart widget from the constructed data
 	wxLineChartCtrl* lineChartCtrl = new wxLineChartCtrl(panel, wxID_ANY, chartData,
 		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
 	// Create the legend widget
-	wxChartsLegendData legendData(chartData.GetDatasets());
+	wxChartsLegendData legendData(chartData->GetDatasets());
 	wxChartsLegendCtrl* legendCtrl = new wxChartsLegendCtrl(panel, wxID_ANY, legendData,
 		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 

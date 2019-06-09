@@ -67,47 +67,17 @@ public:
     /// this color.
     /// @param data The list of values.
     wxLineChartDataset(const wxString &label,
-        const wxColor &dotColor, const wxColor &dotStrokeColor,
-        const wxColor &fillColor, const wxVector<wxDouble> &data,
+        const wxVector<wxDouble> &data,
         const wxLineType &lineType=wxLINETYPE_STRAIGHTLINE);
 
     /// Gets the name of the dataset.
     /// @return The name of the dataset.
     const wxString& GetLabel() const;
-    /// Whether to show the points on the chart.
-    /// @retval true Show the points.
-    /// @retval false Don't show the points.
-    bool ShowDots() const;
-    const wxColor& GetDotColor() const;
-    const wxColor& GetDotStrokeColor() const;
-    /// Whether to show the line on the chart.
-    /// @retval true Show the line.
-    /// @retval false Don't show the line.
-    bool ShowLine() const;
-    const wxColor& GetLineColor() const;
-    /// Whether to fill the part of the chart
-    /// between the line and X-axis with the
-    /// color returned by GetFillColor().
-    /// @retval true Fill.
-    /// @retval false Don't fill.
-    bool Fill() const;
-    /// Returns the color with which to
-    /// fill the part of the chart between
-    /// the line and the X-axis.
-    /// @return The fill color.
-    const wxColor& GetFillColor() const;
     const wxVector<wxDouble>& GetData() const;
     const wxLineType& GetType() const;
 
 private:
     wxString m_label;
-    bool m_showDots;
-    wxColor m_dotColor;
-    wxColor m_dotStrokeColor;
-    bool m_showLine;
-    wxColor m_lineColor;
-    bool m_fill;
-    wxColor m_fillColor;
     wxVector<wxDouble> m_data;
     wxLineType m_type;
 };
@@ -118,9 +88,13 @@ private:
 class wxLineChartData
 {
 public:
+    /// Smart pointer typedef.
+    typedef wxSharedPtr<wxLineChartData> ptr;
+
     /// Constructs a wxLineChartData instance.
     /// @param labels The labels of the X axis.
     wxLineChartData(const wxVector<wxString> &labels);
+    static ptr make_shared(const wxVector<wxString> &labels);
 
     /// Adds a dataset.
     /// @param dataset The dataset to add.
@@ -143,8 +117,8 @@ private:
 class wxLineChart : public wxChart
 {
 public:
-    wxLineChart(const wxLineChartData &data, const wxSize &size);
-    wxLineChart(const wxLineChartData &data, const wxLineChartOptions &options,
+    wxLineChart(wxLineChartData::ptr &data, const wxSize &size);
+    wxLineChart(wxLineChartData::ptr &data, const wxLineChartOptions &options,
         const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
@@ -153,7 +127,7 @@ public:
         const wxSize &size, const wxColor &backgroundColor);
 
 private:
-    void Initialize(const wxLineChartData &data);
+    void Initialize(wxLineChartData::ptr &data);
     static wxDouble GetMinValue(const wxVector<wxLineChartDataset::ptr>& datasets);
     static wxDouble GetMaxValue(const wxVector<wxLineChartDataset::ptr>& datasets);
 

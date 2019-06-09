@@ -21,6 +21,7 @@
 */
 
 #include "wxchartslegenditem.h"
+#include "wxchartstheme.h"
 
 wxChartsLegendItem::wxChartsLegendItem(const wxColor &color,
                                        const wxString &label)
@@ -33,20 +34,21 @@ wxChartsLegendItem::wxChartsLegendItem(const wxChartSliceData &slice)
 {
 }
 
-wxChartsLegendItem::wxChartsLegendItem(const wxLineChartDataset &dataset)
+wxChartsLegendItem::wxChartsLegendItem(const wxLineChartDataset &dataset,
+                                       const wxLineChartDatasetOptions& datasetOptions)
     : m_color(*wxWHITE), m_label(dataset.GetLabel())
 {
-    if (dataset.ShowDots())
+    if (datasetOptions.ShowDots())
     {
-        m_color = dataset.GetDotColor();
+        m_color = datasetOptions.GetDotBrushOptions().GetColor();
     }
-    else if (dataset.ShowLine())
+    else if (datasetOptions.ShowLine())
     {
-        m_color = dataset.GetLineColor();
+        m_color = datasetOptions.GetLineColor();
     }
-    else if (dataset.Fill())
+    else if (datasetOptions.Fill())
     {
-        m_color = dataset.GetFillColor();
+        m_color = datasetOptions.GetFillColor();
     }
 }
 
@@ -76,7 +78,10 @@ wxChartsLegendData::wxChartsLegendData(const wxVector<wxLineChartDataset::ptr>& 
 {
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        m_items.push_back(wxChartsLegendItem(*datasets[i]));
+        wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
+        wxSharedPtr<wxLineChartDatasetOptions> datasetOptions = datasetTheme->GetLineChartDatasetOptions();
+
+        m_items.push_back(wxChartsLegendItem(*datasets[i], *datasetOptions));
     }
 }
 
