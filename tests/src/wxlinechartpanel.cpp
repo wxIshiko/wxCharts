@@ -62,7 +62,7 @@ wxLineChartPanel::wxLineChartPanel(wxWindow* parent)
     chartData->AddDataset(dataset2);
 
     // Create the line chart widget from the constructed data
-    m_lineChart = new wxLineChartCtrl(this, wxID_ANY, chartData,
+    m_lineChart = new wxLineChartCtrl(this, wxID_ANY, chartData, wxCHARTSLINETYPE_STRAIGHT,
         wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
     // Set up the sizer for the panel
