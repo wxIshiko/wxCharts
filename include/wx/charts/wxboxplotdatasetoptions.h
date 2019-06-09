@@ -25,4 +25,23 @@
 #ifndef _WX_CHARTS_WXBOXPLOTDATASETOPTIONS_H_
 #define _WX_CHARTS_WXBOXPLOTDATASETOPTIONS_H_
 
+#include <wx/colour.h>
+
+class wxBoxPlotDatasetOptions
+{
+public:
+    wxBoxPlotDatasetOptions();
+
+    const wxColor& GetLineColor() const;
+    const wxColor& GetUpFillColor() const;
+    unsigned int GetWidth() const;
+    unsigned int GetRectangleWidth() const;
+
+private:
+    wxColor m_lineColor;
+    wxColor m_upFillColor;
+    unsigned int m_width;
+    unsigned int m_rectangleWidth;
+};
+
 #endif

@@ -23,3 +23,28 @@
 /// @file
 
 #include "wxboxplotdatasetoptions.h"
+
+wxBoxPlotDatasetOptions::wxBoxPlotDatasetOptions()
+    : m_lineColor(0, 0, 0, 0x80), m_width(3), m_upFillColor(0, 205, 0, 0x60), m_rectangleWidth(20)
+{
+}
+
+const wxColor& wxBoxPlotDatasetOptions::GetLineColor() const
+{
+    return m_lineColor;
+}
+
+const wxColor& wxBoxPlotDatasetOptions::GetUpFillColor() const
+{
+    return m_upFillColor;
+}
+
+unsigned int wxBoxPlotDatasetOptions::GetWidth() const
+{
+    return m_width;
+}
+
+unsigned int wxBoxPlotDatasetOptions::GetRectangleWidth() const
+{
+    return m_rectangleWidth;
+}

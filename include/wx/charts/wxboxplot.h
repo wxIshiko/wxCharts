@@ -41,18 +41,10 @@ public:
     /// @return A vector containing the labels of the
     /// X axis.
     const wxVector<wxString>& GetLabels() const;
-    const wxColor& GetLineColor() const;
-    const wxColor& GetUpFillColor() const;
-    unsigned int GetWidth() const;
-    unsigned int GetRectangleWidth() const;
     const wxVector<wxVector<wxDouble>>& GetData() const;
 
 private:
     wxVector<wxString> m_labels;
-    wxColor m_lineColor;
-    wxColor m_upFillColor;
-    unsigned int m_width;
-    unsigned int m_rectangleWidth;
     wxVector<wxVector<wxDouble>> m_data;
 };
 
