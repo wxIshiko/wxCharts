@@ -59,7 +59,7 @@ public:
     /// so that the window is visible but obviously not correctly sized.
     /// @param style Control style. For generic window styles, please
     /// see wxWindow.
-    wxLineChartCtrl(wxWindow *parent, wxWindowID id, wxLineChartData::ptr &data,
+    wxLineChartCtrl(wxWindow *parent, wxWindowID id, wxChartsCategoricalData::ptr &data,
         const wxChartsLineType &lineType, const wxPoint &pos = wxDefaultPosition,
         const wxSize &size = wxDefaultSize, long style = 0);
     /// Constructs a wxLineChartCtrl control.
@@ -76,7 +76,7 @@ public:
     /// so that the window is visible but obviously not correctly sized.
     /// @param style Control style. For generic window styles, please
     /// see wxWindow.
-    wxLineChartCtrl(wxWindow *parent, wxWindowID id, wxLineChartData::ptr &data,
+    wxLineChartCtrl(wxWindow *parent, wxWindowID id, wxChartsCategoricalData::ptr &data,
         const wxChartsLineType &lineType, const wxLineChartOptions &options,
         const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
         long style = 0);

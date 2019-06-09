@@ -51,7 +51,7 @@ wxBarChartFrame::wxBarChartFrame(const wxString& title)
     points1.push_back(6);
     points1.push_back(5);
     points1.push_back(1);
-    wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset(points1));
+    wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset("Dataset 1", points1));
     chartData->AddDataset(dataset1);
 
     // Add the second dataset
@@ -63,7 +63,7 @@ wxBarChartFrame::wxBarChartFrame(const wxString& title)
     points2.push_back(3);
     points2.push_back(1.8);
     points2.push_back(0.4);
-    wxChartsDoubleDataset::ptr dataset2(new wxChartsDoubleDataset(points2));
+    wxChartsDoubleDataset::ptr dataset2(new wxChartsDoubleDataset("Dataset 2", points2));
     chartData->AddDataset(dataset2);
 
     // Create the bar chart widget

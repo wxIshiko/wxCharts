@@ -26,7 +26,7 @@
 #define _WX_CHARTS_WXCHARTSLEGENDITEM_H_
 
 #include "wxchartslicedata.h"
-#include "wxlinechart.h"
+#include "wxchartsdoubledataset.h"
 #include "wxlinechartdatasetoptions.h"
 #include <wx/vector.h>
 #include <wx/colour.h>
@@ -52,7 +52,7 @@ public:
     /// line chart dataset.
     /// @param dataset The dataset this legend item
     /// corresponds to.
-    wxChartsLegendItem(const wxLineChartDataset &dataset,
+    wxChartsLegendItem(const wxChartsDoubleDataset &dataset,
         const wxLineChartDatasetOptions& datasetOptions);
 
     /// Gets the color of the item.
@@ -86,7 +86,7 @@ public:
     /// a list of datasets. This can be used to build
     /// a legend for the wxLineChartCtrl control.
     /// @param datasets List of datasets.
-    wxChartsLegendData(const wxVector<wxLineChartDataset::ptr>& datasets);
+    wxChartsLegendData(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
 
     /// Appends an item to the legend.
     /// @param item The new item.
