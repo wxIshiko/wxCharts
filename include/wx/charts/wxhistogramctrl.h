@@ -33,20 +33,20 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXHISTOGRAMCHARTCTRL_H_
-#define _WX_CHARTS_WXHISTOGRAMCHARTCTRL_H_
+#ifndef _WX_CHARTS_WXHISTOGRAMCTRL_H_
+#define _WX_CHARTS_WXHISTOGRAMCTRL_H_
 
 #include "wxchartctrl.h"
-#include "wxhistogramchart.h"
+#include "wxhistogram.h"
 #include <wx/menu.h>
 
 /// A control that displays a math2d plot.
 
 /// \ingroup chartclasses
-class wxHistogramChartCtrl : public wxChartCtrl
+class wxHistogramCtrl : public wxChartCtrl
 {
 public:
-    /// Constructs a wxHistogramChartCtrl control.
+    /// Constructs a wxHistogramCtrl control.
     /// @param parent Pointer to a parent window.
     /// @param id Control identifier. If wxID_ANY, will automatically
     /// create an identifier.
@@ -59,20 +59,20 @@ public:
     /// so that the window is visible but obviously not correctly sized.
     /// @param style Control style. For generic window styles, please
     /// see wxWindow.
-    wxHistogramChartCtrl(wxWindow *parent, wxWindowID id, const wxHistogramChartData &data,
+    wxHistogramCtrl(wxWindow *parent, wxWindowID id, const wxHistogramData &data,
         const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
         long style = 0);
-    wxHistogramChartCtrl(wxWindow *parent, wxWindowID id, const wxHistogramChartData &data,
-        wxSharedPtr<wxHistogramChartOptions> &options, const wxPoint &pos = wxDefaultPosition,
+    wxHistogramCtrl(wxWindow *parent, wxWindowID id, const wxHistogramData &data,
+        wxSharedPtr<wxHistogramOptions> &options, const wxPoint &pos = wxDefaultPosition,
         const wxSize &size = wxDefaultSize, long style = 0);
 
 private:
-    virtual wxHistogramChart& GetChart();
+    virtual wxHistogram& GetChart();
 
     void CreateContextMenu();
 
 private:
-    wxHistogramChart m_histChart;
+    wxHistogram m_histChart;
     wxMenu m_contextMenu;
 };
 

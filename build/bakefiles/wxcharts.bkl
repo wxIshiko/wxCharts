@@ -164,9 +164,9 @@ library wxcharts
         ../../include/wx/charts/wxareachartoptions.h
         ../../include/wx/charts/wxareachart.h
         ../../include/wx/charts/wxareachartctrl.h
-        ../../include/wx/charts/wxhistogramchartoptions.h
-        ../../include/wx/charts/wxhistogramchart.h
-        ../../include/wx/charts/wxhistogramchartctrl.h
+        ../../include/wx/charts/wxhistogramoptions.h
+        ../../include/wx/charts/wxhistogram.h
+        ../../include/wx/charts/wxhistogramctrl.h
         ../../include/wx/charts/wxcombinationchartoptions.h
         ../../include/wx/charts/wxcombinationchart.h
         ../../include/wx/charts/wxcombinationchartctrl.h
@@ -291,9 +291,9 @@ library wxcharts
         ../../src/wxareachartoptions.cpp
         ../../src/wxareachart.cpp
         ../../src/wxareachartctrl.cpp
-        ../../src/wxhistogramchartoptions.cpp
-        ../../src/wxhistogramchart.cpp
-        ../../src/wxhistogramchartctrl.cpp
+        ../../src/wxhistogramoptions.cpp
+        ../../src/wxhistogram.cpp
+        ../../src/wxhistogramctrl.cpp
         ../../src/wxcombinationchartoptions.cpp
         ../../src/wxcombinationchart.cpp
         ../../src/wxcombinationchartctrl.cpp

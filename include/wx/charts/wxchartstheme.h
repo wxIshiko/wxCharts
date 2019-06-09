@@ -32,7 +32,7 @@
 #include "wxcandlestickchartoptions.h"
 #include "wxcolumnchartoptions.h"
 #include "wxdoughnutchartoptions.h"
-#include "wxhistogramchartoptions.h"
+#include "wxhistogramoptions.h"
 #include "wxlinechartoptions.h"
 #include "wxmath2dplotoptions.h"
 #include "wxohlcchartoptions.h"
@@ -65,7 +65,7 @@ public:
     wxSharedPtr<wxCandlestickChartOptions> GetCandlestickChartOptions();
     wxSharedPtr<wxColumnChartOptions> GetColumnChartOptions();
     wxSharedPtr<wxDoughnutChartOptions> GetDoughnutChartOptions();
-    wxSharedPtr<wxHistogramChartOptions> GetHistogramChartOptions();
+    wxSharedPtr<wxHistogramOptions> GetHistogramOptions();
     wxSharedPtr<wxLineChartOptions> GetLineChartOptions();
     wxSharedPtr<wxMath2DPlotOptions> GetMath2DPlotOptions();
     wxSharedPtr<wxOHLCChartOptions> GetOHLCChartOptions();
@@ -88,7 +88,7 @@ private:
     wxSharedPtr<wxCandlestickChartOptions> m_candlestickChartOptions;
     wxSharedPtr<wxColumnChartOptions> m_columnChartOptions;
     wxSharedPtr<wxDoughnutChartOptions> m_doughnutChartOptions;
-    wxSharedPtr<wxHistogramChartOptions> m_histogramChartOptions;
+    wxSharedPtr<wxHistogramOptions> m_histogramOptions;
     wxSharedPtr<wxLineChartOptions> m_lineChartOptions;
     wxSharedPtr<wxMath2DPlotOptions> m_math2DPlotOptions;
     wxSharedPtr<wxOHLCChartOptions> m_ohlcChartOptions;

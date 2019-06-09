@@ -33,7 +33,7 @@ wxChartsTheme::wxChartsTheme()
     m_candlestickChartOptions(new wxCandlestickChartOptions()),
     m_columnChartOptions(new wxColumnChartOptions()),
     m_doughnutChartOptions(new wxDoughnutChartOptions()),
-    m_histogramChartOptions(new wxHistogramChartOptions()),
+    m_histogramOptions(new wxHistogramOptions()),
     m_lineChartOptions(new wxLineChartOptions()),
     m_math2DPlotOptions(new wxMath2DPlotOptions()),
     m_ohlcChartOptions(new wxOHLCChartOptions()),
@@ -82,9 +82,9 @@ wxSharedPtr<wxDoughnutChartOptions> wxChartsTheme::GetDoughnutChartOptions()
     return m_doughnutChartOptions;
 }
 
-wxSharedPtr<wxHistogramChartOptions> wxChartsTheme::GetHistogramChartOptions()
+wxSharedPtr<wxHistogramOptions> wxChartsTheme::GetHistogramOptions()
 {
-    return m_histogramChartOptions;
+    return m_histogramOptions;
 }
 
 wxSharedPtr<wxLineChartOptions> wxChartsTheme::GetLineChartOptions()

@@ -65,7 +65,7 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxHistogramChart sample build
+          name: wxHistogram sample build
           command: make
           working_directory: samples/histogram
           environment:
