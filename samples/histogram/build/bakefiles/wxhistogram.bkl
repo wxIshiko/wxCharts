@@ -1,9 +1,9 @@
 toolsets = gnu vs2017 vs2015 vs2013;
 
 gnu.makefile = ../../GNUmakefile;
-vs2017.solutionfile = ../msw/WxHistogramChart_vc15.sln;
-vs2015.solutionfile = ../msw/WxHistogramChart_vc14.sln;
-vs2013.solutionfile = ../msw/WxHistogramChart_vc12.sln;
+vs2017.solutionfile = ../msw/wxhistogram_vc15.sln;
+vs2015.solutionfile = ../msw/wxhistogram_vc14.sln;
+vs2013.solutionfile = ../msw/wxhistogram_vc12.sln;
 
 setting WXWIDGETS_ROOT
 {
@@ -17,11 +17,13 @@ setting WXCHARTS_ROOT
     default = '$(WXCHARTS)';
 }
 
-program WxHistogramChart
+program wxhistogram
 {
-    vs2017.projectfile = ../msw/WxHistogramChart_vc15.vcxproj;
-    vs2015.projectfile = ../msw/WxHistogramChart_vc14.vcxproj;
-    vs2013.projectfile = ../msw/WxHistogramChart_vc12.vcxproj;
+    archs = x86 x86_64;
+
+    vs2017.projectfile = ../msw/wxhistogram_vc15.vcxproj;
+    vs2015.projectfile = ../msw/wxhistogram_vc14.vcxproj;
+    vs2013.projectfile = ../msw/wxhistogram_vc12.vcxproj;
 
     includedirs += $(WXCHARTS_ROOT)/include;
 
@@ -31,8 +33,16 @@ program WxHistogramChart
 
         includedirs += $(WXWIDGETS_ROOT)/include;
         includedirs += $(WXWIDGETS_ROOT)/include/msvc;
-        libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
-        libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+        if ($(arch) == x86)
+        {
+            libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
+            libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+        }
+        if ($(arch) == x86_64)
+        {
+            libdirs += $(WXCHARTS_ROOT)/lib/vc_x64_lib;
+            libdirs += $(WXWIDGETS_ROOT)/lib/vc_x64_lib;
+        }
     }
     if ($(toolset) == gnu)
     {
@@ -44,13 +54,13 @@ program WxHistogramChart
 
     headers
     {
-        ../../src/WxHistogramChartApp.h
-        ../../src/WxHistogramChartFrame.h
+        ../../src/wxhistogramapp.h
+        ../../src/wxhistogramframe.h
     }
 
     sources
     {
-        ../../src/WxHistogramChartApp.cpp
-        ../../src/WxHistogramChartFrame.cpp
+        ../../src/wxhistogramapp.cpp
+        ../../src/wxhistogramframe.cpp
     }
 }

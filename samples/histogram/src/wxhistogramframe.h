@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,15 +20,15 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _SAMPLES_HISTOGRAMCHART_WXHISTOGRAMCHARTFRAME_H_
-#define _SAMPLES_HISTOGRAMCHART_WXHISTOGRAMCHARTFRAME_H_
+#ifndef _SAMPLES_HISTOGRAM_WXHISTOGRAMFRAME_H_
+#define _SAMPLES_HISTOGRAM_WXHISTOGRAMFRAME_H_
 
 #include <wx/frame.h>
 
-class WxHistogramChartFrame : public wxFrame
+class wxHistogramFrame : public wxFrame
 {
 public:
-    WxHistogramChartFrame(const wxString& title);
+    wxHistogramFrame(const wxString& title);
 };
 
 #endif

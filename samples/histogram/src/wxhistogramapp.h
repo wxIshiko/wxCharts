@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,12 +20,12 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _SAMPLES_HISTOGRAMCHART_WXHISTOGRAMCHARTAPP_H_
-#define _SAMPLES_HISTOGRAMCHART_WXHISTOGRAMCHARTAPP_H_
+#ifndef _SAMPLES_HISTOGRAM_WXHISTOGRAMAPP_H_
+#define _SAMPLES_HISTOGRAM_WXHISTOGRAMAPP_H_
 
 #include <wx/app.h>
 
-class WxHistogramChartApp : public wxApp
+class wxHistogramApp : public wxApp
 {
 public:
     virtual bool OnInit();

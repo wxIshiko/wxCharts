@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,13 +20,13 @@
     IN THE SOFTWARE.
 */
 
-#include "WxHistogramChartFrame.h"
+#include "wxhistogramframe.h"
 #include <wx/panel.h>
 #include <wx/sizer.h>
 #include <wx/charts/wxcharts.h>
 #include <random>
 
-WxHistogramChartFrame::WxHistogramChartFrame(const wxString& title)
+wxHistogramFrame::wxHistogramFrame(const wxString& title)
     : wxFrame(NULL, wxID_ANY, title)
 {
     // Create a top-level panel to hold all the contents of the frame
@@ -37,7 +37,7 @@ WxHistogramChartFrame::WxHistogramChartFrame(const wxString& title)
     wxVector<wxDouble> data;
     data.reserve(N);
     std::default_random_engine generator;
-    std::normal_distribution<double> distribution(5.0,2.0);
+    std::normal_distribution<double> distribution(5.0, 2.0);
 
     for (std::size_t i=0; i<N; ++i)
     {
@@ -46,19 +46,18 @@ WxHistogramChartFrame::WxHistogramChartFrame(const wxString& title)
             data.push_back(number);
     }
 
-    wxHistogramChartDataset::ptr dataset(
-        new wxHistogramChartDataset(
-            wxColor(134,134,134),wxColor(127,46,46),data)
+    wxHistogramDataset::ptr dataset(
+        new wxHistogramDataset(wxColor(134, 134, 134), wxColor(127, 46, 46), data)
     );
 
-    wxHistogramChartData chartData(dataset,20);
+    wxHistogramData chartData(dataset, 20);
 
-    // Create the histogram chart widget
-    wxHistogramChartCtrl* histogramChartCtrl = new wxHistogramChartCtrl(panel, wxID_ANY, chartData);
+    // Create the histogram widget
+    wxHistogramCtrl* histogramCtrl = new wxHistogramCtrl(panel, wxID_ANY, chartData);
 
     // Set up the sizer for the panel
     wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
-    panelSizer->Add(histogramChartCtrl, 1, wxEXPAND);
+    panelSizer->Add(histogramCtrl, 1, wxEXPAND);
     panel->SetSizer(panelSizer);
 
     // Set up the sizer for the frame
