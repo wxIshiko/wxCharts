@@ -34,9 +34,9 @@ wxChartsLegendItem::wxChartsLegendItem(const wxChartSliceData &slice)
 {
 }
 
-wxChartsLegendItem::wxChartsLegendItem(const wxLineChartDataset &dataset,
+wxChartsLegendItem::wxChartsLegendItem(const wxChartsDoubleDataset &dataset,
                                        const wxLineChartDatasetOptions& datasetOptions)
-    : m_color(*wxWHITE), m_label(dataset.GetLabel())
+    : m_color(*wxWHITE), m_label(dataset.GetName())
 {
     if (datasetOptions.ShowDots())
     {
@@ -74,7 +74,7 @@ wxChartsLegendData::wxChartsLegendData(const std::map<wxString, wxChartSliceData
     }
 }
 
-wxChartsLegendData::wxChartsLegendData(const wxVector<wxLineChartDataset::ptr>& datasets)
+wxChartsLegendData::wxChartsLegendData(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     for (size_t i = 0; i < datasets.size(); ++i)
     {

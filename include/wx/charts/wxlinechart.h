@@ -37,6 +37,7 @@
 #define _WX_CHARTS_WXLINECHART_H_
 
 #include "wxchart.h"
+#include "wxchartscategoricaldata.h"
 #include "wxlinechartoptions.h"
 #include "wxchartsgrid.h"
 #include "wxchartspoint.h"
@@ -47,75 +48,15 @@ enum wxChartsLineType
     wxCHARTSLINETYPE_STEPPED
 };
 
-/// Stores the information about a dataset to be shown on a wxLineChart.
-
-/// \ingroup dataclasses
-class wxLineChartDataset
-{
-public:
-    /// Smart pointer typedef.
-    typedef wxSharedPtr<wxLineChartDataset> ptr;
-
-    /// Constructs a wxLineChartDataset instance.
-    /// @param label The name of the dataset. This
-    /// is the name that will be used in the legend.
-    /// @param dotColor The color of the points.
-    /// @param dotStrokeColor The color of the pen
-    /// used to draw the outline of the points.
-    /// @param fillColor The part of the graph between
-    /// the X-axis and the line will be filled using
-    /// this color.
-    /// @param data The list of values.
-    wxLineChartDataset(const wxString &label,
-        const wxVector<wxDouble> &data);
-
-    /// Gets the name of the dataset.
-    /// @return The name of the dataset.
-    const wxString& GetLabel() const;
-    const wxVector<wxDouble>& GetData() const;
-
-private:
-    wxString m_label;
-    wxVector<wxDouble> m_data;
-};
-
-/// Data for the wxLineChartCtrl control.
-
-/// \ingroup dataclasses
-class wxLineChartData
-{
-public:
-    /// Smart pointer typedef.
-    typedef wxSharedPtr<wxLineChartData> ptr;
-
-    /// Constructs a wxLineChartData instance.
-    /// @param labels The labels of the X axis.
-    wxLineChartData(const wxVector<wxString> &labels);
-    static ptr make_shared(const wxVector<wxString> &labels);
-
-    /// Adds a dataset.
-    /// @param dataset The dataset to add.
-    void AddDataset(wxLineChartDataset::ptr dataset);
-
-    /// Gets the labels of the X axis.
-    /// @return A vector containing the labels of the
-    /// X axis.
-    const wxVector<wxString>& GetLabels() const;
-    const wxVector<wxLineChartDataset::ptr>& GetDatasets() const;
-
-private:
-    wxVector<wxString> m_labels;
-    wxVector<wxLineChartDataset::ptr> m_datasets;
-};
-
 /// A line chart.
 
 /// \ingroup chartclasses
 class wxLineChart : public wxChart
 {
 public:
-    wxLineChart(wxLineChartData::ptr &data, const wxChartsLineType &lineType, const wxSize &size);
-    wxLineChart(wxLineChartData::ptr &data, const wxChartsLineType &lineType,
+    wxLineChart(wxChartsCategoricalData::ptr &data, const wxChartsLineType &lineType,
+        const wxSize &size);
+    wxLineChart(wxChartsCategoricalData::ptr &data, const wxChartsLineType &lineType,
         const wxLineChartOptions &options, const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
@@ -124,9 +65,9 @@ public:
         const wxSize &size, const wxColor &backgroundColor);
 
 private:
-    void Initialize(wxLineChartData::ptr &data);
-    static wxDouble GetMinValue(const wxVector<wxLineChartDataset::ptr>& datasets);
-    static wxDouble GetMaxValue(const wxVector<wxLineChartDataset::ptr>& datasets);
+    void Initialize(wxChartsCategoricalData::ptr &data);
+    static wxDouble GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
+    static wxDouble GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
 
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
