@@ -35,10 +35,13 @@ const wxWindowID wxID_GRID_ELEMENT = wxID_NUMERICALAXIS_ELEMENT + 1;
 
 const wxWindowID wxID_AREA_CHART = wxID_GRID_ELEMENT + 1;
 const wxWindowID wxID_BAR_CHART = wxID_AREA_CHART + 1;
-const wxWindowID wxID_BUBBLE_CHART = wxID_BAR_CHART + 1;
+const wxWindowID wxID_BOX_PLOT = wxID_BAR_CHART + 1;
+const wxWindowID wxID_BUBBLE_CHART = wxID_BOX_PLOT + 1;
 const wxWindowID wxID_CANDLESTICK_CHART = wxID_BUBBLE_CHART + 1;
 const wxWindowID wxID_COLUMN_CHART = wxID_CANDLESTICK_CHART + 1;
-const wxWindowID wxID_LINE_CHART = wxID_COLUMN_CHART + 1;
+const wxWindowID wxID_DOUGHNUT_CHART = wxID_COLUMN_CHART + 1;
+const wxWindowID wxID_HISTOGRAM = wxID_DOUGHNUT_CHART + 1;
+const wxWindowID wxID_LINE_CHART = wxID_HISTOGRAM + 1;
 const wxWindowID wxID_PIE_CHART = wxID_LINE_CHART + 1;
 const wxWindowID wxID_POLARAREA_CHART = wxID_PIE_CHART + 1;
 const wxWindowID wxID_STACKEDBAR_CHART = wxID_POLARAREA_CHART + 1;
