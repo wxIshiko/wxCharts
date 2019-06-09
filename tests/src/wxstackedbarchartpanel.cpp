@@ -46,7 +46,7 @@ wxStackedBarChartPanel::wxStackedBarChartPanel(wxWindow* parent)
     points1.push_back(4);
     points1.push_back(5);
     points1.push_back(1);
-    wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset(points1));
+    wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset("Dataset 1", points1));
     chartData->AddDataset(dataset1);
 
     // Add the second dataset
@@ -58,7 +58,7 @@ wxStackedBarChartPanel::wxStackedBarChartPanel(wxWindow* parent)
     points2.push_back(3);
     points2.push_back(1.8);
     points2.push_back(0.4);
-    wxChartsDoubleDataset::ptr dataset2(new wxChartsDoubleDataset(points2));
+    wxChartsDoubleDataset::ptr dataset2(new wxChartsDoubleDataset("Dataset 2", points2));
     chartData->AddDataset(dataset2);
 
     // Add the third dataset
@@ -70,7 +70,7 @@ wxStackedBarChartPanel::wxStackedBarChartPanel(wxWindow* parent)
     points3.push_back(1);
     points3.push_back(0.5);
     points3.push_back(0.4);
-    wxChartsDoubleDataset::ptr dataset3(new wxChartsDoubleDataset(points3));
+    wxChartsDoubleDataset::ptr dataset3(new wxChartsDoubleDataset("Dataset 3", points3));
     chartData->AddDataset(dataset3);
 
     // Create the stacked bar chart widget

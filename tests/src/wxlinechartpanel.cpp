@@ -35,7 +35,7 @@ wxLineChartPanel::wxLineChartPanel(wxWindow* parent)
     labels.push_back("May");
     labels.push_back("June");
     labels.push_back("July");
-    wxLineChartData::ptr chartData = wxLineChartData::make_shared(labels);
+    wxChartsCategoricalData::ptr chartData = wxChartsCategoricalData::make_shared(labels);
 
     // Add the first dataset
     wxVector<wxDouble> points1;
@@ -46,7 +46,7 @@ wxLineChartPanel::wxLineChartPanel(wxWindow* parent)
     points1.push_back(6);
     points1.push_back(5);
     points1.push_back(1);
-    wxLineChartDataset::ptr dataset1(new wxLineChartDataset("My First Dataset", points1));
+    wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset("My First Dataset", points1));
     chartData->AddDataset(dataset1);
 
     // Add the second dataset
@@ -58,7 +58,7 @@ wxLineChartPanel::wxLineChartPanel(wxWindow* parent)
     points2.push_back(3);
     points2.push_back(-1.8);
     points2.push_back(0.4);
-    wxLineChartDataset::ptr dataset2(new wxLineChartDataset("My Second Dataset", points2));
+    wxChartsDoubleDataset::ptr dataset2(new wxChartsDoubleDataset("My Second Dataset", points2));
     chartData->AddDataset(dataset2);
 
     // Create the line chart widget from the constructed data
