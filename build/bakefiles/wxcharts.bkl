@@ -173,6 +173,9 @@ library wxcharts
         ../../include/wx/charts/wxboxplotoptions.h
         ../../include/wx/charts/wxboxplot.h
         ../../include/wx/charts/wxboxplotctrl.h
+        ../../include/wx/charts/wxcategoricalscatterplotoptions.h
+        ../../include/wx/charts/wxcategoricalscatterplot.h
+        ../../include/wx/charts/wxcategoricalscatterplotctrl.h        
     }
 
     sources
@@ -300,5 +303,8 @@ library wxcharts
         ../../src/wxboxplotoptions.cpp
         ../../src/wxboxplot.cpp
         ../../src/wxboxplotctrl.cpp
+        ../../src/wxcategoricalscatterplotoptions.cpp
+        ../../src/wxcategoricalscatterplot.cpp
+        ../../src/wxcategoricalscatterplotctrl.cpp
     }
 }
