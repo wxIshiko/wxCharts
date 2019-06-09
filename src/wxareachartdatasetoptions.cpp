@@ -23,3 +23,28 @@
 /// @file
 
 #include "wxareachartdatasetoptions.h"
+
+wxAreaChartDatasetOptions::wxAreaChartDatasetOptions(const wxColor &dotColor)
+    : m_showDots(true), m_dotColor(dotColor), m_showLine(true), m_lineColor(dotColor)
+{
+}
+
+bool wxAreaChartDatasetOptions::ShowDots() const
+{
+    return m_showDots;
+}
+
+const wxColor& wxAreaChartDatasetOptions::GetDotColor() const
+{
+    return m_dotColor;
+}
+
+bool wxAreaChartDatasetOptions::ShowLine() const
+{
+    return m_showLine;
+}
+
+const wxColor& wxAreaChartDatasetOptions::GetLineColor() const
+{
+    return m_lineColor;
+}

@@ -36,6 +36,10 @@ wxChartsPresentationTheme::wxChartsPresentationTheme()
 
 wxChartsPresentationDatasetTheme0::wxChartsPresentationDatasetTheme0()
 {
+    SetAreaChartDatasetOptions(wxAreaChartDatasetOptions(
+        wxColor(151, 187, 205, 0x7F)
+    ));
+
     SetBarChartDatasetOptions(wxBarChartDatasetOptions(
         wxChartsPenOptions(wxColor(220, 220, 220, 0xCC), 2),
         wxChartsBrushOptions(wxColor(220, 220, 220, 0x7F))

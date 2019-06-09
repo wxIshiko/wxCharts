@@ -42,11 +42,7 @@ wxAreaChartFrame::wxAreaChartFrame(const wxString& title)
     points1.push_back(wxPoint2DDouble(7, -1));
     points1.push_back(wxPoint2DDouble(5, 0));
     points1.push_back(wxPoint2DDouble(4.5, 1.7));
-    wxAreaChartDataset::ptr dataset1(
-        new wxAreaChartDataset(
-            wxColor(151, 187, 205, 0x7F),
-            points1)
-        );
+    wxAreaChartDataset::ptr dataset1(new wxAreaChartDataset(points1));
     chartData.AddDataset(dataset1);
 
     // Create the area chart widget

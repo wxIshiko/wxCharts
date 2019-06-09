@@ -25,4 +25,29 @@
 #ifndef _WX_CHARTS_WXAREACHARTDATASETOPTIONS_H_
 #define _WX_CHARTS_WXAREACHARTDATASETOPTIONS_H_
 
+#include <wx/colour.h>
+
+class wxAreaChartDatasetOptions
+{
+public:
+    wxAreaChartDatasetOptions(const wxColor &dotColor);
+
+    /// Whether to show the points on the chart.
+    /// @retval true Show the points.
+    /// @retval false Don't show the points.
+    bool ShowDots() const;
+    const wxColor& GetDotColor() const;
+    /// Whether to show the line on the chart.
+    /// @retval true Show the line.
+    /// @retval false Don't show the line.
+    bool ShowLine() const;
+    const wxColor& GetLineColor() const;
+
+private:
+    bool m_showDots;
+    wxColor m_dotColor;
+    bool m_showLine;
+    wxColor m_lineColor;
+};
+
 #endif

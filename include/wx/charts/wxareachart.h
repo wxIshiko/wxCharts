@@ -51,27 +51,11 @@ public:
     /// Constructs a AreaChart instance.
     /// @param dotColor The color of the points.
     /// @param data The list of values.
-    wxAreaChartDataset(
-        const wxColor &dotColor,
-        wxVector<wxPoint2DDouble> &data);
+    wxAreaChartDataset(wxVector<wxPoint2DDouble> &data);
 
-    /// Whether to show the points on the chart.
-    /// @retval true Show the points.
-    /// @retval false Don't show the points.
-    bool ShowDots() const;
-    const wxColor& GetDotColor() const;
-    /// Whether to show the line on the chart.
-    /// @retval true Show the line.
-    /// @retval false Don't show the line.
-    bool ShowLine() const;
-    const wxColor& GetLineColor() const;
     const wxVector<wxPoint2DDouble>& GetData() const;
 
 private:
-    bool m_showDots;
-    wxColor m_dotColor;
-    bool m_showLine;
-    wxColor m_lineColor;
     wxVector<wxPoint2DDouble> m_data;
 };
 
