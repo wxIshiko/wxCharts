@@ -48,6 +48,7 @@ wxChartsTestsMenuBar::wxChartsTestsMenuBar()
     menuCharts->Append(wxID_BUBBLE_CHART, "wxBubbleChartCtrl");
     menuCharts->Append(wxID_CANDLESTICK_CHART, "wxCandlestickChartCtrl");
     menuCharts->Append(wxID_COLUMN_CHART, "wxColumnChartCtrl");
+    menuCharts->Append(wxID_DOUGHNUT_CHART, "wxDoughnutChartCtrl");
     menuCharts->Append(wxID_LINE_CHART, "wxLineChartCtrl");
     menuCharts->Append(wxID_PIE_CHART, "wxPieChartCtrl");
     menuCharts->Append(wxID_POLARAREA_CHART, "wxPolarAreaChartCtrl");

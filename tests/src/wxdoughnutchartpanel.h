@@ -23,4 +23,16 @@
 #ifndef _TESTS_WX_CHARTS_WXDOUGHNUTCHARTPANEL_H_
 #define _TESTS_WX_CHARTS_WXDOUGHNUTCHARTPANEL_H_
 
+#include <wx/charts/wxcharts.h>
+#include <wx/panel.h>
+
+class wxDoughnutChartPanel : public wxPanel
+{
+public:
+    wxDoughnutChartPanel(wxWindow* parent);
+
+private:
+    wxDoughnutChartCtrl* m_doughnutChart;
+};
+
 #endif

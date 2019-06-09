@@ -45,7 +45,7 @@ wxBoxPlotPanel::wxBoxPlotPanel(wxWindow* parent)
 
     // Create the boxplot widget from the constructed data
     m_boxPlot = new wxBoxPlotCtrl(this, wxID_ANY, chartData);
-    sizer->Add(m_boxPlot);
+    sizer->Add(m_boxPlot, 1, wxEXPAND);
 
     SetSizer(sizer);
 }
