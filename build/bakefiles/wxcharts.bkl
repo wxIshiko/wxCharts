@@ -117,6 +117,10 @@ library wxcharts
         ../../include/wx/charts/wxbarchartdatasetoptions.h
         ../../include/wx/charts/wxbarchart.h
         ../../include/wx/charts/wxbarchartctrl.h
+        ../../include/wx/charts/wxboxplotoptions.h
+        ../../include/wx/charts/wxboxplotdatasetoptions.h
+        ../../include/wx/charts/wxboxplot.h
+        ../../include/wx/charts/wxboxplotctrl.h
         ../../include/wx/charts/wxcandlestickchartoptions.h
         ../../include/wx/charts/wxcandlestickchart.h
         ../../include/wx/charts/wxcandlestickchartctrl.h
@@ -171,9 +175,6 @@ library wxcharts
         ../../include/wx/charts/wxcombinationchartoptions.h
         ../../include/wx/charts/wxcombinationchart.h
         ../../include/wx/charts/wxcombinationchartctrl.h
-        ../../include/wx/charts/wxboxplotoptions.h
-        ../../include/wx/charts/wxboxplot.h
-        ../../include/wx/charts/wxboxplotctrl.h
     }
 
     sources
@@ -245,6 +246,10 @@ library wxcharts
         ../../src/wxbarchartdatasetoptions.cpp
         ../../src/wxbarchart.cpp
         ../../src/wxbarchartctrl.cpp
+        ../../src/wxboxplotoptions.cpp
+        ../../src/wxboxplotdatasetoptions.cpp
+        ../../src/wxboxplot.cpp
+        ../../src/wxboxplotctrl.cpp
         ../../src/wxcandlestickchartoptions.cpp
         ../../src/wxcandlestickchart.cpp
         ../../src/wxcandlestickchartctrl.cpp
@@ -299,8 +304,5 @@ library wxcharts
         ../../src/wxcombinationchartoptions.cpp
         ../../src/wxcombinationchart.cpp
         ../../src/wxcombinationchartctrl.cpp
-        ../../src/wxboxplotoptions.cpp
-        ../../src/wxboxplot.cpp
-        ../../src/wxboxplotctrl.cpp
     }
 }

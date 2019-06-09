@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,31 +20,6 @@
     IN THE SOFTWARE.
 */
 
-#include "wxareachartpanel.h"
-#include <wx/sizer.h>
+/// @file
 
-wxAreaChartPanel::wxAreaChartPanel(wxWindow* parent)
-    : wxPanel(parent)
-{
-    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
-
-    // Create the data for the area chart widget
-    wxAreaChartData chartData;
-
-    // Add a dataset
-    wxVector<wxPoint2DDouble> points1;
-    points1.push_back(wxPoint2DDouble(3, 3));
-    points1.push_back(wxPoint2DDouble(3.5, 4));
-    points1.push_back(wxPoint2DDouble(6, 2));
-    points1.push_back(wxPoint2DDouble(7, -1));
-    points1.push_back(wxPoint2DDouble(5, 0));
-    points1.push_back(wxPoint2DDouble(4.5, 1.7));
-    wxAreaChartDataset::ptr dataset1(new wxAreaChartDataset(points1));
-    chartData.AddDataset(dataset1);
-
-    // Create the area chart widget
-    m_areaChart = new wxAreaChartCtrl(this, wxID_ANY, chartData);
-    sizer->Add(m_areaChart, 1, wxEXPAND);
-
-    SetSizer(sizer);
-}
+#include "wxboxplotdatasetoptions.h"
