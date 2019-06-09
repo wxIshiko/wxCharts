@@ -36,6 +36,7 @@
 #include "wxcandlestickchartpanel.h"
 #include "wxcolumnchartpanel.h"
 #include "wxdoughnutchartpanel.h"
+#include "wxhistogrampanel.h"
 #include "wxlinechartpanel.h"
 #include "wxpiechartpanel.h"
 #include "wxpolarareachartpanel.h"
@@ -115,6 +116,10 @@ wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
     m_doughnutChartPanel = new wxDoughnutChartPanel(m_mainPanel);
     mainPanelSizer->Add(m_doughnutChartPanel, 1, wxEXPAND);
     m_doughnutChartPanel->Hide();
+
+    m_histogramPanel = new wxHistogramPanel(m_mainPanel);
+    mainPanelSizer->Add(m_histogramPanel, 1, wxEXPAND);
+    m_histogramPanel->Hide();
 
     m_lineChartPanel = new wxLineChartPanel(m_mainPanel);
     mainPanelSizer->Add(m_lineChartPanel, 1, wxEXPAND);
@@ -222,6 +227,11 @@ void wxChartsTestsFrame::OnDoughnutChart(wxCommandEvent& evt)
     SwitchPanel(m_doughnutChartPanel);
 }
 
+void wxChartsTestsFrame::OnHistogram(wxCommandEvent& evt)
+{
+    SwitchPanel(m_histogramPanel);
+}
+
 void wxChartsTestsFrame::OnLineChart(wxCommandEvent& evt)
 {
     SwitchPanel(m_lineChartPanel);
@@ -278,6 +288,7 @@ wxBEGIN_EVENT_TABLE(wxChartsTestsFrame, wxFrame)
     EVT_MENU(wxID_CANDLESTICK_CHART, wxChartsTestsFrame::OnCandlestickChart)
     EVT_MENU(wxID_COLUMN_CHART, wxChartsTestsFrame::OnColumnChart)
     EVT_MENU(wxID_DOUGHNUT_CHART, wxChartsTestsFrame::OnDoughnutChart)
+    EVT_MENU(wxID_HISTOGRAM, wxChartsTestsFrame::OnHistogram)
     EVT_MENU(wxID_LINE_CHART, wxChartsTestsFrame::OnLineChart)
     EVT_MENU(wxID_PIE_CHART, wxChartsTestsFrame::OnPieChart)
     EVT_MENU(wxID_POLARAREA_CHART, wxChartsTestsFrame::OnPolarAreaChart)

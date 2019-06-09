@@ -23,4 +23,16 @@
 #ifndef _TESTS_WX_CHARTS_WXHISTOGRAMPANEL_H_
 #define _TESTS_WX_CHARTS_WXHISTOGRAMPANEL_H_
 
+#include <wx/charts/wxcharts.h>
+#include <wx/panel.h>
+
+class wxHistogramPanel : public wxPanel
+{
+public:
+    wxHistogramPanel(wxWindow* parent);
+
+private:
+    wxHistogramCtrl* m_histogram;
+};
+
 #endif

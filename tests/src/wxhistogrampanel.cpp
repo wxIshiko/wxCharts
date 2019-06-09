@@ -21,3 +21,38 @@
 */
 
 #include "wxhistogrampanel.h"
+#include <wx/sizer.h>
+#include <wx/choice.h>
+#include <random>
+
+wxHistogramPanel::wxHistogramPanel(wxWindow* parent)
+    : wxPanel(parent)
+{
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+
+    // Create the data for the histogram chart widget
+    const std::size_t N = 10000;
+    wxVector<wxDouble> data;
+    data.reserve(N);
+    std::default_random_engine generator;
+    std::normal_distribution<double> distribution(5.0, 2.0);
+
+    for (std::size_t i = 0; i < N; ++i)
+    {
+        wxDouble number = distribution(generator);
+        if ((number >= 0.0) && (number < 10.0))
+            data.push_back(number);
+    }
+
+    wxHistogramDataset::ptr dataset(
+        new wxHistogramDataset(wxColor(134, 134, 134), wxColor(127, 46, 46), data)
+    );
+
+    wxHistogramData chartData(dataset, 20);
+
+    // Create the histogram widget
+    m_histogram = new wxHistogramCtrl(this, wxID_ANY, chartData);
+    sizer->Add(m_histogram, 1, wxEXPAND);
+
+    SetSizer(sizer);
+}
