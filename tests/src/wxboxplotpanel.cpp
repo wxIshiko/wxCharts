@@ -21,3 +21,31 @@
 */
 
 #include "wxboxplotpanel.h"
+#include <wx/sizer.h>
+#include <wx/choice.h>
+
+wxBoxPlotPanel::wxBoxPlotPanel(wxWindow* parent)
+    : wxPanel(parent)
+{
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+
+    wxVector<wxString> labels;
+    labels.push_back("A1");
+    labels.push_back("A2");
+
+    wxVector<wxVector<wxDouble>> data;
+    //data from http://www.physics.csbsju.edu/stats/box2.html
+    double A1[] = { 0.22, -0.87, -2.39, -1.79, 0.37, -1.54, 1.28, -0.31, -0.74, 1.72, 0.38, -0.17, -0.62, -1.10, 0.30, 0.15, 2.30, 0.19, -0.50, -0.09 };
+    double A2[] = { -5.13, -2.19, -2.43, -3.83, 0.50, -3.25, 4.32, 1.63, 5.18, -0.43, 7.11, 4.87, -3.10, -5.81, 3.76, 6.31, 2.58, 0.07, 5.76, 3.50 };
+    wxVector<wxDouble> vec1(std::begin(A1), std::end(A1)), vec2(std::begin(A2), std::end(A2));
+    data.push_back(vec1);
+    data.push_back(vec2);
+
+    wxBoxPlotData chartData(labels, data);
+
+    // Create the boxplot widget from the constructed data
+    m_boxPlot = new wxBoxPlotCtrl(this, wxID_ANY, chartData);
+    sizer->Add(m_boxPlot);
+
+    SetSizer(sizer);
+}

@@ -42,6 +42,7 @@ private:
     void OnChartsGridElement(wxCommandEvent& evt);
     void OnAreaChart(wxCommandEvent& evt);
     void OnBarChart(wxCommandEvent& evt);
+    void OnBoxPlot(wxCommandEvent& evt);
     void OnBubbleChart(wxCommandEvent& evt);
     void OnCandlestickChart(wxCommandEvent& evt);
     void OnColumnChart(wxCommandEvent& evt);
@@ -67,6 +68,7 @@ private:
     wxPanel* m_chartsGridPanel;
     wxPanel* m_areaChartPanel;
     wxPanel* m_barChartPanel;
+    wxPanel* m_boxPlotPanel;
     wxPanel* m_bubbleChartPanel;
     wxPanel* m_candlestickChartPanel;
     wxPanel* m_columnChartPanel;

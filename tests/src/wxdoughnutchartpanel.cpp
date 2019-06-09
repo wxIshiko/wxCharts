@@ -20,4 +20,4 @@
     IN THE SOFTWARE.
 */
 
-#include "wxdoughhnutchartpanel.h"
+#include "wxdoughnutchartpanel.h"

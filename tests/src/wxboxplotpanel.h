@@ -23,4 +23,16 @@
 #ifndef _TESTS_WX_CHARTS_WXBOXPLOTPANEL_H_
 #define _TESTS_WX_CHARTS_WXBOXPLOTPANEL_H_
 
+#include <wx/charts/wxcharts.h>
+#include <wx/panel.h>
+
+class wxBoxPlotPanel : public wxPanel
+{
+public:
+    wxBoxPlotPanel(wxWindow* parent);
+
+private:
+    wxBoxPlotCtrl* m_boxPlot;
+};
+
 #endif

@@ -44,6 +44,7 @@ wxChartsTestsMenuBar::wxChartsTestsMenuBar()
     wxMenu* menuCharts = new wxMenu;
     menuCharts->Append(wxID_AREA_CHART, "wxAreaChartCtrl");
     menuCharts->Append(wxID_BAR_CHART, "wxBarChartCtrl");
+    menuCharts->Append(wxID_BOX_PLOT, "wxBoxPlotCtrl");
     menuCharts->Append(wxID_BUBBLE_CHART, "wxBubbleChartCtrl");
     menuCharts->Append(wxID_CANDLESTICK_CHART, "wxCandlestickChartCtrl");
     menuCharts->Append(wxID_COLUMN_CHART, "wxColumnChartCtrl");

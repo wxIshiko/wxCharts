@@ -31,6 +31,7 @@
 #include "wxchartsgridpanel.h"
 #include "wxareachartpanel.h"
 #include "wxbarchartpanel.h"
+#include "wxboxplotpanel.h"
 #include "wxbubblechartpanel.h"
 #include "wxcandlestickchartpanel.h"
 #include "wxcolumnchartpanel.h"
@@ -93,6 +94,10 @@ wxChartsTestsFrame::wxChartsTestsFrame(const wxString& title)
     m_barChartPanel = new wxBarChartPanel(m_mainPanel);
     mainPanelSizer->Add(m_barChartPanel, 1, wxEXPAND);
     m_barChartPanel->Hide();
+
+    m_boxPlotPanel = new wxBoxPlotPanel(m_mainPanel);
+    mainPanelSizer->Add(m_boxPlotPanel, 1, wxEXPAND);
+    m_boxPlotPanel->Hide();
 
     m_bubbleChartPanel = new wxBubbleChartPanel(m_mainPanel);
     mainPanelSizer->Add(m_bubbleChartPanel, 1, wxEXPAND);
@@ -187,6 +192,11 @@ void wxChartsTestsFrame::OnBarChart(wxCommandEvent& evt)
     SwitchPanel(m_barChartPanel);
 }
 
+void wxChartsTestsFrame::OnBoxPlot(wxCommandEvent& evt)
+{
+    SwitchPanel(m_boxPlotPanel);
+}
+
 void wxChartsTestsFrame::OnBubbleChart(wxCommandEvent& evt)
 {
     SwitchPanel(m_bubbleChartPanel);
@@ -253,6 +263,7 @@ wxBEGIN_EVENT_TABLE(wxChartsTestsFrame, wxFrame)
     EVT_MENU(wxID_GRID_ELEMENT, wxChartsTestsFrame::OnChartsGridElement)
     EVT_MENU(wxID_AREA_CHART, wxChartsTestsFrame::OnAreaChart)
     EVT_MENU(wxID_BAR_CHART, wxChartsTestsFrame::OnBarChart)
+    EVT_MENU(wxID_BOX_PLOT, wxChartsTestsFrame::OnBoxPlot)
     EVT_MENU(wxID_BUBBLE_CHART, wxChartsTestsFrame::OnBubbleChart)
     EVT_MENU(wxID_CANDLESTICK_CHART, wxChartsTestsFrame::OnCandlestickChart)
     EVT_MENU(wxID_COLUMN_CHART, wxChartsTestsFrame::OnColumnChart)
