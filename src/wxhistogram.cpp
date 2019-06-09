@@ -213,7 +213,9 @@ void wxHistogram::DoFit()
 void wxHistogram::DoDraw(wxGraphicsContext &gc,
                          bool suppressTooltips)
 {
+    m_grid.Fit(gc);
     m_grid.Draw(gc);
+
     Fit();
 
     auto buckets = m_dataset->GetBuckets();
