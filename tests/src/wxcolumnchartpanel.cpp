@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -55,17 +55,12 @@ wxColumnChartPanel::wxColumnChartPanel(wxWindow* parent)
     points1.push_back(6);
     points1.push_back(5);
     points1.push_back(1);
-    wxChartsDoubleDataset::ptr dataset1(
-        new wxChartsDoubleDataset(
-            wxColor(220, 220, 220, 0x7F),
-            wxColor(220, 220, 220, 0xCC),
-            points1)
-    );
+    wxChartsDoubleDataset::ptr dataset1(new wxChartsDoubleDataset("Dataset 1", points1));
     chartData->AddDataset(dataset1);
 
     // Create the column chart widget
     m_columnChart = new wxColumnChartCtrl(this, wxID_ANY, chartData);
-    sizer->Add(m_columnChart);
+    sizer->Add(m_columnChart, 1, wxEXPAND);
 
     SetSizer(sizer);
 }

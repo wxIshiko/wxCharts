@@ -66,21 +66,21 @@ WXCHARTS_ROOT ?= $(WXCHARTS)
 
 # ------------
 
-all: $(_builddir)WxHistogramChart
+all: $(_builddir)wxhistogram
 
-$(_builddir)WxHistogramChart: $(_builddir)WxHistogramChart_WxHistogramChartApp.o $(_builddir)WxHistogramChart_WxHistogramChartFrame.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)WxHistogramChart_WxHistogramChartApp.o $(_builddir)WxHistogramChart_WxHistogramChartFrame.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
+$(_builddir)wxhistogram: $(_builddir)wxhistogram_wxhistogramapp.o $(_builddir)wxhistogram_wxhistogramframe.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxhistogram_wxhistogramapp.o $(_builddir)wxhistogram_wxhistogramframe.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
 
-$(_builddir)WxHistogramChart_WxHistogramChartApp.o: src/WxHistogramChartApp.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxHistogramChartApp.cpp
+$(_builddir)wxhistogram_wxhistogramapp.o: src/wxhistogramapp.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxhistogramapp.cpp
 
-$(_builddir)WxHistogramChart_WxHistogramChartFrame.o: src/WxHistogramChartFrame.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxHistogramChartFrame.cpp
+$(_builddir)wxhistogram_wxhistogramframe.o: src/wxhistogramframe.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxhistogramframe.cpp
 
 clean:
 	rm -f $(_builddir)*.o
 	rm -f $(_builddir)*.d
-	rm -f $(_builddir)WxHistogramChart
+	rm -f $(_builddir)wxhistogram
 
 .PHONY: all clean
 

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2017-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -34,14 +34,15 @@ WxMath2DInteractiveFrame::WxMath2DInteractiveFrame(const wxString& title)
     wxPanel* panel = new wxPanel(this, wxID_ANY);
 
     wxMath2DPlotData chartData;
-    wxMath2DPlotOptions options;
-    options.GetCommonOptions().SetShowTooltips(false);
+    wxSharedPtr<wxMath2DPlotOptions> options(new wxMath2DPlotOptions());
+    options->GetCommonOptions().SetShowTooltips(false);
 
     wxVector<wxPoint2DDouble> data1;
     wxMath2DPlotDataset::ptr dataset1(
         new wxMath2DPlotDataset(
-            wxColor(20, 20, 220, 180),
-            wxColor(0, 0, 0, 0),
+            wxColor(0, 0, 255, 0x8F),
+            wxColor(250, 20, 20, 0x78),
+            wxColor(0, 0, 0, 0xB8),
             data1, wxCHARTTYPE_LINE, false)
         );
     chartData.AddDataset(dataset1);
@@ -49,9 +50,10 @@ WxMath2DInteractiveFrame::WxMath2DInteractiveFrame(const wxString& title)
     wxVector<wxPoint2DDouble> data2;
     wxMath2DPlotDataset::ptr dataset2(
         new wxMath2DPlotDataset(
-            wxColor(0, 70, 140, 0x78),
-            wxColor(50, 210, 105, 0xB8),
-            data2)
+            wxColor(0, 0, 0xFF, 0xFF),
+            wxColor(0, 0xFF, 0, 0x78),
+            wxColor(0xFF, 0, 0, 0x78),
+            data2, wxCHARTTYPE_LINE, true, false)
         );
     chartData.AddDataset(dataset2);
 

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,7 +26,7 @@
 #define _WX_CHARTS_WXSTACKEDBARCHARTOPTIONS_H_
 
 #include "wxchartoptions.h"
-#include "wxchartgridoptions.h"
+#include "wxchartsgridoptions.h"
 
 /// The options for the wxStackedBarChartCtrl control.
 
@@ -39,7 +39,7 @@ public:
 
     /// Gets the options for the grid.
     /// @return The options for the grid.
-    const wxChartGridOptions& GetGridOptions() const;
+    const wxChartsGridOptions& GetGridOptions() const;
 
     /// Gets the amount of space the bars are separated
     /// by. The actual space between bars will be twice
@@ -48,7 +48,7 @@ public:
     wxDouble GetBarSpacing() const;
 
 private:
-    wxChartGridOptions m_gridOptions;
+    wxChartsGridOptions m_gridOptions;
     wxDouble m_barSpacing;
 };
 

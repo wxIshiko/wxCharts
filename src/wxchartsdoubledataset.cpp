@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -24,21 +24,10 @@
 
 #include "wxchartsdoubledataset.h"
 
-wxChartsDoubleDataset::wxChartsDoubleDataset(const wxColor &fillColor,
-                                            const wxColor &strokeColor,
-                                            const wxVector<wxDouble> &data)
-    : m_fillColor(fillColor), m_strokeColor(strokeColor), m_data(data)
+wxChartsDoubleDataset::wxChartsDoubleDataset(const wxString& name,
+                                             const wxVector<wxDouble> &data)
+    : wxChartsDataset(name), m_data(data)
 {
-}
-
-const wxColor& wxChartsDoubleDataset::GetFillColor() const
-{
-    return m_fillColor;
-}
-
-const wxColor& wxChartsDoubleDataset::GetStrokeColor() const
-{
-    return m_strokeColor;
 }
 
 const wxVector<wxDouble>& wxChartsDoubleDataset::GetData() const

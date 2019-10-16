@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,7 +26,8 @@
 #define _WX_CHARTS_WXCANDLESTICKCHARTOPTIONS_H_
 
 #include "wxchartoptions.h"
-#include "wxchartgridoptions.h"
+#include "wxchartsgridoptions.h"
+#include <wx/sharedptr.h>
 
 /// The options for the wxCandlestickChartCtrl control.
 
@@ -34,18 +35,21 @@
 class wxCandlestickChartOptions : public wxChartOptions
 {
 public:
+    /// Smart pointer typedef.
+    typedef wxSharedPtr<wxCandlestickChartOptions> ptr;
+
     /// Constructs a wxCandlestickChartOptions instance.
     wxCandlestickChartOptions();
 
     /// Gets the options for the grid.
     /// @return The grid options.
-    const wxChartGridOptions& GetGridOptions() const;
+    const wxChartsGridOptions& GetGridOptions() const;
     /// Gets the options for the grid.
     /// @return The grid options.
-    wxChartGridOptions& GetGridOptions();
+    wxChartsGridOptions& GetGridOptions();
 
 private:
-    wxChartGridOptions m_gridOptions;
+    wxChartsGridOptions m_gridOptions;
 };
 
 #endif

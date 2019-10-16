@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -27,8 +27,8 @@
 
 #include "wxchart.h"
 #include "wxbubblechartoptions.h"
-#include "wxchartgrid.h"
-#include "wxchartcircle.h"
+#include "wxchartsgrid.h"
+#include "wxchartscircle.h"
 
 class wxDoubleTriplet
 {
@@ -89,12 +89,29 @@ private:
 };
 
 /// A bubble chart.
-
-/// \ingroup chartclasses
+/**
+    \ingroup chartclasses
+*/
 class wxBubbleChart : public wxChart
 {
 public:
+    /// Constructor.
+    /**
+        The chart options will be defined by the default theme.
+
+        @param data The data that will be used to initialize the chart.
+        @param size The initial size of the chart.
+    */
     wxBubbleChart(const wxBubbleChartData &data, const wxSize &size);
+
+    /// Constructor.
+    /**
+        @param data The data that will be used to initialize the chart.
+        @param options The options to use for the chart.
+        @param size The initial size of the chart.
+    */
+    wxBubbleChart(const wxBubbleChartData &data, wxBubbleChartOptions::ptr options,
+        const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
@@ -110,17 +127,17 @@ private:
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
+    virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point);
 
 private:
-    class Circle : public wxChartCircle
+    class Circle : public wxChartsCircle
     {
     public:
         typedef wxSharedPtr<Circle> ptr;
 
         Circle(wxDoubleTriplet value, wxDouble x, wxDouble y, wxDouble radius,
             const wxChartTooltipProvider::ptr tooltipProvider,
-            const wxChartCircleOptions &options);
+            const wxChartsCircleOptions &options);
 
         wxDoubleTriplet GetValue() const;
 
@@ -148,8 +165,8 @@ private:
     };
 
 private:
-    wxBubbleChartOptions m_options;
-    wxChartGrid m_grid;
+    wxSharedPtr<wxBubbleChartOptions> m_options;
+    wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
     wxDouble m_minZValue;
     wxDouble m_maxZValue;

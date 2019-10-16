@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -68,7 +68,7 @@ wxBubbleChartPanel::wxBubbleChartPanel(wxWindow* parent)
 
     // Create the bubble chart widget
     m_bubbleChart = new wxBubbleChartCtrl(this, wxID_ANY, chartData);
-    sizer->Add(m_bubbleChart);
+    sizer->Add(m_bubbleChart, 1, wxEXPAND);
 
     SetSizer(sizer);
 }

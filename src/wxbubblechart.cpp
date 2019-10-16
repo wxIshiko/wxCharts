@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -23,6 +23,7 @@
 /// @file
 
 #include "wxbubblechart.h"
+#include "wxchartstheme.h"
 #include <sstream>
 #include <cmath>
 
@@ -89,8 +90,8 @@ wxBubbleChart::Circle::Circle(wxDoubleTriplet value,
     wxDouble y,
     wxDouble radius,
     const wxChartTooltipProvider::ptr tooltipProvider,
-    const wxChartCircleOptions &options)
-    : wxChartCircle(x, y, radius, tooltipProvider, options), m_value(value)
+    const wxChartsCircleOptions &options)
+    : wxChartsCircle(x, y, radius, tooltipProvider, options), m_value(value)
 {
 }
 
@@ -127,12 +128,29 @@ unsigned int wxBubbleChart::Dataset::GetMaxRadius() const
 
 wxBubbleChart::wxBubbleChart(const wxBubbleChartData &data, 
                              const wxSize &size)
-    : m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+    : m_options(wxChartsDefaultTheme->GetBubbleChartOptions()),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
-        m_options.GetGridOptions()
+        m_options->GetGridOptions()
+    ),
+    m_minZValue(GetMinZValue(data.GetDatasets())), m_maxZValue(GetMaxZValue(data.GetDatasets()))
+{
+    Initialize(data);
+}
+
+wxBubbleChart::wxBubbleChart(const wxBubbleChartData &data,
+                             wxBubbleChartOptions::ptr options,
+                             const wxSize &size)
+    : m_options(options),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+        size,
+        GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
+        GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
+        m_options->GetGridOptions()
         ),
     m_minZValue(GetMinZValue(data.GetDatasets())), m_maxZValue(GetMaxZValue(data.GetDatasets()))
 {
@@ -141,7 +159,7 @@ wxBubbleChart::wxBubbleChart(const wxBubbleChartData &data,
 
 const wxChartCommonOptions& wxBubbleChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 void wxBubbleChart::Initialize(const wxBubbleChartData &data)
@@ -162,7 +180,7 @@ void wxBubbleChart::Initialize(const wxBubbleChartData &data)
 
             Circle::ptr circle(
                 new Circle(datasetData[j], 0, 0, 1, tooltipProvider,
-                    wxChartCircleOptions(datasets[i]->GetOutlineWidth(),
+                    wxChartsCircleOptions(datasets[i]->GetOutlineWidth(),
                         datasets[i]->GetOutlineColor(), datasets[i]->GetFillColor()))
                 );
 
@@ -371,9 +389,9 @@ void wxBubbleChart::DoSetSize(const wxSize &size)
     m_grid.Resize(size);
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxBubbleChart::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxBubbleChart::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {

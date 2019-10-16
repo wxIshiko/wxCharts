@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -32,18 +32,19 @@
 */
 
 #include "wxstackedcolumnchart.h"
-#include "wxchartcategoricalaxis.h"
-#include "wxchartnumericalaxis.h"
+#include "wxchartstheme.h"
+#include "wxchartscategoricalaxis.h"
+#include "wxchartsnumericalaxis.h"
 #include <sstream>
 
 wxStackedColumnChart::Column::Column(wxDouble value,
                                      const wxChartTooltipProvider::ptr tooltipProvider,
                                      wxDouble x,
                                      wxDouble y,
-                                     const wxColor &fillColor,
-                                     const wxColor &strokeColor,
-                                     int directions)
-    : wxChartRectangle(x, y, tooltipProvider, wxChartRectangleOptions(fillColor, strokeColor, directions)),
+                                     const wxChartsPenOptions &penOptions,
+                                     const wxChartsBrushOptions &brushOptions,
+                                     int borders)
+    : wxChartsRectangle(x, y, tooltipProvider, wxChartsRectangleOptions(penOptions, brushOptions, borders)),
     m_value(value)
 {
 }
@@ -75,17 +76,21 @@ void wxStackedColumnChart::Dataset::AppendColumn(Column::ptr column)
 
 wxStackedColumnChart::wxStackedColumnChart(wxChartsCategoricalData::ptr &data,
                                            const wxSize &size)
-    : m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+    : m_options(wxChartsDefaultTheme->GetStackedColumnChartOptions()),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data->GetCategories(), m_options.GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", GetCumulativeMinValue(data->GetDatasets()), GetCumulativeMaxValue(data->GetDatasets()), m_options.GetGridOptions().GetYAxisOptions()),
-        m_options.GetGridOptions()
+        wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetCumulativeMinValue(data->GetDatasets()), GetCumulativeMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
         )
 {
     const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
+        wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
+        wxSharedPtr<wxStackedColumnChartDatasetOptions> datasetOptions = datasetTheme->GetStackedColumnChartDatasetOptions();
+
         const wxChartsDoubleDataset& dataset = *datasets[i];
         Dataset::ptr newDataset(new Dataset());
 
@@ -101,14 +106,14 @@ wxStackedColumnChart::wxStackedColumnChart(wxChartsCategoricalData::ptr &data,
             std::stringstream tooltip;
             tooltip << datasetData[j];
             wxChartTooltipProvider::ptr tooltipProvider(
-                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), dataset.GetFillColor())
+                new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), datasetOptions->GetBrushOptions().GetColor())
                 );
 
             newDataset->AppendColumn(Column::ptr(new Column(
                 datasetData[j],
                 tooltipProvider,
                 25, 50,
-                dataset.GetFillColor(), dataset.GetStrokeColor(),
+                datasetOptions->GetPenOptions(), datasetOptions->GetBrushOptions(),
                 border
                 )));
         }
@@ -119,7 +124,7 @@ wxStackedColumnChart::wxStackedColumnChart(wxChartsCategoricalData::ptr &data,
 
 const wxChartCommonOptions& wxStackedColumnChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 wxDouble wxStackedColumnChart::GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
@@ -207,10 +212,10 @@ void wxStackedColumnChart::DoFit()
             Column& column = *(currentDataset.GetColumns()[j]);
 
             wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j, column.GetValue());
-            upperLeftCornerPosition.m_x += m_options.GetColumnSpacing();
+            upperLeftCornerPosition.m_x += m_options->GetColumnSpacing();
             upperLeftCornerPosition.m_y -= heightOfPreviousDatasets[j];
             wxPoint2DDouble upperRightCornerPosition = m_grid.GetMapping().GetWindowPositionAtTickMark(j + 1, column.GetValue());
-            upperRightCornerPosition.m_x -= m_options.GetColumnSpacing();
+            upperRightCornerPosition.m_x -= m_options->GetColumnSpacing();
             upperRightCornerPosition.m_y -= heightOfPreviousDatasets[j];
 
             wxPoint2DDouble bottomLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j);
@@ -247,9 +252,9 @@ void wxStackedColumnChart::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxStackedColumnChart::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxStackedColumnChart::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
 
     // Dataset are iterated in reverse order so that the tooltip items
     // are in the same order as the stacked columns

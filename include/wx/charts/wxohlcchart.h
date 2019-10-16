@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,9 +26,9 @@
 #define _WX_CHARTS_WXOHLCCHART_H_
 
 #include "wxchart.h"
-#include "wxchartohlcdata.h"
+#include "wxchartsohlcdata.h"
 #include "wxohlcchartoptions.h"
-#include "wxchartgrid.h"
+#include "wxchartsgrid.h"
 
 /// Data for the wxOHLCChartCtrl control.
 
@@ -36,7 +36,7 @@
 class wxOHLCChartData
 {
 public:
-    wxOHLCChartData(const wxVector<wxString> &labels, const wxVector<wxChartOHLCData> &data);
+    wxOHLCChartData(const wxVector<wxString> &labels, const wxVector<wxChartsOHLCData> &data);
 
     /// Gets the labels of the X axis.
     /// @return A vector containing the labels of the
@@ -47,7 +47,7 @@ public:
     const wxColor& GetDownLineColor() const;
     unsigned int GetOpenLineLength() const;
     unsigned int GetCloseLineLength() const;
-    const wxVector<wxChartOHLCData>& GetData() const;
+    const wxVector<wxChartsOHLCData>& GetData() const;
 
 private:
     wxVector<wxString> m_labels;
@@ -56,7 +56,7 @@ private:
     wxColor m_downLineColor;
     unsigned int m_openLineLength;
     unsigned int m_closeLineLength;
-    wxVector<wxChartOHLCData> m_data;
+    wxVector<wxChartsOHLCData> m_data;
 };
 
 /// An open-high-low-close chart.
@@ -76,15 +76,15 @@ private:
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
+    virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point);
 
 private:
-    class OHLCLines : public wxChartElement
+    class OHLCLines : public wxChartsElement
     {
     public:
         typedef wxSharedPtr<OHLCLines> ptr;
 
-        OHLCLines(const wxChartOHLCData &data, unsigned int lineWidth,
+        OHLCLines(const wxChartsOHLCData &data, unsigned int lineWidth,
             const wxColor& upLineColor, const wxColor& downLineColor,
             unsigned int openLineLength, unsigned int closeLineLength,
             const wxChartTooltipProvider::ptr tooltipProvider);
@@ -93,10 +93,10 @@ private:
         virtual bool HitTest(const wxPoint &point) const;
         virtual wxPoint2DDouble GetTooltipPosition() const;
 
-        void Update(const wxChartGridMapping& mapping, size_t index);
+        void Update(const wxChartsGridMapping& mapping, size_t index);
 
     private:
-        wxChartOHLCData m_data;
+        wxChartsOHLCData m_data;
         wxPoint2DDouble m_lowPoint;
         wxPoint2DDouble m_highPoint;
         wxPoint2DDouble m_openPoint;
@@ -109,8 +109,8 @@ private:
     };
 
 private:
-    wxOHLCChartOptions m_options;
-    wxChartGrid m_grid;
+    wxSharedPtr<wxOHLCChartOptions> m_options;
+    wxChartsGrid m_grid;
     wxVector<OHLCLines::ptr> m_data;
 };
 

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -38,8 +38,8 @@
 
 #include "wxchart.h"
 #include "wxmath2dplotoptions.h"
-#include "wxchartgrid.h"
-#include "wxchartpoint.h"
+#include "wxchartsgrid.h"
+#include "wxchartspoint.h"
 
 enum wxChartType
 {
@@ -55,16 +55,20 @@ public:
     typedef wxSharedPtr<wxMath2DPlotDataset> ptr;
 
     /// Constructs a Math2DPlot instance.
+    /// @param lineColor The color of the line.
     /// @param dotColor The color of the points.
     /// @param dotStrokeColor The color of the pen
     /// used to draw the outline of the points.
     /// @param data The list of values.
     /// @param showDots Enable displaz of dots on lines.
     wxMath2DPlotDataset(
+        const wxColor &lineColor,
         const wxColor &dotColor,
         const wxColor &dotStrokeColor,
         wxVector<wxPoint2DDouble> &data,
-        const wxChartType &chartType = wxCHARTTYPE_LINE, bool showDots = true);
+        const wxChartType &chartType=wxCHARTTYPE_LINE,
+        const bool &showDots = true,
+        const bool &showLine = true);
 
     /// Whether to show the points on the chart.
     /// @retval true Show the points.
@@ -114,13 +118,13 @@ class wxMath2DPlot : public wxChart
 {
 public:
     wxMath2DPlot(const wxMath2DPlotData &data, const wxSize &size);
-    wxMath2DPlot(const wxMath2DPlotData &data,
-        const wxMath2DPlotOptions &options, const wxSize &size);
+    wxMath2DPlot(const wxMath2DPlotData &data, wxSharedPtr<wxMath2DPlotOptions> &options,
+        const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
     void Save(const wxString &filename, const wxBitmapType &type,
-        const wxSize &size);
+        const wxSize &size, const wxColor &backgroundColor);
 
     bool Scale(int coeff);
     void Shift(double dx,double dy);
@@ -130,8 +134,8 @@ public:
     bool RemoveDataset(std::size_t index);
     void AddDataset(const wxMath2DPlotDataset::ptr &newset,bool is_new = true);
 
-    const wxChartGridOptions& GetGridOptions() const;
-    void  SetGridOptions(const wxChartGridOptions& opt);
+    const wxChartsGridOptions& GetGridOptions() const;
+    void  SetGridOptions(const wxChartsGridOptions& opt);
     const wxMath2DPlotOptions& GetChartOptions() const;
     void  SetChartOptions(const wxMath2DPlotOptions& opt);
     bool  SetChartType(std::size_t index,const wxChartType &type);
@@ -150,10 +154,10 @@ private:
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
-    virtual wxSharedPtr<wxVector<const wxChartElement*> > GetActiveElements(const wxPoint &point);
+    virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point);
 
 private:
-    class Point : public wxChartPoint
+    class Point : public wxChartsPoint
     {
     public:
         typedef wxSharedPtr<Point> ptr;
@@ -183,6 +187,7 @@ private:
         Dataset(
             bool showDots, bool showLine,
             const wxColor &lineColor,
+            const wxColor &dotColor,
             const wxColor &dotStrokeColor,
             const wxChartType &chartType=wxCHARTTYPE_LINE);
 
@@ -209,8 +214,8 @@ private:
     };
 
 private:
-    wxMath2DPlotOptions m_options;
-    wxChartGrid m_grid;
+    wxSharedPtr<wxMath2DPlotOptions> m_options;
+    wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
     bool m_autoRange;
 };

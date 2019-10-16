@@ -23,9 +23,15 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxBar sample build
+          name: wxBarChart sample build
           command: make
-          working_directory: samples/bar
+          working_directory: samples/barchart
+          environment:
+            WXCHARTS_ROOT: ../..
+      - run:
+          name: wxBoxPlot sample build
+          command: make
+          working_directory: samples/boxplot
           environment:
             WXCHARTS_ROOT: ../..
       - run:
@@ -53,21 +59,21 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxDoughnut sample build
+          name: wxDoughnutChart sample build
           command: make
-          working_directory: samples/doughnut
+          working_directory: samples/doughnutchart
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxHistogramChart sample build
+          name: wxHistogram sample build
           command: make
           working_directory: samples/histogram
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxLine sample build
+          name: wxLineChart sample build
           command: make
-          working_directory: samples/line
+          working_directory: samples/linechart
           environment:
             WXCHARTS_ROOT: ../..
       - run:
@@ -89,9 +95,9 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxPie sample build
+          name: wxPieChart sample build
           command: make
-          working_directory: samples/pie
+          working_directory: samples/piechart
           environment:
             WXCHARTS_ROOT: ../..
       - run:
@@ -125,9 +131,9 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxStackedColumn sample build
+          name: wxStackedColumnChart sample build
           command: make
-          working_directory: samples/stackedcolumn
+          working_directory: samples/stackedcolumnchart
           environment:
             WXCHARTS_ROOT: ../..
       - run:

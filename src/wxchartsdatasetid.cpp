@@ -29,7 +29,48 @@ wxChartsDatasetId::wxChartsDatasetId()
 {
 }
 
+wxChartsDatasetId wxChartsDatasetId::CreateImplicitId(int id)
+{
+    wxChartsDatasetId result;
+    result.m_implicitId = id;
+    return result;
+}
+
 bool wxChartsDatasetId::IsUndefined() const
 {
     return ((m_implicitId == -1) && (m_explicitId.IsEmpty()));
+}
+
+bool wxChartsDatasetId::operator==(const wxChartsDatasetId& other) const
+{
+    return ((m_implicitId == other.m_implicitId) && (m_explicitId == other.m_explicitId));
+}
+
+bool wxChartsDatasetId::operator!=(const wxChartsDatasetId& other) const
+{
+    return !(*this == other);
+}
+
+bool wxChartsDatasetId::operator<(const wxChartsDatasetId& other) const
+{
+    if (m_implicitId != other.m_implicitId)
+    {
+        return (m_implicitId < other.m_implicitId);
+    }
+    else
+    {
+        return (m_explicitId < other.m_explicitId);
+    }
+}
+
+bool wxChartsDatasetId::operator>(const wxChartsDatasetId& other) const
+{
+    if (m_implicitId != other.m_implicitId)
+    {
+        return (m_implicitId > other.m_implicitId);
+    }
+    else
+    {
+        return (m_explicitId > other.m_explicitId);
+    }
 }

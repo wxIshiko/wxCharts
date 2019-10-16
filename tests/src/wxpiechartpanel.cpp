@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -36,17 +36,17 @@ wxPieChartPanel::wxPieChartPanel(wxWindow* parent)
     sizer->Add(choice);
 
     // Create the data for the pie chart widget
-    wxPieChartData chartData;
-    chartData.AppendSlice(wxChartSliceData(300, wxColor(0x4A46F7), "Red"));
-    chartData.AppendSlice(wxChartSliceData(50, wxColor(0xBDBF46), "Green"));
-    chartData.AppendSlice(wxChartSliceData(100, wxColor(0x5CB4FD), "Yellow"));
-    chartData.AppendSlice(wxChartSliceData(40, wxColor(0xB19F94), "Grey"));
-    chartData.AppendSlice(wxChartSliceData(120, wxColor(0x60534D), "Dark Grey"));
+    wxPieChartData::ptr chartData = wxPieChartData::make_shared();
+    chartData->AppendSlice(wxChartSliceData(300, wxColor(0x4A46F7), "Red"));
+    chartData->AppendSlice(wxChartSliceData(50, wxColor(0xBDBF46), "Green"));
+    chartData->AppendSlice(wxChartSliceData(100, wxColor(0x5CB4FD), "Yellow"));
+    chartData->AppendSlice(wxChartSliceData(40, wxColor(0xB19F94), "Grey"));
+    chartData->AppendSlice(wxChartSliceData(120, wxColor(0x60534D), "Dark Grey"));
 
     // Create the pie chart widget
     m_pieChart = new wxPieChartCtrl(this, wxID_ANY, chartData,
         wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
-    sizer->Add(m_pieChart);
+    sizer->Add(m_pieChart, 1, wxEXPAND);
 
     SetSizer(sizer);
 }

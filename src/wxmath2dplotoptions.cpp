@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -34,12 +34,12 @@ wxMath2DPlotOptions::wxMath2DPlotOptions()
     options.SetAlignment(wxALIGN_TOP);
 }
 
-const wxChartGridOptions& wxMath2DPlotOptions::GetGridOptions() const
+const wxChartsGridOptions& wxMath2DPlotOptions::GetGridOptions() const
 {
     return m_gridOptions;
 }
 
-wxChartGridOptions& wxMath2DPlotOptions::GetGridOptions()
+wxChartsGridOptions& wxMath2DPlotOptions::GetGridOptions()
 {
     return m_gridOptions;
 }

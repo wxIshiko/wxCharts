@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -23,14 +23,15 @@
 /// @file
 
 #include "wxcandlestickchart.h"
-#include "wxchartcategoricalaxis.h"
-#include "wxchartnumericalaxis.h"
+#include "wxchartstheme.h"
+#include "wxchartscategoricalaxis.h"
+#include "wxchartsnumericalaxis.h"
 #include <wx/brush.h>
 #include <wx/pen.h>
 #include <sstream>
 
 wxCandlestickChartData::wxCandlestickChartData(const wxVector<wxString> &labels,
-                                               const wxVector<wxChartOHLCData> &data)
+                                               const wxVector<wxChartsOHLCData> &data)
     : m_labels(labels), m_lineColor(0, 0, 0, 0x80), m_lineWidth(3), 
     m_upFillColor(0, 205, 0, 0x60), m_downFillColor(225, 0, 0, 0x60), m_rectangleWidth(20), 
     m_data(data)
@@ -67,19 +68,19 @@ unsigned int wxCandlestickChartData::GetRectangleWidth() const
     return m_rectangleWidth;
 }
 
-const wxVector<wxChartOHLCData>& wxCandlestickChartData::GetData() const
+const wxVector<wxChartsOHLCData>& wxCandlestickChartData::GetData() const
 {
     return m_data;
 }
 
-wxCandlestickChart::Candlestick::Candlestick(const wxChartOHLCData &data,
-    const wxColor &lineColor,
-    unsigned int lineWidth,
-    const wxColor &upFillColor,
-    const wxColor &downFillColor,
-    unsigned int rectangleWidth,
-    const wxChartTooltipProvider::ptr tooltipProvider)
-    : wxChartElement(tooltipProvider), m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
+wxCandlestickChart::Candlestick::Candlestick(const wxChartsOHLCData &data,
+                                             const wxColor &lineColor,
+                                             unsigned int lineWidth,
+                                             const wxColor &upFillColor,
+                                             const wxColor &downFillColor,
+                                             unsigned int rectangleWidth,
+                                             const wxChartTooltipProvider::ptr tooltipProvider)
+    : wxChartsElement(tooltipProvider), m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
     m_openPoint(0, 0), m_closePoint(0, 0), m_lineColor(lineColor), m_lineWidth(lineWidth),
     m_upFillColor(upFillColor), m_downFillColor(downFillColor), m_rectangleWidth(rectangleWidth)
 {
@@ -155,7 +156,7 @@ wxPoint2DDouble wxCandlestickChart::Candlestick::GetTooltipPosition() const
     return wxPoint2DDouble(m_lowPoint.m_x, m_highPoint.m_y + (m_lowPoint.m_y - m_highPoint.m_y) / 2);
 }
 
-void wxCandlestickChart::Candlestick::Update(const wxChartGridMapping& mapping,
+void wxCandlestickChart::Candlestick::Update(const wxChartsGridMapping& mapping,
     size_t index)
 {
     m_lowPoint = mapping.GetWindowPositionAtTickMark(index, m_data.GetLowValue());
@@ -166,13 +167,34 @@ void wxCandlestickChart::Candlestick::Update(const wxChartGridMapping& mapping,
 
 wxCandlestickChart::wxCandlestickChart(const wxCandlestickChartData &data,
                                        const wxSize &size)
-    : m_grid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetTop()),
+    : m_options(wxChartsDefaultTheme->GetCandlestickChartOptions()),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
         size,
-        wxChartCategoricalAxis::make_shared("x", data.GetLabels(), m_options.GetGridOptions().GetXAxisOptions()),
-        wxChartNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options.GetGridOptions().GetYAxisOptions()),
-        m_options.GetGridOptions()
-        )
+        wxChartsCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
+    )
+{
+    Initialize(data);
+}
+
+wxCandlestickChart::wxCandlestickChart(const wxCandlestickChartData &data,
+                                       wxCandlestickChartOptions::ptr options,
+                                       const wxSize &size)
+    : m_options(options),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
+        size,
+        wxChartsCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
+    )
+{
+    Initialize(data);
+}
+
+void wxCandlestickChart::Initialize(const wxCandlestickChartData &data)
 {
     for (size_t i = 0; i < data.GetData().size(); ++i)
     {
@@ -183,7 +205,7 @@ wxCandlestickChart::wxCandlestickChart(const wxCandlestickChartData &data,
             << "\r\nC: " << data.GetData()[i].GetCloseValue();
         wxChartTooltipProvider::ptr tooltipProvider(
             new wxChartTooltipProviderStatic(data.GetLabels()[i], tooltip.str(), *wxWHITE)
-            );
+        );
 
         Candlestick::ptr newCandlestick(new Candlestick(
             data.GetData()[i],
@@ -193,14 +215,14 @@ wxCandlestickChart::wxCandlestickChart(const wxCandlestickChartData &data,
             data.GetDownFillColor(),
             data.GetRectangleWidth(),
             tooltipProvider
-            ));
+        ));
         m_data.push_back(newCandlestick);
     }
 }
 
 const wxChartCommonOptions& wxCandlestickChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
+    return m_options->GetCommonOptions();
 }
 
 wxDouble wxCandlestickChart::GetMinValue(const wxCandlestickChartData &data)
@@ -248,8 +270,8 @@ wxDouble wxCandlestickChart::GetMaxValue(const wxCandlestickChartData &data)
 void wxCandlestickChart::DoSetSize(const wxSize &size)
 {
     wxSize newSize(
-        size.GetWidth() - m_options.GetPadding().GetTotalHorizontalPadding(),
-        size.GetHeight() - m_options.GetPadding().GetTotalVerticalPadding()
+        size.GetWidth() - m_options->GetPadding().GetTotalHorizontalPadding(),
+        size.GetHeight() - m_options->GetPadding().GetTotalVerticalPadding()
         );
     m_grid.Resize(newSize);
 }
@@ -281,9 +303,9 @@ void wxCandlestickChart::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSharedPtr<wxVector<const wxChartElement*> > wxCandlestickChart::GetActiveElements(const wxPoint &point)
+wxSharedPtr<wxVector<const wxChartsElement*>> wxCandlestickChart::GetActiveElements(const wxPoint &point)
 {
-    wxSharedPtr<wxVector<const wxChartElement*> > activeElements(new wxVector<const wxChartElement*>());
+    wxSharedPtr<wxVector<const wxChartsElement*>> activeElements(new wxVector<const wxChartsElement*>());
     for (size_t i = 0; i < m_data.size(); ++i)
     {
         if (m_data[i]->HitTest(point))

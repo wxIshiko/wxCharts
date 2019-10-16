@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -23,11 +23,11 @@
 #include "wxradarchartoptions.h"
 
 wxRadarChartOptions::wxRadarChartOptions()
-    : m_gridOptions(wxCHARTRADIALGRIDSTYLE_POLYGONAL)
+    : m_gridOptions(wxCHARTSRADIALGRIDSTYLE_POLYGONAL)
 {
 }
 
-const wxChartRadialGridOptions& wxRadarChartOptions::GetGridOptions() const
+const wxChartsRadialGridOptions& wxRadarChartOptions::GetGridOptions() const
 {
     return m_gridOptions;
 }

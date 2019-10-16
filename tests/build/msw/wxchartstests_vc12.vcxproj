@@ -7,9 +7,17 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -25,7 +33,19 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
@@ -37,14 +57,26 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
   </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -61,6 +93,22 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(WXCHARTS)\lib\vc_lib;$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <AdditionalIncludeDirectories>$(WXCHARTS)\include;$(WXCHARTS)/3rdparty/Catch2\single_include;$(WXWIN)\include;$(WXWIN)\include\msvc</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(WXCHARTS)\lib\vc_x64_lib;$(WXWIN)\lib\vc_x64_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -83,54 +131,92 @@
       <AdditionalLibraryDirectories>$(WXCHARTS)\lib\vc_lib;$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <AdditionalIncludeDirectories>$(WXCHARTS)\include;$(WXCHARTS)/3rdparty/Catch2\single_include;$(WXWIN)\include;$(WXWIN)\include\msvc</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(WXCHARTS)\lib\vc_x64_lib;$(WXWIN)\lib\vc_x64_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\wxchartstestsapp.cpp" />
     <ClCompile Include="..\..\src\wxchartstestsframe.cpp" />
     <ClCompile Include="..\..\src\wxchartstestsmenubar.cpp" />
-    <ClCompile Include="..\..\src\wxchartrectanglepanel.cpp" />
-    <ClCompile Include="..\..\src\wxchartlabelpanel.cpp" />
-    <ClCompile Include="..\..\src\wxchartlabelseriespanel.cpp" />
-    <ClCompile Include="..\..\src\wxchartcategoricalaxispanel.cpp" />
-    <ClCompile Include="..\..\src\wxchartnumericalaxispanel.cpp" />
-    <ClCompile Include="..\..\src\wxchartgridpanel.cpp" />
+    <ClCompile Include="..\..\src\wxchartsdefaultthemepanel.cpp" />
+    <ClCompile Include="..\..\src\wxchartsrectanglepanel.cpp" />
+    <ClCompile Include="..\..\src\wxchartslabelpanel.cpp" />
+    <ClCompile Include="..\..\src\wxchartslabelseriespanel.cpp" />
+    <ClCompile Include="..\..\src\wxchartscategoricalaxispanel.cpp" />
+    <ClCompile Include="..\..\src\wxchartsnumericalaxispanel.cpp" />
+    <ClCompile Include="..\..\src\wxchartsgridpanel.cpp" />
     <ClCompile Include="..\..\src\wxareachartpanel.cpp" />
     <ClCompile Include="..\..\src\wxbarchartpanel.cpp" />
+    <ClCompile Include="..\..\src\wxboxplotpanel.cpp" />
     <ClCompile Include="..\..\src\wxbubblechartpanel.cpp" />
     <ClCompile Include="..\..\src\wxcandlestickchartpanel.cpp" />
     <ClCompile Include="..\..\src\wxcolumnchartpanel.cpp" />
+    <ClCompile Include="..\..\src\wxdoughnutchartpanel.cpp" />
+    <ClCompile Include="..\..\src\wxhistogrampanel.cpp" />
+    <ClCompile Include="..\..\src\wxlinechartpanel.cpp" />
     <ClCompile Include="..\..\src\wxpiechartpanel.cpp" />
     <ClCompile Include="..\..\src\wxpolarareachartpanel.cpp" />
+    <ClCompile Include="..\..\src\wxstackedbarchartpanel.cpp" />
+    <ClCompile Include="..\..\src\wxstackedcolumnchartpanel.cpp" />
     <ClCompile Include="..\..\src\elementcanvaswindow.cpp" />
     <ClCompile Include="..\..\src\tests\testsuite.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartsdatasetidtests.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartscategoricaldatatests.cpp" />
+    <ClCompile Include="..\..\src\tests\wxchartspenoptionstests.cpp" />
+    <ClCompile Include="..\..\src\tests\wxchartsbrushoptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartbackgroundoptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartfontoptionstests.cpp" />
-    <ClCompile Include="..\..\src\tests\wxchartlabeloptionstests.cpp" />
+    <ClCompile Include="..\..\src\tests\wxchartslabeloptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartaxisoptionstests.cpp" />
-    <ClCompile Include="..\..\src\tests\wxchartgridoptionstests.cpp" />
+    <ClCompile Include="..\..\src\tests\wxchartsgridoptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxcolumnchartoptionstests.cpp" />
     <ClCompile Include="..\..\src\tests\wxpiechartoptionstests.cpp" />
+    <ClCompile Include="..\..\src\tests\wxchartsthemeidtests.cpp" />
     <ClCompile Include="..\..\src\tests\wxchartsthemetests.cpp" />
+    <ClCompile Include="..\..\src\tests\wxchartsthemefactorytests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\wxchartstestsapp.h" />
     <ClInclude Include="..\..\src\wxchartstestsframe.h" />
     <ClInclude Include="..\..\src\wxchartstestsmenubar.h" />
     <ClInclude Include="..\..\src\wxchartstestswindowids.h" />
-    <ClInclude Include="..\..\src\wxchartrectanglepanel.h" />
-    <ClInclude Include="..\..\src\wxchartlabelpanel.h" />
-    <ClInclude Include="..\..\src\wxchartlabelseriespanel.h" />
-    <ClInclude Include="..\..\src\wxchartcategoricalaxispanel.h" />
-    <ClInclude Include="..\..\src\wxchartnumericalaxispanel.h" />
-    <ClInclude Include="..\..\src\wxchartgridpanel.h" />
+    <ClInclude Include="..\..\src\wxchartsdefaultthemepanel.h" />
+    <ClInclude Include="..\..\src\wxchartsrectanglepanel.h" />
+    <ClInclude Include="..\..\src\wxchartslabelpanel.h" />
+    <ClInclude Include="..\..\src\wxchartslabelseriespanel.h" />
+    <ClInclude Include="..\..\src\wxchartscategoricalaxispanel.h" />
+    <ClInclude Include="..\..\src\wxchartsnumericalaxispanel.h" />
+    <ClInclude Include="..\..\src\wxchartsgridpanel.h" />
     <ClInclude Include="..\..\src\wxareachartpanel.h" />
     <ClInclude Include="..\..\src\wxbarchartpanel.h" />
+    <ClInclude Include="..\..\src\wxboxplotpanel.h" />
     <ClInclude Include="..\..\src\wxbubblechartpanel.h" />
     <ClInclude Include="..\..\src\wxcandlestickchartpanel.h" />
     <ClInclude Include="..\..\src\wxcolumnchartpanel.h" />
+    <ClInclude Include="..\..\src\wxdoughnutchartpanel.h" />
+    <ClInclude Include="..\..\src\wxhistogrampanel.h" />
+    <ClInclude Include="..\..\src\wxlinechartpanel.h" />
     <ClInclude Include="..\..\src\wxpiechartpanel.h" />
     <ClInclude Include="..\..\src\wxpolarareachartpanel.h" />
+    <ClInclude Include="..\..\src\wxstackedbarchartpanel.h" />
+    <ClInclude Include="..\..\src\wxstackedcolumnchartpanel.h" />
     <ClInclude Include="..\..\src\elementcanvaswindow.h" />
     <ClInclude Include="..\..\src\tests\testsuite.h" />
   </ItemGroup>

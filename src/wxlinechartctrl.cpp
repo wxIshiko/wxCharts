@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -31,30 +31,34 @@
     https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 */
 
+/// @file
+
 #include "wxlinechartctrl.h"
 #include <wx/filedlg.h>
 
 wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
                                  wxWindowID id,
-                                 const wxLineChartData &data,
+                                 wxChartsCategoricalData::ptr &data,
+                                 const wxChartsLineType &lineType,
                                  const wxPoint &pos,
                                  const wxSize &size,
                                  long style)
     : wxChartCtrl(parent, id, pos, size, style),
-    m_lineChart(data, size)
+    m_lineChart(data, lineType, size)
 {
     CreateContextMenu();
 }
 
 wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
                                  wxWindowID id,
-                                 const wxLineChartData &data,
+                                 wxChartsCategoricalData::ptr &data,
+                                 const wxChartsLineType &lineType,
                                  const wxLineChartOptions &options,
                                  const wxPoint &pos,
                                  const wxSize &size,
                                  long style)
     : wxChartCtrl(parent, id, pos, size, style),
-    m_lineChart(data, options, size)
+    m_lineChart(data, lineType, options, size)
 {
     CreateContextMenu();
 }
@@ -106,7 +110,7 @@ void wxLineChartCtrl::CreateContextMenu()
                 break;
             }
             
-            m_lineChart.Save(filename, type, GetSize());
+            m_lineChart.Save(filename, type, GetSize(), GetBackgroundColour());
         },
         wxID_SAVEAS
         );

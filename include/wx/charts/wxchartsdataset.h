@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -35,12 +35,14 @@
 class wxChartsDataset
 {
 public:
-    wxChartsDataset();
+    wxChartsDataset(const wxString& name);
 
     const wxChartsDatasetId& GetId() const;
+    const wxString& GetName() const;
 
 private:
     wxChartsDatasetId m_id;
+    wxString m_name;
 };
 
 #endif

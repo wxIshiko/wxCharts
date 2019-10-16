@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2015-2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2015-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,30 +25,33 @@
 #ifndef _WX_CHARTS_WXCHARTS_H_
 #define _WX_CHARTS_WXCHARTS_H_
 
-#include "wxchartcategoricalaxis.h"
-#include "wxchartnumericalaxis.h"
+#include "wxchartscategoricalaxis.h"
+#include "wxchartsnumericalaxis.h"
 
 #include "wxbarchartctrl.h"
-#include "wxstackedbarchartctrl.h"
+#include "wxboxplotctrl.h"
 #include "wxcolumnchartctrl.h"
-#include "wxstackedcolumnchartctrl.h"
-#include "wxlinechartctrl.h"
-#include "wxtimeserieschartctrl.h"
 #include "wxdoughnutchartctrl.h"
+#include "wxlinechartctrl.h"
 #include "wxpiechartctrl.h"
 #include "wxpolarareachartctrl.h"
 #include "wxradarchartctrl.h"
-#include "wxscatterplotctrl.h"
 #include "wxmath2dplotctrl.h"
 #include "wxareachartctrl.h"
 #include "wxbubblechartctrl.h"
 #include "wxcandlestickchartctrl.h"
 #include "wxohlcchartctrl.h"
 #include "wxcombinationchartctrl.h"
-#include "wxchartlegendctrl.h"
-#include "wxhistchartctrl.h"
+#include "wxchartslegendctrl.h"
+#include "wxhistogramctrl.h"
+#include "wxscatterplotctrl.h"
+#include "wxstackedbarchartctrl.h"
+#include "wxstackedcolumnchartctrl.h"
+#include "wxtimeserieschartctrl.h"
 
+#include "wxchartsthemeid.h"
 #include "wxchartstheme.h"
+#include "wxchartsthemefactory.h"
 
 #ifdef _MSC_VER
 

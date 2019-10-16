@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -21,71 +21,28 @@
 */
 
 #include "wxdoughnutchart.h"
+#include "wxchartstheme.h"
 
-wxDoughnutChartData::wxDoughnutChartData()
-{
-}
-
-const std::map<wxString,wxChartSliceData>& wxDoughnutChartData::GetSlices() const
-{
-    return m_value;
-}
-
-void wxDoughnutChartData::AppendSlice(const wxChartSliceData &slice)
-{
-    Add(slice);
-    Notify();
-}
-
-void wxDoughnutChartData::UpdateSlices(const wxVector<wxChartSliceData> &slices)
-{
-    m_value.clear();
-    AddSlices(slices);
-}
-
-void wxDoughnutChartData::AddSlices(const wxVector<wxChartSliceData> &slices)
-{
-    for(const auto &slice : slices)
-        Add(slice);
-
-    Notify();
-}
-
-void wxDoughnutChartData::Add(const wxChartSliceData &slice)
-{
-    auto key = slice.GetLabel();
-	auto it = m_value.find(key);
-    if( it == m_value.end())
-		m_value.insert(std::make_pair(key,slice));
-	else
-		it->second.SetValue(it->second.GetValue()+slice.GetValue());
-}
-
-wxDoughnutChart::wxDoughnutChart(const wxDoughnutChartData &data,
-                                 const wxSize &size) : wxDoughnutAndPieChartBase(size)
-{
-    Initialize(data);
-}
-
-wxDoughnutChart::wxDoughnutChart(const wxDoughnutChartData &data,
-                                 const wxDougnutChartOptions &options,
+wxDoughnutChart::wxDoughnutChart(wxPieChartData::ptr data,
                                  const wxSize &size)
-    : wxDoughnutAndPieChartBase(size), m_options(options)
+    : wxDoughnutAndPieChartBase(data, size),
+    m_options(wxChartsDefaultTheme->GetDoughnutChartOptions())
 {
-    Initialize(data);
+}
+
+wxDoughnutChart::wxDoughnutChart(wxPieChartData::ptr data,
+                                 wxSharedPtr<wxDoughnutChartOptions> &options,
+                                 const wxSize &size)
+    : wxDoughnutAndPieChartBase(data, size), m_options(options)
+{
 }
 
 const wxChartCommonOptions& wxDoughnutChart::GetCommonOptions() const
 {
-    return m_options.GetCommonOptions();
-}
-
-void wxDoughnutChart::Initialize(const wxDoughnutChartData &data)
-{
-    SetData(data.GetSlices());
+    return m_options->GetCommonOptions();
 }
 
 const wxDoughnutAndPieChartOptionsBase& wxDoughnutChart::GetOptions() const
 {
-    return m_options;
+    return *m_options;
 }

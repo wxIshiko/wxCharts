@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -27,8 +27,8 @@ TEST_CASE("wxColumnChartOptions constructor")
 {
     wxColumnChartOptions options;
 
-    REQUIRE(options.GetGridOptions().GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM);
-    REQUIRE(options.GetGridOptions().GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_RANGE);
+    REQUIRE(options.GetGridOptions().GetXAxisOptions().GetPosition() == wxCHARTSAXISPOSITION_BOTTOM);
+    REQUIRE(options.GetGridOptions().GetXAxisOptions().GetLabelType() == wxCHARTSAXISLABELTYPE_RANGE);
 }
 
 TEST_CASE("wxColumnChartOptions copy constructor")
@@ -36,6 +36,6 @@ TEST_CASE("wxColumnChartOptions copy constructor")
     wxColumnChartOptions options;
     wxColumnChartOptions optionsCopy(options);
 
-    REQUIRE(optionsCopy.GetGridOptions().GetXAxisOptions().GetPosition() == wxCHARTAXISPOSITION_BOTTOM);
-    REQUIRE(optionsCopy.GetGridOptions().GetXAxisOptions().GetLabelType() == wxCHARTAXISLABELTYPE_RANGE);
+    REQUIRE(optionsCopy.GetGridOptions().GetXAxisOptions().GetPosition() == wxCHARTSAXISPOSITION_BOTTOM);
+    REQUIRE(optionsCopy.GetGridOptions().GetXAxisOptions().GetLabelType() == wxCHARTSAXISLABELTYPE_RANGE);
 }
