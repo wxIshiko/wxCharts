@@ -61,10 +61,10 @@ public:
     /// @param data The list of values.
     /// @param showDots Enable displaz of dots on lines.
     wxMath2DPlotDataset(
-    const wxColor &dotColor,
-    const wxColor &dotStrokeColor,
-    wxVector<wxPoint2DDouble> &data,
-    const wxChartType &chartType = wxCHARTTYPE_LINE, const bool &showDots = true);
+        const wxColor &dotColor,
+        const wxColor &dotStrokeColor,
+        wxVector<wxPoint2DDouble> &data,
+        const wxChartType &chartType = wxCHARTTYPE_LINE, bool showDots = true);
 
     /// Whether to show the points on the chart.
     /// @retval true Show the points.

@@ -25,7 +25,7 @@
 #include <wx/sizer.h>
 #include <cmath>
 #include <chrono>
-
+#include <algorithm>
 
 WxMath2DInteractiveFrame::WxMath2DInteractiveFrame(const wxString& title)
     : wxFrame(NULL, wxID_ANY, title), m_c(1),

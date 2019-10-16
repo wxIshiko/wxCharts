@@ -41,7 +41,7 @@ wxMath2DPlotDataset::wxMath2DPlotDataset(
     const wxColor &dotStrokeColor,
     wxVector<wxPoint2DDouble> &data,
     const wxChartType &chartType,
-    const bool &showDots)
+    bool showDots)
     : m_showDots(showDots), m_dotColor(dotColor),
       m_dotStrokeColor(dotStrokeColor), m_showLine(true),
       m_lineColor(dotColor),m_data(data),m_type(chartType)
@@ -192,8 +192,8 @@ const wxVector<wxMath2DPlot::Point::ptr>& wxMath2DPlot::Dataset::GetPoints() con
 
 void wxMath2DPlot::Dataset::UpdatePoints(const wxVector<wxPoint2DDouble> &points)
 {
-    int n = std::min(points.size(), m_points.size());
-    for (int i = 0; i < n; i++)
+    const size_t n = std::min(points.size(), m_points.size());
+    for (size_t i = 0; i < n; i++)
     {
         auto &p_tgt = *m_points[i];
         auto &p_src = points[i];
@@ -419,6 +419,7 @@ bool wxMath2DPlot::RemoveDataset(std::size_t index)
 void wxMath2DPlot::SetAutoAxesRange() {
     m_autoRange = true;
 };
+
 void wxMath2DPlot::SetFixedAxesRange(const wxPoint2DDouble& min, const wxPoint2DDouble& max) {
     m_autoRange = false;
 

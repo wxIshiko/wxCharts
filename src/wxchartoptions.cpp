@@ -53,14 +53,17 @@ bool wxChartOptions::IsSaveAsMenuEnabled() const
     return m_enableSaveAsMenu;
 }
 
-void wxChartOptions::SetSaveAsMenuEnabled(bool enable) {
-	m_enableSaveAsMenu = enable;
+void wxChartOptions::SetSaveAsMenuEnabled(bool enable)
+{
+    m_enableSaveAsMenu = enable;
 };
 
-bool wxChartOptions::IsMovingEnabled() const {
-	return m_enableMoving;
+bool wxChartOptions::IsMovingEnabled() const
+{
+    return m_enableMoving;
 };
 
-void wxChartOptions::SetMovingEnabled(bool enable) {
-	m_enableMoving = enable;
+void wxChartOptions::SetMovingEnabled(bool enable)
+{
+    m_enableMoving = enable;
 };

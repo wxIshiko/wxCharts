@@ -49,12 +49,12 @@ wxAreaChartCtrl::wxAreaChartCtrl(wxWindow *parent,
 }
 
 wxAreaChartCtrl::wxAreaChartCtrl(wxWindow *parent,
-								 wxWindowID id,
-								 const wxAreaChartData &data,
-								 const wxAreaChartOptions &options,
-								 const wxPoint &pos,
-								 const wxSize &size,
-								 long style)
+                                 wxWindowID id,
+                                 const wxAreaChartData &data,
+                                 const wxAreaChartOptions &options,
+                                 const wxPoint &pos,
+                                 const wxSize &size,
+                                 long style)
     : wxChartCtrl(parent, id, pos, size, style),
     m_areaChart(data, options, size)
 {
