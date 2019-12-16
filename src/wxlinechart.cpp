@@ -319,7 +319,9 @@ void wxLineChart::DoDraw(wxGraphicsContext &gc,
             }
             else
             {
-                // TODO : transparent pen
+                static const wxColor transparent(255, 255, 255, 0);
+                wxPen pen(transparent, 0);
+                gc.SetPen(pen);
             }
 
             gc.StrokePath(path);
@@ -342,6 +344,14 @@ void wxLineChart::DoDraw(wxGraphicsContext &gc,
                 const Point::ptr& point = points[j];
                 point->SetPosition(m_grid.GetMapping().GetWindowPositionAtTickMark(j, point->GetValue()));
                 point->Draw(gc);
+            }
+        }
+        else
+        {
+            for (size_t j = 0; j < points.size(); ++j)
+            {
+                const Point::ptr& point = points[j];
+                point->SetPosition(m_grid.GetMapping().GetWindowPositionAtTickMark(j, point->GetValue()));
             }
         }
     }

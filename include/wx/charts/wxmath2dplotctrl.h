@@ -67,6 +67,7 @@ public:
         const wxSize &size = wxDefaultSize, long style = 0);
 
     bool UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> &points);
+    bool UpdateDataPoints(std::size_t index,const wxVector<wxPoint2DDouble> &points);
     bool AddData(std::size_t index,const wxVector<wxPoint2DDouble> &points);
     bool RemoveDataset(std::size_t index);
     void AddDataset(const wxMath2DPlotDataset::ptr &newset);
@@ -77,6 +78,15 @@ public:
     void  SetChartOptions(const wxMath2DPlotOptions& opt);
     void  SetChartType(std::size_t index,const wxChartType &type);
 
+    void SetAutoAxesRange();
+
+    /// Sets range for plot display, istead of deriving range from
+    /// the actual data points. Actual diaply range is larger:
+    /// it is calculated using wxChartUtilities::CalculateGridRange,
+    /// extending to nearest grid points
+    /// @param min minimum x,y coordinates
+    /// @param max maxaimum x,y coordinates
+   void SetFixedAxesRange(const wxPoint2DDouble& min,const wxPoint2DDouble& max);
 private:
     virtual wxMath2DPlot& GetChart();
 

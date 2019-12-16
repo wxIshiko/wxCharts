@@ -60,6 +60,7 @@ public:
     /// @param dotStrokeColor The color of the pen
     /// used to draw the outline of the points.
     /// @param data The list of values.
+    /// @param showDots Enable displaz of dots on lines.
     wxMath2DPlotDataset(
         const wxColor &lineColor,
         const wxColor &dotColor,
@@ -128,6 +129,7 @@ public:
     bool Scale(int coeff);
     void Shift(double dx,double dy);
     bool UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> &points);
+    bool UpdateDataPoints(std::size_t index,const wxVector<wxPoint2DDouble> &points);
     bool AddData(std::size_t index,const wxVector<wxPoint2DDouble> &points);
     bool RemoveDataset(std::size_t index);
     void AddDataset(const wxMath2DPlotDataset::ptr &newset,bool is_new = true);
@@ -137,6 +139,9 @@ public:
     const wxMath2DPlotOptions& GetChartOptions() const;
     void  SetChartOptions(const wxMath2DPlotOptions& opt);
     bool  SetChartType(std::size_t index,const wxChartType &type);
+
+    void SetAutoAxesRange();
+    void SetFixedAxesRange(const wxPoint2DDouble& min,const wxPoint2DDouble& max);
 
 private:
     void Initialize(const wxMath2DPlotData &data);
@@ -167,6 +172,7 @@ private:
         virtual bool HitTest(const wxPoint &point,const AxisFunc &F) const;
 
         wxPoint2DDouble GetValue() const;
+        void SetValue(const wxPoint2DDouble& val);
 
     private:
         wxPoint2DDouble m_value;
@@ -181,6 +187,7 @@ private:
         Dataset(
             bool showDots, bool showLine,
             const wxColor &lineColor,
+            const wxColor &dotColor,
             const wxColor &dotStrokeColor,
             const wxChartType &chartType=wxCHARTTYPE_LINE);
 
@@ -194,6 +201,7 @@ private:
 
         const wxVector<Point::ptr>& GetPoints() const;
         void AppendPoint(Point::ptr point);
+        void UpdatePoints(const wxVector<wxPoint2DDouble> &points);
 
     private:
         bool m_showDots;
@@ -209,6 +217,7 @@ private:
     wxSharedPtr<wxMath2DPlotOptions> m_options;
     wxChartsGrid m_grid;
     wxVector<Dataset::ptr> m_datasets;
+    bool m_autoRange;
 };
 
 #endif

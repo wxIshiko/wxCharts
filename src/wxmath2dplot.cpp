@@ -137,14 +137,20 @@ wxPoint2DDouble wxMath2DPlot::Point::GetValue() const
     return m_value;
 }
 
+void wxMath2DPlot::Point::SetValue(const wxPoint2DDouble& val)
+{
+    m_value = val;
+}
+
 wxMath2DPlot::Dataset::Dataset(bool showDots,
                                bool showLine,
                                const wxColor &lineColor,
+                               const wxColor &dotColor,
                                const wxColor &dotStrokeColor,
                                const wxChartType &chartType)
     : m_showDots(showDots), m_showLine(showLine),
       m_lineColor(lineColor), m_dotStrokeColor(dotStrokeColor),
-      m_dotColor(lineColor), m_type(chartType)
+      m_dotColor(dotColor), m_type(chartType)
 {
 }
 
@@ -188,6 +194,18 @@ const wxVector<wxMath2DPlot::Point::ptr>& wxMath2DPlot::Dataset::GetPoints() con
     return m_points;
 }
 
+void wxMath2DPlot::Dataset::UpdatePoints(const wxVector<wxPoint2DDouble> &points)
+{
+    const size_t n = std::min(points.size(), m_points.size());
+    for (size_t i = 0; i < n; i++)
+    {
+        auto &p_tgt = *m_points[i];
+        auto &p_src = points[i];
+
+        p_tgt.SetValue(p_src);
+    }
+}
+
 void wxMath2DPlot::Dataset::AppendPoint(Point::ptr point)
 {
     m_points.push_back(point);
@@ -203,7 +221,8 @@ wxMath2DPlot::wxMath2DPlot(const wxMath2DPlotData &data,
           GetMaxXValue(data.GetDatasets(),m_options->GetAxisFuncX()),
           GetMinYValue(data.GetDatasets(),m_options->GetAxisFuncY()),
           GetMaxYValue(data.GetDatasets(),m_options->GetAxisFuncY()),
-          m_options->GetGridOptions())
+          m_options->GetGridOptions()),
+          m_autoRange(true)
 {
     Initialize(data);
 }
@@ -219,7 +238,8 @@ wxMath2DPlot::wxMath2DPlot(const wxMath2DPlotData &data,
           GetMaxXValue(data.GetDatasets(),m_options->GetAxisFuncX()),
           GetMinYValue(data.GetDatasets(),m_options->GetAxisFuncY()),
           GetMaxYValue(data.GetDatasets(),m_options->GetAxisFuncY()),
-          m_options->GetGridOptions())
+          m_options->GetGridOptions()),
+          m_autoRange(true)
 {
     Initialize(data);
 }
@@ -287,6 +307,19 @@ void wxMath2DPlot::Shift(double dx,double dy)
     m_grid.Shift(dx,-dy);
 }
 
+bool wxMath2DPlot::UpdateDataPoints(std::size_t index,const wxVector<wxPoint2DDouble> &points)
+{
+    if(index >= m_datasets.size())
+        return false;
+
+    auto & dataset = m_datasets[index];
+    dataset->UpdatePoints(points);
+    
+    Update();
+    return true;
+}
+
+
 bool wxMath2DPlot::UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> &points)
 {
     if (index >= m_datasets.size())
@@ -296,9 +329,11 @@ bool wxMath2DPlot::UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> 
 
     auto transformX = m_options->GetAxisFuncX();
     auto transformY = m_options->GetAxisFuncY();
-    Dataset::ptr newDataset(new Dataset(m_datasets[index]->ShowDots(),
-        m_datasets[index]->ShowLine(),m_datasets[index]->GetLineColor(),
-        m_datasets[index]->GetDotStrokeColor(),m_datasets[index]->GetType()));
+    Dataset::ptr newDataset(new Dataset(m_datasets[index]->ShowDots(), m_datasets[index]->ShowLine(),
+        m_datasets[index]->GetLineColor(),
+        m_datasets[index]->GetDotStrokeColor(),
+        m_datasets[index]->GetDotStrokeColor(),
+        m_datasets[index]->GetType()));
 
     for (size_t j = 0; j < points.size(); ++j)
     {
@@ -320,6 +355,7 @@ bool wxMath2DPlot::UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> 
     Update();
     return true;
 }
+
 
 bool wxMath2DPlot::AddData(std::size_t index,const wxVector<wxPoint2DDouble> &points)
 {
@@ -356,7 +392,7 @@ void wxMath2DPlot::AddDataset(const wxMath2DPlotDataset::ptr &newset,bool is_new
     auto transformY = m_options->GetAxisFuncY();
 
     Dataset::ptr newDataset(new Dataset(newset->ShowDots(),newset->ShowLine(),
-        newset->GetLineColor(),newset->GetDotStrokeColor(),newset->GetType()));
+        newset->GetLineColor(), newset->GetDotColor(), newset->GetDotStrokeColor(), newset->GetType()));
 
     const wxVector<wxPoint2DDouble>& datasetData = newset->GetData();
     for (size_t j = 0; j < datasetData.size(); ++j)
@@ -390,8 +426,45 @@ bool wxMath2DPlot::RemoveDataset(std::size_t index)
     return true;
 }
 
+
+void wxMath2DPlot::SetAutoAxesRange() {
+    m_autoRange = true;
+};
+
+void wxMath2DPlot::SetFixedAxesRange(const wxPoint2DDouble& min, const wxPoint2DDouble& max) {
+    m_autoRange = false;
+
+    auto transformX = m_options->GetAxisFuncX();
+    auto transformY = m_options->GetAxisFuncY();
+
+    wxDouble minX = transformX(min.m_x);
+    wxDouble maxX = transformX(max.m_x);
+    wxDouble minY = transformY(min.m_y);
+    wxDouble maxY = transformY(max.m_y);
+
+    if (minX > maxX)
+        std::swap(minX, maxX);
+    if (minY > maxY)
+        std::swap(minY, maxY);
+
+    if (maxX == std::numeric_limits<wxDouble>::min())
+        maxX = transformX(0);
+    if (minX == std::numeric_limits<wxDouble>::max())
+        minX = transformX(0);
+    if (maxY == std::numeric_limits<wxDouble>::min())
+        maxY = transformY(0);
+    if (minY == std::numeric_limits<wxDouble>::max())
+        minY = transformY(0);
+    m_grid.UpdateAxisLimit("x", minX, maxX);
+    m_grid.UpdateAxisLimit("y", minY, maxY);
+}
+
 void wxMath2DPlot::Update()
 {
+    if (!m_autoRange)
+    {
+        return;
+    }
     wxDouble minX = std::numeric_limits<wxDouble>::max();
     wxDouble maxX = std::numeric_limits<wxDouble>::min();
     wxDouble minY = minX;
