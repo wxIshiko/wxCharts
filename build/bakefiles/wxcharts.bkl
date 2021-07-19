@@ -1,6 +1,7 @@
-toolsets = gnu vs2017 vs2015 vs2013;
+toolsets = gnu vs2019 vs2017 vs2015 vs2013;
 
 gnu.makefile = ../../GNUmakefile;
+vs2019.solutionfile = ../msw/wxcharts_vc16.sln;
 vs2017.solutionfile = ../msw/wxcharts_vc15.sln;
 vs2015.solutionfile = ../msw/wxcharts_vc14.sln;
 vs2013.solutionfile = ../msw/wxcharts_vc12.sln;
@@ -15,13 +16,14 @@ library wxcharts
 {
     archs = x86 x86_64;
 
+    vs2019.projectfile = ../msw/wxcharts_vc16.vcxproj;
     vs2017.projectfile = ../msw/wxcharts_vc15.vcxproj;
     vs2015.projectfile = ../msw/wxcharts_vc14.vcxproj;
     vs2013.projectfile = ../msw/wxcharts_vc12.vcxproj;
 
     includedirs += ../../include/wx/charts;
 
-    if (($(toolset) == vs2017) || ($(toolset) == vs2015) || ($(toolset) == vs2013))
+    if (($(toolset) == vs2019) || ($(toolset) == vs2017) || ($(toolset) == vs2015) || ($(toolset) == vs2013))
     {
         includedirs += $(WXWIDGETS_ROOT)/include;
         includedirs += $(WXWIDGETS_ROOT)/include/msvc;
