@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -55,12 +55,12 @@ wxStackedBarChart::Dataset::Dataset()
 {
 }
 
-const wxVector<wxStackedBarChart::Bar::ptr>& wxStackedBarChart::Dataset::GetBars() const
+const wxVector<wxSharedPtr<wxStackedBarChart::Bar>>& wxStackedBarChart::Dataset::GetBars() const
 {
     return m_bars;
 }
 
-void wxStackedBarChart::Dataset::AppendBar(Bar::ptr column)
+void wxStackedBarChart::Dataset::AppendBar(wxSharedPtr<Bar> column)
 {
     m_bars.push_back(column);
 }
@@ -108,7 +108,7 @@ void wxStackedBarChart::Initialize(wxChartsCategoricalData::ptr &data)
         wxSharedPtr<wxStackedBarChartDatasetOptions> datasetOptions = datasetTheme->GetStackedBarChartDatasetOptions();
 
         const wxChartsDoubleDataset& dataset = *datasets[i];
-        Dataset::ptr newDataset(new Dataset());
+        wxSharedPtr<Dataset> newDataset(new Dataset());
 
         int border = wxTOP | wxBOTTOM;
         if (i == (datasets.size() - 1))
@@ -125,7 +125,7 @@ void wxStackedBarChart::Initialize(wxChartsCategoricalData::ptr &data)
                 new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), datasetOptions->GetBrushOptions().GetColor())
             );
 
-            newDataset->AppendBar(Bar::ptr(new Bar(
+            newDataset->AppendBar(wxSharedPtr<Bar>(new Bar(
                 datasetData[j],
                 tooltipProvider,
                 25, 50,
@@ -274,7 +274,7 @@ wxSharedPtr<wxVector<const wxChartsElement*>> wxStackedBarChart::GetActiveElemen
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
-        const wxVector<Bar::ptr>& bars = m_datasets[i]->GetBars();
+        const wxVector<wxSharedPtr<Bar>>& bars = m_datasets[i]->GetBars();
         for (size_t j = 0; j < bars.size(); ++j)
         {
             if (bars[j]->HitTest(point))

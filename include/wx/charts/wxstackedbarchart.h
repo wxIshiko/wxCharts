@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -57,8 +57,6 @@ private:
     class Bar : public wxChartsRectangle
     {
     public:
-        typedef wxSharedPtr<Bar> ptr;
-
         Bar(wxDouble value,
             const wxChartTooltipProvider::ptr tooltipProvider,
             wxDouble x, wxDouble y,
@@ -77,21 +75,19 @@ private:
     class Dataset
     {
     public:
-        typedef wxSharedPtr<Dataset> ptr;
-
         Dataset();
 
-        const wxVector<Bar::ptr>& GetBars() const;
-        void AppendBar(Bar::ptr bar);
+        const wxVector<wxSharedPtr<Bar>>& GetBars() const;
+        void AppendBar(wxSharedPtr<Bar> bar);
 
     private:
-        wxVector<Bar::ptr> m_bars;
+        wxVector<wxSharedPtr<Bar>> m_bars;
     };
 
 private:
     wxSharedPtr<wxStackedBarChartOptions> m_options;
     wxChartsGrid m_grid;
-    wxVector<Dataset::ptr> m_datasets;
+    wxVector<wxSharedPtr<Dataset>> m_datasets;
 };
 
 #endif
