@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,6 +26,7 @@
 #define _WX_CHARTS_WXCHARTSDATASET_H_
 
 #include "wxchartsdatasetid.h"
+#include <wx/vector.h>
 
 /// \defgroup dataclasses
 
@@ -39,6 +40,8 @@ public:
 
     const wxChartsDatasetId& GetId() const;
     const wxString& GetName() const;
+
+    virtual void GetData(wxVector<wxDouble>& data) const = 0;
 
 private:
     wxChartsDatasetId m_id;

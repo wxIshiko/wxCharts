@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -90,7 +90,8 @@ wxColumnChart::wxColumnChart(wxChartsCategoricalData::ptr &data,
         const wxChartsDoubleDataset& dataset = *datasets[i];
         Dataset::ptr newDataset(new Dataset());
 
-        const wxVector<wxDouble>& datasetData = dataset.GetData();
+        wxVector<wxDouble> datasetData;
+        dataset.GetData(datasetData);
         for (size_t j = 0; j < datasetData.size(); ++j)
         {
             std::stringstream tooltip;
@@ -121,7 +122,8 @@ wxDouble wxColumnChart::GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& 
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxDouble>& values = datasets[i]->GetData();
+        wxVector<wxDouble> values;
+        datasets[i]->GetData(values);
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
@@ -146,7 +148,8 @@ wxDouble wxColumnChart::GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& 
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxDouble>& values = datasets[i]->GetData();
+        wxVector<wxDouble> values;
+        datasets[i]->GetData(values);
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)

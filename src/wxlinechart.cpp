@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -192,7 +192,8 @@ void wxLineChart::Initialize(wxChartsCategoricalData::ptr &data)
             datasetOptions->Fill(), datasetOptions->GetFillColor(),
             m_lineType));
 
-        const wxVector<wxDouble>& datasetData = datasets[i]->GetData();
+        wxVector<wxDouble> datasetData;
+        datasets[i]->GetData(datasetData);
         for (size_t j = 0; j < datasetData.size(); ++j)
         {
             std::stringstream tooltip;
@@ -222,7 +223,8 @@ wxDouble wxLineChart::GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& da
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxDouble>& values = datasets[i]->GetData();
+        wxVector<wxDouble> values;
+        datasets[i]->GetData(values);
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
@@ -247,7 +249,8 @@ wxDouble wxLineChart::GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& da
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxDouble>& values = datasets[i]->GetData();
+        wxVector<wxDouble> values;
+        datasets[i]->GetData(values);
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
