@@ -27,6 +27,7 @@
 
 #include "wxchartctrl.h"
 #include "wxscatterplot.h"
+#include <wx/menu.h>
 
 /// A control that displays a scatter plot.
 
@@ -57,8 +58,14 @@ public:
 private:
     virtual wxScatterPlot& GetChart();
 
+    void CreateContextMenu();
+
 private:
     wxScatterPlot m_scatterPlot;
+    wxMenu m_contextMenu;
+    wxMenu *m_subMenu;
+    int m_posX;
+    int m_posY;
 };
 
 #endif

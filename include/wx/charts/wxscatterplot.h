@@ -81,6 +81,9 @@ public:
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
+    bool Scale(int coeff);
+    void Shift(double dx,double dy);
+
 private:
     void Initialize(const wxScatterPlotData &data);
     static wxDouble GetMinXValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);

@@ -159,6 +159,16 @@ void wxScatterPlot::Initialize(const wxScatterPlotData &data)
     }
 }
 
+bool wxScatterPlot::Scale(int coeff)
+{
+    return m_grid.Scale(coeff);
+}
+
+void wxScatterPlot::Shift(double dx,double dy)
+{
+    m_grid.Shift(dx,-dy);
+}
+
 wxDouble wxScatterPlot::GetMinXValue(const wxVector<wxScatterPlotDataset::ptr>& datasets)
 {
     wxDouble result = 0;

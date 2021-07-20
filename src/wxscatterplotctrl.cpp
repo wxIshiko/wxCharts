@@ -33,6 +33,7 @@ wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
     : wxChartCtrl(parent, id, pos, size, style),
     m_scatterPlot(data, size)
 {
+    CreateContextMenu();
 }
 
 wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
@@ -45,9 +46,95 @@ wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
     : wxChartCtrl(parent, id, pos, size, style), 
     m_scatterPlot(data, options, size)
 {
+    CreateContextMenu();
 }
 
 wxScatterPlot& wxScatterPlotCtrl::GetChart()
 {
     return m_scatterPlot;
+}
+
+void wxScatterPlotCtrl::CreateContextMenu()
+{
+    m_posX = 0;
+    m_posY = 0;
+    m_subMenu = new wxMenu;
+    m_subMenu->Append(wxID_DEFAULT, wxString("Set default zoom"));
+    m_subMenu->Append(wxID_UP, wxString("Zoom +"));
+    m_subMenu->Append(wxID_DOWN, wxString("Zoom -"));
+
+    m_contextMenu.AppendSubMenu(m_subMenu,wxString("Zoom"));
+    Bind(wxEVT_CONTEXT_MENU,
+         [this](wxContextMenuEvent& evt)
+    {
+        PopupMenu(&m_contextMenu, ScreenToClient(evt.GetPosition()));
+    }
+        );
+    m_contextMenu.Bind(wxEVT_MENU,
+                       [this](wxCommandEvent &)
+    {
+        m_contextMenu.Enable(wxID_DOWN,true);
+        m_contextMenu.Enable(wxID_UP,true);
+        m_scatterPlot.Scale(0);
+        auto parent = this->GetParent();
+        if(parent)
+            parent->Layout();
+    },wxID_DEFAULT);
+    m_contextMenu.Bind(wxEVT_MENU,
+                       [this](wxCommandEvent &)
+    {
+
+        if(!m_scatterPlot.Scale(2))
+            m_contextMenu.Enable(wxID_UP,false);
+        auto parent = this->GetParent();
+        if(parent)
+            parent->Layout();
+    },wxID_UP);
+    m_contextMenu.Bind(wxEVT_MENU,
+                       [this](wxCommandEvent &)
+    {
+        if(!m_scatterPlot.Scale(-2))
+            m_contextMenu.Enable(wxID_DOWN,false);
+        auto parent = this->GetParent();
+        if(parent)
+            parent->Layout();
+    },wxID_DOWN);
+
+    this->Bind(wxEVT_LEFT_DOWN,
+               [this](wxMouseEvent&  evt)
+    {
+        m_posX = evt.m_x;
+        m_posY = evt.m_y;
+        this->SetCursor(wxCURSOR_HAND);
+        evt.Skip();
+    });
+    this->Bind(wxEVT_LEFT_UP,
+               [this](wxMouseEvent&  evt)
+    {
+        this->SetCursor(wxCURSOR_ARROW);
+        evt.Skip();
+    });
+    this->Bind(wxEVT_MOTION,
+               [this](wxMouseEvent& evt)
+    {
+        evt.Skip();
+
+        if(evt.ButtonIsDown(wxMouseButton::wxMOUSE_BTN_LEFT))
+        {
+            double dx = m_posX-evt.m_x;
+            double dy = m_posY-evt.m_y;
+            if( std::abs(dx) > 5 || std::abs(dy) > 5)
+            {
+                auto parent = this->GetParent();
+                if(parent)
+                {
+                    auto Size = parent->GetSize();
+                    m_scatterPlot.Shift(dx/Size.GetX(),dy/Size.GetY());
+                    m_posX = evt.m_x;
+                    m_posY = evt.m_y;
+                    parent->Layout();
+                }
+            }
+        }
+    });
 }
