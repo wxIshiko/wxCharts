@@ -43,7 +43,10 @@ public:
     /// @param data The list of values.
     wxChartsDoubleDataset(const wxString& name, const wxVector<wxDouble> &data);
 
+    // TODO : remove this function
     const wxVector<wxDouble>& GetData() const;
+
+    void GetData(wxVector<wxDouble>& data) const override;
 
 private:
     wxVector<wxDouble> m_data;

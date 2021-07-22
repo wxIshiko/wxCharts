@@ -69,11 +69,18 @@ wxStackedBarChart::wxStackedBarChart(wxSharedPtr<wxChartsCategoricalData> &data,
                                      const wxSize &size)
     : m_options(wxChartsDefaultTheme->GetStackedBarChartOptions())
 {
+    wxVector<wxVector<wxDouble>> dataVectors;
+    for (const wxSharedPtr<wxChartsDoubleDataset>& dataset : data->GetDatasets())
+    {
+        dataVectors.push_back(wxVector<wxDouble>());
+        dataset->GetData(dataVectors.back());
+    }
+
     m_grid.Create(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
-        wxChartsNumericalAxis::make_shared("y", GetCumulativeMinValue(data->GetDatasets()), GetCumulativeMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetCumulativeMinValue(dataVectors), GetCumulativeMaxValue(dataVectors), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
     );
     Initialize(data);
@@ -84,11 +91,18 @@ wxStackedBarChart::wxStackedBarChart(wxSharedPtr<wxChartsCategoricalData> &data,
                                      const wxSize &size)
     : m_options(new wxStackedBarChartOptions(options))
 {
+    wxVector<wxVector<wxDouble>> dataVectors;
+    for (const wxSharedPtr<wxChartsDoubleDataset>& dataset : data->GetDatasets())
+    {
+        dataVectors.push_back(wxVector<wxDouble>());
+        dataset->GetData(dataVectors.back());
+    }
+
     m_grid.Create(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
-        wxChartsNumericalAxis::make_shared("y", GetCumulativeMinValue(data->GetDatasets()), GetCumulativeMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetCumulativeMinValue(dataVectors), GetCumulativeMaxValue(dataVectors), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
     );
     Initialize(data);
@@ -138,7 +152,7 @@ void wxStackedBarChart::Initialize(wxChartsCategoricalData::ptr &data)
     }
 }
 
-wxDouble wxStackedBarChart::GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
+wxDouble wxStackedBarChart::GetCumulativeMinValue(const wxVector<wxVector<wxDouble>>& datasets)
 {
     wxDouble result = 0;
 
@@ -149,10 +163,10 @@ wxDouble wxStackedBarChart::GetCumulativeMinValue(const wxVector<wxChartsDoubleD
         bool stop = true;
         for (size_t j = 0; j < datasets.size(); ++j)
         {
-            const wxChartsDoubleDataset& dataset = *datasets[j];
-            if (i < dataset.GetData().size())
+            const wxVector<wxDouble>& dataset = datasets[j];
+            if (i < dataset.size())
             {
-                sum += dataset.GetData()[i];
+                sum += dataset[i];
                 stop = false;
             }
         }
@@ -170,7 +184,7 @@ wxDouble wxStackedBarChart::GetCumulativeMinValue(const wxVector<wxChartsDoubleD
     return result;
 }
 
-wxDouble wxStackedBarChart::GetCumulativeMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
+wxDouble wxStackedBarChart::GetCumulativeMaxValue(const wxVector<wxVector<wxDouble>>& datasets)
 {
     wxDouble result = 0;
 
@@ -181,10 +195,10 @@ wxDouble wxStackedBarChart::GetCumulativeMaxValue(const wxVector<wxChartsDoubleD
         bool stop = true;
         for (size_t j = 0; j < datasets.size(); ++j)
         {
-            const wxChartsDoubleDataset& dataset = *datasets[j];
-            if (i < dataset.GetData().size())
+            const wxVector<wxDouble>& dataset = datasets[j];
+            if (i < dataset.size())
             {
-                sum += dataset.GetData()[i];
+                sum += dataset[i];
                 stop = false;
             }
         }

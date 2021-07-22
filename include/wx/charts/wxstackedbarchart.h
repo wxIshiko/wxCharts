@@ -45,8 +45,8 @@ public:
 
 private:
     void Initialize(wxSharedPtr<wxChartsCategoricalData> &data);
-    static wxDouble GetCumulativeMinValue(const wxVector<wxSharedPtr<wxChartsDoubleDataset>>& datasets);
-    static wxDouble GetCumulativeMaxValue(const wxVector<wxSharedPtr<wxChartsDoubleDataset>>& datasets);
+    static wxDouble GetCumulativeMinValue(const wxVector<wxVector<wxDouble>>& datasets);
+    static wxDouble GetCumulativeMaxValue(const wxVector<wxVector<wxDouble>>& datasets);
 
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
