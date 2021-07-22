@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -34,11 +34,24 @@
 #include "wxchartsgridmapping.h"
 #include "wxchartsnumericalaxis.h"
 
+wxChartsGridMapping::wxChartsGridMapping()
+{
+}
+
 wxChartsGridMapping::wxChartsGridMapping(const wxSize &size,
                                          const wxChartsAxis::ptr xAxis,
                                          const wxChartsAxis::ptr yAxis)
     : m_size(size), m_XAxis(xAxis), m_YAxis(yAxis)
 {
+}
+
+void wxChartsGridMapping::Create(const wxSize& size,
+                                 const wxSharedPtr<wxChartsAxis> xAxis,
+                                 const wxSharedPtr<wxChartsAxis> yAxis)
+{
+    m_size = size;
+    m_XAxis = xAxis;
+    m_YAxis = yAxis;
 }
 
 const wxSize& wxChartsGridMapping::GetSize() const

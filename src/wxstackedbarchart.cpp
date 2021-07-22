@@ -65,32 +65,32 @@ void wxStackedBarChart::BarSet::AppendBar(wxSharedPtr<Bar> column)
     m_bars.push_back(column);
 }
 
-wxStackedBarChart::wxStackedBarChart(wxChartsCategoricalData::ptr &data,
+wxStackedBarChart::wxStackedBarChart(wxSharedPtr<wxChartsCategoricalData> &data,
                                      const wxSize &size)
-    : m_options(wxChartsDefaultTheme->GetStackedBarChartOptions()), 
-    m_grid(
+    : m_options(wxChartsDefaultTheme->GetStackedBarChartOptions())
+{
+    m_grid.Create(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
         wxChartsNumericalAxis::make_shared("y", GetCumulativeMinValue(data->GetDatasets()), GetCumulativeMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
-        )
-{
+    );
     Initialize(data);
 }
 
-wxStackedBarChart::wxStackedBarChart(wxChartsCategoricalData::ptr &data,
+wxStackedBarChart::wxStackedBarChart(wxSharedPtr<wxChartsCategoricalData> &data,
                                      const wxStackedBarChartOptions &options, 
                                      const wxSize &size)
-    : m_options(new wxStackedBarChartOptions(options)),
-    m_grid(
+    : m_options(new wxStackedBarChartOptions(options))
+{
+    m_grid.Create(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
         wxChartsNumericalAxis::make_shared("y", GetCumulativeMinValue(data->GetDatasets()), GetCumulativeMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
-        )
-{
+    );
     Initialize(data);
 }
 
