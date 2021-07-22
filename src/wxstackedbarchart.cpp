@@ -51,16 +51,16 @@ wxDouble wxStackedBarChart::Bar::GetValue() const
     return m_value;
 }
 
-wxStackedBarChart::Dataset::Dataset()
+wxStackedBarChart::BarSet::BarSet()
 {
 }
 
-const wxVector<wxSharedPtr<wxStackedBarChart::Bar>>& wxStackedBarChart::Dataset::GetBars() const
+const wxVector<wxSharedPtr<wxStackedBarChart::Bar>>& wxStackedBarChart::BarSet::GetBars() const
 {
     return m_bars;
 }
 
-void wxStackedBarChart::Dataset::AppendBar(wxSharedPtr<Bar> column)
+void wxStackedBarChart::BarSet::AppendBar(wxSharedPtr<Bar> column)
 {
     m_bars.push_back(column);
 }
@@ -108,7 +108,7 @@ void wxStackedBarChart::Initialize(wxChartsCategoricalData::ptr &data)
         wxSharedPtr<wxStackedBarChartDatasetOptions> datasetOptions = datasetTheme->GetStackedBarChartDatasetOptions();
 
         const wxChartsDoubleDataset& dataset = *datasets[i];
-        wxSharedPtr<Dataset> newDataset(new Dataset());
+        wxSharedPtr<BarSet> barSet(new BarSet());
 
         int border = wxTOP | wxBOTTOM;
         if (i == (datasets.size() - 1))
@@ -125,7 +125,7 @@ void wxStackedBarChart::Initialize(wxChartsCategoricalData::ptr &data)
                 new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), datasetOptions->GetBrushOptions().GetColor())
             );
 
-            newDataset->AppendBar(wxSharedPtr<Bar>(new Bar(
+            barSet->AppendBar(wxSharedPtr<Bar>(new Bar(
                 datasetData[j],
                 tooltipProvider,
                 25, 50,
@@ -134,7 +134,7 @@ void wxStackedBarChart::Initialize(wxChartsCategoricalData::ptr &data)
             )));
         }
 
-        m_datasets.push_back(newDataset);
+        m_datasets.push_back(barSet);
     }
 }
 
@@ -221,10 +221,10 @@ void wxStackedBarChart::DoFit()
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
-        Dataset& currentDataset = *m_datasets[i];
-        for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
+        BarSet& currentBarSet = *m_datasets[i];
+        for (size_t j = 0; j < currentBarSet.GetBars().size(); ++j)
         {
-            Bar& bar = *(currentDataset.GetBars()[j]);
+            Bar& bar = *(currentBarSet.GetBars()[j]);
 
             wxPoint2DDouble upperLeftCornerPosition = m_grid.GetMapping().GetXAxis().GetTickMarkPosition(j + 1);
             upperLeftCornerPosition.m_x += widthOfPreviousDatasets[j];
@@ -255,7 +255,7 @@ void wxStackedBarChart::DoDraw(wxGraphicsContext &gc,
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
-        Dataset& currentDataset = *m_datasets[i];
+        BarSet& currentDataset = *m_datasets[i];
         for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
         {
             currentDataset.GetBars()[j]->Draw(gc);

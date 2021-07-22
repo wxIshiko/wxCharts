@@ -37,16 +37,16 @@
 class wxStackedBarChart : public wxChart
 {
 public:
-    wxStackedBarChart(wxChartsCategoricalData::ptr &data, const wxSize &size);
-    wxStackedBarChart(wxChartsCategoricalData::ptr &data,
+    wxStackedBarChart(wxSharedPtr<wxChartsCategoricalData> &data, const wxSize &size);
+    wxStackedBarChart(wxSharedPtr<wxChartsCategoricalData> &data,
         const wxStackedBarChartOptions &options, const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
-    void Initialize(wxChartsCategoricalData::ptr &data);
-    static wxDouble GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
-    static wxDouble GetCumulativeMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
+    void Initialize(wxSharedPtr<wxChartsCategoricalData> &data);
+    static wxDouble GetCumulativeMinValue(const wxVector<wxSharedPtr<wxChartsDoubleDataset>>& datasets);
+    static wxDouble GetCumulativeMaxValue(const wxVector<wxSharedPtr<wxChartsDoubleDataset>>& datasets);
 
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
@@ -58,7 +58,7 @@ private:
     {
     public:
         Bar(wxDouble value,
-            const wxChartTooltipProvider::ptr tooltipProvider,
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
             wxDouble x, wxDouble y,
             const wxChartsPenOptions &penOptions,
             const wxChartsBrushOptions &brushOptions,
@@ -72,10 +72,10 @@ private:
         wxDouble m_value;
     };
 
-    class Dataset
+    class BarSet
     {
     public:
-        Dataset();
+        BarSet();
 
         const wxVector<wxSharedPtr<Bar>>& GetBars() const;
         void AppendBar(wxSharedPtr<Bar> bar);
@@ -87,7 +87,7 @@ private:
 private:
     wxSharedPtr<wxStackedBarChartOptions> m_options;
     wxChartsGrid m_grid;
-    wxVector<wxSharedPtr<Dataset>> m_datasets;
+    wxVector<wxSharedPtr<BarSet>> m_datasets;
 };
 
 #endif
