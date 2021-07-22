@@ -66,21 +66,21 @@ WXCHARTS_ROOT ?= $(WXCHARTS)
 
 # ------------
 
-all: $(_builddir)WxStackedBar
+all: $(_builddir)wxstackedbarchart
 
-$(_builddir)WxStackedBar: $(_builddir)WxStackedBar_WxStackedBarApp.o $(_builddir)WxStackedBar_WxStackedBarFrame.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)WxStackedBar_WxStackedBarApp.o $(_builddir)WxStackedBar_WxStackedBarFrame.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
+$(_builddir)wxstackedbarchart: $(_builddir)wxstackedbarchart_WxStackedBarApp.o $(_builddir)wxstackedbarchart_WxStackedBarFrame.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxstackedbarchart_WxStackedBarApp.o $(_builddir)wxstackedbarchart_WxStackedBarFrame.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
 
-$(_builddir)WxStackedBar_WxStackedBarApp.o: src/WxStackedBarApp.cpp
+$(_builddir)wxstackedbarchart_WxStackedBarApp.o: src/WxStackedBarApp.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxStackedBarApp.cpp
 
-$(_builddir)WxStackedBar_WxStackedBarFrame.o: src/WxStackedBarFrame.cpp
+$(_builddir)wxstackedbarchart_WxStackedBarFrame.o: src/WxStackedBarFrame.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxStackedBarFrame.cpp
 
 clean:
 	rm -f $(_builddir)*.o
 	rm -f $(_builddir)*.d
-	rm -f $(_builddir)WxStackedBar
+	rm -f $(_builddir)wxstackedbarchart
 
 .PHONY: all clean
 
