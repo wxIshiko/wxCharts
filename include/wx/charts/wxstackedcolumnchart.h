@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -48,13 +48,13 @@
 class wxStackedColumnChart : public wxChart
 {
 public:
-    wxStackedColumnChart(wxChartsCategoricalData::ptr &data, const wxSize &size);
+    wxStackedColumnChart(wxSharedPtr<wxChartsCategoricalData> &data, const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
-    static wxDouble GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
-    static wxDouble GetCumulativeMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
+    static wxDouble GetCumulativeMinValue(const wxVector<wxVector<wxDouble>>& datasets);
+    static wxDouble GetCumulativeMaxValue(const wxVector<wxVector<wxDouble>>& datasets);
 
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
@@ -65,10 +65,8 @@ private:
     class Column : public wxChartsRectangle
     {
     public:
-        typedef wxSharedPtr<Column> ptr;
-
         Column(wxDouble value,
-            const wxChartTooltipProvider::ptr tooltipProvider,
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
             wxDouble x, wxDouble y,
             const wxChartsPenOptions &penOptions,
             const wxChartsBrushOptions &brushOptions,
@@ -82,24 +80,22 @@ private:
         wxDouble m_value;
     };
 
-    class Dataset
+    class ColumnSet
     {
     public:
-        typedef wxSharedPtr<Dataset> ptr;
+        ColumnSet();
 
-        Dataset();
-
-        const wxVector<Column::ptr>& GetColumns() const;
-        void AppendColumn(Column::ptr column);
+        const wxVector<wxSharedPtr<Column>>& GetColumns() const;
+        void AppendColumn(wxSharedPtr<Column> column);
 
     private:
-        wxVector<Column::ptr> m_columns;
+        wxVector<wxSharedPtr<Column>> m_columns;
     };
 
 private:
     wxSharedPtr<wxStackedColumnChartOptions> m_options;
     wxChartsGrid m_grid;
-    wxVector<Dataset::ptr> m_datasets;
+    wxVector<wxSharedPtr<ColumnSet>> m_datasets;
 };
 
 #endif
