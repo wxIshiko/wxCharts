@@ -178,7 +178,7 @@ void wxLineChart::Initialize(wxSharedPtr<wxChartsCategoricalData>& data, const w
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
         size,
         wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
-        wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(dataVectors), GetMaxValue(dataVectors), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
     );
 
@@ -215,15 +215,14 @@ void wxLineChart::Initialize(wxSharedPtr<wxChartsCategoricalData>& data, const w
     }
 }
 
-wxDouble wxLineChart::GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
+wxDouble wxLineChart::GetMinValue(const wxVector<wxVector<wxDouble>>& datasets)
 {
     wxDouble result = 0;
     bool foundValue = false;
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        wxVector<wxDouble> values;
-        datasets[i]->GetData(values);
+        const wxVector<wxDouble>& values = datasets[i];
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
@@ -241,15 +240,14 @@ wxDouble wxLineChart::GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& da
     return result;
 }
 
-wxDouble wxLineChart::GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
+wxDouble wxLineChart::GetMaxValue(const wxVector<wxVector<wxDouble>>& datasets)
 {
     wxDouble result = 0;
     bool foundValue = false;
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        wxVector<wxDouble> values;
-        datasets[i]->GetData(values);
+        const wxVector<wxDouble>& values = datasets[i];
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)

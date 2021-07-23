@@ -66,8 +66,8 @@ public:
 
 private:
     void Initialize(wxSharedPtr<wxChartsCategoricalData>& data, const wxSize& size);
-    static wxDouble GetMinValue(const wxVector<wxSharedPtr<wxChartsDoubleDataset>>& datasets);
-    static wxDouble GetMaxValue(const wxVector<wxSharedPtr<wxChartsDoubleDataset>>& datasets);
+    static wxDouble GetMinValue(const wxVector<wxVector<wxDouble>>& datasets);
+    static wxDouble GetMaxValue(const wxVector<wxVector<wxDouble>>& datasets);
 
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
