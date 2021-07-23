@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -61,6 +61,11 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
     m_lineChart(data, lineType, options, size)
 {
     CreateContextMenu();
+}
+
+const wxLineChart& wxLineChartCtrl::GetChart() const
+{
+    return m_lineChart;
 }
 
 wxLineChart& wxLineChartCtrl::GetChart()
