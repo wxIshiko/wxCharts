@@ -55,6 +55,7 @@ public:
         long style = 0);
 
 private:
+    virtual const wxChart& GetChart() const = 0;
     virtual wxChart& GetChart() = 0;
 
     wxSize DoGetBestClientSize() const override;

@@ -229,7 +229,7 @@ wxDouble wxBoxPlot::GetMedian(const wxVector<wxDouble> &data,
     }
 }
 
-wxSize wxBoxPlot::DoGetBestSize()
+wxSize wxBoxPlot::DoGetBestSize() const
 {
     // TODO
     return wxSize(200, 200);

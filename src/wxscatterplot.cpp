@@ -259,7 +259,7 @@ wxDouble wxScatterPlot::GetMaxYValue(const wxVector<wxScatterPlotDataset::ptr>& 
     return result;
 }
 
-wxSize wxScatterPlot::DoGetBestSize()
+wxSize wxScatterPlot::DoGetBestSize() const
 {
     // TODO
     return wxSize(200, 200);

@@ -36,7 +36,7 @@ wxChartCtrl::wxChartCtrl(wxWindow *parent,
 
 wxSize wxChartCtrl::DoGetBestClientSize() const
 {
-    return wxSize(200, 200);
+    return GetChart().GetBestSize();
 }
 
 void wxChartCtrl::OnPaint(wxPaintEvent &evt)

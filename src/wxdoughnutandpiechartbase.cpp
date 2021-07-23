@@ -140,7 +140,7 @@ void wxDoughnutAndPieChartBase::SetData(const std::map<wxString, wxChartSliceDat
     }
 }
 
-wxSize wxDoughnutAndPieChartBase::DoGetBestSize()
+wxSize wxDoughnutAndPieChartBase::DoGetBestSize() const
 {
     // TODO
     return wxSize(200, 200);

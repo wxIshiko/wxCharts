@@ -30,7 +30,7 @@ wxChart::wxChart()
 {
 }
 
-wxSize wxChart::GetBestSize()
+wxSize wxChart::GetBestSize() const
 {
     return DoGetBestSize();
 }

@@ -44,7 +44,7 @@ const wxChartCommonOptions& wxCombinationChart::GetCommonOptions() const
     return m_options.GetCommonOptions();
 }
 
-wxSize wxCombinationChart::DoGetBestSize()
+wxSize wxCombinationChart::DoGetBestSize() const
 {
     // TODO
     return wxSize(200, 200);

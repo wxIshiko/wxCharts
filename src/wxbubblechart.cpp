@@ -384,7 +384,7 @@ void wxBubbleChart::DoDraw(wxGraphicsContext &gc,
     }
 }
 
-wxSize wxBubbleChart::DoGetBestSize()
+wxSize wxBubbleChart::DoGetBestSize() const
 {
     // TODO
     return wxSize(200, 200);

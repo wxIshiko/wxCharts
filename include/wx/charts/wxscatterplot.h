@@ -88,7 +88,7 @@ private:
     static wxDouble GetMinYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
     static wxDouble GetMaxYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
 
-    virtual wxSize DoGetBestSize();
+    virtual wxSize DoGetBestSize() const;
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);

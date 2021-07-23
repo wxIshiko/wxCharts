@@ -267,7 +267,7 @@ wxDouble wxCandlestickChart::GetMaxValue(const wxCandlestickChartData &data)
     return result;
 }
 
-wxSize wxCandlestickChart::DoGetBestSize()
+wxSize wxCandlestickChart::DoGetBestSize() const
 {
     // TODO
     return wxSize(200, 200);

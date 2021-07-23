@@ -183,10 +183,10 @@ wxDouble wxBarChart::GetMaxValue(const wxVector<wxVector<wxDouble>> &datasets)
     return result;
 }
 
-wxSize wxBarChart::DoGetBestSize()
+wxSize wxBarChart::DoGetBestSize() const
 {
     // TODO
-    return wxSize(200, 200);
+    return wxSize(1000, 1000);
 }
 
 void wxBarChart::DoSetSize(const wxSize &size)

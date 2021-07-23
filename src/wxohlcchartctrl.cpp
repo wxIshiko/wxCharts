@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -33,6 +33,11 @@ wxOHLCChartCtrl::wxOHLCChartCtrl(wxWindow *parent,
     : wxChartCtrl(parent, id, pos, size, style),
     m_ohlcChart(data, size)
 {
+}
+
+const wxOHLCChart& wxOHLCChartCtrl::GetChart() const
+{
+    return m_ohlcChart;
 }
 
 wxOHLCChart& wxOHLCChartCtrl::GetChart()

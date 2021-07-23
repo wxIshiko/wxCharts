@@ -215,7 +215,7 @@ wxDouble wxOHLCChart::GetMaxValue(const wxOHLCChartData &data)
     return result;
 }
 
-wxSize wxOHLCChart::DoGetBestSize()
+wxSize wxOHLCChart::DoGetBestSize() const
 {
     // TODO
     return wxSize(200, 200);

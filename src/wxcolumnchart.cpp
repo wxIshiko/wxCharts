@@ -170,7 +170,7 @@ wxDouble wxColumnChart::GetMaxValue(const wxVector<wxVector<wxDouble>>& datasets
     return result;
 }
 
-wxSize wxColumnChart::DoGetBestSize()
+wxSize wxColumnChart::DoGetBestSize() const
 {
     // TODO
     return wxSize(200, 200);

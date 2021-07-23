@@ -161,7 +161,7 @@ wxDouble wxPolarAreaChart::GetMaxValue(const wxVector<wxChartSliceData> &slices)
     return result;
 }
 
-wxSize wxPolarAreaChart::DoGetBestSize()
+wxSize wxPolarAreaChart::DoGetBestSize() const
 {
     // TODO
     return wxSize(200, 200);

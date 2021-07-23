@@ -605,7 +605,7 @@ wxDouble wxMath2DPlot::GetMaxYValue(const wxVector<wxMath2DPlotDataset::ptr>& da
     return result;
 }
 
-wxSize wxMath2DPlot::DoGetBestSize()
+wxSize wxMath2DPlot::DoGetBestSize() const
 {
     // TODO
     return wxSize(200, 200);

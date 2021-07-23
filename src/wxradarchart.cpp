@@ -68,7 +68,7 @@ wxDouble wxRadarChart::GetMaxValue()
     return result;
 }
 
-wxSize wxRadarChart::DoGetBestSize()
+wxSize wxRadarChart::DoGetBestSize() const
 {
     // TODO
     return wxSize(200, 200);

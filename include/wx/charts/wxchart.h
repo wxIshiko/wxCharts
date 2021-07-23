@@ -43,7 +43,7 @@ public:
     /// @return The options.
     virtual const wxChartCommonOptions& GetCommonOptions() const = 0;
 
-    wxSize GetBestSize();
+    wxSize GetBestSize() const;
     void SetSize(const wxSize &size);
     void Draw(wxGraphicsContext &gc);
     void ActivateElementsAt(const wxPoint &point);
@@ -53,7 +53,7 @@ protected:
     void DrawTooltips(wxGraphicsContext &gc);
 
 private:
-    virtual wxSize DoGetBestSize() = 0;
+    virtual wxSize DoGetBestSize() const = 0;
     virtual void DoSetSize(const wxSize &size) = 0;
     virtual void DoFit() = 0;
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips) = 0;

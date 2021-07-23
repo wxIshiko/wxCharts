@@ -80,7 +80,7 @@ public:
     void SetData(const std::map<wxString, wxChartSliceData> &data);
 
 private:
-    virtual wxSize DoGetBestSize();
+    virtual wxSize DoGetBestSize() const;
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);

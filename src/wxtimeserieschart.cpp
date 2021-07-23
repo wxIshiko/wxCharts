@@ -39,7 +39,7 @@ const wxChartCommonOptions& wxTimeSeriesChart::GetCommonOptions() const
     return m_options->GetCommonOptions();
 }
 
-wxSize wxTimeSeriesChart::DoGetBestSize()
+wxSize wxTimeSeriesChart::DoGetBestSize() const
 {
     // TODO
     return wxSize(200, 200);

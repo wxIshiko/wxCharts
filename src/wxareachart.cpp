@@ -311,7 +311,7 @@ wxDouble wxAreaChart::GetMaxYValue(const wxVector<wxAreaChartDataset::ptr>& data
     return result;
 }
 
-wxSize wxAreaChart::DoGetBestSize()
+wxSize wxAreaChart::DoGetBestSize() const
 {
     // TODO
     return wxSize(200, 200);

@@ -197,7 +197,7 @@ void wxHistogram::Save(const wxString &filename,
     }
 }
 
-wxSize wxHistogram::DoGetBestSize()
+wxSize wxHistogram::DoGetBestSize() const
 {
     // TODO
     return wxSize(200, 200);
