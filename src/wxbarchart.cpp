@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -56,16 +56,16 @@ wxDouble wxBarChart::Bar::GetValue() const
     return m_value;
 }
 
-wxBarChart::Dataset::Dataset()
+wxBarChart::BarSet::BarSet()
 {
 }
 
-const wxVector<wxBarChart::Bar::ptr>& wxBarChart::Dataset::GetBars() const
+const wxVector<wxSharedPtr<wxBarChart::Bar>>& wxBarChart::BarSet::GetBars() const
 {
     return m_bars;
 }
 
-void wxBarChart::Dataset::AppendBar(Bar::ptr bar)
+void wxBarChart::BarSet::AppendBar(wxSharedPtr<Bar> bar)
 {
     m_bars.push_back(bar);
 }
@@ -113,7 +113,7 @@ void wxBarChart::Initialize(wxChartsCategoricalData::ptr &data)
         wxSharedPtr<wxBarChartDatasetOptions> datasetOptions = datasetTheme->GetBarChartDatasetOptions();
 
         const wxChartsDoubleDataset& dataset = *datasets[i];
-        Dataset::ptr newDataset(new Dataset());
+        wxSharedPtr<BarSet> newDataset(new BarSet());
 
         const wxVector<wxDouble>& datasetData = dataset.GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
@@ -199,7 +199,7 @@ void wxBarChart::DoFit()
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
-        Dataset& currentDataset = *m_datasets[i];
+        BarSet& currentDataset = *m_datasets[i];
         for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
         {
             Bar& bar = *(currentDataset.GetBars()[j]);
@@ -229,7 +229,7 @@ void wxBarChart::DoDraw(wxGraphicsContext &gc,
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
-        Dataset& currentDataset = *m_datasets[i];
+        BarSet& currentDataset = *m_datasets[i];
         for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
         {
             currentDataset.GetBars()[j]->Draw(gc);

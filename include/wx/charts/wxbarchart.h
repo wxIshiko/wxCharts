@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -57,7 +57,7 @@ public:
         @param data The data that will be used to initialize the chart.
         @param size The initial size of the chart.
     */
-    wxBarChart(wxChartsCategoricalData::ptr &data, const wxSize &size);
+    wxBarChart(wxSharedPtr<wxChartsCategoricalData> &data, const wxSize &size);
 
     /// Constructor.
     /**
@@ -65,7 +65,7 @@ public:
         @param options The options to use for the chart.
         @param size The initial size of the chart.
     */
-    wxBarChart(wxChartsCategoricalData::ptr &data, wxBarChartOptions::ptr options,
+    wxBarChart(wxSharedPtr<wxChartsCategoricalData> &data, wxSharedPtr<wxBarChartOptions> options,
         const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
@@ -89,7 +89,7 @@ private:
         typedef wxSharedPtr<Bar> ptr;
 
         Bar(wxDouble value,
-            const wxChartTooltipProvider::ptr tooltipProvider,
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
             wxDouble x, wxDouble y,
             const wxChartsPenOptions &penOptions,
             const wxChartsBrushOptions &brushOptions,
@@ -101,24 +101,22 @@ private:
         wxDouble m_value;
     };
 
-    class Dataset
+    class BarSet
     {
     public:
-        typedef wxSharedPtr<Dataset> ptr;
+        BarSet();
 
-        Dataset();
-
-        const wxVector<Bar::ptr>& GetBars() const;
-        void AppendBar(Bar::ptr bar);
+        const wxVector<wxSharedPtr<Bar>>& GetBars() const;
+        void AppendBar(wxSharedPtr<Bar> bar);
 
     private:
-        wxVector<Bar::ptr> m_bars;
+        wxVector<wxSharedPtr<Bar>> m_bars;
     };
 
 private:
     wxSharedPtr<wxBarChartOptions> m_options;
     wxChartsGrid m_grid;
-    wxVector<Dataset::ptr> m_datasets;
+    wxVector<wxSharedPtr<BarSet>> m_datasets;
 };
 
 #endif
