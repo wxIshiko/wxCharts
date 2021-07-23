@@ -72,8 +72,8 @@ public:
 
 private:
     void Initialize(wxChartsCategoricalData::ptr &data);
-    static wxDouble GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
-    static wxDouble GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
+    static wxDouble GetMinValue(const wxVector<wxVector<wxDouble>> &datasets);
+    static wxDouble GetMaxValue(const wxVector<wxVector<wxDouble>> &datasets);
 
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();

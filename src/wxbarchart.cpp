@@ -70,32 +70,48 @@ void wxBarChart::BarSet::AppendBar(wxSharedPtr<Bar> bar)
     m_bars.push_back(bar);
 }
 
-wxBarChart::wxBarChart(wxChartsCategoricalData::ptr &data,
+wxBarChart::wxBarChart(wxSharedPtr<wxChartsCategoricalData> &data,
                        const wxSize &size)
-    : m_options(wxChartsDefaultTheme->GetBarChartOptions()),
-    m_grid(
+    : m_options(wxChartsDefaultTheme->GetBarChartOptions())
+{
+    wxVector<wxVector<wxDouble>> dataVectors;
+    for (const wxSharedPtr<wxChartsDoubleDataset>& dataset : data->GetDatasets())
+    {
+        dataVectors.push_back(wxVector<wxDouble>());
+        dataset->GetData(dataVectors.back());
+    }
+
+    m_grid.Create(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
-        wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(dataVectors), GetMaxValue(dataVectors), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
-    )
-{
+    );
+
     Initialize(data);
 }
 
 wxBarChart::wxBarChart(wxChartsCategoricalData::ptr &data,
                        wxBarChartOptions::ptr options,
                        const wxSize &size)
-    : m_options(options),
-    m_grid(
+    : m_options(options)
+{
+    wxVector<wxVector<wxDouble>> dataVectors;
+    for (const wxSharedPtr<wxChartsDoubleDataset>& dataset : data->GetDatasets())
+    {
+        dataVectors.push_back(wxVector<wxDouble>());
+        dataset->GetData(dataVectors.back());
+    }
+
+    m_grid.Create(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
-        wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(dataVectors), GetMaxValue(dataVectors), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
-        )
-{
+    );
+
     Initialize(data);
 }
 
@@ -134,14 +150,14 @@ void wxBarChart::Initialize(wxChartsCategoricalData::ptr &data)
     }
 }
 
-wxDouble wxBarChart::GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
+wxDouble wxBarChart::GetMinValue(const wxVector<wxVector<wxDouble>> &datasets)
 {
     wxDouble result = 0;
     bool foundValue = false;
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxDouble>& values = datasets[i]->GetData();
+        const wxVector<wxDouble>& values = datasets[i];
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
@@ -159,14 +175,14 @@ wxDouble wxBarChart::GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& dat
     return result;
 }
 
-wxDouble wxBarChart::GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
+wxDouble wxBarChart::GetMaxValue(const wxVector<wxVector<wxDouble>> &datasets)
 {
     wxDouble result = 0;
     bool foundValue = false;
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxDouble>& values = datasets[i]->GetData();
+        const wxVector<wxDouble>& values = datasets[i];
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
