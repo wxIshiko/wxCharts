@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -43,8 +43,11 @@
 class wxChartsGridMapping
 {
 public:
+    wxChartsGridMapping();
     wxChartsGridMapping(const wxSize &size,
-        const wxChartsAxis::ptr xAxis, const wxChartsAxis::ptr yAxis);
+        const wxSharedPtr<wxChartsAxis> xAxis, const wxSharedPtr<wxChartsAxis> yAxis);
+    void Create(const wxSize& size,
+        const wxSharedPtr<wxChartsAxis> xAxis, const wxSharedPtr<wxChartsAxis> yAxis);
 
     const wxSize& GetSize() const;
     void SetSize(const wxSize &size);

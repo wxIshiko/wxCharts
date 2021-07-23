@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2021 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -69,6 +69,7 @@ class wxChartsGrid : public wxChartsElement
 public:
     typedef wxSharedPtr<wxChartsGrid> ptr;
 
+    wxChartsGrid();
     /// Constructs a wxChartsGrid element.
     /// @param position The position of the top left corner
     /// of the chart.
@@ -79,7 +80,7 @@ public:
     /// @param options The settings to be used for the
     /// grid.
     wxChartsGrid(const wxPoint2DDouble &position, const wxSize &size,
-        wxChartsAxis::ptr xAxis, wxChartsAxis::ptr yAxis,
+        wxSharedPtr<wxChartsAxis> xAxis, wxSharedPtr<wxChartsAxis> yAxis,
         const wxChartsGridOptions& options);
     /// Constructs a wxChartsGrid element. The tick marks on the X and
     /// Y axes are computed automatically using the
@@ -101,6 +102,9 @@ public:
     wxChartsGrid(const wxPoint2DDouble &position, const wxSize &size,
         wxDouble minXValue, wxDouble maxXValue,
         wxDouble minYValue, wxDouble maxYValue,
+        const wxChartsGridOptions& options);
+    void Create(const wxPoint2DDouble& position, const wxSize& size,
+        wxSharedPtr<wxChartsAxis> xAxis, wxSharedPtr<wxChartsAxis> yAxis,
         const wxChartsGridOptions& options);
 
     virtual void Draw(wxGraphicsContext &gc) const;
