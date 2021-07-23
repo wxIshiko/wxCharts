@@ -89,17 +89,14 @@ wxColumnChart::wxColumnChart(wxChartsCategoricalData::ptr &data,
         m_options->GetGridOptions()
     );
 
-    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
-    for (size_t i = 0; i < datasets.size(); ++i)
+    for (size_t i = 0; i < dataVectors.size(); ++i)
     {
         wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
         wxSharedPtr<wxColumnChartDatasetOptions> datasetOptions = datasetTheme->GetColumnChartDatasetOptions();
 
-        const wxChartsDoubleDataset& dataset = *datasets[i];
+        const wxVector<wxDouble>& datasetData = dataVectors[i];
         wxSharedPtr<ColumnSet> newDataset(new ColumnSet());
 
-        wxVector<wxDouble> datasetData;
-        dataset.GetData(datasetData);
         for (size_t j = 0; j < datasetData.size(); ++j)
         {
             std::stringstream tooltip;
