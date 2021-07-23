@@ -47,9 +47,9 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxColumn sample build
+          name: wxColumnChart sample build
           command: make
-          working_directory: samples/column
+          working_directory: samples/columnchart
           environment:
             WXCHARTS_ROOT: ../..
       - run:
@@ -125,9 +125,9 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxStackedBar sample build
+          name: wxStackedBarChart sample build
           command: make
-          working_directory: samples/stackedbar
+          working_directory: samples/stackedbarchart
           environment:
             WXCHARTS_ROOT: ../..
       - run:

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -49,13 +49,13 @@
 class wxColumnChart : public wxChart
 {
 public:
-    wxColumnChart(wxChartsCategoricalData::ptr &data, const wxSize &size);
+    wxColumnChart(wxSharedPtr<wxChartsCategoricalData> &data, const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
-    static wxDouble GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
-    static wxDouble GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
+    static wxDouble GetMinValue(const wxVector<wxVector<wxDouble>> &datasets);
+    static wxDouble GetMaxValue(const wxVector<wxVector<wxDouble>> &datasets);
 
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
@@ -68,10 +68,8 @@ private:
     class Column : public wxChartsRectangle
     {
     public:
-        typedef wxSharedPtr<Column> ptr;
-
         Column(wxDouble value,
-            const wxChartTooltipProvider::ptr tooltipProvider,
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
             wxDouble x, wxDouble y,
             const wxChartsPenOptions &penOptions,
             const wxChartsBrushOptions &brushOptions,
@@ -83,24 +81,22 @@ private:
         wxDouble m_value;
     };
 
-    struct Dataset
+    struct ColumnSet
     {
     public:
-        typedef wxSharedPtr<Dataset> ptr;
+        ColumnSet();
 
-        Dataset();
-
-        const wxVector<Column::ptr>& GetColumns() const;
-        void AppendColumn(Column::ptr column);
+        const wxVector<wxSharedPtr<Column>>& GetColumns() const;
+        void AppendColumn(wxSharedPtr<Column> column);
 
     private:
-        wxVector<Column::ptr> m_columns;
+        wxVector<wxSharedPtr<Column>> m_columns;
     };
 
 private:
     wxSharedPtr<wxColumnChartOptions> m_options;
     wxChartsGrid m_grid;
-    wxVector<Dataset::ptr> m_datasets;
+    wxVector<wxSharedPtr<ColumnSet>> m_datasets;
 };
 
 #endif

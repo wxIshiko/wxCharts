@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2021 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -39,6 +39,10 @@
 static const wxDouble MinDistance = 1.0e-3;
 static const wxDouble MaxDistance = 1.0e3;
 
+wxChartsGrid::wxChartsGrid()
+{
+}
+
 wxChartsGrid::wxChartsGrid(const wxPoint2DDouble &position,
                            const wxSize &size,
                            wxChartsAxis::ptr xAxis,
@@ -66,6 +70,20 @@ wxChartsGrid::wxChartsGrid(const wxPoint2DDouble &position,
       m_origAxisLimits(minXValue,maxXValue,minYValue,maxYValue),
       m_curAxisLimits(minXValue,maxXValue,minYValue,maxYValue)
 {
+}
+
+void wxChartsGrid::Create(const wxPoint2DDouble& position,
+                          const wxSize& size,
+                          wxSharedPtr<wxChartsAxis> xAxis,
+                          wxSharedPtr<wxChartsAxis> yAxis,
+                          const wxChartsGridOptions& options)
+{
+    m_options = options;
+    m_position = position;
+    m_XAxis = xAxis;
+    m_YAxis = yAxis;
+    m_mapping.Create(size, m_XAxis, m_YAxis);
+    m_needsFit = true;
 }
 
 void wxChartsGrid::Draw(wxGraphicsContext &gc) const
