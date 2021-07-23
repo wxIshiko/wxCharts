@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -32,6 +32,11 @@ wxChartCtrl::wxChartCtrl(wxWindow *parent,
 {
     SetBackgroundStyle(wxBG_STYLE_PAINT);
     SetBackgroundColour(*wxWHITE);
+}
+
+wxSize wxChartCtrl::DoGetBestClientSize() const
+{
+    return wxSize(200, 200);
 }
 
 void wxChartCtrl::OnPaint(wxPaintEvent &evt)
