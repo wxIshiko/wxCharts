@@ -65,7 +65,7 @@ public:
         const wxSize &size, const wxColor &backgroundColor);
 
 private:
-    void Initialize(wxSharedPtr<wxChartsCategoricalData>& data);
+    void Initialize(wxSharedPtr<wxChartsCategoricalData>& data, const wxSize& size);
     static wxDouble GetMinValue(const wxVector<wxSharedPtr<wxChartsDoubleDataset>>& datasets);
     static wxDouble GetMaxValue(const wxVector<wxSharedPtr<wxChartsDoubleDataset>>& datasets);
 
