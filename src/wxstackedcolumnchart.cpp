@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -93,22 +93,20 @@ wxStackedColumnChart::wxStackedColumnChart(wxChartsCategoricalData::ptr &data,
         m_options->GetGridOptions()
     );
 
-    const wxVector<wxSharedPtr<wxChartsDoubleDataset>>& datasets = data->GetDatasets();
-    for (size_t i = 0; i < datasets.size(); ++i)
+    for (size_t i = 0; i < dataVectors.size(); ++i)
     {
         wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
         wxSharedPtr<wxStackedColumnChartDatasetOptions> datasetOptions = datasetTheme->GetStackedColumnChartDatasetOptions();
 
-        const wxChartsDoubleDataset& dataset = *datasets[i];
+        const wxVector<wxDouble>& datasetData = dataVectors[i];
         wxSharedPtr<ColumnSet> newDataset(new ColumnSet());
 
         int border = wxLEFT | wxRIGHT;
-        if (i == (datasets.size() - 1))
+        if (i == (dataVectors.size() - 1))
         {
             border |= wxTOP;
         }
 
-        const wxVector<wxDouble>& datasetData = dataset.GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
         {
             std::stringstream tooltip;

@@ -69,21 +69,7 @@ wxStackedBarChart::wxStackedBarChart(wxSharedPtr<wxChartsCategoricalData> &data,
                                      const wxSize &size)
     : m_options(wxChartsDefaultTheme->GetStackedBarChartOptions())
 {
-    wxVector<wxVector<wxDouble>> dataVectors;
-    for (const wxSharedPtr<wxChartsDoubleDataset>& dataset : data->GetDatasets())
-    {
-        dataVectors.push_back(wxVector<wxDouble>());
-        dataset->GetData(dataVectors.back());
-    }
-
-    m_grid.Create(
-        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
-        size,
-        wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
-        wxChartsNumericalAxis::make_shared("y", GetCumulativeMinValue(dataVectors), GetCumulativeMaxValue(dataVectors), m_options->GetGridOptions().GetYAxisOptions()),
-        m_options->GetGridOptions()
-    );
-    Initialize(data);
+    Initialize(data, size);
 }
 
 wxStackedBarChart::wxStackedBarChart(wxSharedPtr<wxChartsCategoricalData> &data,
@@ -91,6 +77,16 @@ wxStackedBarChart::wxStackedBarChart(wxSharedPtr<wxChartsCategoricalData> &data,
                                      const wxSize &size)
     : m_options(new wxStackedBarChartOptions(options))
 {
+    Initialize(data, size);
+}
+
+const wxChartCommonOptions& wxStackedBarChart::GetCommonOptions() const
+{
+    return m_options->GetCommonOptions();
+}
+
+void wxStackedBarChart::Initialize(wxSharedPtr<wxChartsCategoricalData> &data, const wxSize &size)
+{
     wxVector<wxVector<wxDouble>> dataVectors;
     for (const wxSharedPtr<wxChartsDoubleDataset>& dataset : data->GetDatasets())
     {
@@ -105,32 +101,21 @@ wxStackedBarChart::wxStackedBarChart(wxSharedPtr<wxChartsCategoricalData> &data,
         wxChartsNumericalAxis::make_shared("y", GetCumulativeMinValue(dataVectors), GetCumulativeMaxValue(dataVectors), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
     );
-    Initialize(data);
-}
 
-const wxChartCommonOptions& wxStackedBarChart::GetCommonOptions() const
-{
-    return m_options->GetCommonOptions();
-}
-
-void wxStackedBarChart::Initialize(wxChartsCategoricalData::ptr &data)
-{
-    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
-    for (size_t i = 0; i < datasets.size(); ++i)
+    for (size_t i = 0; i < dataVectors.size(); ++i)
     {
         wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
         wxSharedPtr<wxStackedBarChartDatasetOptions> datasetOptions = datasetTheme->GetStackedBarChartDatasetOptions();
 
-        const wxChartsDoubleDataset& dataset = *datasets[i];
+        const wxVector<wxDouble>& datasetData = dataVectors[i];
         wxSharedPtr<BarSet> barSet(new BarSet());
 
         int border = wxTOP | wxBOTTOM;
-        if (i == (datasets.size() - 1))
+        if (i == (dataVectors.size() - 1))
         {
             border |= wxRIGHT;
         }
 
-        const wxVector<wxDouble>& datasetData = dataset.GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
         {
             std::stringstream tooltip;

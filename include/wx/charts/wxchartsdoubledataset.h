@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -28,6 +28,7 @@
 #include "wxchartsdataset.h"
 #include "wxchartsrectangleoptions.h"
 #include <wx/sharedptr.h>
+#include <wx/vector.h>
 
 /// Stores the information about a dataset to be shown on one of the bar chart controls.
 
@@ -42,9 +43,6 @@ public:
     /// Constructs a wxBarChartDataset instance.
     /// @param data The list of values.
     wxChartsDoubleDataset(const wxString& name, const wxVector<wxDouble> &data);
-
-    // TODO : remove this function
-    const wxVector<wxDouble>& GetData() const;
 
     void GetData(wxVector<wxDouble>& data) const override;
 

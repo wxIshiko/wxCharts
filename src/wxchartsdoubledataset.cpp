@@ -30,11 +30,6 @@ wxChartsDoubleDataset::wxChartsDoubleDataset(const wxString& name,
 {
 }
 
-const wxVector<wxDouble>& wxChartsDoubleDataset::GetData() const
-{
-    return m_data;
-}
-
 void wxChartsDoubleDataset::GetData(wxVector<wxDouble>& data) const
 {
     data.assign(m_data.begin(), m_data.end());
