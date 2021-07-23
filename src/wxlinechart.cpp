@@ -71,54 +71,54 @@ wxDouble wxLineChart::Point::GetValue() const
     return m_value;
 }
 
-wxLineChart::Dataset::Dataset(bool showDots,
-    bool showLine,
-    const wxColor &lineColor,
-    bool fill,
-    const wxColor &fillColor,
-    const wxChartsLineType &lineType)
+wxLineChart::PointSet::PointSet(bool showDots,
+                                bool showLine,
+                                const wxColor& lineColor,
+                                bool fill,
+                                const wxColor& fillColor,
+                                const wxChartsLineType& lineType)
     : m_showDots(showDots), m_showLine(showLine),
     m_lineColor(lineColor), m_fill(fill),
     m_fillColor(fillColor), m_type(lineType)
 {
 }
 
-bool wxLineChart::Dataset::ShowDots() const
+bool wxLineChart::PointSet::ShowDots() const
 {
     return m_showDots;
 }
 
-bool wxLineChart::Dataset::ShowLine() const
+bool wxLineChart::PointSet::ShowLine() const
 {
     return m_showLine;
 }
 
-const wxColor& wxLineChart::Dataset::GetLineColor() const
+const wxColor& wxLineChart::PointSet::GetLineColor() const
 {
     return m_lineColor;
 }
 
-bool wxLineChart::Dataset::Fill() const
+bool wxLineChart::PointSet::Fill() const
 {
     return m_fill;
 }
 
-const wxColor& wxLineChart::Dataset::GetFillColor() const
+const wxColor& wxLineChart::PointSet::GetFillColor() const
 {
     return m_fillColor;
 }
 
-const wxChartsLineType& wxLineChart::Dataset::GetType() const
+const wxChartsLineType& wxLineChart::PointSet::GetType() const
 {
      return m_type;
 }
 
-const wxVector<wxLineChart::Point::ptr>& wxLineChart::Dataset::GetPoints() const
+const wxVector<wxSharedPtr<wxLineChart::Point>>& wxLineChart::PointSet::GetPoints() const
 {
     return m_points;
 }
 
-void wxLineChart::Dataset::AppendPoint(Point::ptr point)
+void wxLineChart::PointSet::AppendPoint(wxSharedPtr<Point> point)
 {
     m_points.push_back(point);
 }
@@ -187,7 +187,7 @@ void wxLineChart::Initialize(wxChartsCategoricalData::ptr &data)
         wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
         wxSharedPtr<wxLineChartDatasetOptions> datasetOptions = datasetTheme->GetLineChartDatasetOptions();
 
-        Dataset::ptr newDataset(new Dataset(datasetOptions->ShowDots(),
+        wxSharedPtr<PointSet> newDataset(new PointSet(datasetOptions->ShowDots(),
             datasetOptions->ShowLine(), datasetOptions->GetLineColor(),
             datasetOptions->Fill(), datasetOptions->GetFillColor(),
             m_lineType));
