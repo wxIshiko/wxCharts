@@ -102,23 +102,20 @@ void wxStackedBarChart::Initialize(wxSharedPtr<wxChartsCategoricalData> &data, c
         m_options->GetGridOptions()
     );
 
-    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
-    for (size_t i = 0; i < datasets.size(); ++i)
+    for (size_t i = 0; i < dataVectors.size(); ++i)
     {
         wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
         wxSharedPtr<wxStackedBarChartDatasetOptions> datasetOptions = datasetTheme->GetStackedBarChartDatasetOptions();
 
-        const wxChartsDoubleDataset& dataset = *datasets[i];
+        const wxVector<wxDouble>& datasetData = dataVectors[i];
         wxSharedPtr<BarSet> barSet(new BarSet());
 
         int border = wxTOP | wxBOTTOM;
-        if (i == (datasets.size() - 1))
+        if (i == (dataVectors.size() - 1))
         {
             border |= wxRIGHT;
         }
 
-        wxVector<wxDouble> datasetData;
-        dataset.GetData(datasetData);
         for (size_t j = 0; j < datasetData.size(); ++j)
         {
             std::stringstream tooltip;
