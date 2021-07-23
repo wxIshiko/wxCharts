@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2021 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -195,6 +195,12 @@ void wxHistogram::Save(const wxString &filename,
         bmp.SaveFile(filename, type);
         delete gc;
     }
+}
+
+wxSize wxHistogram::DoGetBestSize()
+{
+    // TODO
+    return wxSize(200, 200);
 }
 
 void wxHistogram::DoSetSize(const wxSize &size)

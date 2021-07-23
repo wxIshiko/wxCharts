@@ -265,6 +265,12 @@ wxDouble wxLineChart::GetMaxValue(const wxVector<wxVector<wxDouble>>& datasets)
     return result;
 }
 
+wxSize wxLineChart::DoGetBestSize()
+{
+    // TODO
+    return wxSize(200, 200);
+}
+
 void wxLineChart::DoSetSize(const wxSize &size)
 {
     wxSize newSize(

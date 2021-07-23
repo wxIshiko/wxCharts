@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -42,6 +42,12 @@ void wxCombinationChart::AddColumnChart(const wxChartsCategoricalData &data)
 const wxChartCommonOptions& wxCombinationChart::GetCommonOptions() const
 {
     return m_options.GetCommonOptions();
+}
+
+wxSize wxCombinationChart::DoGetBestSize()
+{
+    // TODO
+    return wxSize(200, 200);
 }
 
 void wxCombinationChart::DoSetSize(const wxSize &size)

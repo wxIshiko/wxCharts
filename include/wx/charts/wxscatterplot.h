@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -88,6 +88,7 @@ private:
     static wxDouble GetMinYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
     static wxDouble GetMaxYValue(const wxVector<wxScatterPlotDataset::ptr>& datasets);
 
+    virtual wxSize DoGetBestSize();
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
