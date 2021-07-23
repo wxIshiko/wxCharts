@@ -46,6 +46,11 @@ wxBubbleChartCtrl::wxBubbleChartCtrl(wxWindow *parent,
 {
 }
 
+const wxBubbleChart& wxBubbleChartCtrl::GetChart() const
+{
+    return m_bubbleChart;
+}
+
 wxBubbleChart& wxBubbleChartCtrl::GetChart()
 {
     return m_bubbleChart;
