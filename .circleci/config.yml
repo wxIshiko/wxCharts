@@ -47,9 +47,9 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxColumn sample build
+          name: wxColumnChart sample build
           command: make
-          working_directory: samples/column
+          working_directory: samples/columnchart
           environment:
             WXCHARTS_ROOT: ../..
       - run:
