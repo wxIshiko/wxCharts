@@ -81,10 +81,10 @@ private:
         wxDouble m_value;
     };
 
-    struct Dataset
+    struct ColumnSet
     {
     public:
-        Dataset();
+        ColumnSet();
 
         const wxVector<wxSharedPtr<Column>>& GetColumns() const;
         void AppendColumn(wxSharedPtr<Column> column);
@@ -96,7 +96,7 @@ private:
 private:
     wxSharedPtr<wxColumnChartOptions> m_options;
     wxChartsGrid m_grid;
-    wxVector<wxSharedPtr<Dataset>> m_datasets;
+    wxVector<wxSharedPtr<ColumnSet>> m_datasets;
 };
 
 #endif

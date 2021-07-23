@@ -56,16 +56,16 @@ wxDouble wxColumnChart::Column::GetValue() const
     return m_value;
 }
 
-wxColumnChart::Dataset::Dataset()
+wxColumnChart::ColumnSet::ColumnSet()
 {
 }
 
-const wxVector<wxSharedPtr<wxColumnChart::Column>>& wxColumnChart::Dataset::GetColumns() const
+const wxVector<wxSharedPtr<wxColumnChart::Column>>& wxColumnChart::ColumnSet::GetColumns() const
 {
     return m_columns;
 }
 
-void wxColumnChart::Dataset::AppendColumn(wxSharedPtr<Column> column)
+void wxColumnChart::ColumnSet::AppendColumn(wxSharedPtr<Column> column)
 {
     m_columns.push_back(column);
 }
@@ -88,7 +88,7 @@ wxColumnChart::wxColumnChart(wxChartsCategoricalData::ptr &data,
         wxSharedPtr<wxColumnChartDatasetOptions> datasetOptions = datasetTheme->GetColumnChartDatasetOptions();
 
         const wxChartsDoubleDataset& dataset = *datasets[i];
-        wxSharedPtr<Dataset> newDataset(new Dataset());
+        wxSharedPtr<ColumnSet> newDataset(new ColumnSet());
 
         const wxVector<wxDouble>& datasetData = dataset.GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
@@ -175,7 +175,7 @@ void wxColumnChart::DoFit()
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
-        Dataset& currentDataset = *m_datasets[i];
+        ColumnSet& currentDataset = *m_datasets[i];
         for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
         {
             Column& column = *(currentDataset.GetColumns()[j]);
@@ -200,7 +200,7 @@ void wxColumnChart::DoDraw(wxGraphicsContext &gc,
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
-        Dataset& currentDataset = *m_datasets[i];
+        ColumnSet& currentDataset = *m_datasets[i];
         for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
         {
             currentDataset.GetColumns()[j]->Draw(gc);
