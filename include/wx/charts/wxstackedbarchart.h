@@ -88,7 +88,6 @@ private:
     wxSharedPtr<wxStackedBarChartOptions> m_options;
     wxChartsGrid m_grid;
     wxVector<wxSharedPtr<BarSet>> m_datasets;
-    wxVector<wxVector<wxDouble>> m_datas;
 };
 
 #endif
