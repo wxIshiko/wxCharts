@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -37,6 +37,12 @@ wxTimeSeriesChart::wxTimeSeriesChart(wxSharedPtr<wxTimeSeriesChartOptions> &opti
 const wxChartCommonOptions& wxTimeSeriesChart::GetCommonOptions() const
 {
     return m_options->GetCommonOptions();
+}
+
+wxSize wxTimeSeriesChart::DoGetBestSize()
+{
+    // TODO
+    return wxSize(200, 200);
 }
 
 void wxTimeSeriesChart::DoSetSize(const wxSize &size)

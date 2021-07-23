@@ -201,6 +201,12 @@ wxDouble wxStackedBarChart::GetCumulativeMaxValue(const wxVector<wxVector<wxDoub
     return result;
 }
 
+wxSize wxStackedBarChart::DoGetBestSize()
+{
+    // TODO
+    return wxSize(200, 200);
+}
+
 void wxStackedBarChart::DoSetSize(const wxSize &size)
 {
     wxSize newSize(

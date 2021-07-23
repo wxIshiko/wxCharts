@@ -48,6 +48,7 @@ private:
     static wxDouble GetCumulativeMinValue(const wxVector<wxVector<wxDouble>> &datasets);
     static wxDouble GetCumulativeMaxValue(const wxVector<wxVector<wxDouble>> &datasets);
 
+    virtual wxSize DoGetBestSize();
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -138,6 +138,12 @@ void wxDoughnutAndPieChartBase::SetData(const std::map<wxString, wxChartSliceDat
                                                x, y, 0, 0, outerRadius, innerRadius, GetOptions().GetSliceStrokeWidth()));
         m_slices[i++] = newSlice;
     }
+}
+
+wxSize wxDoughnutAndPieChartBase::DoGetBestSize()
+{
+    // TODO
+    return wxSize(200, 200);
 }
 
 void wxDoughnutAndPieChartBase::DoSetSize(const wxSize &size)
