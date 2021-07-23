@@ -71,7 +71,7 @@ public:
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
-    void Initialize(wxChartsCategoricalData::ptr &data);
+    void Initialize(wxSharedPtr<wxChartsCategoricalData> &data, const wxSize& size);
     static wxDouble GetMinValue(const wxVector<wxVector<wxDouble>> &datasets);
     static wxDouble GetMaxValue(const wxVector<wxVector<wxDouble>> &datasets);
 
