@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -72,15 +72,23 @@ void wxColumnChart::ColumnSet::AppendColumn(wxSharedPtr<Column> column)
 
 wxColumnChart::wxColumnChart(wxChartsCategoricalData::ptr &data,
                              const wxSize &size)
-    : m_options(wxChartsDefaultTheme->GetColumnChartOptions()), 
-    m_grid(
+    : m_options(wxChartsDefaultTheme->GetColumnChartOptions())
+{
+    wxVector<wxVector<wxDouble>> dataVectors;
+    for (const wxSharedPtr<wxChartsDoubleDataset>& dataset : data->GetDatasets())
+    {
+        dataVectors.push_back(wxVector<wxDouble>());
+        dataset->GetData(dataVectors.back());
+    }
+
+    m_grid.Create(
         wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
-        wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(dataVectors), GetMaxValue(dataVectors), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
-        )
-{
+    );
+
     const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
     for (size_t i = 0; i < datasets.size(); ++i)
     {
@@ -114,14 +122,14 @@ const wxChartCommonOptions& wxColumnChart::GetCommonOptions() const
     return m_options->GetCommonOptions();
 }
 
-wxDouble wxColumnChart::GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
+wxDouble wxColumnChart::GetMinValue(const wxVector<wxVector<wxDouble>>& datasets)
 {
     wxDouble result = 0;
     bool foundValue = false;
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxDouble>& values = datasets[i]->GetData();
+        const wxVector<wxDouble>& values = datasets[i];
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
@@ -139,14 +147,14 @@ wxDouble wxColumnChart::GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& 
     return result;
 }
 
-wxDouble wxColumnChart::GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
+wxDouble wxColumnChart::GetMaxValue(const wxVector<wxVector<wxDouble>>& datasets)
 {
     wxDouble result = 0;
     bool foundValue = false;
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxDouble>& values = datasets[i]->GetData();
+        const wxVector<wxDouble>& values = datasets[i];
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
