@@ -60,12 +60,12 @@ wxColumnChart::Dataset::Dataset()
 {
 }
 
-const wxVector<wxColumnChart::Column::ptr>& wxColumnChart::Dataset::GetColumns() const
+const wxVector<wxSharedPtr<wxColumnChart::Column>>& wxColumnChart::Dataset::GetColumns() const
 {
     return m_columns;
 }
 
-void wxColumnChart::Dataset::AppendColumn(Column::ptr column)
+void wxColumnChart::Dataset::AppendColumn(wxSharedPtr<Column> column)
 {
     m_columns.push_back(column);
 }
@@ -88,7 +88,7 @@ wxColumnChart::wxColumnChart(wxChartsCategoricalData::ptr &data,
         wxSharedPtr<wxColumnChartDatasetOptions> datasetOptions = datasetTheme->GetColumnChartDatasetOptions();
 
         const wxChartsDoubleDataset& dataset = *datasets[i];
-        Dataset::ptr newDataset(new Dataset());
+        wxSharedPtr<Dataset> newDataset(new Dataset());
 
         const wxVector<wxDouble>& datasetData = dataset.GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
@@ -99,7 +99,7 @@ wxColumnChart::wxColumnChart(wxChartsCategoricalData::ptr &data,
                 new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), datasetOptions->GetBrushOptions().GetColor())
                 );
 
-            newDataset->AppendColumn(Column::ptr(new Column(
+            newDataset->AppendColumn(wxSharedPtr<Column>(new Column(
                 datasetData[j], tooltipProvider, 25, 50, datasetOptions->GetPenOptions(),
                 datasetOptions->GetBrushOptions(), wxLEFT | wxTOP | wxRIGHT
                 )));
@@ -219,7 +219,7 @@ wxSharedPtr<wxVector<const wxChartsElement*>> wxColumnChart::GetActiveElements(c
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
-        const wxVector<Column::ptr>& columns = m_datasets[i]->GetColumns();
+        const wxVector<wxSharedPtr<Column>>& columns = m_datasets[i]->GetColumns();
         for (size_t j = 0; j < columns.size(); ++j)
         {
             if (columns[j]->HitTest(point))
