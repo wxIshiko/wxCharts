@@ -20,6 +20,8 @@ setting WXCHARTS_ROOT
 
 program wxbubblechart
 {
+    archs = x86 x86_64;
+
     vs2019.projectfile = ../msw/wxbubblechart_vc16.vcxproj;
     vs2017.projectfile = ../msw/wxbubblechart_vc15.vcxproj;
     vs2015.projectfile = ../msw/wxbubblechart_vc14.vcxproj;
