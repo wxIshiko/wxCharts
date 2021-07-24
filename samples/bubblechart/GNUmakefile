@@ -66,21 +66,21 @@ WXCHARTS_ROOT ?= $(WXCHARTS)
 
 # ------------
 
-all: $(_builddir)WxBubble
+all: $(_builddir)wxbubblechart
 
-$(_builddir)WxBubble: $(_builddir)WxBubble_WxBubbleApp.o $(_builddir)WxBubble_WxBubbleFrame.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)WxBubble_WxBubbleApp.o $(_builddir)WxBubble_WxBubbleFrame.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
+$(_builddir)wxbubblechart: $(_builddir)wxbubblechart_WxBubbleApp.o $(_builddir)wxbubblechart_WxBubbleFrame.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxbubblechart_WxBubbleApp.o $(_builddir)wxbubblechart_WxBubbleFrame.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
 
-$(_builddir)WxBubble_WxBubbleApp.o: src/WxBubbleApp.cpp
+$(_builddir)wxbubblechart_WxBubbleApp.o: src/WxBubbleApp.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxBubbleApp.cpp
 
-$(_builddir)WxBubble_WxBubbleFrame.o: src/WxBubbleFrame.cpp
+$(_builddir)wxbubblechart_WxBubbleFrame.o: src/WxBubbleFrame.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxBubbleFrame.cpp
 
 clean:
 	rm -f $(_builddir)*.o
 	rm -f $(_builddir)*.d
-	rm -f $(_builddir)WxBubble
+	rm -f $(_builddir)wxbubblechart
 
 .PHONY: all clean
 
