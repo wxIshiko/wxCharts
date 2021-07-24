@@ -35,8 +35,16 @@ program wxbubblechart
 
         includedirs += $(WXWIDGETS_ROOT)/include;
         includedirs += $(WXWIDGETS_ROOT)/include/msvc;
-        libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
-        libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+        if ($(arch) == x86)
+        {
+            libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
+            libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+        }
+        if ($(arch) == x86_64)
+        {
+            libdirs += $(WXCHARTS_ROOT)/lib/vc_x64_lib;
+            libdirs += $(WXWIDGETS_ROOT)/lib/vc_x64_lib;
+        }
     }
     if ($(toolset) == gnu)
     {
