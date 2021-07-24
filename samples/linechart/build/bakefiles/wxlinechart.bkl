@@ -59,6 +59,7 @@ program wxlinechart
         ../../src/wxlinechartapp.h
         ../../src/wxlinechartframe.h
         ../../src/wxlinechartmenubar.h
+        ../../src/wxlinechartwindowids.h
     }
 
     sources
