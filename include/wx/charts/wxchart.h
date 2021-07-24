@@ -45,8 +45,13 @@ public:
      *  @param title The title of the chart. An empty string indicates that the
      *         chart doesn't have a title.
      *  @param size The size of the chart.
+     *  @param options The settings to be used for this chart. These options
+     *         are only used at construction. Afterwards the options returned
+     *         by the GetCommonOptions function will be used. Derived classes
+     *         should ensure the two are consistent.
      */
-    wxChart(const wxString& title, const wxSize& size);
+    wxChart(const wxString& title, const wxSize& size,
+        const wxChartCommonOptions& options);
 
     /// Constructs an incomplete instance of the wxChart class.
     /**
@@ -64,10 +69,16 @@ public:
      *  @param title The title of the chart. An empty string indicates that the
      *         chart doesn't have a title.
      *  @param size The size of the chart.
+     *  @param options The settings to be used for this chart. These options
+     *         are only used at construction. Afterwards the options returned
+     *         by the GetCommonOptions function will be used. Derived classes
+     *         should ensure the two are consistent.
      */
-    void Create(const wxString& title, const wxSize& size);
+    void Create(const wxString& title, const wxSize& size,
+        const wxChartCommonOptions& options);
 
-    void SetTitle(const wxString& text, const wxChartsLabelOptions& options);
+    void SetTitle(const wxString& title);
+    void SetTitle(const wxString& title, const wxChartsLabelOptions& options);
 
     /// Gets the common options for the chart.
     /// @return The options.

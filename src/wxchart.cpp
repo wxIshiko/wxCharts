@@ -24,12 +24,14 @@
 #include "wxcharttooltip.h"
 #include "wxchartmultitooltip.h"
 
-wxChart::wxChart(const wxString& title, const wxSize& size)
+wxChart::wxChart(const wxString& title,
+                 const wxSize& size,
+                 const wxChartCommonOptions& options)
     : m_size(0, 0),
     m_needsFit(true),
     m_activeElements(new wxVector<const wxChartsElement*>())
 {
-    Create(title, size);
+    Create(title, size, options);
 }
 
 wxChart::wxChart()
@@ -39,17 +41,33 @@ wxChart::wxChart()
 {
 }
 
-void wxChart::Create(const wxString& title, const wxSize& size)
+void wxChart::Create(const wxString& title,
+                     const wxSize& size,
+                     const wxChartCommonOptions& options)
+{
+    // Note: we do not need to store the options because they will later be
+    // retrieved by calling GetCommonOptions. However Create is called from
+    // a constructor so we can't call GetCommonOptions because it is a
+    // virtual function.
+
+    SetTitle(title, options.GetTitleOptions());
+}
+
+void wxChart::SetTitle(const wxString& title)
+{
+    SetTitle(title, GetCommonOptions().GetTitleOptions());
+}
+
+void wxChart::SetTitle(const wxString& title, const wxChartsLabelOptions& options)
 {
     if (!title.empty())
     {
-        // TODO
+        m_title = new wxChartsLabel(title, options);
     }
-}
-
-void wxChart::SetTitle(const wxString& text, const wxChartsLabelOptions& options)
-{
-    m_title = new wxChartsLabel(text, options);
+    else
+    {
+        m_title.reset();
+    }
     m_needsFit = true;
 }
 
