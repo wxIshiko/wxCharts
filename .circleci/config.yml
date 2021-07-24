@@ -35,9 +35,9 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxBubble sample build
+          name: wxBubbleChart sample build
           command: make
-          working_directory: samples/bubble
+          working_directory: samples/bubblechart
           environment:
             WXCHARTS_ROOT: ../..
       - run:
