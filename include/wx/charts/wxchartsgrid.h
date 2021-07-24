@@ -67,8 +67,6 @@
 class wxChartsGrid : public wxChartsElement
 {
 public:
-    typedef wxSharedPtr<wxChartsGrid> ptr;
-
     wxChartsGrid();
     /// Constructs a wxChartsGrid element.
     /// @param position The position of the top left corner
