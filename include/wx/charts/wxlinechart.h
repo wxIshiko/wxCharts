@@ -55,9 +55,11 @@ enum wxChartsLineType
 class wxLineChart : public wxChart
 {
 public:
-    wxLineChart(const wxSize& size, wxSharedPtr<wxChartsCategoricalData>& data,
+    wxLineChart(const wxSize& size, const wxString& title,
+        wxSharedPtr<wxChartsCategoricalData>& data,
         const wxChartsLineType& lineType, const wxChartsTheme& theme);
-    wxLineChart(const wxSize& size, wxSharedPtr<wxChartsCategoricalData>& data,
+    wxLineChart(const wxSize& size, const wxString& title, 
+        wxSharedPtr<wxChartsCategoricalData>& data,
         const wxChartsLineType& lineType, const wxLineChartOptions& options);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
