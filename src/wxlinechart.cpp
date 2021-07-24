@@ -181,7 +181,7 @@ void wxLineChart::Initialize(wxSharedPtr<wxChartsCategoricalData>& data, const w
 
     m_grid.Create(
         // TODO: the parent class should handle the padding
-        wxPoint2DDouble(gridTopLeftCorner.x + m_options->GetPadding().GetLeft(), gridTopLeftCorner.y + m_options->GetPadding().GetTop()),
+        wxPoint(gridTopLeftCorner.x + m_options->GetPadding().GetLeft(), gridTopLeftCorner.y + m_options->GetPadding().GetTop()),
         GetClientSize(),
         wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
         wxChartsNumericalAxis::make_shared("y", GetMinValue(dataVectors), GetMaxValue(dataVectors), m_options->GetGridOptions().GetYAxisOptions()),

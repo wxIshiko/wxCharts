@@ -76,7 +76,7 @@ public:
     /// @param yAxis The Y axis.
     /// @param options The settings to be used for the
     /// grid.
-    wxChartsGrid(const wxPoint2DDouble &position, const wxSize &size,
+    wxChartsGrid(const wxPoint& pos, const wxSize &size,
         wxSharedPtr<wxChartsAxis> xAxis, wxSharedPtr<wxChartsAxis> yAxis,
         const wxChartsGridOptions& options);
     /// Constructs a wxChartsGrid element. The tick marks on the X and
@@ -96,12 +96,12 @@ public:
     /// will be shown on the chart for the Y coordinate.
     /// @param options The settings to be used for the
     /// grid.
-    wxChartsGrid(const wxPoint2DDouble &position, const wxSize &size,
+    wxChartsGrid(const wxPoint& pos, const wxSize &size,
         wxDouble minXValue, wxDouble maxXValue,
         wxDouble minYValue, wxDouble maxYValue,
         const wxChartsGridOptions& options);
     wxChartsGrid();
-    void Create(const wxPoint2DDouble& position, const wxSize& size,
+    void Create(const wxPoint& pos, const wxSize& size,
         wxSharedPtr<wxChartsAxis> xAxis, wxSharedPtr<wxChartsAxis> yAxis,
         const wxChartsGridOptions& options);
 

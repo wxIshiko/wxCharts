@@ -39,26 +39,26 @@
 static const wxDouble MinDistance = 1.0e-3;
 static const wxDouble MaxDistance = 1.0e3;
 
-wxChartsGrid::wxChartsGrid(const wxPoint2DDouble &position,
+wxChartsGrid::wxChartsGrid(const wxPoint& pos,
                            const wxSize &size,
                            wxChartsAxis::ptr xAxis,
                            wxChartsAxis::ptr yAxis,
                            const wxChartsGridOptions& options)
-    : m_options(options), m_position(position),
+    : m_options(options), m_position(pos),
     m_XAxis(xAxis), m_YAxis(yAxis),
     m_mapping(size, m_XAxis, m_YAxis),
     m_needsFit(true)
 {
 }
 
-wxChartsGrid::wxChartsGrid(const wxPoint2DDouble &position,
+wxChartsGrid::wxChartsGrid(const wxPoint& pos,
                            const wxSize &size,
                            wxDouble minXValue,
                            wxDouble maxXValue,
                            wxDouble minYValue,
                            wxDouble maxYValue,
                            const wxChartsGridOptions& options)
-    : m_options(options), m_position(position),
+    : m_options(options), m_position(pos),
       m_XAxis(new wxChartsNumericalAxis("x", minXValue, maxXValue, options.GetXAxisOptions())),
       m_YAxis(new wxChartsNumericalAxis("y", minYValue, maxYValue, options.GetYAxisOptions())),
       m_mapping(size, m_XAxis, m_YAxis),
@@ -72,14 +72,14 @@ wxChartsGrid::wxChartsGrid()
 {
 }
 
-void wxChartsGrid::Create(const wxPoint2DDouble& position,
+void wxChartsGrid::Create(const wxPoint& pos,
                           const wxSize& size,
                           wxSharedPtr<wxChartsAxis> xAxis,
                           wxSharedPtr<wxChartsAxis> yAxis,
                           const wxChartsGridOptions& options)
 {
     m_options = options;
-    m_position = position;
+    m_position = pos;
     m_XAxis = xAxis;
     m_YAxis = yAxis;
     m_mapping.Create(size, m_XAxis, m_YAxis);

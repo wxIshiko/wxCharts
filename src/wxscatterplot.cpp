@@ -101,7 +101,7 @@ wxScatterPlot::wxScatterPlot(const wxScatterPlotData &data,
                              const wxSize &size)
     : m_options(wxChartsDefaultTheme->GetScatterPlotOptions()),
     m_grid(
-        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+        wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
@@ -116,7 +116,7 @@ wxScatterPlot::wxScatterPlot(const wxScatterPlotData &data,
                              const wxSize &size)
     : m_options(options),
     m_grid(
-        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+        wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
