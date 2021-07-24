@@ -48,7 +48,7 @@ void wxChart::SetTitle(const wxString& text, const wxChartsLabelOptions& options
     m_needsFit = true;
 }
 
-wxPoint wxChart::GetClientPosition() const
+wxPoint wxChart::GetClientAreaOrigin() const
 {
     wxPoint result(0, 0);
     if (m_title)

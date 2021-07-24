@@ -174,7 +174,7 @@ void wxLineChart::Initialize(wxSharedPtr<wxChartsCategoricalData>& data, const w
         dataset->GetData(dataVectors.back());
     }
 
-    wxPoint gridTopLeftCorner = GetClientPosition();
+    wxPoint gridTopLeftCorner = GetClientAreaOrigin();
 
     m_grid.Create(
         // TODO: the parent class should handle the padding
