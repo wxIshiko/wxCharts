@@ -47,8 +47,35 @@ public:
     /// @return The options.
     virtual const wxChartCommonOptions& GetCommonOptions() const = 0;
 
+    /// Returns the preferred size for the chart. 
+    /**
+     * The GetBestSize function returns the preferred size for the chart. The
+     * preferred size of a chart is the minium size that allows all elements of
+     * the chart to fit in an area of that size. It takes into account the
+     * current contents of the chart and current options.
+     *
+     * @return The referred size for the chart.
+     */
     wxSize GetBestSize() const;
+
+    /// Returns the position of the top left corner of the client area. 
+    /**
+     * The GetClientAreaOrigin function returns the position of the top left
+     * corner of the client area. The client area is the area of the chart that
+     * contains the actual chart and excludes any title and padding.
+     * 
+     * @return The position of the top left corner of the client area.
+     */
     wxPoint GetClientAreaOrigin() const;
+
+    /// Returns the size of the client area. 
+    /**
+     * The GetClientSize function returns the size of of the client area. The
+     * client area is the area of the chart that contains the actual chart and
+     * excludes any title and padding.
+     *
+     * @return The size of the client area.
+     */
     wxSize GetClientSize() const;
     void SetSize(const wxSize &size);
     void Draw(wxGraphicsContext &gc);
