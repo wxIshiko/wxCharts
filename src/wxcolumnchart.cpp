@@ -172,8 +172,7 @@ wxDouble wxColumnChart::GetMaxValue(const wxVector<wxVector<wxDouble>>& datasets
 
 wxSize wxColumnChart::DoGetBestSize() const
 {
-    // TODO
-    return wxSize(200, 200);
+    return m_grid.GetBestSize();
 }
 
 void wxColumnChart::DoSetSize(const wxSize &size)

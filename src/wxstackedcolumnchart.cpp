@@ -199,8 +199,7 @@ wxDouble wxStackedColumnChart::GetCumulativeMaxValue(const wxVector<wxVector<wxD
 
 wxSize wxStackedColumnChart::DoGetBestSize() const
 {
-    // TODO
-    return wxSize(200, 200);
+    return m_grid.GetBestSize();
 }
 
 void wxStackedColumnChart::DoSetSize(const wxSize &size)
