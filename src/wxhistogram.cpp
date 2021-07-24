@@ -134,7 +134,7 @@ wxHistogram::wxHistogram(const wxHistogramData &data,
                          const wxSize &size)
     : m_options(wxChartsDefaultTheme->GetHistogramOptions()),
     m_grid(
-          wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+          wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
           size,0,0,0,0, m_options->GetGridOptions())
 {
     Initialize(data);
@@ -145,7 +145,7 @@ wxHistogram::wxHistogram(const wxHistogramData &data,
                          const wxSize &size)
     : m_options(options),
       m_grid(
-          wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+          wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
           size,0,0,0,0, m_options->GetGridOptions())
 {
     Initialize(data);

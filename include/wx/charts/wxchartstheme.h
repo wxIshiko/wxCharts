@@ -45,7 +45,7 @@
 #include "wxscatterplotoptions.h"
 #include "wxstackedbarchartoptions.h"
 #include "wxstackedcolumnchartoptions.h"
-#include "wxtimeserieschart.h"
+#include "wxtimeserieschartoptions.h"
 #include <wx/sharedptr.h>
 #include <map>
 
@@ -59,8 +59,6 @@ class wxChartsTheme
 public:
     wxChartsTheme();
 
-    wxSharedPtr<wxChartsLabelOptions> GetTitleOptions();
-
     wxSharedPtr<wxAreaChartOptions> GetAreaChartOptions();
     wxSharedPtr<wxBarChartOptions> GetBarChartOptions();
     wxSharedPtr<wxBoxPlotOptions> GetBoxPlotOptions();
@@ -69,7 +67,7 @@ public:
     wxSharedPtr<wxColumnChartOptions> GetColumnChartOptions();
     wxSharedPtr<wxDoughnutChartOptions> GetDoughnutChartOptions();
     wxSharedPtr<wxHistogramOptions> GetHistogramOptions();
-    wxSharedPtr<wxLineChartOptions> GetLineChartOptions();
+    const wxSharedPtr<wxLineChartOptions> GetLineChartOptions() const;
     wxSharedPtr<wxMath2DPlotOptions> GetMath2DPlotOptions();
     wxSharedPtr<wxOHLCChartOptions> GetOHLCChartOptions();
     wxSharedPtr<wxPieChartOptions> GetPieChartOptions();
@@ -84,7 +82,6 @@ public:
     void SetDatasetTheme(const wxChartsDatasetId& id, wxSharedPtr<wxChartsDatasetTheme> theme);
 
 private:
-    wxSharedPtr<wxChartsLabelOptions> m_titleOptions;
     wxSharedPtr<wxAreaChartOptions> m_areaChartOptions;
     wxSharedPtr<wxBarChartOptions> m_barChartOptions;
     wxSharedPtr<wxBoxPlotOptions> m_boxPlotOptions;
@@ -106,6 +103,7 @@ private:
     std::map<wxChartsDatasetId, wxSharedPtr<wxChartsDatasetTheme>> m_datasetThemes;
 };
 
+// TODO : remove this global variable
 extern wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme;
 
 #endif

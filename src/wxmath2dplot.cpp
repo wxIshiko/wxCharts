@@ -215,7 +215,7 @@ wxMath2DPlot::wxMath2DPlot(const wxMath2DPlotData &data,
                            const wxSize &size)
     : m_options(wxChartsDefaultTheme->GetMath2DPlotOptions()),
     m_grid(
-          wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+          wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
           size,
           GetMinXValue(data.GetDatasets(),m_options->GetAxisFuncX()),
           GetMaxXValue(data.GetDatasets(),m_options->GetAxisFuncX()),
@@ -232,7 +232,7 @@ wxMath2DPlot::wxMath2DPlot(const wxMath2DPlotData &data,
                            const wxSize &size)
     : m_options(options),
       m_grid(
-          wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+          wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
           size,
           GetMinXValue(data.GetDatasets(),m_options->GetAxisFuncX()),
           GetMaxXValue(data.GetDatasets(),m_options->GetAxisFuncX()),

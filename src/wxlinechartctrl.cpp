@@ -36,29 +36,32 @@
 #include "wxlinechartctrl.h"
 #include <wx/filedlg.h>
 
-wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
+wxLineChartCtrl::wxLineChartCtrl(wxWindow* parent,
                                  wxWindowID id,
-                                 wxChartsCategoricalData::ptr &data,
-                                 const wxChartsLineType &lineType,
-                                 const wxPoint &pos,
-                                 const wxSize &size,
+                                 const wxPoint& pos,
+                                 const wxSize& size,
+                                 const wxString& title,
+                                 wxSharedPtr<wxChartsCategoricalData>& data,
+                                 const wxChartsLineType& lineType,
+                                 const wxChartsTheme& theme,
                                  long style)
     : wxChartCtrl(parent, id, pos, size, style),
-    m_lineChart(data, lineType, size)
+    m_lineChart(size, title, data, lineType, theme)
 {
     CreateContextMenu();
 }
 
-wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
+wxLineChartCtrl::wxLineChartCtrl(wxWindow* parent,
                                  wxWindowID id,
-                                 wxChartsCategoricalData::ptr &data,
-                                 const wxChartsLineType &lineType,
-                                 const wxLineChartOptions &options,
-                                 const wxPoint &pos,
-                                 const wxSize &size,
+                                 const wxPoint& pos,
+                                 const wxSize& size,
+                                 const wxString& title,
+                                 wxSharedPtr<wxChartsCategoricalData>& data,
+                                 const wxChartsLineType& lineType,
+                                 const wxLineChartOptions& options,
                                  long style)
     : wxChartCtrl(parent, id, pos, size, style),
-    m_lineChart(data, lineType, options, size)
+    m_lineChart(size, title, data, lineType, options)
 {
     CreateContextMenu();
 }

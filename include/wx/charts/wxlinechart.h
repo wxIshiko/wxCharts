@@ -41,6 +41,7 @@
 #include "wxlinechartoptions.h"
 #include "wxchartsgrid.h"
 #include "wxchartspoint.h"
+#include "wxchartstheme.h"
 
 enum wxChartsLineType
 {
@@ -54,10 +55,12 @@ enum wxChartsLineType
 class wxLineChart : public wxChart
 {
 public:
-    wxLineChart(wxSharedPtr<wxChartsCategoricalData>& data, const wxChartsLineType& lineType,
-        const wxSize& size);
-    wxLineChart(wxSharedPtr<wxChartsCategoricalData>& data, const wxChartsLineType& lineType,
-        const wxLineChartOptions& options, const wxSize& size);
+    wxLineChart(const wxSize& size, const wxString& title,
+        wxSharedPtr<wxChartsCategoricalData>& data,
+        const wxChartsLineType& lineType, const wxChartsTheme& theme);
+    wxLineChart(const wxSize& size, const wxString& title, 
+        wxSharedPtr<wxChartsCategoricalData>& data,
+        const wxChartsLineType& lineType, const wxLineChartOptions& options);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 

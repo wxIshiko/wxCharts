@@ -123,21 +123,24 @@ void wxLineChart::PointSet::AppendPoint(wxSharedPtr<Point> point)
     m_points.push_back(point);
 }
 
-wxLineChart::wxLineChart(wxSharedPtr<wxChartsCategoricalData>& data,
+wxLineChart::wxLineChart(const wxSize& size,
+                         const wxString& title,
+                         wxSharedPtr<wxChartsCategoricalData>& data,
                          const wxChartsLineType& lineType,
-                         const wxSize& size)
-    : wxChart("", size), m_options(wxChartsDefaultTheme->GetLineChartOptions()),
-    m_lineType(lineType)
+                         const wxChartsTheme& theme)
+    : wxChart(title, size, theme.GetLineChartOptions()->GetCommonOptions()),
+    m_options(theme.GetLineChartOptions()), m_lineType(lineType)
 {
     Initialize(data, size);
 }
 
-wxLineChart::wxLineChart(wxSharedPtr<wxChartsCategoricalData>& data,
+wxLineChart::wxLineChart(const wxSize& size,
+                         const wxString& title,
+                         wxSharedPtr<wxChartsCategoricalData>& data,
                          const wxChartsLineType& lineType,
-                         const wxLineChartOptions& options,
-                         const wxSize& size)
-    : wxChart("", size), m_options(new wxLineChartOptions(options)),
-    m_lineType(lineType)
+                         const wxLineChartOptions& options)
+    : wxChart(title, size, options.GetCommonOptions()),
+    m_options(new wxLineChartOptions(options)), m_lineType(lineType)
 {
     Initialize(data, size);
 }
@@ -174,11 +177,11 @@ void wxLineChart::Initialize(wxSharedPtr<wxChartsCategoricalData>& data, const w
         dataset->GetData(dataVectors.back());
     }
 
-    wxPoint gridTopLeftCorner = GetClientPosition();
+    wxPoint gridTopLeftCorner = GetClientAreaOrigin();
 
     m_grid.Create(
         // TODO: the parent class should handle the padding
-        wxPoint2DDouble(gridTopLeftCorner.x + m_options->GetPadding().GetLeft(), gridTopLeftCorner.y + m_options->GetPadding().GetTop()),
+        wxPoint(gridTopLeftCorner.x + m_options->GetPadding().GetLeft(), gridTopLeftCorner.y + m_options->GetPadding().GetTop()),
         GetClientSize(),
         wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
         wxChartsNumericalAxis::make_shared("y", GetMinValue(dataVectors), GetMaxValue(dataVectors), m_options->GetGridOptions().GetYAxisOptions()),

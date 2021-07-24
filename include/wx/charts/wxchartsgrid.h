@@ -67,9 +67,6 @@
 class wxChartsGrid : public wxChartsElement
 {
 public:
-    typedef wxSharedPtr<wxChartsGrid> ptr;
-
-    wxChartsGrid();
     /// Constructs a wxChartsGrid element.
     /// @param position The position of the top left corner
     /// of the chart.
@@ -79,7 +76,7 @@ public:
     /// @param yAxis The Y axis.
     /// @param options The settings to be used for the
     /// grid.
-    wxChartsGrid(const wxPoint2DDouble &position, const wxSize &size,
+    wxChartsGrid(const wxPoint& pos, const wxSize &size,
         wxSharedPtr<wxChartsAxis> xAxis, wxSharedPtr<wxChartsAxis> yAxis,
         const wxChartsGridOptions& options);
     /// Constructs a wxChartsGrid element. The tick marks on the X and
@@ -99,11 +96,12 @@ public:
     /// will be shown on the chart for the Y coordinate.
     /// @param options The settings to be used for the
     /// grid.
-    wxChartsGrid(const wxPoint2DDouble &position, const wxSize &size,
+    wxChartsGrid(const wxPoint& pos, const wxSize &size,
         wxDouble minXValue, wxDouble maxXValue,
         wxDouble minYValue, wxDouble maxYValue,
         const wxChartsGridOptions& options);
-    void Create(const wxPoint2DDouble& position, const wxSize& size,
+    wxChartsGrid();
+    void Create(const wxPoint& pos, const wxSize& size,
         wxSharedPtr<wxChartsAxis> xAxis, wxSharedPtr<wxChartsAxis> yAxis,
         const wxChartsGridOptions& options);
 
@@ -160,7 +158,7 @@ private:
 
 private:
     wxChartsGridOptions m_options;
-    wxPoint2DDouble m_position;
+    wxPoint m_position;
     wxSharedPtr<wxChartsAxis> m_XAxis;
     wxSharedPtr<wxChartsAxis> m_YAxis;
     wxChartsGridMapping m_mapping;

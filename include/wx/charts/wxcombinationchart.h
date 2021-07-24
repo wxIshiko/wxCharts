@@ -49,7 +49,7 @@ private:
 
 private:
     wxCombinationChartOptions m_options;
-    wxChartsGrid::ptr m_grid;
+    wxSharedPtr<wxChartsGrid> m_grid;
 };
 
 #endif

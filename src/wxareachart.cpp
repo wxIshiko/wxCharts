@@ -135,7 +135,7 @@ wxAreaChart::wxAreaChart(const wxAreaChartData &data,
                          const wxSize &size)
     : m_options(wxChartsDefaultTheme->GetAreaChartOptions()),
     m_grid(
-        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+        wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
@@ -149,7 +149,7 @@ wxAreaChart::wxAreaChart(const wxAreaChartData &data,
                          const wxSize &size)
     : m_options(options),
     m_grid(
-        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+        wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),

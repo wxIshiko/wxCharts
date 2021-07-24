@@ -29,7 +29,7 @@ wxChartsGridPanel::wxChartsGridPanel(wxWindow* parent)
     wxVector<wxString> labels;
     labels.push_back("January");
     m_grid = new wxChartsGrid(
-        wxPoint2DDouble(0, 0),
+        wxPoint(0, 0),
         wxSize(200, 100),
         wxChartsCategoricalAxis::make_shared("id0", labels, wxChartsAxisOptions(wxCHARTSAXISPOSITION_BOTTOM)),
         wxChartsNumericalAxis::make_shared("id1", 0, 100, wxChartsAxisOptions(wxCHARTSAXISPOSITION_LEFT)),
