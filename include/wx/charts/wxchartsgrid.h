@@ -67,7 +67,6 @@
 class wxChartsGrid : public wxChartsElement
 {
 public:
-    wxChartsGrid();
     /// Constructs a wxChartsGrid element.
     /// @param position The position of the top left corner
     /// of the chart.
@@ -101,6 +100,7 @@ public:
         wxDouble minXValue, wxDouble maxXValue,
         wxDouble minYValue, wxDouble maxYValue,
         const wxChartsGridOptions& options);
+    wxChartsGrid();
     void Create(const wxPoint2DDouble& position, const wxSize& size,
         wxSharedPtr<wxChartsAxis> xAxis, wxSharedPtr<wxChartsAxis> yAxis,
         const wxChartsGridOptions& options);

@@ -34,14 +34,14 @@
 #include "wxchartsgridmapping.h"
 #include "wxchartsnumericalaxis.h"
 
-wxChartsGridMapping::wxChartsGridMapping()
-{
-}
-
 wxChartsGridMapping::wxChartsGridMapping(const wxSize &size,
                                          const wxChartsAxis::ptr xAxis,
                                          const wxChartsAxis::ptr yAxis)
     : m_size(size), m_XAxis(xAxis), m_YAxis(yAxis)
+{
+}
+
+wxChartsGridMapping::wxChartsGridMapping()
 {
 }
 

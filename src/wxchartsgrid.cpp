@@ -39,10 +39,6 @@
 static const wxDouble MinDistance = 1.0e-3;
 static const wxDouble MaxDistance = 1.0e3;
 
-wxChartsGrid::wxChartsGrid()
-{
-}
-
 wxChartsGrid::wxChartsGrid(const wxPoint2DDouble &position,
                            const wxSize &size,
                            wxChartsAxis::ptr xAxis,
@@ -69,6 +65,10 @@ wxChartsGrid::wxChartsGrid(const wxPoint2DDouble &position,
       m_needsFit(true),
       m_origAxisLimits(minXValue,maxXValue,minYValue,maxYValue),
       m_curAxisLimits(minXValue,maxXValue,minYValue,maxYValue)
+{
+}
+
+wxChartsGrid::wxChartsGrid()
 {
 }
 

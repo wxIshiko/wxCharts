@@ -43,9 +43,9 @@
 class wxChartsGridMapping
 {
 public:
-    wxChartsGridMapping();
     wxChartsGridMapping(const wxSize &size,
         const wxSharedPtr<wxChartsAxis> xAxis, const wxSharedPtr<wxChartsAxis> yAxis);
+    wxChartsGridMapping();
     void Create(const wxSize& size,
         const wxSharedPtr<wxChartsAxis> xAxis, const wxSharedPtr<wxChartsAxis> yAxis);
 
