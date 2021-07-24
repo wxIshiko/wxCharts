@@ -58,11 +58,13 @@ program wxlinechart
     {
         ../../src/wxlinechartapp.h
         ../../src/wxlinechartframe.h
+        ../../src/wxlinechartmenubar.h
     }
 
     sources
     {
         ../../src/wxlinechartapp.cpp
         ../../src/wxlinechartframe.cpp
+        ../../src/wxlinechartmenubar.cpp
     }
 }

@@ -68,14 +68,17 @@ WXCHARTS_ROOT ?= $(WXCHARTS)
 
 all: $(_builddir)wxlinechart
 
-$(_builddir)wxlinechart: $(_builddir)wxlinechart_wxlinechartapp.o $(_builddir)wxlinechart_wxlinechartframe.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxlinechart_wxlinechartapp.o $(_builddir)wxlinechart_wxlinechartframe.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
+$(_builddir)wxlinechart: $(_builddir)wxlinechart_wxlinechartapp.o $(_builddir)wxlinechart_wxlinechartframe.o $(_builddir)wxlinechart_wxlinechartmenubar.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxlinechart_wxlinechartapp.o $(_builddir)wxlinechart_wxlinechartframe.o $(_builddir)wxlinechart_wxlinechartmenubar.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
 
 $(_builddir)wxlinechart_wxlinechartapp.o: src/wxlinechartapp.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxlinechartapp.cpp
 
 $(_builddir)wxlinechart_wxlinechartframe.o: src/wxlinechartframe.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxlinechartframe.cpp
+
+$(_builddir)wxlinechart_wxlinechartmenubar.o: src/wxlinechartmenubar.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/wxlinechartmenubar.cpp
 
 clean:
 	rm -f $(_builddir)*.o

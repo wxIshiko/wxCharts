@@ -154,10 +154,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\wxlinechartapp.cpp" />
     <ClCompile Include="..\..\src\wxlinechartframe.cpp" />
+    <ClCompile Include="..\..\src\wxlinechartmenubar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\wxlinechartapp.h" />
     <ClInclude Include="..\..\src\wxlinechartframe.h" />
+    <ClInclude Include="..\..\src\wxlinechartmenubar.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
