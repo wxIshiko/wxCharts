@@ -158,7 +158,7 @@ private:
 
 private:
     wxChartsGridOptions m_options;
-    wxPoint2DDouble m_position;
+    wxPoint m_position;
     wxSharedPtr<wxChartsAxis> m_XAxis;
     wxSharedPtr<wxChartsAxis> m_YAxis;
     wxChartsGridMapping m_mapping;
