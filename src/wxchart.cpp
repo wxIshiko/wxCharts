@@ -25,7 +25,15 @@
 #include "wxchartmultitooltip.h"
 
 wxChart::wxChart()
-    : m_needsFit(true),
+    : m_size(0, 0),
+    m_needsFit(true),
+    m_activeElements(new wxVector<const wxChartsElement*>())
+{
+}
+
+wxChart::wxChart(const wxSize& size)
+    : m_size(size),
+    m_needsFit(true),
     m_activeElements(new wxVector<const wxChartsElement*>())
 {
 }
@@ -36,6 +44,28 @@ void wxChart::SetTitle(const wxString& text, const wxChartsLabelOptions& options
     m_needsFit = true;
 }
 
+wxPoint wxChart::GetClientPosition() const
+{
+    wxPoint result(0, 0);
+    if (m_title)
+    {
+        // TODO: correct size
+        result.y += 50;
+    }
+    return result;
+}
+
+wxSize wxChart::GetClientSize() const
+{
+    wxSize result = m_size;
+    if (m_title)
+    {
+        // TODO: correct size
+        result.SetHeight(m_size.GetHeight() - 50);
+    }
+    return result;
+}
+
 wxSize wxChart::GetBestSize() const
 {
     return DoGetBestSize();
@@ -43,7 +73,8 @@ wxSize wxChart::GetBestSize() const
 
 void wxChart::SetSize(const wxSize &size)
 {
-    DoSetSize(size);
+    m_size = size;
+    DoSetSize(GetClientSize());    // TODO: I probably can get rid of DoSetSize then and just let Fit query the chart size
     m_needsFit = true;
 }
 

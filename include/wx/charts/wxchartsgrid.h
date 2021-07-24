@@ -161,8 +161,8 @@ private:
 private:
     wxChartsGridOptions m_options;
     wxPoint2DDouble m_position;
-    wxChartsAxis::ptr m_XAxis;
-    wxChartsAxis::ptr m_YAxis;
+    wxSharedPtr<wxChartsAxis> m_XAxis;
+    wxSharedPtr<wxChartsAxis> m_YAxis;
     wxChartsGridMapping m_mapping;
     // Whether something has changed and we
     // need to rearrange the chart

@@ -38,7 +38,8 @@
 class wxChart
 {
 public:
-    wxChart();
+    wxChart();  // TODO: remove the one that doesn't take a size
+    wxChart(const wxSize& size);
 
     void SetTitle(const wxString& text, const wxChartsLabelOptions& options);
 
@@ -47,6 +48,8 @@ public:
     virtual const wxChartCommonOptions& GetCommonOptions() const = 0;
 
     wxSize GetBestSize() const;
+    wxPoint GetClientPosition() const;
+    wxSize GetClientSize() const;
     void SetSize(const wxSize &size);
     void Draw(wxGraphicsContext &gc);
     void ActivateElementsAt(const wxPoint &point);
@@ -63,6 +66,7 @@ private:
     virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point) = 0;
 
 private:
+    wxSize m_size;
     wxSharedPtr<wxChartsLabel> m_title;
     bool m_needsFit;
     wxSharedPtr<wxVector<const wxChartsElement*>> m_activeElements;

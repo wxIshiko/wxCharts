@@ -110,7 +110,7 @@ private:
     };
 
 private:
-    wxPieChartData::ptr m_data;
+    wxSharedPtr<wxPieChartData> m_data;
     wxSize m_size;
     wxVector<SliceArc::ptr> m_slices;
     wxDouble m_total;
