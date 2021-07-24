@@ -45,7 +45,7 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow* parent,
                                  const wxChartsTheme& theme,
                                  long style)
     : wxChartCtrl(parent, id, pos, size, style),
-    m_lineChart(data, lineType, theme, size)
+    m_lineChart(size, data, lineType, theme)
 {
     CreateContextMenu();
 }
@@ -59,7 +59,7 @@ wxLineChartCtrl::wxLineChartCtrl(wxWindow* parent,
                                  const wxLineChartOptions& options,
                                  long style)
     : wxChartCtrl(parent, id, pos, size, style),
-    m_lineChart(data, lineType, options, size)
+    m_lineChart(size, data, lineType, options)
 {
     CreateContextMenu();
 }
