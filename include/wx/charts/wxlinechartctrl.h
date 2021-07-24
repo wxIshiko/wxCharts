@@ -46,39 +46,54 @@
 class wxLineChartCtrl : public wxChartCtrl
 {
 public:
-    /// Constructs a wxLineChartCtrl control.
-    /// @param parent Pointer to a parent window.
-    /// @param id Control identifier. If wxID_ANY, will automatically
-    /// create an identifier.
-    /// @param data The data that will be used to initialize the chart.
-    /// @param pos Control position. wxDefaultPosition indicates that
-    /// wxWidgets should generate a default position for the control.
-    /// @param size Control size. wxDefaultSize indicates that wxWidgets
-    /// should generate a default size for the window. If no suitable
-    /// size can  be found, the window will be sized to 20x20 pixels
-    /// so that the window is visible but obviously not correctly sized.
-    /// @param style Control style. For generic window styles, please
-    /// see wxWindow.
-    wxLineChartCtrl(wxWindow *parent, wxWindowID id, wxChartsCategoricalData::ptr &data,
-        const wxChartsLineType &lineType, const wxPoint &pos = wxDefaultPosition,
-        const wxSize &size = wxDefaultSize, long style = 0);
-    /// Constructs a wxLineChartCtrl control.
-    /// @param parent Pointer to a parent window.
-    /// @param id Control identifier. If wxID_ANY, will automatically
-    /// create an identifier.
-    /// @param data The data that will be used to initialize the chart.
-    /// @param options The settings to be used for this chart.
-    /// @param pos Control position. wxDefaultPosition indicates that
-    /// wxWidgets should generate a default position for the control.
-    /// @param size Control size. wxDefaultSize indicates that wxWidgets
-    /// should generate a default size for the window. If no suitable
-    /// size can  be found, the window will be sized to 20x20 pixels
-    /// so that the window is visible but obviously not correctly sized.
-    /// @param style Control style. For generic window styles, please
-    /// see wxWindow.
-    wxLineChartCtrl(wxWindow *parent, wxWindowID id, wxChartsCategoricalData::ptr &data,
-        const wxChartsLineType &lineType, const wxLineChartOptions &options,
-        const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize,
+    /// Constructs a new wxLineChartCtrl control.
+    /**
+     *  This constructor creates a new wxLineChartCtrl control.
+     *
+     *  @param parent Pointer to a parent window.
+     *  @param id Control identifier. If wxID_ANY, will automatically
+     *         create an identifier.
+     *  @param pos Control position. wxDefaultPosition indicates that
+     *         wxWidgets should generate a default position for the control.
+     *  @param size Control size. wxDefaultSize indicates that wxWidgets
+     *         should generate a default size for the window. If no suitable
+     *         size can  be found, the window will be sized to 20x20 pixels
+     *         so that the window is visible but obviously not correctly sized.
+     *  @param data The data that will be used to initialize the chart.
+     *  @param lineType The type of line to use.
+     *  @param theme The theme to use for this chart.
+     *  @param style Control style. For generic window styles, please
+     *         see wxWindow.
+     */
+    wxLineChartCtrl(wxWindow* parent, wxWindowID id,
+        const wxPoint& pos, const wxSize& size,
+        wxSharedPtr<wxChartsCategoricalData>& data,
+        const wxChartsLineType& lineType, const wxChartsTheme& theme,
+        long style = 0);
+
+    /// Constructs a new wxLineChartCtrl control.
+    /**
+     *  This constructor creates a new wxLineChartCtrl control.
+     * 
+     *  @param parent Pointer to a parent window.
+     *  @param id Control identifier. If wxID_ANY, will automatically
+     *         create an identifier.
+     *  @param pos Control position. wxDefaultPosition indicates that
+     *         wxWidgets should generate a default position for the control.
+     *  @param size Control size. wxDefaultSize indicates that wxWidgets
+     *         should generate a default size for the window. If no suitable
+     *         size can  be found, the window will be sized to 20x20 pixels
+     *         so that the window is visible but obviously not correctly sized.
+     *  @param data The data that will be used to initialize the chart.
+     *  @param lineType The type of line to use.
+     *  @param options The settings to be used for this chart.
+     *  @param style Control style. For generic window styles, please
+     *         see wxWindow.
+     */
+    wxLineChartCtrl(wxWindow* parent, wxWindowID id,
+        const wxPoint& pos, const wxSize& size,
+        wxSharedPtr<wxChartsCategoricalData>& data,
+        const wxChartsLineType& lineType, const wxLineChartOptions& options,
         long style = 0);
     
 private:

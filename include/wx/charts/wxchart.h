@@ -40,30 +40,30 @@ class wxChart
 public:
     /// Constructs an instance of the wxChart class.
     /**
-     * This constructor creates a new instance of the wxChart.
+     *  This constructor creates a new instance of the wxChart.
      * 
-     * @param title The title of the chart. An empty string indicates that the
-     *        chart doesn't have a title.
-     * @param size The size of the chart.
+     *  @param title The title of the chart. An empty string indicates that the
+     *         chart doesn't have a title.
+     *  @param size The size of the chart.
      */
     wxChart(const wxString& title, const wxSize& size);
 
     /// Constructs an incomplete instance of the wxChart class.
     /**
-     * This constructor creates a new instance of the wxChart class whose
-     * construction need to be completed by calling one of the Create
-     * functions.
+     *  This constructor creates a new instance of the wxChart class whose
+     *  construction need to be completed by calling one of the Create
+     *  functions.
      */
     wxChart();
 
     /// Completes the creation of a wxChart instance.
     /**
-     * This function completes the creation of a wxChart instance that was
-     * created by the wxChart() constructor.
+     *  This function completes the creation of a wxChart instance that was
+     *  created by the wxChart() constructor.
      *
-     * @param title The title of the chart. An empty string indicates that the
-     *        chart doesn't have a title.
-     * @param size The size of the chart.
+     *  @param title The title of the chart. An empty string indicates that the
+     *         chart doesn't have a title.
+     *  @param size The size of the chart.
      */
     void Create(const wxString& title, const wxSize& size);
 
@@ -75,32 +75,32 @@ public:
 
     /// Returns the preferred size for the chart. 
     /**
-     * This function returns the preferred size for the chart. The preferred
-     * size of a chart is the minium size that allows all elements of the chart
-     * to fit in an area of that size. It takes into account the current
-     * contents of the chart and current options.
+     *  This function returns the preferred size for the chart. The preferred
+     *  size of a chart is the minium size that allows all elements of the chart
+     *  to fit in an area of that size. It takes into account the current
+     *  contents of the chart and current options.
      *
-     * @return The referred size for the chart.
+     *  @return The referred size for the chart.
      */
     wxSize GetBestSize() const;
 
     /// Returns the position of the top left corner of the client area. 
     /**
-     * This function returns the position of the top left corner of the client
-     * area. The client area is the area of the chart that contains the actual
-     * chart and excludes any title and padding.
+     *  This function returns the position of the top left corner of the client
+     *  area. The client area is the area of the chart that contains the actual
+     *  chart and excludes any title and padding.
      * 
-     * @return The position of the top left corner of the client area.
+     *  @return The position of the top left corner of the client area.
      */
     wxPoint GetClientAreaOrigin() const;
 
     /// Returns the size of the client area. 
     /**
-     * This function returns the size of of the client area. The client area is
-     * the area of the chart that contains the actual chart and excludes any
-     * title and padding.
+     *  This function returns the size of of the client area. The client area is
+     *  the area of the chart that contains the actual chart and excludes any
+     *  title and padding.
      *
-     * @return The size of the client area.
+     *  @return The size of the client area.
      */
     wxSize GetClientSize() const;
     void SetSize(const wxSize &size);

@@ -36,26 +36,27 @@
 #include "wxlinechartctrl.h"
 #include <wx/filedlg.h>
 
-wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
+wxLineChartCtrl::wxLineChartCtrl(wxWindow* parent,
                                  wxWindowID id,
-                                 wxChartsCategoricalData::ptr &data,
-                                 const wxChartsLineType &lineType,
-                                 const wxPoint &pos,
-                                 const wxSize &size,
+                                 const wxPoint& pos,
+                                 const wxSize& size,
+                                 wxSharedPtr<wxChartsCategoricalData>& data,
+                                 const wxChartsLineType& lineType,
+                                 const wxChartsTheme& theme,
                                  long style)
     : wxChartCtrl(parent, id, pos, size, style),
-    m_lineChart(data, lineType, size)
+    m_lineChart(data, lineType, theme, size)
 {
     CreateContextMenu();
 }
 
-wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
+wxLineChartCtrl::wxLineChartCtrl(wxWindow* parent,
                                  wxWindowID id,
-                                 wxChartsCategoricalData::ptr &data,
-                                 const wxChartsLineType &lineType,
-                                 const wxLineChartOptions &options,
-                                 const wxPoint &pos,
-                                 const wxSize &size,
+                                 const wxPoint& pos,
+                                 const wxSize& size,
+                                 wxSharedPtr<wxChartsCategoricalData>& data,
+                                 const wxChartsLineType& lineType,
+                                 const wxLineChartOptions& options,
                                  long style)
     : wxChartCtrl(parent, id, pos, size, style),
     m_lineChart(data, lineType, options, size)
