@@ -126,7 +126,7 @@ void wxLineChart::PointSet::AppendPoint(wxSharedPtr<Point> point)
 wxLineChart::wxLineChart(wxSharedPtr<wxChartsCategoricalData>& data,
                          const wxChartsLineType& lineType,
                          const wxSize& size)
-    : wxChart(size), m_options(wxChartsDefaultTheme->GetLineChartOptions()),
+    : wxChart("", size), m_options(wxChartsDefaultTheme->GetLineChartOptions()),
     m_lineType(lineType)
 {
     Initialize(data, size);
@@ -136,7 +136,7 @@ wxLineChart::wxLineChart(wxSharedPtr<wxChartsCategoricalData>& data,
                          const wxChartsLineType& lineType,
                          const wxLineChartOptions& options,
                          const wxSize& size)
-    : wxChart(size), m_options(new wxLineChartOptions(options)),
+    : wxChart("", size), m_options(new wxLineChartOptions(options)),
     m_lineType(lineType)
 {
     Initialize(data, size);

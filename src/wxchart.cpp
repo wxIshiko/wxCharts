@@ -31,11 +31,15 @@ wxChart::wxChart()
 {
 }
 
-wxChart::wxChart(const wxSize& size)
+wxChart::wxChart(const wxString& title, const wxSize& size)
     : m_size(size),
     m_needsFit(true),
     m_activeElements(new wxVector<const wxChartsElement*>())
 {
+    if (!title.empty())
+    {
+        // TODO
+    }
 }
 
 void wxChart::SetTitle(const wxString& text, const wxChartsLabelOptions& options)
