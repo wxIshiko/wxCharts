@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2015-2019 Xavier Leclercq
+	Copyright (c) 2015-2021 Xavier Leclercq
 
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
@@ -21,6 +21,7 @@
 */
 
 #include "wxlinechartframe.h"
+#include "wxlinechartmenubar.h"
 #include <wx/panel.h>
 #include <wx/sizer.h>
 #include <wx/charts/wxcharts.h>
@@ -28,6 +29,8 @@
 wxLineChartFrame::wxLineChartFrame(const wxString& title)
 	: wxFrame(NULL, wxID_ANY, title)
 {
+	SetMenuBar(new wxLineChartMenuBar());
+
 	// Create a top-level panel to hold all the contents of the frame
 	wxPanel* panel = new wxPanel(this, wxID_ANY);
 
@@ -87,3 +90,12 @@ wxLineChartFrame::wxLineChartFrame(const wxString& title)
 	topSizer->Add(panel, 1, wxEXPAND);
 	SetSizerAndFit(topSizer);
 }
+
+void wxLineChartFrame::OnExit(wxCommandEvent& evt)
+{
+	Close();
+}
+
+wxBEGIN_EVENT_TABLE(wxLineChartFrame, wxFrame)
+    EVT_MENU(wxID_EXIT, wxLineChartFrame::OnExit)
+wxEND_EVENT_TABLE()

@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2015-2021 Xavier Leclercq
+	Copyright (c) 2021 Xavier Leclercq
 
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
@@ -20,20 +20,15 @@
 	IN THE SOFTWARE.
 */
 
-#ifndef _SAMPLES_LINECHART_WXLINECHARTFRAME_H_
-#define _SAMPLES_LINECHART_WXLINECHARTFRAME_H_
+#ifndef _SAMPLES_LINECHART_WXLINECHARTMENUBAR_H_
+#define _SAMPLES_LINECHART_WXLINECHARTMENUBAR_H_
 
-#include <wx/frame.h>
+#include <wx/menu.h>
 
-class wxLineChartFrame : public wxFrame
+class wxLineChartMenuBar : public wxMenuBar
 {
 public:
-    wxLineChartFrame(const wxString& title);
-
-private:
-	void OnExit(wxCommandEvent& evt);
-
-	wxDECLARE_EVENT_TABLE();
+	wxLineChartMenuBar();
 };
 
 #endif
