@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 16
+VisualStudioVersion = 16.0.29020.237
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxchartstests", "wxchartstests_vc16.vcxproj", "{C236CBB5-49A9-514A-B239-75A495178105}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C236CBB5-49A9-514A-B239-75A495178105}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C236CBB5-49A9-514A-B239-75A495178105}.Debug|Win32.Build.0 = Debug|Win32
+		{C236CBB5-49A9-514A-B239-75A495178105}.Debug|x64.ActiveCfg = Debug|x64
+		{C236CBB5-49A9-514A-B239-75A495178105}.Debug|x64.Build.0 = Debug|x64
+		{C236CBB5-49A9-514A-B239-75A495178105}.Release|Win32.ActiveCfg = Release|Win32
+		{C236CBB5-49A9-514A-B239-75A495178105}.Release|Win32.Build.0 = Release|Win32
+		{C236CBB5-49A9-514A-B239-75A495178105}.Release|x64.ActiveCfg = Release|x64
+		{C236CBB5-49A9-514A-B239-75A495178105}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

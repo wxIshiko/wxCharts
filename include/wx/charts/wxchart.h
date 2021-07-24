@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -43,6 +43,7 @@ public:
     /// @return The options.
     virtual const wxChartCommonOptions& GetCommonOptions() const = 0;
 
+    wxSize GetBestSize() const;
     void SetSize(const wxSize &size);
     void Draw(wxGraphicsContext &gc);
     void ActivateElementsAt(const wxPoint &point);
@@ -52,6 +53,7 @@ protected:
     void DrawTooltips(wxGraphicsContext &gc);
 
 private:
+    virtual wxSize DoGetBestSize() const = 0;
     virtual void DoSetSize(const wxSize &size) = 0;
     virtual void DoFit() = 0;
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips) = 0;

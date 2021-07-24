@@ -170,6 +170,11 @@ void wxChartsGrid::Fit(wxGraphicsContext &gc)
     m_needsFit = false;
 }
 
+wxSize wxChartsGrid::GetBestSize() const
+{
+    return wxSize(10, 10);
+}
+
 void wxChartsGrid::Resize(const wxSize &size)
 {
     m_mapping.SetSize(size);

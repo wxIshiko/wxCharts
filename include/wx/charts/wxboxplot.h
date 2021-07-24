@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2021 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -81,6 +81,7 @@ private:
     static wxDouble GetMaxValue(const wxBoxPlotData &data);
     static wxDouble GetMedian(const wxVector<wxDouble> &vec, size_t begin, size_t end);
 
+    virtual wxSize DoGetBestSize() const;
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);

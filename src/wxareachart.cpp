@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -309,6 +309,12 @@ wxDouble wxAreaChart::GetMaxYValue(const wxVector<wxAreaChartDataset::ptr>& data
     }
 
     return result;
+}
+
+wxSize wxAreaChart::DoGetBestSize() const
+{
+    // TODO
+    return wxSize(200, 200);
 }
 
 void wxAreaChart::DoSetSize(const wxSize &size)

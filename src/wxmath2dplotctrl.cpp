@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2021 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -59,6 +59,11 @@ wxMath2DPlotCtrl::wxMath2DPlotCtrl(wxWindow *parent,
       m_math2dPlot(data, options, size)
 {
     CreateContextMenu();
+}
+
+const wxMath2DPlot& wxMath2DPlotCtrl::GetChart() const
+{
+    return m_math2dPlot;
 }
 
 wxMath2DPlot& wxMath2DPlotCtrl::GetChart()

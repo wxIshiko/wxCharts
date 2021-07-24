@@ -115,6 +115,8 @@ public:
 
     void Fit(wxGraphicsContext &gc);
 
+    wxSize GetBestSize() const;
+
     /// Resizes the grid.
     /// @param size The new size of the area where the grid
     /// is displayed.

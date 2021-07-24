@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -34,6 +34,11 @@ wxCombinationChartCtrl::wxCombinationChartCtrl(wxWindow *parent,
 void wxCombinationChartCtrl::AddColumnChart(const wxChartsCategoricalData &data)
 {
     m_combinationChart.AddColumnChart(data);
+}
+
+const wxCombinationChart& wxCombinationChartCtrl::GetChart() const
+{
+    return m_combinationChart;
 }
 
 wxCombinationChart& wxCombinationChartCtrl::GetChart()

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2021 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -229,6 +229,11 @@ wxDouble wxBoxPlot::GetMedian(const wxVector<wxDouble> &data,
     }
 }
 
+wxSize wxBoxPlot::DoGetBestSize() const
+{
+    // TODO
+    return wxSize(200, 200);
+}
 
 void wxBoxPlot::DoSetSize(const wxSize &size)
 {

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -28,6 +28,11 @@ wxChart::wxChart()
     : m_needsFit(true),
     m_activeElements(new wxVector<const wxChartsElement*>())
 {
+}
+
+wxSize wxChart::GetBestSize() const
+{
+    return DoGetBestSize();
 }
 
 void wxChart::SetSize(const wxSize &size)

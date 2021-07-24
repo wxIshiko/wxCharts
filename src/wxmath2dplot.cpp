@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2021 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -603,6 +603,12 @@ wxDouble wxMath2DPlot::GetMaxYValue(const wxVector<wxMath2DPlotDataset::ptr>& da
     }
 
     return result;
+}
+
+wxSize wxMath2DPlot::DoGetBestSize() const
+{
+    // TODO
+    return wxSize(200, 200);
 }
 
 void wxMath2DPlot::DoSetSize(const wxSize &size)
