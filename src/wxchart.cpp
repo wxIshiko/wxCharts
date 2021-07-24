@@ -30,6 +30,12 @@ wxChart::wxChart()
 {
 }
 
+void wxChart::SetTitle(const wxString& text, const wxChartsLabelOptions& options)
+{
+    m_title = new wxChartsLabel(text, options);
+    m_needsFit = true;
+}
+
 wxSize wxChart::GetBestSize() const
 {
     return DoGetBestSize();
@@ -43,6 +49,10 @@ void wxChart::SetSize(const wxSize &size)
 
 void wxChart::Draw(wxGraphicsContext &gc)
 {
+    if (m_title)
+    {
+        m_title->Draw(gc);
+    }
     DoDraw(gc, false);
 }
 

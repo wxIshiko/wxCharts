@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -30,6 +30,9 @@
 #include "wxboxplotoptions.h"
 #include "wxbubblechartoptions.h"
 #include "wxcandlestickchartoptions.h"
+#include "wxchartsdatasetid.h"
+#include "wxchartsdatasettheme.h"
+#include "wxchartslabeloptions.h"
 #include "wxcolumnchartoptions.h"
 #include "wxdoughnutchartoptions.h"
 #include "wxhistogramoptions.h"
@@ -43,8 +46,6 @@
 #include "wxstackedbarchartoptions.h"
 #include "wxstackedcolumnchartoptions.h"
 #include "wxtimeserieschart.h"
-#include "wxchartsdatasetid.h"
-#include "wxchartsdatasettheme.h"
 #include <wx/sharedptr.h>
 #include <map>
 
@@ -57,6 +58,8 @@ class wxChartsTheme
 {
 public:
     wxChartsTheme();
+
+    wxSharedPtr<wxChartsLabelOptions> GetTitleOptions();
 
     wxSharedPtr<wxAreaChartOptions> GetAreaChartOptions();
     wxSharedPtr<wxBarChartOptions> GetBarChartOptions();
@@ -81,6 +84,7 @@ public:
     void SetDatasetTheme(const wxChartsDatasetId& id, wxSharedPtr<wxChartsDatasetTheme> theme);
 
 private:
+    wxSharedPtr<wxChartsLabelOptions> m_titleOptions;
     wxSharedPtr<wxAreaChartOptions> m_areaChartOptions;
     wxSharedPtr<wxBarChartOptions> m_barChartOptions;
     wxSharedPtr<wxBoxPlotOptions> m_boxPlotOptions;

@@ -54,6 +54,8 @@ public:
         const wxSize &size = wxDefaultSize,
         long style = 0);
 
+    void SetTitle(const wxString& text, const wxChartsLabelOptions& options);
+
 private:
     virtual const wxChart& GetChart() const = 0;
     virtual wxChart& GetChart() = 0;

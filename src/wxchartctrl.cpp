@@ -34,6 +34,11 @@ wxChartCtrl::wxChartCtrl(wxWindow *parent,
     SetBackgroundColour(*wxWHITE);
 }
 
+void wxChartCtrl::SetTitle(const wxString& text, const wxChartsLabelOptions& options)
+{
+    GetChart().SetTitle(text, options);
+}
+
 wxSize wxChartCtrl::DoGetBestClientSize() const
 {
     return GetChart().GetBestSize();

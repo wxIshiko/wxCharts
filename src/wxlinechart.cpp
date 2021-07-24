@@ -43,7 +43,7 @@
 #include <sstream>
 
 wxLineChart::Point::Point(wxDouble value,
-                          const wxChartTooltipProvider::ptr tooltipProvider,
+                          const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
                           wxDouble x,
                           wxDouble y,
                           wxDouble radius,

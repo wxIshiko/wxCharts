@@ -27,6 +27,7 @@
 
 #include "wxchartcommonoptions.h"
 #include "wxchartselement.h"
+#include "wxchartslabel.h"
 #include <wx/sharedptr.h>
 
 /// \defgroup chartclasses
@@ -38,6 +39,8 @@ class wxChart
 {
 public:
     wxChart();
+
+    void SetTitle(const wxString& text, const wxChartsLabelOptions& options);
 
     /// Gets the common options for the chart.
     /// @return The options.
@@ -60,6 +63,7 @@ private:
     virtual wxSharedPtr<wxVector<const wxChartsElement*>> GetActiveElements(const wxPoint &point) = 0;
 
 private:
+    wxSharedPtr<wxChartsLabel> m_title;
     bool m_needsFit;
     wxSharedPtr<wxVector<const wxChartsElement*>> m_activeElements;
 };
