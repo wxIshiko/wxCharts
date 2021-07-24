@@ -66,21 +66,21 @@ WXCHARTS_ROOT ?= $(WXCHARTS)
 
 # ------------
 
-all: $(_builddir)WxCandlestick
+all: $(_builddir)wxcandlestickchart
 
-$(_builddir)WxCandlestick: $(_builddir)WxCandlestick_WxCandlestickApp.o $(_builddir)WxCandlestick_WxCandlestickFrame.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)WxCandlestick_WxCandlestickApp.o $(_builddir)WxCandlestick_WxCandlestickFrame.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
+$(_builddir)wxcandlestickchart: $(_builddir)wxcandlestickchart_WxCandlestickApp.o $(_builddir)wxcandlestickchart_WxCandlestickFrame.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxcandlestickchart_WxCandlestickApp.o $(_builddir)wxcandlestickchart_WxCandlestickFrame.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
 
-$(_builddir)WxCandlestick_WxCandlestickApp.o: src/WxCandlestickApp.cpp
+$(_builddir)wxcandlestickchart_WxCandlestickApp.o: src/WxCandlestickApp.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxCandlestickApp.cpp
 
-$(_builddir)WxCandlestick_WxCandlestickFrame.o: src/WxCandlestickFrame.cpp
+$(_builddir)wxcandlestickchart_WxCandlestickFrame.o: src/WxCandlestickFrame.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxCandlestickFrame.cpp
 
 clean:
 	rm -f $(_builddir)*.o
 	rm -f $(_builddir)*.d
-	rm -f $(_builddir)WxCandlestick
+	rm -f $(_builddir)wxcandlestickchart
 
 .PHONY: all clean
 
