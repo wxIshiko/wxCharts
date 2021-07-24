@@ -24,6 +24,14 @@
 #include "wxcharttooltip.h"
 #include "wxchartmultitooltip.h"
 
+wxChart::wxChart(const wxString& title, const wxSize& size)
+    : m_size(0, 0),
+    m_needsFit(true),
+    m_activeElements(new wxVector<const wxChartsElement*>())
+{
+    Create(title, size);
+}
+
 wxChart::wxChart()
     : m_size(0, 0),
     m_needsFit(true),
@@ -31,10 +39,7 @@ wxChart::wxChart()
 {
 }
 
-wxChart::wxChart(const wxString& title, const wxSize& size)
-    : m_size(size),
-    m_needsFit(true),
-    m_activeElements(new wxVector<const wxChartsElement*>())
+void wxChart::Create(const wxString& title, const wxSize& size)
 {
     if (!title.empty())
     {
