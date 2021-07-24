@@ -172,7 +172,23 @@ void wxChartsGrid::Fit(wxGraphicsContext &gc)
 
 wxSize wxChartsGrid::GetBestSize() const
 {
-    return wxSize(10, 10);
+    wxSize result(0, 0);
+
+    // TODO: this very crude, we need to take into account positions of the axes, labels and much more
+    wxSize xAxisSize = m_XAxis->GetBestSize();
+    result = xAxisSize;
+
+    wxSize yAxisSize = m_YAxis->GetBestSize();
+    if (yAxisSize.GetWidth() > result.GetWidth())
+    {
+        result.SetWidth(yAxisSize.GetWidth());
+    }
+    if (yAxisSize.GetHeight() > result.GetHeight())
+    {
+        result.SetHeight(yAxisSize.GetHeight());
+    }
+
+    return result;
 }
 
 void wxChartsGrid::Resize(const wxSize &size)
