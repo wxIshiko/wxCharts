@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2021 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -88,6 +88,7 @@ public:
     /// @param max maxaimum x,y coordinates
    void SetFixedAxesRange(const wxPoint2DDouble& min,const wxPoint2DDouble& max);
 private:
+    virtual const wxMath2DPlot& GetChart() const;
     virtual wxMath2DPlot& GetChart();
 
     void CreateContextMenu();
