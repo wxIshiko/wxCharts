@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,7 +26,8 @@
 #include "wxchartspresentationtheme.h"
 
 wxChartsTheme::wxChartsTheme()
-    : m_areaChartOptions(new wxAreaChartOptions()),
+    : m_titleOptions(new wxChartsLabelOptions(wxChartFontOptions(wxFONTFAMILY_SWISS, 12, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666), false, wxChartBackgroundOptions(*wxWHITE, 0))),
+    m_areaChartOptions(new wxAreaChartOptions()),
     m_barChartOptions(new wxBarChartOptions()),
     m_boxPlotOptions(new wxBoxPlotOptions()),
     m_bubbleChartOptions(new wxBubbleChartOptions()),
@@ -45,6 +46,11 @@ wxChartsTheme::wxChartsTheme()
     m_stackedColumnChartOptions(new wxStackedColumnChartOptions()),
     m_timeSeriesChartOptions(new wxTimeSeriesChartOptions())
 {
+}
+
+wxSharedPtr<wxChartsLabelOptions> wxChartsTheme::GetTitleOptions()
+{
+    return m_titleOptions;
 }
 
 wxSharedPtr<wxAreaChartOptions> wxChartsTheme::GetAreaChartOptions()

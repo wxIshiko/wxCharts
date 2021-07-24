@@ -43,7 +43,7 @@
 #include <sstream>
 
 wxLineChart::Point::Point(wxDouble value,
-                          const wxChartTooltipProvider::ptr tooltipProvider,
+                          const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
                           wxDouble x,
                           wxDouble y,
                           wxDouble radius,
@@ -123,20 +123,20 @@ void wxLineChart::PointSet::AppendPoint(wxSharedPtr<Point> point)
     m_points.push_back(point);
 }
 
-wxLineChart::wxLineChart(wxChartsCategoricalData::ptr &data,
-                         const wxChartsLineType &lineType,
-                         const wxSize &size)
-    : m_options(wxChartsDefaultTheme->GetLineChartOptions()),
+wxLineChart::wxLineChart(wxSharedPtr<wxChartsCategoricalData>& data,
+                         const wxChartsLineType& lineType,
+                         const wxSize& size)
+    : wxChart("", size), m_options(wxChartsDefaultTheme->GetLineChartOptions()),
     m_lineType(lineType)
 {
     Initialize(data, size);
 }
 
-wxLineChart::wxLineChart(wxChartsCategoricalData::ptr &data,
-                         const wxChartsLineType &lineType,
-                         const wxLineChartOptions &options,
-                         const wxSize &size)
-    : m_options(new wxLineChartOptions(options)),
+wxLineChart::wxLineChart(wxSharedPtr<wxChartsCategoricalData>& data,
+                         const wxChartsLineType& lineType,
+                         const wxLineChartOptions& options,
+                         const wxSize& size)
+    : wxChart("", size), m_options(new wxLineChartOptions(options)),
     m_lineType(lineType)
 {
     Initialize(data, size);
@@ -174,9 +174,12 @@ void wxLineChart::Initialize(wxSharedPtr<wxChartsCategoricalData>& data, const w
         dataset->GetData(dataVectors.back());
     }
 
+    wxPoint gridTopLeftCorner = GetClientPosition();
+
     m_grid.Create(
-        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
-        size,
+        // TODO: the parent class should handle the padding
+        wxPoint2DDouble(gridTopLeftCorner.x + m_options->GetPadding().GetLeft(), gridTopLeftCorner.y + m_options->GetPadding().GetTop()),
+        GetClientSize(),
         wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
         wxChartsNumericalAxis::make_shared("y", GetMinValue(dataVectors), GetMaxValue(dataVectors), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
