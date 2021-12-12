@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -28,6 +28,7 @@
 #include "wxcharttooltipoptions.h"
 #include "wxcharttooltipprovider.h"
 #include <wx/graphics.h>
+#include <wx/sharedptr.h>
 
 /// This class is used to display a tooltip.
 
@@ -44,7 +45,7 @@ public:
     wxChartTooltip(const wxPoint2DDouble &position,
         const wxString &text);
     wxChartTooltip(const wxPoint2DDouble &position,
-        const wxChartTooltipProvider::ptr provider);
+        const wxSharedPtr<wxChartTooltipProvider> provider);
 
     /// Draws the tooltip using the graphics context passed
     /// in as argument.
@@ -56,12 +57,12 @@ public:
     const wxPoint2DDouble& GetPosition() const;
     /// Gets the tooltip text provider.
     /// @return The tooltip provider.
-    const wxChartTooltipProvider::ptr& GetProvider() const;
+    const wxSharedPtr<wxChartTooltipProvider>& GetProvider() const;
 
 private:
     wxChartTooltipOptions m_options;
     wxPoint2DDouble m_position;
-    wxChartTooltipProvider::ptr m_provider;
+    wxSharedPtr<wxChartTooltipProvider> m_provider;
 };
 
 #endif

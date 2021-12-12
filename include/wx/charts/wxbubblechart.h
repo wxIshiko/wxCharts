@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -29,6 +29,7 @@
 #include "wxbubblechartoptions.h"
 #include "wxchartsgrid.h"
 #include "wxchartscircle.h"
+#include <wx/sharedptr.h>
 
 class wxDoubleTriplet
 {
@@ -136,7 +137,7 @@ private:
         typedef wxSharedPtr<Circle> ptr;
 
         Circle(wxDoubleTriplet value, wxDouble x, wxDouble y, wxDouble radius,
-            const wxChartTooltipProvider::ptr tooltipProvider,
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
             const wxChartsCircleOptions &options);
 
         wxDoubleTriplet GetValue() const;

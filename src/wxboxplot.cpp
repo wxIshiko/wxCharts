@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2021 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -53,7 +53,7 @@ const wxVector<wxVector<wxDouble>>& wxBoxPlotData::GetData() const
 
 wxBoxPlot::Box::Box(const wxVector<wxDouble> &data,
                     const wxColor &Color, const wxColor &upFillColor, unsigned int lineWidth,
-                    unsigned int rectangleWidth, const wxChartTooltipProvider::ptr tooltipProvider)
+                    unsigned int rectangleWidth, const wxSharedPtr<wxChartTooltipProvider> tooltipProvider)
     : wxChartsElement(tooltipProvider), m_data(data), m_lineColor(Color),
       m_upFillColor(upFillColor), m_width(lineWidth), m_rectangleWidth(rectangleWidth)
 {
@@ -170,7 +170,7 @@ void wxBoxPlot::Initialize(const wxBoxPlotData &data)
             << "\r\nMedian: " << GetMedian(cur, 0, len)
             << "\r\nQ1: " << GetMedian(cur, 0, len / 2)
             << "\r\nQ3: " << GetMedian(cur, len / 2, cur.size());
-        wxChartTooltipProvider::ptr tooltipProvider(
+        wxSharedPtr<wxChartTooltipProvider> tooltipProvider(
             new wxChartTooltipProviderStatic(data.GetLabels()[i], tooltip.str(), *wxWHITE)
         );
 

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -40,6 +40,7 @@
 #include "wxareachartoptions.h"
 #include "wxchartsgrid.h"
 #include "wxchartspoint.h"
+#include <wx/sharedptr.h>
 
 /// \ingroup dataclasses
 class wxAreaChartDataset
@@ -127,7 +128,7 @@ private:
         typedef wxSharedPtr<Point> ptr;
 
         Point(wxPoint2DDouble value,
-            const wxChartTooltipProvider::ptr tooltipProvider,
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
             wxDouble x, wxDouble y,wxDouble radius,
             unsigned int strokeWidth,const wxColor &fillColor,
             wxDouble hitDetectionRange);

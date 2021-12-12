@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -28,6 +28,7 @@
 #include "wxchartselement.h"
 #include "wxchartsrectangleoptions.h"
 #include <wx/graphics.h>
+#include <wx/sharedptr.h>
 
 /// This class is used to display a rectangle on a chart.
 
@@ -44,7 +45,7 @@ public:
     /// @param options The settings to be used for the
     /// rectangle.
     wxChartsRectangle(wxDouble x, wxDouble y, 
-        const wxChartTooltipProvider::ptr tooltipProvider,
+        const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
         const wxChartsRectangleOptions &options);
 
     virtual void Draw(wxGraphicsContext &gc) const;

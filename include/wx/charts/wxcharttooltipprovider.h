@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -27,15 +27,11 @@
 
 #include <wx/colour.h>
 #include <wx/string.h>
-#include <wx/sharedptr.h>
 
 /// Interface for the classes that are able to generate content for tooltips
 class wxChartTooltipProvider
 {
 public:
-    /// Smart pointer typedef.
-    typedef wxSharedPtr<wxChartTooltipProvider> ptr;
-
     /// Constructs a wxChartTooltipProvider instance.
     wxChartTooltipProvider();
     virtual ~wxChartTooltipProvider();

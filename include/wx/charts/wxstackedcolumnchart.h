@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -41,6 +41,7 @@
 #include "wxstackedcolumnchartoptions.h"
 #include "wxchartsgrid.h"
 #include "wxchartsrectangle.h"
+#include <wx/sharedptr.h>
 
 /// A stacked column chart.
 
@@ -68,7 +69,7 @@ private:
         typedef wxSharedPtr<Column> ptr;
 
         Column(wxDouble value,
-            const wxChartTooltipProvider::ptr tooltipProvider,
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
             wxDouble x, wxDouble y,
             const wxChartsPenOptions &penOptions,
             const wxChartsBrushOptions &brushOptions,

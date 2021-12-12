@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -28,6 +28,7 @@
 #include "wxchartselement.h"
 #include "wxchartspointoptions.h"
 #include <wx/graphics.h>
+#include <wx/sharedptr.h>
 
 /// This class is used to display a point on a chart.
 
@@ -44,11 +45,11 @@ public:
     /// @param options The settings to be used for the
     /// point.
     wxChartsPoint(wxDouble x, wxDouble y, wxDouble radius,
-        const wxChartTooltipProvider::ptr tooltipProvider,
+        const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
         const wxChartsPointOptions &options);
     wxChartsPoint(wxDouble x, wxDouble y, wxDouble radius,
         wxDouble hitDetectionRange,
-        const wxChartTooltipProvider::ptr tooltipProvider,
+        const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
         const wxChartsPointOptions &options);
 
     virtual void Draw(wxGraphicsContext &gc) const;
