@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -29,6 +29,7 @@
 #include "wxchartsohlcdata.h"
 #include "wxohlcchartoptions.h"
 #include "wxchartsgrid.h"
+#include <wx/sharedptr.h>
 
 /// Data for the wxOHLCChartCtrl control.
 
@@ -87,7 +88,7 @@ private:
         OHLCLines(const wxChartsOHLCData &data, unsigned int lineWidth,
             const wxColor& upLineColor, const wxColor& downLineColor,
             unsigned int openLineLength, unsigned int closeLineLength,
-            const wxChartTooltipProvider::ptr tooltipProvider);
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider);
 
         virtual void Draw(wxGraphicsContext &gc) const;
         virtual bool HitTest(const wxPoint &point) const;

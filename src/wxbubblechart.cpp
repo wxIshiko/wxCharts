@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -89,7 +89,7 @@ wxBubbleChart::Circle::Circle(wxDoubleTriplet value,
     wxDouble x,
     wxDouble y,
     wxDouble radius,
-    const wxChartTooltipProvider::ptr tooltipProvider,
+    const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
     const wxChartsCircleOptions &options)
     : wxChartsCircle(x, y, radius, tooltipProvider, options), m_value(value)
 {
@@ -174,7 +174,7 @@ void wxBubbleChart::Initialize(const wxBubbleChartData &data)
         {
             std::stringstream tooltip;
             tooltip << "(" << datasetData[j].m_x << "," << datasetData[j].m_y << ")";
-            wxChartTooltipProvider::ptr tooltipProvider(
+            wxSharedPtr<wxChartTooltipProvider> tooltipProvider(
                 new wxChartTooltipProviderStatic("", tooltip.str(), datasets[i]->GetFillColor())
                 );
 
