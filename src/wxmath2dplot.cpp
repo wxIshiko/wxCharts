@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2021 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -102,7 +102,7 @@ const wxVector<wxMath2DPlotDataset::ptr>& wxMath2DPlotData::GetDatasets() const
 
 wxMath2DPlot::Point::Point(
     wxPoint2DDouble value,
-    const wxChartTooltipProvider::ptr tooltipProvider,
+    const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
     wxDouble x,
     wxDouble y,
     wxDouble radius,
@@ -304,7 +304,7 @@ bool wxMath2DPlot::UpdateData(std::size_t index,const wxVector<wxPoint2DDouble> 
     {
         std::stringstream tooltip;
         tooltip << "(" << transformX(points[j].m_x) << "," << transformY(points[j].m_y) << ")";
-        wxChartTooltipProvider::ptr tooltipProvider(
+        wxSharedPtr<wxChartTooltipProvider> tooltipProvider(
             new wxChartTooltipProviderStatic("", tooltip.str(), m_datasets[index]->GetLineColor())
         );
 
@@ -334,7 +334,7 @@ bool wxMath2DPlot::AddData(std::size_t index,const wxVector<wxPoint2DDouble> &po
         {
         std::stringstream tooltip;
         tooltip << "(" << transformX(points[j].m_x) << "," << transformY(points[j].m_y) << ")";
-        wxChartTooltipProvider::ptr tooltipProvider(
+        wxSharedPtr<wxChartTooltipProvider> tooltipProvider(
             new wxChartTooltipProviderStatic("", tooltip.str(), m_datasets[index]->GetLineColor())
             );
 
@@ -363,7 +363,7 @@ void wxMath2DPlot::AddDataset(const wxMath2DPlotDataset::ptr &newset,bool is_new
         {
         std::stringstream tooltip;
         tooltip << "(" << transformX(datasetData[j].m_x) << "," << transformY(datasetData[j].m_y) << ")";
-        wxChartTooltipProvider::ptr tooltipProvider(
+        wxSharedPtr<wxChartTooltipProvider> tooltipProvider(
             new wxChartTooltipProviderStatic("", tooltip.str(), newset->GetLineColor())
             );
 

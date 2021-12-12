@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -40,7 +40,7 @@
 #include <sstream>
 
 wxColumnChart::Column::Column(wxDouble value,
-                              const wxChartTooltipProvider::ptr tooltipProvider,
+                              const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
                               wxDouble x,
                               wxDouble y,
                               const wxChartsPenOptions &penOptions,
@@ -95,7 +95,7 @@ wxColumnChart::wxColumnChart(wxChartsCategoricalData::ptr &data,
         {
             std::stringstream tooltip;
             tooltip << datasetData[j];
-            wxChartTooltipProvider::ptr tooltipProvider(
+            wxSharedPtr<wxChartTooltipProvider> tooltipProvider(
                 new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), datasetOptions->GetBrushOptions().GetColor())
                 );
 

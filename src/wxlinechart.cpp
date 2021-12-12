@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -43,7 +43,7 @@
 #include <sstream>
 
 wxLineChart::Point::Point(wxDouble value,
-                          const wxChartTooltipProvider::ptr tooltipProvider,
+                          const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
                           wxDouble x,
                           wxDouble y,
                           wxDouble radius,
@@ -72,14 +72,14 @@ wxDouble wxLineChart::Point::GetValue() const
 }
 
 wxLineChart::Dataset::Dataset(bool showDots,
-    bool showLine,
-    const wxColor &lineColor,
-    bool fill,
-    const wxColor &fillColor,
-    const wxChartsLineType &lineType)
-    : m_showDots(showDots), m_showLine(showLine),
-    m_lineColor(lineColor), m_fill(fill),
-    m_fillColor(fillColor), m_type(lineType)
+                              bool showLine,
+                              const wxColor &lineColor,
+                              bool fill,
+                              const wxColor &fillColor,
+                              const wxChartsLineType &lineType)
+                              : m_showDots(showDots), m_showLine(showLine),
+                              m_lineColor(lineColor), m_fill(fill),
+                              m_fillColor(fillColor), m_type(lineType)
 {
 }
 
@@ -197,7 +197,7 @@ void wxLineChart::Initialize(wxChartsCategoricalData::ptr &data)
         {
             std::stringstream tooltip;
             tooltip << datasetData[j];
-            wxChartTooltipProvider::ptr tooltipProvider(
+            wxSharedPtr<wxChartTooltipProvider> tooltipProvider(
                 new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), datasetOptions->GetLineColor())
                 );
 
