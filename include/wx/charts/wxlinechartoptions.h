@@ -42,7 +42,7 @@ public:
     const wxChartsGridOptions& GetGridOptions() const;
     /// Gets the options for the grid.
     /// @return The grid options.
-    wxChartsGridOptions& GetGridOptions();
+	wxChartsGridOptions& GetGridOptions();
 
     /// Gets the hit detection range. When the
     /// distance between the X coordinate of 

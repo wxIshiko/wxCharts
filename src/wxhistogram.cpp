@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2021 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -134,7 +134,7 @@ wxHistogram::wxHistogram(const wxHistogramData &data,
                          const wxSize &size)
     : m_options(wxChartsDefaultTheme->GetHistogramOptions()),
     m_grid(
-          wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+          wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
           size,0,0,0,0, m_options->GetGridOptions())
 {
     Initialize(data);
@@ -145,7 +145,7 @@ wxHistogram::wxHistogram(const wxHistogramData &data,
                          const wxSize &size)
     : m_options(options),
       m_grid(
-          wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+          wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
           size,0,0,0,0, m_options->GetGridOptions())
 {
     Initialize(data);
@@ -195,6 +195,12 @@ void wxHistogram::Save(const wxString &filename,
         bmp.SaveFile(filename, type);
         delete gc;
     }
+}
+
+wxSize wxHistogram::DoGetBestSize() const
+{
+    // TODO
+    return wxSize(200, 200);
 }
 
 void wxHistogram::DoSetSize(const wxSize &size)

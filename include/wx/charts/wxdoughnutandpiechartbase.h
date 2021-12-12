@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -80,6 +80,7 @@ public:
     void SetData(const std::map<wxString, wxChartSliceData> &data);
 
 private:
+    virtual wxSize DoGetBestSize() const;
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
@@ -109,7 +110,7 @@ private:
     };
 
 private:
-    wxPieChartData::ptr m_data;
+    wxSharedPtr<wxPieChartData> m_data;
     wxSize m_size;
     wxVector<SliceArc::ptr> m_slices;
     wxDouble m_total;

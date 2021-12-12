@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -45,6 +45,11 @@ wxCandlestickChartCtrl::wxCandlestickChartCtrl(wxWindow *parent,
     : wxChartCtrl(parent, id, pos, size, style),
     m_candlestickChart(data, options, size)
 {
+}
+
+const wxCandlestickChart& wxCandlestickChartCtrl::GetChart() const
+{
+    return m_candlestickChart;
 }
 
 wxCandlestickChart& wxCandlestickChartCtrl::GetChart()

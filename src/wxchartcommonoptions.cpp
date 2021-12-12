@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -23,8 +23,16 @@
 #include "wxchartcommonoptions.h"
 
 wxChartCommonOptions::wxChartCommonOptions()
-    : m_responsive(true), m_showTooltips(true)
+    : m_titleOptions(wxChartFontOptions(wxFONTFAMILY_SWISS, 12,
+        wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, 0x666666), false,
+        wxChartBackgroundOptions(*wxWHITE, 0)),
+    m_responsive(true), m_showTooltips(true)
 {
+}
+
+const wxChartsLabelOptions& wxChartCommonOptions::GetTitleOptions() const
+{
+    return m_titleOptions;
 }
 
 bool wxChartCommonOptions::IsResponsive() const

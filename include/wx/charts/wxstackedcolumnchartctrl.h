@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -63,6 +63,7 @@ public:
         long style = 0);
 
 private:
+    virtual const wxStackedColumnChart& GetChart() const;
     virtual wxStackedColumnChart& GetChart();
 
 private:

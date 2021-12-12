@@ -130,7 +130,7 @@ wxBubbleChart::wxBubbleChart(const wxBubbleChartData &data,
                              const wxSize &size)
     : m_options(wxChartsDefaultTheme->GetBubbleChartOptions()),
     m_grid(
-        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+        wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
@@ -146,7 +146,7 @@ wxBubbleChart::wxBubbleChart(const wxBubbleChartData &data,
                              const wxSize &size)
     : m_options(options),
     m_grid(
-        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+        wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
@@ -382,6 +382,12 @@ void wxBubbleChart::DoDraw(wxGraphicsContext &gc,
     {
         DrawTooltips(gc);
     }
+}
+
+wxSize wxBubbleChart::DoGetBestSize() const
+{
+    // TODO
+    return wxSize(200, 200);
 }
 
 void wxBubbleChart::DoSetSize(const wxSize &size)

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -30,6 +30,9 @@
 #include "wxboxplotoptions.h"
 #include "wxbubblechartoptions.h"
 #include "wxcandlestickchartoptions.h"
+#include "wxchartsdatasetid.h"
+#include "wxchartsdatasettheme.h"
+#include "wxchartslabeloptions.h"
 #include "wxcolumnchartoptions.h"
 #include "wxdoughnutchartoptions.h"
 #include "wxhistogramoptions.h"
@@ -42,9 +45,7 @@
 #include "wxscatterplotoptions.h"
 #include "wxstackedbarchartoptions.h"
 #include "wxstackedcolumnchartoptions.h"
-#include "wxtimeserieschart.h"
-#include "wxchartsdatasetid.h"
-#include "wxchartsdatasettheme.h"
+#include "wxtimeserieschartoptions.h"
 #include <wx/sharedptr.h>
 #include <map>
 
@@ -66,7 +67,7 @@ public:
     wxSharedPtr<wxColumnChartOptions> GetColumnChartOptions();
     wxSharedPtr<wxDoughnutChartOptions> GetDoughnutChartOptions();
     wxSharedPtr<wxHistogramOptions> GetHistogramOptions();
-    wxSharedPtr<wxLineChartOptions> GetLineChartOptions();
+    const wxSharedPtr<wxLineChartOptions> GetLineChartOptions() const;
     wxSharedPtr<wxMath2DPlotOptions> GetMath2DPlotOptions();
     wxSharedPtr<wxOHLCChartOptions> GetOHLCChartOptions();
     wxSharedPtr<wxPieChartOptions> GetPieChartOptions();
@@ -102,6 +103,7 @@ private:
     std::map<wxChartsDatasetId, wxSharedPtr<wxChartsDatasetTheme>> m_datasetThemes;
 };
 
+// TODO : remove this global variable
 extern wxSharedPtr<wxChartsTheme> wxChartsDefaultTheme;
 
 #endif

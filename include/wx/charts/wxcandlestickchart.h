@@ -92,6 +92,7 @@ private:
     static wxDouble GetMinValue(const wxCandlestickChartData &data);
     static wxDouble GetMaxValue(const wxCandlestickChartData &data);
 
+    virtual wxSize DoGetBestSize() const;
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);

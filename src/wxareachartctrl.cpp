@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -49,16 +49,21 @@ wxAreaChartCtrl::wxAreaChartCtrl(wxWindow *parent,
 }
 
 wxAreaChartCtrl::wxAreaChartCtrl(wxWindow *parent,
-								 wxWindowID id,
-								 const wxAreaChartData &data,
-								 wxAreaChartOptions::ptr &options,
-								 const wxPoint &pos,
-								 const wxSize &size,
-								 long style)
+                                 wxWindowID id,
+                                 const wxAreaChartData &data,
+                                 wxAreaChartOptions::ptr &options,
+                                 const wxPoint &pos,
+                                 const wxSize &size,
+                                 long style)
     : wxChartCtrl(parent, id, pos, size, style),
     m_areaChart(data, options, size)
 {
     CreateContextMenu();
+}
+
+const wxAreaChart& wxAreaChartCtrl::GetChart() const
+{
+    return m_areaChart;
 }
 
 wxAreaChart& wxAreaChartCtrl::GetChart()

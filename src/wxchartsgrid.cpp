@@ -39,50 +39,50 @@
 static const wxDouble MinDistance = 1.0e-3;
 static const wxDouble MaxDistance = 1.0e3;
 
-wxChartsGrid::wxChartsGrid()
-{
-}
-
-wxChartsGrid::wxChartsGrid(const wxPoint2DDouble &position,
+wxChartsGrid::wxChartsGrid(const wxPoint& pos,
                            const wxSize &size,
                            wxChartsAxis::ptr xAxis,
                            wxChartsAxis::ptr yAxis,
                            const wxChartsGridOptions& options)
-    : m_options(options), m_position(position),
+    : m_options(options), m_position(pos),
     m_XAxis(xAxis), m_YAxis(yAxis),
-    m_mapping(size, m_XAxis, m_YAxis),
+    m_mapping(pos, size, m_XAxis, m_YAxis),
     m_needsFit(true)
 {
 }
 
-wxChartsGrid::wxChartsGrid(const wxPoint2DDouble &position,
+wxChartsGrid::wxChartsGrid(const wxPoint& pos,
                            const wxSize &size,
                            wxDouble minXValue,
                            wxDouble maxXValue,
                            wxDouble minYValue,
                            wxDouble maxYValue,
                            const wxChartsGridOptions& options)
-    : m_options(options), m_position(position),
+    : m_options(options), m_position(pos),
       m_XAxis(new wxChartsNumericalAxis("x", minXValue, maxXValue, options.GetXAxisOptions())),
       m_YAxis(new wxChartsNumericalAxis("y", minYValue, maxYValue, options.GetYAxisOptions())),
-      m_mapping(size, m_XAxis, m_YAxis),
+      m_mapping(pos, size, m_XAxis, m_YAxis),
       m_needsFit(true),
       m_origAxisLimits(minXValue,maxXValue,minYValue,maxYValue),
       m_curAxisLimits(minXValue,maxXValue,minYValue,maxYValue)
 {
 }
 
-void wxChartsGrid::Create(const wxPoint2DDouble& position,
+wxChartsGrid::wxChartsGrid()
+{
+}
+
+void wxChartsGrid::Create(const wxPoint& pos,
                           const wxSize& size,
                           wxSharedPtr<wxChartsAxis> xAxis,
                           wxSharedPtr<wxChartsAxis> yAxis,
                           const wxChartsGridOptions& options)
 {
     m_options = options;
-    m_position = position;
+    m_position = pos;
     m_XAxis = xAxis;
     m_YAxis = yAxis;
-    m_mapping.Create(size, m_XAxis, m_YAxis);
+    m_mapping.Create(pos, size, m_XAxis, m_YAxis);
     m_needsFit = true;
 }
 
@@ -139,12 +139,8 @@ void wxChartsGrid::Fit(wxGraphicsContext &gc)
         return;
     }
 
-    wxDouble startPoint = m_mapping.GetSize().GetHeight() - (m_YAxis->GetOptions().GetFontOptions().GetSize() + 15) - 5; // -5 to pad labels
-    wxDouble endPoint = m_YAxis->GetOptions().GetFontOptions().GetSize();
-
-    // Apply padding settings to the start and end point.
-    //this.startPoint += this.padding;
-    //this.endPoint -= this.padding;
+    wxDouble startPoint = m_position.y + m_mapping.GetSize().GetHeight() - (m_YAxis->GetOptions().GetFontOptions().GetSize() + 15) - 5; // -5 to pad labels
+    wxDouble endPoint = m_position.y + m_YAxis->GetOptions().GetFontOptions().GetSize();
 
     m_YAxis->UpdateLabelSizes(gc);
     m_XAxis->UpdateLabelSizes(gc);
@@ -168,6 +164,27 @@ void wxChartsGrid::Fit(wxGraphicsContext &gc)
     m_YAxis->UpdateLabelPositions();
 
     m_needsFit = false;
+}
+
+wxSize wxChartsGrid::GetBestSize() const
+{
+    wxSize result(0, 0);
+
+    // TODO: this very crude, we need to take into account positions of the axes, labels and much more
+    wxSize xAxisSize = m_XAxis->GetBestSize();
+    result = xAxisSize;
+
+    wxSize yAxisSize = m_YAxis->GetBestSize();
+    if (yAxisSize.GetWidth() > result.GetWidth())
+    {
+        result.SetWidth(yAxisSize.GetWidth());
+    }
+    if (yAxisSize.GetHeight() > result.GetHeight())
+    {
+        result.SetHeight(yAxisSize.GetHeight());
+    }
+
+    return result;
 }
 
 void wxChartsGrid::Resize(const wxSize &size)
@@ -253,7 +270,9 @@ void wxChartsGrid::UpdateAxisLimit(const std::string& axisId, wxDouble min, wxDo
         m_YAxis = new wxChartsNumericalAxis(axisId, m_curAxisLimits.MinY,
             m_curAxisLimits.MaxY, m_options.GetYAxisOptions());
     }
-    m_mapping = wxChartsGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
+    // TODO: need a way to avoid recreating the mapping
+    // here, just update it
+    m_mapping = wxChartsGridMapping(m_position, m_mapping.GetSize(), m_XAxis, m_YAxis);
     m_needsFit = true;
 }
 
@@ -264,7 +283,9 @@ void wxChartsGrid::ChangeLabels(const std::string& axisId, const wxVector<wxStri
     else if(axisId == "y")
         m_YAxis = wxChartsCategoricalAxis::make_shared(axisId,labels,options);
 
-    m_mapping = wxChartsGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
+    // TODO: need a way to avoid recreating the mapping
+    // here, just update it
+    m_mapping = wxChartsGridMapping(m_position, m_mapping.GetSize(), m_XAxis, m_YAxis);
     m_needsFit = true;
 }
 
@@ -274,7 +295,9 @@ void wxChartsGrid::Update()
         m_curAxisLimits.MaxX,m_options.GetXAxisOptions());
     m_YAxis = new wxChartsNumericalAxis("y", m_curAxisLimits.MinY,
         m_curAxisLimits.MaxY, m_options.GetYAxisOptions());
-    m_mapping = wxChartsGridMapping(m_mapping.GetSize(), m_XAxis, m_YAxis);
+    // TODO: need a way to avoid recreating the mapping
+    // here, just update it
+    m_mapping = wxChartsGridMapping(m_position, m_mapping.GetSize(), m_XAxis, m_YAxis);
     m_needsFit = true;
 }
 

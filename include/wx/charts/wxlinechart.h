@@ -41,6 +41,7 @@
 #include "wxlinechartoptions.h"
 #include "wxchartsgrid.h"
 #include "wxchartspoint.h"
+#include "wxchartstheme.h"
 #include <wx/sharedptr.h>
 
 enum wxChartsLineType
@@ -55,10 +56,12 @@ enum wxChartsLineType
 class wxLineChart : public wxChart
 {
 public:
-    wxLineChart(wxChartsCategoricalData::ptr &data, const wxChartsLineType &lineType,
-        const wxSize &size);
-    wxLineChart(wxChartsCategoricalData::ptr &data, const wxChartsLineType &lineType,
-        const wxLineChartOptions &options, const wxSize &size);
+    wxLineChart(const wxSize& size, const wxString& title,
+        wxSharedPtr<wxChartsCategoricalData>& data,
+        const wxChartsLineType& lineType, const wxChartsTheme& theme);
+    wxLineChart(const wxSize& size, const wxString& title, 
+        wxSharedPtr<wxChartsCategoricalData>& data,
+        const wxChartsLineType& lineType, const wxLineChartOptions& options);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
@@ -66,10 +69,11 @@ public:
         const wxSize &size, const wxColor &backgroundColor);
 
 private:
-    void Initialize(wxChartsCategoricalData::ptr &data);
-    static wxDouble GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
-    static wxDouble GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
+    void Initialize(wxSharedPtr<wxChartsCategoricalData>& data, const wxSize& size);
+    static wxDouble GetMinValue(const wxVector<wxVector<wxDouble>>& datasets);
+    static wxDouble GetMaxValue(const wxVector<wxVector<wxDouble>>& datasets);
 
+    virtual wxSize DoGetBestSize() const;
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
@@ -96,12 +100,10 @@ private:
         wxDouble m_hitDetectionRange;
     };
 
-    class Dataset
+    class PointSet
     {
     public:
-        typedef wxSharedPtr<Dataset> ptr;
-
-        Dataset(bool showDots, bool showLine, const wxColor &lineColor,
+        PointSet(bool showDots, bool showLine, const wxColor &lineColor,
                 bool fill, const wxColor &fillColor,
                 const wxChartsLineType &lineType);
 
@@ -128,7 +130,7 @@ private:
 private:
     wxSharedPtr<wxLineChartOptions> m_options;
     wxChartsGrid m_grid;
-    wxVector<Dataset::ptr> m_datasets;
+    wxVector<wxSharedPtr<PointSet>> m_datasets;
     wxChartsLineType m_lineType;
 };
 

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -45,6 +45,11 @@ wxColumnChartCtrl::wxColumnChartCtrl(wxWindow *parent,
     m_columnChart(data, size)
 {
     SetMinSize(wxSize(300, 150));
+}
+
+const wxColumnChart& wxColumnChartCtrl::GetChart() const
+{
+    return m_columnChart;
 }
 
 wxColumnChart& wxColumnChartCtrl::GetChart()

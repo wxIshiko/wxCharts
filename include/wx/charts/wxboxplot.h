@@ -82,6 +82,7 @@ private:
     static wxDouble GetMaxValue(const wxBoxPlotData &data);
     static wxDouble GetMedian(const wxVector<wxDouble> &vec, size_t begin, size_t end);
 
+    virtual wxSize DoGetBestSize() const;
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);

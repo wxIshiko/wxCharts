@@ -49,14 +49,15 @@
 class wxStackedColumnChart : public wxChart
 {
 public:
-    wxStackedColumnChart(wxChartsCategoricalData::ptr &data, const wxSize &size);
+    wxStackedColumnChart(wxSharedPtr<wxChartsCategoricalData> &data, const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
-    static wxDouble GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
-    static wxDouble GetCumulativeMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
+    static wxDouble GetCumulativeMinValue(const wxVector<wxVector<wxDouble>>& datasets);
+    static wxDouble GetCumulativeMaxValue(const wxVector<wxVector<wxDouble>>& datasets);
 
+    virtual wxSize DoGetBestSize() const;
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
@@ -66,8 +67,6 @@ private:
     class Column : public wxChartsRectangle
     {
     public:
-        typedef wxSharedPtr<Column> ptr;
-
         Column(wxDouble value,
             const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
             wxDouble x, wxDouble y,
@@ -83,24 +82,22 @@ private:
         wxDouble m_value;
     };
 
-    class Dataset
+    class ColumnSet
     {
     public:
-        typedef wxSharedPtr<Dataset> ptr;
+        ColumnSet();
 
-        Dataset();
-
-        const wxVector<Column::ptr>& GetColumns() const;
-        void AppendColumn(Column::ptr column);
+        const wxVector<wxSharedPtr<Column>>& GetColumns() const;
+        void AppendColumn(wxSharedPtr<Column> column);
 
     private:
-        wxVector<Column::ptr> m_columns;
+        wxVector<wxSharedPtr<Column>> m_columns;
     };
 
 private:
     wxSharedPtr<wxStackedColumnChartOptions> m_options;
     wxChartsGrid m_grid;
-    wxVector<Dataset::ptr> m_datasets;
+    wxVector<wxSharedPtr<ColumnSet>> m_datasets;
 };
 
 #endif

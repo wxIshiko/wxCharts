@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -38,6 +38,7 @@ public:
     void AddColumnChart(const wxChartsCategoricalData &data);
 
 private:
+    virtual const wxCombinationChart& GetChart() const;
     virtual wxCombinationChart& GetChart();
 
 private:

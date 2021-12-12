@@ -51,11 +51,19 @@ public:
     /// @retval true A contextual menu with a Save As item is provided.
     /// @retval false No contextual menu is provided.
     bool IsSaveAsMenuEnabled() const;
+    void SetSaveAsMenuEnabled(bool enable);
+
+    /// Whether moving of the chart is allowed
+    /// @retval true Moving is enabled.
+    /// @retval false Moving is disabled.
+    bool IsMovingEnabled() const;
+    void SetMovingEnabled(bool enable);
 
 private:
     wxChartCommonOptions m_commonOptions;
     wxChartPadding m_padding;
-    bool m_enableSaveAsMenu;
+	bool m_enableSaveAsMenu;
+	bool m_enableMoving;
 };
 
 #endif

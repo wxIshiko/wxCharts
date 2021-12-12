@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -87,7 +87,7 @@ wxSharedPtr<wxHistogramOptions> wxChartsTheme::GetHistogramOptions()
     return m_histogramOptions;
 }
 
-wxSharedPtr<wxLineChartOptions> wxChartsTheme::GetLineChartOptions()
+const wxSharedPtr<wxLineChartOptions> wxChartsTheme::GetLineChartOptions() const
 {
     return m_lineChartOptions;
 }

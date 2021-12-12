@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -31,7 +31,7 @@ wxCombinationChart::wxCombinationChart()
 void wxCombinationChart::AddColumnChart(const wxChartsCategoricalData &data)
 {
     m_grid = new wxChartsGrid(
-        wxPoint2DDouble(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
+        wxPoint(m_options.GetPadding().GetLeft(), m_options.GetPadding().GetRight()),
         wxSize(100, 100),
         wxChartsCategoricalAxis::make_shared("x", data.GetCategories(), wxChartsGridOptions().GetXAxisOptions()),
         wxChartsNumericalAxis::make_shared("y", 0, 200, wxChartsGridOptions().GetYAxisOptions()),
@@ -42,6 +42,12 @@ void wxCombinationChart::AddColumnChart(const wxChartsCategoricalData &data)
 const wxChartCommonOptions& wxCombinationChart::GetCommonOptions() const
 {
     return m_options.GetCommonOptions();
+}
+
+wxSize wxCombinationChart::DoGetBestSize() const
+{
+    // TODO
+    return wxSize(200, 200);
 }
 
 void wxCombinationChart::DoSetSize(const wxSize &size)
