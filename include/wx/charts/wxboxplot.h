@@ -28,6 +28,7 @@
 #include "wxchart.h"
 #include "wxboxplotoptions.h"
 #include "wxchartsgrid.h"
+#include <wx/sharedptr.h>
 
 /// Data for the wxBoxPlotCtrl control.
 
@@ -95,7 +96,7 @@ private:
 
         Box(const wxVector<wxDouble> &data, const wxColor &Color,const wxColor &upFillColor,
             unsigned int lineWidth, unsigned int rectangleWidth,
-            const wxChartTooltipProvider::ptr tooltipProvider);
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider);
 
         virtual void Draw(wxGraphicsContext &gc) const;
         virtual bool HitTest(const wxPoint &point) const;

@@ -42,6 +42,7 @@
 #include "wxchartsgrid.h"
 #include "wxchartspoint.h"
 #include "wxchartstheme.h"
+#include <wx/sharedptr.h>
 
 enum wxChartsLineType
 {
@@ -85,7 +86,7 @@ private:
         typedef wxSharedPtr<Point> ptr;
 
         Point(wxDouble value,
-            const wxChartTooltipProvider::ptr tooltipProvider,
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
             wxDouble x, wxDouble y, wxDouble radius,
             unsigned int strokeWidth, const wxColor &strokeColor,
             const wxColor &fillColor, wxDouble hitDetectionRange);

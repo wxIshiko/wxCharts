@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2016-2021 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -40,6 +40,7 @@
 #include "wxmath2dplotoptions.h"
 #include "wxchartsgrid.h"
 #include "wxchartspoint.h"
+#include <wx/sharedptr.h>
 
 enum wxChartType
 {
@@ -164,7 +165,7 @@ private:
         typedef wxSharedPtr<Point> ptr;
 
         Point(wxPoint2DDouble value,
-            const wxChartTooltipProvider::ptr tooltipProvider,
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
             wxDouble x, wxDouble y,wxDouble radius,
             unsigned int strokeWidth, const wxColor &strokeColor,
             const wxColor &fillColor, wxDouble hitDetectionRange);

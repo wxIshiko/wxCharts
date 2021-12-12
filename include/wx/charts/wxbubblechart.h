@@ -29,6 +29,7 @@
 #include "wxbubblechartoptions.h"
 #include "wxchartsgrid.h"
 #include "wxchartscircle.h"
+#include <wx/sharedptr.h>
 
 class wxDoubleTriplet
 {
@@ -137,7 +138,7 @@ private:
         typedef wxSharedPtr<Circle> ptr;
 
         Circle(wxDoubleTriplet value, wxDouble x, wxDouble y, wxDouble radius,
-            const wxChartTooltipProvider::ptr tooltipProvider,
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
             const wxChartsCircleOptions &options);
 
         wxDoubleTriplet GetValue() const;

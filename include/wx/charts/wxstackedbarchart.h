@@ -30,6 +30,7 @@
 #include "wxstackedbarchartoptions.h"
 #include "wxchartsgrid.h"
 #include "wxchartsrectangle.h"
+#include <wx/sharedptr.h>
 
 /// A stacked bar chart.
 

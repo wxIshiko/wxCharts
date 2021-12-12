@@ -64,7 +64,7 @@ const wxVector<wxAreaChartDataset::ptr>& wxAreaChartData::GetDatasets() const
 
 wxAreaChart::Point::Point(
     wxPoint2DDouble value,
-    const wxChartTooltipProvider::ptr tooltipProvider,
+    const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
     wxDouble x,
     wxDouble y,
     wxDouble radius,
@@ -195,7 +195,7 @@ void wxAreaChart::Initialize(const wxAreaChartData &data)
         {
             std::stringstream tooltip;
             tooltip << "(" << datasetData[j].m_x << "," << datasetData[j].m_y << ")";
-            wxChartTooltipProvider::ptr tooltipProvider(
+            wxSharedPtr<wxChartTooltipProvider> tooltipProvider(
                 new wxChartTooltipProviderStatic("", tooltip.str(), datasetOptions->GetLineColor())
                 );
 

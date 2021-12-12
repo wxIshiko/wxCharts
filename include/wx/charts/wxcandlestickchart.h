@@ -29,6 +29,7 @@
 #include "wxchartsohlcdata.h"
 #include "wxcandlestickchartoptions.h"
 #include "wxchartsgrid.h"
+#include <wx/sharedptr.h>
 
 /// Data for the wxCandlestickChartCtrl control.
 
@@ -105,7 +106,7 @@ private:
 
         Candlestick(const wxChartsOHLCData &data, const wxColor &lineColor, unsigned int lineWidth,
             const wxColor &upFillColor, const wxColor &downFillColor, unsigned int rectangleWidth,
-            const wxChartTooltipProvider::ptr tooltipProvider);
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider);
 
         virtual void Draw(wxGraphicsContext &gc) const;
         virtual bool HitTest(const wxPoint &point) const;

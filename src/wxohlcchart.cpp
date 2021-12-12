@@ -31,7 +31,7 @@
 #include <sstream>
 
 wxOHLCChartData::wxOHLCChartData(const wxVector<wxString> &labels,
-    const wxVector<wxChartsOHLCData> &data)
+                                 const wxVector<wxChartsOHLCData> &data)
     : m_labels(labels), m_lineWidth(3),
     m_upLineColor(0, 185, 0), m_downLineColor(200, 0, 0),
     m_openLineLength(10), m_closeLineLength(10), m_data(data)
@@ -79,7 +79,7 @@ wxOHLCChart::OHLCLines::OHLCLines(const wxChartsOHLCData &data,
                                   const wxColor& downLineColor,
                                   unsigned int openLineLength,
                                   unsigned int closeLineLength,
-                                  const wxChartTooltipProvider::ptr tooltipProvider)
+                                  const wxSharedPtr<wxChartTooltipProvider> tooltipProvider)
     : wxChartsElement(tooltipProvider), m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
     m_openPoint(0, 0), m_closePoint(0, 0), m_lineWidth(lineWidth),
     m_upLineColor(upLineColor), m_downLineColor(downLineColor),
@@ -151,7 +151,7 @@ wxOHLCChart::wxOHLCChart(const wxOHLCChartData &data,
             << "\r\nH: " << data.GetData()[i].GetHighValue()
             << "\r\nL: " << data.GetData()[i].GetLowValue()
             << "\r\nC: " << data.GetData()[i].GetCloseValue();
-        wxChartTooltipProvider::ptr tooltipProvider(
+        wxSharedPtr<wxChartTooltipProvider> tooltipProvider(
             new wxChartTooltipProviderStatic(data.GetLabels()[i], tooltip.str(), *wxWHITE)
             );
 

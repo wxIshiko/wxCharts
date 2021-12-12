@@ -29,6 +29,7 @@
 #include "wxchartsohlcdata.h"
 #include "wxohlcchartoptions.h"
 #include "wxchartsgrid.h"
+#include <wx/sharedptr.h>
 
 /// Data for the wxOHLCChartCtrl control.
 
@@ -88,7 +89,7 @@ private:
         OHLCLines(const wxChartsOHLCData &data, unsigned int lineWidth,
             const wxColor& upLineColor, const wxColor& downLineColor,
             unsigned int openLineLength, unsigned int closeLineLength,
-            const wxChartTooltipProvider::ptr tooltipProvider);
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider);
 
         virtual void Draw(wxGraphicsContext &gc) const;
         virtual bool HitTest(const wxPoint &point) const;

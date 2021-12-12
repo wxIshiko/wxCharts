@@ -89,7 +89,7 @@ wxBubbleChart::Circle::Circle(wxDoubleTriplet value,
     wxDouble x,
     wxDouble y,
     wxDouble radius,
-    const wxChartTooltipProvider::ptr tooltipProvider,
+    const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
     const wxChartsCircleOptions &options)
     : wxChartsCircle(x, y, radius, tooltipProvider, options), m_value(value)
 {
@@ -174,7 +174,7 @@ void wxBubbleChart::Initialize(const wxBubbleChartData &data)
         {
             std::stringstream tooltip;
             tooltip << "(" << datasetData[j].m_x << "," << datasetData[j].m_y << ")";
-            wxChartTooltipProvider::ptr tooltipProvider(
+            wxSharedPtr<wxChartTooltipProvider> tooltipProvider(
                 new wxChartTooltipProviderStatic("", tooltip.str(), datasets[i]->GetFillColor())
                 );
 

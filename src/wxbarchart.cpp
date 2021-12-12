@@ -40,7 +40,7 @@
 #include <sstream>
 
 wxBarChart::Bar::Bar(wxDouble value,
-                     const wxChartTooltipProvider::ptr tooltipProvider,
+                     const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
                      wxDouble x,
                      wxDouble y,
                      const wxChartsPenOptions &penOptions,
@@ -119,7 +119,7 @@ void wxBarChart::Initialize(wxSharedPtr<wxChartsCategoricalData> &data, const wx
         {
             std::stringstream tooltip;
             tooltip << datasetData[j];
-            wxChartTooltipProvider::ptr tooltipProvider(
+            wxSharedPtr<wxChartTooltipProvider> tooltipProvider(
                 new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), datasetOptions->GetBrushOptions().GetColor())
                 );
 

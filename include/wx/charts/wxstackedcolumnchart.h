@@ -41,6 +41,7 @@
 #include "wxstackedcolumnchartoptions.h"
 #include "wxchartsgrid.h"
 #include "wxchartsrectangle.h"
+#include <wx/sharedptr.h>
 
 /// A stacked column chart.
 

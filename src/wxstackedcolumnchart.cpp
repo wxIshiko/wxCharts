@@ -38,7 +38,7 @@
 #include <sstream>
 
 wxStackedColumnChart::Column::Column(wxDouble value,
-                                     const wxChartTooltipProvider::ptr tooltipProvider,
+                                     const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
                                      wxDouble x,
                                      wxDouble y,
                                      const wxChartsPenOptions &penOptions,
@@ -111,7 +111,7 @@ wxStackedColumnChart::wxStackedColumnChart(wxChartsCategoricalData::ptr &data,
         {
             std::stringstream tooltip;
             tooltip << datasetData[j];
-            wxChartTooltipProvider::ptr tooltipProvider(
+            wxSharedPtr<wxChartTooltipProvider> tooltipProvider(
                 new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), datasetOptions->GetBrushOptions().GetColor())
                 );
 

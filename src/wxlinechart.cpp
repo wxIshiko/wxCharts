@@ -203,7 +203,7 @@ void wxLineChart::Initialize(wxSharedPtr<wxChartsCategoricalData>& data, const w
         {
             std::stringstream tooltip;
             tooltip << datasetData[j];
-            wxChartTooltipProvider::ptr tooltipProvider(
+            wxSharedPtr<wxChartTooltipProvider> tooltipProvider(
                 new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), datasetOptions->GetLineColor())
                 );
 

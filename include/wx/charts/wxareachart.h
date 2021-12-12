@@ -40,6 +40,7 @@
 #include "wxareachartoptions.h"
 #include "wxchartsgrid.h"
 #include "wxchartspoint.h"
+#include <wx/sharedptr.h>
 
 /// \ingroup dataclasses
 class wxAreaChartDataset
@@ -128,7 +129,7 @@ private:
         typedef wxSharedPtr<Point> ptr;
 
         Point(wxPoint2DDouble value,
-            const wxChartTooltipProvider::ptr tooltipProvider,
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
             wxDouble x, wxDouble y,wxDouble radius,
             unsigned int strokeWidth,const wxColor &fillColor,
             wxDouble hitDetectionRange);

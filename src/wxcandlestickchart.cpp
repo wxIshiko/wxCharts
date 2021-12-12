@@ -79,7 +79,7 @@ wxCandlestickChart::Candlestick::Candlestick(const wxChartsOHLCData &data,
                                              const wxColor &upFillColor,
                                              const wxColor &downFillColor,
                                              unsigned int rectangleWidth,
-                                             const wxChartTooltipProvider::ptr tooltipProvider)
+                                             const wxSharedPtr<wxChartTooltipProvider> tooltipProvider)
     : wxChartsElement(tooltipProvider), m_data(data), m_lowPoint(0, 0), m_highPoint(0, 0),
     m_openPoint(0, 0), m_closePoint(0, 0), m_lineColor(lineColor), m_lineWidth(lineWidth),
     m_upFillColor(upFillColor), m_downFillColor(downFillColor), m_rectangleWidth(rectangleWidth)
@@ -203,7 +203,7 @@ void wxCandlestickChart::Initialize(const wxCandlestickChartData &data)
             << "\r\nH: " << data.GetData()[i].GetHighValue()
             << "\r\nL: " << data.GetData()[i].GetLowValue()
             << "\r\nC: " << data.GetData()[i].GetCloseValue();
-        wxChartTooltipProvider::ptr tooltipProvider(
+        wxSharedPtr<wxChartTooltipProvider> tooltipProvider(
             new wxChartTooltipProviderStatic(data.GetLabels()[i], tooltip.str(), *wxWHITE)
         );
 

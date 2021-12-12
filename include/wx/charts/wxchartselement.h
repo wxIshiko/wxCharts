@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,8 +26,8 @@
 #define _WX_CHARTS_WXCHARTSELEMENT_H_
 
 #include "wxcharttooltipprovider.h"
-#include <wx/sharedptr.h>
 #include <wx/graphics.h>
+#include <wx/sharedptr.h>
 
 /// \defgroup elementclasses
 
@@ -53,7 +53,7 @@ public:
     wxChartsElement(const wxString &tooltip);
     /// Constructs a wxChartsElement instance.
     /// @param tooltipProvider The tooltip provider.
-    wxChartsElement(const wxChartTooltipProvider::ptr tooltipProvider);
+    wxChartsElement(const wxSharedPtr<wxChartTooltipProvider> tooltipProvider);
     virtual ~wxChartsElement();
 
     /// Draws the element.
@@ -69,13 +69,13 @@ public:
 
     /// Gets the tooltip provider.
     /// @return The tooltip provider.
-    const wxChartTooltipProvider::ptr GetTooltipProvider() const;
+    const wxSharedPtr<wxChartTooltipProvider> GetTooltipProvider() const;
     /// Gets the position of the tooltip.
     /// @return The position of the tooltip.
     virtual wxPoint2DDouble GetTooltipPosition() const = 0;
 
 private:
-    wxChartTooltipProvider::ptr m_tooltipProvider;
+    wxSharedPtr<wxChartTooltipProvider> m_tooltipProvider;
 };
 
 #endif
