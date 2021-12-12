@@ -159,7 +159,7 @@ private:
         typedef wxSharedPtr<Point> ptr;
 
         Point(wxPoint2DDouble value,
-            wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
             wxDouble x, wxDouble y,wxDouble radius,
             unsigned int strokeWidth, const wxColor &strokeColor,
             const wxColor &fillColor, wxDouble hitDetectionRange);
