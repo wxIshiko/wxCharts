@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2021 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -28,6 +28,7 @@
 #include "wxchart.h"
 #include "wxboxplotoptions.h"
 #include "wxchartsgrid.h"
+#include <wx/sharedptr.h>
 
 /// Data for the wxBoxPlotCtrl control.
 
@@ -94,7 +95,7 @@ private:
 
         Box(const wxVector<wxDouble> &data, const wxColor &Color,const wxColor &upFillColor,
             unsigned int lineWidth, unsigned int rectangleWidth,
-            const wxChartTooltipProvider::ptr tooltipProvider);
+            const wxSharedPtr<wxChartTooltipProvider> tooltipProvider);
 
         virtual void Draw(wxGraphicsContext &gc) const;
         virtual bool HitTest(const wxPoint &point) const;
