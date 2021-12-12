@@ -75,7 +75,7 @@ public:
     virtual wxPoint2DDouble GetTooltipPosition() const = 0;
 
 private:
-    const wxChartTooltipProvider::ptr m_tooltipProvider;
+    wxChartTooltipProvider::ptr m_tooltipProvider;
 };
 
 #endif
