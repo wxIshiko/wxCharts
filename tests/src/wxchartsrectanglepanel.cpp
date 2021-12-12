@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq
+    Copyright (c) 2018-2021 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -21,6 +21,7 @@
 */
 
 #include "wxchartsrectanglepanel.h"
+#include <wx/sharedptr.h>
 #include <wx/sizer.h>
 
 wxChartsRectanglePanel::wxChartsRectanglePanel(wxWindow* parent)
@@ -29,7 +30,7 @@ wxChartsRectanglePanel::wxChartsRectanglePanel(wxWindow* parent)
     wxChartsRectangleOptions options(wxChartsPenOptions(*wxBLACK, 2), *wxRED, 0);
     m_rectangle = new wxChartsRectangle(
         0, 0,
-        wxChartTooltipProvider::ptr(),
+        wxSharedPtr<wxChartTooltipProvider>(),
         options
     );
     m_rectangle->SetSize(100, 20);
