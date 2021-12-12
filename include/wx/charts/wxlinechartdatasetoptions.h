@@ -32,7 +32,7 @@ class wxLineChartDatasetOptions
 {
 public:
     wxLineChartDatasetOptions(const wxColor &dotColor, const wxColor &dotStrokeColor,
-        const wxColor &fillColor, bool showLine=true, bool showDots=true);
+        const wxColor &fillColor);
 
 public:
     /// Whether to show the points on the chart.

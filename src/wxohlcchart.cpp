@@ -137,7 +137,7 @@ wxOHLCChart::wxOHLCChart(const wxOHLCChartData &data,
                          const wxSize &size)
     : m_options(wxChartsDefaultTheme->GetOHLCChartOptions()),
     m_grid(
-        wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
         size,
         wxChartsCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
         wxChartsNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options->GetGridOptions().GetYAxisOptions()),
@@ -213,12 +213,6 @@ wxDouble wxOHLCChart::GetMaxValue(const wxOHLCChartData &data)
     }
 
     return result;
-}
-
-wxSize wxOHLCChart::DoGetBestSize() const
-{
-    // TODO
-    return wxSize(200, 200);
 }
 
 void wxOHLCChart::DoSetSize(const wxSize &size)

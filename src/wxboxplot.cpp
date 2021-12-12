@@ -124,7 +124,7 @@ wxBoxPlot::wxBoxPlot(const wxBoxPlotData &data,
                      const wxSize &size)
     : m_options(wxChartsDefaultTheme->GetBoxPlotOptions()),
     m_grid(
-          wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
+          wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
           size,
           wxChartsCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
           wxChartsNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options->GetGridOptions().GetYAxisOptions()),
@@ -139,7 +139,7 @@ wxBoxPlot::wxBoxPlot(const wxBoxPlotData &data,
                      const wxSize &size)
     : m_options(options),
     m_grid(
-        wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
         size,
         wxChartsCategoricalAxis::make_shared("x", data.GetLabels(), m_options->GetGridOptions().GetXAxisOptions()),
         wxChartsNumericalAxis::make_shared("y", GetMinValue(data), GetMaxValue(data), m_options->GetGridOptions().GetYAxisOptions()),
@@ -229,11 +229,6 @@ wxDouble wxBoxPlot::GetMedian(const wxVector<wxDouble> &data,
     }
 }
 
-wxSize wxBoxPlot::DoGetBestSize() const
-{
-    // TODO
-    return wxSize(200, 200);
-}
 
 void wxBoxPlot::DoSetSize(const wxSize &size)
 {

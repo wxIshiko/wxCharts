@@ -56,47 +56,41 @@ wxDouble wxColumnChart::Column::GetValue() const
     return m_value;
 }
 
-wxColumnChart::ColumnSet::ColumnSet()
+wxColumnChart::Dataset::Dataset()
 {
 }
 
-const wxVector<wxSharedPtr<wxColumnChart::Column>>& wxColumnChart::ColumnSet::GetColumns() const
+const wxVector<wxColumnChart::Column::ptr>& wxColumnChart::Dataset::GetColumns() const
 {
     return m_columns;
 }
 
-void wxColumnChart::ColumnSet::AppendColumn(wxSharedPtr<Column> column)
+void wxColumnChart::Dataset::AppendColumn(Column::ptr column)
 {
     m_columns.push_back(column);
 }
 
 wxColumnChart::wxColumnChart(wxChartsCategoricalData::ptr &data,
                              const wxSize &size)
-    : m_options(wxChartsDefaultTheme->GetColumnChartOptions())
-{
-    wxVector<wxVector<wxDouble>> dataVectors;
-    for (const wxSharedPtr<wxChartsDoubleDataset>& dataset : data->GetDatasets())
-    {
-        dataVectors.push_back(wxVector<wxDouble>());
-        dataset->GetData(dataVectors.back());
-    }
-
-    m_grid.Create(
-        wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+    : m_options(wxChartsDefaultTheme->GetColumnChartOptions()), 
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
-        wxChartsNumericalAxis::make_shared("y", GetMinValue(dataVectors), GetMaxValue(dataVectors), m_options->GetGridOptions().GetYAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
-    );
-
-    for (size_t i = 0; i < dataVectors.size(); ++i)
+        )
+{
+    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
+    for (size_t i = 0; i < datasets.size(); ++i)
     {
         wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
         wxSharedPtr<wxColumnChartDatasetOptions> datasetOptions = datasetTheme->GetColumnChartDatasetOptions();
 
-        const wxVector<wxDouble>& datasetData = dataVectors[i];
-        wxSharedPtr<ColumnSet> newDataset(new ColumnSet());
+        const wxChartsDoubleDataset& dataset = *datasets[i];
+        Dataset::ptr newDataset(new Dataset());
 
+        const wxVector<wxDouble>& datasetData = dataset.GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
         {
             std::stringstream tooltip;
@@ -105,7 +99,7 @@ wxColumnChart::wxColumnChart(wxChartsCategoricalData::ptr &data,
                 new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), datasetOptions->GetBrushOptions().GetColor())
                 );
 
-            newDataset->AppendColumn(wxSharedPtr<Column>(new Column(
+            newDataset->AppendColumn(Column::ptr(new Column(
                 datasetData[j], tooltipProvider, 25, 50, datasetOptions->GetPenOptions(),
                 datasetOptions->GetBrushOptions(), wxLEFT | wxTOP | wxRIGHT
                 )));
@@ -120,14 +114,14 @@ const wxChartCommonOptions& wxColumnChart::GetCommonOptions() const
     return m_options->GetCommonOptions();
 }
 
-wxDouble wxColumnChart::GetMinValue(const wxVector<wxVector<wxDouble>>& datasets)
+wxDouble wxColumnChart::GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     wxDouble result = 0;
     bool foundValue = false;
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxDouble>& values = datasets[i];
+        const wxVector<wxDouble>& values = datasets[i]->GetData();
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
@@ -145,14 +139,14 @@ wxDouble wxColumnChart::GetMinValue(const wxVector<wxVector<wxDouble>>& datasets
     return result;
 }
 
-wxDouble wxColumnChart::GetMaxValue(const wxVector<wxVector<wxDouble>>& datasets)
+wxDouble wxColumnChart::GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     wxDouble result = 0;
     bool foundValue = false;
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxDouble>& values = datasets[i];
+        const wxVector<wxDouble>& values = datasets[i]->GetData();
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
@@ -170,11 +164,6 @@ wxDouble wxColumnChart::GetMaxValue(const wxVector<wxVector<wxDouble>>& datasets
     return result;
 }
 
-wxSize wxColumnChart::DoGetBestSize() const
-{
-    return m_grid.GetBestSize();
-}
-
 void wxColumnChart::DoSetSize(const wxSize &size)
 {
     m_grid.Resize(size);
@@ -186,7 +175,7 @@ void wxColumnChart::DoFit()
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
-        ColumnSet& currentDataset = *m_datasets[i];
+        Dataset& currentDataset = *m_datasets[i];
         for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
         {
             Column& column = *(currentDataset.GetColumns()[j]);
@@ -211,7 +200,7 @@ void wxColumnChart::DoDraw(wxGraphicsContext &gc,
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
-        ColumnSet& currentDataset = *m_datasets[i];
+        Dataset& currentDataset = *m_datasets[i];
         for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
         {
             currentDataset.GetColumns()[j]->Draw(gc);
@@ -230,7 +219,7 @@ wxSharedPtr<wxVector<const wxChartsElement*>> wxColumnChart::GetActiveElements(c
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
-        const wxVector<wxSharedPtr<Column>>& columns = m_datasets[i]->GetColumns();
+        const wxVector<Column::ptr>& columns = m_datasets[i]->GetColumns();
         for (size_t j = 0; j < columns.size(); ++j)
         {
             if (columns[j]->HitTest(point))

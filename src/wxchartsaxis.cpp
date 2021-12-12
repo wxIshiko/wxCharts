@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -33,21 +33,6 @@
 
 #include "wxchartsaxis.h"
 #include <wx/pen.h>
-
-wxSize wxChartsAxis::GetBestSize() const
-{
-    wxSize result(0, 0);
-    // TODO return random value for now
-    if (m_options.GetPosition() == wxCHARTSAXISPOSITION_LEFT)
-    {
-        result.SetHeight(300);
-    }
-    else if (m_options.GetPosition() == wxCHARTSAXISPOSITION_BOTTOM)
-    {
-        result.SetWidth(300);
-    }
-    return result;
-}
 
 void wxChartsAxis::Draw(wxGraphicsContext &gc) const
 {

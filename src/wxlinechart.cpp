@@ -71,78 +71,89 @@ wxDouble wxLineChart::Point::GetValue() const
     return m_value;
 }
 
-wxLineChart::PointSet::PointSet(bool showDots,
-                                bool showLine,
-                                const wxColor& lineColor,
-                                bool fill,
-                                const wxColor& fillColor,
-                                const wxChartsLineType& lineType)
-    : m_showDots(showDots), m_showLine(showLine),
-    m_lineColor(lineColor), m_fill(fill),
-    m_fillColor(fillColor), m_type(lineType)
+wxLineChart::Dataset::Dataset(bool showDots,
+                              bool showLine,
+                              const wxColor &lineColor,
+                              bool fill,
+                              const wxColor &fillColor,
+                              const wxChartsLineType &lineType)
+                              : m_showDots(showDots), m_showLine(showLine),
+                              m_lineColor(lineColor), m_fill(fill),
+                              m_fillColor(fillColor), m_type(lineType)
 {
 }
 
-bool wxLineChart::PointSet::ShowDots() const
+bool wxLineChart::Dataset::ShowDots() const
 {
     return m_showDots;
 }
 
-bool wxLineChart::PointSet::ShowLine() const
+bool wxLineChart::Dataset::ShowLine() const
 {
     return m_showLine;
 }
 
-const wxColor& wxLineChart::PointSet::GetLineColor() const
+const wxColor& wxLineChart::Dataset::GetLineColor() const
 {
     return m_lineColor;
 }
 
-bool wxLineChart::PointSet::Fill() const
+bool wxLineChart::Dataset::Fill() const
 {
     return m_fill;
 }
 
-const wxColor& wxLineChart::PointSet::GetFillColor() const
+const wxColor& wxLineChart::Dataset::GetFillColor() const
 {
     return m_fillColor;
 }
 
-const wxChartsLineType& wxLineChart::PointSet::GetType() const
+const wxChartsLineType& wxLineChart::Dataset::GetType() const
 {
      return m_type;
 }
 
-const wxVector<wxSharedPtr<wxLineChart::Point>>& wxLineChart::PointSet::GetPoints() const
+const wxVector<wxLineChart::Point::ptr>& wxLineChart::Dataset::GetPoints() const
 {
     return m_points;
 }
 
-void wxLineChart::PointSet::AppendPoint(wxSharedPtr<Point> point)
+void wxLineChart::Dataset::AppendPoint(Point::ptr point)
 {
     m_points.push_back(point);
 }
 
-wxLineChart::wxLineChart(const wxSize& size,
-                         const wxString& title,
-                         wxSharedPtr<wxChartsCategoricalData>& data,
-                         const wxChartsLineType& lineType,
-                         const wxChartsTheme& theme)
-    : wxChart(title, size, theme.GetLineChartOptions()->GetCommonOptions()),
-    m_options(theme.GetLineChartOptions()), m_lineType(lineType)
+wxLineChart::wxLineChart(wxChartsCategoricalData::ptr &data,
+                         const wxChartsLineType &lineType,
+                         const wxSize &size)
+    : m_options(wxChartsDefaultTheme->GetLineChartOptions()),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
+        size,
+        wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
+        ),
+    m_lineType(lineType)
 {
-    Initialize(data, size);
+    Initialize(data);
 }
 
-wxLineChart::wxLineChart(const wxSize& size,
-                         const wxString& title,
-                         wxSharedPtr<wxChartsCategoricalData>& data,
-                         const wxChartsLineType& lineType,
-                         const wxLineChartOptions& options)
-    : wxChart(title, size, options.GetCommonOptions()),
-    m_options(new wxLineChartOptions(options)), m_lineType(lineType)
+wxLineChart::wxLineChart(wxChartsCategoricalData::ptr &data,
+                         const wxChartsLineType &lineType,
+                         const wxLineChartOptions &options,
+                         const wxSize &size)
+    : m_options(new wxLineChartOptions(options)),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetTop()),
+        size,
+        wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
+        ),
+    m_lineType(lineType)
 {
-    Initialize(data, size);
+    Initialize(data);
 }
 
 const wxChartCommonOptions& wxLineChart::GetCommonOptions() const
@@ -168,37 +179,20 @@ void wxLineChart::Save(const wxString &filename,
     }
 }
 
-void wxLineChart::Initialize(wxSharedPtr<wxChartsCategoricalData>& data, const wxSize& size)
+void wxLineChart::Initialize(wxChartsCategoricalData::ptr &data)
 {
-    wxVector<wxVector<wxDouble>> dataVectors;
-    for (const wxSharedPtr<wxChartsDoubleDataset>& dataset : data->GetDatasets())
-    {
-        dataVectors.push_back(wxVector<wxDouble>());
-        dataset->GetData(dataVectors.back());
-    }
-
-    wxPoint gridTopLeftCorner = GetClientAreaOrigin();
-
-    m_grid.Create(
-        // TODO: the parent class should handle the padding
-        wxPoint(gridTopLeftCorner.x + m_options->GetPadding().GetLeft(), gridTopLeftCorner.y + m_options->GetPadding().GetTop()),
-        GetClientSize(),
-        wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
-        wxChartsNumericalAxis::make_shared("y", GetMinValue(dataVectors), GetMaxValue(dataVectors), m_options->GetGridOptions().GetYAxisOptions()),
-        m_options->GetGridOptions()
-    );
-
-    for (size_t i = 0; i < dataVectors.size(); ++i)
+    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
+    for (size_t i = 0; i < datasets.size(); ++i)
     {
         wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
         wxSharedPtr<wxLineChartDatasetOptions> datasetOptions = datasetTheme->GetLineChartDatasetOptions();
 
-        wxSharedPtr<PointSet> newDataset(new PointSet(datasetOptions->ShowDots(),
+        Dataset::ptr newDataset(new Dataset(datasetOptions->ShowDots(),
             datasetOptions->ShowLine(), datasetOptions->GetLineColor(),
             datasetOptions->Fill(), datasetOptions->GetFillColor(),
             m_lineType));
 
-        const wxVector<wxDouble>& datasetData = dataVectors[i];
+        const wxVector<wxDouble>& datasetData = datasets[i]->GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
         {
             std::stringstream tooltip;
@@ -221,14 +215,14 @@ void wxLineChart::Initialize(wxSharedPtr<wxChartsCategoricalData>& data, const w
     }
 }
 
-wxDouble wxLineChart::GetMinValue(const wxVector<wxVector<wxDouble>>& datasets)
+wxDouble wxLineChart::GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     wxDouble result = 0;
     bool foundValue = false;
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxDouble>& values = datasets[i];
+        const wxVector<wxDouble>& values = datasets[i]->GetData();
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
@@ -246,14 +240,14 @@ wxDouble wxLineChart::GetMinValue(const wxVector<wxVector<wxDouble>>& datasets)
     return result;
 }
 
-wxDouble wxLineChart::GetMaxValue(const wxVector<wxVector<wxDouble>>& datasets)
+wxDouble wxLineChart::GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     wxDouble result = 0;
     bool foundValue = false;
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxDouble>& values = datasets[i];
+        const wxVector<wxDouble>& values = datasets[i]->GetData();
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
@@ -269,11 +263,6 @@ wxDouble wxLineChart::GetMaxValue(const wxVector<wxVector<wxDouble>>& datasets)
     }
 
     return result;
-}
-
-wxSize wxLineChart::DoGetBestSize() const
-{
-    return m_grid.GetBestSize();
 }
 
 void wxLineChart::DoSetSize(const wxSize &size)
@@ -330,9 +319,7 @@ void wxLineChart::DoDraw(wxGraphicsContext &gc,
             }
             else
             {
-                static const wxColor transparent(255, 255, 255, 0);
-                wxPen pen(transparent, 0);
-                gc.SetPen(pen);
+                // TODO : transparent pen
             }
 
             gc.StrokePath(path);
@@ -355,14 +342,6 @@ void wxLineChart::DoDraw(wxGraphicsContext &gc,
                 const Point::ptr& point = points[j];
                 point->SetPosition(m_grid.GetMapping().GetWindowPositionAtTickMark(j, point->GetValue()));
                 point->Draw(gc);
-            }
-        }
-        else
-        {
-            for (size_t j = 0; j < points.size(); ++j)
-            {
-                const Point::ptr& point = points[j];
-                point->SetPosition(m_grid.GetMapping().GetWindowPositionAtTickMark(j, point->GetValue()));
             }
         }
     }

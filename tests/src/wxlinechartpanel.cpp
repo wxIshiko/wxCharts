@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019-2021 Xavier Leclercq
+    Copyright (c) 2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -62,9 +62,8 @@ wxLineChartPanel::wxLineChartPanel(wxWindow* parent)
     chartData->AddDataset(dataset2);
 
     // Create the line chart widget from the constructed data
-    m_lineChart = new wxLineChartCtrl(this, wxID_ANY, wxDefaultPosition, 
-        wxDefaultSize, wxEmptyString, chartData, wxCHARTSLINETYPE_STRAIGHT,
-        *wxChartsDefaultTheme, wxBORDER_NONE);
+    m_lineChart = new wxLineChartCtrl(this, wxID_ANY, chartData, wxCHARTSLINETYPE_STRAIGHT,
+        wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
     // Set up the sizer for the panel
     wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);

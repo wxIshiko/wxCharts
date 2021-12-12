@@ -49,15 +49,14 @@
 class wxColumnChart : public wxChart
 {
 public:
-    wxColumnChart(wxSharedPtr<wxChartsCategoricalData> &data, const wxSize &size);
+    wxColumnChart(wxChartsCategoricalData::ptr &data, const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
-    static wxDouble GetMinValue(const wxVector<wxVector<wxDouble>> &datasets);
-    static wxDouble GetMaxValue(const wxVector<wxVector<wxDouble>> &datasets);
+    static wxDouble GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
+    static wxDouble GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
 
-    virtual wxSize DoGetBestSize() const;
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
@@ -69,6 +68,8 @@ private:
     class Column : public wxChartsRectangle
     {
     public:
+        typedef wxSharedPtr<Column> ptr;
+
         Column(wxDouble value,
             const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
             wxDouble x, wxDouble y,
@@ -82,22 +83,24 @@ private:
         wxDouble m_value;
     };
 
-    struct ColumnSet
+    struct Dataset
     {
     public:
-        ColumnSet();
+        typedef wxSharedPtr<Dataset> ptr;
 
-        const wxVector<wxSharedPtr<Column>>& GetColumns() const;
-        void AppendColumn(wxSharedPtr<Column> column);
+        Dataset();
+
+        const wxVector<Column::ptr>& GetColumns() const;
+        void AppendColumn(Column::ptr column);
 
     private:
-        wxVector<wxSharedPtr<Column>> m_columns;
+        wxVector<Column::ptr> m_columns;
     };
 
 private:
     wxSharedPtr<wxColumnChartOptions> m_options;
     wxChartsGrid m_grid;
-    wxVector<wxSharedPtr<ColumnSet>> m_datasets;
+    wxVector<Dataset::ptr> m_datasets;
 };
 
 #endif

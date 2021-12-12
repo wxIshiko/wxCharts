@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -54,11 +54,6 @@ wxPolarAreaChartCtrl::wxPolarAreaChartCtrl(wxWindow *parent,
     : wxChartCtrl(parent, id, pos, size, style), 
     m_polarAreaChart(data, options, size)
 {
-}
-
-const wxPolarAreaChart& wxPolarAreaChartCtrl::GetChart() const
-{
-    return m_polarAreaChart;
 }
 
 wxPolarAreaChart& wxPolarAreaChartCtrl::GetChart()

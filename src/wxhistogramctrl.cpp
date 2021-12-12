@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2021 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -59,11 +59,6 @@ wxHistogramCtrl::wxHistogramCtrl(wxWindow *parent,
     m_histChart(data, options, size)
 {
     CreateContextMenu();
-}
-
-const wxHistogram& wxHistogramCtrl::GetChart() const
-{
-    return m_histChart;
 }
 
 wxHistogram& wxHistogramCtrl::GetChart()

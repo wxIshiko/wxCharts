@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -24,93 +24,20 @@
 #include "wxcharttooltip.h"
 #include "wxchartmultitooltip.h"
 
-wxChart::wxChart(const wxString& title,
-                 const wxSize& size,
-                 const wxChartCommonOptions& options)
-    : m_size(0, 0),
-    m_needsFit(true),
-    m_activeElements(new wxVector<const wxChartsElement*>())
-{
-    Create(title, size, options);
-}
-
 wxChart::wxChart()
-    : m_size(0, 0),
-    m_needsFit(true),
+    : m_needsFit(true),
     m_activeElements(new wxVector<const wxChartsElement*>())
 {
-}
-
-void wxChart::Create(const wxString& title,
-                     const wxSize& size,
-                     const wxChartCommonOptions& options)
-{
-    // Note: we do not need to store the options because they will later be
-    // retrieved by calling GetCommonOptions. However Create is called from
-    // a constructor so we can't call GetCommonOptions because it is a
-    // virtual function.
-
-    SetTitle(title, options.GetTitleOptions());
-}
-
-void wxChart::SetTitle(const wxString& title)
-{
-    SetTitle(title, GetCommonOptions().GetTitleOptions());
-}
-
-void wxChart::SetTitle(const wxString& title, const wxChartsLabelOptions& options)
-{
-    if (!title.empty())
-    {
-        m_title = new wxChartsLabel(title, options);
-    }
-    else
-    {
-        m_title.reset();
-    }
-    m_needsFit = true;
-}
-
-wxPoint wxChart::GetClientAreaOrigin() const
-{
-    wxPoint result(0, 0);
-    if (m_title)
-    {
-        // TODO: correct size
-        result.y += 50;
-    }
-    return result;
-}
-
-wxSize wxChart::GetClientSize() const
-{
-    wxSize result = m_size;
-    if (m_title)
-    {
-        // TODO: correct size
-        result.SetHeight(m_size.GetHeight() - 50);
-    }
-    return result;
-}
-
-wxSize wxChart::GetBestSize() const
-{
-    return DoGetBestSize();
 }
 
 void wxChart::SetSize(const wxSize &size)
 {
-    m_size = size;
-    DoSetSize(GetClientSize());    // TODO: I probably can get rid of DoSetSize then and just let Fit query the chart size
+    DoSetSize(size);
     m_needsFit = true;
 }
 
 void wxChart::Draw(wxGraphicsContext &gc)
 {
-    if (m_title)
-    {
-        m_title->Draw(gc);
-    }
     DoDraw(gc, false);
 }
 

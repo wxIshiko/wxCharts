@@ -35,15 +35,15 @@ jobs:
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxBubbleChart sample build
+          name: wxBubble sample build
           command: make
-          working_directory: samples/bubblechart
+          working_directory: samples/bubble
           environment:
             WXCHARTS_ROOT: ../..
       - run:
-          name: wxCandlestickChart sample build
+          name: wxCandlestick sample build
           command: make
-          working_directory: samples/candlestickchart
+          working_directory: samples/candlestick
           environment:
             WXCHARTS_ROOT: ../..
       - run:

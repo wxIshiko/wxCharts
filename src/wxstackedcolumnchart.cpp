@@ -60,53 +60,47 @@ wxDouble wxStackedColumnChart::Column::GetValue() const
     return m_value;
 }
 
-wxStackedColumnChart::ColumnSet::ColumnSet()
+wxStackedColumnChart::Dataset::Dataset()
 {
 }
 
-const wxVector<wxSharedPtr<wxStackedColumnChart::Column>>& wxStackedColumnChart::ColumnSet::GetColumns() const
+const wxVector<wxStackedColumnChart::Column::ptr>& wxStackedColumnChart::Dataset::GetColumns() const
 {
     return m_columns;
 }
 
-void wxStackedColumnChart::ColumnSet::AppendColumn(wxSharedPtr<Column> column)
+void wxStackedColumnChart::Dataset::AppendColumn(Column::ptr column)
 {
     m_columns.push_back(column);
 }
 
 wxStackedColumnChart::wxStackedColumnChart(wxChartsCategoricalData::ptr &data,
                                            const wxSize &size)
-    : m_options(wxChartsDefaultTheme->GetStackedColumnChartOptions())
-{
-    wxVector<wxVector<wxDouble>> dataVectors;
-    for (const wxSharedPtr<wxChartsDoubleDataset>& dataset : data->GetDatasets())
-    {
-        dataVectors.push_back(wxVector<wxDouble>());
-        dataset->GetData(dataVectors.back());
-    }
-
-    m_grid.Create(
-        wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+    : m_options(wxChartsDefaultTheme->GetStackedColumnChartOptions()),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
-        wxChartsNumericalAxis::make_shared("y", GetCumulativeMinValue(dataVectors), GetCumulativeMaxValue(dataVectors), m_options->GetGridOptions().GetYAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetCumulativeMinValue(data->GetDatasets()), GetCumulativeMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
         m_options->GetGridOptions()
-    );
-
-    for (size_t i = 0; i < dataVectors.size(); ++i)
+        )
+{
+    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
+    for (size_t i = 0; i < datasets.size(); ++i)
     {
         wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
         wxSharedPtr<wxStackedColumnChartDatasetOptions> datasetOptions = datasetTheme->GetStackedColumnChartDatasetOptions();
 
-        const wxVector<wxDouble>& datasetData = dataVectors[i];
-        wxSharedPtr<ColumnSet> newDataset(new ColumnSet());
+        const wxChartsDoubleDataset& dataset = *datasets[i];
+        Dataset::ptr newDataset(new Dataset());
 
         int border = wxLEFT | wxRIGHT;
-        if (i == (dataVectors.size() - 1))
+        if (i == (datasets.size() - 1))
         {
             border |= wxTOP;
         }
 
+        const wxVector<wxDouble>& datasetData = dataset.GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
         {
             std::stringstream tooltip;
@@ -115,7 +109,7 @@ wxStackedColumnChart::wxStackedColumnChart(wxChartsCategoricalData::ptr &data,
                 new wxChartTooltipProviderStatic(data->GetCategories()[j], tooltip.str(), datasetOptions->GetBrushOptions().GetColor())
                 );
 
-            newDataset->AppendColumn(wxSharedPtr<Column>(new Column(
+            newDataset->AppendColumn(Column::ptr(new Column(
                 datasetData[j],
                 tooltipProvider,
                 25, 50,
@@ -133,7 +127,7 @@ const wxChartCommonOptions& wxStackedColumnChart::GetCommonOptions() const
     return m_options->GetCommonOptions();
 }
 
-wxDouble wxStackedColumnChart::GetCumulativeMinValue(const wxVector<wxVector<wxDouble>>& datasets)
+wxDouble wxStackedColumnChart::GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     wxDouble result = 0;
 
@@ -144,10 +138,10 @@ wxDouble wxStackedColumnChart::GetCumulativeMinValue(const wxVector<wxVector<wxD
         bool stop = true;
         for (size_t j = 0; j < datasets.size(); ++j)
         {
-            const wxVector<wxDouble>& dataset = datasets[j];
-            if (i < dataset.size())
+            const wxChartsDoubleDataset& dataset = *datasets[j];
+            if (i < dataset.GetData().size())
             {
-                sum += dataset[i];
+                sum += dataset.GetData()[i];
                 stop = false;
             }
         }
@@ -165,7 +159,7 @@ wxDouble wxStackedColumnChart::GetCumulativeMinValue(const wxVector<wxVector<wxD
     return result;
 }
 
-wxDouble wxStackedColumnChart::GetCumulativeMaxValue(const wxVector<wxVector<wxDouble>>& datasets)
+wxDouble wxStackedColumnChart::GetCumulativeMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     wxDouble result = 0;
 
@@ -176,10 +170,10 @@ wxDouble wxStackedColumnChart::GetCumulativeMaxValue(const wxVector<wxVector<wxD
         bool stop = true;
         for (size_t j = 0; j < datasets.size(); ++j)
         {
-            const wxVector<wxDouble>& dataset = datasets[j];
-            if (i < dataset.size())
+            const wxChartsDoubleDataset& dataset = *datasets[j];
+            if (i < dataset.GetData().size())
             {
-                sum += dataset[i];
+                sum += dataset.GetData()[i];
                 stop = false;
             }
         }
@@ -197,11 +191,6 @@ wxDouble wxStackedColumnChart::GetCumulativeMaxValue(const wxVector<wxVector<wxD
     return result;
 }
 
-wxSize wxStackedColumnChart::DoGetBestSize() const
-{
-    return m_grid.GetBestSize();
-}
-
 void wxStackedColumnChart::DoSetSize(const wxSize &size)
 {
     m_grid.Resize(size);
@@ -217,7 +206,7 @@ void wxStackedColumnChart::DoFit()
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
-        ColumnSet& currentDataset = *m_datasets[i];
+        Dataset& currentDataset = *m_datasets[i];
         for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
         {
             Column& column = *(currentDataset.GetColumns()[j]);
@@ -250,7 +239,7 @@ void wxStackedColumnChart::DoDraw(wxGraphicsContext &gc,
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
-        ColumnSet& currentDataset = *m_datasets[i];
+        Dataset& currentDataset = *m_datasets[i];
         for (size_t j = 0; j < currentDataset.GetColumns().size(); ++j)
         {
             currentDataset.GetColumns()[j]->Draw(gc);
@@ -271,7 +260,7 @@ wxSharedPtr<wxVector<const wxChartsElement*>> wxStackedColumnChart::GetActiveEle
     // are in the same order as the stacked columns
     for (int i = m_datasets.size() - 1; i >= 0; --i)
     {
-        const wxVector<wxSharedPtr<Column>>& columns = m_datasets[i]->GetColumns();
+        const wxVector<Column::ptr>& columns = m_datasets[i]->GetColumns();
         for (size_t j = 0; j < columns.size(); ++j)
         {
             if (columns[j]->HitTest(point))

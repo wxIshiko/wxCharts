@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -45,11 +45,6 @@ wxDoughnutChartCtrl::wxDoughnutChartCtrl(wxWindow *parent,
     m_doughnutChart(data, options, size)
 {
     data->AddObserver(this);
-}
-
-const wxDoughnutChart& wxDoughnutChartCtrl::GetChart() const
-{
-    return m_doughnutChart;
 }
 
 wxDoughnutChart& wxDoughnutChartCtrl::GetChart()

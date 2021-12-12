@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2018 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -26,7 +26,6 @@
 #define _WX_CHARTS_WXCHARTCOMMONOPTIONS_H_
 
 #include "wxchartmultitooltipoptions.h"
-#include "wxchartslabeloptions.h"
 
 /// Options that are common between the various chart types.
 
@@ -37,8 +36,6 @@ public:
     /// Constructs a wxChartCommonOptions
     /// instance.
     wxChartCommonOptions();
-
-    const wxChartsLabelOptions& GetTitleOptions() const;
 
     /// Whether the chart automatically resizes 
     /// when the control size changes.
@@ -63,7 +60,6 @@ public:
     wxChartMultiTooltipOptions& GetMultiTooltipOptions();
 
 private:
-    wxChartsLabelOptions m_titleOptions;
     bool m_responsive;
     bool m_showTooltips;
     wxChartMultiTooltipOptions m_multiTooltipOptions;

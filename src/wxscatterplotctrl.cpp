@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -45,11 +45,6 @@ wxScatterPlotCtrl::wxScatterPlotCtrl(wxWindow *parent,
     : wxChartCtrl(parent, id, pos, size, style), 
     m_scatterPlot(data, options, size)
 {
-}
-
-const wxScatterPlot& wxScatterPlotCtrl::GetChart() const
-{
-    return m_scatterPlot;
 }
 
 wxScatterPlot& wxScatterPlotCtrl::GetChart()

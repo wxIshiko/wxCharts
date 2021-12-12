@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2021 Xavier Leclercq
+    Copyright (c) 2017-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -88,7 +88,6 @@ public:
         const wxSize &size = wxDefaultSize, long style = 0);
 
 private:
-    virtual const wxAreaChart& GetChart() const;
     virtual wxAreaChart& GetChart();
 
     void CreateContextMenu();

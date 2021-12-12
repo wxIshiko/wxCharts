@@ -43,10 +43,10 @@
 class wxChartsGridMapping
 {
 public:
-    wxChartsGridMapping(const wxPoint& pos, const wxSize &size,
-        const wxSharedPtr<wxChartsAxis> xAxis, const wxSharedPtr<wxChartsAxis> yAxis);
     wxChartsGridMapping();
-    void Create(const wxPoint& pos, const wxSize& size,
+    wxChartsGridMapping(const wxSize &size,
+        const wxSharedPtr<wxChartsAxis> xAxis, const wxSharedPtr<wxChartsAxis> yAxis);
+    void Create(const wxSize& size,
         const wxSharedPtr<wxChartsAxis> xAxis, const wxSharedPtr<wxChartsAxis> yAxis);
 
     const wxSize& GetSize() const;
@@ -58,7 +58,6 @@ public:
     const wxChartsAxis& GetXAxis() const;
     
 private:
-    wxPoint m_pos;
     wxSize m_size;
     wxChartsAxis::ptr m_XAxis;
     wxChartsAxis::ptr m_YAxis;

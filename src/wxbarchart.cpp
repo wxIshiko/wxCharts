@@ -56,33 +56,47 @@ wxDouble wxBarChart::Bar::GetValue() const
     return m_value;
 }
 
-wxBarChart::BarSet::BarSet()
+wxBarChart::Dataset::Dataset()
 {
 }
 
-const wxVector<wxSharedPtr<wxBarChart::Bar>>& wxBarChart::BarSet::GetBars() const
+const wxVector<wxBarChart::Bar::ptr>& wxBarChart::Dataset::GetBars() const
 {
     return m_bars;
 }
 
-void wxBarChart::BarSet::AppendBar(wxSharedPtr<Bar> bar)
+void wxBarChart::Dataset::AppendBar(Bar::ptr bar)
 {
     m_bars.push_back(bar);
 }
 
-wxBarChart::wxBarChart(wxSharedPtr<wxChartsCategoricalData> &data,
+wxBarChart::wxBarChart(wxChartsCategoricalData::ptr &data,
                        const wxSize &size)
-    : m_options(wxChartsDefaultTheme->GetBarChartOptions())
+    : m_options(wxChartsDefaultTheme->GetBarChartOptions()),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+        size,
+        wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
+    )
 {
-    Initialize(data, size);
+    Initialize(data);
 }
 
-wxBarChart::wxBarChart(wxSharedPtr<wxChartsCategoricalData> &data,
+wxBarChart::wxBarChart(wxChartsCategoricalData::ptr &data,
                        wxBarChartOptions::ptr options,
                        const wxSize &size)
-    : m_options(options)
+    : m_options(options),
+    m_grid(
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+        size,
+        wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
+        wxChartsNumericalAxis::make_shared("y", GetMinValue(data->GetDatasets()), GetMaxValue(data->GetDatasets()), m_options->GetGridOptions().GetYAxisOptions()),
+        m_options->GetGridOptions()
+        )
 {
-    Initialize(data, size);
+    Initialize(data);
 }
 
 const wxChartCommonOptions& wxBarChart::GetCommonOptions() const
@@ -90,31 +104,18 @@ const wxChartCommonOptions& wxBarChart::GetCommonOptions() const
     return m_options->GetCommonOptions();
 }
 
-void wxBarChart::Initialize(wxSharedPtr<wxChartsCategoricalData> &data, const wxSize& size)
+void wxBarChart::Initialize(wxChartsCategoricalData::ptr &data)
 {
-    wxVector<wxVector<wxDouble>> dataVectors;
-    for (const wxSharedPtr<wxChartsDoubleDataset>& dataset : data->GetDatasets())
-    {
-        dataVectors.push_back(wxVector<wxDouble>());
-        dataset->GetData(dataVectors.back());
-    }
-
-    m_grid.Create(
-        wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
-        size,
-        wxChartsCategoricalAxis::make_shared("x", data->GetCategories(), m_options->GetGridOptions().GetXAxisOptions()),
-        wxChartsNumericalAxis::make_shared("y", GetMinValue(dataVectors), GetMaxValue(dataVectors), m_options->GetGridOptions().GetYAxisOptions()),
-        m_options->GetGridOptions()
-    );
-
-    for (size_t i = 0; i < dataVectors.size(); ++i)
+    const wxVector<wxChartsDoubleDataset::ptr>& datasets = data->GetDatasets();
+    for (size_t i = 0; i < datasets.size(); ++i)
     {
         wxSharedPtr<wxChartsDatasetTheme> datasetTheme = wxChartsDefaultTheme->GetDatasetTheme(wxChartsDatasetId::CreateImplicitId(i));
         wxSharedPtr<wxBarChartDatasetOptions> datasetOptions = datasetTheme->GetBarChartDatasetOptions();
 
-        const wxVector<wxDouble>& datasetData = dataVectors[i];
-        wxSharedPtr<BarSet> newDataset(new BarSet());
+        const wxChartsDoubleDataset& dataset = *datasets[i];
+        Dataset::ptr newDataset(new Dataset());
 
+        const wxVector<wxDouble>& datasetData = dataset.GetData();
         for (size_t j = 0; j < datasetData.size(); ++j)
         {
             std::stringstream tooltip;
@@ -133,14 +134,14 @@ void wxBarChart::Initialize(wxSharedPtr<wxChartsCategoricalData> &data, const wx
     }
 }
 
-wxDouble wxBarChart::GetMinValue(const wxVector<wxVector<wxDouble>> &datasets)
+wxDouble wxBarChart::GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     wxDouble result = 0;
     bool foundValue = false;
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxDouble>& values = datasets[i];
+        const wxVector<wxDouble>& values = datasets[i]->GetData();
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
@@ -158,14 +159,14 @@ wxDouble wxBarChart::GetMinValue(const wxVector<wxVector<wxDouble>> &datasets)
     return result;
 }
 
-wxDouble wxBarChart::GetMaxValue(const wxVector<wxVector<wxDouble>> &datasets)
+wxDouble wxBarChart::GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets)
 {
     wxDouble result = 0;
     bool foundValue = false;
 
     for (size_t i = 0; i < datasets.size(); ++i)
     {
-        const wxVector<wxDouble>& values = datasets[i];
+        const wxVector<wxDouble>& values = datasets[i]->GetData();
         for (size_t j = 0; j < values.size(); ++j)
         {
             if (!foundValue)
@@ -183,11 +184,6 @@ wxDouble wxBarChart::GetMaxValue(const wxVector<wxVector<wxDouble>> &datasets)
     return result;
 }
 
-wxSize wxBarChart::DoGetBestSize() const
-{
-    return m_grid.GetBestSize();
-}
-
 void wxBarChart::DoSetSize(const wxSize &size)
 {
     wxSize newSize(
@@ -203,7 +199,7 @@ void wxBarChart::DoFit()
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
-        BarSet& currentDataset = *m_datasets[i];
+        Dataset& currentDataset = *m_datasets[i];
         for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
         {
             Bar& bar = *(currentDataset.GetBars()[j]);
@@ -233,7 +229,7 @@ void wxBarChart::DoDraw(wxGraphicsContext &gc,
 
     for (size_t i = 0; i < m_datasets.size(); ++i)
     {
-        BarSet& currentDataset = *m_datasets[i];
+        Dataset& currentDataset = *m_datasets[i];
         for (size_t j = 0; j < currentDataset.GetBars().size(); ++j)
         {
             currentDataset.GetBars()[j]->Draw(gc);

@@ -1,0 +1,66 @@
+toolsets = gnu vs2017 vs2015 vs2013;
+
+gnu.makefile = ../../GNUmakefile;
+vs2017.solutionfile = ../msw/WxCandlestick_vc15.sln;
+vs2015.solutionfile = ../msw/WxCandlestick_vc14.sln;
+vs2013.solutionfile = ../msw/WxCandlestick_vc12.sln;
+
+setting WXWIDGETS_ROOT
+{
+    help = "Path to the wxWidgets installation";
+    default = '$(WXWIN)';
+}
+
+setting WXCHARTS_ROOT
+{
+    help = "Path to the wxCharts installation";
+    default = '$(WXCHARTS)';
+}
+
+program WxCandlestick
+{
+    archs = x86 x86_64;
+
+    vs2017.projectfile = ../msw/WxCandlestick_vc15.vcxproj;
+    vs2015.projectfile = ../msw/WxCandlestick_vc14.vcxproj;
+    vs2013.projectfile = ../msw/WxCandlestick_vc12.vcxproj;
+
+    includedirs += $(WXCHARTS_ROOT)/include;
+
+    if (($(toolset) == vs2017) || ($(toolset) == vs2015) || ($(toolset) == vs2013))
+    {
+        win32-subsystem = windows;
+
+        includedirs += $(WXWIDGETS_ROOT)/include;
+        includedirs += $(WXWIDGETS_ROOT)/include/msvc;
+        if ($(arch) == x86)
+        {
+            libdirs += $(WXCHARTS_ROOT)/lib/vc_lib;
+            libdirs += $(WXWIDGETS_ROOT)/lib/vc_lib;
+        }
+        if ($(arch) == x86_64)
+        {
+            libdirs += $(WXCHARTS_ROOT)/lib/vc_x64_lib;
+            libdirs += $(WXWIDGETS_ROOT)/lib/vc_x64_lib;
+        }
+    }
+    if ($(toolset) == gnu)
+    {
+        cxx-compiler-options = "-std=c++11 `wx-config --cxxflags`";
+        link-options = "`wx-config --libs`";
+        libdirs += $(WXCHARTS_ROOT);
+        libs += wxcharts;
+    }
+
+    headers
+    {
+        ../../src/WxCandlestickApp.h
+        ../../src/WxCandlestickFrame.h
+    }
+
+    sources
+    {
+        ../../src/WxCandlestickApp.cpp
+        ../../src/WxCandlestickFrame.cpp
+    }
+}

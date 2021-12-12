@@ -57,7 +57,7 @@ public:
         @param data The data that will be used to initialize the chart.
         @param size The initial size of the chart.
     */
-    wxBarChart(wxSharedPtr<wxChartsCategoricalData> &data, const wxSize &size);
+    wxBarChart(wxChartsCategoricalData::ptr &data, const wxSize &size);
 
     /// Constructor.
     /**
@@ -65,17 +65,16 @@ public:
         @param options The options to use for the chart.
         @param size The initial size of the chart.
     */
-    wxBarChart(wxSharedPtr<wxChartsCategoricalData> &data, wxSharedPtr<wxBarChartOptions> options,
+    wxBarChart(wxChartsCategoricalData::ptr &data, wxBarChartOptions::ptr options,
         const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
-    void Initialize(wxSharedPtr<wxChartsCategoricalData> &data, const wxSize& size);
-    static wxDouble GetMinValue(const wxVector<wxVector<wxDouble>> &datasets);
-    static wxDouble GetMaxValue(const wxVector<wxVector<wxDouble>> &datasets);
+    void Initialize(wxChartsCategoricalData::ptr &data);
+    static wxDouble GetMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
+    static wxDouble GetMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
 
-    virtual wxSize DoGetBestSize() const;
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
@@ -102,22 +101,24 @@ private:
         wxDouble m_value;
     };
 
-    class BarSet
+    class Dataset
     {
     public:
-        BarSet();
+        typedef wxSharedPtr<Dataset> ptr;
 
-        const wxVector<wxSharedPtr<Bar>>& GetBars() const;
-        void AppendBar(wxSharedPtr<Bar> bar);
+        Dataset();
+
+        const wxVector<Bar::ptr>& GetBars() const;
+        void AppendBar(Bar::ptr bar);
 
     private:
-        wxVector<wxSharedPtr<Bar>> m_bars;
+        wxVector<Bar::ptr> m_bars;
     };
 
 private:
     wxSharedPtr<wxBarChartOptions> m_options;
     wxChartsGrid m_grid;
-    wxVector<wxSharedPtr<BarSet>> m_datasets;
+    wxVector<Dataset::ptr> m_datasets;
 };
 
 #endif

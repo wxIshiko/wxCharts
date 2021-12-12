@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -36,39 +36,31 @@
 #include "wxlinechartctrl.h"
 #include <wx/filedlg.h>
 
-wxLineChartCtrl::wxLineChartCtrl(wxWindow* parent,
+wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
                                  wxWindowID id,
-                                 const wxPoint& pos,
-                                 const wxSize& size,
-                                 const wxString& title,
-                                 wxSharedPtr<wxChartsCategoricalData>& data,
-                                 const wxChartsLineType& lineType,
-                                 const wxChartsTheme& theme,
+                                 wxChartsCategoricalData::ptr &data,
+                                 const wxChartsLineType &lineType,
+                                 const wxPoint &pos,
+                                 const wxSize &size,
                                  long style)
     : wxChartCtrl(parent, id, pos, size, style),
-    m_lineChart(size, title, data, lineType, theme)
+    m_lineChart(data, lineType, size)
 {
     CreateContextMenu();
 }
 
-wxLineChartCtrl::wxLineChartCtrl(wxWindow* parent,
+wxLineChartCtrl::wxLineChartCtrl(wxWindow *parent,
                                  wxWindowID id,
-                                 const wxPoint& pos,
-                                 const wxSize& size,
-                                 const wxString& title,
-                                 wxSharedPtr<wxChartsCategoricalData>& data,
-                                 const wxChartsLineType& lineType,
-                                 const wxLineChartOptions& options,
+                                 wxChartsCategoricalData::ptr &data,
+                                 const wxChartsLineType &lineType,
+                                 const wxLineChartOptions &options,
+                                 const wxPoint &pos,
+                                 const wxSize &size,
                                  long style)
     : wxChartCtrl(parent, id, pos, size, style),
-    m_lineChart(size, title, data, lineType, options)
+    m_lineChart(data, lineType, options, size)
 {
     CreateContextMenu();
-}
-
-const wxLineChart& wxLineChartCtrl::GetChart() const
-{
-    return m_lineChart;
 }
 
 wxLineChart& wxLineChartCtrl::GetChart()

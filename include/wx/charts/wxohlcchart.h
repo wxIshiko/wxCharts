@@ -74,7 +74,6 @@ private:
     static wxDouble GetMinValue(const wxOHLCChartData &data);
     static wxDouble GetMaxValue(const wxOHLCChartData &data);
 
-    virtual wxSize DoGetBestSize() const;
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);

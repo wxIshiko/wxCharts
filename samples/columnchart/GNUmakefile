@@ -66,21 +66,21 @@ WXCHARTS_ROOT ?= $(WXCHARTS)
 
 # ------------
 
-all: $(_builddir)wxcolumnchart
+all: $(_builddir)WxColumn
 
-$(_builddir)wxcolumnchart: $(_builddir)wxcolumnchart_WxColumnApp.o $(_builddir)wxcolumnchart_WxColumnFrame.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)wxcolumnchart_WxColumnApp.o $(_builddir)wxcolumnchart_WxColumnFrame.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
+$(_builddir)WxColumn: $(_builddir)WxColumn_WxColumnApp.o $(_builddir)WxColumn_WxColumnFrame.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)WxColumn_WxColumnApp.o $(_builddir)WxColumn_WxColumnFrame.o -L$(WXCHARTS_ROOT) -lwxcharts `wx-config --libs` -pthread
 
-$(_builddir)wxcolumnchart_WxColumnApp.o: src/WxColumnApp.cpp
+$(_builddir)WxColumn_WxColumnApp.o: src/WxColumnApp.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxColumnApp.cpp
 
-$(_builddir)wxcolumnchart_WxColumnFrame.o: src/WxColumnFrame.cpp
+$(_builddir)WxColumn_WxColumnFrame.o: src/WxColumnFrame.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(WXCHARTS_ROOT)/include -std=c++11 `wx-config --cxxflags` src/WxColumnFrame.cpp
 
 clean:
 	rm -f $(_builddir)*.o
 	rm -f $(_builddir)*.d
-	rm -f $(_builddir)wxcolumnchart
+	rm -f $(_builddir)WxColumn
 
 .PHONY: all clean
 

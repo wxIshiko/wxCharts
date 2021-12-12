@@ -125,7 +125,6 @@ private:
     static wxDouble GetMinZValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
     static wxDouble GetMaxZValue(const wxVector<wxBubbleChartDataset::ptr>& datasets);
 
-    virtual wxSize DoGetBestSize() const;
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);

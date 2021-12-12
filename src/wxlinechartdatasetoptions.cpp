@@ -26,11 +26,9 @@
 
 wxLineChartDatasetOptions::wxLineChartDatasetOptions(const wxColor &dotColor,
                                                      const wxColor &dotStrokeColor,
-                                                     const wxColor &fillColor,
-	                                                 bool showLine,
-                                                     bool showDots)
-    : m_showDots(showDots), m_dotPenOptions(dotStrokeColor, 1), m_dotBrushOptions(dotColor),
-    m_dotRadius(4), m_showLine(showLine), m_lineColor(dotColor), m_lineWidth(2), m_fill(true),
+                                                     const wxColor &fillColor)
+    : m_showDots(true), m_dotPenOptions(dotStrokeColor, 1), m_dotBrushOptions(dotColor),
+    m_dotRadius(4), m_showLine(true), m_lineColor(dotColor), m_lineWidth(2), m_fill(true),
     m_fillColor(fillColor)
 {
 }

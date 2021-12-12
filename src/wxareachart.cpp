@@ -135,7 +135,7 @@ wxAreaChart::wxAreaChart(const wxAreaChartData &data,
                          const wxSize &size)
     : m_options(wxChartsDefaultTheme->GetAreaChartOptions()),
     m_grid(
-        wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
@@ -149,7 +149,7 @@ wxAreaChart::wxAreaChart(const wxAreaChartData &data,
                          const wxSize &size)
     : m_options(options),
     m_grid(
-        wxPoint(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
+        wxPoint2DDouble(m_options->GetPadding().GetLeft(), m_options->GetPadding().GetRight()),
         size,
         GetMinXValue(data.GetDatasets()), GetMaxXValue(data.GetDatasets()),
         GetMinYValue(data.GetDatasets()), GetMaxYValue(data.GetDatasets()),
@@ -309,12 +309,6 @@ wxDouble wxAreaChart::GetMaxYValue(const wxVector<wxAreaChartDataset::ptr>& data
     }
 
     return result;
-}
-
-wxSize wxAreaChart::DoGetBestSize() const
-{
-    // TODO
-    return wxSize(200, 200);
 }
 
 void wxAreaChart::DoSetSize(const wxSize &size)

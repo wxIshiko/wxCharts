@@ -38,18 +38,17 @@
 class wxStackedBarChart : public wxChart
 {
 public:
-    wxStackedBarChart(wxSharedPtr<wxChartsCategoricalData> &data, const wxSize &size);
-    wxStackedBarChart(wxSharedPtr<wxChartsCategoricalData> &data,
+    wxStackedBarChart(wxChartsCategoricalData::ptr &data, const wxSize &size);
+    wxStackedBarChart(wxChartsCategoricalData::ptr &data,
         const wxStackedBarChartOptions &options, const wxSize &size);
 
     virtual const wxChartCommonOptions& GetCommonOptions() const;
 
 private:
-    void Initialize(wxSharedPtr<wxChartsCategoricalData> &data, const wxSize &size);
-    static wxDouble GetCumulativeMinValue(const wxVector<wxVector<wxDouble>> &datasets);
-    static wxDouble GetCumulativeMaxValue(const wxVector<wxVector<wxDouble>> &datasets);
+    void Initialize(wxChartsCategoricalData::ptr &data);
+    static wxDouble GetCumulativeMinValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
+    static wxDouble GetCumulativeMaxValue(const wxVector<wxChartsDoubleDataset::ptr>& datasets);
 
-    virtual wxSize DoGetBestSize() const;
     virtual void DoSetSize(const wxSize &size);
     virtual void DoFit();
     virtual void DoDraw(wxGraphicsContext &gc, bool suppressTooltips);
@@ -59,6 +58,8 @@ private:
     class Bar : public wxChartsRectangle
     {
     public:
+        typedef wxSharedPtr<Bar> ptr;
+
         Bar(wxDouble value,
             const wxSharedPtr<wxChartTooltipProvider> tooltipProvider,
             wxDouble x, wxDouble y,
@@ -74,22 +75,24 @@ private:
         wxDouble m_value;
     };
 
-    class BarSet
+    class Dataset
     {
     public:
-        BarSet();
+        typedef wxSharedPtr<Dataset> ptr;
 
-        const wxVector<wxSharedPtr<Bar>>& GetBars() const;
-        void AppendBar(wxSharedPtr<Bar> bar);
+        Dataset();
+
+        const wxVector<Bar::ptr>& GetBars() const;
+        void AppendBar(Bar::ptr bar);
 
     private:
-        wxVector<wxSharedPtr<Bar>> m_bars;
+        wxVector<Bar::ptr> m_bars;
     };
 
 private:
     wxSharedPtr<wxStackedBarChartOptions> m_options;
     wxChartsGrid m_grid;
-    wxVector<wxSharedPtr<BarSet>> m_datasets;
+    wxVector<Dataset::ptr> m_datasets;
 };
 
 #endif

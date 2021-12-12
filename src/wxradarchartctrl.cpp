@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2017 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -41,11 +41,6 @@ wxRadarChartCtrl::wxRadarChartCtrl(wxWindow *parent,
     : wxChartCtrl(parent, id, pos, size, style),
     m_radarChart(size)
 {
-}
-
-const wxRadarChart& wxRadarChartCtrl::GetChart() const
-{
-    return m_radarChart;
 }
 
 wxRadarChart& wxRadarChartCtrl::GetChart()
