@@ -4,4 +4,6 @@ project(wxCharts)
 find_package(wxWidgets REQUIRED COMPONENTS core base)
 include(${wxWidgets_USE_FILE})
 
+set(CMAKE_CXX_STANDARD 11)
+
 include(build/cmake/main.cmake)
