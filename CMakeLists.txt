@@ -17,6 +17,9 @@ set(wxWidgets_wxrc_EXECUTABLE "" CACHE FILEPATH "")
 
 
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
+if(BUILD_SHARED_LIBS)
+    message(WARNING "Warning for a shared build: API can change in any version!")
+endif()
 
 #############
 #dependency #
