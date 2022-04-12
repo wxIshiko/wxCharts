@@ -24,6 +24,12 @@
 #include "wxchartbackground.h"
 #include "wxchartsutilities.h"
 
+wxChartsLabel::wxChartsLabel() :
+    m_position(0, 0),
+    m_size(0, 0)
+{
+}
+
 wxChartsLabel::wxChartsLabel(const wxString &text,
                              const wxChartsLabelOptions &options)
     : m_options(options), m_text(text), m_position(0, 0),

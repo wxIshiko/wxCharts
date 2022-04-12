@@ -45,6 +45,10 @@ const wxChartBackgroundOptions& wxChartsLabelOptions::RefData::GetBackgroundOpti
     return m_backgroundOptions;
 }
 
+wxChartsLabelOptions::wxChartsLabelOptions()
+{
+}
+
 wxChartsLabelOptions::wxChartsLabelOptions(const wxChartFontOptions &fontOptions,
                                            bool hasBackground,
                                            const wxChartBackgroundOptions &backgroundOptions)
