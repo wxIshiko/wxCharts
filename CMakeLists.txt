@@ -21,9 +21,9 @@ if(BUILD_SHARED_LIBS)
     message(WARNING "Warning for a shared build: API can change in any version!")
 endif()
 
-#############
-#dependency #
-#############
+##############
+# dependency #
+##############
 
 include(GNUInstallDirs)
 
