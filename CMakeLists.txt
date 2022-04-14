@@ -11,7 +11,7 @@ project(wxcharts
 set(CMAKE_CXX_STANDARD 11 CACHE STRING "C++ Standard")
 set(CMAKE_CXX_STANDARD_REQUIRED ON CACHE BOOL "")
 set(CMAKE_CXX_EXTENSIONS OFF CACHE BOOL "")
-set(CMAKE_DEBUG_POSTFIX "-d" CACHE STRING "Postfix for debug output")
+set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Postfix for debug binaries")
 set(wxWidgets_ROOT_DIR "" CACHE PATH "")
 set(wxWidgets_wxrc_EXECUTABLE "" CACHE FILEPATH "")
 
