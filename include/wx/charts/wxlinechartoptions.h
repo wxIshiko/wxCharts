@@ -25,13 +25,15 @@
 #ifndef _WX_CHARTS_WXLINECHARTOPTIONS_H_
 #define _WX_CHARTS_WXLINECHARTOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartoptions.h"
 #include "wxchartsgridoptions.h"
 
 /// The options for the wxLineChartCtrl control.
 
 /// \ingroup chartclasses
-class wxLineChartOptions : public wxChartOptions
+class WXCHARTS_EXPORT wxLineChartOptions : public wxChartOptions
 {
 public:
     /// Constructs a wxLineChartOptions instance.

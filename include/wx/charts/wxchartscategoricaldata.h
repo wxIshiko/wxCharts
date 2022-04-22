@@ -35,7 +35,7 @@
 /// wxStackedColumnChart. The categories are displayed on one the axes and the associated value or values
 /// on the other.
 /// \ingroup dataclasses
-class wxChartsCategoricalData
+class WXCHARTS_EXPORT wxChartsCategoricalData
 {
 public:
     /// Smart pointer typedef.

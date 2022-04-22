@@ -43,7 +43,7 @@
 /// This class is used to draw one of the segments of a circular chart e.g. a pie chart or a doughnut chart.
 
 /// \ingroup elementclasses
-class wxChartsArc : public wxChartsElement
+class WXCHARTS_EXPORT wxChartsArc : public wxChartsElement
 {
 public:
     /// Constructs a wxChartsArc element. The arc is defined by the 

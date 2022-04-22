@@ -25,11 +25,13 @@
 #ifndef _WX_CHARTS_WXCOMBINATIONCHARTCTRL_H_
 #define _WX_CHARTS_WXCOMBINATIONCHARTCTRL_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartctrl.h"
 #include "wxcombinationchart.h"
 
 /// \ingroup chartclasses
-class wxCombinationChartCtrl : public wxChartCtrl
+class WXCHARTS_EXPORT wxCombinationChartCtrl : public wxChartCtrl
 {
 public:
     wxCombinationChartCtrl(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,

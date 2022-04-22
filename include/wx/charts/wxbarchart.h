@@ -47,7 +47,7 @@
 /**
     \ingroup chartclasses
 */
-class wxBarChart : public wxChart
+class WXCHARTS_EXPORT wxBarChart : public wxChart
 {
 public:
     /// Constructor.

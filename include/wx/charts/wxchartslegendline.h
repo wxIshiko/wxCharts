@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSLEGENDLINE_H_
 #define _WX_CHARTS_WXCHARTSLEGENDLINE_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartselement.h"
 #include "wxchartslegendlineoptions.h"
 
@@ -32,7 +34,7 @@
 
 /// It can be used wherever a single line of text is needed
 /// with a single colored square at the start of the line.
-class wxChartsLegendLine : public wxChartsElement
+class WXCHARTS_EXPORT wxChartsLegendLine : public wxChartsElement
 {
 public:
     /// Constructs a wxChartsLegendLine element.

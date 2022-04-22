@@ -25,13 +25,15 @@
 #ifndef _WX_CHARTS_WXCHARTSBRUSHOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSBRUSHOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include <wx/colour.h>
 
 /// The options for a brush.
 /**
     \ingroup elementclasses
 */
-class wxChartsBrushOptions
+class WXCHARTS_EXPORT wxChartsBrushOptions
 {
 public:
     /// Constructor.

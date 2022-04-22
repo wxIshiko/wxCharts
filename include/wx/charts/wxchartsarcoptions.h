@@ -25,12 +25,14 @@
 #ifndef _WX_CHARTS_WXCHARTSARCOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSARCOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include <wx/colour.h>
 
 /// Options for the wxChartsArc class.
 
 /// \ingroup elementclasses
-class wxChartsArcOptions
+class WXCHARTS_EXPORT wxChartsArcOptions
 {
 public:
     /// Constructs a wxChartsArcOptions instance.

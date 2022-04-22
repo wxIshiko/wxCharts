@@ -36,6 +36,8 @@
 #ifndef _WX_CHARTS_WXCHARTSRADIALGRID_H_
 #define _WX_CHARTS_WXCHARTSRADIALGRID_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartselement.h"
 #include "wxchartsradialgridoptions.h"
 #include "wxchartslabelgroup.h"
@@ -47,7 +49,7 @@
 /// background of some of the chart controls like for instance 
 /// the polar area chart.
 /// \ingroup elementclasses
-class wxChartsRadialGrid : public wxChartsElement
+class WXCHARTS_EXPORT wxChartsRadialGrid : public wxChartsElement
 {
 public:
     /// Constructs a wxChartsRadialGrid element.

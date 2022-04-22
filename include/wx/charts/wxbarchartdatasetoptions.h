@@ -28,7 +28,7 @@
 #include "wxchartspenoptions.h"
 #include "wxchartsbrushoptions.h"
 
-class wxBarChartDatasetOptions
+class WXCHARTS_EXPORT wxBarChartDatasetOptions
 {
 public:
     /// Constructs a wxBarChartDatasetOptions instance.

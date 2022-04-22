@@ -36,6 +36,8 @@
 #ifndef _WX_CHARTS_WXAREACHART_H_
 #define _WX_CHARTS_WXAREACHART_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchart.h"
 #include "wxareachartoptions.h"
 #include "wxchartsgrid.h"
@@ -43,7 +45,7 @@
 #include <wx/sharedptr.h>
 
 /// \ingroup dataclasses
-class wxAreaChartDataset
+class WXCHARTS_EXPORT wxAreaChartDataset
 {
 public:
     /// Smart pointer typedef.
@@ -63,7 +65,7 @@ private:
 /// Data for the wxAreaChartCtrl control.
 
 /// \ingroup dataclasses
-class wxAreaChartData
+class WXCHARTS_EXPORT wxAreaChartData
 {
 public:
     /// Constructs a wxAreaChartData instance.
@@ -83,7 +85,7 @@ private:
 /**
     \ingroup chartclasses
 */
-class wxAreaChart : public wxChart
+class WXCHARTS_EXPORT wxAreaChart : public wxChart
 {
 public:
     /// Constructor.

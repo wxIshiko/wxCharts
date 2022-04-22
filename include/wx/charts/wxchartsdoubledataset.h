@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSDOUBLEDATASET_H_
 #define _WX_CHARTS_WXCHARTSDOUBLEDATASET_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartsdataset.h"
 #include "wxchartsrectangleoptions.h"
 #include <wx/sharedptr.h>
@@ -33,7 +35,7 @@
 
 /// The wxBarChartCtrl, wxColumnChartCtrl, wxStackedBarChartCtrl and wxStackedColumnChartCtrl use this class.
 /// \ingroup dataclasses
-class wxChartsDoubleDataset : public wxChartsDataset
+class WXCHARTS_EXPORT wxChartsDoubleDataset : public wxChartsDataset
 {
 public:
     /// Smart pointer typedef.

@@ -36,6 +36,8 @@
 #ifndef _WX_CHARTS_WXCHARTSGRID_H_
 #define _WX_CHARTS_WXCHARTSGRID_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartselement.h"
 #include "wxchartsgridoptions.h"
 #include "wxchartsgridmapping.h"
@@ -64,7 +66,7 @@
 ///
 /// @see wxChartsGridOptions
 /// \ingroup elementclasses
-class wxChartsGrid : public wxChartsElement
+class WXCHARTS_EXPORT wxChartsGrid : public wxChartsElement
 {
 public:
     typedef wxSharedPtr<wxChartsGrid> ptr;

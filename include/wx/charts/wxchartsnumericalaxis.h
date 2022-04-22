@@ -36,6 +36,8 @@
 #ifndef _WX_CHARTS_WXCHARTSNUMERICALAXIS_H_
 #define _WX_CHARTS_WXCHARTSNUMERICALAXIS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartsaxis.h"
 
 enum wxChartsAxisScale
@@ -45,7 +47,7 @@ enum wxChartsAxisScale
 };
 
 /// \ingroup elementclasses
-class wxChartsNumericalAxis : public wxChartsAxis
+class WXCHARTS_EXPORT wxChartsNumericalAxis : public wxChartsAxis
 {
 public:
     /// Constructs a wxChartsNumericalAxis axis. The

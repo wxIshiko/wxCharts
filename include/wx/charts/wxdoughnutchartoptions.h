@@ -25,12 +25,14 @@
 #ifndef _WX_CHARTS_WXDOUGHNUTCHARTOPTIONS_H_
 #define _WX_CHARTS_WXDOUGHNUTCHARTOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxdoughnutandpiechartoptionsbase.h"
 
 /// The options for the wxDoughnutChartCtrl control.
 
 /// \ingroup chartclasses
-class wxDoughnutChartOptions : public wxDoughnutAndPieChartOptionsBase
+class WXCHARTS_EXPORT wxDoughnutChartOptions : public wxDoughnutAndPieChartOptionsBase
 {
 public:
     /// Constructs a wxDougnutChartOptions

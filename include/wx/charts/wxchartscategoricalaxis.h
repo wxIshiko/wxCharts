@@ -36,10 +36,12 @@
 #ifndef _WX_CHARTS_WXCHARTSCATEGORICALAXIS_H_
 #define _WX_CHARTS_WXCHARTSCATEGORICALAXIS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartsaxis.h"
 
 /// \ingroup elementclasses
-class wxChartsCategoricalAxis : public wxChartsAxis
+class WXCHARTS_EXPORT wxChartsCategoricalAxis : public wxChartsAxis
 {
 public:
     /// Constructs a wxChartsCategoricalAxis axis. The tick marks

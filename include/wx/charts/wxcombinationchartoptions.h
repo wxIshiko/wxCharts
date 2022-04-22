@@ -25,12 +25,14 @@
 #ifndef _WX_CHARTS_WXCOMBINATIONCHARTOPTIONS_H_
 #define _WX_CHARTS_WXCOMBINATIONCHARTOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartoptions.h"
 
 /// The options for the wxCombinationChartCtrl control.
 
 /// \ingroup chartclasses
-class wxCombinationChartOptions : public wxChartOptions
+class WXCHARTS_EXPORT wxCombinationChartOptions : public wxChartOptions
 {
 };
 

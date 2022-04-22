@@ -25,13 +25,16 @@
 #ifndef _WX_CHARTS_WXCHARTSLABELOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSLABELOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartfontoptions.h"
 #include "wxchartbackgroundoptions.h"
 
 /// The options for the wxChartsLabel element.
-class wxChartsLabelOptions : public wxObject
+class WXCHARTS_EXPORT wxChartsLabelOptions : public wxObject
 {
 public:
+    wxChartsLabelOptions();
     wxChartsLabelOptions(const wxChartFontOptions &fontOptions,
         bool hasBackground, const wxChartBackgroundOptions &backgroundOptions);
 

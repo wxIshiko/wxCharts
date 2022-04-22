@@ -36,6 +36,8 @@
 #ifndef _WX_CHARTS_WXHISTOGRAMCTRL_H_
 #define _WX_CHARTS_WXHISTOGRAMCTRL_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartctrl.h"
 #include "wxhistogram.h"
 #include <wx/menu.h>
@@ -43,7 +45,7 @@
 /// A control that displays a math2d plot.
 
 /// \ingroup chartclasses
-class wxHistogramCtrl : public wxChartCtrl
+class WXCHARTS_EXPORT wxHistogramCtrl : public wxChartCtrl
 {
 public:
     /// Constructs a wxHistogramCtrl control.

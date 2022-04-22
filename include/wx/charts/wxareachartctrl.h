@@ -36,6 +36,8 @@
 #ifndef _WX_CHARTS_WXAREACHARTCTRL_H_
 #define _WX_CHARTS_WXAREACHARTCTRL_H
 
+#include "wxcharts_export.h"
+
 #include "wxchartctrl.h"
 #include "wxareachart.h"
 #include <wx/menu.h>
@@ -44,7 +46,7 @@
 /**
     \ingroup chartclasses
 */
-class wxAreaChartCtrl : public wxChartCtrl
+class WXCHARTS_EXPORT wxAreaChartCtrl : public wxChartCtrl
 {
 public:
     /// Constructor.

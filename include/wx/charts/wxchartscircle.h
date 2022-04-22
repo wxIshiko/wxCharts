@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSCIRCLE_H_
 #define _WX_CHARTS_WXCHARTSCIRCLE_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartselement.h"
 #include "wxchartscircleoptions.h"
 #include <wx/sharedptr.h>
@@ -32,7 +34,7 @@
 /// This class is used to draw a circle on the chart.
 
 /// \ingroup elementclasses
-class wxChartsCircle : public wxChartsElement
+class WXCHARTS_EXPORT wxChartsCircle : public wxChartsElement
 {
 public:
     wxChartsCircle(wxDouble x, wxDouble y, wxDouble radius,

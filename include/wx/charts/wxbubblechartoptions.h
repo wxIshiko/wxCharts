@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXBUBBLECHARTOPTIONS_H_
 #define _WX_CHARTS_WXBUBBLECHARTOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartoptions.h"
 #include "wxchartsgridoptions.h"
 #include <wx/sharedptr.h>
@@ -32,7 +34,7 @@
 /// The options for the wxBubbleChartCtrl control.
 
 /// \ingroup chartclasses
-class wxBubbleChartOptions : public wxChartOptions
+class WXCHARTS_EXPORT wxBubbleChartOptions : public wxChartOptions
 {
 public:
     /// Smart pointer typedef.

@@ -32,7 +32,7 @@
 /**
     \ingroup chartclasses
 */
-class wxBoxPlotCtrl : public wxChartCtrl
+class WXCHARTS_EXPORT wxBoxPlotCtrl : public wxChartCtrl
 {
 public:
     /// Constructor.

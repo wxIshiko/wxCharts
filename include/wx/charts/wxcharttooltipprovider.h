@@ -25,11 +25,13 @@
 #ifndef _WX_CHARTS_WXCHARTTOOLTIPPROVIDER_H_
 #define _WX_CHARTS_WXCHARTTOOLTIPPROVIDER_H_
 
+#include "wxcharts_export.h"
+
 #include <wx/colour.h>
 #include <wx/string.h>
 
 /// Interface for the classes that are able to generate content for tooltips
-class wxChartTooltipProvider
+class WXCHARTS_EXPORT wxChartTooltipProvider
 {
 public:
     /// Constructs a wxChartTooltipProvider instance.

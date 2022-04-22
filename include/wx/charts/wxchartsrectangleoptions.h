@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSRECTANGLEOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSRECTANGLEOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartsbrushoptions.h"
 #include "wxchartspenoptions.h"
 
@@ -32,7 +34,7 @@
 /**
     \ingroup elementclasses
 */
-class wxChartsRectangleOptions
+class WXCHARTS_EXPORT wxChartsRectangleOptions
 {
 public:
     /// Constructor.

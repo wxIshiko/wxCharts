@@ -25,13 +25,15 @@
 #ifndef _WX_CHARTS_WXDOUGHNUTCHARTCTRL_H_
 #define _WX_CHARTS_WXDOUGHNUTCHARTCTRL_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartctrl.h"
 #include "wxdoughnutchart.h"
 
 /// A control that displays a doughnut chart.
 
 /// \ingroup chartclasses
-class wxDoughnutChartCtrl : public wxChartCtrl, public wxChartValueObserver<std::map<wxString, wxChartSliceData>>
+class WXCHARTS_EXPORT wxDoughnutChartCtrl : public wxChartCtrl, public wxChartValueObserver<std::map<wxString, wxChartSliceData>>
 {
 public:
     wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, wxPieChartData::ptr data,

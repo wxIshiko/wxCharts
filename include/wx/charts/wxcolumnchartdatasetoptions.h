@@ -25,10 +25,12 @@
 #ifndef _WX_CHARTS_WXCOLUMNCHARTDATASETOPTIONS_H_
 #define _WX_CHARTS_WXCOLUMNCHARTDATASETOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartspenoptions.h"
 #include "wxchartsbrushoptions.h"
 
-class wxColumnChartDatasetOptions
+class WXCHARTS_EXPORT wxColumnChartDatasetOptions
 {
 public:
     wxColumnChartDatasetOptions(const wxChartsPenOptions &penOptions,

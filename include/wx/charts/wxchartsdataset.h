@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSDATASET_H_
 #define _WX_CHARTS_WXCHARTSDATASET_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartsdatasetid.h"
 
 /// \defgroup dataclasses
@@ -32,7 +34,7 @@
 /// Base class for the dataset classes.
 
 /// \ingroup dataclasses
-class wxChartsDataset
+class WXCHARTS_EXPORT wxChartsDataset
 {
 public:
     wxChartsDataset(const wxString& name);

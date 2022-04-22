@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCANDLESTICKCHARTOPTIONS_H_
 #define _WX_CHARTS_WXCANDLESTICKCHARTOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartoptions.h"
 #include "wxchartsgridoptions.h"
 #include <wx/sharedptr.h>
@@ -32,7 +34,7 @@
 /// The options for the wxCandlestickChartCtrl control.
 
 /// \ingroup chartclasses
-class wxCandlestickChartOptions : public wxChartOptions
+class WXCHARTS_EXPORT wxCandlestickChartOptions : public wxChartOptions
 {
 public:
     /// Smart pointer typedef.

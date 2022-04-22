@@ -25,13 +25,15 @@
 #ifndef _WX_CHARTS_WXCOLUMNCHARTOPTIONS_H_
 #define _WX_CHARTS_WXCOLUMNCHARTOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartoptions.h"
 #include "wxchartsgridoptions.h"
 
 /// The options for the wxColumnChartCtrl control.
 
 /// \ingroup chartclasses
-class wxColumnChartOptions : public wxChartOptions
+class WXCHARTS_EXPORT wxColumnChartOptions : public wxChartOptions
 {
 public:
     /// Constructs a wxColumnChartOptions instance.
@@ -55,7 +57,7 @@ private:
     wxDouble m_datasetSpacing;
 };
 
-class wxColumnChartDatasetStyle
+class WXCHARTS_EXPORT wxColumnChartDatasetStyle
 {
 public:
     wxColumnChartDatasetStyle();

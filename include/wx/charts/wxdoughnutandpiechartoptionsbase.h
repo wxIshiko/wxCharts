@@ -25,10 +25,12 @@
 #ifndef _WX_CHARTS_WXDOUGHNUTANDPIECHARTOPTIONSBASE_H_
 #define _WX_CHARTS_WXDOUGHNUTANDPIECHARTOPTIONSBASE_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartoptions.h"
 
 /// Options for the wxDoughnutAndPieChartBase class. 
-class wxDoughnutAndPieChartOptionsBase : public wxChartOptions
+class WXCHARTS_EXPORT wxDoughnutAndPieChartOptionsBase : public wxChartOptions
 {
 public:
     /// Constructs a wxDoughnutAndPieChartOptionsBase instance.

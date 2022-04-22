@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSLEGENDCTRL_H_
 #define _WX_CHARTS_WXCHARTSLEGENDCTRL_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartslegendoptions.h"
 #include "wxchartslegendline.h"
 #include "wxchartslegenditem.h"
@@ -35,7 +37,7 @@
 /// The legend is implemented as a separate control (and not
 /// as part of the chart control itself) to allow for more
 /// flexible layouts with the help of wxWidgets sizers.
-class wxChartsLegendCtrl : public wxControl
+class WXCHARTS_EXPORT wxChartsLegendCtrl : public wxControl
 {
 public:
     /// Constructs a wxChartsLegendCtrl control.

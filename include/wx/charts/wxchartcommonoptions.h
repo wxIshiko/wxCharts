@@ -25,12 +25,14 @@
 #ifndef _WX_CHARTS_WXCHARTCOMMONOPTIONS_H_
 #define _WX_CHARTS_WXCHARTCOMMONOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartmultitooltipoptions.h"
 
 /// Options that are common between the various chart types.
 
 /// \ingroup chartclasses
-class wxChartCommonOptions
+class WXCHARTS_EXPORT wxChartCommonOptions
 {
 public:
     /// Constructs a wxChartCommonOptions

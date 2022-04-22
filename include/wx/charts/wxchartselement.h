@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSELEMENT_H_
 #define _WX_CHARTS_WXCHARTSELEMENT_H_
 
+#include "wxcharts_export.h"
+
 #include "wxcharttooltipprovider.h"
 #include <wx/graphics.h>
 #include <wx/sharedptr.h>
@@ -38,7 +40,7 @@
 /// users of the charts, they are there for people implementing
 /// charts.
 /// \ingroup elementclasses
-class wxChartsElement
+class WXCHARTS_EXPORT wxChartsElement
 {
 public:
     /// Smart pointer typedef.

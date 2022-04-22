@@ -36,6 +36,8 @@
 #ifndef _WX_CHARTS_WXSTACKEDCOLUMNCHART_H_
 #define _WX_CHARTS_WXSTACKEDCOLUMNCHART_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchart.h"
 #include "wxchartscategoricaldata.h"
 #include "wxstackedcolumnchartoptions.h"
@@ -46,7 +48,7 @@
 /// A stacked column chart.
 
 /// \ingroup chartclasses
-class wxStackedColumnChart : public wxChart
+class WXCHARTS_EXPORT wxStackedColumnChart : public wxChart
 {
 public:
     wxStackedColumnChart(wxChartsCategoricalData::ptr &data, const wxSize &size);

@@ -31,7 +31,7 @@
 #include "wxchartscircle.h"
 #include <wx/sharedptr.h>
 
-class wxDoubleTriplet
+class WXCHARTS_EXPORT wxDoubleTriplet
 {
 public:
     wxDoubleTriplet(wxDouble x, wxDouble y, wxDouble z);
@@ -42,7 +42,7 @@ public:
 };
 
 /// \ingroup dataclasses
-class wxBubbleChartDataset
+class WXCHARTS_EXPORT wxBubbleChartDataset
 {
 public:
     /// Smart pointer typedef.
@@ -73,7 +73,7 @@ private:
 /// Data for the wxBubbleChartCtrl control.
 
 /// \ingroup dataclasses
-class wxBubbleChartData
+class WXCHARTS_EXPORT wxBubbleChartData
 {
 public:
     /// Constructs a wxBubbleChartData instance.
@@ -93,7 +93,7 @@ private:
 /**
     \ingroup chartclasses
 */
-class wxBubbleChart : public wxChart
+class WXCHARTS_EXPORT wxBubbleChart : public wxChart
 {
 public:
     /// Constructor.

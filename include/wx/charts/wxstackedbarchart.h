@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXSTACKEDBARCHART_H_
 #define _WX_CHARTS_WXSTACKEDBARCHART_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchart.h"
 #include "wxchartscategoricaldata.h"
 #include "wxstackedbarchartoptions.h"
@@ -35,7 +37,7 @@
 /// A stacked bar chart.
 
 /// \ingroup chartclasses
-class wxStackedBarChart : public wxChart
+class WXCHARTS_EXPORT wxStackedBarChart : public wxChart
 {
 public:
     wxStackedBarChart(wxChartsCategoricalData::ptr &data, const wxSize &size);

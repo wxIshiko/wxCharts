@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSRECTANGLE_H_
 #define _WX_CHARTS_WXCHARTSRECTANGLE_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartselement.h"
 #include "wxchartsrectangleoptions.h"
 #include <wx/graphics.h>
@@ -33,7 +35,7 @@
 /// This class is used to display a rectangle on a chart.
 
 /// \ingroup elementclasses
-class wxChartsRectangle : public wxChartsElement
+class WXCHARTS_EXPORT wxChartsRectangle : public wxChartsElement
 {
 public:
     /// Constructs a wxChartsRectangle element.

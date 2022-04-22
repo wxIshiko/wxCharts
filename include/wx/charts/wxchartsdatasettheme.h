@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSDATASETTHEME_H_
 #define _WX_CHARTS_WXCHARTSDATASETTHEME_H_
 
+#include "wxcharts_export.h"
+
 #include "wxareachartdatasetoptions.h"
 #include "wxbarchartdatasetoptions.h"
 #include "wxboxplotdatasetoptions.h"
@@ -34,7 +36,7 @@
 #include "wxstackedcolumnchartdatasetoptions.h"
 #include <wx/sharedptr.h>
 
-class wxChartsDatasetTheme
+class WXCHARTS_EXPORT wxChartsDatasetTheme
 {
 public:
     wxChartsDatasetTheme();

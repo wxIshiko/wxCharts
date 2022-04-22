@@ -25,9 +25,10 @@
 #ifndef _WX_CHARTS_WXBOXPLOTDATASETOPTIONS_H_
 #define _WX_CHARTS_WXBOXPLOTDATASETOPTIONS_H_
 
+#include "wxcharts_export.h"
 #include <wx/colour.h>
 
-class wxBoxPlotDatasetOptions
+class WXCHARTS_EXPORT wxBoxPlotDatasetOptions
 {
 public:
     wxBoxPlotDatasetOptions();

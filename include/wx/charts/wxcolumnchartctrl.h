@@ -36,13 +36,15 @@
 #ifndef _WX_CHARTS_WXCOLUMNCHARTCTRL_H_
 #define _WX_CHARTS_WXCOLUMNCHARTCTRL_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartctrl.h"
 #include "wxcolumnchart.h"
 
 /// A control that displays a column chart.
 
 /// \ingroup chartclasses
-class wxColumnChartCtrl : public wxChartCtrl
+class WXCHARTS_EXPORT wxColumnChartCtrl : public wxChartCtrl
 {
 public:
     /// Constructs a wxColumnChartCtrl control.

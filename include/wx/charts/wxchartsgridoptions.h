@@ -25,11 +25,13 @@
 #ifndef _WX_CHARTS_WXCHARTSGRIDOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSGRIDOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartsaxisoptions.h"
 #include <wx/colour.h>
 
 /// The options for the grid lines of wxChartsGrid element.
-class wxChartsGridLineOptions
+class WXCHARTS_EXPORT wxChartsGridLineOptions
 {
 public:
     /// Constructs a wxChartsGridOptions
@@ -80,7 +82,7 @@ private:
 };
 
 /// The options for the wxChartsGrid element.
-class wxChartsGridOptions
+class WXCHARTS_EXPORT wxChartsGridOptions
 {
 public:
     /// Constructs a wxChartsGridOptions instance with

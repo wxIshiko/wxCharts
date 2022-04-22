@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSAXISOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSAXISOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartfontoptions.h"
 
 /// The position of the axis in relation to the chart.
@@ -105,7 +107,7 @@ enum wxChartsAxisValueMode
 /// The options for the wxChartsAxis element.
 
 /// \ingroup elementclassess
-class wxChartsAxisOptions
+class WXCHARTS_EXPORT wxChartsAxisOptions
 {
 public:
     /// Constructs a new wxChartsAxisOptions

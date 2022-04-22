@@ -36,6 +36,8 @@
 #ifndef _WX_CHARTS_WXLINECHART_H_
 #define _WX_CHARTS_WXLINECHART_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchart.h"
 #include "wxchartscategoricaldata.h"
 #include "wxlinechartoptions.h"
@@ -52,7 +54,7 @@ enum wxChartsLineType
 /// A line chart.
 
 /// \ingroup chartclasses
-class wxLineChart : public wxChart
+class WXCHARTS_EXPORT wxLineChart : public wxChart
 {
 public:
     wxLineChart(wxChartsCategoricalData::ptr &data, const wxChartsLineType &lineType,

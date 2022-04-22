@@ -25,27 +25,29 @@
 #ifndef _WX_CHARTS_WXCHARTSPRESENTATIONTHEME_H_
 #define _WX_CHARTS_WXCHARTSPRESENTATIONTHEME_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartstheme.h"
 
-class wxChartsPresentationTheme : public wxChartsTheme
+class WXCHARTS_EXPORT wxChartsPresentationTheme : public wxChartsTheme
 {
 public:
     wxChartsPresentationTheme();
 };
 
-class wxChartsPresentationDatasetTheme0 : public wxChartsDatasetTheme
+class WXCHARTS_EXPORT wxChartsPresentationDatasetTheme0 : public wxChartsDatasetTheme
 {
 public:
     wxChartsPresentationDatasetTheme0();
 };
 
-class wxChartsPresentationDatasetTheme1 : public wxChartsDatasetTheme
+class WXCHARTS_EXPORT wxChartsPresentationDatasetTheme1 : public wxChartsDatasetTheme
 {
 public:
     wxChartsPresentationDatasetTheme1();
 };
 
-class wxChartsPresentationDatasetTheme2 : public wxChartsDatasetTheme
+class WXCHARTS_EXPORT wxChartsPresentationDatasetTheme2 : public wxChartsDatasetTheme
 {
 public:
     wxChartsPresentationDatasetTheme2();

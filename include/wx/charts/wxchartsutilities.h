@@ -36,6 +36,8 @@
 #ifndef _WX_CHARTS_WXCHARTSUTILITIES_H_
 #define _WX_CHARTS_WXCHARTSUTILITIES_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartspenoptions.h"
 #include "wxchartsbrushoptions.h"
 #include "wxchartslabel.h"
@@ -44,7 +46,7 @@
 #include <wx/graphics.h>
 
 /// This class contains a set of static utility functions.
-class wxChartsUtilities
+class WXCHARTS_EXPORT wxChartsUtilities
 {
 public:
     /// Creates a pen from a wxChartsPenOptions instance.

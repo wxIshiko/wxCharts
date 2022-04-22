@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSTHEME_H_
 #define _WX_CHARTS_WXCHARTSTHEME_H_
 
+#include "wxcharts_export.h"
+
 #include "wxareachartoptions.h"
 #include "wxbarchartoptions.h"
 #include "wxboxplotoptions.h"
@@ -53,7 +55,7 @@
 /// Represent a wxCharts theme.
 
 /// \ingroup themeclasses
-class wxChartsTheme
+class WXCHARTS_EXPORT wxChartsTheme
 {
 public:
     wxChartsTheme();

@@ -25,13 +25,15 @@
 #ifndef _WX_CHARTS_WXCHARTOPTIONS_H_
 #define _WX_CHARTS_WXCHARTOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartcommonoptions.h"
 #include "wxchartpadding.h"
 
 /// Options for the wxChartCtrl control.
 
 /// \ingroup chartclasses
-class wxChartOptions
+class WXCHARTS_EXPORT wxChartOptions
 {
 public:
     /// Constructs a wxChartOptions

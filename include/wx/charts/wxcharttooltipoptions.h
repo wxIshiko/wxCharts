@@ -25,12 +25,14 @@
 #ifndef _WX_CHARTS_WXCHARTTOOLTIPOPTIONS_H_
 #define _WX_CHARTS_WXCHARTTOOLTIPOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartbackgroundoptions.h"
 #include <wx/colour.h>
 #include <wx/font.h>
 
 /// The options for the wxChartTooltip element.
-class wxChartTooltipOptions
+class WXCHARTS_EXPORT wxChartTooltipOptions
 {
 public:
     /// Constructs a wxChartTooltipOptions instance.

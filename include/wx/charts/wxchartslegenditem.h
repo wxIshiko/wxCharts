@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSLEGENDITEM_H_
 #define _WX_CHARTS_WXCHARTSLEGENDITEM_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartslicedata.h"
 #include "wxchartsdoubledataset.h"
 #include "wxlinechartdatasetoptions.h"
@@ -34,7 +36,7 @@
 #include <map>
 
 /// Class that represents items of the wxChartsLegendData class.
-class wxChartsLegendItem
+class WXCHARTS_EXPORT wxChartsLegendItem
 {
 public:
     /// Constructs a wxChartsLegendItem instance.
@@ -70,7 +72,7 @@ private:
 typedef wxVector<wxChartsLegendItem> wxChartsLegendItems;
 
 /// Data for the wxChartsLegendCtrl control.
-class wxChartsLegendData
+class WXCHARTS_EXPORT wxChartsLegendData
 {
 public:
     /// Constructs a wxChartsLegendData

@@ -25,12 +25,14 @@
 #ifndef _WX_CHARTS_WXCHARTSTHEMEID_H_
 #define _WX_CHARTS_WXCHARTSTHEMEID_H_
 
+#include "wxcharts_export.h"
+
 #include <wx/string.h>
 
 /// Identifier for a theme.
 
 /// \ingroup themeclasses
-class wxChartsThemeId
+class WXCHARTS_EXPORT wxChartsThemeId
 {
 public:
     wxChartsThemeId();

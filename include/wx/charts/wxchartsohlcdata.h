@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSOHLCDATA_H_
 #define _WX_CHARTS_WXCHARTSOHLCDATA_H_
 
+#include "wxcharts_export.h"
+
 #include <wx/defs.h>
 
 /// The open, high, low and close values for a single unit of time.
@@ -33,7 +35,7 @@
 
     \ingroup dataclasses
 */
-class wxChartsOHLCData
+class WXCHARTS_EXPORT wxChartsOHLCData
 {
 public:
     wxChartsOHLCData(wxDouble open, wxDouble high, wxDouble low, wxDouble close);

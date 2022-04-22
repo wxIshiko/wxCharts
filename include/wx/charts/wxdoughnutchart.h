@@ -25,13 +25,15 @@
 #ifndef _WX_CHARTS_WXDOUGHNUTCHART_H_
 #define _WX_CHARTS_WXDOUGHNUTCHART_H_
 
+#include "wxcharts_export.h"
+
 #include "wxdoughnutandpiechartbase.h"
 #include "wxdoughnutchartoptions.h"
 
 /// A doughnut chart.
 
 /// \ingroup chartclasses
-class wxDoughnutChart : public wxDoughnutAndPieChartBase
+class WXCHARTS_EXPORT wxDoughnutChart : public wxDoughnutAndPieChartBase
 {
 public:
     wxDoughnutChart(wxPieChartData::ptr data, const wxSize &size);

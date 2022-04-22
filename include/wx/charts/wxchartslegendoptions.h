@@ -25,10 +25,12 @@
 #ifndef _WX_CHARTS_WXCHARTSLEGENDOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSLEGENDOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartslegendlineoptions.h"
 
 /// Options for the wxChartsLegendCtrl control.
-class wxChartsLegendOptions
+class WXCHARTS_EXPORT wxChartsLegendOptions
 {
 public:
     /// Constructs a wxChartsLegendOptions instance.

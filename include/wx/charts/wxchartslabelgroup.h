@@ -25,10 +25,12 @@
 #ifndef _WX_CHARTS_WXCHARTSLABELGROUP_H_
 #define _WX_CHARTS_WXCHARTSLABELGROUP_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartslabel.h"
 
 /// This class is to manage a group of labels.
-class wxChartsLabelGroup : public wxVector<wxChartsLabel>
+class WXCHARTS_EXPORT wxChartsLabelGroup : public wxVector<wxChartsLabel>
 {
 public:
     wxChartsLabelGroup();

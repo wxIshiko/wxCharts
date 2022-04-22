@@ -25,13 +25,15 @@
 #ifndef _WX_CHARTS_WXCOMBINATIONCHART_H_
 #define _WX_CHARTS_WXCOMBINATIONCHART_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchart.h"
 #include "wxcombinationchartoptions.h"
 #include "wxchartscategoricaldata.h"
 #include "wxchartsgrid.h"
 
 /// \ingroup chartclasses
-class wxCombinationChart : public wxChart
+class WXCHARTS_EXPORT wxCombinationChart : public wxChart
 {
 public:
     wxCombinationChart();

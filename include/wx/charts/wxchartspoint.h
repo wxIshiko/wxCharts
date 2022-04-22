@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSPOINT_H_
 #define _WX_CHARTS_WXCHARTSPOINT_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartselement.h"
 #include "wxchartspointoptions.h"
 #include <wx/graphics.h>
@@ -33,7 +35,7 @@
 /// This class is used to display a point on a chart.
 
 /// \ingroup elementclasses
-class wxChartsPoint : public wxChartsElement
+class WXCHARTS_EXPORT wxChartsPoint : public wxChartsElement
 {
 public:
     /// Constructs a wxChartPoint element.

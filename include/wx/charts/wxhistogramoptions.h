@@ -25,13 +25,15 @@
 #ifndef _WX_CHARTS_WXHISTOGRAMOPTIONS_H_
 #define _WX_CHARTS_WXHISTOGRAMOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartoptions.h"
 #include "wxchartsgridoptions.h"
 
 /// The options for the wxHistogramCtrl control.
 
 /// \ingroup chartclasses
-class wxHistogramOptions : public wxChartOptions
+class WXCHARTS_EXPORT wxHistogramOptions : public wxChartOptions
 {
 public:
     /// Constructs a wxHistogramOptions instance.

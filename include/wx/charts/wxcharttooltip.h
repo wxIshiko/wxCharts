@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTTOOLTIP_H_
 #define _WX_CHARTS_WXCHARTTOOLTIP_H_
 
+#include "wxcharts_export.h"
+
 #include "wxcharttooltipoptions.h"
 #include "wxcharttooltipprovider.h"
 #include <wx/graphics.h>
@@ -36,7 +38,7 @@
 /// action (e.g. hoverin with the mouse over some part
 /// of the chart). This class implements such 
 /// tooltips.
-class wxChartTooltip
+class WXCHARTS_EXPORT wxChartTooltip
 {
 public:
     /// Constructs a new wxChartTooltip instance.

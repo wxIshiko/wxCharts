@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTCTRL_H_
 #define _WX_CHARTS_WXCHARTCTRL_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchart.h"
 #include <wx/control.h>
 
@@ -34,7 +36,7 @@
 /// of little use for users of these classes. The base class
 /// is there to make implementation of chart controls easier.
 /// \ingroup chartclasses
-class wxChartCtrl : public wxControl
+class WXCHARTS_EXPORT wxChartCtrl : public wxControl
 {
 public:
     /// Constructs a wxChartCtrl control.

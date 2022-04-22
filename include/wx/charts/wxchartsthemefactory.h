@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTSTHEMEFACTORY_H_
 #define _WX_CHARTS_WXCHARTSTHEMEFACTORY_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchartsthemeid.h"
 #include "wxchartstheme.h"
 #include <map>
@@ -32,7 +34,7 @@
 /// Factory class to create themes.
 
 /// \ingroup themeclasses
-class wxChartsThemeFactory
+class WXCHARTS_EXPORT wxChartsThemeFactory
 {
 public:
     static wxChartsTheme& Get(const wxChartsThemeId& id);

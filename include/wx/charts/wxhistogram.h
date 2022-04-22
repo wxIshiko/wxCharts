@@ -36,6 +36,8 @@
 #ifndef _WX_CHARTS_WXHISTOGRAM_H_
 #define _WX_CHARTS_WXHISTOGRAM_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchart.h"
 #include "wxhistogramoptions.h"
 #include "wxchartsgrid.h"
@@ -44,7 +46,7 @@
 #include <wx/scopedptr.h>
 
 /// \ingroup dataclasses
-class wxHistogramDataset
+class WXCHARTS_EXPORT wxHistogramDataset
 {
 public:
     /// Smart pointer typedef.
@@ -78,7 +80,7 @@ private:
 /// Data for the wxHistogramCtrl control.
 
 /// \ingroup dataclasses
-class wxHistogramData
+class WXCHARTS_EXPORT wxHistogramData
 {
 public:
     /// Constructs a wxHistogramData instance.
@@ -95,7 +97,7 @@ private:
 /// A histogram.
 
 /// \ingroup chartclasses
-class wxHistogram : public wxChart
+class WXCHARTS_EXPORT wxHistogram : public wxChart
 {
 public:
     wxHistogram(const wxHistogramData &data, const wxSize &size);

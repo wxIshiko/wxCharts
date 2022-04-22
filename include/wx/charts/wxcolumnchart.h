@@ -36,6 +36,8 @@
 #ifndef _WX_CHARTS_WXCOLUMNCHART_H_
 #define _WX_CHARTS_WXCOLUMNCHART_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchart.h"
 #include "wxchartscategoricaldata.h"
 #include "wxcolumnchartoptions.h"
@@ -46,7 +48,7 @@
 /// A column chart.
 
 /// \ingroup chartclasses
-class wxColumnChart : public wxChart
+class WXCHARTS_EXPORT wxColumnChart : public wxChart
 {
 public:
     wxColumnChart(wxChartsCategoricalData::ptr &data, const wxSize &size);

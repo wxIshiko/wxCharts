@@ -25,17 +25,19 @@
 #ifndef _WX_CHARTS_WXCHARTOBSERVERS_H_
 #define _WX_CHARTS_WXCHARTOBSERVERS_H_
 
+#include "wxcharts_export.h"
+
 #include <wx/vector.h>
 
 template<typename T>
-class wxChartValueObserver
+class WXCHARTS_EXPORT wxChartValueObserver
 {
 public:
     virtual void OnUpdate(const T &value) = 0;
 };
 
 template<typename T>
-class wxChartObservableValue
+class WXCHARTS_EXPORT wxChartObservableValue
 {
 public:
     wxChartObservableValue() {};

@@ -53,14 +53,4 @@
 #include "wxchartstheme.h"
 #include "wxchartsthemefactory.h"
 
-#ifdef _MSC_VER
-
-#ifdef _DEBUG
-#pragma comment(lib, "wxchartsd.lib")
-#else
-#pragma comment(lib, "wxcharts.lib")
-#endif
-
-#endif
-
 #endif
