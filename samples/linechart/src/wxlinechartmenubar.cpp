@@ -21,10 +21,15 @@
 */
 
 #include "wxlinechartmenubar.h"
+#include "wxlinechartwindowids.h"
 
 wxLineChartMenuBar::wxLineChartMenuBar()
 {
     wxMenu* menuFile = new wxMenu;
     menuFile->Append(wxID_EXIT, "Exit\tAlt+F4");
     Append(menuFile, "&File");
+
+    wxMenu* menuSamples = new wxMenu;
+    menuSamples->Append(wxID_SAMPLE_1, "wxLineChartCtrl with no title and 2 datasets");
+    Append(menuSamples, "&Samples");
 }

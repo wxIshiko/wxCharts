@@ -22,9 +22,8 @@
 
 #include "wxlinechartframe.h"
 #include "wxlinechartmenubar.h"
+#include "wxlinechartwindowids.h"
 #include <wx/panel.h>
-#include <wx/sizer.h>
-#include <wx/charts/wxcharts.h>
 
 wxLineChartFrame::wxLineChartFrame(const wxString& title)
 	: wxFrame(NULL, wxID_ANY, title)
@@ -70,7 +69,7 @@ wxLineChartFrame::wxLineChartFrame(const wxString& title)
 	chartData->AddDataset(dataset2);
 
 	// Create the line chart widget from the constructed data
-	wxLineChartCtrl* lineChartCtrl = new wxLineChartCtrl(panel, wxID_ANY,
+	m_lineChartCtrl = new wxLineChartCtrl(panel, wxID_ANY,
 		wxDefaultPosition, wxDefaultSize, "My Line Chart", chartData,
 		wxCHARTSLINETYPE_STRAIGHT, *wxChartsDefaultTheme, wxBORDER_NONE);
 
@@ -80,10 +79,10 @@ wxLineChartFrame::wxLineChartFrame(const wxString& title)
 		wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
 
 	// Set up the sizer for the panel
-	wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
-	panelSizer->Add(lineChartCtrl, 1, wxEXPAND);
-	panelSizer->Add(legendCtrl, 1, wxEXPAND);
-	panel->SetSizer(panelSizer);
+	m_panelSizer = new wxBoxSizer(wxHORIZONTAL);
+	m_panelSizer->Add(m_lineChartCtrl, 1, wxEXPAND);
+	m_panelSizer->Add(legendCtrl, 1, wxEXPAND);
+	panel->SetSizer(m_panelSizer);
 
 	// Set up the sizer for the frame
 	wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -96,6 +95,12 @@ void wxLineChartFrame::OnExit(wxCommandEvent& evt)
 	Close();
 }
 
+void wxLineChartFrame::OnSample1(wxCommandEvent& evt)
+{
+	// TODO
+}
+
 wxBEGIN_EVENT_TABLE(wxLineChartFrame, wxFrame)
     EVT_MENU(wxID_EXIT, wxLineChartFrame::OnExit)
+	EVT_MENU(wxID_SAMPLE_1, wxLineChartFrame::OnSample1)
 wxEND_EVENT_TABLE()

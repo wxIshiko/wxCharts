@@ -23,7 +23,9 @@
 #ifndef _SAMPLES_LINECHART_WXLINECHARTFRAME_H_
 #define _SAMPLES_LINECHART_WXLINECHARTFRAME_H_
 
+#include <wx/charts/wxcharts.h>
 #include <wx/frame.h>
+#include <wx/sizer.h>
 
 class wxLineChartFrame : public wxFrame
 {
@@ -32,6 +34,10 @@ public:
 
 private:
 	void OnExit(wxCommandEvent& evt);
+	void OnSample1(wxCommandEvent& evt);
+
+	wxBoxSizer* m_panelSizer;
+	wxLineChartCtrl* m_lineChartCtrl;
 
 	wxDECLARE_EVENT_TABLE();
 };
