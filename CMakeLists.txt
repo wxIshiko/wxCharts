@@ -21,6 +21,11 @@ if(BUILD_SHARED_LIBS)
     message(WARNING "Warning for a shared build: API can change in any version!")
 endif()
 
+option(wxBUILD_DEBUG_LEVEL "Debug Level" Default)
+if(NOT wxBUILD_DEBUG_LEVEL STREQUAL "Default")
+    add_compile_options("-DwxDEBUG_LEVEL=${wxBUILD_DEBUG_LEVEL}")
+endif()
+
 ##############
 # dependency #
 ##############
