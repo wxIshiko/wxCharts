@@ -248,4 +248,6 @@ set(WXCHARTS_SOURCES
 )
 
 add_library(wxCharts STATIC ${WXCHARTS_SOURCES})
+set_property(TARGET wxCharts PROPERTY CXX_STANDARD 11)
+set_property(TARGET wxCharts PROPERTY CXX_STANDARD_REQUIRED ON)
 target_include_directories(wxCharts PUBLIC ${CMAKE_SOURCE_DIR}/include/wx/charts)
