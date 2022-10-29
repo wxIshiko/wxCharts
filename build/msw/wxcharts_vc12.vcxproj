@@ -275,6 +275,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h" />
+    <ClInclude Include="..\..\include\wx\charts\dlimpexp.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsdatasetid.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsdataset.h" />
     <ClInclude Include="..\..\include\wx\charts\wxchartsdoubledataset.h" />

@@ -20,6 +20,9 @@
     <ClInclude Include="..\..\include\wx\charts\wxcharts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\charts\dlimpexp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\wx\charts\wxchartsdatasetid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
