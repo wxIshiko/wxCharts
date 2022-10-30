@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019 Xavier Leclercq
+    Copyright (c) 2019-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,11 +25,10 @@
 #ifndef _WX_CHARTS_WXCHARTSPRECISIONTHEME_H_
 #define _WX_CHARTS_WXCHARTSPRECISIONTHEME_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartstheme.h"
 
-class WXCHARTS_EXPORT wxChartsPrecisionTheme : public wxChartsTheme
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsPrecisionTheme : public wxChartsTheme
 {
 public:
     wxChartsPrecisionTheme();

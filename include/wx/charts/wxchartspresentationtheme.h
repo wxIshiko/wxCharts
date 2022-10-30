@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019 Xavier Leclercq
+    Copyright (c) 2019-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,29 +25,28 @@
 #ifndef _WX_CHARTS_WXCHARTSPRESENTATIONTHEME_H_
 #define _WX_CHARTS_WXCHARTSPRESENTATIONTHEME_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartstheme.h"
 
-class WXCHARTS_EXPORT wxChartsPresentationTheme : public wxChartsTheme
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsPresentationTheme : public wxChartsTheme
 {
 public:
     wxChartsPresentationTheme();
 };
 
-class WXCHARTS_EXPORT wxChartsPresentationDatasetTheme0 : public wxChartsDatasetTheme
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsPresentationDatasetTheme0 : public wxChartsDatasetTheme
 {
 public:
     wxChartsPresentationDatasetTheme0();
 };
 
-class WXCHARTS_EXPORT wxChartsPresentationDatasetTheme1 : public wxChartsDatasetTheme
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsPresentationDatasetTheme1 : public wxChartsDatasetTheme
 {
 public:
     wxChartsPresentationDatasetTheme1();
 };
 
-class WXCHARTS_EXPORT wxChartsPresentationDatasetTheme2 : public wxChartsDatasetTheme
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsPresentationDatasetTheme2 : public wxChartsDatasetTheme
 {
 public:
     wxChartsPresentationDatasetTheme2();
