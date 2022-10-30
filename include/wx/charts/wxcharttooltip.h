@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTTOOLTIP_H_
 #define _WX_CHARTS_WXCHARTTOOLTIP_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxcharttooltipoptions.h"
 #include "wxcharttooltipprovider.h"
 #include <wx/graphics.h>
@@ -38,7 +37,7 @@
 /// action (e.g. hoverin with the mouse over some part
 /// of the chart). This class implements such 
 /// tooltips.
-class WXCHARTS_EXPORT wxChartTooltip
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartTooltip
 {
 public:
     /// Constructs a new wxChartTooltip instance.

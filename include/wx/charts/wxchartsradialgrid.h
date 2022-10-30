@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -36,8 +36,7 @@
 #ifndef _WX_CHARTS_WXCHARTSRADIALGRID_H_
 #define _WX_CHARTS_WXCHARTSRADIALGRID_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartselement.h"
 #include "wxchartsradialgridoptions.h"
 #include "wxchartslabelgroup.h"
@@ -49,7 +48,7 @@
 /// background of some of the chart controls like for instance 
 /// the polar area chart.
 /// \ingroup elementclasses
-class WXCHARTS_EXPORT wxChartsRadialGrid : public wxChartsElement
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsRadialGrid : public wxChartsElement
 {
 public:
     /// Constructs a wxChartsRadialGrid element.
