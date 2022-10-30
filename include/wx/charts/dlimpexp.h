@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2022 Xavier Leclercq
+    Copyright (c) 2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,35 +22,9 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCANDLESTICKCHARTOPTIONS_H_
-#define _WX_CHARTS_WXCANDLESTICKCHARTOPTIONS_H_
+#ifndef _WX_CHARTS_DLIMPEXP_H_
+#define _WX_CHARTS_DLIMPEXP_H_
 
-#include "dlimpexp.h"
-#include "wxchartoptions.h"
-#include "wxchartsgridoptions.h"
-#include <wx/sharedptr.h>
-
-/// The options for the wxCandlestickChartCtrl control.
-
-/// \ingroup chartclasses
-class WXDLLIMPEXP_ISHIKO_CHARTS wxCandlestickChartOptions : public wxChartOptions
-{
-public:
-    /// Smart pointer typedef.
-    typedef wxSharedPtr<wxCandlestickChartOptions> ptr;
-
-    /// Constructs a wxCandlestickChartOptions instance.
-    wxCandlestickChartOptions();
-
-    /// Gets the options for the grid.
-    /// @return The grid options.
-    const wxChartsGridOptions& GetGridOptions() const;
-    /// Gets the options for the grid.
-    /// @return The grid options.
-    wxChartsGridOptions& GetGridOptions();
-
-private:
-    wxChartsGridOptions m_gridOptions;
-};
+#define WXDLLIMPEXP_ISHIKO_CHARTS
 
 #endif

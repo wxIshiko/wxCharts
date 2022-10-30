@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -36,6 +36,7 @@
 #ifndef _WX_CHARTS_WXCHARTSARC_H_
 #define _WX_CHARTS_WXCHARTSARC_H_
 
+#include "dlimpexp.h"
 #include "wxchartselement.h"
 #include "wxchartsarcoptions.h"
 #include <wx/graphics.h>
@@ -43,7 +44,7 @@
 /// This class is used to draw one of the segments of a circular chart e.g. a pie chart or a doughnut chart.
 
 /// \ingroup elementclasses
-class WXCHARTS_EXPORT wxChartsArc : public wxChartsElement
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsArc : public wxChartsElement
 {
 public:
     /// Constructs a wxChartsArc element. The arc is defined by the 

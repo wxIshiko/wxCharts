@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -36,6 +36,7 @@
 #ifndef _WX_CHARTS_WXBARCHART_H_
 #define _WX_CHARTS_WXBARCHART_H_
 
+#include "dlimpexp.h"
 #include "wxchart.h"
 #include "wxchartscategoricaldata.h"
 #include "wxbarchartoptions.h"
@@ -47,7 +48,7 @@
 /**
     \ingroup chartclasses
 */
-class WXCHARTS_EXPORT wxBarChart : public wxChart
+class WXDLLIMPEXP_ISHIKO_CHARTS wxBarChart : public wxChart
 {
 public:
     /// Constructor.

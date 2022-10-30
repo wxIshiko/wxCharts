@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTSAXISOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSAXISOPTIONS_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartfontoptions.h"
 
 /// The position of the axis in relation to the chart.
@@ -107,7 +106,7 @@ enum wxChartsAxisValueMode
 /// The options for the wxChartsAxis element.
 
 /// \ingroup elementclassess
-class WXCHARTS_EXPORT wxChartsAxisOptions
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsAxisOptions
 {
 public:
     /// Constructs a new wxChartsAxisOptions

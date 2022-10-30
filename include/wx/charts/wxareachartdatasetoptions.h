@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019 Xavier Leclercq
+    Copyright (c) 2019-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,11 +25,10 @@
 #ifndef _WX_CHARTS_WXAREACHARTDATASETOPTIONS_H_
 #define _WX_CHARTS_WXAREACHARTDATASETOPTIONS_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include <wx/colour.h>
 
-class WXCHARTS_EXPORT wxAreaChartDatasetOptions
+class WXDLLIMPEXP_ISHIKO_CHARTS wxAreaChartDatasetOptions
 {
 public:
     wxAreaChartDatasetOptions(const wxColor &dotColor);

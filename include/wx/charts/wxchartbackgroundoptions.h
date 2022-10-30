@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,12 +25,11 @@
 #ifndef _WX_CHARTS_WXCHARTBACKGROUNDOPTIONS_H_
 #define _WX_CHARTS_WXCHARTBACKGROUNDOPTIONS_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include <wx/colour.h>
 
 /// The options for the wxChartBackground class.
-class WXCHARTS_EXPORT wxChartBackgroundOptions
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartBackgroundOptions
 {
 public:
     wxChartBackgroundOptions(const wxColor &color, wxDouble cornerRadius);

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019 Xavier Leclercq
+    Copyright (c) 2019-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,10 +25,11 @@
 #ifndef _WX_CHARTS_WXBARCHARTDATASETOPTIONS_H_
 #define _WX_CHARTS_WXBARCHARTDATASETOPTIONS_H_
 
+#include "dlimpexp.h"
 #include "wxchartspenoptions.h"
 #include "wxchartsbrushoptions.h"
 
-class WXCHARTS_EXPORT wxBarChartDatasetOptions
+class WXDLLIMPEXP_ISHIKO_CHARTS wxBarChartDatasetOptions
 {
 public:
     /// Constructs a wxBarChartDatasetOptions instance.
