@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,14 +25,13 @@
 #ifndef _WX_CHARTS_WXCHARTSCIRCLEOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSCIRCLEOPTIONS_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include <wx/colour.h>
 
 /// Options for the wxChartsCircle class.
 
 /// \ingroup elementclasses
-class WXCHARTS_EXPORT wxChartsCircleOptions
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsCircleOptions
 {
 public:
     /// Constructs a wxChartsCircleOptions instance.

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors
+    Copyright (c) 2018-2022 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTSLEGENDITEM_H_
 #define _WX_CHARTS_WXCHARTSLEGENDITEM_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartslicedata.h"
 #include "wxchartsdoubledataset.h"
 #include "wxlinechartdatasetoptions.h"
@@ -36,7 +35,7 @@
 #include <map>
 
 /// Class that represents items of the wxChartsLegendData class.
-class WXCHARTS_EXPORT wxChartsLegendItem
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsLegendItem
 {
 public:
     /// Constructs a wxChartsLegendItem instance.
@@ -72,7 +71,7 @@ private:
 typedef wxVector<wxChartsLegendItem> wxChartsLegendItems;
 
 /// Data for the wxChartsLegendCtrl control.
-class WXCHARTS_EXPORT wxChartsLegendData
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsLegendData
 {
 public:
     /// Constructs a wxChartsLegendData

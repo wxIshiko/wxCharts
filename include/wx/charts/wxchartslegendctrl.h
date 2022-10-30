@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTSLEGENDCTRL_H_
 #define _WX_CHARTS_WXCHARTSLEGENDCTRL_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartslegendoptions.h"
 #include "wxchartslegendline.h"
 #include "wxchartslegenditem.h"
@@ -37,7 +36,7 @@
 /// The legend is implemented as a separate control (and not
 /// as part of the chart control itself) to allow for more
 /// flexible layouts with the help of wxWidgets sizers.
-class WXCHARTS_EXPORT wxChartsLegendCtrl : public wxControl
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsLegendCtrl : public wxControl
 {
 public:
     /// Constructs a wxChartsLegendCtrl control.

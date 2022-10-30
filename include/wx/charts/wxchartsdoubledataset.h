@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2017-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTSDOUBLEDATASET_H_
 #define _WX_CHARTS_WXCHARTSDOUBLEDATASET_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartsdataset.h"
 #include "wxchartsrectangleoptions.h"
 #include <wx/sharedptr.h>
@@ -35,7 +34,7 @@
 
 /// The wxBarChartCtrl, wxColumnChartCtrl, wxStackedBarChartCtrl and wxStackedColumnChartCtrl use this class.
 /// \ingroup dataclasses
-class WXCHARTS_EXPORT wxChartsDoubleDataset : public wxChartsDataset
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsDoubleDataset : public wxChartsDataset
 {
 public:
     /// Smart pointer typedef.

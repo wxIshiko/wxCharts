@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq and the wxCharts contributors
+    Copyright (c) 2016-2022 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTSELEMENT_H_
 #define _WX_CHARTS_WXCHARTSELEMENT_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxcharttooltipprovider.h"
 #include <wx/graphics.h>
 #include <wx/sharedptr.h>
@@ -40,7 +39,7 @@
 /// users of the charts, they are there for people implementing
 /// charts.
 /// \ingroup elementclasses
-class WXCHARTS_EXPORT wxChartsElement
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsElement
 {
 public:
     /// Smart pointer typedef.

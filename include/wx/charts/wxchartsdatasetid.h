@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2019 Xavier Leclercq
+    Copyright (c) 2017-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,14 +25,13 @@
 #ifndef _WX_CHARTS_WXCHARTSDATASETID_H_
 #define _WX_CHARTS_WXCHARTSDATASETID_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include <wx/string.h>
 
 /// Identifier for a dataset.
 
 /// \ingroup dataclasses
-class WXCHARTS_EXPORT wxChartsDatasetId
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsDatasetId
 {
 public:
     wxChartsDatasetId();

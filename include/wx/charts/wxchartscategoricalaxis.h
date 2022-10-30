@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -36,12 +36,11 @@
 #ifndef _WX_CHARTS_WXCHARTSCATEGORICALAXIS_H_
 #define _WX_CHARTS_WXCHARTSCATEGORICALAXIS_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartsaxis.h"
 
 /// \ingroup elementclasses
-class WXCHARTS_EXPORT wxChartsCategoricalAxis : public wxChartsAxis
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsCategoricalAxis : public wxChartsAxis
 {
 public:
     /// Constructs a wxChartsCategoricalAxis axis. The tick marks

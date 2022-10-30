@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,6 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTSCATEGORICALDATA_H_
 #define _WX_CHARTS_WXCHARTSCATEGORICALDATA_H_
 
+#include "dlimpexp.h"
 #include "wxchartscategoricaldataobserver.h"
 #include "wxchartsdoubledataset.h"
 #include <wx/vector.h>
@@ -35,7 +36,7 @@
 /// wxStackedColumnChart. The categories are displayed on one the axes and the associated value or values
 /// on the other.
 /// \ingroup dataclasses
-class WXCHARTS_EXPORT wxChartsCategoricalData
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsCategoricalData
 {
 public:
     /// Smart pointer typedef.

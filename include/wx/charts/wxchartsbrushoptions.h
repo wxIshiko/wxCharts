@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019 Xavier Leclercq
+    Copyright (c) 2019-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,15 +25,14 @@
 #ifndef _WX_CHARTS_WXCHARTSBRUSHOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSBRUSHOPTIONS_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include <wx/colour.h>
 
 /// The options for a brush.
 /**
     \ingroup elementclasses
 */
-class WXCHARTS_EXPORT wxChartsBrushOptions
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsBrushOptions
 {
 public:
     /// Constructor.
