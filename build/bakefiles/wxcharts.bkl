@@ -15,8 +15,6 @@ setting WXWIDGETS_ROOT
 
 library wxcharts
 {
-    configurations = Debug Release;
-
     archs = x86 x86_64;
 
     vs2022.projectfile = ../msw/wxcharts_vc17.vcxproj;
