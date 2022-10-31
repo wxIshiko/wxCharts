@@ -12,7 +12,7 @@
 # that can be used by this makefile is:
 # AR, CC, CFLAGS, CPPFLAGS, CXX, CXXFLAGS, LD, LDFLAGS, MAKE, RANLIB.
 
-# You may also specify config=Debug|Release|DLL Debug|DLL Release
+# You may also specify config=Debug|Release
 # or their corresponding lower case variants on make command line to select
 # the corresponding default flags values.
 ifeq ($(config),debug)
@@ -21,18 +21,12 @@ endif
 ifeq ($(config),release)
 override config := Release
 endif
-ifeq ($(config),dll debug)
-override config := DLL Debug
-endif
-ifeq ($(config),dll release)
-override config := DLL Release
-endif
-ifneq (,$(findstring ~~$(config)~~,~~Debug~~DLL Debug~~))
+ifeq ($(config),Debug)
 override CPPFLAGS += -DDEBUG
 override CFLAGS += -g -O0
 override CXXFLAGS += -g -O0
 override LDFLAGS += -g
-else ifneq (,$(findstring ~~$(config)~~,~~Release~~DLL Release~~))
+else ifeq ($(config),Release)
 override CPPFLAGS += -DNDEBUG
 override CFLAGS += -O2
 override CXXFLAGS += -O2

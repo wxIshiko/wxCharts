@@ -9,10 +9,6 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
-		DLL Debug|Win32 = DLL Debug|Win32
-		DLL Debug|x64 = DLL Debug|x64
-		DLL Release|Win32 = DLL Release|Win32
-		DLL Release|x64 = DLL Release|x64
 		Release|Win32 = Release|Win32
 		Release|x64 = Release|x64
 	EndGlobalSection
@@ -21,14 +17,6 @@ Global
 		{A760E271-A950-5653-AA27-55CA3E5DFF6C}.Debug|Win32.Build.0 = Debug|Win32
 		{A760E271-A950-5653-AA27-55CA3E5DFF6C}.Debug|x64.ActiveCfg = Debug|x64
 		{A760E271-A950-5653-AA27-55CA3E5DFF6C}.Debug|x64.Build.0 = Debug|x64
-		{A760E271-A950-5653-AA27-55CA3E5DFF6C}.DLL Debug|Win32.ActiveCfg = DLL Debug|Win32
-		{A760E271-A950-5653-AA27-55CA3E5DFF6C}.DLL Debug|Win32.Build.0 = DLL Debug|Win32
-		{A760E271-A950-5653-AA27-55CA3E5DFF6C}.DLL Debug|x64.ActiveCfg = DLL Debug|x64
-		{A760E271-A950-5653-AA27-55CA3E5DFF6C}.DLL Debug|x64.Build.0 = DLL Debug|x64
-		{A760E271-A950-5653-AA27-55CA3E5DFF6C}.DLL Release|Win32.ActiveCfg = DLL Release|Win32
-		{A760E271-A950-5653-AA27-55CA3E5DFF6C}.DLL Release|Win32.Build.0 = DLL Release|Win32
-		{A760E271-A950-5653-AA27-55CA3E5DFF6C}.DLL Release|x64.ActiveCfg = DLL Release|x64
-		{A760E271-A950-5653-AA27-55CA3E5DFF6C}.DLL Release|x64.Build.0 = DLL Release|x64
 		{A760E271-A950-5653-AA27-55CA3E5DFF6C}.Release|Win32.ActiveCfg = Release|Win32
 		{A760E271-A950-5653-AA27-55CA3E5DFF6C}.Release|Win32.Build.0 = Release|Win32
 		{A760E271-A950-5653-AA27-55CA3E5DFF6C}.Release|x64.ActiveCfg = Release|x64
