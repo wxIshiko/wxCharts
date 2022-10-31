@@ -13,6 +13,16 @@ setting WXWIDGETS_ROOT
     default = '$(WXWIN)';
 }
 
+configuration "DLL Debug" : Debug
+{
+}
+
+configuration "DLL Release" : Release
+{
+}
+
+configurations = Debug Release "DLL Debug" "DLL Release";
+
 library wxcharts
 {
     archs = x86 x86_64;
@@ -30,13 +40,27 @@ library wxcharts
         includedirs += $(WXWIDGETS_ROOT)/include;
         includedirs += $(WXWIDGETS_ROOT)/include/msvc;
 
-        if ($(arch) == x86)
+        if (($(config) == "Debug") || ($(config) == "Release"))
         {
-            outputdir = ../../lib/vc_lib;
+            if ($(arch) == x86)
+            {
+                outputdir = ../../lib/vc_lib;
+            }
+            if ($(arch) == x86_64)
+            {
+                outputdir = ../../lib/vc_x64_lib;
+            }
         }
-        if ($(arch) == x86_64)
+        if (($(config) == "DLL Debug") || ($(config) == "DLL Release"))
         {
-            outputdir = ../../lib/vc_x64_lib;
+            if ($(arch) == x86)
+            {
+                outputdir = ../../lib/vc_dll;
+            }
+            if ($(arch) == x86_64)
+            {
+                outputdir = ../../lib/vc_x64_dll;
+            }
         }
     }
     if ($(toolset) == gnu)
