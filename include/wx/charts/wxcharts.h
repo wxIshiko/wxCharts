@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2015-2019 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2015-2022 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -52,5 +52,15 @@
 #include "wxchartsthemeid.h"
 #include "wxchartstheme.h"
 #include "wxchartsthemefactory.h"
+
+#ifdef _MSC_VER
+
+#ifdef _DEBUG
+#pragma comment(lib, "wxchartsd.lib")
+#else
+#pragma comment(lib, "wxcharts.lib")
+#endif
+
+#endif
 
 #endif
