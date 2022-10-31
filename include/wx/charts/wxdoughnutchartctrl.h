@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,15 +25,14 @@
 #ifndef _WX_CHARTS_WXDOUGHNUTCHARTCTRL_H_
 #define _WX_CHARTS_WXDOUGHNUTCHARTCTRL_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartctrl.h"
 #include "wxdoughnutchart.h"
 
 /// A control that displays a doughnut chart.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxDoughnutChartCtrl : public wxChartCtrl, public wxChartValueObserver<std::map<wxString, wxChartSliceData>>
+class WXDLLIMPEXP_ISHIKO_CHARTS wxDoughnutChartCtrl : public wxChartCtrl, public wxChartValueObserver<std::map<wxString, wxChartSliceData>>
 {
 public:
     wxDoughnutChartCtrl(wxWindow *parent, wxWindowID id, wxPieChartData::ptr data,

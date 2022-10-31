@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -36,8 +36,7 @@
 #ifndef _WX_CHARTS_WXDOUGHNUTANDPIECHARTBASE_H_
 #define _WX_CHARTS_WXDOUGHNUTANDPIECHARTBASE_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchart.h"
 #include "wxchartslicedata.h"
 #include "wxdoughnutandpiechartoptionsbase.h"
@@ -48,7 +47,7 @@
 #include <map>
 
 /// Data for the wxPieChartCtrl control.
-class WXCHARTS_EXPORT wxPieChartData : public wxChartObservableValue<std::map<wxString, wxChartSliceData>>
+class WXDLLIMPEXP_ISHIKO_CHARTS wxPieChartData : public wxChartObservableValue<std::map<wxString, wxChartSliceData>>
 {
 public:
     /// Smart pointer typedef.
@@ -72,7 +71,7 @@ private:
 /// a common base class. It would actually be possible to
 /// only have the doughnut classes but I usually favor
 /// ease of use over ease of implementation.
-class WXCHARTS_EXPORT wxDoughnutAndPieChartBase : public wxChart
+class WXDLLIMPEXP_ISHIKO_CHARTS wxDoughnutAndPieChartBase : public wxChart
 {
 public:
     /// Constructs a wxDoughnutAndPieChartBase
