@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2017-2022 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,15 +25,14 @@
 #ifndef _WX_CHARTS_WXTIMESERIESCHARTCTRL_H_
 #define _WX_CHARTS_WXTIMESERIESCHARTCTRL_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartctrl.h"
 #include "wxtimeserieschart.h"
 
 /// A control that displays a time series chart.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxTimeSeriesChartCtrl : public wxChartCtrl
+class WXDLLIMPEXP_ISHIKO_CHARTS wxTimeSeriesChartCtrl : public wxChartCtrl
 {
 public:
     wxTimeSeriesChartCtrl(wxWindow *parent, wxWindowID id,

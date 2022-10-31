@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2022 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -36,17 +36,15 @@
 #ifndef _WX_CHARTS_WXHISTOGRAM_H_
 #define _WX_CHARTS_WXHISTOGRAM_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchart.h"
 #include "wxhistogramoptions.h"
 #include "wxchartsgrid.h"
 #include "wxchartspoint.h"
-
 #include <wx/scopedptr.h>
 
 /// \ingroup dataclasses
-class WXCHARTS_EXPORT wxHistogramDataset
+class WXDLLIMPEXP_ISHIKO_CHARTS wxHistogramDataset
 {
 public:
     /// Smart pointer typedef.
@@ -80,7 +78,7 @@ private:
 /// Data for the wxHistogramCtrl control.
 
 /// \ingroup dataclasses
-class WXCHARTS_EXPORT wxHistogramData
+class WXDLLIMPEXP_ISHIKO_CHARTS wxHistogramData
 {
 public:
     /// Constructs a wxHistogramData instance.
@@ -97,7 +95,7 @@ private:
 /// A histogram.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxHistogram : public wxChart
+class WXDLLIMPEXP_ISHIKO_CHARTS wxHistogram : public wxChart
 {
 public:
     wxHistogram(const wxHistogramData &data, const wxSize &size);
