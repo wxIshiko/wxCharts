@@ -31,7 +31,7 @@
 /// A control that displays a stacked bar chart.
 
 /// \ingroup chartclasses
-class wxStackedBarChartCtrl : public wxChartCtrl
+class WXCHARTS_EXPORT wxStackedBarChartCtrl : public wxChartCtrl
 {
 public:
     /// Constructs a wxStackedBarChartCtrl control.

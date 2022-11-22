@@ -49,7 +49,7 @@ enum wxChartType
     wxCHARTTYPE_STEM
 };
 
-class wxMath2DPlotDataset
+class WXCHARTS_EXPORT wxMath2DPlotDataset
 {
 public:
     /// Smart pointer typedef.
@@ -95,7 +95,7 @@ private:
 };
 
 /// Data for the wxMath2DPlotCtrl control.
-class wxMath2DPlotData
+class WXCHARTS_EXPORT wxMath2DPlotData
 {
 public:
     /// Constructs a wxMath2DPlotData instance.
@@ -114,7 +114,7 @@ private:
 /// A wxMath2D plot.
 
 /// \ingroup chartclasses
-class wxMath2DPlot : public wxChart
+class WXCHARTS_EXPORT wxMath2DPlot : public wxChart
 {
 public:
     wxMath2DPlot(const wxMath2DPlotData &data, const wxSize &size);

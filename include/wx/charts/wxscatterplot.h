@@ -31,7 +31,7 @@
 #include "wxchartspoint.h"
 #include <wx/sharedptr.h>
 
-class wxScatterPlotDataset
+class WXCHARTS_EXPORT wxScatterPlotDataset
 {
 public:
     /// Smart pointer typedef.
@@ -54,7 +54,7 @@ private:
 };
 
 /// Data for the wxScatterPlotCtrl control.
-class wxScatterPlotData
+class WXCHARTS_EXPORT wxScatterPlotData
 {
 public:
     /// Constructs a wxScatterPlotData instance.
@@ -73,7 +73,7 @@ private:
 /// A scatter plot.
 
 /// \ingroup chartclasses
-class wxScatterPlot : public wxChart
+class WXCHARTS_EXPORT wxScatterPlot : public wxChart
 {
 public:
     wxScatterPlot(const wxScatterPlotData &data, const wxSize &size);
