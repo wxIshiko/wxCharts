@@ -43,7 +43,7 @@
 #include "wxchartsarc.h"
 
 /// Data for the wxPolarAreaChartCtrl control.
-class wxPolarAreaChartData
+class WXCHARTS_EXPORT wxPolarAreaChartData
 {
 public:
     wxPolarAreaChartData();
@@ -59,7 +59,7 @@ private:
 /// A polar area chart.
 
 /// \ingroup chartclasses
-class wxPolarAreaChart : public wxChart
+class WXCHARTS_EXPORT wxPolarAreaChart : public wxChart
 {
 public:
     wxPolarAreaChart(const wxPolarAreaChartData &data, const wxSize &size);

@@ -31,7 +31,7 @@
 /// The options for the wxRadarChartCtrl control.
 
 /// \ingroup chartclasses
-class wxRadarChartOptions : public wxChartOptions
+class WXCHARTS_EXPORT wxRadarChartOptions : public wxChartOptions
 {
 public:
     /// Constructs a wxRadarChartOptions instance.

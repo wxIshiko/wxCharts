@@ -31,7 +31,7 @@
 /// A control that displays a scatter plot.
 
 /// \ingroup chartclasses
-class wxScatterPlotCtrl : public wxChartCtrl
+class WXCHARTS_EXPORT wxScatterPlotCtrl : public wxChartCtrl
 {
 public:
     /// Constructs a wxScatterPlotCtrl control.

@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXCHARTFONTOPTIONS_H_
 #define _WX_CHARTS_WXCHARTFONTOPTIONS_H_
 
+#include "wxcharts_export.h"
+
 #include <wx/colour.h>
 #include <wx/font.h>
 
@@ -33,7 +35,7 @@
 /// Many elements display text and require
 /// font settings. This class groups all
 /// settings related to the choice of a font.
-class wxChartFontOptions
+class WXCHARTS_EXPORT wxChartFontOptions
 {
 public:
     /// Constructs a wxChartFontOptions instance.

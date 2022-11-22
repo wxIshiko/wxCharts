@@ -25,6 +25,8 @@
 #ifndef _WX_CHARTS_WXOHLCCHART_H_
 #define _WX_CHARTS_WXOHLCCHART_H_
 
+#include "wxcharts_export.h"
+
 #include "wxchart.h"
 #include "wxchartsohlcdata.h"
 #include "wxohlcchartoptions.h"
@@ -34,7 +36,7 @@
 /// Data for the wxOHLCChartCtrl control.
 
 /// \ingroup dataclasses
-class wxOHLCChartData
+class WXCHARTS_EXPORT wxOHLCChartData
 {
 public:
     wxOHLCChartData(const wxVector<wxString> &labels, const wxVector<wxChartsOHLCData> &data);
@@ -63,7 +65,7 @@ private:
 /// An open-high-low-close chart.
 
 /// \ingroup chartclasses
-class wxOHLCChart : public wxChart
+class WXCHARTS_EXPORT wxOHLCChart : public wxChart
 {
 public:
     wxOHLCChart(const wxOHLCChartData &data, const wxSize &size);

@@ -25,13 +25,14 @@
 #ifndef _WX_CHARTS_WXOHLCCHARTCTRL_H_
 #define _WX_CHARTS_WXOHLCCHARTCTRL_H_
 
+#include "wxcharts_export.h"
 #include "wxchartctrl.h"
 #include "wxohlcchart.h"
 
 /// A control that displays an open-high-low-close chart.
 
 /// \ingroup chartclasses
-class wxOHLCChartCtrl : public wxChartCtrl
+class WXCHARTS_EXPORT wxOHLCChartCtrl : public wxChartCtrl
 {
 public:
     /// Constructs a wxOHLCChartCtrl control.

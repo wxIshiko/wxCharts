@@ -42,7 +42,7 @@
 /// A control that displays a stacked column chart.
 
 /// \ingroup chartclasses
-class wxStackedColumnChartCtrl : public wxChartCtrl
+class WXCHARTS_EXPORT wxStackedColumnChartCtrl : public wxChartCtrl
 {
 public:
     /// Constructs a wxStackedColumnChartCtrl control.

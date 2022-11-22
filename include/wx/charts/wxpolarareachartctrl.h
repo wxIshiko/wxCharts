@@ -42,7 +42,7 @@
 /// A control that displays a polar area chart.
 
 /// \ingroup chartclasses
-class wxPolarAreaChartCtrl : public wxChartCtrl
+class WXCHARTS_EXPORT wxPolarAreaChartCtrl : public wxChartCtrl
 {
 public:
     /// Constructs a wxPolarAreaChartCtrl control.

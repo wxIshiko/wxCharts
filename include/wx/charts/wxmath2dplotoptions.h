@@ -35,7 +35,7 @@ typedef std::function<wxDouble(wxDouble)> AxisFunc;
 /// The options for the wxMath2DPlotCtrl control.
 
 /// \ingroup chartclasses
-class wxMath2DPlotOptions : public wxChartOptions
+class WXCHARTS_EXPORT wxMath2DPlotOptions : public wxChartOptions
 {
 public:
     /// Constructs a wxMath2DPlotOptions instance.

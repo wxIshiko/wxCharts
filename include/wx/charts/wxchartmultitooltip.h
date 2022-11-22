@@ -41,7 +41,7 @@
 /// display information about multiple items at once
 /// for those case where the user selects more than 
 /// one item at a time.
-class wxChartMultiTooltip
+class WXCHARTS_EXPORT wxChartMultiTooltip
 {
 public:
     /// Constructs a wxChartMultiTooltip
