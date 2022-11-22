@@ -61,8 +61,8 @@ WxMath2DFrame::WxMath2DFrame(const wxString& title)
 
     m_gridMenu = new wxMenu();
     wxMenuItem* m_grid = new wxMenuItem( m_gridMenu, ID_Grid, wxString( wxT("Grid") ), wxEmptyString, wxITEM_CHECK );
-    m_grid->Check( true );
     m_gridMenu->Append( m_grid );
+    m_grid->Check( true );
 
     m_menubar->Append( m_gridMenu, wxT("Grid") );
     this->SetMenuBar( m_menubar );
