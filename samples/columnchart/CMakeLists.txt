@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(Bubble VERSION 0.1.0 DESCRIPTION "wxBubble sample")
+project(ColumnChart VERSION 0.1.0 DESCRIPTION "wxColumnChart sample")
 
 # Allows to use virtual folders in visual studio, 
 #  it helps to organize larger projects.
@@ -15,27 +15,27 @@ else()
   SET(APP_TYPE "")
 endif(WIN32)
 
-add_executable(Bubble 
+add_executable(ColumnChart 
   ${APP_TYPE} 
-    src/WxBubbleApp.h
-    src/WxBubbleApp.cpp
-    src/WxBubbleFrame.h
-    src/WxBubbleFrame.cpp
+    src/WxColumnApp.h
+    src/WxColumnApp.cpp
+    src/WxColumnFrame.h
+    src/WxColumnFrame.cpp
 )
 
-target_link_libraries(Bubble
+target_link_libraries(ColumnChart
   PRIVATE
     ${wxWidgets_LIBRARIES}
     wxcharts::wxcharts)
 
-target_include_directories(Bubble
+target_include_directories(ColumnChart
   PRIVATE
     ${wxWidgets_INCLUDE_DIRS}
     ${wxcharts_SOURCE_DIR}/include
 )
 
-set_target_properties(Bubble
+set_target_properties(ColumnChart
   PROPERTIES
-    OUTPUT_NAME   "bubble" # Can change the output name of the target.
+    OUTPUT_NAME   "columnchart"  # Can change the output name of the target.
     DEBUG_POSTFIX "d"            # Appends the letter "d" to the target's output name.
     FOLDER        "Samples")     # In visual studio puts this target's project inside a virtual folder (requires setting USE_FOLDERS = ON)

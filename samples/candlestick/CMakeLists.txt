@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(Bubble VERSION 0.1.0 DESCRIPTION "wxBubble sample")
+project(CandleStick VERSION 0.1.0 DESCRIPTION "wxCandleStick sample")
 
 # Allows to use virtual folders in visual studio, 
 #  it helps to organize larger projects.
@@ -15,27 +15,27 @@ else()
   SET(APP_TYPE "")
 endif(WIN32)
 
-add_executable(Bubble 
+add_executable(CandleStick 
   ${APP_TYPE} 
-    src/WxBubbleApp.h
-    src/WxBubbleApp.cpp
-    src/WxBubbleFrame.h
-    src/WxBubbleFrame.cpp
+    src/WxCandleStickApp.h
+    src/WxCandleStickApp.cpp
+    src/WxCandleStickFrame.h
+    src/WxCandleStickFrame.cpp
 )
 
-target_link_libraries(Bubble
+target_link_libraries(CandleStick
   PRIVATE
     ${wxWidgets_LIBRARIES}
     wxcharts::wxcharts)
 
-target_include_directories(Bubble
+target_include_directories(CandleStick
   PRIVATE
     ${wxWidgets_INCLUDE_DIRS}
     ${wxcharts_SOURCE_DIR}/include
 )
 
-set_target_properties(Bubble
+set_target_properties(CandleStick
   PROPERTIES
-    OUTPUT_NAME   "bubble" # Can change the output name of the target.
+    OUTPUT_NAME   "candlestick"  # Can change the output name of the target.
     DEBUG_POSTFIX "d"            # Appends the letter "d" to the target's output name.
     FOLDER        "Samples")     # In visual studio puts this target's project inside a virtual folder (requires setting USE_FOLDERS = ON)
