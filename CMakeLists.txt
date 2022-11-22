@@ -9,10 +9,10 @@ project(wxcharts
 ################
 
 # This sets a common dir called bin in the wxcharts_BINARY_DIR,
-#   in there all the executables and libraries will be there in a Debug or Release directory,
-#   this helps to debug the samples and tests.
+#   all the executables and libraries will be put there inside a subdirectory called Debug or Release according to its build.
 SET(LIBRARY_OUTPUT_PATH    ${wxcharts_BINARY_DIR}/bin CACHE PATH "Single output directory for building all libraries."   FORCE)
 SET(EXECUTABLE_OUTPUT_PATH ${wxcharts_BINARY_DIR}/bin CACHE PATH "Single output directory for building all executables." FORCE)
+
 
 set(CMAKE_CXX_STANDARD 11 CACHE STRING "C++ Standard")
 set(CMAKE_CXX_STANDARD_REQUIRED ON CACHE BOOL "")
