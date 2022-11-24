@@ -7,8 +7,6 @@
 *.VC.db
 *.vcxproj.user
 .vs
-build
-build*
 Debug/
 Release/
 /lib/
