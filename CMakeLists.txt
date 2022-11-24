@@ -18,9 +18,10 @@ set(CMAKE_CXX_STANDARD 11 CACHE STRING "C++ Standard")
 set(CMAKE_CXX_STANDARD_REQUIRED ON CACHE BOOL "")
 set(CMAKE_CXX_EXTENSIONS OFF CACHE BOOL "")
 set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Postfix for debug binaries")
-set(wxWidgets_ROOT_DIR "" CACHE PATH "")
-set(wxWidgets_wxrc_EXECUTABLE "" CACHE FILEPATH "")
-
+if (NOT WIN32)
+    set(wxWidgets_ROOT_DIR "" CACHE PATH "")
+    set(wxWidgets_wxrc_EXECUTABLE "" CACHE FILEPATH "")
+endif()
 
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 if(BUILD_SHARED_LIBS)
