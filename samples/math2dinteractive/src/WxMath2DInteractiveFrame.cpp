@@ -63,10 +63,6 @@ WxMath2DInteractiveFrame::WxMath2DInteractiveFrame(const wxString& title)
     panelSizer->Add(math2dPlotCtrl, 1, wxEXPAND);
     panel->SetSizer(panelSizer);
 
-    wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
-    topSizer->Add(panel, 1, wxEXPAND);
-    SetSizerAndFit(topSizer);
-
     m_timer = new wxTimer(this,wxID_EXECUTE);
     m_timer->Start(1500);
     this->Bind(wxEVT_TIMER, [&](wxTimerEvent& )
