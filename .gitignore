@@ -6,7 +6,10 @@
 *.opendb
 *.VC.db
 *.vcxproj.user
+.DS_Store
 .vs
+build_cmake
+build_cmake*
 Debug/
 Release/
 /lib/

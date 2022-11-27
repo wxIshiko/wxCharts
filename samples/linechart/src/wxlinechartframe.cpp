@@ -80,9 +80,4 @@ wxLineChartFrame::wxLineChartFrame(const wxString& title)
 	panelSizer->Add(lineChartCtrl, 1, wxEXPAND);
 	panelSizer->Add(legendCtrl, 1, wxEXPAND);
 	panel->SetSizer(panelSizer);
-
-	// Set up the sizer for the frame
-	wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
-	topSizer->Add(panel, 1, wxEXPAND);
-	SetSizerAndFit(topSizer);
 }

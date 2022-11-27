@@ -73,9 +73,4 @@ wxBarChartFrame::wxBarChartFrame(const wxString& title)
     wxBoxSizer* panelSizer = new wxBoxSizer(wxHORIZONTAL);
     panelSizer->Add(barChartCtrl, 1, wxEXPAND);
     panel->SetSizer(panelSizer);
-
-    // Set up the sizer for the frame
-    wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
-    topSizer->Add(panel, 1, wxEXPAND);
-    SetSizerAndFit(topSizer);
 }

@@ -101,10 +101,6 @@ WxMath2DFrame::WxMath2DFrame(const wxString& title)
     panelSizer->Add(math2dPlotCtrl, 1, wxEXPAND);
     panel->SetSizer(panelSizer);
 
-    wxBoxSizer* topSizer = new wxBoxSizer(wxHORIZONTAL);
-    topSizer->Add(panel, 1, wxEXPAND);
-    SetSizerAndFit(topSizer);
-
     Binds();
 }
 

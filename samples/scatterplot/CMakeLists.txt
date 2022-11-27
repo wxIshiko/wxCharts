@@ -8,15 +8,8 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 find_package(wxWidgets COMPONENTS core base REQUIRED)
 include(${wxWidgets_USE_FILE})
 
-# This is required for GUI applications on Windows.
-if(WIN32)
-  SET(APP_TYPE WIN32)
-else()
-  SET(APP_TYPE "")
-endif(WIN32)
-
 add_executable(ScatterPlot 
-  ${APP_TYPE} 
+  WIN32 MACOSX_BUNDLE
     src/WxScatterPlotApp.h
     src/WxScatterPlotApp.cpp
     src/WxScatterPlotFrame.h
