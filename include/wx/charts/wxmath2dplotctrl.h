@@ -43,7 +43,7 @@
 /// A control that displays a math2d plot.
 
 /// \ingroup chartclasses
-class wxMath2DPlotCtrl : public wxChartCtrl
+class WXCHARTS_EXPORT wxMath2DPlotCtrl : public wxChartCtrl
 {
 public:
     /// Constructs a wxMath2DPlotCtrl control.

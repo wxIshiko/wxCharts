@@ -28,7 +28,7 @@
 #include "wxchartspenoptions.h"
 #include "wxchartsbrushoptions.h"
 
-class wxStackedColumnChartDatasetOptions
+class WXCHARTS_EXPORT wxStackedColumnChartDatasetOptions
 {
 public:
     wxStackedColumnChartDatasetOptions(const wxChartsPenOptions &penOptions,

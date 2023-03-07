@@ -41,7 +41,7 @@
 #include "wxchartsradialgrid.h"
 
 /// Data for the wxRadarChartCtrl control.
-class wxRadarChartData
+class WXCHARTS_EXPORT wxRadarChartData
 {
 public:
     /// Constructs a wxRadarChartData instance.
@@ -59,7 +59,7 @@ private:
 /// A radar chart.
 
 /// \ingroup chartclasses
-class wxRadarChart : public wxChart
+class WXCHARTS_EXPORT wxRadarChart : public wxChart
 {
 public:
     wxRadarChart(const wxSize &size);

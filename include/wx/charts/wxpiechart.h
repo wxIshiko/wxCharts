@@ -31,7 +31,7 @@
 /// A pie chart.
 
 /// \ingroup chartclasses
-class wxPieChart : public wxDoughnutAndPieChartBase
+class WXCHARTS_EXPORT wxPieChart : public wxDoughnutAndPieChartBase
 {
 public:
     wxPieChart(wxPieChartData::ptr data, const wxSize &size);

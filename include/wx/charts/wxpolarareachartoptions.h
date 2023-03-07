@@ -31,7 +31,7 @@
 /// The options for the wxPolarAreaChartCtrl control.
 
 /// \ingroup chartclasses
-class wxPolarAreaChartOptions : public wxChartOptions
+class WXCHARTS_EXPORT wxPolarAreaChartOptions : public wxChartOptions
 {
 public:
     /// Constructs a wxPolarAreaChartOptions instance.

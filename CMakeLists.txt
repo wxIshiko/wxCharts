@@ -8,13 +8,20 @@ project(wxcharts
 # config cmake #
 ################
 
+# This sets a common dir called bin in the wxcharts_BINARY_DIR,
+#   all the executables and libraries will be put there inside a subdirectory called Debug or Release according to its build.
+SET(LIBRARY_OUTPUT_PATH    ${wxcharts_BINARY_DIR}/bin CACHE PATH "Single output directory for building all libraries."   FORCE)
+SET(EXECUTABLE_OUTPUT_PATH ${wxcharts_BINARY_DIR}/bin CACHE PATH "Single output directory for building all executables." FORCE)
+
+
 set(CMAKE_CXX_STANDARD 11 CACHE STRING "C++ Standard")
 set(CMAKE_CXX_STANDARD_REQUIRED ON CACHE BOOL "")
 set(CMAKE_CXX_EXTENSIONS OFF CACHE BOOL "")
 set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Postfix for debug binaries")
-set(wxWidgets_ROOT_DIR "" CACHE PATH "")
-set(wxWidgets_wxrc_EXECUTABLE "" CACHE FILEPATH "")
-
+if (NOT WIN32)
+    set(wxWidgets_ROOT_DIR "" CACHE PATH "")
+    set(wxWidgets_wxrc_EXECUTABLE "" CACHE FILEPATH "")
+endif()
 
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 if(BUILD_SHARED_LIBS)
@@ -25,6 +32,14 @@ option(wxBUILD_DEBUG_LEVEL "Debug Level" Default)
 if(NOT wxBUILD_DEBUG_LEVEL STREQUAL "Default")
     add_compile_options("-DwxDEBUG_LEVEL=${wxBUILD_DEBUG_LEVEL}")
 endif()
+
+##############
+# sampples   #
+##############
+option(BUILD_SAMPLES "Build the samples")
+if(BUILD_SAMPLES)
+  subdirs(samples)
+endif(BUILD_SAMPLES)
 
 ##############
 # dependency #

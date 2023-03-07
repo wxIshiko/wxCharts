@@ -31,7 +31,7 @@
 /// A control that displays a pie chart.
 
 /// \ingroup chartclasses
-class wxPieChartCtrl : public wxChartCtrl, public wxChartValueObserver<std::map<wxString, wxChartSliceData>>
+class WXCHARTS_EXPORT wxPieChartCtrl : public wxChartCtrl, public wxChartValueObserver<std::map<wxString, wxChartSliceData>>
 {
 public:
     /// Constructs a wxPieChartCtrl control.

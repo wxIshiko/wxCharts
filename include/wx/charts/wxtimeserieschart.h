@@ -29,7 +29,7 @@
 #include "wxtimeserieschartoptions.h"
 
 /// \ingroup chartclasses
-class wxTimeSeriesChart : public wxChart
+class WXCHARTS_EXPORT wxTimeSeriesChart : public wxChart
 {
 public:
     wxTimeSeriesChart(const wxSize &size);
