@@ -3,5 +3,14 @@
     "kind": "git",
     "baseline": "eba7c6a894fce24146af4fdf161fef8e90dd6be3",
     "repository": "https://github.com/microsoft/vcpkg"
-  }
+  },
+  "registries": [
+    {
+      "kind": "git",
+      "repository": "https://github.com/wxIshiko/vcpkg-registry",
+      "reference": "HEAD",
+      "baseline": "e10547600a4e956c32b7e05a31d220f6b075be16",
+      "packages": [ "wxcharts" ]
+    }
+  ]
 }
