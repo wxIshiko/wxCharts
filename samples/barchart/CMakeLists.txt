@@ -8,6 +8,8 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 find_package(wxWidgets COMPONENTS core base REQUIRED)
 include(${wxWidgets_USE_FILE})
 
+find_package(wxCharts CONFIG REQUIRED)
+
 add_executable(BarChart 
   WIN32 MACOSX_BUNDLE
     src/wxbarchartapp.h
