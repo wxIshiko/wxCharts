@@ -10,10 +10,10 @@ include(${wxWidgets_USE_FILE})
 
 add_executable(CandleStick 
   WIN32 MACOSX_BUNDLE
-    src/WxCandleStickApp.h
-    src/WxCandleStickApp.cpp
-    src/WxCandleStickFrame.h
-    src/WxCandleStickFrame.cpp
+    src/WxCandlestickApp.h
+    src/WxCandlestickApp.cpp
+    src/WxCandlestickFrame.h
+    src/WxCandlestickFrame.cpp
 )
 
 target_link_libraries(CandleStick
