@@ -23,14 +23,7 @@ target_link_libraries(AreaChart
     ${wxWidgets_LIBRARIES}
     wxcharts::wxcharts)
 
-target_include_directories(AreaChart
-  PRIVATE
-    ${wxWidgets_INCLUDE_DIRS}
-    ${wxcharts_SOURCE_DIR}/include
-)
-
 set_target_properties(AreaChart 
   PROPERTIES
-    OUTPUT_NAME   "areachart"   # Can change the output name of the target.
     DEBUG_POSTFIX "d"           # Appends the letter "d" to the target's output name.
     FOLDER        "Samples")    # In visual studio puts this target's project inside a virtual folder (requires setting USE_FOLDERS = ON)
