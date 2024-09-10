@@ -8,6 +8,8 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 find_package(wxWidgets COMPONENTS core base REQUIRED)
 include(${wxWidgets_USE_FILE})
 
+find_package(wxcharts CONFIG REQUIRED)
+
 add_executable(LineChart 
   WIN32 MACOSX_BUNDLE
     src/wxlinechartapp.h
