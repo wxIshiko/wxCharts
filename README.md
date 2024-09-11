@@ -19,9 +19,9 @@ Many of the charts are ready to be used but others still need to be implemented.
 
 Also documentation is currently lacking and mostly limited to the samples available in this repository. Don't hesitate to ask us for help.
 
-## Usage
+## Installation
 
-For setup and usage please visit the [wxCharts website](http://www.wxishiko.com/wxCharts/).
+See [Installation](docs/installation/README.md).
 
 ## Support
 
