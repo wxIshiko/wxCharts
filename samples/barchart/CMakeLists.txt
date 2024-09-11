@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(BarChart VERSION 0.1.0 DESCRIPTION "wxBarChart sample")
+project(barchart VERSION 0.1.0 DESCRIPTION "wxBarChart sample")
 
 # Allows to use virtual folders in visual studio, 
 #  it helps to organize larger projects.
@@ -10,7 +10,7 @@ include(${wxWidgets_USE_FILE})
 
 find_package(wxCharts CONFIG REQUIRED)
 
-add_executable(BarChart 
+add_executable(barchart 
   WIN32 MACOSX_BUNDLE
     src/wxbarchartapp.h
     src/wxbarchartapp.cpp
@@ -18,19 +18,12 @@ add_executable(BarChart
     src/wxbarchartframe.cpp
 )
 
-target_link_libraries(BarChart
+target_link_libraries(barchart
   PRIVATE
     ${wxWidgets_LIBRARIES}
     wxcharts::wxcharts)
 
-target_include_directories(BarChart
-  PRIVATE
-    ${wxWidgets_INCLUDE_DIRS}
-    ${wxcharts_SOURCE_DIR}/include
-)
-
-set_target_properties(BarChart 
+set_target_properties(barchart 
   PROPERTIES
-    OUTPUT_NAME   "barchart"   # Can change the output name of the target.
     DEBUG_POSTFIX "d"          # Appends the letter "d" to the target's output name.
     FOLDER        "Samples")   # In visual studio puts this target's project inside a virtual folder (requires setting USE_FOLDERS = ON)
