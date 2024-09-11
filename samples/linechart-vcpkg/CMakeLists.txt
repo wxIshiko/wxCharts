@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(LineChart VERSION 0.1.0 DESCRIPTION "wxLineChart sample")
+project(linechart VERSION 0.1.0 DESCRIPTION "wxLineChart sample")
 
 # Allows to use virtual folders in visual studio, 
 #  it helps to organize larger projects.
@@ -10,7 +10,7 @@ include(${wxWidgets_USE_FILE})
 
 find_package(wxcharts CONFIG REQUIRED)
 
-add_executable(LineChart 
+add_executable(linechart 
   WIN32 MACOSX_BUNDLE
     src/wxlinechartapp.h
     src/wxlinechartapp.cpp
@@ -18,19 +18,12 @@ add_executable(LineChart
     src/wxlinechartframe.cpp
 )
 
-target_link_libraries(LineChart
+target_link_libraries(linechart
   PRIVATE
     ${wxWidgets_LIBRARIES}
     wxcharts::wxcharts)
 
-target_include_directories(LineChart
-  PRIVATE
-    ${wxWidgets_INCLUDE_DIRS}
-    ${wxcharts_SOURCE_DIR}/include
-)
-
-set_target_properties(LineChart
+set_target_properties(linechart
   PROPERTIES
-    OUTPUT_NAME   "lineChart" # Can change the output name of the target.
     DEBUG_POSTFIX "d"         # Appends the letter "d" to the target's output name.
     FOLDER        "Samples")  # In visual studio puts this target's project inside a virtual folder (requires setting USE_FOLDERS = ON)
