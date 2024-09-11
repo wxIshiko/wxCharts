@@ -38,3 +38,20 @@ You can now install the wxCharts header file and libraries to /usr/local.
 ```
 sudo make install
 ```
+
+### Test the installation
+
+You can now verify the correct installation by building and running one of the samples.
+
+```
+cd ..
+cd samples/linechart
+cmake .
+make
+```
+
+This should have successfully built the `linechart` executable. Running it with
+```
+./linechart
+```
+should display a windows with a line chart.
