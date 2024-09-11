@@ -32,3 +32,4 @@ cd build
 cmake ..
 make
 ```
+At the end of these steps you should have the file 'libwxCharts.a' in the 'build/bin' directory.
