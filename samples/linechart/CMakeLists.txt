@@ -26,4 +26,4 @@ target_link_libraries(linechart
 set_target_properties(linechart
   PROPERTIES
    DEBUG_POSTFIX "d"         # Appends the letter "d" to the target's output name.
-    FOLDER        "Samples")  # In visual studio puts this target's project inside a virtual folder (requires setting USE_FOLDERS = ON)
+   FOLDER        "Samples")  # In visual studio puts this target's project inside a virtual folder (requires setting USE_FOLDERS = ON)
