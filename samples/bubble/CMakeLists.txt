@@ -23,7 +23,7 @@ target_link_libraries(bubblechart
     ${wxWidgets_LIBRARIES}
     wxcharts::wxcharts)
 
-set_target_properties(bubble
+set_target_properties(bubblechart
   PROPERTIES
     DEBUG_POSTFIX "d"            # Appends the letter "d" to the target's output name.
     FOLDER        "Samples")     # In visual studio puts this target's project inside a virtual folder (requires setting USE_FOLDERS = ON)
