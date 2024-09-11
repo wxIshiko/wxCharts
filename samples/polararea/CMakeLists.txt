@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(PolarArea VERSION 0.1.0 DESCRIPTION "wxPolarArea sample")
+project(polarareachart VERSION 0.1.0 DESCRIPTION "wxPolarAreaChart sample")
 
 # Allows to use virtual folders in visual studio, 
 #  it helps to organize larger projects.
@@ -8,7 +8,9 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 find_package(wxWidgets COMPONENTS core base REQUIRED)
 include(${wxWidgets_USE_FILE})
 
-add_executable(PolarArea 
+find_package(wxCharts CONFIG REQUIRED)
+
+add_executable(polarareachart 
   WIN32 MACOSX_BUNDLE
     src/WxPolarAreaApp.h
     src/WxPolarAreaApp.cpp
@@ -16,19 +18,12 @@ add_executable(PolarArea
     src/WxPolarAreaFrame.cpp
 )
 
-target_link_libraries(PolarArea
+target_link_libraries(polarareachart
   PRIVATE
     ${wxWidgets_LIBRARIES}
     wxcharts::wxcharts)
 
-target_include_directories(PolarArea
-  PRIVATE
-    ${wxWidgets_INCLUDE_DIRS}
-    ${wxcharts_SOURCE_DIR}/include
-)
-
-set_target_properties(PolarArea
+set_target_properties(polarareachart
   PROPERTIES
-    OUTPUT_NAME   "polararea" # Can change the output name of the target.
     DEBUG_POSTFIX "d"         # Appends the letter "d" to the target's output name.
     FOLDER        "Samples")  # In visual studio puts this target's project inside a virtual folder (requires setting USE_FOLDERS = ON)
