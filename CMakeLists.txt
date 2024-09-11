@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(wxCharts
+project(wxcharts
         VERSION 0.1.0
         LANGUAGES CXX)
 
@@ -8,10 +8,10 @@ project(wxCharts
 # config cmake #
 ################
 
-# This sets a common dir called bin in the wxCharts_BINARY_DIR,
+# This sets a common dir called bin in the wxcharts_BINARY_DIR,
 #   all the executables and libraries will be put there inside a subdirectory called Debug or Release according to its build.
-SET(LIBRARY_OUTPUT_PATH    ${wxCharts_BINARY_DIR}/bin CACHE PATH "Single output directory for building all libraries."   FORCE)
-SET(EXECUTABLE_OUTPUT_PATH ${wxCharts_BINARY_DIR}/bin CACHE PATH "Single output directory for building all executables." FORCE)
+SET(LIBRARY_OUTPUT_PATH    ${wxcharts_BINARY_DIR}/bin CACHE PATH "Single output directory for building all libraries."   FORCE)
+SET(EXECUTABLE_OUTPUT_PATH ${wxcharts_BINARY_DIR}/bin CACHE PATH "Single output directory for building all executables." FORCE)
 
 
 set(CMAKE_CXX_STANDARD 11 CACHE STRING "C++ Standard")
