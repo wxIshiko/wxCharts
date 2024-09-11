@@ -32,4 +32,9 @@ cd build
 cmake ..
 make
 ```
-At the end of these steps you should have the file `libwxCharts.a` in the `build/bin` directory.
+At the end of these steps you should have the file `libwxcharts.a` in the `build/bin` directory.
+
+You can now install the wxCharts header file and libraries to /usr/local.
+```
+sudo make install
+```
