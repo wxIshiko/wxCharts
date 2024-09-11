@@ -22,3 +22,13 @@ sudo apt install libwxgtk3.0-gtk3-dev
 ``` 
 
 ### Build wxCharts
+
+Once wxWidgets is installed clone the wxCharts repository and build the wxCharts library with CMake.
+```
+git clone git@github.com:wxIshiko/wxCharts.git
+cd wxCharts
+mkdir build
+cd build
+cmake ..
+make
+```
