@@ -25,7 +25,7 @@ See [Installation](docs/installation/README.md).
 
 ## Support
 
-For all questions about this project you can (raise an issue on GitHub)[https://github.com/wxIshiko/wxCharts/issues].
+For all questions about this project you can [raise an issue on GitHub](https://github.com/wxIshiko/wxCharts/issues).
 
 ## Contributing
 
