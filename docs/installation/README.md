@@ -98,6 +98,7 @@ cd %WXWIN%\build\msw
 nmake /f makefile.vc BUILD=debug
 nmake /f makefile.vc BUILD=release
 ```
+After performing these steps you should have a series of libraries in `%WXWIN%\lib\vc_x64_lib`.
 
 cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_PREFIX=c:\wxcharts ..
 
