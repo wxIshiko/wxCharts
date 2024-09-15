@@ -71,8 +71,10 @@ find_package(wxWidgets REQUIRED COMPONENTS core base)
 ```
 
 We recommend the following installation procedure. Download the ZIP archive for the latest source code (3.2.6 at the
-time of writing) from https://www.wxwidgets.org/downloads/ and extract it.
-Instr
+time of writing) from https://www.wxwidgets.org/downloads/ and extract it. We'll refer to the location where the source
+code has been installed as &lt;wxwidgets_source_root&gt;.
+
+Now navigate to the 
 
 cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_PREFIX=c:\wxcharts ..
 
