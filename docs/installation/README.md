@@ -85,11 +85,19 @@ for different versions of Visual Studio and also a `makefile.vc` file. You can b
 `wx_vcXY.sln` and doing a build or by using `nmake` with the `makefile.vc` file as explained in
 https://docs.wxwidgets.org/latest/plat_msw_install.html.
 
-For a first try I strongly recommend building wxWidgets as static library and not a shared library just to limit the
+For a first try I strongly recommend building wxWidgets as a static library and not a shared library just to limit the
 number of things that can go wrong. What is also very important is to build both a `Debug` and `Release` version of the
 library. If you don't do that it's possible that your application will try to build against the wrong version and
 you'll end up with linking errors. Alternatively make sure you stick to building everything in `Release` or everything
 in `Debug` mode. But in general developers tend to need both.
+
+For instance if building with `nmake` the following steps should work. You need to run this from a [Visual Studio 
+command prompt](https://learn.microsoft.com/en-us/visualstudio/ide/reference/command-prompt-powershell?view=vs-2022).
+```
+cd %WXWIN%\build\msw
+nmake /f makefile.vc BUILD=debug
+nmake /f makefile.vc BUILD=release
+```
 
 cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_PREFIX=c:\wxcharts ..
 
