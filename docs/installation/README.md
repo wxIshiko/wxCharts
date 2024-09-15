@@ -102,16 +102,16 @@ After performing these steps you should have a series of libraries in `%WXWIN%\l
 
 We can now build wxCharts itself.
 
-While on Linux it is common to install software on `/usr/local`, there isn't a well defined equivalent on Windows. By
+While on Linux it is common to install software in `/usr/local`, there isn't a well defined equivalent on Windows. By
 default CMake uses `C:\Program Files` but I don't find this very appropriate. So the following instructions will assume
-you do want to install the wxCharts libraries somewhere else and show you how to do so. The first step is to chose a 
-directory where we want to install the wxCharts libraries, we will assume that location has been saved in the 'WCHARTS'
+you do want to install the wxCharts libraries somewhere else and show you how to do so. The first step is to choose a 
+directory where we want to install the wxCharts libraries, we will assume that location has been saved in the `WXCHARTS`
 environment variable.
 
-Now we can clone the wxCharts repository and build the wxCharts library with CMake. The following commands should work.
-They assume you use Visual Studio 2022 but other versions should work too, just use the appropriate generator for the
-version of Visual Studio you are using. The list of generators can be found here:
-https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html.
+Now we can clone the wxCharts repository (in a directory different than `WXCHARTS`) and build the wxCharts library with
+CMake. The following commands should work. They assume you use Visual Studio 2022 but other versions should work too,
+just use the appropriate generator for the version of Visual Studio you are using. The list of generators can be found
+here: https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html.
 
 ```
 git clone git@github.com:wxIshiko/wxCharts.git
