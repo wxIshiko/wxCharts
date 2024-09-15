@@ -127,4 +127,6 @@ cmake --build . --config Release
 cmake --install . --config Debug
 cmake --install . --config Release
 ```
-At the end of these steps you should have the file `libwxcharts.a` in the `build/bin` directory.
+At the end of these steps you should have the header files in `%WXCHARTS%\include\wxcharts` and the libraries in
+`%WXCHARTS%\lib`. wxCharts follows the wxWidgets convention of appending a 'd' suffix to the Debug versions so there
+should be a `wxcharts.lib` file and a `wxchartsd.lib` file.
