@@ -70,15 +70,17 @@ able to find the wxWidgets installation correctly.
 find_package(wxWidgets REQUIRED COMPONENTS core base)
 ```
 
-We recommend the following installation procedure. Download the ZIP archive for the latest source code (3.2.6 at the
+We recommend the following installation procedure.
+
+Download the ZIP archive for the latest source code (3.2.6 at the
 time of writing) from https://www.wxwidgets.org/downloads/ and extract it. We'll refer to the location where the source
 code has been installed as &lt;wxwidgets_source_root&gt;.
 
-Now define a new environment variable `WXWIN` that points to &lt;wxwidgets_source_root&gt;. This is environment
+Now define a new environment variable `WXWIN` that points to &lt;wxwidgets_source_root&gt;. This environment
 variable is required because it is used by the wxCharts build to find the location of xWidgets. While there are other
-ways to locate the wxWidgets installation this is fairly simple and robust way to do so.
+ways to locate the wxWidgets installation this is a fairly simple and robust way to do so.
 
-Now navigate to the &lt;wxwidgets_source_root&gt;\build\msw directory.
+Now navigate to the %WXWIN%\build\msw directory. 
 
 cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_PREFIX=c:\wxcharts ..
 
