@@ -122,13 +122,9 @@ cd wxCharts
 mkdir build
 cd build
 cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_PREFIX=%WXCHARTS% ..
+cmake --build . --config Debug
+cmake --build . --config Release
+cmake --install . --config Debug
+cmake --install . --config Release
 ```
 At the end of these steps you should have the file `libwxcharts.a` in the `build/bin` directory.
-
-
-cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_PREFIX=c:\wxcharts ..
-
-To select the config: cmake --build . --config Release|Debug (note that it needs to be after the . weirdly enough).
-
-
-cmake --install . (this installs Release by default)
