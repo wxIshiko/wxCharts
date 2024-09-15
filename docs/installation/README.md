@@ -3,6 +3,9 @@
 At the moment we do not provide pre-built binaries for wxCharts. Any installation must be made by rebuilding the code
 from source.
 
+    - [Ubuntu](#ubuntu)
+    - [Windows with Visual Studio](#windows-with-visual-studio) 
+
 ## Ubuntu
 
 ### Install wxWidgets
