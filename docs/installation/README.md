@@ -133,5 +133,6 @@ should be a `wxcharts.lib` file and a `wxchartsd.lib` file.
 
 Of note are also the files in `%WXCHARTS%\lib\cmake`. These are CMake configuration files and they are necessary to 
 make the `find_package(wxCharts CONFIG)` command work. That command is used by applications that use CMake as their
-build system and want to use wxCharts.
+build system and want to use wxCharts. The examples shipped with wxCharts fall in that category and we will now show
+how to build one of them. 
 
