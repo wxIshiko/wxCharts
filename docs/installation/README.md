@@ -74,7 +74,11 @@ We recommend the following installation procedure. Download the ZIP archive for 
 time of writing) from https://www.wxwidgets.org/downloads/ and extract it. We'll refer to the location where the source
 code has been installed as &lt;wxwidgets_source_root&gt;.
 
-Now navigate to &lt;wxwidgets_source_root&gt;\build\msw directory.
+Now define a new environment variable `WXWIN` that points to &lt;wxwidgets_source_root&gt;. This is environment
+variable is required because it is used by the wxCharts build to find the location of xWidgets. While there are other
+ways to locate the wxWidgets installation this is fairly simple and robust way to do so.
+
+Now navigate to the &lt;wxwidgets_source_root&gt;\build\msw directory.
 
 cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_PREFIX=c:\wxcharts ..
 
