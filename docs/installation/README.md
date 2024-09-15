@@ -56,7 +56,7 @@ This should have successfully built the `linechart` executable. Running it with
 ```
 should display a windows with a line chart.
 
-## Windows
+## Windows with Visual Studio
 
 ### Install wxWidgets
 
@@ -80,7 +80,10 @@ Now define a new environment variable `WXWIN` that points to &lt;wxwidgets_sourc
 variable is required because it is used by the wxCharts build to find the location of xWidgets. While there are other
 ways to locate the wxWidgets installation this is a fairly simple and robust way to do so.
 
-Now navigate to the %WXWIN%\build\msw directory. 
+Now navigate to the %WXWIN%\build\msw directory. In that directory you will find a series of `wx_vcXY.sln` build files
+for different versions of Visual Studio and also a `makefile.vc` file. You can build wxWidgets by opening one of the
+`wx_vcXY.sln` and doing a build or by using `nmake` with the `makefile.vc` file as explained in
+https://docs.wxwidgets.org/latest/plat_msw_install.html.
 
 cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_PREFIX=c:\wxcharts ..
 
