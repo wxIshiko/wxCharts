@@ -74,7 +74,7 @@ We recommend the following installation procedure. Download the ZIP archive for 
 time of writing) from https://www.wxwidgets.org/downloads/ and extract it. We'll refer to the location where the source
 code has been installed as &lt;wxwidgets_source_root&gt;.
 
-Now navigate to the 
+Now navigate to &lt;wxwidgets_source_root&gt;\build\msw directory.
 
 cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_PREFIX=c:\wxcharts ..
 
