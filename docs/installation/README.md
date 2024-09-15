@@ -55,3 +55,14 @@ This should have successfully built the `linechart` executable. Running it with
 ./linechart
 ```
 should display a windows with a line chart.
+
+## Windows
+
+Download from https://www.wxwidgets.org/downloads/
+
+cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_PREFIX=c:\wxcharts ..
+
+To select the config: cmake --build . --config Release|Debug (note that it needs to be after the . weirdly enough).
+
+
+cmake --install . (this installs Release by default)
