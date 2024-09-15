@@ -58,7 +58,20 @@ should display a windows with a line chart.
 
 ## Windows
 
-Download from https://www.wxwidgets.org/downloads/
+### Install wxWidgets
+
+wxCharts depends on the wxWidgets framework. There are several ways to install wxWidgets on Windows but we are going to
+recommend a specific procedure because installation on Windows can be hard to get right and issues are difficult to
+troubleshoot. 
+
+Regardless of what installation method you choose, the following CMake command used by the wxCharts build files must be
+able to find the wxWidgets installation correctly.
+```
+find_package(wxWidgets REQUIRED COMPONENTS core base)
+```
+
+We recommend the following installation procedure. Download the latest ZIP archive with the source code (3.2.6 at the
+time of writing) from https://www.wxwidgets.org/downloads/.
 
 cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_PREFIX=c:\wxcharts ..
 
