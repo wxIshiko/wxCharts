@@ -4,7 +4,11 @@ At the moment we do not provide pre-built binaries for wxCharts. Any installatio
 from source.
 
 - [Ubuntu](#ubuntu)
-- [Windows with Visual Studio](#windows-with-visual-studio) 
+- [Windows with Visual Studio](#windows-with-visual-studio)
+
+## Prerequisites
+
+The wxCharts build uses [CMake](https://cmake.org).
 
 ## Ubuntu
 
