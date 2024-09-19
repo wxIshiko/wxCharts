@@ -103,6 +103,8 @@ nmake /f makefile.vc BUILD=release
 ```
 After performing these steps you should have a series of libraries in `%WXWIN%\lib\vc_x64_lib`.
 
+### Build wxCharts
+
 We can now build wxCharts itself.
 
 While on Linux it is common to install software in `/usr/local`, there isn't a well defined equivalent on Windows. By
@@ -136,4 +138,19 @@ make the `find_package(wxCharts CONFIG)` command work. That command is used by a
 build system and want to use wxCharts. The examples shipped with wxCharts fall in that category and we will now show
 how to build one of them. 
 
-cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH="C:\wxcharts" .
+### Test the installation
+
+We will now verify the correct installation by building and running the wxLineChart sample.
+
+```
+cd ..
+cd samples/linechart
+cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH=%WXCHARTS% .
+make
+```
+
+This should have successfully built the `linechart` executable. Running it with
+```
+./linechart
+```
+should display a windows with a line chart.
