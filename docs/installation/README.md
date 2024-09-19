@@ -136,3 +136,4 @@ make the `find_package(wxCharts CONFIG)` command work. That command is used by a
 build system and want to use wxCharts. The examples shipped with wxCharts fall in that category and we will now show
 how to build one of them. 
 
+cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH="C:\wxcharts" .
