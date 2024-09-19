@@ -142,15 +142,16 @@ how to build one of them.
 
 We will now verify the correct installation by building and running the wxLineChart sample.
 
+The following commands should work. Note the use of `-DCMAKE_PREFIX_PATH=%WXCHARTS%` to point CMake to the wxCharts
+installation directory, more precisely to the `%WXCHARTS%\lib\cmake` that we discussed earlier.
 ```
 cd ..
 cd samples/linechart
 cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH=%WXCHARTS% .
-make
+cmake --build . --config Debug
+cmake --build . --config Release
 ```
 
-This should have successfully built the `linechart` executable. Running it with
-```
-./linechart
-```
-should display a windows with a line chart.
+This should have successfully built the `linechart.exe` executable for the release version and the `linechartd.exe`
+executable for the debug version. Running any of them should display a windows with a line chart.
+
