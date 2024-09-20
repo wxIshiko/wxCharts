@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,14 +25,20 @@
 #include "wxchartmultitooltip.h"
 
 wxChart::wxChart()
-    : m_needsFit(true),
+    : m_position(0, 0), m_size(0, 0), m_needsFit(true),
     m_activeElements(new wxVector<const wxChartsElement*>())
 {
 }
 
+wxRect wxChart::GetDrawingArea() const
+{
+    return wxRect(m_position, m_size);
+}
+
 void wxChart::SetSize(const wxSize &size)
 {
-    DoSetSize(size);
+    m_size = size;
+    DoSetSize(m_size);
     m_needsFit = true;
 }
 
@@ -78,6 +84,6 @@ void wxChart::DrawTooltips(wxGraphicsContext &gc)
                 (*m_activeElements)[j]->GetTooltipProvider());
             multiTooltip.AddTooltip(tooltip);
         }
-        multiTooltip.Draw(gc);
+        multiTooltip.Draw(GetDrawingArea(), gc);
     }
 }
