@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2022 Xavier Leclercq
+    Copyright (c) 2017-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -36,8 +36,7 @@
 #ifndef _WX_CHARTS_WXAREACHARTCTRL_H_
 #define _WX_CHARTS_WXAREACHARTCTRL_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartctrl.h"
 #include "wxareachart.h"
 #include <wx/menu.h>
@@ -46,7 +45,7 @@
 /**
     \ingroup chartclasses
 */
-class WXCHARTS_EXPORT wxAreaChartCtrl : public wxChartCtrl
+class WXDLLIMPEXP_ISHIKO_CHARTS wxAreaChartCtrl : public wxChartCtrl
 {
 public:
     /// Constructor.

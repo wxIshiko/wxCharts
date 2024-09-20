@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -47,7 +47,7 @@
 /**
     \ingroup chartclasses
 */
-class WXCHARTS_EXPORT wxBarChart : public wxChart
+class WXDLLIMPEXP_ISHIKO_CHARTS wxBarChart : public wxChart
 {
 public:
     /// Constructor.

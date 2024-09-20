@@ -32,7 +32,7 @@
 /// The options for the wxBarChartCtrl control.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxBarChartOptions : public wxChartOptions
+class WXDLLIMPEXP_ISHIKO_CHARTS wxBarChartOptions : public wxChartOptions
 {
 public:
     /// Smart pointer typedef.
