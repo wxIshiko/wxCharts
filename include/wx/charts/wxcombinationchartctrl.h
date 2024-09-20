@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2018 Xavier Leclercq
+    Copyright (c) 2017-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,13 +25,12 @@
 #ifndef _WX_CHARTS_WXCOMBINATIONCHARTCTRL_H_
 #define _WX_CHARTS_WXCOMBINATIONCHARTCTRL_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartctrl.h"
 #include "wxcombinationchart.h"
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxCombinationChartCtrl : public wxChartCtrl
+class WXDLLIMPEXP_ISHIKO_CHARTS wxCombinationChartCtrl : public wxChartCtrl
 {
 public:
     wxCombinationChartCtrl(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition,

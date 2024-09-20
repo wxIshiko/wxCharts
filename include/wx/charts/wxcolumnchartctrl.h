@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -36,15 +36,14 @@
 #ifndef _WX_CHARTS_WXCOLUMNCHARTCTRL_H_
 #define _WX_CHARTS_WXCOLUMNCHARTCTRL_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartctrl.h"
 #include "wxcolumnchart.h"
 
 /// A control that displays a column chart.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxColumnChartCtrl : public wxChartCtrl
+class WXDLLIMPEXP_ISHIKO_CHARTS wxColumnChartCtrl : public wxChartCtrl
 {
 public:
     /// Constructs a wxColumnChartCtrl control.
