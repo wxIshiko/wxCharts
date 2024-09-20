@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2021 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2024 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -33,7 +33,7 @@
 /// Data for the wxBoxPlotCtrl control.
 
 /// \ingroup dataclasses
-class WXCHARTS_EXPORT wxBoxPlotData
+class WXDLLIMPEXP_ISHIKO_CHARTS wxBoxPlotData
 {
 public:
     wxBoxPlotData(const wxVector<wxString> &labels, const wxVector<wxVector<wxDouble>> &data);
@@ -53,7 +53,7 @@ private:
 /**
     \ingroup chartclasses
 */
-class WXCHARTS_EXPORT wxBoxPlot : public wxChart
+class WXDLLIMPEXP_ISHIKO_CHARTS wxBoxPlot : public wxChart
 {
 public:
     /// Constructor.

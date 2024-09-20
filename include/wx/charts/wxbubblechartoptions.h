@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,7 @@
 #ifndef _WX_CHARTS_WXBUBBLECHARTOPTIONS_H_
 #define _WX_CHARTS_WXBUBBLECHARTOPTIONS_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartoptions.h"
 #include "wxchartsgridoptions.h"
 #include <wx/sharedptr.h>
@@ -34,7 +33,7 @@
 /// The options for the wxBubbleChartCtrl control.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxBubbleChartOptions : public wxChartOptions
+class WXDLLIMPEXP_ISHIKO_CHARTS wxBubbleChartOptions : public wxChartOptions
 {
 public:
     /// Smart pointer typedef.
