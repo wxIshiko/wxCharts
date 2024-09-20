@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2019 Xavier Leclercq
+    Copyright (c) 2019-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,12 +25,11 @@
 #ifndef _WX_CHARTS_WXCOLUMNCHARTDATASETOPTIONS_H_
 #define _WX_CHARTS_WXCOLUMNCHARTDATASETOPTIONS_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartspenoptions.h"
 #include "wxchartsbrushoptions.h"
 
-class WXCHARTS_EXPORT wxColumnChartDatasetOptions
+class WXDLLIMPEXP_ISHIKO_CHARTS wxColumnChartDatasetOptions
 {
 public:
     wxColumnChartDatasetOptions(const wxChartsPenOptions &penOptions,

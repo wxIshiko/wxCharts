@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors
+    Copyright (c) 2016-2024 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -27,7 +27,6 @@
 
 #include "wxchartoptions.h"
 #include "wxchartsgridoptions.h"
-
 #include <functional>
 
 typedef std::function<wxDouble(wxDouble)> AxisFunc;
@@ -35,7 +34,7 @@ typedef std::function<wxDouble(wxDouble)> AxisFunc;
 /// The options for the wxMath2DPlotCtrl control.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxMath2DPlotOptions : public wxChartOptions
+class WXDLLIMPEXP_ISHIKO_CHARTS wxMath2DPlotOptions : public wxChartOptions
 {
 public:
     /// Constructs a wxMath2DPlotOptions instance.
