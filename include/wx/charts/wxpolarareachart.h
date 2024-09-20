@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -43,7 +43,7 @@
 #include "wxchartsarc.h"
 
 /// Data for the wxPolarAreaChartCtrl control.
-class WXCHARTS_EXPORT wxPolarAreaChartData
+class WXDLLIMPEXP_ISHIKO_CHARTS wxPolarAreaChartData
 {
 public:
     wxPolarAreaChartData();
@@ -59,7 +59,7 @@ private:
 /// A polar area chart.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxPolarAreaChart : public wxChart
+class WXDLLIMPEXP_ISHIKO_CHARTS wxPolarAreaChart : public wxChart
 {
 public:
     wxPolarAreaChart(const wxPolarAreaChartData &data, const wxSize &size);

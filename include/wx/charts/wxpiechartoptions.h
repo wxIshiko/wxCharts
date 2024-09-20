@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -30,7 +30,7 @@
 /// The options for the wxPieChartCtrl control.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxPieChartOptions : public wxDoughnutAndPieChartOptionsBase
+class WXDLLIMPEXP_ISHIKO_CHARTS wxPieChartOptions : public wxDoughnutAndPieChartOptionsBase
 {
 public:
     /// Constructs a wxPieChartOptions

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -31,7 +31,7 @@
 /// A control that displays a scatter plot.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxScatterPlotCtrl : public wxChartCtrl
+class WXDLLIMPEXP_ISHIKO_CHARTS wxScatterPlotCtrl : public wxChartCtrl
 {
 public:
     /// Constructs a wxScatterPlotCtrl control.
