@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2024 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,19 +25,18 @@
 #ifndef _WX_CHARTS_WXCHARTOBSERVERS_H_
 #define _WX_CHARTS_WXCHARTOBSERVERS_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include <wx/vector.h>
 
 template<typename T>
-class WXCHARTS_EXPORT wxChartValueObserver
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartValueObserver
 {
 public:
     virtual void OnUpdate(const T &value) = 0;
 };
 
 template<typename T>
-class WXCHARTS_EXPORT wxChartObservableValue
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartObservableValue
 {
 public:
     wxChartObservableValue() {};

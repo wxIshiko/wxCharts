@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -28,7 +28,7 @@
 #include "wxchartfontoptions.h"
 
 /// The options for the wxChartMultiTooltip element.
-class WXCHARTS_EXPORT wxChartMultiTooltipOptions
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartMultiTooltipOptions
 {
 public:
     /// Constructs a wxChartMultiTooltipOptions instance.
