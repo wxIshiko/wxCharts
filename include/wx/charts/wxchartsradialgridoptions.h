@@ -25,7 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTSRADIALGRIDOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSRADIALGRIDOPTIONS_H_
 
-#include "wxcharts_export.h"
+#include "dlimpexp.h"
 
 #include "wxchartslabeloptions.h"
 
@@ -39,7 +39,7 @@ enum wxChartsRadialGridStyle
 };
 
 /// Options for the wxChartsRadialGrid element.
-class WXCHARTS_EXPORT wxChartsRadialGridOptions
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsRadialGridOptions
 {
 public:
     /// Constructs a wxChartsRadialGridOptions instance.

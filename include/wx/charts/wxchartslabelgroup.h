@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,12 +25,11 @@
 #ifndef _WX_CHARTS_WXCHARTSLABELGROUP_H_
 #define _WX_CHARTS_WXCHARTSLABELGROUP_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartslabel.h"
 
 /// This class is to manage a group of labels.
-class WXCHARTS_EXPORT wxChartsLabelGroup : public wxVector<wxChartsLabel>
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsLabelGroup : public wxVector<wxChartsLabel>
 {
 public:
     wxChartsLabelGroup();

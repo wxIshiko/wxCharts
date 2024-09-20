@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTSLEGENDLINE_H_
 #define _WX_CHARTS_WXCHARTSLEGENDLINE_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartselement.h"
 #include "wxchartslegendlineoptions.h"
 
@@ -34,7 +33,7 @@
 
 /// It can be used wherever a single line of text is needed
 /// with a single colored square at the start of the line.
-class WXCHARTS_EXPORT wxChartsLegendLine : public wxChartsElement
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsLegendLine : public wxChartsElement
 {
 public:
     /// Constructs a wxChartsLegendLine element.
