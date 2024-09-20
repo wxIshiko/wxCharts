@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -52,7 +52,7 @@ public:
     /// Draws the tooltip using the graphics context passed
     /// in as argument.
     /// @param gc The graphics context.
-    void Draw(wxGraphicsContext &gc);
+    void Draw(const wxRect &drawingArea, wxGraphicsContext &gc);
 
     void AddTooltip(const wxChartTooltip &tooltip);
 

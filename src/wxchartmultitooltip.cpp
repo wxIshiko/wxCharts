@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -46,7 +46,7 @@ wxChartMultiTooltip::wxChartMultiTooltip(const wxString &title,
 {
 }
 
-void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
+void wxChartMultiTooltip::Draw(const wxRect& drawingArea, wxGraphicsContext &gc)
 {
     // First we will compute the size of each of the lines
     // of the multi-tooltip and its total size.
@@ -149,6 +149,34 @@ void wxChartMultiTooltip::Draw(wxGraphicsContext &gc)
     {
         outerY -= totalOuterHeight;
         innerY = outerY + m_options.GetVerticalPadding();
+    }
+
+    // Adjust the position so that the tooltip doesn't go past the limits of
+    // the drawing area
+    if (totalOuterWidth > drawingArea.GetWidth())
+    {
+        // Do not draw the tooltip at all if it is wider than the drawing area
+        return;
+    }
+    if (outerX < drawingArea.GetX())
+    {
+        // Tooltip goes past left border
+        wxDouble adjustment = (drawingArea.GetX() - outerX);
+        outerX += adjustment;
+        innerX += adjustment;
+    }
+    else
+    {
+        // Tooltip goes past right border
+        wxDouble tooltipRightX = (outerX + totalOuterWidth);
+        wxDouble drawingAreaRightX =
+            (drawingArea.GetX() + drawingArea.GetWidth());
+        if (tooltipRightX > drawingAreaRightX)
+        {
+            wxDouble adjustment = (drawingAreaRightX - tooltipRightX);
+            outerX += adjustment;
+            innerX += adjustment;
+        }
     }
 
     // Set the position of each line based on the size of
