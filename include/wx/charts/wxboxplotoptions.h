@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq and the wxCharts contributors.
+    Copyright (c) 2018-2024 Xavier Leclercq and the wxCharts contributors.
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,6 +25,7 @@
 #ifndef _WX_CHARTS_WXBOXPLOTOPTIONS_H_
 #define _WX_CHARTS_WXBOXPLOTOPTIONS_H_
 
+#include "dlimpexp.h"
 #include "wxchartoptions.h"
 #include "wxchartsgridoptions.h"
 #include <wx/sharedptr.h>
@@ -32,7 +33,7 @@
 /// The options for the wxBoxPlotCtrl control.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxBoxPlotOptions : public wxChartOptions
+class WXDLLIMPEXP_ISHIKO_CHARTS wxBoxPlotOptions : public wxChartOptions
 {
 public:
     /// Smart pointer typedef.

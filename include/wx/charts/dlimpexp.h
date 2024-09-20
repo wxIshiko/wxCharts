@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2024 Xavier Leclercq
+    Copyright (c) 2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -22,26 +22,11 @@
 
 /// @file
 
-#ifndef _WX_CHARTS_WXCHARTBACKGROUND_H_
-#define _WX_CHARTS_WXCHARTBACKGROUND_H_
+#ifndef _WX_CHARTS_DLIMPEXP_H_
+#define _WX_CHARTS_DLIMPEXP_H_
 
-#include "dlimpexp.h"
-#include "wxchartbackgroundoptions.h"
-#include <wx/graphics.h>
+#include "wxcharts_export.h"
 
-/// Class to draw backgrounds for various chart elements.
-class WXDLLIMPEXP_ISHIKO_CHARTS wxChartBackground
-{
-public:
-    wxChartBackground(const wxChartBackgroundOptions &options);
-
-    void Draw(const wxPoint2DDouble &position, const wxSize &size,
-        wxGraphicsContext &gc);
-    void Draw(wxDouble x, wxDouble y, wxDouble width, wxDouble height,
-        wxGraphicsContext &gc);
-
-private:
-    wxChartBackgroundOptions m_options;
-};
+#define WXDLLIMPEXP_ISHIKO_CHARTS WXCHARTS_EXPORT
 
 #endif
