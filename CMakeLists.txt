@@ -34,7 +34,7 @@ if(NOT wxBUILD_DEBUG_LEVEL STREQUAL "Default")
 endif()
 
 ##############
-# sampples   #
+# samples   #
 ##############
 option(BUILD_SAMPLES "Build the samples")
 if(BUILD_SAMPLES)
@@ -55,9 +55,11 @@ include(${wxWidgets_USE_FILE})
 # target #
 ##########
 
-file(GLOB SOURCE_FILES src/*.cpp)
+# Import the wxcharts_HEADERS and wxcharts_SOURCES variables.
+# They contain the list of header files and source files.
+include(buildfiles/wxcharts_files.cmake)
 
-add_library(${PROJECT_NAME} ${SOURCE_FILES})
+add_library(${PROJECT_NAME} ${wxcharts_HEADERS} ${wxcharts_SOURCES})
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 # export macro
