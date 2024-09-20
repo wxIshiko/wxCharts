@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -36,8 +36,7 @@
 #ifndef _WX_CHARTS_WXSTACKEDCOLUMNCHART_H_
 #define _WX_CHARTS_WXSTACKEDCOLUMNCHART_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchart.h"
 #include "wxchartscategoricaldata.h"
 #include "wxstackedcolumnchartoptions.h"
@@ -48,7 +47,7 @@
 /// A stacked column chart.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxStackedColumnChart : public wxChart
+class WXDLLIMPEXP_ISHIKO_CHARTS wxStackedColumnChart : public wxChart
 {
 public:
     wxStackedColumnChart(wxChartsCategoricalData::ptr &data, const wxSize &size);

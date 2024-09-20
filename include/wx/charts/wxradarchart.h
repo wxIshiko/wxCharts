@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -41,7 +41,7 @@
 #include "wxchartsradialgrid.h"
 
 /// Data for the wxRadarChartCtrl control.
-class WXCHARTS_EXPORT wxRadarChartData
+class WXDLLIMPEXP_ISHIKO_CHARTS wxRadarChartData
 {
 public:
     /// Constructs a wxRadarChartData instance.
@@ -59,7 +59,7 @@ private:
 /// A radar chart.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxRadarChart : public wxChart
+class WXDLLIMPEXP_ISHIKO_CHARTS wxRadarChart : public wxChart
 {
 public:
     wxRadarChart(const wxSize &size);

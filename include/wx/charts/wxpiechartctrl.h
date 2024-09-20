@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors
+    Copyright (c) 2016-2024 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -31,7 +31,7 @@
 /// A control that displays a pie chart.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxPieChartCtrl : public wxChartCtrl, public wxChartValueObserver<std::map<wxString, wxChartSliceData>>
+class WXDLLIMPEXP_ISHIKO_CHARTS wxPieChartCtrl : public wxChartCtrl, public wxChartValueObserver<std::map<wxString, wxChartSliceData>>
 {
 public:
     /// Constructs a wxPieChartCtrl control.

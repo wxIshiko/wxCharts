@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -31,7 +31,7 @@
 #include "wxchartscircle.h"
 #include <wx/sharedptr.h>
 
-class WXCHARTS_EXPORT wxDoubleTriplet
+class WXDLLIMPEXP_ISHIKO_CHARTS wxDoubleTriplet
 {
 public:
     wxDoubleTriplet(wxDouble x, wxDouble y, wxDouble z);
@@ -42,7 +42,7 @@ public:
 };
 
 /// \ingroup dataclasses
-class WXCHARTS_EXPORT wxBubbleChartDataset
+class WXDLLIMPEXP_ISHIKO_CHARTS wxBubbleChartDataset
 {
 public:
     /// Smart pointer typedef.
@@ -73,7 +73,7 @@ private:
 /// Data for the wxBubbleChartCtrl control.
 
 /// \ingroup dataclasses
-class WXCHARTS_EXPORT wxBubbleChartData
+class WXDLLIMPEXP_ISHIKO_CHARTS wxBubbleChartData
 {
 public:
     /// Constructs a wxBubbleChartData instance.
@@ -93,7 +93,7 @@ private:
 /**
     \ingroup chartclasses
 */
-class WXCHARTS_EXPORT wxBubbleChart : public wxChart
+class WXDLLIMPEXP_ISHIKO_CHARTS wxBubbleChart : public wxChart
 {
 public:
     /// Constructor.

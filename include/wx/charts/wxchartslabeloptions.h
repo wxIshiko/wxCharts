@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,13 +25,12 @@
 #ifndef _WX_CHARTS_WXCHARTSLABELOPTIONS_H_
 #define _WX_CHARTS_WXCHARTSLABELOPTIONS_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartfontoptions.h"
 #include "wxchartbackgroundoptions.h"
 
 /// The options for the wxChartsLabel element.
-class WXCHARTS_EXPORT wxChartsLabelOptions : public wxObject
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsLabelOptions : public wxObject
 {
 public:
     wxChartsLabelOptions();

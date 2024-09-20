@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2017 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,12 +25,11 @@
 #ifndef _WX_CHARTS_WXCHARTPADDING_H_
 #define _WX_CHARTS_WXCHARTPADDING_H_
 
+#include "dlimpexp.h"
 #include <wx/defs.h>
 
-#include "wxcharts_export.h"
-
 /// Padding options for the wxChartCtrl class.
-class WXCHARTS_EXPORT wxChartPadding
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartPadding
 {
 public:
     /// Constructs a wxChartPadding

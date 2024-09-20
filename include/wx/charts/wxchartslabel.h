@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,7 @@
 #ifndef _WX_CHARTS_WXCHARTSLABEL_H_
 #define _WX_CHARTS_WXCHARTSLABEL_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartselement.h"
 #include "wxchartslabeloptions.h"
 #include "wxchartpadding.h"
@@ -41,7 +40,7 @@
 /// as that requires a graphics context. The code
 /// that uses this class needs to set and update 
 /// the width and height.
-class WXCHARTS_EXPORT wxChartsLabel : public wxChartsElement
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartsLabel : public wxChartsElement
 {
 public:
     /// Default constructor

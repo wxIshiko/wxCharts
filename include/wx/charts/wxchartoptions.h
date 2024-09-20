@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2018 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -25,15 +25,14 @@
 #ifndef _WX_CHARTS_WXCHARTOPTIONS_H_
 #define _WX_CHARTS_WXCHARTOPTIONS_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartcommonoptions.h"
 #include "wxchartpadding.h"
 
 /// Options for the wxChartCtrl control.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxChartOptions
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChartOptions
 {
 public:
     /// Constructs a wxChartOptions

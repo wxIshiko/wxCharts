@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq and the wxCharts contributors
+    Copyright (c) 2016-2024 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -49,7 +49,7 @@ enum wxChartType
     wxCHARTTYPE_STEM
 };
 
-class WXCHARTS_EXPORT wxMath2DPlotDataset
+class WXDLLIMPEXP_ISHIKO_CHARTS wxMath2DPlotDataset
 {
 public:
     /// Smart pointer typedef.
@@ -95,7 +95,7 @@ private:
 };
 
 /// Data for the wxMath2DPlotCtrl control.
-class WXCHARTS_EXPORT wxMath2DPlotData
+class WXDLLIMPEXP_ISHIKO_CHARTS wxMath2DPlotData
 {
 public:
     /// Constructs a wxMath2DPlotData instance.
@@ -114,7 +114,7 @@ private:
 /// A wxMath2D plot.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxMath2DPlot : public wxChart
+class WXDLLIMPEXP_ISHIKO_CHARTS wxMath2DPlot : public wxChart
 {
 public:
     wxMath2DPlot(const wxMath2DPlotData &data, const wxSize &size);

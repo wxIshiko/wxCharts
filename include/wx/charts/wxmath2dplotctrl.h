@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2019 Xavier Leclercq and the wxCharts contributors
+    Copyright (c) 2016-2024 Xavier Leclercq and the wxCharts contributors
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -43,7 +43,7 @@
 /// A control that displays a math2d plot.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxMath2DPlotCtrl : public wxChartCtrl
+class WXDLLIMPEXP_ISHIKO_CHARTS wxMath2DPlotCtrl : public wxChartCtrl
 {
 public:
     /// Constructs a wxMath2DPlotCtrl control.

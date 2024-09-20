@@ -25,8 +25,7 @@
 #ifndef _WX_CHARTS_WXCHART_H_
 #define _WX_CHARTS_WXCHART_H_
 
-#include "wxcharts_export.h"
-
+#include "dlimpexp.h"
 #include "wxchartcommonoptions.h"
 #include "wxchartselement.h"
 #include <wx/sharedptr.h>
@@ -36,7 +35,7 @@
 /// Base class for the chart classes.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxChart
+class WXDLLIMPEXP_ISHIKO_CHARTS wxChart
 {
 public:
     wxChart();

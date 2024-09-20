@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -31,7 +31,7 @@
 #include "wxchartspoint.h"
 #include <wx/sharedptr.h>
 
-class WXCHARTS_EXPORT wxScatterPlotDataset
+class WXDLLIMPEXP_ISHIKO_CHARTS wxScatterPlotDataset
 {
 public:
     /// Smart pointer typedef.
@@ -54,7 +54,7 @@ private:
 };
 
 /// Data for the wxScatterPlotCtrl control.
-class WXCHARTS_EXPORT wxScatterPlotData
+class WXDLLIMPEXP_ISHIKO_CHARTS wxScatterPlotData
 {
 public:
     /// Constructs a wxScatterPlotData instance.
@@ -73,7 +73,7 @@ private:
 /// A scatter plot.
 
 /// \ingroup chartclasses
-class WXCHARTS_EXPORT wxScatterPlot : public wxChart
+class WXDLLIMPEXP_ISHIKO_CHARTS wxScatterPlot : public wxChart
 {
 public:
     wxScatterPlot(const wxScatterPlotData &data, const wxSize &size);

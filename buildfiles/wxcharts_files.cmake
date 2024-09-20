@@ -4,7 +4,8 @@
 
 # List of public header files for the wxCharts library
 set(PUBLIC_HEADER_DIR ${CMAKE_SOURCE_DIR}/include/wx/charts)
-set(wxcharts_HEADERS ${PUBLIC_HEADER_DIR}/wxareachart.h
+set(wxcharts_HEADERS ${PUBLIC_HEADER_DIR}/dlimpexp.h
+                     ${PUBLIC_HEADER_DIR}/wxareachart.h
                      ${PUBLIC_HEADER_DIR}/wxareachartctrl.h
                      ${PUBLIC_HEADER_DIR}/wxareachartdatasetoptions.h
                      ${PUBLIC_HEADER_DIR}/wxareachartoptions.h
