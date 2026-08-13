@@ -3,7 +3,7 @@
 # more tidy.
 
 # List of public header files for the wxCharts library
-set(PUBLIC_HEADER_DIR ${CMAKE_SOURCE_DIR}/include/wx/charts)
+set(PUBLIC_HEADER_DIR ${PROJECT_SOURCE_DIR}/include/wx/charts)
 set(wxcharts_HEADERS ${PUBLIC_HEADER_DIR}/dlimpexp.h
                      ${PUBLIC_HEADER_DIR}/wxareachart.h
                      ${PUBLIC_HEADER_DIR}/wxareachartctrl.h
@@ -131,7 +131,7 @@ set(wxcharts_HEADERS ${PUBLIC_HEADER_DIR}/dlimpexp.h
                      ${PUBLIC_HEADER_DIR}/wxtimeserieschartoptions.h)
 
 # List of source files for the wxCharts library
-set(SOURCE_DIR ${CMAKE_SOURCE_DIR}/src)
+set(SOURCE_DIR ${PROJECT_SOURCE_DIR}/src)
 set(wxcharts_SOURCES ${SOURCE_DIR}/wxareachart.cpp
                      ${SOURCE_DIR}/wxareachartctrl.cpp
                      ${SOURCE_DIR}/wxareachartdatasetoptions.cpp
